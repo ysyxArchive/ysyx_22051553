@@ -30,6 +30,7 @@ class DecoupledGcd(width: Int) extends Module {
   val busy        = RegInit(false.B)
   val resultValid = RegInit(false.B)
 
+
   input.ready  := !busy
   output.valid := resultValid
   output.bits  := DontCare
