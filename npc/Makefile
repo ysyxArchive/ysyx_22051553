@@ -1,29 +1,30 @@
 BUILD_DIR = ./build
+MODULE ?= playground
 
 export PATH := $(PATH):$(abspath ./utils)
 
 test:
-	mill -i __.test
+	mill -i $(MODULE).test
 
 verilog:
 	$(call git_commit, "generate verilog")
 	mkdir -p $(BUILD_DIR)
-	mill -i __.test.runMain Elaborate -td $(BUILD_DIR)
+	mill -i $(MODULE).test.runMain Elaborate -td $(BUILD_DIR)
 
 help:
-	mill -i __.test.runMain Elaborate --help
+	mill -i $(MODULE).test.runMain Elaborate --help
 
 compile:
-	mill -i __.compile
+	mill -i $(MODULE).compile
 
 bsp:
 	mill -i mill.bsp.BSP/install
 
 reformat:
-	mill -i __.reformat
+	mill -i $(MODULE).reformat
 
 checkformat:
-	mill -i __.checkFormat
+	mill -i $(MODULE).checkFormat
 
 clean:
 	-rm -rf $(BUILD_DIR)
