@@ -1,5 +1,7 @@
 #include <nvboard.h>
 #include <Vtop.h>
+#include <time.h>
+
 
 static TOP_NAME dut;
 
@@ -23,6 +25,11 @@ int main() {
   reset(10);
 
   while(1) {
+    int a = rand() % 8;
+    int b = rand() % 8;
+    dut.io_value0 = a;
+    dut.io_value1 = b;
+    dut.io_sel    = rand() % 2;
     nvboard_update();
     single_cycle();
   }

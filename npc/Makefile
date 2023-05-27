@@ -33,6 +33,6 @@ clean:
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo "Write this Makefile by yourself."
+	make run -C $(MODULE)/sim/ -f Makefile
 
 include ../Makefile
