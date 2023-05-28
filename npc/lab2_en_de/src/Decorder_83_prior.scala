@@ -8,7 +8,7 @@ class Decorder_83_prior extends Module{
         val display     = Output(Bool()) 
     })
 
-    io.out := 0
+    io.out := 0.U
     for( i <- 7 to 0 by -1) {   //低位优先
         when(io.in(i) === 1.B)
             io.out := i.U
