@@ -9,7 +9,8 @@ class Top extends Module{
     })
 
     val decoder = Module(new Decoder_83_prior)
-    decoder.io.in := io.sw_input
+    // decoder.io.in := io.sw_input
+    decoder.io.in <> io.sw_input
 
     io.led_output(3) := decoder.io.display.asBool
     io.led_output(2) := decoder.io.out(2).asBool
@@ -23,5 +24,6 @@ class Top extends Module{
     seg.io.data_in(1) := decoder.io.out(1)
     seg.io.data_in(0) := decoder.io.out(0)
 
-    io.seg_output := seg.io.encode_out
+    // io.seg_output := seg.io.encode_out
+    io.seg_output <> seg.io.encode_out
 }
