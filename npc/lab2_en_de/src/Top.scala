@@ -20,10 +20,8 @@ class Top extends Module{
     
 
     val seg = Module(new Seg)
-    seg.io.data_in(3) := 0.B                             //不是0.U
-    seg.io.data_in(2) := decoder.io.out(2).asBool
-    seg.io.data_in(1) := decoder.io.out(1).asBool
-    seg.io.data_in(0) := decoder.io.out(0).asBool
+    // seg.io.data_in(3) := 0.B                             //不是0.U  （）操作会转换其为B类型
+    seg.io.data_in := Cat(0.U, decoder.io.out(2,0))
 
     // io.seg_output := seg.io.encode_out
     io.seg_output <> seg.io.encode_out
