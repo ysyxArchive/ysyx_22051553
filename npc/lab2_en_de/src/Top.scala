@@ -18,12 +18,12 @@ class Top extends Module{
     io.led_output(0) := decoder.io.out(0).asBool
     
     
-    
+
     val seg = Module(new Seg);
-    seg.io.data_in(3) := 0.U
-    seg.io.data_in(2) := decoder.io.out(2)
-    seg.io.data_in(1) := decoder.io.out(1)
-    seg.io.data_in(0) := decoder.io.out(0)
+    seg.io.data_in(3) := 0.B                             //不是0.U
+    seg.io.data_in(2) := decoder.io.out(2).asBool
+    seg.io.data_in(1) := decoder.io.out(1).asBool
+    seg.io.data_in(0) := decoder.io.out(0).asBool
 
     // io.seg_output := seg.io.encode_out
     io.seg_output <> seg.io.encode_out
