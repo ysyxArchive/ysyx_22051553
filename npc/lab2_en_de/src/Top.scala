@@ -20,7 +20,7 @@ class Top extends Module{
     
 
     val seg = Module(new Seg)
-    seg.io.data_in(3) := 0.B                             //不是0.U
+    
     
 
     // io.seg_output := seg.io.encode_out
