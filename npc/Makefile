@@ -1,4 +1,4 @@
-BUILD_DIR = ./build
+BUILD_DIR ?= ./build
 MODULE ?= playground
 
 export PATH := $(PATH):$(abspath ./utils)
@@ -9,7 +9,7 @@ test:
 verilog:
 	$(call git_commit, "generate verilog")
 	mkdir -p $(BUILD_DIR)
-	mill -i $(MODULE).test.runMain Elaborate -td $(BUILD_DIR)
+	mill -i $(MODULE).test.runMain Elaborate -td $(MODULE)/$(BUILD_DIR)
 
 help:
 	mill -i $(MODULE).test.runMain Elaborate --help
@@ -27,7 +27,8 @@ checkformat:
 	mill -i $(MODULE).checkFormat
 
 clean:
-	-rm -rf $(BUILD_DIR)
+	-rm -rf $(BUILD_DIR)               //-忽略错误
+	rm -rf $(MODULE)/$(BUILD_DIR)
 
 .PHONY: test verilog help compile bsp reformat checkformat clean
 
