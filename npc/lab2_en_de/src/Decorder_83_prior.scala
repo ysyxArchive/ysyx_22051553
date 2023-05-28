@@ -14,6 +14,8 @@ class Decorder_83_prior extends Module{
             io.out := i.U
         }
     }
+
+    io.display := io.in.reduce(_ || _)
     
 }
 
