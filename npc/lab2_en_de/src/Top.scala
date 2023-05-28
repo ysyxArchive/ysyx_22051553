@@ -19,8 +19,8 @@ class Top extends Module{
     
     
 
-    val seg = Module(new Seg);
-    seg.io.data_in(3) := false.B                             //不是0.U
+    val seg = Module(new Seg)
+    seg.io.data_in(3) := 0.B                             //不是0.U
     seg.io.data_in(2) := decoder.io.out(2).asBool
     seg.io.data_in(1) := decoder.io.out(1).asBool
     seg.io.data_in(0) := decoder.io.out(0).asBool
