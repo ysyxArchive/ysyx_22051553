@@ -8,7 +8,7 @@ class Seg extends Module{  //Module会有clk和rst  //共阳
     })
 
     val mapArray = Seq(
-        (io.data_in === 0.U) -> Reverse("b0000001".U),
+        (io.data_in === 0.U) -> Reverse("b0000001".U),   
         (io.data_in === 1.U) -> Reverse("b1001111".U),
         (io.data_in === 2.U) -> Reverse("b0010010".U),
         (io.data_in === 3.U) -> Reverse("b0000110".U),
