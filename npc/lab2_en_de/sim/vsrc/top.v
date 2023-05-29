@@ -20,12 +20,13 @@ module Seg(	// <stdin>:41:10
   input  [3:0] io_data_in,
   output [6:0] io_encode_out);
 
-  assign io_encode_out = io_data_in == 4'h0 ? 7'h1 : io_data_in == 4'h1 ? 7'h79 : io_data_in == 4'h2 ? 7'h9 :
-                io_data_in == 4'h3 ? 7'h3 : io_data_in == 4'h4 ? 7'h19 : {1'h0, io_data_in == 4'h5 ? 6'h9 :
-                io_data_in == 4'h6 ? 6'h1 : {2'h0, io_data_in == 4'h7 ? 4'hF : {3'h0, io_data_in != 4'h8}}};	// <stdin>:41:10, Cat.scala:33:92, Mux.scala:101:16, Seg.scala:11:21, :12:21, :13:21, :14:21, :15:21, :16:21, :17:21, :18:21, :19:21
+  assign io_encode_out = io_data_in == 4'h0 ? 7'h1 : io_data_in == 4'h1 ? 7'h4F : io_data_in == 4'h2 ? 7'h12 :
+                io_data_in == 4'h3 ? 7'h6 : io_data_in == 4'h4 ? 7'h4C : {1'h0, io_data_in == 4'h5 ? 6'h24
+                : io_data_in == 4'h6 ? 6'h20 : {2'h0, io_data_in == 4'h7 ? 4'hF : {1'h0, io_data_in == 4'h8
+                ? 3'h0 : io_data_in == 4'h9 ? 3'h4 : 3'h1}}};	// <stdin>:41:10, Mux.scala:101:16, Seg.scala:11:21, :12:21, :13:21, :14:21, :15:21, :16:21, :17:21, :18:21, :19:21, :20:21
 endmodule
 
-module top(	// <stdin>:101:10
+module top(	// <stdin>:68:10
   input        clock,
                reset,
                io_sw_input_0,
@@ -59,8 +60,8 @@ module top(	// <stdin>:101:10
     .io_data_in    ({1'h0, _decoder_io_out}),	// Cat.scala:33:92, Top.scala:11:25
     .io_encode_out (io_seg_output)
   );
-  assign io_led_output_0 = _decoder_io_out[0];	// <stdin>:101:10, Top.scala:11:25, :18:39
-  assign io_led_output_1 = _decoder_io_out[1];	// <stdin>:101:10, Top.scala:11:25, :17:39
-  assign io_led_output_2 = _decoder_io_out[2];	// <stdin>:101:10, Top.scala:11:25, :16:39
+  assign io_led_output_0 = _decoder_io_out[0];	// <stdin>:68:10, Top.scala:11:25, :18:39
+  assign io_led_output_1 = _decoder_io_out[1];	// <stdin>:68:10, Top.scala:11:25, :17:39
+  assign io_led_output_2 = _decoder_io_out[2];	// <stdin>:68:10, Top.scala:11:25, :16:39
 endmodule
 
