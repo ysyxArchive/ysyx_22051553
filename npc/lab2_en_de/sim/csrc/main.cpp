@@ -8,19 +8,19 @@ static TOP_NAME dut;
 
 void nvboard_bind_all_pins(Vtop* top);
 
-static void single_cycle() {  //clk总是为1
-  dut.clk = 0; dut.eval();
-  dut.clk = 1; dut.eval();
+static void single_cycle() {  //clock总是为1
+  dut.clock = 0; dut.eval();
+  dut.clock = 1; dut.eval();
 }
 
 static void edge_change() {  
-  dut.clk ^= 1; dut.eval();
+  dut.clock ^= 1; dut.eval();
 }
 
 static void reset(int n) {
-  dut.rst = 1;
+  dut.reset = 1;
   while (n -- > 0) single_cycle();
-  dut.rst = 0;
+  dut.reset = 0;
 }
 
 int main(int argc, char **argv) {
@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
   reset(10);
 
   while(1) {
-    if(dut.clk == 1)      //只有上升沿才更新
+    if(dut.clock == 1)      //只有上升沿才更新
       nvboard_update();
     
     edge_change();
