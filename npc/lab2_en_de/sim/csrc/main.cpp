@@ -1,15 +1,20 @@
 #include <nvboard.h>
 #include <Vtop.h>
-#include <time.h>
-
+#include <verilated_vcd_c.h>
+#include <verilated.h>
 
 static TOP_NAME dut;
 
+
 void nvboard_bind_all_pins(Vtop* top);
 
-static void single_cycle() {
+static void single_cycle() {  //clk总是为1
   dut.clk = 0; dut.eval();
   dut.clk = 1; dut.eval();
+}
+
+static void edge_change() {  
+  dut.clk ^= 1; dut.eval();
 }
 
 static void reset(int n) {
@@ -18,19 +23,21 @@ static void reset(int n) {
   dut.rst = 0;
 }
 
-int main() {
+int main(int argc, char **argv) {
+
   nvboard_bind_all_pins(&dut);
   nvboard_init();
 
   reset(10);
 
   while(1) {
-    int a = rand() % 8;
-    int b = rand() % 8;
-    dut.io_value0 = a;
-    dut.io_value1 = b;
-    dut.io_sel    = rand() % 2;
-    nvboard_update();
-    single_cycle();
+    if(dut.clk == 1)      //只有上升沿才更新
+      nvboard_update();
+    
+    edge_change();
+
+    
   }
+
+  return 0;
 }
