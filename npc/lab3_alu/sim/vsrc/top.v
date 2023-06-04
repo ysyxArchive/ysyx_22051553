@@ -226,7 +226,7 @@ module top(	// <stdin>:287:10
   );
 
   always@(posedge clock)begin
-    
+    if(top.Button.sampling && top.Button.count == 4'd10)
       $display("out %d",_Button_io_button_out);
 
    
