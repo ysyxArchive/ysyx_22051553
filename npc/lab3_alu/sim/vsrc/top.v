@@ -96,7 +96,7 @@ module Button(	// <stdin>:2:10
 
 
   always@(posedge clock)begin
-    if(count == 4'd10)
+    if(count == 4'd10 && sampling)
       $display("buffer %x",buffer[8:1]);
   
   end
