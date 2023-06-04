@@ -175,7 +175,7 @@ module Seg(	// <stdin>:192:10
                 7'h1;	// <stdin>:192:10, Mux.scala:81:{58,61}
 endmodule
 
-module Top(	// <stdin>:282:10
+module top(	// <stdin>:282:10
   input        clock,
                reset,
                io_ps2_clk,
