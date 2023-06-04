@@ -121,7 +121,7 @@ module Alu(	// <stdin>:100:10
     else if (io_alu_op == 4'h0 | io_alu_op == 4'h1 | io_alu_op == 4'h2 | io_alu_op == 4'h3 | io_alu_op
                                 == 4'h4 | io_alu_op == 4'h5 | io_alu_op == 4'h6 | io_alu_op == 4'h7)	begin// Alu.scala:36:{20,45,70,95}, :37:{19,43,68,80,93}, :50:12, :52:53
       alu_op <= io_alu_op;	// Alu.scala:33:25
-                                $display("ok");
+                                $display("alu_op == %d", alu_op);
                                 end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:100:10
