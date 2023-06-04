@@ -193,7 +193,7 @@ module top(	// <stdin>:282:10
   wire [2:0] _Button_io_button_out;	// Top.scala:29:24
   Button Button (	// Top.scala:29:24
     .clock         (clock),
-    .reset         (reset),
+    .reset         (~reset),
     .io_ps2_clk    (io_ps2_clk),
     .io_ps2_data   (io_ps2_data),
     .io_button_out (_Button_io_button_out)
