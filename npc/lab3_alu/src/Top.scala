@@ -23,7 +23,7 @@ class Top extends Module{
     val B = io.sw_input(3,0).asSInt
 
 
-    val result = Alu.io.result
+    
     
 
     val Button = Module(new Button)
@@ -35,6 +35,8 @@ class Top extends Module{
     Alu.io.A := A
     Alu.io.B := B
     Alu.io.alu_op := Button.io.button_out
+
+    val result = Alu.io.result
 
     val Seg = Module(new Seg)
     Seg.io.dataIn(0) := Cat(0.U(3.W), result(0))
