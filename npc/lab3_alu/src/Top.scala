@@ -19,8 +19,8 @@ class Top extends Module{
     })
 
 
-    val A = io.sw_input(7,4)
-    val B = io.sw_input(3,0)
+    val A = io.sw_input(7,4).asSInt
+    val B = io.sw_input(3,0).asSInt
 
     
 
