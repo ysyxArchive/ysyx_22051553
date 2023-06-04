@@ -5,7 +5,7 @@ import chisel3.util._
 // 该scala程序描述的是主接口协议
 // ps_data是rt类型，不是由仿真程序控制，而是由实时外部按键控制
 
-object Button{
+object Button{                         //注意断碼f0
     val a = "h1C".U(8.W)
     val b = "h32".U(8.W)
     val c = "h21".U(8.W)
@@ -14,6 +14,7 @@ object Button{
     val f = "h2B".U(8.W)
     val g = "h34".U(8.W)
     val h = "h33".U(8.W)
+    val none = "hf0".U(8.W)
     //---
     
 }
@@ -59,7 +60,7 @@ class Button extends Module{
                     MuxCase(
                         0.U(3.W),
                         Seq(
-                            // (buffer(8,1) === "0x11".U) -> ALU_ADD        注意从左到右的优先级
+                            // (buffer(8,1) === "0x11".U) -> ALU_ADD        注意从左到右的优先级  
                             (buffer(8,1) === Button.a) -> ALU_ADD,
                             (buffer(8,1) === Button.b) -> ALU_SUB,
                             (buffer(8,1) === Button.c) -> ALU_NOT,
@@ -67,7 +68,8 @@ class Button extends Module{
                             (buffer(8,1) === Button.e) -> ALU_OR,
                             (buffer(8,1) === Button.f) -> ALU_XOR,
                             (buffer(8,1) === Button.g) -> ALU_COM,
-                            (buffer(8,1) === Button.h) -> ALU_EUQ
+                            (buffer(8,1) === Button.h) -> ALU_EUQ,
+                            (buffer(8,1) === Button.none) -> 7.U(3.W)
                         )
                     )
             }

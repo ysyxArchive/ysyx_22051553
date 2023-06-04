@@ -95,13 +95,7 @@ module Button(	// <stdin>:2:10
                 3'h6 : {3{buffer[8:1] == 8'h33}};	// <stdin>:2:10, Button.scala:34:36, :36:36, :39:49, :41:44, :49:19, :51:30, :52:{20,29}, :54:27, :56:{17,27,33}, :57:14, :58:31, :63:{36,42}, :64:42, :65:42, :66:42, :67:42, :68:42, :69:42, :70:42, Mux.scala:101:16
 
 
-  always@(posedge clock)begin
-    if(count == 4'd10 && sampling)begin
-      $display("buffer %x",buffer[8:1]);
-      $display("bufferout %d",io_button_out);
-    end
-  
-  end
+
 
 
 
