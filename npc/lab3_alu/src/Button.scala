@@ -58,15 +58,8 @@ class Button extends Module{
                     MuxCase(
                         0.U(3.W),
                         Seq(
-                            // (buffer(8,1) === "0x11".U) -> ALU_ADD        注意从左到右的优先级
-                            (buffer(8,1) === (Button.a)) -> ALU_ADD,
-                            (buffer(8,1) === (Button.b)) -> ALU_SUB,
-                            (buffer(8,1) === (Button.c)) -> ALU_NOT,
-                            (buffer(8,1) === (Button.d)) -> ALU_AND,
-                            (buffer(8,1) === (Button.e)) -> ALU_OR,
-                            (buffer(8,1) === (Button.f)) -> ALU_XOR,
-                            (buffer(8,1) === (Button.g)) -> ALU_COM,
-                            (buffer(8,1) === (Button.h)) -> ALU_EUQ
+                             (buffer(8,1) === "0x11".U) -> ALU_ADD        //注意从左到右的优先级
+                           
                         )
                     )
             }
