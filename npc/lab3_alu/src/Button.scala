@@ -47,7 +47,7 @@ class Button extends Module{
     ps2_clk_sync := Cat(ps2_clk_sync(1,0), io.ps2_clk)
 
 
-    io.button_out := 0.U(4.W)
+    io.button_out := 15.U(4.W)
 
     when(sampling === true.B){   //时序逻辑不需要写完整
         when(count === 10.U){
@@ -58,7 +58,7 @@ class Button extends Module{
             ){
                 io.button_out := 
                     MuxCase(
-                        14.U(4.W),   //重要 若为0,则与ADD混淆
+                        15.U(4.W),   //重要 若为0,则与ADD混淆
                         Seq(
                             // (buffer(8,1) === "0x11".U) -> ALU_ADD        注意从左到右的优先级  
                             (buffer(8,1) === Button.a) -> ALU_ADD,
