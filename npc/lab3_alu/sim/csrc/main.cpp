@@ -34,10 +34,9 @@ int main(int argc, char **argv) {
     if(dut.clock == 1)      //只有上升沿才更新
       nvboard_update();
     
-    edge_change();
-
-    
-  }
+  edge_change();
+  
+  
 
   return 0;
 }

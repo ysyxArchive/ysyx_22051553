@@ -60,6 +60,9 @@ module Button(	// <stdin>:2:10
                                                                 io_ps2_data : buffer[3], count == 4'h2 ? io_ps2_data : buffer[2], count == 4'h1 ?
                                                                 io_ps2_data : buffer[1], count == 4'h0 ? io_ps2_data : buffer[0]};	// Button.scala:34:36, :35:36, :41:{36,44}, :43:22, :79:33
       if (sampling) begin	// Button.scala:39:49
+
+        $display("sample");
+
         if (_T_1)	// Button.scala:52:20
           count <= 4'h0;	// Button.scala:35:36
         else	// Button.scala:52:20
@@ -220,7 +223,5 @@ module top(	// <stdin>:282:10
     .io_encodeOut_3 (io_seg3)
   );
 
-  always@(posedge clock)
-    $display("button %d", _Button_io_button_out);
 endmodule
 
