@@ -37,16 +37,15 @@ class Button extends Module{
 
     val sampling        =   Mux(ps2_clk_sync(2) & ~ps2_clk_sync(1), true.B, false.B)
 
+    val bufferVec       =   VecInit(buffer.asBools)
+    
+    bufferVec(count) := io.ps2_data.asBool
+    
+    
     ps2_clk_sync := Cat(ps2_clk_sync(1,0), io.ps2_clk)
 
 
     io.button_out := 0.U(3.W)
-
-    val bufferNext = Wire(UInt(10.W))
-    bufferNext := buffer
-
-    buffer := RegEnable(bufferNext ,sampling)
-
 
     when(sampling === true.B){   //时序逻辑不需要写完整
         when(count === 10.U){
@@ -56,13 +55,27 @@ class Button extends Module{
                 && (buffer(9,1).xorR) //odd    //R应该是指类似Reduce方法
             ){
                 io.button_out := 
-                    0.U(3.W)
+                    MuxCase(
+                        0.U(3.W),
+                        Seq(
+                            (buffer(8,1) === Button.a) -> ALU_ADD,
+                            (buffer(8,1) === Button.b) -> ALU_SUB,
+                            (buffer(8,1) === Button.c) -> ALU_NOT,
+                            (buffer(8,1) === Button.d) -> ALU_AND,
+                            (buffer(8,1) === Button.e) -> ALU_OR,
+                            (buffer(8,1) === Button.f) -> ALU_XOR,
+                            (buffer(8,1) === Button.g) -> ALU_COM,
+                            (buffer(8,1) === Button.h) -> ALU_EUQ
+                        )
+                    )
             }
         
             count := 0.U
 
         }.otherwise {
-            bufferNext(count) := io.ps2_data            //左值可以是 A(n)的形式吗
+            // bufferNext(count) := io.ps2_data                   //左值可以是 A(n)的形式吗
+            buffer := bufferVec.asUInt
+
             count := count + 1.U
         }
     }
