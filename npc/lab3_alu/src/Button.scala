@@ -58,7 +58,7 @@ class Button extends Module{
                     MuxCase(
                         0.U(3.W),
                         Seq(
-                            true.B -> ALU_ADD
+                            (buffer(8,1) === "0x11".U) -> ALU_ADD
                         )
                     )
             }
