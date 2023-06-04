@@ -99,7 +99,7 @@ class Alu extends Module{
         )
     
     
-    val carry = (A1.asUInt +& B1.asUInt)(32) === 1.U        //+&扩展一位最高位
+    val carry = (A1.asUInt +& B1.asUInt)(4) === 1.U        //+&扩展一位最高位
 
 
     io.result := result
