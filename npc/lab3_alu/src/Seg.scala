@@ -9,16 +9,16 @@ class Seg extends Module{  //Module会有clk和rst  //共阳
 
     def genMapArray(data: UInt):UInt = {
         val MapArray = Seq(
-            (data === 0.U) -> ("b0000001".U),   //"b abcdefg"
-            (data === 1.U) -> ("b1001111".U),
-            (data === 2.U) -> ("b0010010".U),
-            (data === 3.U) -> ("b0000110".U),
-            (data === 4.U) -> ("b1001100".U),
-            (data === 5.U) -> ("b0100100".U),
-            (data === 6.U) -> ("b0100000".U),
-            (data === 7.U) -> ("b0001111".U),
-            (data === 8.U) -> ("b0000000".U),
-            (data === 9.U) -> ("b0000100".U)
+            (data === 0.U) -> ("b0000001".U(7.W)),   //"b abcdefg"
+            (data === 1.U) -> ("b1001111".U(7.W)),
+            (data === 2.U) -> ("b0010010".U(7.W)),
+            (data === 3.U) -> ("b0000110".U(7.W)),
+            (data === 4.U) -> ("b1001100".U(7.W)),
+            (data === 5.U) -> ("b0100100".U(7.W)),
+            (data === 6.U) -> ("b0100000".U(7.W)),
+            (data === 7.U) -> ("b0001111".U(7.W)),
+            (data === 8.U) -> ("b0000000".U(7.W)),
+            (data === 9.U) -> ("b0000100".U(7.W))
         )
 
         val out = MapArray.collectFirst{case (cond, value) if (cond == true.B) => value}.getOrElse("b0000001".U)
