@@ -51,9 +51,9 @@ module Button(	// <stdin>:2:10
       ps2_clk_sync <= 3'h0;	// Button.scala:37:36
     end
     else begin
-      if (~sampling | _T_1) begin	// Button.scala:35:36, :40:49, :50:19, :52:30, :53:{20,29}
+      if (~sampling | _T_1) begin	// Button.scala:35:36, :40:49, :52:30, :53:{20,29}
       end
-      else	// Button.scala:35:36, :40:49, :50:19, :52:30, :53:{20,29}
+      else	// Button.scala:35:36, :40:49, :52:30, :53:{20,29}
         buffer <= {count == 4'h9 ? io_ps2_data : buffer[9], count == 4'h8 ? io_ps2_data : buffer[8], count ==
                                                                 4'h7 ? io_ps2_data : buffer[7], count == 4'h6 ? io_ps2_data : buffer[6], count == 4'h5 ?
                                                                 io_ps2_data : buffer[5], count == 4'h4 ? io_ps2_data : buffer[4], count == 4'h3 ?
@@ -88,10 +88,10 @@ module Button(	// <stdin>:2:10
       `FIRRTL_AFTER_INITIAL	// <stdin>:2:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
-  assign io_button_out = ~sampling | ~_T_1 | ~(~(buffer[0]) & io_ps2_data & ^(buffer[9:1])) | buffer[8:1] == 8'h1C ?
+  assign io_button_out = sampling & _T_1 & ~(buffer[0]) & io_ps2_data & ^(buffer[9:1]) ? (buffer[8:1] == 8'h1C ?
                 4'h0 : buffer[8:1] == 8'h32 ? 4'h1 : buffer[8:1] == 8'h21 ? 4'h2 : buffer[8:1] == 8'h23 ?
                 4'h3 : buffer[8:1] == 8'h24 ? 4'h4 : buffer[8:1] == 8'h2B ? 4'h5 : buffer[8:1] == 8'h34 ?
-                4'h6 : buffer[8:1] == 8'h33 ? 4'h7 : {3'h7, buffer[8:1] == 8'hF0};	// <stdin>:2:10, Button.scala:35:36, :36:36, :40:49, :42:44, :44:22, :50:19, :52:30, :53:{20,29}, :55:27, :57:{17,27,33}, :58:14, :59:31, :64:{36,42}, :65:42, :66:42, :67:42, :68:42, :69:42, :70:42, :71:42, :72:42, Mux.scala:101:16
+                4'h6 : {buffer[8:1] != 8'h33, 3'h7}) : 4'hF;	// <stdin>:2:10, Button.scala:35:36, :36:36, :40:49, :42:44, :44:22, :50:19, :52:30, :53:{20,29}, :55:27, :57:{27,33}, :64:{36,42}, :65:42, :66:42, :67:42, :68:42, :69:42, :70:42, :71:42, Mux.scala:101:16
 endmodule
 
 module Alu(	// <stdin>:100:10
@@ -222,6 +222,5 @@ module top(	// <stdin>:287:10
   always@(posedge clock)begin
     $display("%d",_Button_io_button_out);
   end
-
 endmodule
 
