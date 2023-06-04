@@ -39,10 +39,14 @@ class Top extends Module{
     val result = Alu.io.result
 
     val Seg = Module(new Seg)
-    Seg.io.dataIn(0) := Cat(0.U(3.W), result(0))
-    Seg.io.dataIn(1) := Cat(0.U(3.W), result(1))
-    Seg.io.dataIn(2) := Cat(0.U(3.W), result(2))
-    Seg.io.dataIn(3) := Cat(0.U(3.W), result(3))
+    // Seg.io.dataIn(0) := Cat(0.U(3.W), result(0))
+    // Seg.io.dataIn(1) := Cat(0.U(3.W), result(1))
+    // Seg.io.dataIn(2) := Cat(0.U(3.W), result(2))
+    // Seg.io.dataIn(3) := Cat(0.U(3.W), result(3))
+    Seg.io.dataIn(0) := Cat("b000".U, result(0))
+    Seg.io.dataIn(1) := Cat("b000".U, result(1))
+    Seg.io.dataIn(2) := Cat("b000".U, result(2))
+    Seg.io.dataIn(3) := Cat("b000".U, result(3))
 
 
     io.seg3 := Seg.io.encodeOut(3)
