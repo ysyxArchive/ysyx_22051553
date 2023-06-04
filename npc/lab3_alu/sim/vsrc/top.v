@@ -96,8 +96,10 @@ module Button(	// <stdin>:2:10
 
 
   always@(posedge clock)begin
-    if(count == 4'd10 && sampling)
+    if(count == 4'd10 && sampling)begin
       $display("buffer %x",buffer[8:1]);
+      $display("bufferout %d",io_button_out);
+    end
   
   end
 
