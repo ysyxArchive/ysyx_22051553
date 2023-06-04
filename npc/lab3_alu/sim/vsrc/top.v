@@ -91,11 +91,7 @@ module Button(	// <stdin>:2:10
   assign io_button_out = ~sampling | ~_T_1 | ~(~(buffer[0]) & io_ps2_data & ^(buffer[9:1])) | buffer[8:1] == 8'h1C ?
                 4'h0 : buffer[8:1] == 8'h32 ? 4'h1 : buffer[8:1] == 8'h21 ? 4'h2 : buffer[8:1] == 8'h23 ?
                 4'h3 : buffer[8:1] == 8'h24 ? 4'h4 : buffer[8:1] == 8'h2B ? 4'h5 : buffer[8:1] == 8'h34 ?
-                4'h6 : buffer[8:1] == 8'h33 ? 4'h7 : {4{buffer[8:1] == 8'hF0}};	// <stdin>:2:10, Button.scala:35:36, :36:36, :40:49, :42:44, :44:22, :50:19, :52:30, :53:{20,29}, :55:27, :57:{17,27,33}, :58:14, :59:31, :64:{36,42}, :65:42, :66:42, :67:42, :68:42, :69:42, :70:42, :71:42, :72:42, Mux.scala:101:16
-
-
-
-
+                4'h6 : buffer[8:1] == 8'h33 ? 4'h7 : {3'h7, buffer[8:1] == 8'hF0};	// <stdin>:2:10, Button.scala:35:36, :36:36, :40:49, :42:44, :44:22, :50:19, :52:30, :53:{20,29}, :55:27, :57:{17,27,33}, :58:14, :59:31, :64:{36,42}, :65:42, :66:42, :67:42, :68:42, :69:42, :70:42, :71:42, :72:42, Mux.scala:101:16
 endmodule
 
 module Alu(	// <stdin>:100:10
@@ -126,8 +122,6 @@ module Alu(	// <stdin>:100:10
                                 == 4'h4 | io_alu_op == 4'h5 | io_alu_op == 4'h6 | io_alu_op == 4'h7)	// Alu.scala:36:{20,45,70,95}, :37:{19,43,68,80,93}, :50:12, :52:53
       alu_op <= io_alu_op;	// Alu.scala:33:25
   end // always @(posedge)
-
-  
   `ifndef SYNTHESIS	// <stdin>:100:10
     `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:100:10
       `FIRRTL_BEFORE_INITIAL	// <stdin>:100:10
@@ -224,13 +218,5 @@ module top(	// <stdin>:287:10
     .io_encodeOut_2 (io_seg2),
     .io_encodeOut_3 (io_seg3)
   );
-
-  always@(posedge clock)begin
-    if(top.Button.sampling && top.Button.count == 4'd10)
-      $display("out %d",_Button_io_button_out);
-
-   
-      
-    end
 endmodule
 
