@@ -125,7 +125,7 @@ module Alu(	// <stdin>:100:10
 
   always@(posedge clock)begin
     
-      $display("op %d",alu_op);
+      $display("op %d",io_alu_op);
       
     end
   `ifndef SYNTHESIS	// <stdin>:100:10
