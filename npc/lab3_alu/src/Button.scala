@@ -42,7 +42,7 @@ class Button extends Module{
 
     io.button_out := 0.U(3.W)
 
-    val bufferNext = Wire(Vec(10,UInt(1.W)))
+    val bufferNext = Wire(UInt(10.W))
     bufferNext := buffer
 
     buffer := RegEnable(bufferNext ,sampling)
