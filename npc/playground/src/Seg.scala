@@ -23,7 +23,7 @@ class Seg extends Module{  //Module会有clk和rst  //共阳
     //     )
 
     //     val out = MapArray.collectFirst{case (cond, value) if (cond == true.B) => value}.getOrElse("b0000001".U(7.W))
-    //     //模式匹配 -- cond只能为Boolean类型
+    //     //模式匹配 -- cond只能为Boolean类型   //模式匹配语法在硬件中本就是不存在的
     //     out
     // }
 
