@@ -3,6 +3,7 @@ import chisel3.util._
 
 // ps_clk是由ps从设备驱动的，严格而言不算是周期性的时钟信号，所以使用Bool类型，当作控制信号
 // 该scala程序描述的是主接口协议
+// ps_data是rt类型，不是由仿真程序控制，而是由实时外部按键控制
 
 object Button{
     val a = "h1C".U(8.W)
