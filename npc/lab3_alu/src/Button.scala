@@ -37,8 +37,8 @@ class Button extends Module{
 
     val sampling        =   Mux(ps2_clk_sync(2) & ~ps2_clk_sync(1), true.B, false.B)
 
-    val bufferVec       =   VecInit(buffer.asBools)
-    
+    val bufferVec       =   VecInit(buffer.asBools)   //用于修改单个位
+                                                        //那么使用或不用Wire,和Vec有什么区别呢
     bufferVec(count) := io.ps2_data.asBool
     
     
@@ -58,14 +58,7 @@ class Button extends Module{
                     MuxCase(
                         0.U(3.W),
                         Seq(
-                            (buffer(8,1) === Button.a) -> ALU_ADD,
-                            (buffer(8,1) === Button.b) -> ALU_SUB,
-                            (buffer(8,1) === Button.c) -> ALU_NOT,
-                            (buffer(8,1) === Button.d) -> ALU_AND,
-                            (buffer(8,1) === Button.e) -> ALU_OR,
-                            (buffer(8,1) === Button.f) -> ALU_XOR,
-                            (buffer(8,1) === Button.g) -> ALU_COM,
-                            (buffer(8,1) === Button.h) -> ALU_EUQ
+                            (buffer(8,1) === Button.a) -> ALU_ADD
                         )
                     )
             }
