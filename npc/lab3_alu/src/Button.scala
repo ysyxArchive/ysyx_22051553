@@ -58,7 +58,7 @@ class Button extends Module{
             ){
                 io.button_out := 
                     MuxCase(
-                        0.U(4.W),
+                        14.U(4.W),   //重要 若为0,则与ADD混淆
                         Seq(
                             // (buffer(8,1) === "0x11".U) -> ALU_ADD        注意从左到右的优先级  
                             (buffer(8,1) === Button.a) -> ALU_ADD,
