@@ -39,33 +39,33 @@ module Button(	// <stdin>:2:10
                io_ps2_data,
   output [2:0] io_button_out);
 
-  reg  [9:0] buffer;	// Button.scala:33:36
-  reg  [3:0] count;	// Button.scala:34:36
-  reg  [2:0] ps2_clk_sync;	// Button.scala:35:36
-  wire       sampling = ps2_clk_sync[2] & ~(ps2_clk_sync[1]);	// Button.scala:35:36, :38:{45,49,51,64}
-  wire       _T_1 = count == 4'hA;	// Button.scala:34:36, :51:20
+  reg  [9:0] buffer;	// Button.scala:34:36
+  reg  [3:0] count;	// Button.scala:35:36
+  reg  [2:0] ps2_clk_sync;	// Button.scala:36:36
+  wire       sampling = ps2_clk_sync[2] & ~(ps2_clk_sync[1]);	// Button.scala:36:36, :39:{45,49,51,64}
+  wire       _T_1 = count == 4'hA;	// Button.scala:35:36, :52:20
   always @(posedge clock) begin
     if (reset) begin
-      buffer <= 10'h0;	// Button.scala:33:36
-      count <= 4'h0;	// Button.scala:34:36
-      ps2_clk_sync <= 3'h0;	// Button.scala:35:36
+      buffer <= 10'h0;	// Button.scala:34:36
+      count <= 4'h0;	// Button.scala:35:36
+      ps2_clk_sync <= 3'h0;	// Button.scala:36:36
     end
     else begin
-      if (~sampling | _T_1) begin	// Button.scala:33:36, :38:49, :48:19, :50:30, :51:{20,29}
+      if (~sampling | _T_1) begin	// Button.scala:34:36, :39:49, :49:19, :51:30, :52:{20,29}
       end
-      else	// Button.scala:33:36, :38:49, :48:19, :50:30, :51:{20,29}
+      else	// Button.scala:34:36, :39:49, :49:19, :51:30, :52:{20,29}
         buffer <= {count == 4'h9 ? io_ps2_data : buffer[9], count == 4'h8 ? io_ps2_data : buffer[8], count ==
                                                                 4'h7 ? io_ps2_data : buffer[7], count == 4'h6 ? io_ps2_data : buffer[6], count == 4'h5 ?
                                                                 io_ps2_data : buffer[5], count == 4'h4 ? io_ps2_data : buffer[4], count == 4'h3 ?
                                                                 io_ps2_data : buffer[3], count == 4'h2 ? io_ps2_data : buffer[2], count == 4'h1 ?
-                                                                io_ps2_data : buffer[1], count == 4'h0 ? io_ps2_data : buffer[0]};	// Button.scala:33:36, :34:36, :40:{36,44}, :42:22, :78:33
-      if (sampling) begin	// Button.scala:38:49
-        if (_T_1)	// Button.scala:51:20
-          count <= 4'h0;	// Button.scala:34:36
-        else	// Button.scala:51:20
-          count <= count + 4'h1;	// Button.scala:34:36, :42:22, :80:28
+                                                                io_ps2_data : buffer[1], count == 4'h0 ? io_ps2_data : buffer[0]};	// Button.scala:34:36, :35:36, :41:{36,44}, :43:22, :79:33
+      if (sampling) begin	// Button.scala:39:49
+        if (_T_1)	// Button.scala:52:20
+          count <= 4'h0;	// Button.scala:35:36
+        else	// Button.scala:52:20
+          count <= count + 4'h1;	// Button.scala:35:36, :43:22, :81:28
       end
-      ps2_clk_sync <= {ps2_clk_sync[1:0], io_ps2_clk};	// Button.scala:35:36, :45:37, Cat.scala:33:92
+      ps2_clk_sync <= {ps2_clk_sync[1:0], io_ps2_clk};	// Button.scala:36:36, :46:37, Cat.scala:33:92
     end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:2:10
@@ -79,9 +79,9 @@ module Button(	// <stdin>:2:10
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// <stdin>:2:10
         _RANDOM_0 = `RANDOM;	// <stdin>:2:10
-        buffer = _RANDOM_0[9:0];	// Button.scala:33:36
-        count = _RANDOM_0[13:10];	// Button.scala:33:36, :34:36
-        ps2_clk_sync = _RANDOM_0[16:14];	// Button.scala:33:36, :35:36
+        buffer = _RANDOM_0[9:0];	// Button.scala:34:36
+        count = _RANDOM_0[13:10];	// Button.scala:34:36, :35:36
+        ps2_clk_sync = _RANDOM_0[16:14];	// Button.scala:34:36, :36:36
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:2:10
@@ -91,7 +91,7 @@ module Button(	// <stdin>:2:10
   assign io_button_out = ~sampling | ~_T_1 | ~(~(buffer[0]) & io_ps2_data & ^(buffer[9:1])) | buffer[8:1] == 8'h1C ?
                 3'h0 : buffer[8:1] == 8'h32 ? 3'h1 : buffer[8:1] == 8'h21 ? 3'h2 : buffer[8:1] == 8'h23 ?
                 3'h3 : buffer[8:1] == 8'h24 ? 3'h4 : buffer[8:1] == 8'h2B ? 3'h5 : buffer[8:1] == 8'h34 ?
-                3'h6 : {3{buffer[8:1] == 8'h33}};	// <stdin>:2:10, Button.scala:33:36, :35:36, :38:49, :40:44, :48:19, :50:30, :51:{20,29}, :53:27, :55:{17,27,33}, :56:14, :57:31, :62:{36,42}, :63:42, :64:42, :65:42, :66:42, :67:42, :68:42, :69:42, Mux.scala:101:16
+                3'h6 : {3{buffer[8:1] == 8'h33}};	// <stdin>:2:10, Button.scala:34:36, :36:36, :39:49, :41:44, :49:19, :51:30, :52:{20,29}, :54:27, :56:{17,27,33}, :57:14, :58:31, :63:{36,42}, :64:42, :65:42, :66:42, :67:42, :68:42, :69:42, :70:42, Mux.scala:101:16
 endmodule
 
 module Alu(	// <stdin>:97:10
@@ -100,6 +100,7 @@ module Alu(	// <stdin>:97:10
   input  [3:0] io_A,
                io_B,
   input  [2:0] io_alu_op,
+  output [3:0] io_result,
   output       io_carry,
                io_zero,
                io_overflow);
@@ -112,7 +113,8 @@ module Alu(	// <stdin>:97:10
   wire            zero = io_A == io_B;	// Alu.scala:71:28
   wire [7:0][3:0] _GEN = {{{4{zero}}}, {{4{$signed(io_A) < $signed(io_B)}}}, {io_A ^ io_B}, {io_A | io_B}, {io_A &
                 io_B}, {4'h0 - io_A}, {_result_T_1}, {_result_T_1}};	// Alu.scala:50:12, :64:28, :66:24, :67:28, :68:28, :69:28, :70:28, :71:28, Mux.scala:81:{58,61}
-  wire            _GEN_0 = _GEN[alu_op][3] != io_A[3];	// Alu.scala:33:25, :80:15, :84:{27,31}, Mux.scala:81:{58,61}
+  wire [3:0]      result = _GEN[alu_op];	// Alu.scala:33:25, Mux.scala:81:{58,61}
+  wire            _GEN_0 = result[3] != io_A[3];	// Alu.scala:80:15, :84:{27,31}, Mux.scala:81:58
   wire [4:0]      _carry_T_2 = {1'h0, io_A} + {1'h0, B1};	// Alu.scala:47:17, :66:24, :102:28
   always @(posedge clock) begin
     if (reset)
@@ -139,12 +141,41 @@ module Alu(	// <stdin>:97:10
       `FIRRTL_AFTER_INITIAL	// <stdin>:97:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
+  assign io_result = result;	// <stdin>:97:10, Mux.scala:81:58
   assign io_carry = _carry_T_2[4];	// <stdin>:97:10, Alu.scala:102:{28,41}
   assign io_zero = zero;	// <stdin>:97:10, Alu.scala:71:28
   assign io_overflow = io_A[3] == io_B[3] ? _overflow_T_3 & _GEN_0 : _overflow_T_9 & _GEN_0;	// <stdin>:97:10, Alu.scala:48:16, :51:20, :79:12, :80:{15,19,25}, :81:16, :84:31, :90:16
 endmodule
 
-module top(	// <stdin>:242:10
+module Seg(	// <stdin>:192:10
+  input  [3:0] io_dataIn_0,
+               io_dataIn_1,
+               io_dataIn_2,
+               io_dataIn_3,
+  output [6:0] io_encodeOut_0,
+               io_encodeOut_1,
+               io_encodeOut_2,
+               io_encodeOut_3);
+
+  assign io_encodeOut_0 = io_dataIn_0 == 4'h9 ? 7'h4 : io_dataIn_0 == 4'h8 ? 7'h0 : io_dataIn_0 == 4'h7 ? 7'hF :
+                io_dataIn_0 == 4'h6 ? 7'h20 : io_dataIn_0 == 4'h5 ? 7'h24 : io_dataIn_0 == 4'h4 ? 7'h4C :
+                io_dataIn_0 == 4'h3 ? 7'h6 : io_dataIn_0 == 4'h2 ? 7'h12 : io_dataIn_0 == 4'h1 ? 7'h4F :
+                7'h1;	// <stdin>:192:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_1 = io_dataIn_1 == 4'h9 ? 7'h4 : io_dataIn_1 == 4'h8 ? 7'h0 : io_dataIn_1 == 4'h7 ? 7'hF :
+                io_dataIn_1 == 4'h6 ? 7'h20 : io_dataIn_1 == 4'h5 ? 7'h24 : io_dataIn_1 == 4'h4 ? 7'h4C :
+                io_dataIn_1 == 4'h3 ? 7'h6 : io_dataIn_1 == 4'h2 ? 7'h12 : io_dataIn_1 == 4'h1 ? 7'h4F :
+                7'h1;	// <stdin>:192:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_2 = io_dataIn_2 == 4'h9 ? 7'h4 : io_dataIn_2 == 4'h8 ? 7'h0 : io_dataIn_2 == 4'h7 ? 7'hF :
+                io_dataIn_2 == 4'h6 ? 7'h20 : io_dataIn_2 == 4'h5 ? 7'h24 : io_dataIn_2 == 4'h4 ? 7'h4C :
+                io_dataIn_2 == 4'h3 ? 7'h6 : io_dataIn_2 == 4'h2 ? 7'h12 : io_dataIn_2 == 4'h1 ? 7'h4F :
+                7'h1;	// <stdin>:192:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_3 = io_dataIn_3 == 4'h9 ? 7'h4 : io_dataIn_3 == 4'h8 ? 7'h0 : io_dataIn_3 == 4'h7 ? 7'hF :
+                io_dataIn_3 == 4'h6 ? 7'h20 : io_dataIn_3 == 4'h5 ? 7'h24 : io_dataIn_3 == 4'h4 ? 7'h4C :
+                io_dataIn_3 == 4'h3 ? 7'h6 : io_dataIn_3 == 4'h2 ? 7'h12 : io_dataIn_3 == 4'h1 ? 7'h4F :
+                7'h1;	// <stdin>:192:10, Mux.scala:81:{58,61}
+endmodule
+
+module Top(	// <stdin>:282:10
   input        clock,
                reset,
                io_ps2_clk,
@@ -158,27 +189,35 @@ module top(	// <stdin>:242:10
                io_led1,
                io_led2);
 
-  wire [2:0] _Button_io_button_out;	// Top.scala:27:24
-  Button Button (	// Top.scala:27:24
+  wire [3:0] _Alu_io_result;	// Top.scala:34:21
+  wire [2:0] _Button_io_button_out;	// Top.scala:29:24
+  Button Button (	// Top.scala:29:24
     .clock         (clock),
     .reset         (reset),
     .io_ps2_clk    (io_ps2_clk),
     .io_ps2_data   (io_ps2_data),
     .io_button_out (_Button_io_button_out)
   );
-  Alu Alu (	// Top.scala:32:21
+  Alu Alu (	// Top.scala:34:21
     .clock       (clock),
     .reset       (reset),
     .io_A        (io_sw_input[7:4]),	// Top.scala:22:24
     .io_B        (io_sw_input[3:0]),	// Top.scala:23:24
-    .io_alu_op   (_Button_io_button_out),	// Top.scala:27:24
+    .io_alu_op   (_Button_io_button_out),	// Top.scala:29:24
+    .io_result   (_Alu_io_result),
     .io_carry    (io_led2),
     .io_zero     (io_led1),
     .io_overflow (io_led0)
   );
-  assign io_seg3 = 7'h1;	// <stdin>:242:10, Top.scala:37:21
-  assign io_seg2 = 7'h1;	// <stdin>:242:10, Top.scala:37:21
-  assign io_seg1 = 7'h1;	// <stdin>:242:10, Top.scala:37:21
-  assign io_seg0 = 7'h1;	// <stdin>:242:10, Top.scala:37:21
+  Seg Seg (	// Top.scala:41:21
+    .io_dataIn_0    ({3'h0, _Alu_io_result[0]}),	// Top.scala:34:21, :46:{22,45}
+    .io_dataIn_1    ({3'h0, _Alu_io_result[1]}),	// Top.scala:34:21, :46:22, :47:{22,45}
+    .io_dataIn_2    ({3'h0, _Alu_io_result[2]}),	// Top.scala:34:21, :46:22, :48:{22,45}
+    .io_dataIn_3    ({3'h0, _Alu_io_result[3]}),	// Top.scala:34:21, :46:22, :49:{22,45}
+    .io_encodeOut_0 (io_seg0),
+    .io_encodeOut_1 (io_seg1),
+    .io_encodeOut_2 (io_seg2),
+    .io_encodeOut_3 (io_seg3)
+  );
 endmodule
 
