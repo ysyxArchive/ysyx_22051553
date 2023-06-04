@@ -5,14 +5,14 @@ import chisel3.util._
 // 该scala程序描述的是主接口协议
 
 object Button{
-    val a = "0x1C".U(8.W)
-    val b = "0x32".U(8.W)
-    val c = "0x21".U(8.W)
-    val d = "0x23".U(8.W)
-    val e = "0x24".U(8.W)
-    val f = "0x2B".U(8.W)
-    val g = "0x34".U(8.W)
-    val h = "0x33".U(8.W)
+    val a = ("0x1C".U(8.W))
+    val b = ("0x32".U(8.W))
+    val c = ("0x21".U(8.W))
+    val d = ("0x23".U(8.W))
+    val e = ("0x24".U(8.W))
+    val f = ("0x2B".U(8.W))
+    val g = ("0x34".U(8.W))
+    val h = ("0x33".U(8.W))
     //---
     
 }
@@ -58,7 +58,15 @@ class Button extends Module{
                     MuxCase(
                         0.U(3.W),
                         Seq(
-                            (buffer(8,1) === "0x11".U) -> ALU_ADD
+                            // (buffer(8,1) === "0x11".U) -> ALU_ADD        注意从左到右的优先级
+                            (buffer(8,1) === (Button.a)) -> ALU_ADD,
+                            (buffer(8,1) === (Button.b)) -> ALU_SUB,
+                            (buffer(8,1) === (Button.c)) -> ALU_NOT,
+                            (buffer(8,1) === (Button.d)) -> ALU_AND,
+                            (buffer(8,1) === (Button.e)) -> ALU_OR,
+                            (buffer(8,1) === (Button.f)) -> ALU_XOR,
+                            (buffer(8,1) === (Button.g)) -> ALU_COM,
+                            (buffer(8,1) === (Button.h)) -> ALU_EUQ
                         )
                     )
             }
