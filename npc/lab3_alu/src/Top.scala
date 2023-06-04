@@ -22,6 +22,8 @@ class Top extends Module{
     val A = io.sw_input(7,4).asSInt
     val B = io.sw_input(3,0).asSInt
 
+
+    val result = Alu.io.result
     
 
     val Button = Module(new Button)
@@ -35,10 +37,10 @@ class Top extends Module{
     Alu.io.alu_op := Button.io.button_out
 
     val Seg = Module(new Seg)
-    Seg.io.dataIn(0) := Cat(0.U(3.W), Alu.io.result(0))
-    Seg.io.dataIn(1) := Cat(0.U(3.W), Alu.io.result(1))
-    Seg.io.dataIn(2) := Cat(0.U(3.W), Alu.io.result(2))
-    Seg.io.dataIn(3) := Cat(0.U(3.W), Alu.io.result(3))
+    Seg.io.dataIn(0) := Cat(0.U(3.W), result(0))
+    Seg.io.dataIn(1) := Cat(0.U(3.W), result(1))
+    Seg.io.dataIn(2) := Cat(0.U(3.W), result(2))
+    Seg.io.dataIn(3) := Cat(0.U(3.W), result(3))
 
 
     io.seg3 := Seg.io.encodeOut(3)
