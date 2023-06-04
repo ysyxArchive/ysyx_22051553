@@ -7,6 +7,12 @@ class Seg extends Module{  //Module会有clk和rst  //共阳
         val encodeOut   = Output(Vec(4,UInt(7.W)))
     })
 
+    io.encodeOut(0) := 0.U(7.W)
+    io.encodeOut(1) := 0.U(7.W)
+    io.encodeOut(2) := 0.U(7.W)
+    io.encodeOut(3) := 0.U(7.W)
+
+
     def genMapArray(data: UInt):UInt = {
         val MapArray = Seq(
             (data === 0.U) -> ("b0000001".U(7.W)),   //"b abcdefg"
@@ -38,6 +44,9 @@ class Seg extends Module{  //Module会有clk和rst  //共阳
     //     (io.data_in === 8.U) -> ("b0000000".U),
     //     (io.data_in === 9.U) -> ("b0000100".U)
     // )
+
+
+
 
     io.encodeOut(0) := genMapArray(io.dataIn(0))
     io.encodeOut(1) := genMapArray(io.dataIn(1))
