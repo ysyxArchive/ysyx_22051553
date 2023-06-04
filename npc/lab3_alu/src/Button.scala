@@ -44,26 +44,7 @@ class Button extends Module{
 
     when(sampling === true.B){   //时序逻辑不需要写完整
         when(count === 10.U){
-            when(
-                buffer(0) === 0.B //start
-                && io.ps2_data     //stop
-                && (buffer(9,1).xorR) //odd    //R应该是指类似Reduce方法
-            ){
-                io.button_out := 
-                    MuxCase(
-                        0.U(3.W),
-                        Seq(
-                            (buffer(8,1) === Button.a) -> ALU_ADD,
-                            (buffer(8,1) === Button.b) -> ALU_SUB,
-                            (buffer(8,1) === Button.c) -> ALU_NOT,
-                            (buffer(8,1) === Button.d) -> ALU_AND,
-                            (buffer(8,1) === Button.e) -> ALU_OR,
-                            (buffer(8,1) === Button.f) -> ALU_XOR,
-                            (buffer(8,1) === Button.g) -> ALU_COM,
-                            (buffer(8,1) === Button.h) -> ALU_EUQ
-                        )
-                    )
-            }
+            
         
             count := 0.U
 
