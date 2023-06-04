@@ -1,4 +1,4 @@
-TOPNAME = top
+TOPNAME = Top
 NXDC_FILES = constr/top.nxdc
 INC_PATH ?=
 
