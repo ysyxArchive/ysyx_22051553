@@ -133,13 +133,13 @@ module Alu(	// <stdin>:100:10
       alu_op <= io_alu_op;	// Alu.scala:33:25
   end // always @(posedge)
 
-    always@(posedge clock)begin
+    
+  
+  always@(posedge clock)begin
     
       $display("op %d",alu_io);
       
     end
-  
-  end
 
   `ifndef SYNTHESIS	// <stdin>:100:10
     `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:100:10
