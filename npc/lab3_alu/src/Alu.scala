@@ -2,21 +2,21 @@ import chisel3._
 import chisel3.util._
 
 object Alu {                                    //使用单例对象存储定义
-    val ALU_ADD = 0.U(3.W)
-    val ALU_SUB = 1.U(3.W)
-    val ALU_NOT = 2.U(3.W)
-    val ALU_AND = 3.U(3.W)
-    val ALU_OR  = 4.U(3.W)
-    val ALU_XOR = 5.U(3.W)
-    val ALU_COM = 6.U(3.W)
-    val ALU_EUQ = 7.U(3.W)
+    val ALU_ADD = 0.U(4.W)
+    val ALU_SUB = 1.U(4.W)
+    val ALU_NOT = 2.U(4.W)
+    val ALU_AND = 3.U(4.W)
+    val ALU_OR  = 4.U(4.W)
+    val ALU_XOR = 5.U(4.W)
+    val ALU_COM = 6.U(4.W)
+    val ALU_EUQ = 7.U(4.W)
 }
 
 
 class AluIO extends Bundle{                         //A,B是实时的，aluop是缓存的
     val A           = Input(SInt(4.W))
     val B           = Input(SInt(4.W))
-    val alu_op      = Input(UInt(3.W))
+    val alu_op      = Input(UInt(4.W))
     val result      = Output(SInt(4.W))
     val carry       = Output(UInt(1.W))
     val zero        = Output(UInt(1.W))
@@ -30,7 +30,7 @@ class Alu extends Module{
     val io = IO(new AluIO)
 
 
-    val alu_op = RegInit(0.U(3.W)) //初始为ADD
+    val alu_op = RegInit(0.U(4.W)) //初始为ADD
     
 
     when(io.alu_op === ALU_ADD || io.alu_op === ALU_SUB || io.alu_op === ALU_NOT || io.alu_op === ALU_AND ||

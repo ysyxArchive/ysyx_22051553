@@ -23,7 +23,7 @@ object Button{                         //注意断碼f0
 class ButtonIO extends Bundle{
     val ps2_clk         = Input(Bool())
     val ps2_data        = Input(Bool())
-    val button_out      = Output(UInt(3.W))  
+    val button_out      = Output(UInt(4.W))  
 }
 
 import Alu._
@@ -47,7 +47,7 @@ class Button extends Module{
     ps2_clk_sync := Cat(ps2_clk_sync(1,0), io.ps2_clk)
 
 
-    io.button_out := 0.U(3.W)
+    io.button_out := 0.U(4.W)
 
     when(sampling === true.B){   //时序逻辑不需要写完整
         when(count === 10.U){
@@ -58,7 +58,7 @@ class Button extends Module{
             ){
                 io.button_out := 
                     MuxCase(
-                        0.U(3.W),
+                        0.U(4.W),
                         Seq(
                             // (buffer(8,1) === "0x11".U) -> ALU_ADD        注意从左到右的优先级  
                             (buffer(8,1) === Button.a) -> ALU_ADD,
@@ -69,7 +69,7 @@ class Button extends Module{
                             (buffer(8,1) === Button.f) -> ALU_XOR,
                             (buffer(8,1) === Button.g) -> ALU_COM,
                             (buffer(8,1) === Button.h) -> ALU_EUQ,
-                            (buffer(8,1) === Button.none) -> 7.U(3.W)
+                            (buffer(8,1) === Button.none) -> 15.U(4.W)
                         )
                     )
             }
