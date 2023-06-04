@@ -45,7 +45,7 @@ class Button extends Module{
     when(sampling === true.B){   //时序逻辑不需要写完整
         when(count === 10.U){
             when(
-                buffer(0) === 0.U //start
+                buffer(0) === 0.B //start
                 && io.ps2_data     //stop
                 && (buffer(9,1).xorR) //odd    //R应该是指类似Reduce方法
             ){
