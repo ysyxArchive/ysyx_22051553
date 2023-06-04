@@ -220,7 +220,9 @@ module top(	// <stdin>:287:10
   );
 
   always@(posedge clock)begin
+    if(_Button_io_button_out != 4'd15)
     $display("%d",_Button_io_button_out);
+
   end
 endmodule
 
