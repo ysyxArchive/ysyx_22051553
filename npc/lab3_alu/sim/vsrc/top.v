@@ -61,8 +61,6 @@ module Button(	// <stdin>:2:10
                                                                 io_ps2_data : buffer[1], count == 4'h0 ? io_ps2_data : buffer[0]};	// Button.scala:34:36, :35:36, :41:{36,44}, :43:22, :79:33
       if (sampling) begin	// Button.scala:39:49
 
-        $display("sample");
-
         if (_T_1)	// Button.scala:52:20
           count <= 4'h0;	// Button.scala:35:36
         else	// Button.scala:52:20
@@ -95,6 +93,17 @@ module Button(	// <stdin>:2:10
                 3'h0 : buffer[8:1] == 8'h32 ? 3'h1 : buffer[8:1] == 8'h21 ? 3'h2 : buffer[8:1] == 8'h23 ?
                 3'h3 : buffer[8:1] == 8'h24 ? 3'h4 : buffer[8:1] == 8'h2B ? 3'h5 : buffer[8:1] == 8'h34 ?
                 3'h6 : {3{buffer[8:1] == 8'h33}};	// <stdin>:2:10, Button.scala:34:36, :36:36, :39:49, :41:44, :49:19, :51:30, :52:{20,29}, :54:27, :56:{17,27,33}, :57:14, :58:31, :63:{36,42}, :64:42, :65:42, :66:42, :67:42, :68:42, :69:42, :70:42, Mux.scala:101:16
+
+
+  always@(posedge clock)begin
+    if(count == 4'd10)
+      $display("buffer %x",buffer[8:1]);
+  
+  end
+
+
+
+
 endmodule
 
 module Alu(	// <stdin>:97:10
