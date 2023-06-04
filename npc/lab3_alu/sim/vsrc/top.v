@@ -119,10 +119,8 @@ module Alu(	// <stdin>:100:10
     if (reset)
       alu_op <= 4'h0;	// Alu.scala:33:25, :50:12
     else if (io_alu_op == 4'h0 | io_alu_op == 4'h1 | io_alu_op == 4'h2 | io_alu_op == 4'h3 | io_alu_op
-                                == 4'h4 | io_alu_op == 4'h5 | io_alu_op == 4'h6 | io_alu_op == 4'h7)	begin// Alu.scala:36:{20,45,70,95}, :37:{19,43,68,80,93}, :50:12, :52:53
+                                == 4'h4 | io_alu_op == 4'h5 | io_alu_op == 4'h6 | io_alu_op == 4'h7)	// Alu.scala:36:{20,45,70,95}, :37:{19,43,68,80,93}, :50:12, :52:53
       alu_op <= io_alu_op;	// Alu.scala:33:25
-                                $display("alu_op == %d", alu_op);
-                                end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:100:10
     `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:100:10
@@ -220,11 +218,5 @@ module top(	// <stdin>:287:10
     .io_encodeOut_2 (io_seg2),
     .io_encodeOut_3 (io_seg3)
   );
-
-  always@(posedge clock)begin
-    if(_Button_io_button_out != 4'd15)
-    $display("%d",_Button_io_button_out);
-
-  end
 endmodule
 
