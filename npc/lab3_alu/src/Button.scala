@@ -5,14 +5,14 @@ import chisel3.util._
 // 该scala程序描述的是主接口协议
 
 object Button{
-    val a = "0x1C".U(8.W)
-    val b = "0x32".U(8.W)
-    val c = "0x21".U(8.W)
-    val d = "0x23".U(8.W)
-    val e = "0x24".U(8.W)
-    val f = "0x2B".U(8.W)
-    val g = "0x34".U(8.W)
-    val h = "0x33".U(8.W)
+    val a = "h1C".U(8.W)
+    val b = "h32".U(8.W)
+    val c = "h21".U(8.W)
+    val d = "h23".U(8.W)
+    val e = "h24".U(8.W)
+    val f = "h2B".U(8.W)
+    val g = "h34".U(8.W)
+    val h = "h33".U(8.W)
     //---
     
 }
