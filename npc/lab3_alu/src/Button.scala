@@ -58,7 +58,7 @@ class Button extends Module{
                     MuxCase(
                         0.U(3.W),
                         Seq(
-                             (buffer(8,1) === "0x11".U) -> ALU_ADD        //注意从左到右的优先级
+                             (buffer(8,1) === ("0x11".U)) -> ALU_ADD        //注意从左到右的优先级
                            
                         )
                     )
