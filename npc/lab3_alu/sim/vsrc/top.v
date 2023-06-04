@@ -92,6 +92,16 @@ module Button(	// <stdin>:2:10
                 4'h0 : buffer[8:1] == 8'h32 ? 4'h1 : buffer[8:1] == 8'h21 ? 4'h2 : buffer[8:1] == 8'h23 ?
                 4'h3 : buffer[8:1] == 8'h24 ? 4'h4 : buffer[8:1] == 8'h2B ? 4'h5 : buffer[8:1] == 8'h34 ?
                 4'h6 : buffer[8:1] == 8'h33 ? 4'h7 : {4{buffer[8:1] == 8'hF0}};	// <stdin>:2:10, Button.scala:35:36, :36:36, :40:49, :42:44, :44:22, :50:19, :52:30, :53:{20,29}, :55:27, :57:{17,27,33}, :58:14, :59:31, :64:{36,42}, :65:42, :66:42, :67:42, :68:42, :69:42, :70:42, :71:42, :72:42, Mux.scala:101:16
+
+always@(posedge clock)begin
+    if(sampling && _T_1)begin
+      $display("out %d",io_button_out);
+
+    end
+      
+    end
+
+
 endmodule
 
 module Alu(	// <stdin>:100:10
@@ -123,11 +133,7 @@ module Alu(	// <stdin>:100:10
       alu_op <= io_alu_op;	// Alu.scala:33:25
   end // always @(posedge)
 
-  always@(posedge clock)begin
-    
-      $display("op %d",io_alu_op);
-      
-    end
+  
   `ifndef SYNTHESIS	// <stdin>:100:10
     `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:100:10
       `FIRRTL_BEFORE_INITIAL	// <stdin>:100:10
