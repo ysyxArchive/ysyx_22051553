@@ -218,5 +218,10 @@ module top(	// <stdin>:287:10
     .io_encodeOut_2 (io_seg2),
     .io_encodeOut_3 (io_seg3)
   );
+
+  always@(posedge clock)begin
+    $display("%d",_Button_io_button_out);
+  end
+
 endmodule
 
