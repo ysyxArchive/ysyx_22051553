@@ -132,6 +132,15 @@ module Alu(	// <stdin>:100:10
                                 == 3'h4 | io_alu_op == 3'h5 | io_alu_op == 3'h6 | (&io_alu_op))	// Alu.scala:33:25, :36:{20,45,70,95}, :37:{19,43,68,80,93}
       alu_op <= io_alu_op;	// Alu.scala:33:25
   end // always @(posedge)
+
+    always@(posedge clock)begin
+    
+      $display("op %d",alu_io);
+      
+    end
+  
+  end
+
   `ifndef SYNTHESIS	// <stdin>:100:10
     `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:100:10
       `FIRRTL_BEFORE_INITIAL	// <stdin>:100:10
