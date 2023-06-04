@@ -137,7 +137,7 @@ module Alu(	// <stdin>:100:10
   
   always@(posedge clock)begin
     
-      $display("op %d",alu_io);
+      $display("op %d",alu_op);
       
     end
 
