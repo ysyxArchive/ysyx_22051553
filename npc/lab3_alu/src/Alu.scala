@@ -73,7 +73,7 @@ class Alu extends Module{
     )
 
 
-    val zero = (A2 === B2).asSInt
+    val zero = (A2 === B2).asUInt
 
     val overflow = 
         Mux(
