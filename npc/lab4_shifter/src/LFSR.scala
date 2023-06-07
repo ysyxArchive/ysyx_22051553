@@ -14,7 +14,7 @@ class LFSR extends Module{
     val BitIn    = LFSR_Reg(4) ^ LFSR_Reg(3) ^ LFSR_Reg(2) ^ LFSR_Reg(0)
 
 
-    LFSR_Reg := Cat(BitIn, LFSR_Reg(6,0))
+    LFSR_Reg := Cat(BitIn, LFSR_Reg(7,1))
 
     io.Dout := LFSR_Reg
 }
