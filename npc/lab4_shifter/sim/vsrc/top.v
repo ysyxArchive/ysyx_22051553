@@ -43,7 +43,7 @@ module LFSR(	// <stdin>:2:10
       LFSR_Reg <= 8'h1;	// LFSR.scala:12:27
     else begin
       LFSR_Reg <= {LFSR_Reg[4] ^ LFSR_Reg[3] ^ LFSR_Reg[2] ^ LFSR_Reg[0], LFSR_Reg[6:0]};	// Cat.scala:33:92, LFSR.scala:12:27, :14:{28,42,56,60,70}, :17:36
-      $display(%h,LFSR_Reg);
+      $display("%h",LFSR_Reg);
     end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:2:10
