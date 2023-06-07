@@ -1,7 +1,7 @@
 import circt.stage._
 
 object Elaborate extends App {
-  def top = new LFSR()
+  def top = new top()
   val useMFC = true // use MLIR-based firrtl compiler  //报错
   val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
   if (useMFC) {
