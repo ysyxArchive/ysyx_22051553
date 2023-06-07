@@ -16,7 +16,7 @@ class BarrelShifter extends Module{
 
 
     //------first stage
-    val A = (UInt(8.W))     //用和不用Wire有什么区别
+    val A = Wire(UInt(8.W))     //用和不用Wire有什么区别
     
     A := MuxLookup(
         Cat(io.LR,io.shamt(0)),
@@ -30,7 +30,7 @@ class BarrelShifter extends Module{
     )
 
     //------second stage
-    val B = (UInt(8.W))     //用和不用Wire有什么区别
+    val B = Wire(UInt(8.W))     //用和不用Wire有什么区别
 
     B := MuxLookup(
         Cat(io.LR,io.shamt(1)),
@@ -44,7 +44,7 @@ class BarrelShifter extends Module{
     )
 
     //------third stage
-    val C = (UInt(8.W))     //用和不用Wire有什么区别
+    val C = Wire(UInt(8.W))     //用和不用Wire有什么区别
 
     C := MuxLookup(
         Cat(io.LR,io.shamt(2)),
