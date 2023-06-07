@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
     
     edge_change();
 
-    printf("value is %x%x\n",dut.io_Segout1,dut.io_Segout0);
+    printf("value is %1x%1x\n",dut.io_Segout1,dut.io_Segout0);
 
     main_time ++;
     
