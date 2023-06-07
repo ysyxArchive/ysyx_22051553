@@ -15,4 +15,6 @@ class LFSR extends Module{
 
 
     LFSR_Reg := Cat(BitIn, LFSR_Reg(6,0))
+
+    io.Dout := LFSR_Reg
 }
