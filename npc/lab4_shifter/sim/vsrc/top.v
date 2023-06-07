@@ -40,7 +40,7 @@ module LFSR(	// <stdin>:2:10
   reg [7:0] LFSR_Reg;	// LFSR.scala:12:27
   always @(posedge clock) begin
     if (reset)
-      LFSR_Reg <= 8'h1;	// LFSR.scala:12:27
+      LFSR_Reg <= 8'h2;	// LFSR.scala:12:27
     else
       LFSR_Reg <= {LFSR_Reg[4] ^ LFSR_Reg[3] ^ LFSR_Reg[2] ^ LFSR_Reg[0], LFSR_Reg[6:0]};	// Cat.scala:33:92, LFSR.scala:12:27, :14:{28,42,56,60,70}, :17:36
   end // always @(posedge)
