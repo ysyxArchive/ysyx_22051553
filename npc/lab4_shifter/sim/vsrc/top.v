@@ -37,12 +37,19 @@ module LFSR(	// <stdin>:2:10
                reset,
   output [7:0] io_Dout);
 
-  reg [7:0] LFSR_Reg;	// LFSR.scala:12:27
+  reg [7:0]  LFSR_Reg;	// LFSR.scala:12:27
+  reg [22:0] count;	// LFSR.scala:16:26
   always @(posedge clock) begin
-    if (reset)
+    if (reset) begin
       LFSR_Reg <= 8'h1;	// LFSR.scala:12:27
-    else
-      LFSR_Reg <= {LFSR_Reg[4] ^ LFSR_Reg[3] ^ LFSR_Reg[2] ^ LFSR_Reg[0], LFSR_Reg[7:1]};	// Cat.scala:33:92, LFSR.scala:12:27, :14:{28,42,56,60,70}, :17:36
+      count <= 23'h0;	// LFSR.scala:16:26
+    end
+    else if (count == 23'h4C4B40) begin	// LFSR.scala:16:26, :18:16
+      LFSR_Reg <= {LFSR_Reg[4] ^ LFSR_Reg[3] ^ LFSR_Reg[2] ^ LFSR_Reg[0], LFSR_Reg[7:1]};	// Cat.scala:33:92, LFSR.scala:12:27, :14:{28,42,56,60,70}, :19:40
+      count <= 23'h0;	// LFSR.scala:16:26
+    end
+    else	// LFSR.scala:16:26, :18:16
+      count <= count + 23'h1;	// LFSR.scala:16:26, :22:24
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:2:10
     `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:2:10
@@ -56,6 +63,7 @@ module LFSR(	// <stdin>:2:10
       `ifdef RANDOMIZE_REG_INIT	// <stdin>:2:10
         _RANDOM_0 = `RANDOM;	// <stdin>:2:10
         LFSR_Reg = _RANDOM_0[7:0];	// LFSR.scala:12:27
+        count = _RANDOM_0[30:8];	// LFSR.scala:12:27, :16:26
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:2:10
@@ -65,7 +73,7 @@ module LFSR(	// <stdin>:2:10
   assign io_Dout = LFSR_Reg;	// <stdin>:2:10, LFSR.scala:12:27
 endmodule
 
-module Seg(	// <stdin>:21:10
+module Seg(	// <stdin>:30:10
   input  [3:0] io_dataIn_0,
                io_dataIn_1,
   output [6:0] io_encodeOut_0,
@@ -74,14 +82,14 @@ module Seg(	// <stdin>:21:10
   assign io_encodeOut_0 = io_dataIn_0 == 4'h9 ? 7'h4 : io_dataIn_0 == 4'h8 ? 7'h0 : io_dataIn_0 == 4'h7 ? 7'hF :
                 io_dataIn_0 == 4'h6 ? 7'h20 : io_dataIn_0 == 4'h5 ? 7'h24 : io_dataIn_0 == 4'h4 ? 7'h4C :
                 io_dataIn_0 == 4'h3 ? 7'h6 : io_dataIn_0 == 4'h2 ? 7'h12 : io_dataIn_0 == 4'h1 ? 7'h4F :
-                7'h1;	// <stdin>:21:10, Mux.scala:81:{58,61}
+                7'h1;	// <stdin>:30:10, Mux.scala:81:{58,61}
   assign io_encodeOut_1 = io_dataIn_1 == 4'h9 ? 7'h4 : io_dataIn_1 == 4'h8 ? 7'h0 : io_dataIn_1 == 4'h7 ? 7'hF :
                 io_dataIn_1 == 4'h6 ? 7'h20 : io_dataIn_1 == 4'h5 ? 7'h24 : io_dataIn_1 == 4'h4 ? 7'h4C :
                 io_dataIn_1 == 4'h3 ? 7'h6 : io_dataIn_1 == 4'h2 ? 7'h12 : io_dataIn_1 == 4'h1 ? 7'h4F :
-                7'h1;	// <stdin>:21:10, Mux.scala:81:{58,61}
+                7'h1;	// <stdin>:30:10, Mux.scala:81:{58,61}
 endmodule
 
-module top(	// <stdin>:69:10
+module top(	// <stdin>:78:10
   input        clock,
                reset,
   output [6:0] io_Segout1,
