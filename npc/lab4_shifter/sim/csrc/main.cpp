@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
     
     edge_change();
 
-    printf("value is %h%h",dut.io_Segout1,dut.io_Segout0);
+    printf("value is %x%x",dut.io_Segout1,dut.io_Segout0);
     
   }
 
