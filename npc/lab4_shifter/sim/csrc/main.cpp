@@ -1,6 +1,5 @@
 #include <nvboard.h>
 #include <Vtop.h>
-#include <verilated_vcd_c.h>
 #include <verilated.h>
 
 static TOP_NAME dut;
