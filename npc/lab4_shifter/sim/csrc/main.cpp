@@ -26,7 +26,7 @@ static void reset(int n) {
 int main(int argc, char **argv) {
 
   vluint64_t main_time = 0;
-  const vluint64_t sim_time = 500;
+  const vluint64_t sim_time = 5000000;
 
   nvboard_bind_all_pins(&dut);
   nvboard_init();
