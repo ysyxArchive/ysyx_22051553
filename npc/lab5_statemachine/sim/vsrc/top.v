@@ -32,24 +32,43 @@
   `define INIT_RANDOM_PROLOG_
 `endif // RANDOMIZE
 
-module LFSR(	// <stdin>:2:10
+module Button(	// <stdin>:2:10
   input        clock,
                reset,
-  output [7:0] io_Dout);
+               io_ps2_clk,
+               io_ps2_data,
+  output [3:0] io_button_out);
 
-  reg [7:0]  LFSR_Reg;	// LFSR.scala:12:27
-  reg [22:0] count;	// LFSR.scala:16:26
+  reg  [9:0] buffer;	// Button.scala:55:36
+  reg  [3:0] count;	// Button.scala:56:36
+  reg  [2:0] ps2_clk_sync;	// Button.scala:57:36
+  wire       sampling = ps2_clk_sync[2] & ~(ps2_clk_sync[1]);	// Button.scala:57:36, :60:{45,49,51,64}
+  wire       _T_1 = count == 4'hA;	// Button.scala:56:36, :73:20
+  wire [7:0] _io_button_out_T_61 = buffer[8:1] == 8'h1D ? 8'h1D : buffer[8:1] == 8'h22 ? 8'h22 : buffer[8:1] == 8'h35 ? 8'h35
+                : buffer[8:1] == 8'h1A ? 8'h1A : buffer[8:1] == 8'hF0 ? 8'hF0 : 8'hFF;	// Button.scala:55:36, :70:19, :84:36, :106:42, :107:42, :108:42, :109:42, :111:42, Mux.scala:101:16
   always @(posedge clock) begin
     if (reset) begin
-      LFSR_Reg <= 8'h1;	// LFSR.scala:12:27
-      count <= 23'h0;	// LFSR.scala:16:26
+      buffer <= 10'h0;	// Button.scala:55:36
+      count <= 4'h0;	// Button.scala:56:36
+      ps2_clk_sync <= 3'h0;	// Button.scala:57:36
     end
-    else if (count == 23'h4C4B40) begin	// LFSR.scala:16:26, :18:16
-      LFSR_Reg <= {LFSR_Reg[4] ^ LFSR_Reg[3] ^ LFSR_Reg[2] ^ LFSR_Reg[0], LFSR_Reg[7:1]};	// Cat.scala:33:92, LFSR.scala:12:27, :14:{28,42,56,60,70}, :19:40
-      count <= 23'h0;	// LFSR.scala:16:26
+    else begin
+      if (~sampling | _T_1) begin	// Button.scala:55:36, :60:49, :72:30, :73:{20,29}
+      end
+      else	// Button.scala:55:36, :60:49, :72:30, :73:{20,29}
+        buffer <= {count == 4'h9 ? io_ps2_data : buffer[9], count == 4'h8 ? io_ps2_data : buffer[8], count ==
+                                                                4'h7 ? io_ps2_data : buffer[7], count == 4'h6 ? io_ps2_data : buffer[6], count == 4'h5 ?
+                                                                io_ps2_data : buffer[5], count == 4'h4 ? io_ps2_data : buffer[4], count == 4'h3 ?
+                                                                io_ps2_data : buffer[3], count == 4'h2 ? io_ps2_data : buffer[2], count == 4'h1 ?
+                                                                io_ps2_data : buffer[1], count == 4'h0 ? io_ps2_data : buffer[0]};	// Button.scala:55:36, :56:36, :62:{36,44}, :64:22, :121:33
+      if (sampling) begin	// Button.scala:60:49
+        if (_T_1)	// Button.scala:73:20
+          count <= 4'h0;	// Button.scala:56:36
+        else	// Button.scala:73:20
+          count <= count + 4'h1;	// Button.scala:56:36, :64:22, :123:28
+      end
+      ps2_clk_sync <= {ps2_clk_sync[1:0], io_ps2_clk};	// Button.scala:57:36, :67:37, Cat.scala:33:92
     end
-    else	// LFSR.scala:16:26, :18:16
-      count <= count + 23'h1;	// LFSR.scala:16:26, :22:24
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:2:10
     `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:2:10
@@ -62,50 +81,165 @@ module LFSR(	// <stdin>:2:10
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// <stdin>:2:10
         _RANDOM_0 = `RANDOM;	// <stdin>:2:10
-        LFSR_Reg = _RANDOM_0[7:0];	// LFSR.scala:12:27
-        count = _RANDOM_0[30:8];	// LFSR.scala:12:27, :16:26
+        buffer = _RANDOM_0[9:0];	// Button.scala:55:36
+        count = _RANDOM_0[13:10];	// Button.scala:55:36, :56:36
+        ps2_clk_sync = _RANDOM_0[16:14];	// Button.scala:55:36, :57:36
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:2:10
       `FIRRTL_AFTER_INITIAL	// <stdin>:2:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
-  assign io_Dout = LFSR_Reg;	// <stdin>:2:10, LFSR.scala:12:27
+  assign io_button_out = sampling & _T_1 & ~(buffer[0]) & io_ps2_data & ^(buffer[9:1]) ? (buffer[8:1] == 8'h1C ?
+                4'hC : buffer[8:1] == 8'h32 ? 4'h2 : buffer[8:1] == 8'h21 ? 4'h1 : buffer[8:1] == 8'h23 ?
+                4'h3 : buffer[8:1] == 8'h24 ? 4'h4 : buffer[8:1] == 8'h2B ? 4'hB : buffer[8:1] == 8'h34 ?
+                4'h4 : buffer[8:1] == 8'h33 | buffer[8:1] == 8'h43 ? 4'h3 : buffer[8:1] == 8'h3B ? 4'hB :
+                buffer[8:1] == 8'h42 ? 4'h2 : buffer[8:1] == 8'h4B ? 4'hB : buffer[8:1] == 8'h3A ? 4'hA :
+                buffer[8:1] == 8'h31 ? 4'h1 : buffer[8:1] == 8'h44 ? 4'h4 : buffer[8:1] == 8'h4D ? 4'hD :
+                buffer[8:1] == 8'h15 ? 4'h5 : buffer[8:1] == 8'h2D ? 4'hD : buffer[8:1] == 8'h1B ? 4'hB :
+                buffer[8:1] == 8'h2C | buffer[8:1] == 8'h3C ? 4'hC : buffer[8:1] == 8'h2A ? 4'hA :
+                _io_button_out_T_61[3:0]) : 4'hF;	// <stdin>:2:10, Button.scala:55:36, :60:49, :62:44, :64:22, :70:19, :72:30, :73:{20,29}, :75:27, :77:{27,33}, :84:{36,42}, :85:42, :86:42, :87:42, :88:42, :89:42, :90:42, :91:42, :92:42, :93:42, :94:42, :95:42, :96:42, :97:42, :98:42, :99:42, :100:42, :101:42, :102:42, :103:42, :104:42, :105:42, Mux.scala:101:16
 endmodule
 
-module Seg(	// <stdin>:30:10
-  input  [3:0] io_dataIn_0,
-               io_dataIn_1,
-  output [6:0] io_encodeOut_0,
-               io_encodeOut_1);
-
-  assign io_encodeOut_0 = io_dataIn_0 == 4'h9 ? 7'h4 : io_dataIn_0 == 4'h8 ? 7'h0 : io_dataIn_0 == 4'h7 ? 7'hF :
-                io_dataIn_0 == 4'h6 ? 7'h20 : io_dataIn_0 == 4'h5 ? 7'h24 : io_dataIn_0 == 4'h4 ? 7'h4C :
-                io_dataIn_0 == 4'h3 ? 7'h6 : io_dataIn_0 == 4'h2 ? 7'h12 : io_dataIn_0 == 4'h1 ? 7'h4F :
-                7'h1;	// <stdin>:30:10, Mux.scala:81:{58,61}
-  assign io_encodeOut_1 = io_dataIn_1 == 4'h9 ? 7'h4 : io_dataIn_1 == 4'h8 ? 7'h0 : io_dataIn_1 == 4'h7 ? 7'hF :
-                io_dataIn_1 == 4'h6 ? 7'h20 : io_dataIn_1 == 4'h5 ? 7'h24 : io_dataIn_1 == 4'h4 ? 7'h4C :
-                io_dataIn_1 == 4'h3 ? 7'h6 : io_dataIn_1 == 4'h2 ? 7'h12 : io_dataIn_1 == 4'h1 ? 7'h4F :
-                7'h1;	// <stdin>:30:10, Mux.scala:81:{58,61}
-endmodule
-
-module top(	// <stdin>:78:10
+module ButtonControl(	// <stdin>:157:10
   input        clock,
                reset,
-  output [6:0] io_Segout1,
-               io_Segout0);
+  input  [3:0] io_validButton,
+  output [7:0] io_count,
+               io_code,
+               io_ASCIIO);
 
-  wire [7:0] _LFSR_io_Dout;	// top.scala:11:22
-  LFSR LFSR (	// top.scala:11:22
-    .clock   (clock),
-    .reset   (reset),
-    .io_Dout (_LFSR_io_Dout)
+  reg       state;	// ButtonControl.scala:53:24
+  reg [7:0] count;	// ButtonControl.scala:55:24
+  reg [7:0] code;	// ButtonControl.scala:56:24
+  reg [7:0] ASCII;	// ButtonControl.scala:57:24
+  reg       waiton;	// ButtonControl.scala:59:25
+  always @(posedge clock) begin
+    if (reset) begin
+      state <= 1'h0;	// ButtonControl.scala:53:24
+      count <= 8'h0;	// ButtonControl.scala:55:24
+      code <= 8'hFF;	// ButtonControl.scala:56:24
+      ASCII <= 8'hFF;	// ButtonControl.scala:56:24, :57:24
+      waiton <= 1'h0;	// ButtonControl.scala:53:24, :59:25
+    end
+    else begin
+      automatic logic [7:0] _GEN;	// ButtonControl.scala:64:33
+      automatic logic       _T_7;	// ButtonControl.scala:113:25
+      automatic logic       _GEN_0;	// ButtonControl.scala:59:25, :62:19
+      automatic logic       _GEN_1;	// ButtonControl.scala:57:24, :62:19, :113:52
+      _GEN = {4'h0, io_validButton};	// ButtonControl.scala:64:33
+      _T_7 = waiton & _GEN == code;	// ButtonControl.scala:56:24, :59:25, :64:33, :113:{25,43}
+      _GEN_0 = ~state | ~_T_7;	// ButtonControl.scala:53:24, :59:25, :62:19, :109:48, :113:{25,52}, :114:24
+      _GEN_1 = state & _T_7;	// ButtonControl.scala:53:24, :57:24, :62:19, :113:{25,52}
+      state <= ~state | _GEN_0 & state;	// ButtonControl.scala:53:24, :59:25, :62:19, :64:82, :113:52
+      if (state) begin	// ButtonControl.scala:53:24
+        if (_GEN_1)	// ButtonControl.scala:57:24, :62:19, :113:52
+          code <= 8'hFF;	// ButtonControl.scala:56:24
+      end
+      else begin	// ButtonControl.scala:53:24
+        count <= count + 8'h1;	// ButtonControl.scala:55:24, :69:32
+        code <= _GEN;	// ButtonControl.scala:56:24, :64:33
+      end
+      if (~state | _GEN_1)	// ButtonControl.scala:53:24, :57:24, :59:25, :62:19, :64:82, :113:52
+        ASCII <= 8'hFF;	// ButtonControl.scala:56:24, :57:24
+      waiton <= _GEN_0 & waiton;	// ButtonControl.scala:59:25, :62:19
+    end
+  end // always @(posedge)
+  `ifndef SYNTHESIS	// <stdin>:157:10
+    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:157:10
+      `FIRRTL_BEFORE_INITIAL	// <stdin>:157:10
+    `endif // FIRRTL_BEFORE_INITIAL
+    initial begin	// <stdin>:157:10
+      automatic logic [31:0] _RANDOM_0;	// <stdin>:157:10
+      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:157:10
+        `INIT_RANDOM_PROLOG_	// <stdin>:157:10
+      `endif // INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_REG_INIT	// <stdin>:157:10
+        _RANDOM_0 = `RANDOM;	// <stdin>:157:10
+        state = _RANDOM_0[0];	// ButtonControl.scala:53:24
+        count = _RANDOM_0[8:1];	// ButtonControl.scala:53:24, :55:24
+        code = _RANDOM_0[16:9];	// ButtonControl.scala:53:24, :56:24
+        ASCII = _RANDOM_0[24:17];	// ButtonControl.scala:53:24, :57:24
+        waiton = _RANDOM_0[25];	// ButtonControl.scala:53:24, :59:25
+      `endif // RANDOMIZE_REG_INIT
+    end // initial
+    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:157:10
+      `FIRRTL_AFTER_INITIAL	// <stdin>:157:10
+    `endif // FIRRTL_AFTER_INITIAL
+  `endif // not def SYNTHESIS
+  assign io_count = count;	// <stdin>:157:10, ButtonControl.scala:55:24
+  assign io_code = code;	// <stdin>:157:10, ButtonControl.scala:56:24
+  assign io_ASCIIO = ASCII;	// <stdin>:157:10, ButtonControl.scala:57:24
+endmodule
+
+module Seg(	// <stdin>:253:10
+  input  [3:0] io_dataIn_0,
+               io_dataIn_1,
+               io_dataIn_2,
+               io_dataIn_3,
+               io_dataIn_4,
+               io_dataIn_5,
+  output [6:0] io_encodeOut_0,
+               io_encodeOut_1,
+               io_encodeOut_2,
+               io_encodeOut_3,
+               io_encodeOut_4,
+               io_encodeOut_5);
+
+  wire [15:0][6:0] _GEN = {{7'h38}, {7'h30}, {7'h42}, {7'h31}, {7'h60}, {7'h8}, {7'h4}, {7'h0}, {7'hF}, {7'h20},
+                {7'h24}, {7'h4C}, {7'h6}, {7'h12}, {7'h4F}, {7'h1}};	// Mux.scala:81:{58,61}
+  assign io_encodeOut_0 = _GEN[io_dataIn_0];	// <stdin>:253:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_1 = _GEN[io_dataIn_1];	// <stdin>:253:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_2 = _GEN[io_dataIn_2];	// <stdin>:253:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_3 = _GEN[io_dataIn_3];	// <stdin>:253:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_4 = _GEN[io_dataIn_4];	// <stdin>:253:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_5 = _GEN[io_dataIn_5];	// <stdin>:253:10, Mux.scala:81:{58,61}
+endmodule
+
+module top(	// <stdin>:445:10
+  input        clock,
+               reset,
+               io_ps2_clk,
+               io_ps2_data,
+  output [6:0] io_seg5,
+               io_seg4,
+               io_seg3,
+               io_seg2,
+               io_seg1,
+               io_seg0);
+
+  wire [7:0] _ButtonControl_io_count;	// top.scala:24:31
+  wire [7:0] _ButtonControl_io_code;	// top.scala:24:31
+  wire [7:0] _ButtonControl_io_ASCIIO;	// top.scala:24:31
+  wire [3:0] _Button_io_button_out;	// top.scala:19:24
+  Button Button (	// top.scala:19:24
+    .clock         (clock),
+    .reset         (reset),
+    .io_ps2_clk    (io_ps2_clk),
+    .io_ps2_data   (io_ps2_data),
+    .io_button_out (_Button_io_button_out)
   );
-  Seg Seg (	// top.scala:13:21
-    .io_dataIn_0    (_LFSR_io_Dout[3:0]),	// top.scala:11:22, :15:37
-    .io_dataIn_1    (_LFSR_io_Dout[7:4]),	// top.scala:11:22, :14:37
-    .io_encodeOut_0 (io_Segout0),
-    .io_encodeOut_1 (io_Segout1)
+  ButtonControl ButtonControl (	// top.scala:24:31
+    .clock          (clock),
+    .reset          (reset),
+    .io_validButton (_Button_io_button_out),	// top.scala:19:24
+    .io_count       (_ButtonControl_io_count),
+    .io_code        (_ButtonControl_io_code),
+    .io_ASCIIO      (_ButtonControl_io_ASCIIO)
+  );
+  Seg Seg (	// top.scala:28:21
+    .io_dataIn_0    (_ButtonControl_io_code[3:0]),	// top.scala:24:31, :29:46
+    .io_dataIn_1    (_ButtonControl_io_code[7:4]),	// top.scala:24:31, :30:46
+    .io_dataIn_2    (_ButtonControl_io_ASCIIO[3:0]),	// top.scala:24:31, :31:48
+    .io_dataIn_3    (_ButtonControl_io_ASCIIO[7:4]),	// top.scala:24:31, :32:48
+    .io_dataIn_4    (_ButtonControl_io_count[3:0]),	// top.scala:24:31, :33:47
+    .io_dataIn_5    (_ButtonControl_io_count[7:4]),	// top.scala:24:31, :34:47
+    .io_encodeOut_0 (io_seg0),
+    .io_encodeOut_1 (io_seg1),
+    .io_encodeOut_2 (io_seg2),
+    .io_encodeOut_3 (io_seg3),
+    .io_encodeOut_4 (io_seg4),
+    .io_encodeOut_5 (io_seg5)
   );
 endmodule
 

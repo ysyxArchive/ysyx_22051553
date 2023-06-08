@@ -24,23 +24,19 @@ static void reset(int n) {
 }
 
 int main(int argc, char **argv) {
-
-  vluint64_t main_time = 0;
-  const vluint64_t sim_time = 500000000;
-
+  
   nvboard_bind_all_pins(&dut);
   nvboard_init();
 
   reset(10);
 
-  while(main_time < sim_time) {
+  while(1) {
     if(dut.clock == 1)      //只有上升沿才更新
       nvboard_update();
     
     edge_change();
 
 
-    main_time ++;
     
   }
 
