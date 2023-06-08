@@ -43,7 +43,7 @@ object Button{                         //注意断碼f0
 class ButtonIO extends Bundle{
     val ps2_clk         = Input(Bool())
     val ps2_data        = Input(Bool())
-    val button_out      = Output(UInt(4.W))  
+    val button_out      = Output(UInt(8.W))  
 }
 
 
