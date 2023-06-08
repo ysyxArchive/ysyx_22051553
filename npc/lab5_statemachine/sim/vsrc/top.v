@@ -124,7 +124,7 @@ module ButtonControl(	// <stdin>:157:10
   reg        blank;	// ButtonControl.scala:61:24
   reg        waiton;	// ButtonControl.scala:63:25
   wire [7:0] _GEN = {4'h0, io_validButton};	// ButtonControl.scala:71:33
-  wire       _T_7 = waiton & _GEN == code;	// ButtonControl.scala:58:24, :63:25, :71:33, :122:{25,43}
+  wire       _T_9 = waiton & _GEN == code;	// ButtonControl.scala:58:24, :63:25, :71:33, :124:{25,43}
   always @(posedge clock) begin
     if (reset) begin
       state <= 1'h0;	// ButtonControl.scala:55:24
@@ -136,28 +136,30 @@ module ButtonControl(	// <stdin>:157:10
     end
     else begin
       automatic logic _GEN_0;	// ButtonControl.scala:63:25, :66:19
-      automatic logic _GEN_1;	// ButtonControl.scala:59:24, :66:19, :122:52
-      _GEN_0 = ~state | ~_T_7;	// ButtonControl.scala:55:24, :63:25, :66:19, :118:48, :122:{25,52}, :123:24
-      _GEN_1 = state & _T_7;	// ButtonControl.scala:55:24, :59:24, :66:19, :122:{25,52}
-      state <= ~state | _GEN_0 & state;	// ButtonControl.scala:55:24, :63:25, :66:19, :71:82, :122:52
+      automatic logic _GEN_1;	// ButtonControl.scala:59:24, :66:19, :124:52
+      _GEN_0 = ~state | ~_T_9;	// ButtonControl.scala:55:24, :63:25, :66:19, :120:48, :124:{25,52}, :125:24
+      _GEN_1 = state & _T_9;	// ButtonControl.scala:55:24, :59:24, :66:19, :124:{25,52}
+      state <= ~state | _GEN_0 & state;	// ButtonControl.scala:55:24, :63:25, :66:19, :71:82, :124:52
       if (state) begin	// ButtonControl.scala:55:24
-        if (_GEN_1)	// ButtonControl.scala:59:24, :66:19, :122:52
+        if (_GEN_1)	// ButtonControl.scala:59:24, :66:19, :124:52
           code <= 8'hFF;	// ButtonControl.scala:58:24
       end
       else begin	// ButtonControl.scala:55:24
-        count <= count + 8'h1;	// ButtonControl.scala:57:24, :76:32
+        count <= count + 8'h1;	// ButtonControl.scala:57:24, :78:32
         code <= _GEN;	// ButtonControl.scala:58:24, :71:33
       end
-      if (~state | _GEN_1)	// ButtonControl.scala:55:24, :59:24, :63:25, :66:19, :71:82, :122:52
+      if (~state | _GEN_1)	// ButtonControl.scala:55:24, :59:24, :63:25, :66:19, :71:82, :124:52
         ASCII <= 8'hFF;	// ButtonControl.scala:58:24, :59:24
-      blank <= state & (_GEN_1 | blank);	// ButtonControl.scala:55:24, :59:24, :61:24, :66:19, :71:82, :122:52
+      blank <= state & (_GEN_1 | blank);	// ButtonControl.scala:55:24, :59:24, :61:24, :66:19, :71:82, :124:52
       waiton <= _GEN_0 & waiton;	// ButtonControl.scala:63:25, :66:19
     end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:157:10
-    always @(posedge clock) begin	// ButtonControl.scala:129:23
-      if ((`PRINTF_COND_) & state & _T_7 & ~reset)	// ButtonControl.scala:55:24, :122:25, :129:23
-        $fwrite(32'h80000002, "code = %x", ASCII);	// ButtonControl.scala:59:24, :129:23
+    always @(posedge clock) begin	// ButtonControl.scala:76:23
+      if ((`PRINTF_COND_) & ~state & ~reset)	// ButtonControl.scala:55:24, :66:19, :76:23
+        $fwrite(32'h80000002, "code is %x", code);	// ButtonControl.scala:58:24, :76:23
+      if ((`PRINTF_COND_) & state & _T_9 & ~reset)	// ButtonControl.scala:55:24, :76:23, :124:25, :131:23
+        $fwrite(32'h80000002, "code = %x", ASCII);	// ButtonControl.scala:59:24, :76:23, :131:23
     end // always @(posedge)
     `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:157:10
       `FIRRTL_BEFORE_INITIAL	// <stdin>:157:10
@@ -187,7 +189,7 @@ module ButtonControl(	// <stdin>:157:10
   assign io_blank = blank;	// <stdin>:157:10, ButtonControl.scala:61:24
 endmodule
 
-module Seg(	// <stdin>:262:10
+module Seg(	// <stdin>:266:10
   input        io_blank,
   input  [3:0] io_dataIn_0,
                io_dataIn_1,
@@ -204,15 +206,15 @@ module Seg(	// <stdin>:262:10
 
   wire [15:0][6:0] _GEN = {{7'h38}, {7'h30}, {7'h42}, {7'h31}, {7'h60}, {7'h8}, {7'h4}, {7'h0}, {7'hF}, {7'h20},
                 {7'h24}, {7'h4C}, {7'h6}, {7'h12}, {7'h4F}, {7'h1}};	// Mux.scala:81:{58,61}
-  assign io_encodeOut_0 = io_blank ? 7'h7F : _GEN[io_dataIn_0];	// <stdin>:262:10, Mux.scala:81:{58,61}, Seg.scala:37:30, :38:25, :40:25
-  assign io_encodeOut_1 = io_blank ? 7'h7F : _GEN[io_dataIn_1];	// <stdin>:262:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :42:30, :43:25, :45:25
-  assign io_encodeOut_2 = io_blank ? 7'h7F : _GEN[io_dataIn_2];	// <stdin>:262:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :47:30, :48:25, :50:25
-  assign io_encodeOut_3 = io_blank ? 7'h7F : _GEN[io_dataIn_3];	// <stdin>:262:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :52:30, :53:25, :55:25
-  assign io_encodeOut_4 = _GEN[io_dataIn_4];	// <stdin>:262:10, Mux.scala:81:{58,61}
-  assign io_encodeOut_5 = _GEN[io_dataIn_5];	// <stdin>:262:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_0 = io_blank ? 7'h7F : _GEN[io_dataIn_0];	// <stdin>:266:10, Mux.scala:81:{58,61}, Seg.scala:37:30, :38:25, :40:25
+  assign io_encodeOut_1 = io_blank ? 7'h7F : _GEN[io_dataIn_1];	// <stdin>:266:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :42:30, :43:25, :45:25
+  assign io_encodeOut_2 = io_blank ? 7'h7F : _GEN[io_dataIn_2];	// <stdin>:266:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :47:30, :48:25, :50:25
+  assign io_encodeOut_3 = io_blank ? 7'h7F : _GEN[io_dataIn_3];	// <stdin>:266:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :52:30, :53:25, :55:25
+  assign io_encodeOut_4 = _GEN[io_dataIn_4];	// <stdin>:266:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_5 = _GEN[io_dataIn_5];	// <stdin>:266:10, Mux.scala:81:{58,61}
 endmodule
 
-module top(	// <stdin>:470:10
+module top(	// <stdin>:474:10
   input        clock,
                reset,
                io_ps2_clk,
