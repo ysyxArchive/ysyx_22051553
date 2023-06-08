@@ -66,7 +66,8 @@ class ButtonControl extends Module{
     switch(state) {
         is(sIDLE){
 
-            
+            printf("button is %x",io.validButton);
+
 
             when(io.validButton =/= Button.none && io.validButton =/= Button.tap){
                 state := sTap
