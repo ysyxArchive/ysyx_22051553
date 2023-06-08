@@ -37,7 +37,7 @@ object ButtonControl {  //ASCII
 
 
 class BCIO extends Bundle{
-    val     validButton         =  Input(UInt(4.W))
+    val     validButton         =  Input(UInt(8.W))
     val     count               =  Output(UInt(8.W))
 
     val     code                =  Output(UInt(8.W))
