@@ -73,6 +73,8 @@ class ButtonControl extends Module{
 
                 code := io.validButton
 
+                printf("code is %x",code);
+
                 count := count + 1.U
 
                 blank := false.B
