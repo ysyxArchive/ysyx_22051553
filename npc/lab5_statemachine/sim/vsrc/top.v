@@ -9,13 +9,6 @@
   `define RANDOM $random
 `endif // not def RANDOM
 
-// Users can define 'PRINTF_COND' to add an extra gate to prints.
-`ifdef PRINTF_COND
-  `define PRINTF_COND_ (`PRINTF_COND)
-`else  // PRINTF_COND
-  `define PRINTF_COND_ 1
-`endif // PRINTF_COND
-
 // Users can define INIT_RANDOM as general code that gets injected into the
 // initializer block for modules with registers.
 `ifndef INIT_RANDOM
@@ -117,14 +110,12 @@ module ButtonControl(	// <stdin>:157:10
                io_ASCIIO,
   output       io_blank);
 
-  reg        state;	// ButtonControl.scala:55:24
-  reg  [7:0] count;	// ButtonControl.scala:57:24
-  reg  [7:0] code;	// ButtonControl.scala:58:24
-  reg  [7:0] ASCII;	// ButtonControl.scala:59:24
-  reg        blank;	// ButtonControl.scala:61:24
-  reg        waiton;	// ButtonControl.scala:63:25
-  wire       _T_5 = io_validButton != 8'hFF & io_validButton != 8'hF0;	// ButtonControl.scala:58:24, :72:{33,49,67}
-  wire       _T_11 = waiton & io_validButton == code;	// ButtonControl.scala:58:24, :63:25, :125:{25,43}
+  reg       state;	// ButtonControl.scala:55:24
+  reg [7:0] count;	// ButtonControl.scala:57:24
+  reg [7:0] code;	// ButtonControl.scala:58:24
+  reg [7:0] ASCII;	// ButtonControl.scala:59:24
+  reg       blank;	// ButtonControl.scala:61:24
+  reg       waiton;	// ButtonControl.scala:63:25
   always @(posedge clock) begin
     if (reset) begin
       state <= 1'h0;	// ButtonControl.scala:55:24
@@ -135,95 +126,91 @@ module ButtonControl(	// <stdin>:157:10
       waiton <= 1'h0;	// ButtonControl.scala:55:24, :63:25
     end
     else begin
+      automatic logic _T_3;	// ButtonControl.scala:70:49
+      automatic logic _T_7;	// ButtonControl.scala:121:25
+      _T_3 = io_validButton != 8'hFF & io_validButton != 8'hF0;	// ButtonControl.scala:58:24, :70:{33,49,67}
+      _T_7 = waiton & io_validButton == code;	// ButtonControl.scala:58:24, :63:25, :121:{25,43}
       if (state)	// ButtonControl.scala:55:24
-        state <= (~state | ~_T_11) & state;	// ButtonControl.scala:55:24, :66:19, :121:48, :125:{25,52}, :126:24
+        state <= (~state | ~_T_7) & state;	// ButtonControl.scala:55:24, :66:19, :117:48, :121:{25,52}, :122:24
       else	// ButtonControl.scala:55:24
-        state <= _T_5 | state;	// ButtonControl.scala:55:24, :72:{49,82}, :73:23
-      if (state | ~_T_5) begin	// ButtonControl.scala:55:24, :57:24, :66:19, :72:{49,82}
+        state <= _T_3 | state;	// ButtonControl.scala:55:24, :70:{49,82}, :71:23
+      if (state | ~_T_3) begin	// ButtonControl.scala:55:24, :57:24, :66:19, :70:{49,82}
       end
-      else	// ButtonControl.scala:55:24, :57:24, :66:19, :72:{49,82}
-        count <= count + 8'h1;	// ButtonControl.scala:57:24, :79:32
+      else	// ButtonControl.scala:55:24, :57:24, :66:19, :70:{49,82}
+        count <= count + 8'h1;	// ButtonControl.scala:57:24, :75:32
       if (state) begin	// ButtonControl.scala:55:24
-        automatic logic _GEN;	// ButtonControl.scala:59:24, :66:19, :125:52
-        _GEN = state & _T_11;	// ButtonControl.scala:55:24, :59:24, :66:19, :125:{25,52}
-        if (_GEN) begin	// ButtonControl.scala:59:24, :66:19, :125:52
+        automatic logic _GEN;	// ButtonControl.scala:59:24, :66:19, :121:52
+        _GEN = state & _T_7;	// ButtonControl.scala:55:24, :59:24, :66:19, :121:{25,52}
+        if (_GEN) begin	// ButtonControl.scala:59:24, :66:19, :121:52
           code <= 8'hFF;	// ButtonControl.scala:58:24
           ASCII <= 8'hFF;	// ButtonControl.scala:58:24, :59:24
         end
-        blank <= _GEN | blank;	// ButtonControl.scala:59:24, :61:24, :66:19, :125:52
-        waiton <= ~_T_11 & (io_validButton == 8'hF0 | waiton);	// ButtonControl.scala:63:25, :72:67, :121:{33,48}, :122:24, :125:{25,52}, :126:24
+        blank <= _GEN | blank;	// ButtonControl.scala:59:24, :61:24, :66:19, :121:52
+        waiton <= ~_T_7 & (io_validButton == 8'hF0 | waiton);	// ButtonControl.scala:63:25, :70:67, :117:{33,48}, :118:24, :121:{25,52}, :122:24
       end
       else begin	// ButtonControl.scala:55:24
-        if (_T_5) begin	// ButtonControl.scala:72:49
+        if (_T_3) begin	// ButtonControl.scala:70:49
           code <= io_validButton;	// ButtonControl.scala:58:24
-          if (io_validButton == 8'h1C)	// ButtonControl.scala:87:45
+          if (io_validButton == 8'h1C)	// ButtonControl.scala:83:45
             ASCII <= 8'h61;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h32)	// ButtonControl.scala:87:45, :88:45
+          else if (io_validButton == 8'h32)	// ButtonControl.scala:83:45, :84:45
             ASCII <= 8'h62;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h21)	// ButtonControl.scala:87:45, :88:45, :89:45
+          else if (io_validButton == 8'h21)	// ButtonControl.scala:83:45, :84:45, :85:45
             ASCII <= 8'h63;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h23)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45
+          else if (io_validButton == 8'h23)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45
             ASCII <= 8'h64;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h24)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45
+          else if (io_validButton == 8'h24)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45
             ASCII <= 8'h65;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h2B)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45
+          else if (io_validButton == 8'h2B)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45
             ASCII <= 8'h66;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h34)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45
+          else if (io_validButton == 8'h34)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45
             ASCII <= 8'h67;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h33)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45
+          else if (io_validButton == 8'h33)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45
             ASCII <= 8'h68;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h43)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45
+          else if (io_validButton == 8'h43)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45
             ASCII <= 8'h69;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h3B)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45
+          else if (io_validButton == 8'h3B)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45
             ASCII <= 8'h6A;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h42)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45
+          else if (io_validButton == 8'h42)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45
             ASCII <= 8'h6B;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h4B)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45
+          else if (io_validButton == 8'h4B)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45
             ASCII <= 8'h6C;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h3A)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45
+          else if (io_validButton == 8'h3A)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45
             ASCII <= 8'h6D;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h31)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45
+          else if (io_validButton == 8'h31)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45
             ASCII <= 8'h6E;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h44)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45
+          else if (io_validButton == 8'h44)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45
             ASCII <= 8'h6F;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h4D)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45
+          else if (io_validButton == 8'h4D)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45
             ASCII <= 8'h70;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h15)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45
+          else if (io_validButton == 8'h15)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45
             ASCII <= 8'h71;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h2D)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45
+          else if (io_validButton == 8'h2D)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45
             ASCII <= 8'h72;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h1B)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45
+          else if (io_validButton == 8'h1B)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45
             ASCII <= 8'h73;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h2C)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45, :106:45
+          else if (io_validButton == 8'h2C)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45
             ASCII <= 8'h74;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h3C)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45, :106:45, :107:45
+          else if (io_validButton == 8'h3C)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45
             ASCII <= 8'h75;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h2A)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45, :106:45, :107:45, :108:45
+          else if (io_validButton == 8'h2A)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45
             ASCII <= 8'h76;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h1D)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45, :106:45, :107:45, :108:45, :109:45
+          else if (io_validButton == 8'h1D)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45
             ASCII <= 8'h77;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h22)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45, :106:45, :107:45, :108:45, :109:45, :110:45
+          else if (io_validButton == 8'h22)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45, :106:45
             ASCII <= 8'h78;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h35)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45, :106:45, :107:45, :108:45, :109:45, :110:45, :111:45
+          else if (io_validButton == 8'h35)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45, :106:45, :107:45
             ASCII <= 8'h79;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else if (io_validButton == 8'h1A)	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45, :106:45, :107:45, :108:45, :109:45, :110:45, :111:45, :112:45
+          else if (io_validButton == 8'h1A)	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45, :106:45, :107:45, :108:45
             ASCII <= 8'h7A;	// ButtonControl.scala:59:24, Mux.scala:101:16
-          else	// ButtonControl.scala:87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45, :106:45, :107:45, :108:45, :109:45, :110:45, :111:45, :112:45
+          else	// ButtonControl.scala:83:45, :84:45, :85:45, :86:45, :87:45, :88:45, :89:45, :90:45, :91:45, :92:45, :93:45, :94:45, :95:45, :96:45, :97:45, :98:45, :99:45, :100:45, :101:45, :102:45, :103:45, :104:45, :105:45, :106:45, :107:45, :108:45
             ASCII <= 8'hFF;	// ButtonControl.scala:58:24, :59:24
         end
-        blank <= ~_T_5 & blank;	// ButtonControl.scala:57:24, :61:24, :66:19, :72:{49,82}, :81:23
+        blank <= ~_T_3 & blank;	// ButtonControl.scala:57:24, :61:24, :66:19, :70:{49,82}, :77:23
       end
     end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:157:10
-    always @(posedge clock) begin	// ButtonControl.scala:69:19
-      if ((`PRINTF_COND_) & ~state & ~reset)	// ButtonControl.scala:55:24, :66:19, :69:19
-        $fwrite(32'h80000002, "button is %x", io_validButton);	// ButtonControl.scala:69:19
-      if ((`PRINTF_COND_) & ~state & _T_5 & ~reset)	// ButtonControl.scala:55:24, :66:19, :69:19, :72:49, :77:23
-        $fwrite(32'h80000002, "code is %x", code);	// ButtonControl.scala:58:24, :69:19, :77:23
-      if ((`PRINTF_COND_) & state & _T_11 & ~reset)	// ButtonControl.scala:55:24, :69:19, :125:25, :132:23
-        $fwrite(32'h80000002, "code = %x", ASCII);	// ButtonControl.scala:59:24, :69:19, :132:23
-    end // always @(posedge)
     `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:157:10
       `FIRRTL_BEFORE_INITIAL	// <stdin>:157:10
     `endif // FIRRTL_BEFORE_INITIAL
@@ -252,7 +239,7 @@ module ButtonControl(	// <stdin>:157:10
   assign io_blank = blank;	// <stdin>:157:10, ButtonControl.scala:61:24
 endmodule
 
-module Seg(	// <stdin>:270:10
+module Seg(	// <stdin>:258:10
   input        io_blank,
   input  [3:0] io_dataIn_0,
                io_dataIn_1,
@@ -269,15 +256,15 @@ module Seg(	// <stdin>:270:10
 
   wire [15:0][6:0] _GEN = {{7'h38}, {7'h30}, {7'h42}, {7'h31}, {7'h60}, {7'h8}, {7'h4}, {7'h0}, {7'hF}, {7'h20},
                 {7'h24}, {7'h4C}, {7'h6}, {7'h12}, {7'h4F}, {7'h1}};	// Mux.scala:81:{58,61}
-  assign io_encodeOut_0 = io_blank ? 7'h7F : _GEN[io_dataIn_0];	// <stdin>:270:10, Mux.scala:81:{58,61}, Seg.scala:37:30, :38:25, :40:25
-  assign io_encodeOut_1 = io_blank ? 7'h7F : _GEN[io_dataIn_1];	// <stdin>:270:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :42:30, :43:25, :45:25
-  assign io_encodeOut_2 = io_blank ? 7'h7F : _GEN[io_dataIn_2];	// <stdin>:270:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :47:30, :48:25, :50:25
-  assign io_encodeOut_3 = io_blank ? 7'h7F : _GEN[io_dataIn_3];	// <stdin>:270:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :52:30, :53:25, :55:25
-  assign io_encodeOut_4 = _GEN[io_dataIn_4];	// <stdin>:270:10, Mux.scala:81:{58,61}
-  assign io_encodeOut_5 = _GEN[io_dataIn_5];	// <stdin>:270:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_0 = io_blank ? 7'h7F : _GEN[io_dataIn_0];	// <stdin>:258:10, Mux.scala:81:{58,61}, Seg.scala:37:30, :38:25, :40:25
+  assign io_encodeOut_1 = io_blank ? 7'h7F : _GEN[io_dataIn_1];	// <stdin>:258:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :42:30, :43:25, :45:25
+  assign io_encodeOut_2 = io_blank ? 7'h7F : _GEN[io_dataIn_2];	// <stdin>:258:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :47:30, :48:25, :50:25
+  assign io_encodeOut_3 = io_blank ? 7'h7F : _GEN[io_dataIn_3];	// <stdin>:258:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :52:30, :53:25, :55:25
+  assign io_encodeOut_4 = _GEN[io_dataIn_4];	// <stdin>:258:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_5 = _GEN[io_dataIn_5];	// <stdin>:258:10, Mux.scala:81:{58,61}
 endmodule
 
-module top(	// <stdin>:478:10
+module top(	// <stdin>:466:10
   input        clock,
                reset,
                io_ps2_clk,
