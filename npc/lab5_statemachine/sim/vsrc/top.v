@@ -44,15 +44,13 @@ module Button(	// <stdin>:2:10
                reset,
                io_ps2_clk,
                io_ps2_data,
-  output [3:0] io_button_out);
+  output [7:0] io_button_out);
 
   reg  [9:0] buffer;	// Button.scala:55:36
   reg  [3:0] count;	// Button.scala:56:36
   reg  [2:0] ps2_clk_sync;	// Button.scala:57:36
   wire       sampling = ps2_clk_sync[2] & ~(ps2_clk_sync[1]);	// Button.scala:57:36, :60:{45,49,51,64}
   wire       _T_1 = count == 4'hA;	// Button.scala:56:36, :73:20
-  wire [7:0] _io_button_out_T_61 = buffer[8:1] == 8'h1D ? 8'h1D : buffer[8:1] == 8'h22 ? 8'h22 : buffer[8:1] == 8'h35 ? 8'h35
-                : buffer[8:1] == 8'h1A ? 8'h1A : buffer[8:1] == 8'hF0 ? 8'hF0 : 8'hFF;	// Button.scala:55:36, :70:19, :84:36, :106:42, :107:42, :108:42, :109:42, :111:42, Mux.scala:101:16
   always @(posedge clock) begin
     if (reset) begin
       buffer <= 10'h0;	// Button.scala:55:36
@@ -98,14 +96,16 @@ module Button(	// <stdin>:2:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   assign io_button_out = sampling & _T_1 & ~(buffer[0]) & io_ps2_data & ^(buffer[9:1]) ? (buffer[8:1] == 8'h1C ?
-                4'hC : buffer[8:1] == 8'h32 ? 4'h2 : buffer[8:1] == 8'h21 ? 4'h1 : buffer[8:1] == 8'h23 ?
-                4'h3 : buffer[8:1] == 8'h24 ? 4'h4 : buffer[8:1] == 8'h2B ? 4'hB : buffer[8:1] == 8'h34 ?
-                4'h4 : buffer[8:1] == 8'h33 | buffer[8:1] == 8'h43 ? 4'h3 : buffer[8:1] == 8'h3B ? 4'hB :
-                buffer[8:1] == 8'h42 ? 4'h2 : buffer[8:1] == 8'h4B ? 4'hB : buffer[8:1] == 8'h3A ? 4'hA :
-                buffer[8:1] == 8'h31 ? 4'h1 : buffer[8:1] == 8'h44 ? 4'h4 : buffer[8:1] == 8'h4D ? 4'hD :
-                buffer[8:1] == 8'h15 ? 4'h5 : buffer[8:1] == 8'h2D ? 4'hD : buffer[8:1] == 8'h1B ? 4'hB :
-                buffer[8:1] == 8'h2C | buffer[8:1] == 8'h3C ? 4'hC : buffer[8:1] == 8'h2A ? 4'hA :
-                _io_button_out_T_61[3:0]) : 4'hF;	// <stdin>:2:10, Button.scala:55:36, :60:49, :62:44, :64:22, :70:19, :72:30, :73:{20,29}, :75:27, :77:{27,33}, :84:{36,42}, :85:42, :86:42, :87:42, :88:42, :89:42, :90:42, :91:42, :92:42, :93:42, :94:42, :95:42, :96:42, :97:42, :98:42, :99:42, :100:42, :101:42, :102:42, :103:42, :104:42, :105:42, Mux.scala:101:16
+                8'h1C : buffer[8:1] == 8'h32 ? 8'h32 : buffer[8:1] == 8'h21 ? 8'h21 : buffer[8:1] == 8'h23
+                ? 8'h23 : buffer[8:1] == 8'h24 ? 8'h24 : buffer[8:1] == 8'h2B ? 8'h2B : buffer[8:1] ==
+                8'h34 ? 8'h34 : buffer[8:1] == 8'h33 ? 8'h33 : buffer[8:1] == 8'h43 ? 8'h43 : buffer[8:1]
+                == 8'h3B ? 8'h3B : buffer[8:1] == 8'h42 ? 8'h42 : buffer[8:1] == 8'h4B ? 8'h4B :
+                buffer[8:1] == 8'h3A ? 8'h3A : buffer[8:1] == 8'h31 ? 8'h31 : buffer[8:1] == 8'h44 ? 8'h44
+                : buffer[8:1] == 8'h4D ? 8'h4D : buffer[8:1] == 8'h15 ? 8'h15 : buffer[8:1] == 8'h2D ?
+                8'h2D : buffer[8:1] == 8'h1B ? 8'h1B : buffer[8:1] == 8'h2C ? 8'h2C : buffer[8:1] == 8'h3C
+                ? 8'h3C : buffer[8:1] == 8'h2A ? 8'h2A : buffer[8:1] == 8'h1D ? 8'h1D : buffer[8:1] ==
+                8'h22 ? 8'h22 : buffer[8:1] == 8'h35 ? 8'h35 : buffer[8:1] == 8'h1A ? 8'h1A : buffer[8:1]
+                == 8'hF0 ? 8'hF0 : 8'hFF) : 8'hFF;	// <stdin>:2:10, Button.scala:55:36, :60:49, :62:44, :70:19, :72:30, :73:{20,29}, :75:27, :77:{27,33}, :84:{36,42}, :85:42, :86:42, :87:42, :88:42, :89:42, :90:42, :91:42, :92:42, :93:42, :94:42, :95:42, :96:42, :97:42, :98:42, :99:42, :100:42, :101:42, :102:42, :103:42, :104:42, :105:42, :106:42, :107:42, :108:42, :109:42, :111:42, Mux.scala:101:16
 endmodule
 
 module ButtonControl(	// <stdin>:157:10
@@ -293,7 +293,7 @@ module top(	// <stdin>:478:10
   wire [7:0] _ButtonControl_io_code;	// top.scala:24:31
   wire [7:0] _ButtonControl_io_ASCIIO;	// top.scala:24:31
   wire       _ButtonControl_io_blank;	// top.scala:24:31
-  wire [3:0] _Button_io_button_out;	// top.scala:19:24
+  wire [7:0] _Button_io_button_out;	// top.scala:19:24
   Button Button (	// top.scala:19:24
     .clock         (clock),
     .reset         (reset),
@@ -304,7 +304,7 @@ module top(	// <stdin>:478:10
   ButtonControl ButtonControl (	// top.scala:24:31
     .clock          (clock),
     .reset          (reset),
-    .io_validButton ({4'h0, _Button_io_button_out}),	// top.scala:19:24, :25:34
+    .io_validButton (_Button_io_button_out),	// top.scala:19:24
     .io_count       (_ButtonControl_io_count),
     .io_code        (_ButtonControl_io_code),
     .io_ASCIIO      (_ButtonControl_io_ASCIIO),
