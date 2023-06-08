@@ -9,6 +9,13 @@
   `define RANDOM $random
 `endif // not def RANDOM
 
+// Users can define 'PRINTF_COND' to add an extra gate to prints.
+`ifdef PRINTF_COND
+  `define PRINTF_COND_ (`PRINTF_COND)
+`else  // PRINTF_COND
+  `define PRINTF_COND_ 1
+`endif // PRINTF_COND
+
 // Users can define INIT_RANDOM as general code that gets injected into the
 // initializer block for modules with registers.
 `ifndef INIT_RANDOM
@@ -107,45 +114,51 @@ module ButtonControl(	// <stdin>:157:10
   input  [3:0] io_validButton,
   output [7:0] io_count,
                io_code,
-               io_ASCIIO);
+               io_ASCIIO,
+  output       io_blank);
 
-  reg       state;	// ButtonControl.scala:53:24
-  reg [7:0] count;	// ButtonControl.scala:55:24
-  reg [7:0] code;	// ButtonControl.scala:56:24
-  reg [7:0] ASCII;	// ButtonControl.scala:57:24
-  reg       waiton;	// ButtonControl.scala:59:25
+  reg        state;	// ButtonControl.scala:55:24
+  reg  [7:0] count;	// ButtonControl.scala:57:24
+  reg  [7:0] code;	// ButtonControl.scala:58:24
+  reg  [7:0] ASCII;	// ButtonControl.scala:59:24
+  reg        blank;	// ButtonControl.scala:61:24
+  reg        waiton;	// ButtonControl.scala:63:25
+  wire [7:0] _GEN = {4'h0, io_validButton};	// ButtonControl.scala:71:33
+  wire       _T_7 = waiton & _GEN == code;	// ButtonControl.scala:58:24, :63:25, :71:33, :122:{25,43}
   always @(posedge clock) begin
     if (reset) begin
-      state <= 1'h0;	// ButtonControl.scala:53:24
-      count <= 8'h0;	// ButtonControl.scala:55:24
-      code <= 8'hFF;	// ButtonControl.scala:56:24
-      ASCII <= 8'hFF;	// ButtonControl.scala:56:24, :57:24
-      waiton <= 1'h0;	// ButtonControl.scala:53:24, :59:25
+      state <= 1'h0;	// ButtonControl.scala:55:24
+      count <= 8'h0;	// ButtonControl.scala:57:24
+      code <= 8'hFF;	// ButtonControl.scala:58:24
+      ASCII <= 8'hFF;	// ButtonControl.scala:58:24, :59:24
+      blank <= 1'h0;	// ButtonControl.scala:55:24, :61:24
+      waiton <= 1'h0;	// ButtonControl.scala:55:24, :63:25
     end
     else begin
-      automatic logic [7:0] _GEN;	// ButtonControl.scala:64:33
-      automatic logic       _T_7;	// ButtonControl.scala:113:25
-      automatic logic       _GEN_0;	// ButtonControl.scala:59:25, :62:19
-      automatic logic       _GEN_1;	// ButtonControl.scala:57:24, :62:19, :113:52
-      _GEN = {4'h0, io_validButton};	// ButtonControl.scala:64:33
-      _T_7 = waiton & _GEN == code;	// ButtonControl.scala:56:24, :59:25, :64:33, :113:{25,43}
-      _GEN_0 = ~state | ~_T_7;	// ButtonControl.scala:53:24, :59:25, :62:19, :109:48, :113:{25,52}, :114:24
-      _GEN_1 = state & _T_7;	// ButtonControl.scala:53:24, :57:24, :62:19, :113:{25,52}
-      state <= ~state | _GEN_0 & state;	// ButtonControl.scala:53:24, :59:25, :62:19, :64:82, :113:52
-      if (state) begin	// ButtonControl.scala:53:24
-        if (_GEN_1)	// ButtonControl.scala:57:24, :62:19, :113:52
-          code <= 8'hFF;	// ButtonControl.scala:56:24
+      automatic logic _GEN_0;	// ButtonControl.scala:63:25, :66:19
+      automatic logic _GEN_1;	// ButtonControl.scala:59:24, :66:19, :122:52
+      _GEN_0 = ~state | ~_T_7;	// ButtonControl.scala:55:24, :63:25, :66:19, :118:48, :122:{25,52}, :123:24
+      _GEN_1 = state & _T_7;	// ButtonControl.scala:55:24, :59:24, :66:19, :122:{25,52}
+      state <= ~state | _GEN_0 & state;	// ButtonControl.scala:55:24, :63:25, :66:19, :71:82, :122:52
+      if (state) begin	// ButtonControl.scala:55:24
+        if (_GEN_1)	// ButtonControl.scala:59:24, :66:19, :122:52
+          code <= 8'hFF;	// ButtonControl.scala:58:24
       end
-      else begin	// ButtonControl.scala:53:24
-        count <= count + 8'h1;	// ButtonControl.scala:55:24, :69:32
-        code <= _GEN;	// ButtonControl.scala:56:24, :64:33
+      else begin	// ButtonControl.scala:55:24
+        count <= count + 8'h1;	// ButtonControl.scala:57:24, :76:32
+        code <= _GEN;	// ButtonControl.scala:58:24, :71:33
       end
-      if (~state | _GEN_1)	// ButtonControl.scala:53:24, :57:24, :59:25, :62:19, :64:82, :113:52
-        ASCII <= 8'hFF;	// ButtonControl.scala:56:24, :57:24
-      waiton <= _GEN_0 & waiton;	// ButtonControl.scala:59:25, :62:19
+      if (~state | _GEN_1)	// ButtonControl.scala:55:24, :59:24, :63:25, :66:19, :71:82, :122:52
+        ASCII <= 8'hFF;	// ButtonControl.scala:58:24, :59:24
+      blank <= state & (_GEN_1 | blank);	// ButtonControl.scala:55:24, :59:24, :61:24, :66:19, :71:82, :122:52
+      waiton <= _GEN_0 & waiton;	// ButtonControl.scala:63:25, :66:19
     end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:157:10
+    always @(posedge clock) begin	// ButtonControl.scala:129:23
+      if ((`PRINTF_COND_) & state & _T_7 & ~reset)	// ButtonControl.scala:55:24, :122:25, :129:23
+        $fwrite(32'h80000002, "code = %x", ASCII);	// ButtonControl.scala:59:24, :129:23
+    end // always @(posedge)
     `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:157:10
       `FIRRTL_BEFORE_INITIAL	// <stdin>:157:10
     `endif // FIRRTL_BEFORE_INITIAL
@@ -156,23 +169,26 @@ module ButtonControl(	// <stdin>:157:10
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// <stdin>:157:10
         _RANDOM_0 = `RANDOM;	// <stdin>:157:10
-        state = _RANDOM_0[0];	// ButtonControl.scala:53:24
-        count = _RANDOM_0[8:1];	// ButtonControl.scala:53:24, :55:24
-        code = _RANDOM_0[16:9];	// ButtonControl.scala:53:24, :56:24
-        ASCII = _RANDOM_0[24:17];	// ButtonControl.scala:53:24, :57:24
-        waiton = _RANDOM_0[25];	// ButtonControl.scala:53:24, :59:25
+        state = _RANDOM_0[0];	// ButtonControl.scala:55:24
+        count = _RANDOM_0[8:1];	// ButtonControl.scala:55:24, :57:24
+        code = _RANDOM_0[16:9];	// ButtonControl.scala:55:24, :58:24
+        ASCII = _RANDOM_0[24:17];	// ButtonControl.scala:55:24, :59:24
+        blank = _RANDOM_0[25];	// ButtonControl.scala:55:24, :61:24
+        waiton = _RANDOM_0[26];	// ButtonControl.scala:55:24, :63:25
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:157:10
       `FIRRTL_AFTER_INITIAL	// <stdin>:157:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
-  assign io_count = count;	// <stdin>:157:10, ButtonControl.scala:55:24
-  assign io_code = code;	// <stdin>:157:10, ButtonControl.scala:56:24
-  assign io_ASCIIO = ASCII;	// <stdin>:157:10, ButtonControl.scala:57:24
+  assign io_count = count;	// <stdin>:157:10, ButtonControl.scala:57:24
+  assign io_code = code;	// <stdin>:157:10, ButtonControl.scala:58:24
+  assign io_ASCIIO = ASCII;	// <stdin>:157:10, ButtonControl.scala:59:24
+  assign io_blank = blank;	// <stdin>:157:10, ButtonControl.scala:61:24
 endmodule
 
-module Seg(	// <stdin>:253:10
+module Seg(	// <stdin>:262:10
+  input        io_blank,
   input  [3:0] io_dataIn_0,
                io_dataIn_1,
                io_dataIn_2,
@@ -188,15 +204,15 @@ module Seg(	// <stdin>:253:10
 
   wire [15:0][6:0] _GEN = {{7'h38}, {7'h30}, {7'h42}, {7'h31}, {7'h60}, {7'h8}, {7'h4}, {7'h0}, {7'hF}, {7'h20},
                 {7'h24}, {7'h4C}, {7'h6}, {7'h12}, {7'h4F}, {7'h1}};	// Mux.scala:81:{58,61}
-  assign io_encodeOut_0 = _GEN[io_dataIn_0];	// <stdin>:253:10, Mux.scala:81:{58,61}
-  assign io_encodeOut_1 = _GEN[io_dataIn_1];	// <stdin>:253:10, Mux.scala:81:{58,61}
-  assign io_encodeOut_2 = _GEN[io_dataIn_2];	// <stdin>:253:10, Mux.scala:81:{58,61}
-  assign io_encodeOut_3 = _GEN[io_dataIn_3];	// <stdin>:253:10, Mux.scala:81:{58,61}
-  assign io_encodeOut_4 = _GEN[io_dataIn_4];	// <stdin>:253:10, Mux.scala:81:{58,61}
-  assign io_encodeOut_5 = _GEN[io_dataIn_5];	// <stdin>:253:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_0 = io_blank ? 7'h7F : _GEN[io_dataIn_0];	// <stdin>:262:10, Mux.scala:81:{58,61}, Seg.scala:37:30, :38:25, :40:25
+  assign io_encodeOut_1 = io_blank ? 7'h7F : _GEN[io_dataIn_1];	// <stdin>:262:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :42:30, :43:25, :45:25
+  assign io_encodeOut_2 = io_blank ? 7'h7F : _GEN[io_dataIn_2];	// <stdin>:262:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :47:30, :48:25, :50:25
+  assign io_encodeOut_3 = io_blank ? 7'h7F : _GEN[io_dataIn_3];	// <stdin>:262:10, Mux.scala:81:{58,61}, Seg.scala:38:25, :52:30, :53:25, :55:25
+  assign io_encodeOut_4 = _GEN[io_dataIn_4];	// <stdin>:262:10, Mux.scala:81:{58,61}
+  assign io_encodeOut_5 = _GEN[io_dataIn_5];	// <stdin>:262:10, Mux.scala:81:{58,61}
 endmodule
 
-module top(	// <stdin>:445:10
+module top(	// <stdin>:470:10
   input        clock,
                reset,
                io_ps2_clk,
@@ -211,6 +227,7 @@ module top(	// <stdin>:445:10
   wire [7:0] _ButtonControl_io_count;	// top.scala:24:31
   wire [7:0] _ButtonControl_io_code;	// top.scala:24:31
   wire [7:0] _ButtonControl_io_ASCIIO;	// top.scala:24:31
+  wire       _ButtonControl_io_blank;	// top.scala:24:31
   wire [3:0] _Button_io_button_out;	// top.scala:19:24
   Button Button (	// top.scala:19:24
     .clock         (clock),
@@ -225,15 +242,17 @@ module top(	// <stdin>:445:10
     .io_validButton (_Button_io_button_out),	// top.scala:19:24
     .io_count       (_ButtonControl_io_count),
     .io_code        (_ButtonControl_io_code),
-    .io_ASCIIO      (_ButtonControl_io_ASCIIO)
+    .io_ASCIIO      (_ButtonControl_io_ASCIIO),
+    .io_blank       (_ButtonControl_io_blank)
   );
   Seg Seg (	// top.scala:28:21
-    .io_dataIn_0    (_ButtonControl_io_code[3:0]),	// top.scala:24:31, :29:46
-    .io_dataIn_1    (_ButtonControl_io_code[7:4]),	// top.scala:24:31, :30:46
-    .io_dataIn_2    (_ButtonControl_io_ASCIIO[3:0]),	// top.scala:24:31, :31:48
-    .io_dataIn_3    (_ButtonControl_io_ASCIIO[7:4]),	// top.scala:24:31, :32:48
-    .io_dataIn_4    (_ButtonControl_io_count[3:0]),	// top.scala:24:31, :33:47
-    .io_dataIn_5    (_ButtonControl_io_count[7:4]),	// top.scala:24:31, :34:47
+    .io_blank       (_ButtonControl_io_blank),	// top.scala:24:31
+    .io_dataIn_0    (_ButtonControl_io_code[3:0]),	// top.scala:24:31, :30:46
+    .io_dataIn_1    (_ButtonControl_io_code[7:4]),	// top.scala:24:31, :31:46
+    .io_dataIn_2    (_ButtonControl_io_ASCIIO[3:0]),	// top.scala:24:31, :32:48
+    .io_dataIn_3    (_ButtonControl_io_ASCIIO[7:4]),	// top.scala:24:31, :33:48
+    .io_dataIn_4    (_ButtonControl_io_count[3:0]),	// top.scala:24:31, :34:47
+    .io_dataIn_5    (_ButtonControl_io_count[7:4]),	// top.scala:24:31, :35:47
     .io_encodeOut_0 (io_seg0),
     .io_encodeOut_1 (io_seg1),
     .io_encodeOut_2 (io_seg2),
