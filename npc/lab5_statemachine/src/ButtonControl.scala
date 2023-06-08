@@ -66,15 +66,11 @@ class ButtonControl extends Module{
     switch(state) {
         is(sIDLE){
 
-            printf("button is %x",io.validButton);
-
 
             when(io.validButton =/= Button.none && io.validButton =/= Button.tap){
                 state := sTap
 
                 code := io.validButton
-
-                printf("code is %x",code);
 
                 count := count + 1.U
 
@@ -129,8 +125,6 @@ class ButtonControl extends Module{
                 code := Button.none
 
                 blank := true.B
-                printf("code = %x",ASCII);
-
             }
 
         }
