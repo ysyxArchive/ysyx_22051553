@@ -3,6 +3,7 @@ import chisel3.util._
 
 class Seg extends Module{  //Module会有clk和rst  //共阳
     val io = IO(new Bundle {
+        val blank       = Input(Bool())
         val dataIn      = Input(Vec(6,UInt(4.W)))
         val encodeOut   = Output(Vec(6,UInt(7.W)))
     })

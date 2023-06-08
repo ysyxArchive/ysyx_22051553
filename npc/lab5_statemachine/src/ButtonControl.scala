@@ -42,6 +42,8 @@ class BCIO extends Bundle{
 
     val     code                =  Output(UInt(8.W))
     val     ASCIIO              =  Output(UInt(8.W))
+
+    val     blank               =  Output(Bool())
 }
 
 
@@ -55,6 +57,8 @@ class ButtonControl extends Module{
     val count = RegInit(0.U(8.W))
     val code  = RegInit(Button.none)
     val ASCII = RegInit(ButtonControl.none)
+
+    val blank = RegInit(false.B)
 
     val waiton = RegInit(false.B)
 
@@ -115,6 +119,9 @@ class ButtonControl extends Module{
                 state := sIDLE
                 ASCII := ButtonControl.none
                 code := Button.none
+
+                printf("code = %x",ASCII);
+
             }
 
         }
