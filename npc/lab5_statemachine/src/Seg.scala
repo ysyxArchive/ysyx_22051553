@@ -34,10 +34,27 @@ class Seg extends Module{  //Module会有clk和rst  //共阳
     }
 
 
-    io.encodeOut(0) := genMapArray(io.dataIn(0))
-    io.encodeOut(1) := genMapArray(io.dataIn(1))
-    io.encodeOut(2) := genMapArray(io.dataIn(2))
-    io.encodeOut(3) := genMapArray(io.dataIn(3))
+    when(io.blank === true.B){
+        io.encodeOut(0) := "b1111111".U(7.W)
+    }.otherwise{
+        io.encodeOut(0) := genMapArray(io.dataIn(0))
+    }
+    when(io.blank === true.B){
+        io.encodeOut(1) := "b1111111".U(7.W)
+    }.otherwise{
+        io.encodeOut(1) := genMapArray(io.dataIn(1))
+    }
+    when(io.blank === true.B){
+        io.encodeOut(2) := "b1111111".U(7.W)
+    }.otherwise{
+        io.encodeOut(2) := genMapArray(io.dataIn(2))
+    }
+    when(io.blank === true.B){
+        io.encodeOut(3) := "b1111111".U(7.W)
+    }.otherwise{
+        io.encodeOut(3) := genMapArray(io.dataIn(3))
+    }
+    
     io.encodeOut(4) := genMapArray(io.dataIn(4))
     io.encodeOut(5) := genMapArray(io.dataIn(5))
 

@@ -65,12 +65,17 @@ class ButtonControl extends Module{
 
     switch(state) {
         is(sIDLE){
+
+            
+
             when(io.validButton =/= Button.none && io.validButton =/= Button.tap){
                 state := sTap
 
                 code := io.validButton
 
                 count := count + 1.U
+
+                blank := false.B
 
                 ASCII := 
                     MuxCase(
@@ -120,6 +125,7 @@ class ButtonControl extends Module{
                 ASCII := ButtonControl.none
                 code := Button.none
 
+                blank := true.B
                 printf("code = %x",ASCII);
 
             }
@@ -132,4 +138,5 @@ class ButtonControl extends Module{
     io.count := count
     io.ASCIIO := ASCII
     io.code := code
+    io.blank := blank
 }

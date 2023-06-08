@@ -26,6 +26,7 @@ class top extends Module{
     
 
     val Seg = Module(new Seg)
+    Seg.io.blank := ButtonControl.io.blank
     Seg.io.dataIn(0) := ButtonControl.io.code(3,0)
     Seg.io.dataIn(1) := ButtonControl.io.code(7,4)
     Seg.io.dataIn(2) := ButtonControl.io.ASCIIO(3,0)
