@@ -53,9 +53,18 @@ static int cmd_q(char *args) {
   return -1;
 }
 
-static int cmd_si(char *args) {
+static int cmd_s(char *args) {
   uint64_t n = atoi(args);
   cpu_exec(n);
+  return 0;
+}
+
+static int cmd_i(char *args) {
+  
+  
+
+
+
   return 0;
 }
 
@@ -69,7 +78,8 @@ static struct {
   { "help", "Display information about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
-  { "si", "Execute N insts, default 1 inst", cmd_si },
+  { "si", "Execute N insts, default 1 inst", cmd_s },
+  { "info", "print state, including regs and watchpoints", cmd_i },
 
   /* TODO: Add more commands */
 
