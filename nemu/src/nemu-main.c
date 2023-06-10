@@ -22,11 +22,11 @@ int is_exit_status_bad();
 
 int main(int argc, char *argv[]) {
   /* Initialize the monitor. */
-#ifdef CONFIG_TARGET_AM
+#ifdef CONFIG_TARGET_AM                  
   am_init_monitor();
 #else
-  init_monitor(argc, argv);
-#endif
+  init_monitor(argc, argv);             //显现出预处理的效果，如果没有该宏，那么就不编译某些代码
+#endif                                  //如果是if else程序，那么会导致编译开销和控制的计算开销
 
   /* Start engine. */
   engine_start();
