@@ -19,6 +19,9 @@
 #include <readline/history.h>
 #include "sdb.h"
 
+extern const char *regs[];   //note
+extern CPU_state cpu;
+
 static int is_batch_mode = false;
 
 void init_regex();
@@ -61,7 +64,11 @@ static int cmd_s(char *args) {
 
 static int cmd_i(char *args) {
   
-  
+  if(strcmp(args, "r") == 0){
+    for(int i = 0; i < 31; i ++){
+      printf("%s\t\t0x%-16lx\t\t%-20ld\n", regs[i], cpu.gpr[i], cpu.gpr[i]);
+    }
+  }
 
 
 
