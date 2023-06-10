@@ -65,15 +65,33 @@ static int cmd_s(char *args) {
 static int cmd_i(char *args) {
   
   if(strcmp(args, "r") == 0){
-    for(int i = 0; i < 31; i ++){
-      printf("%s\t\t0x%-16lx\t\t%-20ld\n", regs[i], cpu.gpr[i], cpu.gpr[i]);
-    }
+    isa_reg_display();
   }
-
-
 
   return 0;
 }
+
+static int cmd_x(char *args) {
+  
+  char * arg[3];
+
+  int n = 0;
+
+  arg[n] = strtok(args, " ");
+  while(arg[n] != NULL){
+    n++;
+    arg[n] = strtok(NULL, " ");
+  }
+
+  
+
+
+    
+
+  return 0;
+}
+
+
 
 static int cmd_help(char *args);
 
@@ -87,6 +105,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "si", "Execute N insts, default 1 inst", cmd_s },
   { "info", "print state, including regs and watchpoints", cmd_i },
+  { "x", "print mem", cmd_x },
 
   /* TODO: Add more commands */
 
