@@ -79,7 +79,7 @@ static struct {
 
 static int cmd_help(char *args) {
   /* extract the first argument */
-  char *arg = strtok(NULL, " ");
+  char *arg = strtok(NULL, " ");                      
   int i;
 
   if (arg == NULL) {
@@ -120,9 +120,9 @@ void sdb_mainloop() {
     /* treat the remaining string as the arguments,
      * which may need further parsing
      */
-    char *args = cmd + strlen(cmd) + 1;               //si 10/0
-    if (args >= str_end) {                            //|
-      args = NULL;                                    //cmd
+    char *args = cmd + strlen(cmd) + 1;               //指向空格后第一个字符，如为空格则指向空格
+    if (args >= str_end) {                            
+      args = NULL;                                    
     }
 
 #ifdef CONFIG_DEVICE
