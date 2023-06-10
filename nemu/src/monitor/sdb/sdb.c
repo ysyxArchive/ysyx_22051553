@@ -111,7 +111,7 @@ void sdb_mainloop() {
   }
 
   for (char *str; (str = rl_gets()) != NULL; ) {
-    char *str_end = str + strlen(str);    //尾指针之后的位置，左闭右开，易判断是否为空
+    char *str_end = str + strlen(str);    // 指向\0
 
     /* extract the first token as the command */
     char *cmd = strtok(str, " ");
