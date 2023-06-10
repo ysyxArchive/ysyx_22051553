@@ -122,8 +122,8 @@ void sdb_mainloop() {
      */
     char *args = cmd + strlen(cmd) + 1;               //指向空格后第一个字符，如为空格则指向空格
 
-    while(*args == '\0') args ++;
-    
+    while(*args == ' ') args ++;
+
     if (args >= str_end) {                            
       args = NULL;                                    
     }
