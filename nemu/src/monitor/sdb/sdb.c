@@ -53,6 +53,12 @@ static int cmd_q(char *args) {
   return -1;
 }
 
+static int cmd_si(char *args) {
+  uint64_t n = atoi(args);
+  cpu_exec(n);
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -63,6 +69,7 @@ static struct {
   { "help", "Display information about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
+  { "si [N]", "Execute N insts, default 1 inst", cmd_si },
 
   /* TODO: Add more commands */
 
@@ -104,7 +111,7 @@ void sdb_mainloop() {
   }
 
   for (char *str; (str = rl_gets()) != NULL; ) {
-    char *str_end = str + strlen(str);
+    char *str_end = str + strlen(str);    //尾指针之后的位置，左闭右开，易判断是否为空
 
     /* extract the first token as the command */
     char *cmd = strtok(str, " ");
@@ -113,9 +120,9 @@ void sdb_mainloop() {
     /* treat the remaining string as the arguments,
      * which may need further parsing
      */
-    char *args = cmd + strlen(cmd) + 1;
-    if (args >= str_end) {
-      args = NULL;
+    char *args = cmd + strlen(cmd) + 1;               //si 10/0
+    if (args >= str_end) {                            //|
+      args = NULL;                                    //cmd
     }
 
 #ifdef CONFIG_DEVICE
