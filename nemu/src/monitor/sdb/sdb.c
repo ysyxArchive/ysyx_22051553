@@ -86,8 +86,9 @@ static int cmd_x(char *args) {
   }
 
   
-  int length = atoi(arg[1]);
-  paddr_t addr   = atoi(arg[2]);
+  int length = atoi(arg[0]);
+  
+  paddr_t addr   = strtol(arg[1],NULL,16);
   word_t data = 0;
 
   data = paddr_read(addr,4);
