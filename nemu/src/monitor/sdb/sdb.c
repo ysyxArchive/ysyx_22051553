@@ -99,14 +99,14 @@ static int cmd_x(char *args) {
   int    count_4 = 0;
 
   data = paddr_read(addr,4);
-  printf("0x%08x:\n%08lx\t",addr,data);
+  printf("0x%08x:\n0x%08lx\t",addr,data);
   addr += 4;
   length --;
   count_4 ++;
 
   while(length > 0){
     data = paddr_read(addr,4);
-    printf("%08lx\t",data);
+    printf("0x%08lx\t",data);
     addr += 4;
     length --;
     count_4 ++;
