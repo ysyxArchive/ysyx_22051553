@@ -257,7 +257,7 @@ static word_t eval(int begin, int end, bool *success){
   else {
 
     op_pos = find_priority(begin, end, success);
-    if(success == false)
+    if(*success == false)
       return 0;
 
     op_type = tokens[op_pos].type;
