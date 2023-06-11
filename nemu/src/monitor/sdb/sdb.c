@@ -96,17 +96,24 @@ static int cmd_x(char *args) {
   
   paddr_t addr   = strtol(arg[1],NULL,16);
   word_t data = 0;
+  int    count_4 = 0;
 
   data = paddr_read(addr,4);
-  printf("0x%08x:%08lx\t",addr,data);
+  printf("0x%08x:\n%08lx\t",addr,data);
   addr += 4;
   length --;
+  count_4 ++;
 
   while(length > 0){
     data = paddr_read(addr,4);
     printf("%08lx\t",data);
     addr += 4;
     length --;
+    count_4 ++;
+    if(count_4 == 4){
+      printf("\n");
+      count_4 = 0;    
+    }
   }
   printf("\n");
 
