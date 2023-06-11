@@ -20,6 +20,8 @@ void am_init_monitor();
 void engine_start();
 int is_exit_status_bad();
 
+word_t expr(char *e, bool *success);
+
 int main(int argc, char *argv[]) {
   /* Initialize the monitor. */
 #ifdef CONFIG_TARGET_AM                  
@@ -27,6 +29,14 @@ int main(int argc, char *argv[]) {
 #else
   init_monitor(argc, argv);             //显现出预处理的效果，如果没有该宏，那么就不编译某些代码
 #endif                                  //如果是if else程序，那么会导致编译开销和控制的计算开销
+
+
+  char a[] = "20 + 10";
+  bool yes = false;
+
+  word_t val = expr(a,&yes);
+
+  printf("val is %ld\n", val);
 
   /* Start engine. */
   engine_start();
