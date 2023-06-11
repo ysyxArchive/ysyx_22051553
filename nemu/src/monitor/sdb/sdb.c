@@ -59,8 +59,14 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_s(char *args) {
-  uint64_t n = atoi(args);
-  cpu_exec(n);
+  
+  if(args == NULL){
+    cpu_exec(1);
+  }
+  else {
+    uint64_t n = atoi(args);
+    cpu_exec(n);
+  }
   return 0;
 }
 
@@ -102,6 +108,7 @@ static int cmd_x(char *args) {
     addr += 4;
     length --;
   }
+  printf("\n");
 
 
   return 0;
