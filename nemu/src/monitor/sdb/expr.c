@@ -292,7 +292,7 @@ word_t expr(char *e, bool *success) {
 
   *success = true;
 
-  word_t val = eval(0, nr_token, success);
+  word_t val = eval(0, nr_token - 1, success);
 
   if(*success == false)
     assert(0);
