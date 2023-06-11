@@ -98,13 +98,13 @@ static int cmd_x(char *args) {
   word_t data = 0;
 
   data = paddr_read(addr,4);
-  printf("0x%x:%lx\t",addr,data);
+  printf("0x%-8x:%-4lx\t",addr,data);
   addr += 4;
   length --;
 
   while(length > 0){
     data = paddr_read(addr,4);
-    printf("%lx\t",data);
+    printf("%-4lx\t",data);
     addr += 4;
     length --;
   }
