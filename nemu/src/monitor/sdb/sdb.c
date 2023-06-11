@@ -21,6 +21,8 @@
 
 extern const char *regs[];   //note
 extern CPU_state cpu;
+word_t paddr_read(paddr_t addr, int len);
+
 
 static int is_batch_mode = false;
 
@@ -84,9 +86,22 @@ static int cmd_x(char *args) {
   }
 
   
+  int length = atoi(arg[1]);
+  paddr_t addr   = atoi(arg[2]);
+  word_t data = 0;
 
+  data = paddr_read(addr,4);
+  printf("0x%x:%lx\t",addr,data);
+  addr += 4;
+  length --;
 
-    
+  while(length > 0){
+    data = paddr_read(addr,4);
+    printf("%lx\t",data);
+    addr += 4;
+    length --;
+  }
+
 
   return 0;
 }
