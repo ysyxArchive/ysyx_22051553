@@ -121,16 +121,20 @@ static bool make_token(char *e) {
                         strncpy(tokens[nr_token].str,substr_start,substr_len);
                         nr_token ++;
                         break;
+          
 
           default: break;
         }
       }
-    }
 
-    if (i == NR_REGEX) {
-      printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
-      return false;
+
+      if (i == NR_REGEX) {
+        printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
+        return false;
+      }
+
     }
+    
   }
 
   return true;
