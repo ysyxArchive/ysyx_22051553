@@ -44,7 +44,7 @@ static struct rule {
   {"==", TK_EQ},          // equal
   {"\\(", '('},           // left
   {"\\)", ')'},           // right
-  {"[1-9][0-9]+", TK_DEC}, // DEC
+  {"[0-9]+", TK_DEC}, // DEC
   {"(0x)[0-9]+", TK_HEX}  // HEX
 };
 
