@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 #endif                                  //如果是if else程序，那么会导致编译开销和控制的计算开销
 
 
-  char a[] = "20 + 10";
+  char a[] = "5 + 2 * (20 + 10)";
   bool yes = false;
 
   word_t val = expr(a,&yes);
