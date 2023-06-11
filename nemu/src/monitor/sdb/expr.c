@@ -239,10 +239,7 @@ static word_t eval(int begin, int end, bool *success){
     *success = false;
     return 0;
   }
-  else if( (tokens[begin].type == '(' && tokens[end].type != ')') || 
-    (tokens[begin].type != '(' && tokens[end].type == ')') ||
-    tokens[begin].type == ')'){
-    
+  else if(tokens[begin].type == ')'){
     *success = false;
     return 0;
   }
