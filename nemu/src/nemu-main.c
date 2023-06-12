@@ -31,12 +31,34 @@ int main(int argc, char *argv[]) {
 #endif                                  //如果是if else程序，那么会导致编译开销和控制的计算开销
 
 
-  char a[] = "0x12 + 0x01";
-  bool yes = false;
+  char str[500] = {};
+  uint32_t value = 0;
+  
+  FILE* fp = fopen("~/ysyx-workbench/nemu/tools/gen-expr/input", "r");
+  if(fp == NULL)
+    assert(0);
+  
+  bool success = false;
 
-  word_t val = expr(a,&yes);
+  for(int i = 0; i < 10; i ++){
+    int a = fscanf(fp,"%s", str);
+    int b = fscanf(fp,"%u", &value);
 
-  printf("val is %ld\n", val);
+    printf("a is %d, b is %d\n", a, b);
+
+
+    uint32_t como = expr(str, &success);
+
+    if(success == false)
+      assert(0);
+    
+    if(como == value)
+      printf("test case %d success!\n", i);
+  }
+  
+  fclose(fp);
+
+
 
   /* Start engine. */
   engine_start();
