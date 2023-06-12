@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
   char str[500] = {};
   uint32_t value = 0;
   
-  FILE* fp = fopen("~/ysyx-workbench/nemu/tools/gen-expr/input", "r");
+  FILE* fp = fopen("/home/shikye/ysyx-workbench/nemu/tools/gen-expr/input", "r");
   if(fp == NULL)
     assert(0);
   
