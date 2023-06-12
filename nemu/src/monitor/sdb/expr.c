@@ -154,7 +154,7 @@ static bool make_token(char *e) {
 
 static bool check_parantheses(int begin, int end){
 
-  int position = 0;
+  int position = begin;
   int paren_layers = 0;
 
   if(begin >= end)
