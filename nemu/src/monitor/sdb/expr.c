@@ -197,26 +197,24 @@ static int find_priority(int begin, int end, bool *success){     //优先找2+ -
   int single_token = 0;
 
   int paren_layers = 0;
-  int left_paren = 0;
-  int right_paren =0;
 
   
   while(position < end){
 
-    if(tokens[position].type == left_paren){
+    if(tokens[position].type == '('){
       paren_layers = 1;
       position ++;
 
       while(paren_layers > 0 ){
-        if(tokens[position].type == left_paren)
+        if(tokens[position].type == '(')
           paren_layers ++;
-        else if(tokens[position].type == right_paren)
+        else if(tokens[position].type == ')')
           paren_layers --;
 
         position ++;
       }
 
-      if(tokens[position].type == left_paren || tokens[position].type == right_paren){
+      if(tokens[position].type == '(' || tokens[position].type == ')'){
         *success = false;
         return 0;
       }
