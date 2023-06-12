@@ -168,9 +168,9 @@ static bool check_parantheses(int begin, int end){
     while(paren_layers > 0 && position < end){
       position ++;
       
-      if(tokens[begin].type == '(')
+      if(tokens[position].type == '(')
         paren_layers ++;
-      else if(tokens[begin].type == ')')
+      else if(tokens[position].type == ')')
         paren_layers --;
 
     }
