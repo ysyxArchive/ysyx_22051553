@@ -154,12 +154,32 @@ static bool make_token(char *e) {
 
 static bool check_parantheses(int begin, int end){
 
+  int position = 0;
+  int paren_layers = 0;
+
   if(begin >= end)
     return false;
-  else if(tokens[begin].type == '(' && tokens[end].type == ')')
-    return true;
-  else 
+  else if(tokens[begin].type != '(' || tokens[end].type != ')')
     return false;
+  else {
+    
+    paren_layers ++;
+
+    while(paren_layers > 0 && position < end){
+      position ++;
+      
+      if(tokens[begin].type != '(')
+        paren_layers ++;
+      else if(tokens[begin].type != ')')
+        paren_layers --;
+
+    }
+
+    if(position < end || paren_layers != 0)
+      return false;
+    else 
+      return true;
+  }
 
 }
 
