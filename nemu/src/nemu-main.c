@@ -41,8 +41,9 @@ int main(int argc, char *argv[]) {
   bool success = false;
 
   for(int i = 0; i < 10; i ++){
-    int a = fscanf(fp,"%s", str);
-    int b = fscanf(fp,"%u", &value);
+    
+    int a = fscanf(fp,"%u", &value);
+    int b = fscanf(fp,"%s", str);
 
     printf("a is %d, b is %d\n", a, b);
 
