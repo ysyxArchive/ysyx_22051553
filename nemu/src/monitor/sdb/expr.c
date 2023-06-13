@@ -21,8 +21,10 @@
 #include <regex.h>
 #include <pcre.h>
 
+word_t paddr_read(paddr_t addr, int len);
+
 enum {
-  TK_NOTYPE = 256, TK_EQ, TK_DEC, TK_HEX
+  TK_NOTYPE = 256, TK_EQ, TK_DEC, TK_HEX, TK_DEREF, TK_REG
 
   /* TODO: Add more token types */
 
@@ -40,20 +42,24 @@ static struct rule {
   {" +", TK_NOTYPE},      // spaces
   {"\\+", '+'},           // plus
   {"\\-", '-'},             // sub
-  {"\\*", '*'},           // mul
+  {"\\*", '*'},           // mul or deref
   {"/", '/'},             // div
   {"==", TK_EQ},          // equal
   {"\\(", '('},           // left
   {"\\)", ')'},           // right
   {"(?<!0x)[0-9]+", TK_DEC}, // DEC
-  {"(0x)[0-9]+", TK_HEX}  // HEX
+  {"(0x)[0-9]+", TK_HEX},  // HEX
+  {"\\$(0|ra|sp|gp|t[0-6p]|s[0-11]|a[0-7])", TK_REG}  // REG
 };
 
 #define NR_REGEX ARRLEN(rules)
 
 static pcre *re[NR_REGEX] = {};
 
-/* Rules are used for many times.
+
+
+
+/* Rules are used for many tnmes.
  * Therefore we compile them only once before any usage.
  */
 void init_regex() {
@@ -77,6 +83,19 @@ typedef struct token {
 
 static Token tokens[128] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
+
+
+bool is_DEREF(int n){
+  if(n == 0 || (tokens[n-1].type == '+' || tokens[n-1].type == '-' || 
+    tokens[n-1].type == '*' || tokens[n-1].type == '/' || tokens[n-1].type == TK_EQ ||
+    tokens[n-1].type == '(' ))
+  
+    return true;
+  
+  else 
+    return false;
+
+}
 
 static bool make_token(char *e) {
   int position = 0;
@@ -109,7 +128,11 @@ static bool make_token(char *e) {
           case '-': tokens[nr_token].type = rules[i].token_type ; 
                     nr_token ++;
                     break;
-          case '*': tokens[nr_token].type = rules[i].token_type ; 
+          case '*': if(is_DEREF(i))
+                      tokens[nr_token].type = TK_DEREF;
+                    else 
+                      tokens[nr_token].type = '*';
+
                     nr_token ++;
                     break;
           case '/': tokens[nr_token].type = rules[i].token_type ; 
@@ -129,6 +152,10 @@ static bool make_token(char *e) {
                         nr_token ++;
                         break;
           case TK_HEX : tokens[nr_token].type = rules[i].token_type ; 
+                        strncpy(tokens[nr_token].str,substr_start,substr_len);
+                        nr_token ++;
+                        break;
+          case TK_REG : tokens[nr_token].type = rules[i].token_type ; 
                         strncpy(tokens[nr_token].str,substr_start,substr_len);
                         nr_token ++;
                         break;
@@ -261,6 +288,7 @@ static word_t eval(int begin, int end, bool *success){
   int op_type = 0;
   word_t val1 = 0;
   word_t val2 = 0;
+  paddr_t addr = 0;
 
   if(*success == false)
     return 0;
@@ -279,6 +307,21 @@ static word_t eval(int begin, int end, bool *success){
       return strtol(tokens[begin].str, NULL, 10);
     case TK_HEX:
       return strtol(tokens[begin].str, NULL, 16);
+    case TK_REG:
+      return isa_reg_str2val(tokens[begin].str, success);
+    case TK_DEREF:
+      switch(tokens[begin+1].type){
+        case TK_DEC:
+          addr = strtol(tokens[begin+1].str, NULL, 10);
+          return paddr_read(addr,1);
+        case TK_HEX:
+          addr = strtol(tokens[begin+1].str, NULL, 16);
+          return paddr_read(addr,1);
+        default:
+          assert(0);
+          return 0;
+      }
+
     default:
       break;
     }
