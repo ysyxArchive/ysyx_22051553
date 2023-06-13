@@ -40,11 +40,9 @@ int main(int argc, char *argv[]) {
   
   bool success = false;
 
-  int i = 0;
-
   while(1){
 
-    
+    static int i = 0;
     
     int a = fscanf(fp,"%u", &value);
     if(a == EOF)
