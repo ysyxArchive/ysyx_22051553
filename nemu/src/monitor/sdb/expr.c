@@ -219,6 +219,8 @@ static int find_priority(int begin, int end, bool *success){     //优先找2+ -
         *success = false;
         return 0;
       }
+
+      continue;
         
     }      
 
@@ -237,6 +239,8 @@ static int find_priority(int begin, int end, bool *success){     //优先找2+ -
         else if(tokens[position].type == '(')
           return single_token;
       }
+
+      return single_token;
     }
 
     position ++;
