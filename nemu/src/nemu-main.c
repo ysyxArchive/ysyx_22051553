@@ -40,9 +40,15 @@ int main(int argc, char *argv[]) {
   
   bool success = false;
 
-  for(int i = 0; i < 10; i ++){
+  int i = 0;
+
+  while(1){
+
+    
     
     int a = fscanf(fp,"%u", &value);
+    if(a == EOF)
+      break;
     int b = fscanf(fp,"%s", str);
 
     printf("a is %d, b is %d\n", a, b);
@@ -55,6 +61,8 @@ int main(int argc, char *argv[]) {
     
     if(como == value)
       printf("test case %d success!\n", i);
+    
+    i++;
   }
   
   fclose(fp);
