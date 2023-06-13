@@ -51,20 +51,20 @@ static struct rule {
 
 #define NR_REGEX ARRLEN(rules)
 
-static regex_t re[NR_REGEX] = {};
+static pcre *re[NR_REGEX] = {};
 
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
  */
 void init_regex() {
   int i;
-  char error_msg[128];
-  int ret;
+  const char *error_msg;
+  int error_offset;
+
 
   for (i = 0; i < NR_REGEX; i ++) {
-    ret = regcomp(&re[i], rules[i].regex, REG_EXTENDED);
-    if (ret != 0) {
-      regerror(ret, &re[i], error_msg, 128);
+    re[i] = pcre_compile(rules[i].regex, 0, &error_msg, &error_offset, NULL);
+    if (re[i] == NULL) {
       panic("regex compilation failed: %s\n%s", error_msg, rules[i].regex);
     }
   }
@@ -81,16 +81,16 @@ static int nr_token __attribute__((used))  = 0;
 static bool make_token(char *e) {
   int position = 0;
   int i;
-  regmatch_t pmatch;
+  int ovector[3];
 
   nr_token = 0;
 
   while (e[position] != '\0') {
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
-      if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
+      if (pcre_exec(re[i], NULL, e, strlen(e), position, 0, ovector, 3) > 0 && ovector[0] == position) {
         char *substr_start = e + position;
-        int substr_len = pmatch.rm_eo;
+        int substr_len = ovector[1] - ovector[0];
 
         Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
