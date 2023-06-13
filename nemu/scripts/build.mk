@@ -23,7 +23,7 @@ endif
 LD := $(CXX)
 INCLUDES = $(addprefix -I, $(INC_PATH)) -lpcre
 CFLAGS  := -O2 -MMD -Wall -Werror $(INCLUDES) $(CFLAGS)
-LDFLAGS := -O2 $(LDFLAGS)
+LDFLAGS := -O2 $(LDFLAGS) -lpcre
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o) $(CXXSRC:%.cc=$(OBJ_DIR)/%.o)
 
