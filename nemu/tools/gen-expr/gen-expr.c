@@ -80,7 +80,7 @@ static void gen_rand_op(){
 
 static void gen_rand_expr() {
   int choice = choose(3);
-  if(count > 40)
+  if(count > 80)
     choice = 0;
   
   switch (choice)
