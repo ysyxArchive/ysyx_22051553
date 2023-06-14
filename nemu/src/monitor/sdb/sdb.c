@@ -81,20 +81,20 @@ static int cmd_i(char *args) {
 
 static int cmd_x(char *args) {
   
-  char * arg[3];
+  char * arg[2];
 
-  int n = 0;
+  arg[0] = strtok(args, " ");
 
-  arg[n] = strtok(args, " ");
-  while(arg[n] != NULL){
-    n++;
-    arg[n] = strtok(NULL, " ");
+  if(arg[0] != NULL){
+    arg[1] = strtok(NULL, " ");
   }
 
   
   int length = atoi(arg[0]);
   
-  paddr_t addr   = strtol(arg[1],NULL,16);
+
+  bool success = true;
+  paddr_t addr   = expr(arg[1],&success);
   word_t data = 0;
   int    count_4 = 0;
 
