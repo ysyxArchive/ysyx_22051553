@@ -48,7 +48,7 @@ static struct rule {
   {"\\(", '('},           // left
   {"\\)", ')'},           // right
   {"(?<!0x)[0-9]+(?!x)", TK_DEC}, // DEC
-  {"0x[0-9a-f]+$", TK_HEX},  // HEX
+  {"0x[0-9a-f]+", TK_HEX},  // HEX
   {"\\$(0|ra|sp|gp|t[0-6p]|s[0-11]|a[0-7])", TK_REG}  // REG
 };
 
