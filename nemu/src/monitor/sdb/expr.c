@@ -318,17 +318,24 @@ static word_t eval(int begin, int end, bool *success){
     }
   }
   
-  else if(begin + 1 == end){
-    switch(tokens[begin+1].type){
-      case TK_DEC:
-        addr = strtol(tokens[begin+1].str, NULL, 10);
-        return paddr_read(addr,1);
-      case TK_HEX:
-        addr = strtol(tokens[begin+1].str, NULL, 16);
-        return paddr_read(addr,1);
-      default:
-        assert(0);
-        return 0;
+  else if(tokens[begin].type == TK_DEREF){
+
+    if(begin + 1 == end){
+      switch(tokens[begin+1].type){
+        case TK_DEC:
+          addr = strtol(tokens[begin+1].str, NULL, 10);
+          return paddr_read(addr,1);
+        case TK_HEX:
+          addr = strtol(tokens[begin+1].str, NULL, 16);
+          return paddr_read(addr,1);
+        default:
+          assert(0);
+          return 0;
+      }
+    }
+    else {
+      addr = eval(begin+1, end, success);
+      return paddr_read(addr,1);
     }
   }
   else if(check_parantheses(begin, end) == true){
