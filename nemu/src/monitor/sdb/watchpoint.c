@@ -144,7 +144,7 @@ void watchpoints_display(){
 
   printf("Watchpoints:\n");
   while(temp != NULL){
-    printf("NO%d, %s: value is %ld\n", temp->NO, temp->name, temp->value);
+    printf("NO%d, %s: value is 0x%lx\n", temp->NO, temp->name, temp->value);
     temp = temp->next;
   }
 }
