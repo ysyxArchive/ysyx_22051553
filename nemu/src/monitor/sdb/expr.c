@@ -225,7 +225,7 @@ static bool check_parantheses(int begin, int end){
 
 }
 
-static int find_priority(int begin, int end, bool *success){     //优先找2+ -， 其次找1* /，作为主运算符 
+static int find_priority(int begin, int end, bool *success){     //最高3==， 优先找2+ -， 其次找1* /，作为主运算符 
                                                   //找括号外的运算符
   
   if(begin >= end)
@@ -264,9 +264,26 @@ static int find_priority(int begin, int end, bool *success){     //优先找2+ -
       continue;
         
     }      
-
-    else if(tokens[position].type == '+' || tokens[position].type == '-')
+    else if(tokens[position].type == TK_EQ)
       return position;
+
+    else if(tokens[position].type == '+' || tokens[position].type == '-'){
+      
+      single_token = position;
+      position ++;
+
+      while(position < end){
+        
+        if(tokens[position].type == TK_EQ)
+          return position;
+        else if(tokens[position].type == '(')
+          return single_token;
+        
+        position ++;
+      }
+
+      return single_token;
+    }
 
     else if(tokens[position].type == '*' || tokens[position].type == '/'){
       
@@ -274,9 +291,11 @@ static int find_priority(int begin, int end, bool *success){     //优先找2+ -
       position ++;
 
       while(position < end){
-        
-        if(tokens[position].type == '+' || tokens[position].type == '-')
+
+        if(tokens[position].type == TK_EQ)
           return position;
+        else if(tokens[position].type == '+' || tokens[position].type == '-')
+          single_token = position;
         else if(tokens[position].type == '(')
           return single_token;
         

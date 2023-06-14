@@ -134,6 +134,8 @@ void watchpoints_diff(){
     if(old_value != new_value){
       printf("watchpoint: NO%d, %s\n", temp->NO, temp->name);
       printf("old_value: %ld\nnew_value: %ld\n", old_value, new_value);
+
+      nemu_state.state = NEMU_STOP;
     }
     temp = temp->next;
   }
