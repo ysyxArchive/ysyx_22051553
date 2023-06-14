@@ -102,12 +102,15 @@ static bool make_token(char *e) {
   int i;
   int ovector[3];
 
+  int ret;
+
   nr_token = 0;
 
   while (e[position] != '\0') {
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
-      if (pcre_exec(re[i], NULL, e, strlen(e), position, 0, ovector, 3) > 0 && ovector[0] == position) {
+      ret = pcre_exec(re[i], NULL, e, strlen(e), position, 0, ovector, 3);
+      if (ret > 0 && ovector[0] == position) {
         char *substr_start = e + position;
         int substr_len = ovector[1] - ovector[0];
 
