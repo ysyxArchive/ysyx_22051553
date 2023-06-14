@@ -333,9 +333,38 @@ static word_t eval(int begin, int end, bool *success){
           return 0;
       }
     }
-    else {
-      addr = eval(begin+1, end, success);
-      return paddr_read(addr,1);
+    else {                                            //把DEREF后的()表达式集中到一个str中
+      int pos = 1;
+      int paren_layer = 0;
+      if(tokens[begin + pos].type == '(')
+      {
+        pos ++;
+        paren_layer ++;
+      }
+      while(paren_layer > 0){
+        if(tokens[begin + pos].type == '(')
+        {
+          pos ++;
+          paren_layer ++;
+        }
+        else if(tokens[begin + pos].type == ')')
+        {
+          pos ++;
+          paren_layer --;
+        }
+      }
+
+
+
+      addr = eval(begin+1, begin+pos-1, success);
+      word_t value = paddr_read(addr,1);
+
+      tokens[begin+pos-1].type = TK_DEC;
+      sprintf(tokens[begin+pos-1].str, "%ld", value);
+
+
+      return eval(begin+pos-1, end, success);                 //求值无DEREF的表达式
+      
     }
   }
   else if(check_parantheses(begin, end) == true){
