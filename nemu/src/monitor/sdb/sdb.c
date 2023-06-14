@@ -24,6 +24,7 @@ extern CPU_state cpu;
 word_t paddr_read(paddr_t addr, int len);
 void new_wp(char* string);
 void free_wp(int n);
+void watchpoints_display();
 
 static int is_batch_mode = false;
 
@@ -75,6 +76,9 @@ static int cmd_i(char *args) {
   
   if(strcmp(args, "r") == 0){
     isa_reg_display();
+  }
+  else if(strcmp(args, "w") == 0){
+    watchpoints_display();
   }
 
   return 0;
