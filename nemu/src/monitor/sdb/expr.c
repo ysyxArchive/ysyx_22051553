@@ -344,14 +344,13 @@ static word_t eval(int begin, int end, bool *success){
       while(paren_layer > 0){
         if(tokens[begin + pos].type == '(')
         {
-          pos ++;
           paren_layer ++;
         }
         else if(tokens[begin + pos].type == ')')
         {
-          pos ++;
           paren_layer --;
         }
+        pos ++;
       }
 
 
