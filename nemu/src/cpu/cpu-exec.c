@@ -23,6 +23,9 @@
  * This is useful when you use the `si' command.
  * You can modify this value as you want.
  */
+
+void watchpoints_diff();
+
 #define MAX_INST_TO_PRINT 10
 
 CPU_state cpu = {};
@@ -38,6 +41,8 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #endif
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
+
+  watchpoints_diff();
 }
 
 static void exec_once(Decode *s, vaddr_t pc) {
