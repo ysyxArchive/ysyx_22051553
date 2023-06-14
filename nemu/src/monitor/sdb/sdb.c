@@ -81,20 +81,12 @@ static int cmd_i(char *args) {
 
 static int cmd_x(char *args) {
   
-  int a = strlen(args);
-  
   char * arg[2];
 
   arg[0] = strtok(args, " ");
 
-  for(int i = 0; i < a; i++)
-    printf("%c\n",args[i]);
+  arg[1] = args + strlen(arg[0]) + 1;
 
-  if(arg[0] != NULL){
-    arg[1] = strtok(NULL, " ");
-  }
-
-  
   int length = atoi(arg[0]);
   
 
