@@ -22,7 +22,8 @@
 extern const char *regs[];   //note
 extern CPU_state cpu;
 word_t paddr_read(paddr_t addr, int len);
-
+void new_wp(char* string);
+void free_wp(int n);
 
 static int is_batch_mode = false;
 
@@ -47,7 +48,7 @@ static char* rl_gets() {
   return line_read;
 }
 
-static int cmd_c(char *args) {
+static int cmd_c(char *args) {              //static还能解决一下命名空间的问题
   cpu_exec(-1);
   return 0;
 }
@@ -126,6 +127,19 @@ static int cmd_p(char *args) {
   return 0;
 }
 
+static int cmd_w(char *args) {
+  
+  new_wp(args);
+  return 0;
+}
+
+static int cmd_d(char *args) {
+  
+  int n = atoi(args);
+  free_wp(n);
+  return 0;
+}
+
 
 
 static int cmd_help(char *args);
@@ -142,6 +156,8 @@ static struct {
   { "info", "print state, including regs and watchpoints", cmd_i },
   { "x", "print mem", cmd_x },
   { "p", "print expr", cmd_p },
+  { "w", "set a watchpoint", cmd_w },
+  { "d", "delete a watchpoint", cmd_d },
 
   /* TODO: Add more commands */
 

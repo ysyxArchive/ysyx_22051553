@@ -55,7 +55,7 @@ void init_wp_pool() {
 free
 */
 
-WP* new_wp(char* string){
+void new_wp(char* string){
   if(full == 1){
     assert(0);
   }
@@ -84,8 +84,6 @@ WP* new_wp(char* string){
 
     head = temp;
   }
-
-  return head;
 }
 
 
