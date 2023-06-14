@@ -122,7 +122,7 @@ static int cmd_p(char *args) {
   
   bool success = true;
   word_t value = expr(args, &success);
-  printf("value = %ld\n", value);
+  printf("value = %ld or 0x%lx\n", value, value);
   return 0;
 }
 
