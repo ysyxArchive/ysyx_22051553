@@ -30,43 +30,6 @@ int main(int argc, char *argv[]) {
   init_monitor(argc, argv);             //显现出预处理的效果，如果没有该宏，那么就不编译某些代码
 #endif                                  //如果是if else程序，那么会导致编译开销和控制的计算开销
 
-
-  char str[500] = {};
-  uint32_t value = 0;
-  
-  FILE* fp = fopen("/home/shikye/ysyx-workbench/nemu/tools/gen-expr/input", "r");
-  if(fp == NULL)
-    assert(0);
-  
-  bool success = false;
-
-  while(1){
-
-    static int i = 0;
-    
-    int a = fscanf(fp,"%u", &value);
-    if(a == EOF)
-      break;
-    int b = fscanf(fp,"%s", str);
-
-    printf("a is %d, b is %d\n", a, b);
-
-
-    uint32_t como = expr(str, &success);
-
-    if(success == false)
-      assert(0);
-    
-    if(como == value)
-      printf("test case %d success!\n", i);
-    
-    i++;
-  }
-  
-  fclose(fp);
-
-
-
   /* Start engine. */
   engine_start();
 
