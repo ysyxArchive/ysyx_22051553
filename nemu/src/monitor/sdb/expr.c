@@ -127,40 +127,50 @@ static bool make_token(char *e) {
         switch (rules[i].token_type) {
           case '+': tokens[nr_token].type = rules[i].token_type ; 
                     nr_token ++;
+                    i = 0;
                     break;
           case '-': tokens[nr_token].type = rules[i].token_type ; 
                     nr_token ++;
+                    i = 0;
                     break;
           case '*': if(is_DEREF(position))
                       tokens[nr_token].type = TK_DEREF;
                     else 
                       tokens[nr_token].type = '*';
 
+                    i = 0;
                     nr_token ++;
                     break;
           case '/': tokens[nr_token].type = rules[i].token_type ; 
                     nr_token ++;
+                    i = 0;
                     break;
           case '(': tokens[nr_token].type = rules[i].token_type ; 
                     nr_token ++;
+                    i = 0;
                     break;
           case ')': tokens[nr_token].type = rules[i].token_type ; 
                     nr_token ++;
+                    i = 0;
                     break;
           case TK_EQ: tokens[nr_token].type = rules[i].token_type ; 
                       nr_token ++;
+                      i = 0;
                       break;
           case TK_DEC : tokens[nr_token].type = rules[i].token_type ; 
                         strncpy(tokens[nr_token].str,substr_start,substr_len);
                         nr_token ++;
+                        i = 0;
                         break;
           case TK_HEX : tokens[nr_token].type = rules[i].token_type ; 
                         strncpy(tokens[nr_token].str,substr_start,substr_len);
                         nr_token ++;
+                        i = 0;
                         break;
           case TK_REG : tokens[nr_token].type = rules[i].token_type ; 
                         strncpy(tokens[nr_token].str,substr_start,substr_len);
                         nr_token ++;
+                        i = 0;
                         break;
           
 
