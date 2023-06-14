@@ -118,6 +118,14 @@ static int cmd_x(char *args) {
   return 0;
 }
 
+static int cmd_p(char *args) {
+  
+  bool success = true;
+  word_t value = expr(args, &success);
+  printf("value = %ld", value);
+  return 0;
+}
+
 
 
 static int cmd_help(char *args);
@@ -133,6 +141,7 @@ static struct {
   { "si", "Execute N insts, default 1 inst", cmd_s },
   { "info", "print state, including regs and watchpoints", cmd_i },
   { "x", "print mem", cmd_x },
+  { "p", "print expr", cmd_p },
 
   /* TODO: Add more commands */
 
