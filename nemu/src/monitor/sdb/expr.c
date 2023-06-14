@@ -309,21 +309,24 @@ static word_t eval(int begin, int end, bool *success){
       return strtol(tokens[begin].str, NULL, 16);
     case TK_REG:
       return isa_reg_str2val(tokens[begin].str, success);
-    case TK_DEREF:
-      switch(tokens[begin+1].type){
-        case TK_DEC:
-          addr = strtol(tokens[begin+1].str, NULL, 10);
-          return paddr_read(addr,1);
-        case TK_HEX:
-          addr = strtol(tokens[begin+1].str, NULL, 16);
-          return paddr_read(addr,1);
-        default:
-          assert(0);
-          return 0;
-      }
-
+    
     default:
-      break;
+      assert(0);
+      return 0;
+    }
+  }
+  
+  else if(begin + 1 == end){
+    switch(tokens[begin+1].type){
+      case TK_DEC:
+        addr = strtol(tokens[begin+1].str, NULL, 10);
+        return paddr_read(addr,1);
+      case TK_HEX:
+        addr = strtol(tokens[begin+1].str, NULL, 16);
+        return paddr_read(addr,1);
+      default:
+        assert(0);
+        return 0;
     }
   }
   else if(check_parantheses(begin, end) == true){
