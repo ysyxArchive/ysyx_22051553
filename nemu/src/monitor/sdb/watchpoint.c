@@ -123,7 +123,7 @@ void free_wp(int n){
 
 }
 
-void watchpoints_diff(){
+void watchpoints_diff(){                   //每条指令结束后执行
   WP* temp = head;
   word_t old_value = 0;
   word_t new_value = 0;
@@ -137,6 +137,8 @@ void watchpoints_diff(){
 
       nemu_state.state = NEMU_STOP;
     }
+    temp->value = new_value;
+
     temp = temp->next;
   }
 }
