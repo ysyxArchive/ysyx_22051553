@@ -1,12 +1,12 @@
 import chisel3._
 import chisel3.util.Decoupled
 
-class GcdInputBundle(val w: Int) extends Bundle {
+class GcdInputBundle(val w: Int) extends Bundle {   //输入接口
   val value1 = UInt(w.W)
   val value2 = UInt(w.W)
 }
 
-class GcdOutputBundle(val w: Int) extends Bundle {
+class GcdOutputBundle(val w: Int) extends Bundle {  //输出接口
   val value1 = UInt(w.W)
   val value2 = UInt(w.W)
   val gcd    = UInt(w.W)
@@ -29,6 +29,7 @@ class DecoupledGcd(width: Int) extends Module {
   val y           = Reg(UInt())
   val busy        = RegInit(false.B)
   val resultValid = RegInit(false.B)
+
 
   input.ready  := !busy
   output.valid := resultValid

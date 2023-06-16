@@ -47,4 +47,9 @@ $(clean-tools):
 clean-tools: $(clean-tools)
 clean-all: clean distclean clean-tools
 
-.PHONY: run gdb run-env clean-tools clean-all $(clean-tools)
+count: 
+	@echo Total line is $(shell find $(NEMU_HOME) -name "*.[ch]" |xargs grep -v "^$$" | wc -l).  
+# $需要使用$$来转义
+
+
+.PHONY: run gdb run-env clean-tools clean-all $(clean-tools) count

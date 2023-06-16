@@ -19,6 +19,13 @@
 #include <readline/history.h>
 #include "sdb.h"
 
+extern const char *regs[];   //note
+extern CPU_state cpu;
+word_t paddr_read(paddr_t addr, int len);
+void new_wp(char* string);
+void free_wp(int n);
+void watchpoints_display();
+
 static int is_batch_mode = false;
 
 void init_regex();
@@ -42,15 +49,102 @@ static char* rl_gets() {
   return line_read;
 }
 
-static int cmd_c(char *args) {
+static int cmd_c(char *args) {              //static还能解决一下命名空间的问题
   cpu_exec(-1);
   return 0;
 }
 
 
 static int cmd_q(char *args) {
+  nemu_state.state = NEMU_QUIT;
   return -1;
 }
+
+static int cmd_s(char *args) {
+  
+  if(args == NULL){
+    cpu_exec(1);
+  }
+  else {
+    uint64_t n = atoi(args);
+    cpu_exec(n);
+  }
+  return 0;
+}
+
+static int cmd_i(char *args) {
+  
+  if(strcmp(args, "r") == 0){
+    isa_reg_display();
+  }
+  else if(strcmp(args, "w") == 0){
+    watchpoints_display();
+  }
+
+  return 0;
+}
+
+static int cmd_x(char *args) {
+  
+  char * arg[2];
+
+  arg[0] = strtok(args, " ");
+
+  arg[1] = args + strlen(arg[0]) + 1;
+
+  int length = atoi(arg[0]);
+  
+
+  bool success = true;
+  paddr_t addr   = expr(arg[1],&success);
+  word_t data = 0;
+  int    count_4 = 0;
+
+  data = paddr_read(addr,4);
+  printf("0x%08x:\n0x%08lx\t",addr,data);
+  addr += 4;
+  length --;
+  count_4 ++;
+
+  while(length > 0){
+    data = paddr_read(addr,4);
+    printf("0x%08lx\t",data);
+    addr += 4;
+    length --;
+    count_4 ++;
+    if(count_4 == 4){
+      printf("\n");
+      count_4 = 0;    
+    }
+  }
+  printf("\n");
+
+
+  return 0;
+}
+
+static int cmd_p(char *args) {
+  
+  bool success = true;
+  word_t value = expr(args, &success);
+  printf("value = %ld or 0x%02lx\n", value, value);
+  return 0;
+}
+
+static int cmd_w(char *args) {
+  
+  new_wp(args);
+  return 0;
+}
+
+static int cmd_d(char *args) {
+  
+  int n = atoi(args);
+  free_wp(n);
+  return 0;
+}
+
+
 
 static int cmd_help(char *args);
 
@@ -62,6 +156,12 @@ static struct {
   { "help", "Display information about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
+  { "si", "Execute N insts, default 1 inst", cmd_s },
+  { "info", "print state, including regs and watchpoints", cmd_i },
+  { "x", "print mem", cmd_x },
+  { "p", "print expr", cmd_p },
+  { "w", "set a watchpoint", cmd_w },
+  { "d", "delete a watchpoint", cmd_d },
 
   /* TODO: Add more commands */
 
@@ -71,7 +171,7 @@ static struct {
 
 static int cmd_help(char *args) {
   /* extract the first argument */
-  char *arg = strtok(NULL, " ");
+  char *arg = strtok(NULL, " ");                      
   int i;
 
   if (arg == NULL) {
@@ -103,7 +203,7 @@ void sdb_mainloop() {
   }
 
   for (char *str; (str = rl_gets()) != NULL; ) {
-    char *str_end = str + strlen(str);
+    char *str_end = str + strlen(str);    // 指向\0
 
     /* extract the first token as the command */
     char *cmd = strtok(str, " ");
@@ -112,9 +212,12 @@ void sdb_mainloop() {
     /* treat the remaining string as the arguments,
      * which may need further parsing
      */
-    char *args = cmd + strlen(cmd) + 1;
-    if (args >= str_end) {
-      args = NULL;
+    char *args = cmd + strlen(cmd) + 1;               //指向空格后第一个字符，如为空格则指向空格
+
+    while(*args == ' ') args ++;
+
+    if (args >= str_end) {                            
+      args = NULL;                                    
     }
 
 #ifdef CONFIG_DEVICE

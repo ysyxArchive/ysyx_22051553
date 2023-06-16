@@ -1,4 +1,4 @@
-import chisel3._
+import chisel3._         //Decoupled 用于scala测试，GCD用于生成.v
 
 /**
   * Compute GCD using subtraction method.
