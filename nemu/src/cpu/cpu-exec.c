@@ -49,7 +49,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   s->pc = pc;
   s->snpc = pc;
   isa_exec_once(s);
-  cpu.pc = s->dnpc;
+  cpu.pc = s->dnpc;             //注意静态指令和动态指令    静态是pc+4,动态可能是跳转地址
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);

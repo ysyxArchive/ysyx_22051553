@@ -27,8 +27,22 @@ typedef struct Decode {
 } Decode;
 
 // --- pattern matching mechanism ---
+/*
+  str：pattern字符串
+  len：pattern字符串长度-1,即不包括'\0'的长度
+  __key：最终形成不包含空格的指令值，                从字符串转成值 可以视为01字串
+    pattern(n)为1 -> __key(n)为1
+    pattern(n)为0 -> __key(n)为0
+    pattern(n)为？ -> __key(n)为0
+  __mask：最终形成掩码值，                  最终也是值 可以视为01字串
+    pattern(n)为1 -> __key(n)为1
+    pattern(n)为0 -> __key(n)为1
+    pattern(n)为？ -> __key(n)为0
+  __shift：统计opcode后是否还有？，？有几个
+*/
+
 __attribute__((always_inline))
-static inline void pattern_decode(const char *str, int len,
+static inline void pattern_decode(const char *str, int len,            
     uint64_t *key, uint64_t *mask, uint64_t *shift) {
   uint64_t __key = 0, __mask = 0, __shift = 0;
 #define macro(i) \
@@ -50,7 +64,7 @@ static inline void pattern_decode(const char *str, int len,
 #define macro16(i) macro8(i);  macro8((i) + 8)
 #define macro32(i) macro16(i); macro16((i) + 16)
 #define macro64(i) macro32(i); macro32((i) + 32)
-  macro64(0);
+  macro64(0);                                      //会被扩展成 macro(0); macro(1); macro(2); ... macro(63); 
   panic("pattern too long");
 #undef macro
 finish:
@@ -95,6 +109,11 @@ finish:
     goto *(__instpat_end); \
   } \
 } while (0)
+
+//对INSTPAT中的字符串进行拆解
+//对比s的inst是否与INSTPAT中的字符串匹配
+//执行该指令
+//不再继续匹配
 
 #define INSTPAT_START(name) { const void ** __instpat_end = &&concat(__instpat_end_, name);
 #define INSTPAT_END(name)   concat(__instpat_end_, name): ; }
