@@ -23,7 +23,7 @@
 #define Mw vaddr_write
 
 enum {
-  TYPE_I, TYPE_U, TYPE_S,
+  TYPE_I, TYPE_U, TYPE_S, TYPE_J, TYPE_R, 
   TYPE_N, // none
 };
 
@@ -32,6 +32,36 @@ enum {
 #define immI() do { *imm = SEXT(BITS(i, 31, 20), 12); } while(0)
 #define immU() do { *imm = SEXT(BITS(i, 31, 12), 20) << 12; } while(0)
 #define immS() do { *imm = (SEXT(BITS(i, 31, 25), 7) << 5) | BITS(i, 11, 7); } while(0)
+/*
+#define immS() do { 
+  
+*imm = 
+
+(
+
+  ({ 
+    
+  struct { int64_t n : 7; } __x = 
+  { .n = (((i) >> (25)) & ((1ull << (31 - 25 + 1)) - 1)); 
+  
+  (uint64_t)__x.n; 
+  
+  })        //{}中包含一个复合语句块，返回最后一行
+  
+  
+  << 5
+
+) 
+
+| (((i) >> (7)) & ((1ull << (11 - 7 + 1)) - 1)); 
+
+} while(0)
+
+*/
+
+#define immJ() do \
+{ *imm = (SEXT(BITS(i, 31, 31), 1) << 20) | BITS(i, 19, 12) << 12 | BITS(i, 20, 20) << 11 | BITS(i, 30, 21) << 1; } \
+while(0)
 
 static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_t *imm, int type) {  //为src1、src2、rd、imm等赋值
   uint32_t i = s->isa.inst.val;
@@ -42,6 +72,8 @@ static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_
     case TYPE_I: src1R();          immI(); break;       //获取寄存器1的值，获取扩展的imm值
     case TYPE_U:                   immU(); break;
     case TYPE_S: src1R(); src2R(); immS(); break;
+    case TYPE_J: src1R();          immJ(); break;
+    case TYPE_R: src1R(); src2R();         break;
   }
 }
 
@@ -66,6 +98,10 @@ static int decode_exec(Decode *s) {
   //s->isa.inst.val依次匹配INSTPAT中的字符串，如果匹配成功
 
   INSTPAT_START();
+  INSTPAT("0000000 ????? ????? 000 ????? 01100 11", add  , R, R(rd) = src1 + src2);
+  INSTPAT("???????????? ????? 000 ????? 00100 11", addi  , I, R(rd) = src1 + imm);
+  INSTPAT("? ?????????? ? ???????? ????? 11011 11", jal  , J, R(rd) = s->pc + 4; s->pc = s->pc + imm);
+  INSTPAT("???????????? ????? 000 ????? 11001 11", jalr  , J, R(rd) = s->pc + 4; s->pc = (src1 + imm) & ~1);
   INSTPAT("??????? ????? ????? ??? ????? 00101 11", auipc  , U, R(rd) = s->pc + imm);
   INSTPAT("??????? ????? ????? 011 ????? 00000 11", ld     , I, R(rd) = Mr(src1 + imm, 8));
   INSTPAT("??????? ????? ????? 011 ????? 01000 11", sd     , S, Mw(src1 + imm, 8, src2));
