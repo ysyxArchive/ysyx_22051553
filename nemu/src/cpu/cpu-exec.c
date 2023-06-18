@@ -51,12 +51,12 @@ static void exec_once(Decode *s, vaddr_t pc) {
   isa_exec_once(s);
   cpu.pc = s->dnpc;             //注意静态指令和动态指令    静态是pc+4,动态可能是跳转地址
 #ifdef CONFIG_ITRACE
-  char *p = s->logbuf;
-  p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
+  char *p = s->logbuf;               //p指针不断前移    snprint返回值是写入的字符长度
+  p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);      //"0x%016"
   int ilen = s->snpc - s->pc;
   int i;
   uint8_t *inst = (uint8_t *)&s->isa.inst.val;
-  for (i = ilen - 1; i >= 0; i --) {
+  for (i = ilen - 1; i >= 0; i --) {                  //写入4个字节的指令到p位置
     p += snprintf(p, 4, " %02x", inst[i]);
   }
   int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
