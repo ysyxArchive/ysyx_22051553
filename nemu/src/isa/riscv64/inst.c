@@ -71,7 +71,7 @@ static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_
   int rs1 = BITS(i, 19, 15);
   int rs2 = BITS(i, 24, 20);
   *rd     = BITS(i, 11, 7);
-  *shamt  = BITS(i, 31, 26);
+  *shamt  = BITS(i, 25, 20);
   switch (type) {
     case TYPE_I: src1R();          immI(); break;       //获取寄存器1的值，获取扩展的imm值
     case TYPE_U:                   immU(); break;
