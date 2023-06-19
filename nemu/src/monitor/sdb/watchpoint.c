@@ -61,6 +61,7 @@ void new_wp(char* string){
   }
 
   WP* temp = free_;
+  static int no = 1;
 
   free_ = free_ -> next;
   if(free_ == NULL)
@@ -68,7 +69,8 @@ void new_wp(char* string){
   
   
   if(head == NULL){
-    temp->NO = 1;
+    temp->NO = no;
+    no ++;
     temp->next = NULL;
     strcpy(temp->name, string);
     temp->using = true;
@@ -76,7 +78,8 @@ void new_wp(char* string){
     head = temp;
   }
   else {
-    temp->NO = head->NO ++;
+    temp->NO = no;
+    no ++;
     temp->next = head;
     strcpy(temp->name, string);
     temp->using = true;
