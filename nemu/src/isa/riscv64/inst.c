@@ -180,7 +180,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("0100000 ????? ????? 101 ????? 0111011", sraw  , R, R(rd) = SEXT(((int32_t)BITS(src1, 31, 0) >> src2), 32));   
 
   INSTPAT("0000001 ????? ????? 000 ????? 0111011", mulw , R, R(rd) = SEXT(((__uint128_t)((__int128_t)src1 * (__int128_t)src2) & (__uint128_t)4294967295), 32));   //完成
-  INSTPAT("0000001 ????? ????? 100 ????? 0111011", divw  , R, R(rd) = SEXT(((int32_t)((int32_t)(BITS(src1, 31, 0)) / (int32_t)(BITS(src2, 31, 0)))), 32));
+  INSTPAT("0000001 ????? ????? 100 ????? 0111011", divw  , R, R(rd) = SEXT(((int32_t)((int32_t)(BITS(src1, 31, 0)) / (int32_t)(BITS(src2, 31, 0)))), 32));   //完成
   INSTPAT("0000001 ????? ????? 101 ????? 0111011", divuw  , R, R(rd) = SEXT(((uint32_t)((uint32_t)(BITS(src1, 31, 0)) / (uint32_t)(BITS(src2, 31, 0)))), 32));
   INSTPAT("0000001 ????? ????? 110 ????? 0111011", remw  , R, R(rd) = SEXT(((int32_t)((int32_t)(BITS(src1, 31, 0)) % (int32_t)(BITS(src2, 31, 0)))), 32));
   INSTPAT("0000001 ????? ????? 111 ????? 0111011", remuw  , R, R(rd) = SEXT(((uint32_t)((uint32_t)(BITS(src1, 31, 0)) % (uint32_t)(BITS(src2, 31, 0)))), 32));
