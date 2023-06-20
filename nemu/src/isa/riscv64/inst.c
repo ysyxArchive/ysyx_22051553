@@ -87,6 +87,9 @@ static int decode_exec(Decode *s) {
   int rd = 0;
   int shamt = 0;
   word_t src1 = 0, src2 = 0, imm = 0;     //无符号
+
+  __uint128_t u264_1 = 18446744073709551615ULL;
+
   s->dnpc = s->snpc;
 
 #define INSTPAT_INST(s) ((s)->isa.inst.val)          
@@ -154,10 +157,10 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000000 ????? ????? 111 ????? 0110011", and  , R, R(rd) = src1 & src2);
 
   //宏只支持64位
-  INSTPAT("0000001 ????? ????? 000 ????? 0110011", mul , R, R(rd) = (__int128_t)((__int128_t)src1 * (__int128_t)src2) >> 64 );
-  INSTPAT("0000001 ????? ????? 001 ????? 0110011", mulh  , R, R(rd) = (__int128_t)((__int128_t)src1 * (__int128_t)src2) >> 64);
-  INSTPAT("0000001 ????? ????? 010 ????? 0110011", mulhsu  , R, R(rd) = (__int128_t)((__int128_t)src1 * (__uint128_t)src2) >> 64);
-  INSTPAT("0000001 ????? ????? 011 ????? 0110011", mulhu  , R, R(rd) = (__uint128_t)((__uint128_t)src1 * (__uint128_t)src2) >>  64);
+  INSTPAT("0000001 ????? ????? 000 ????? 0110011", mul , R, R(rd) = (word_t)((__uint128_t)((__int128_t)src1 * (__int128_t)src2) & u264_1 ));
+  INSTPAT("0000001 ????? ????? 001 ????? 0110011", mulh  , R, R(rd) = (word_t)((((__uint128_t)((__int128_t)src1 * (__int128_t)src2)) >> 64) & u264_1));
+  INSTPAT("0000001 ????? ????? 010 ????? 0110011", mulhsu  , R, R(rd) = (word_t)((((__uint128_t)((__int128_t)src1 * (__uint128_t)src2)) >> 64) & u264_1));
+  INSTPAT("0000001 ????? ????? 011 ????? 0110011", mulhu  , R, R(rd) = (word_t)((((__uint128_t)((__uint128_t)src1 * (__uint128_t)src2)) >> 64) & u264_1));
   INSTPAT("0000001 ????? ????? 100 ????? 0110011", div  , R, R(rd) = (sword_t)(sword_t)src1 / (sword_t)src2);
   INSTPAT("0000001 ????? ????? 101 ????? 0110011", divu  , R, R(rd) = src1 / src2);
   INSTPAT("0000001 ????? ????? 110 ????? 0110011", rem  , R, R(rd) = (sword_t)((sword_t)src1 % (sword_t)src2));
@@ -176,7 +179,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000000 ????? ????? 101 ????? 0111011", srlw  , R, R(rd) = SEXT(BITS(src1 >> src2,31,0), 32));
   INSTPAT("0100000 ????? ????? 101 ????? 0111011", sraw  , R, R(rd) = SEXT(BITS((sword_t)src1 >> src2,31,0), 32));
 
-  INSTPAT("0000001 ????? ????? 000 ????? 0111011", mulw , R, R(rd) = SEXT(((__uint128_t)((__int128_t)src1 * (__int128_t)src2) & (__uint128_t)4294967295), 32));
+  INSTPAT("0000001 ????? ????? 000 ????? 0111011", mulw , R, R(rd) = SEXT(((__uint128_t)((__int128_t)src1 * (__int128_t)src2) & (__uint128_t)4294967295), 32));   //完成
   INSTPAT("0000001 ????? ????? 100 ????? 0111011", divw  , R, R(rd) = SEXT(((int32_t)((int32_t)(BITS(src1, 31, 0)) / (int32_t)(BITS(src2, 31, 0)))), 32));
   INSTPAT("0000001 ????? ????? 101 ????? 0111011", divuw  , R, R(rd) = SEXT(((uint32_t)((uint32_t)(BITS(src1, 31, 0)) / (uint32_t)(BITS(src2, 31, 0)))), 32));
   INSTPAT("0000001 ????? ????? 110 ????? 0111011", remw  , R, R(rd) = SEXT(((int32_t)((int32_t)(BITS(src1, 31, 0)) % (int32_t)(BITS(src2, 31, 0)))), 32));
