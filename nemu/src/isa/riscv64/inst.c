@@ -88,7 +88,7 @@ static int decode_exec(Decode *s) {
   int shamt = 0;
   word_t src1 = 0, src2 = 0, imm = 0;     //无符号
 
-  __uint128_t u264_1 = 18446744073709551615ULL;
+  __uint128_t u264_1 = 18446744073709551615ULL;  //写18446744073709551615声明的是一个int字面量
 
   s->dnpc = s->snpc;
 
