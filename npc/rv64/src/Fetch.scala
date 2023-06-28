@@ -22,11 +22,10 @@ class Fetch extends Module{
     val started = RegInit(false.B)
     started := true.B
 
-    val next_pc = RegInit(PC_START)
-    next_pc := io.pc + 4.U
-
-    io.pc := next_pc  
-    io.inst_req := true.B
+    val pc = RegInit(PC_START)
+    val next_pc = Mux(started, pc+4.U, pc)
 
 
+    io.pc := pc
+    io.inst_req := started
 }
