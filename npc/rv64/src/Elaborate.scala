@@ -1,8 +1,8 @@
 import circt.stage._
 
 object Elaborate extends App {
-  def top = new Fetch()
-  val useMFC = true // use MLIR-based firrtl compiler  //报错
+  def top = new Ram()
+  val useMFC = true  // use MLIR-based firrtl compiler  //报错
   val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
   if (useMFC) {
     (new ChiselStage).execute(args, generator :+ CIRCTTargetAnnotation(CIRCTTarget.Verilog))

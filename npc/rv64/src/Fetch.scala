@@ -14,19 +14,16 @@ class FetchIO extends Bundle {
 }
 
 
-
 class Fetch extends Module{
 
     val io = IO(new FetchIO)
 
-    val started = RegInit(false.B)
+    val started = RegInit(false.B)        
     started := true.B
 
     val pc = RegInit(PC_START)
     val next_pc = Mux(started, pc+4.U, pc)
-
     pc := next_pc
-
 
     io.pc := pc
     io.inst_req := started
