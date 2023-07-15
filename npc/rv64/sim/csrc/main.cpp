@@ -1,12 +1,10 @@
-#include <nvboard.h>
-#include <Vtop.h>
 #include <verilated_vcd_c.h>
 #include <verilated.h>
+#include "VRam.h"
 
-static TOP_NAME dut;
+vluint64_t sim_time = 0;
 
-
-void nvboard_bind_all_pins(Vtop* top);
+static VRam dut;
 
 static void single_cycle() {  //clock总是为1
   dut.clock = 0; dut.eval();
@@ -25,20 +23,35 @@ static void reset(int n) {
 
 int main(int argc, char **argv) {
   
-  nvboard_bind_all_pins(&dut);
-  nvboard_init();
-
   reset(10);
 
-  while(1) {
-    if(dut.clock == 1)      //只有上升沿才更新
-      nvboard_update();
-    
-    edge_change();
+  Verilated::traceEverOn(true);
+  VerilatedVcdC * vcd = new VerilatedVcdC;
 
-
+  VL_IN(Memory,31,0);
+  FILE* file = fopen("Mem.txt", "r");
+  unsigned int buffer[256];
+  unsigned int buffer_idx = 0;
+  if(file != NULL){
+    while(fscanf(file, "%08x", "&buffer[buffer_idx]") > 0)
+      buffer_idx++;
     
+    fclose(file);
+    dut.Memory = buffer;
   }
 
-  return 0;
+
+  dut.trace(vcd,0);
+  vcd->open("wave.vcd");
+
+  while(sim_time < 50000000){
+    edge_change();
+    vcd->dump(sim_time);
+    sim_time++;
+  }
+
+
+  vcd->close();
+    
 }
+
