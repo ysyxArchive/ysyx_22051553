@@ -17,15 +17,19 @@ VL_INLINE_OPT void VRam___024root___nba_sequent__TOP__0(VRam___024root* vlSelf) 
     VRam__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VRam___024root___nba_sequent__TOP__0\n"); );
     // Body
+    vlSelf->Ram__DOT__SyncMem_io_dataOut_bits_MPORT_en_pipe_0 = 1U;
     vlSelf->Ram__DOT__inst_valid = vlSelf->io_pc_valid;
-    vlSelf->Ram__DOT__SyncMem_ext__DOT___GEN = 1U;
-    vlSelf->Ram__DOT__SyncMem_ext__DOT___GEN_0 = (0xffU 
-                                                  & vlSelf->io_pc_bits);
-    vlSelf->io_inst_valid = vlSelf->Ram__DOT__inst_valid;
-    vlSelf->io_inst_bits = ((IData)(vlSelf->Ram__DOT__SyncMem_ext__DOT___GEN)
-                             ? vlSelf->Ram__DOT__SyncMem_ext__DOT__Memory
-                            [vlSelf->Ram__DOT__SyncMem_ext__DOT___GEN_0]
-                             : 0U);
+    vlSelf->Ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0 
+        = (0xffU & vlSelf->Ram__DOT__pc_addr);
+    if (vlSelf->Ram__DOT__inst_valid) {
+        vlSelf->io_dataOut_valid = 1U;
+        vlSelf->io_dataOut_bits = vlSelf->Ram__DOT__SyncMem
+            [vlSelf->Ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0];
+    } else {
+        vlSelf->io_dataOut_valid = 0U;
+        vlSelf->io_dataOut_bits = 0U;
+    }
+    vlSelf->Ram__DOT__pc_addr = vlSelf->io_pc_bits;
 }
 
 void VRam___024root___eval_nba(VRam___024root* vlSelf) {
@@ -35,6 +39,7 @@ void VRam___024root___eval_nba(VRam___024root* vlSelf) {
     // Body
     if (vlSelf->__VnbaTriggered.at(0U)) {
         VRam___024root___nba_sequent__TOP__0(vlSelf);
+        vlSelf->__Vm_traceActivity[1U] = 1U;
     }
 }
 
@@ -71,7 +76,7 @@ void VRam___024root___eval(VRam___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VRam___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("vsrc/Ram.v", 40, "", "Active region did not converge.");
+                    VL_FATAL_MT("vsrc/Ram.v", 1, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -86,7 +91,7 @@ void VRam___024root___eval(VRam___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VRam___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Ram.v", 40, "", "NBA region did not converge.");
+                VL_FATAL_MT("vsrc/Ram.v", 1, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VRam___024root___eval_nba(vlSelf);
@@ -102,8 +107,6 @@ void VRam___024root___eval_debug_assertions(VRam___024root* vlSelf) {
     // Body
     if (VL_UNLIKELY((vlSelf->clock & 0xfeU))) {
         Verilated::overWidthError("clock");}
-    if (VL_UNLIKELY((vlSelf->io_inst_ready & 0xfeU))) {
-        Verilated::overWidthError("io_inst_ready");}
     if (VL_UNLIKELY((vlSelf->io_pc_valid & 0xfeU))) {
         Verilated::overWidthError("io_pc_valid");}
 }

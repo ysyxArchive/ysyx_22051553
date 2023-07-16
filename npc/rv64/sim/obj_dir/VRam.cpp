@@ -12,12 +12,10 @@ VRam::VRam(VerilatedContext* _vcontextp__, const char* _vcname__)
     : VerilatedModel{*_vcontextp__}
     , vlSymsp{new VRam__Syms(contextp(), _vcname__, this)}
     , clock{vlSymsp->TOP.clock}
-    , io_inst_ready{vlSymsp->TOP.io_inst_ready}
+    , io_dataOut_valid{vlSymsp->TOP.io_dataOut_valid}
     , io_pc_valid{vlSymsp->TOP.io_pc_valid}
-    , io_inst_valid{vlSymsp->TOP.io_inst_valid}
-    , io_pc_ready{vlSymsp->TOP.io_pc_ready}
+    , io_dataOut_bits{vlSymsp->TOP.io_dataOut_bits}
     , io_pc_bits{vlSymsp->TOP.io_pc_bits}
-    , io_inst_bits{vlSymsp->TOP.io_inst_bits}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

@@ -14,20 +14,21 @@ class VRam___024root final : public VerilatedModule {
 
     // DESIGN SPECIFIC STATE
     VL_IN8(clock,0,0);
-    VL_IN8(io_inst_ready,0,0);
+    VL_OUT8(io_dataOut_valid,0,0);
     VL_IN8(io_pc_valid,0,0);
-    VL_OUT8(io_inst_valid,0,0);
-    VL_OUT8(io_pc_ready,0,0);
+    CData/*0:0*/ Ram__DOT__SyncMem_io_dataOut_bits_MPORT_en_pipe_0;
+    CData/*7:0*/ Ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0;
     CData/*0:0*/ Ram__DOT__inst_valid;
-    CData/*0:0*/ Ram__DOT__SyncMem_ext__DOT___GEN;
-    CData/*7:0*/ Ram__DOT__SyncMem_ext__DOT___GEN_0;
     CData/*0:0*/ __Vtrigrprev__TOP__clock;
     CData/*0:0*/ __VactContinue;
+    VL_OUT(io_dataOut_bits,31,0);
     VL_IN(io_pc_bits,31,0);
-    VL_OUT(io_inst_bits,31,0);
+    IData/*31:0*/ Ram__DOT__pc_addr;
+    IData/*31:0*/ Ram__DOT__initvar;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VactIterCount;
-    VlUnpacked<IData/*31:0*/, 256> Ram__DOT__SyncMem_ext__DOT__Memory;
+    VlUnpacked<IData/*31:0*/, 256> Ram__DOT__SyncMem;
+    VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
     VlTriggerVec<1> __VstlTriggered;
     VlTriggerVec<1> __VactTriggered;
     VlTriggerVec<1> __VnbaTriggered;

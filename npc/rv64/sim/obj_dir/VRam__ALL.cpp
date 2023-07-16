@@ -4,6 +4,7 @@
 #include "VRam___024root__DepSet_h88244e9d__0.cpp"
 #include "VRam___024root__DepSet_he85629f4__0.cpp"
 #include "VRam__Trace__0.cpp"
+#include "VRam__ConstPool_0.cpp"
 #include "VRam___024root__Slow.cpp"
 #include "VRam___024root__DepSet_h88244e9d__0__Slow.cpp"
 #include "VRam___024root__DepSet_he85629f4__0__Slow.cpp"

@@ -11,30 +11,26 @@ VL_ATTR_COLD void VRam___024root__trace_init_sub__TOP__0(VRam___024root* vlSelf,
     // Init
     const int c = vlSymsp->__Vm_baseCode;
     // Body
-    tracep->declBit(c+1,"clock", false,-1);
-    tracep->declBit(c+2,"io_inst_ready", false,-1);
-    tracep->declBit(c+3,"io_pc_valid", false,-1);
-    tracep->declBus(c+4,"io_pc_bits", false,-1, 31,0);
-    tracep->declBit(c+5,"io_inst_valid", false,-1);
-    tracep->declBus(c+6,"io_inst_bits", false,-1, 31,0);
-    tracep->declBit(c+7,"io_pc_ready", false,-1);
+    tracep->declBit(c+6,"clock", false,-1);
+    tracep->declBit(c+7,"io_dataOut_valid", false,-1);
+    tracep->declBus(c+8,"io_dataOut_bits", false,-1, 31,0);
+    tracep->declBit(c+9,"io_pc_valid", false,-1);
+    tracep->declBus(c+10,"io_pc_bits", false,-1, 31,0);
     tracep->pushNamePrefix("Ram ");
-    tracep->declBit(c+1,"clock", false,-1);
-    tracep->declBit(c+2,"io_inst_ready", false,-1);
-    tracep->declBit(c+3,"io_pc_valid", false,-1);
-    tracep->declBus(c+4,"io_pc_bits", false,-1, 31,0);
-    tracep->declBit(c+5,"io_inst_valid", false,-1);
-    tracep->declBus(c+6,"io_inst_bits", false,-1, 31,0);
-    tracep->declBit(c+7,"io_pc_ready", false,-1);
-    tracep->declBit(c+8,"inst_valid", false,-1);
-    tracep->pushNamePrefix("SyncMem_ext ");
-    tracep->declBus(c+9,"R0_addr", false,-1, 7,0);
-    tracep->declBit(c+10,"R0_en", false,-1);
-    tracep->declBit(c+1,"R0_clk", false,-1);
-    tracep->declBus(c+6,"R0_data", false,-1, 31,0);
+    tracep->declBit(c+6,"clock", false,-1);
+    tracep->declBit(c+7,"io_dataOut_valid", false,-1);
+    tracep->declBus(c+8,"io_dataOut_bits", false,-1, 31,0);
+    tracep->declBit(c+9,"io_pc_valid", false,-1);
+    tracep->declBus(c+10,"io_pc_bits", false,-1, 31,0);
+    tracep->declBit(c+1,"SyncMem_io_dataOut_bits_MPORT_en", false,-1);
+    tracep->declBus(c+2,"SyncMem_io_dataOut_bits_MPORT_addr", false,-1, 7,0);
+    tracep->declBus(c+3,"SyncMem_io_dataOut_bits_MPORT_data", false,-1, 31,0);
+    tracep->declBit(c+1,"SyncMem_io_dataOut_bits_MPORT_en_pipe_0", false,-1);
+    tracep->declBus(c+2,"SyncMem_io_dataOut_bits_MPORT_addr_pipe_0", false,-1, 7,0);
+    tracep->declBit(c+4,"inst_valid", false,-1);
+    tracep->declBus(c+5,"pc_addr", false,-1, 31,0);
+    tracep->declBus(c+11,"initvar", false,-1, 31,0);
     tracep->popNamePrefix(1);
-    tracep->pushNamePrefix("unnamedblk1 ");
-    tracep->popNamePrefix(2);
 }
 
 VL_ATTR_COLD void VRam___024root__trace_init_top(VRam___024root* vlSelf, VerilatedVcd* tracep) {
@@ -77,14 +73,16 @@ VL_ATTR_COLD void VRam___024root__trace_full_sub_0(VRam___024root* vlSelf, Veril
     // Init
     uint32_t* const oldp VL_ATTR_UNUSED = bufp->oldp(vlSymsp->__Vm_baseCode);
     // Body
-    bufp->fullBit(oldp+1,(vlSelf->clock));
-    bufp->fullBit(oldp+2,(vlSelf->io_inst_ready));
-    bufp->fullBit(oldp+3,(vlSelf->io_pc_valid));
-    bufp->fullIData(oldp+4,(vlSelf->io_pc_bits),32);
-    bufp->fullBit(oldp+5,(vlSelf->io_inst_valid));
-    bufp->fullIData(oldp+6,(vlSelf->io_inst_bits),32);
-    bufp->fullBit(oldp+7,(vlSelf->io_pc_ready));
-    bufp->fullBit(oldp+8,(vlSelf->Ram__DOT__inst_valid));
-    bufp->fullCData(oldp+9,((0xffU & vlSelf->io_pc_bits)),8);
-    bufp->fullBit(oldp+10,(1U));
+    bufp->fullBit(oldp+1,(vlSelf->Ram__DOT__SyncMem_io_dataOut_bits_MPORT_en_pipe_0));
+    bufp->fullCData(oldp+2,(vlSelf->Ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0),8);
+    bufp->fullIData(oldp+3,(vlSelf->Ram__DOT__SyncMem
+                            [vlSelf->Ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0]),32);
+    bufp->fullBit(oldp+4,(vlSelf->Ram__DOT__inst_valid));
+    bufp->fullIData(oldp+5,(vlSelf->Ram__DOT__pc_addr),32);
+    bufp->fullBit(oldp+6,(vlSelf->clock));
+    bufp->fullBit(oldp+7,(vlSelf->io_dataOut_valid));
+    bufp->fullIData(oldp+8,(vlSelf->io_dataOut_bits),32);
+    bufp->fullBit(oldp+9,(vlSelf->io_pc_valid));
+    bufp->fullIData(oldp+10,(vlSelf->io_pc_bits),32);
+    bufp->fullIData(oldp+11,(vlSelf->Ram__DOT__initvar),32);
 }
