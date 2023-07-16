@@ -5,8 +5,8 @@ import Define._
 
 
 class RamIO extends Bundle{
-    val inst = Decoupled(UInt(32.W))
-    val pc   = Flipped(Decoupled(UInt(PC_LEN.W)))
+    val dataOut = ValidIO(UInt(32.W))
+    val pc   = Flipped(ValidIO(UInt(PC_LEN.W)))
 }
 
 class Ram extends Module{
@@ -16,8 +16,7 @@ class Ram extends Module{
     val SyncMem = SyncReadMem(256, UInt(PC_LEN.W))
 
     val inst_valid = RegNext(io.pc.valid)
-    io.inst.valid := inst_valid
-    io.inst.bits := SyncMem(io.pc.bits(7,0))
-
-    io.pc.ready := DontCare
+    io.dataOut.valid := inst_valid
+    val pc_addr = RegNext(io.pc.bits)
+    io.dataOut.bits := Mux(inst_valid, SyncMem(pc_addr), 0.U) 
 }
