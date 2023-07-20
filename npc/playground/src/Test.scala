@@ -3,11 +3,10 @@ import chisel3.util._
 import chisel3.experimental.BundleLiterals._
 
 
-class FetchExecutePipelineRegister(xlen: Int) extends Bundle {
-  val pc = UInt(xlen.W)
+class FetchExecutePipelineRegister extends Bundle {
+  val pc = UInt(2.W)
+  val vir = UInt(2.W)
 }
 
+class Test
 
-object Test extends App{
-    println(new FetchExecutePipelineRegister(32).pc)
-}

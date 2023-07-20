@@ -26,6 +26,7 @@ class VRam VL_NOT_FINAL : public VerilatedModel {
     // The application code writes and reads these signals to
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clock,0,0);
+    VL_IN8(&reset,0,0);
     VL_OUT8(&io_dataOut_valid,0,0);
     VL_IN8(&io_pc_valid,0,0);
     VL_OUT(&io_dataOut_bits,31,0);

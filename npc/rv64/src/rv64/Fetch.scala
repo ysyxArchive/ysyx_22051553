@@ -1,3 +1,5 @@
+package rv64
+
 import chisel3._
 import chisel3.util._
 import Define._
@@ -8,9 +10,10 @@ class FetchIO extends Bundle {
     // val if_stall = Input(Bool())
     // val if_jump_flag = Input(Bool())
     // val if_jump_pc = Input(UInt(PC_LEN.W))
-
-    val pc = Output(UInt(PC_LEN.W))
-    val inst_req = Output(Bool())
+    //流水线
+    val fdio = Output(new FDRegIO)
+    //to ram
+    val pc = Output(ValidIO(UInt(PC_LEN.W)))
 }
 
 
@@ -25,6 +28,7 @@ class Fetch extends Module{
     val next_pc = Mux(started, pc+4.U, pc)
     pc := next_pc
 
-    io.pc := pc
-    io.inst_req := started
+    io.fdio.pc := pc
+    io.pc.bits := pc
+    io.pc.valid := started
 }

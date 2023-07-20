@@ -14,6 +14,7 @@ class VRam___024root final : public VerilatedModule {
 
     // DESIGN SPECIFIC STATE
     VL_IN8(clock,0,0);
+    VL_IN8(reset,0,0);
     VL_OUT8(io_dataOut_valid,0,0);
     VL_IN8(io_pc_valid,0,0);
     CData/*0:0*/ Ram__DOT__SyncMem_io_dataOut_bits_MPORT_en_pipe_0;
@@ -23,7 +24,6 @@ class VRam___024root final : public VerilatedModule {
     CData/*0:0*/ __VactContinue;
     VL_OUT(io_dataOut_bits,31,0);
     VL_IN(io_pc_bits,31,0);
-    IData/*31:0*/ Ram__DOT__pc_addr;
     IData/*31:0*/ Ram__DOT__initvar;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VactIterCount;

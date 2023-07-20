@@ -26,16 +26,14 @@ void VRam___024root__trace_chg_sub_0(VRam___024root* vlSelf, VerilatedVcd::Buffe
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[1U])) {
         bufp->chgBit(oldp+0,(vlSelf->Ram__DOT__SyncMem_io_dataOut_bits_MPORT_en_pipe_0));
         bufp->chgCData(oldp+1,(vlSelf->Ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0),8);
-        bufp->chgIData(oldp+2,(vlSelf->Ram__DOT__SyncMem
-                               [vlSelf->Ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0]),32);
-        bufp->chgBit(oldp+3,(vlSelf->Ram__DOT__inst_valid));
-        bufp->chgIData(oldp+4,(vlSelf->Ram__DOT__pc_addr),32);
+        bufp->chgBit(oldp+2,(vlSelf->Ram__DOT__inst_valid));
     }
-    bufp->chgBit(oldp+5,(vlSelf->clock));
-    bufp->chgBit(oldp+6,(vlSelf->io_dataOut_valid));
-    bufp->chgIData(oldp+7,(vlSelf->io_dataOut_bits),32);
-    bufp->chgBit(oldp+8,(vlSelf->io_pc_valid));
-    bufp->chgIData(oldp+9,(vlSelf->io_pc_bits),32);
+    bufp->chgBit(oldp+3,(vlSelf->clock));
+    bufp->chgBit(oldp+4,(vlSelf->reset));
+    bufp->chgBit(oldp+5,(vlSelf->io_dataOut_valid));
+    bufp->chgIData(oldp+6,(vlSelf->io_dataOut_bits),32);
+    bufp->chgBit(oldp+7,(vlSelf->io_pc_valid));
+    bufp->chgIData(oldp+8,(vlSelf->io_pc_bits),32);
 }
 
 void VRam___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {

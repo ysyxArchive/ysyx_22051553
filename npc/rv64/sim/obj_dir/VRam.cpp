@@ -12,6 +12,7 @@ VRam::VRam(VerilatedContext* _vcontextp__, const char* _vcname__)
     : VerilatedModel{*_vcontextp__}
     , vlSymsp{new VRam__Syms(contextp(), _vcname__, this)}
     , clock{vlSymsp->TOP.clock}
+    , reset{vlSymsp->TOP.reset}
     , io_dataOut_valid{vlSymsp->TOP.io_dataOut_valid}
     , io_pc_valid{vlSymsp->TOP.io_pc_valid}
     , io_dataOut_bits{vlSymsp->TOP.io_dataOut_bits}

@@ -30,12 +30,14 @@ int main(int argc, char **argv) {
   dut.trace(vcd,0);
   vcd->open("wave.vcd");
 
+  dut.io_pc_valid = 0;
+
   single_cycle();
   while(sim_time < 50000){
     edge_change();
     
     if(sim_time >= 24999){
-      dut.io_pc_bits = 0;
+      dut.io_pc_bits = 1;
       dut.io_pc_valid = 1;
     }
 
