@@ -170,6 +170,8 @@ object rv64 extends ScalaModule with ScalafmtModule { m =>
     override def ivyDeps = m.ivyDeps() ++ Agg(
       ivy"com.lihaoyi::utest:0.7.10",
       ivy"edu.berkeley.cs::chiseltest:0.5.4",
+      ivy"org.scalatest::scalatest:3.2.16",
+      
     )
   }
 }

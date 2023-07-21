@@ -15,7 +15,7 @@ class Excute extends Module{
 
     val io = IO(new ExcuteIO)
 
-    val alu = new Alu
+    val alu = Module(new Alu)
 
     //内部逻辑
 
@@ -27,9 +27,9 @@ class Excute extends Module{
     io.emio.rd := io.deio.rd
 
     //alu
-    // alu.io.op_a := io.deio.op_a
-    // alu.io.op_b := io.deio.op_b
-    // alu.io.alu_op := io.deio.alu_op
-    alu.io <> io.deio
+    alu.io.op_a := io.deio.op_a
+    alu.io.op_b := io.deio.op_b
+    alu.io.alu_op := io.deio.alu_op
+    
 
 }

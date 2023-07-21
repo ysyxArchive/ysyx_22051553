@@ -4,34 +4,34 @@
 // Internal details; most calling programs do not need this header,
 // unless using verilator public meta comments.
 
-#ifndef VERILATED_VRAM__SYMS_H_
-#define VERILATED_VRAM__SYMS_H_  // guard
+#ifndef VERILATED_VCORE__SYMS_H_
+#define VERILATED_VCORE__SYMS_H_  // guard
 
 #include "verilated.h"
 
 // INCLUDE MODEL CLASS
 
-#include "VRam.h"
+#include "VCore.h"
 
 // INCLUDE MODULE CLASSES
-#include "VRam___024root.h"
+#include "VCore___024root.h"
 
 // SYMS CLASS (contains all model state)
-class VRam__Syms final : public VerilatedSyms {
+class VCore__Syms final : public VerilatedSyms {
   public:
     // INTERNAL STATE
-    VRam* const __Vm_modelp;
+    VCore* const __Vm_modelp;
     bool __Vm_activity = false;  ///< Used by trace routines to determine change occurred
     uint32_t __Vm_baseCode = 0;  ///< Used by trace routines when tracing multiple models
     VlDeleter __Vm_deleter;
     bool __Vm_didInit = false;
 
     // MODULE INSTANCE STATE
-    VRam___024root                 TOP;
+    VCore___024root                TOP;
 
     // CONSTRUCTORS
-    VRam__Syms(VerilatedContext* contextp, const char* namep, VRam* modelp);
-    ~VRam__Syms();
+    VCore__Syms(VerilatedContext* contextp, const char* namep, VCore* modelp);
+    ~VCore__Syms();
 
     // METHODS
     const char* name() { return TOP.name(); }

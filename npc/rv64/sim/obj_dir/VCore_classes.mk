@@ -2,7 +2,7 @@
 # DESCRIPTION: Verilator output: Make include file with class lists
 #
 # This file lists generated Verilated files, for including in higher level makefiles.
-# See VRam.mk for the caller.
+# See VCore.mk for the caller.
 
 ### Switches...
 # C11 constructs required?  0/1 (always on now)
@@ -23,25 +23,24 @@ VM_TRACE_FST = 0
 ### Object file lists...
 # Generated module classes, fast-path, compile with highest optimization
 VM_CLASSES_FAST += \
-	VRam \
-	VRam___024root__DepSet_h88244e9d__0 \
-	VRam___024root__DepSet_he85629f4__0 \
+	VCore \
+	VCore___024root__DepSet_h4a076b33__0 \
+	VCore___024root__DepSet_h889bdcc7__0 \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
 VM_CLASSES_SLOW += \
-	VRam__ConstPool_0 \
-	VRam___024root__Slow \
-	VRam___024root__DepSet_h88244e9d__0__Slow \
-	VRam___024root__DepSet_he85629f4__0__Slow \
+	VCore___024root__Slow \
+	VCore___024root__DepSet_h4a076b33__0__Slow \
+	VCore___024root__DepSet_h889bdcc7__0__Slow \
 
 # Generated support classes, fast-path, compile with highest optimization
 VM_SUPPORT_FAST += \
-	VRam__Trace__0 \
+	VCore__Trace__0 \
 
 # Generated support classes, non-fast-path, compile with low/medium optimization
 VM_SUPPORT_SLOW += \
-	VRam__Syms \
-	VRam__Trace__0__Slow \
+	VCore__Syms \
+	VCore__Trace__0__Slow \
 
 # Global classes, need linked once per executable, fast-path, compile with highest optimization
 VM_GLOBAL_FAST += \

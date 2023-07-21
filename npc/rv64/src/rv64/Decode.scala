@@ -35,7 +35,7 @@ class Decode extends Module {
     val eximm = Module(new Eximm)
 
     //内部逻辑
-    inst := Mux(io.inst.valid, io.inst, NOP)
+    inst := Mux(io.inst.valid, io.inst.bits, NOP)
     rs1 := inst(19,15)
     rs2 := inst(24,20)
     rd := inst(11,7)

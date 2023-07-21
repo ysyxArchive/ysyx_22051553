@@ -1,16 +1,16 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Symbol table implementation internals
 
-#include "VRam__Syms.h"
-#include "VRam.h"
-#include "VRam___024root.h"
+#include "VCore__Syms.h"
+#include "VCore.h"
+#include "VCore___024root.h"
 
 // FUNCTIONS
-VRam__Syms::~VRam__Syms()
+VCore__Syms::~VCore__Syms()
 {
 }
 
-VRam__Syms::VRam__Syms(VerilatedContext* contextp, const char* namep, VRam* modelp)
+VCore__Syms::VCore__Syms(VerilatedContext* contextp, const char* namep, VCore* modelp)
     : VerilatedSyms{contextp}
     // Setup internal state of the Syms class
     , __Vm_modelp{modelp}

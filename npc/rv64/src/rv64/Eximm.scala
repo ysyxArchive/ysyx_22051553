@@ -15,13 +15,20 @@ class EiIO extends Bundle{
 class Eximm extends Module{
     val io = IO(new EiIO)
 
-    def eximm(inst:UInt, imm_type:UInt): UInt = 
-    {
-        imm_type match {
-            case IMM_I => Cat(Fill(52, inst(31)), inst(31, 20))
-            case _ => 0.U
-        }
-    }
+    // def eximm(inst:UInt, imm_type:UInt): UInt =    verilog中没有模式匹配
+    // {
+    //     imm_type match {
+    //         case IMM_I => Cat(Fill(52, inst(31)), inst(31, 20))
+    //         case _ => 0.U
+    //     }
+    // }
 
-    io.eximm := eximm(io.inst, io.imm_type)
+    io.eximm := MuxLookup(
+        io.imm_type,
+        0.U,
+        Seq(
+            0.U -> Cat(Fill(52, io.inst(31)), io.inst(31, 20))
+        )
+
+    )
 }

@@ -4,16 +4,14 @@ import chisel3._
 import chisel3.util._
 import chisel3.experimental.BundleLiterals._
 import Define._
-import javax.swing.plaf.synth.Region
+
 
 class CoreIO extends Bundle {
     val ramio = Flipped(new RamIO)
-
 }
 
 class Core extends Module{
     val io = IO(new CoreIO)
-    
     //DataPath -----------------------------------------
 
     //五级
@@ -63,7 +61,8 @@ class Core extends Module{
     fetch.io.pc <> io.ramio.pc
     fdreg.pc := fetch.io.fdio.pc          //寄存器不是有单一方向的，不能用<>
     //decode
-    decode.io.inst <> io.ramio.dataOut
+    decode.io.inst.valid := io.ramio.dataOut.valid
+    decode.io.inst.bits := io.ramio.dataOut.bits
     decode.io.fdio.pc := fdreg.pc
     decode.io.rfio <> regfile.io.RfDe
 
