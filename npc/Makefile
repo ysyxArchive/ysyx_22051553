@@ -9,7 +9,8 @@ test:
 verilog:
 	$(call git_commit, "generate verilog")
 	mkdir -p $(BUILD_DIR)
-	mill -i $(MODULE).test.runMain Elaborate -td $(MODULE)/$(BUILD_DIR)    //test.runMain?
+	# mill -i $(MODULE).test.runMain Elaborate -td $(MODULE)/$(BUILD_DIR)    //test.runMain?
+	mill -i $(MODULE).runMain Elaborate -td $(MODULE)/$(BUILD_DIR)
 
 help:
 	mill -i $(MODULE).test.runMain Elaborate --help
