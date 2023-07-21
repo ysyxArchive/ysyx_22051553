@@ -72,6 +72,7 @@ VL_INLINE_OPT void VCore___024root___nba_sequent__TOP__0(VCore___024root* vlSelf
         vlSelf->Core__DOT__emreg_alu_res = 0ULL;
         vlSelf->Core__DOT__dereg_wb_type = 0U;
         vlSelf->Core__DOT__dereg_rd = 0U;
+        vlSelf->Core__DOT__dereg_op_b = 0ULL;
         vlSelf->Core__DOT__dereg_alu_op = 0x1fU;
         vlSelf->Core__DOT__dereg_op_a = 0ULL;
         vlSelf->Core__DOT__fdreg_pc = 0x80000000ULL;
@@ -86,7 +87,8 @@ VL_INLINE_OPT void VCore___024root___nba_sequent__TOP__0(VCore___024root* vlSelf
         vlSelf->Core__DOT__emreg_wb_type = vlSelf->Core__DOT__dereg_wb_type;
         vlSelf->Core__DOT__emreg_rd = vlSelf->Core__DOT__dereg_rd;
         vlSelf->Core__DOT__emreg_alu_res = ((0U == (IData)(vlSelf->Core__DOT__dereg_alu_op))
-                                             ? vlSelf->Core__DOT__dereg_op_a
+                                             ? (vlSelf->Core__DOT__dereg_op_a 
+                                                + vlSelf->Core__DOT__dereg_op_b)
                                              : 0ULL);
         vlSelf->Core__DOT__dereg_wb_type = vlSelf->Core__DOT__decode__DOT___cu_io_opa_type;
         vlSelf->Core__DOT__dereg_rd = ((IData)(vlSelf->io_ramio_dataOut_valid)
@@ -94,6 +96,17 @@ VL_INLINE_OPT void VCore___024root___nba_sequent__TOP__0(VCore___024root* vlSelf
                                            (vlSelf->io_ramio_dataOut_bits 
                                             >> 7U))
                                         : 0U);
+        vlSelf->Core__DOT__dereg_op_b = (((- (QData)((IData)(
+                                                             ((IData)(vlSelf->io_ramio_dataOut_valid) 
+                                                              & (vlSelf->io_ramio_dataOut_bits 
+                                                                 >> 0x1fU))))) 
+                                          << 0xcU) 
+                                         | (QData)((IData)(
+                                                           ((IData)(vlSelf->io_ramio_dataOut_valid)
+                                                             ? 
+                                                            (vlSelf->io_ramio_dataOut_bits 
+                                                             >> 0x14U)
+                                                             : 0U))));
         vlSelf->Core__DOT__dereg_alu_op = (0x1fU & 
                                            (- (IData)(
                                                       (1U 
@@ -174,7 +187,7 @@ void VCore___024root___eval(VCore___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VCore___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Core.v", 263, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("vsrc/Core.v", 278, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -197,7 +210,7 @@ void VCore___024root___eval(VCore___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VCore___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("vsrc/Core.v", 263, "", "Active region did not converge.");
+                    VL_FATAL_MT("vsrc/Core.v", 278, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -212,7 +225,7 @@ void VCore___024root___eval(VCore___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VCore___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Core.v", 263, "", "NBA region did not converge.");
+                VL_FATAL_MT("vsrc/Core.v", 278, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VCore___024root___eval_nba(vlSelf);

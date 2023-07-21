@@ -50,7 +50,7 @@ VL_ATTR_COLD void VCore___024root___eval_settle(VCore___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VCore___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Core.v", 263, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Core.v", 278, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -170,6 +170,7 @@ VL_ATTR_COLD void VCore___024root___ctor_var_reset(VCore___024root* vlSelf) {
     vlSelf->io_ramio_pc_bits = VL_RAND_RESET_Q(64);
     vlSelf->Core__DOT__fdreg_pc = VL_RAND_RESET_Q(64);
     vlSelf->Core__DOT__dereg_op_a = VL_RAND_RESET_Q(64);
+    vlSelf->Core__DOT__dereg_op_b = VL_RAND_RESET_Q(64);
     vlSelf->Core__DOT__dereg_rd = VL_RAND_RESET_I(5);
     vlSelf->Core__DOT__dereg_alu_op = VL_RAND_RESET_I(5);
     vlSelf->Core__DOT__dereg_wb_type = VL_RAND_RESET_I(2);

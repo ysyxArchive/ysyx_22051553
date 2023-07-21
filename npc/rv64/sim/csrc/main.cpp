@@ -33,14 +33,17 @@ int main(int argc, char **argv) {
   dut.io_ramio_dataOut_valid = 0;
   dut.io_ramio_dataOut_bits = 0x00a30313;
 
-  single_cycle();
+  dut.clock = 0;
+  
   while(sim_time < 20){
-    edge_change();
-    if(sim_time == 0)
-      dut.io_ramio_dataOut_valid = 1;
-    else if(sim_time == 2)
-      dut.io_ramio_dataOut_valid = 0;
     
+    if(sim_time == 1)
+      dut.io_ramio_dataOut_valid = 1;
+    else if(sim_time == 3)
+      dut.io_ramio_dataOut_valid = 0;
+
+
+    edge_change();
     vcd->dump(sim_time);
     sim_time++;
   }

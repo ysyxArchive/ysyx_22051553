@@ -38,6 +38,7 @@ class VCore___024root final : public VerilatedModule {
     VL_OUT64(io_ramio_pc_bits,63,0);
     QData/*63:0*/ Core__DOT__fdreg_pc;
     QData/*63:0*/ Core__DOT__dereg_op_a;
+    QData/*63:0*/ Core__DOT__dereg_op_b;
     QData/*63:0*/ Core__DOT__emreg_alu_res;
     QData/*63:0*/ Core__DOT__mwreg_alu_res;
     QData/*63:0*/ Core__DOT__regfile__DOT___regs_ext_R0_data;
