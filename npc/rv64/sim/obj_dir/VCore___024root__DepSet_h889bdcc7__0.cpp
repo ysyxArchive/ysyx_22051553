@@ -48,8 +48,6 @@ VL_INLINE_OPT void VCore___024root___nba_sequent__TOP__0(VCore___024root* vlSelf
     VCore__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VCore___024root___nba_sequent__TOP__0\n"); );
     // Init
-    CData/*0:0*/ __Vdly__Core__DOT__fetch__DOT__started;
-    __Vdly__Core__DOT__fetch__DOT__started = 0;
     QData/*63:0*/ __Vdly__Core__DOT__fetch__DOT__pc;
     __Vdly__Core__DOT__fetch__DOT__pc = 0;
     CData/*4:0*/ __Vdlyvdim0__Core__DOT__regfile__DOT__regs_ext__DOT__Memory__v1;
@@ -57,19 +55,12 @@ VL_INLINE_OPT void VCore___024root___nba_sequent__TOP__0(VCore___024root* vlSelf
     QData/*63:0*/ __Vdlyvval__Core__DOT__regfile__DOT__regs_ext__DOT__Memory__v1;
     __Vdlyvval__Core__DOT__regfile__DOT__regs_ext__DOT__Memory__v1 = 0;
     // Body
-    __Vdly__Core__DOT__fetch__DOT__pc = vlSelf->Core__DOT__fetch__DOT__pc;
-    __Vdly__Core__DOT__fetch__DOT__started = vlSelf->Core__DOT__fetch__DOT__started;
-    if (VL_UNLIKELY(vlSelf->reset)) {
-        VL_FINISH_MT("vsrc/Core.v", 101, "");
-        __Vdly__Core__DOT__fetch__DOT__started = 0U;
-        __Vdly__Core__DOT__fetch__DOT__pc = 0x80000000ULL;
-    } else {
-        if (vlSelf->Core__DOT__fetch__DOT__started) {
-            __Vdly__Core__DOT__fetch__DOT__pc = (4ULL 
-                                                 + vlSelf->Core__DOT__fetch__DOT__pc);
-        }
-        __Vdly__Core__DOT__fetch__DOT__started = 1U;
+    if (VL_UNLIKELY((0x100073U == ((IData)(vlSelf->io_ramio_dataOut_valid)
+                                    ? vlSelf->io_ramio_dataOut_bits
+                                    : 0U)))) {
+        VL_FINISH_MT("vsrc/Core.v", 469, "");
     }
+    __Vdly__Core__DOT__fetch__DOT__pc = vlSelf->Core__DOT__fetch__DOT__pc;
     __Vdlyvval__Core__DOT__regfile__DOT__regs_ext__DOT__Memory__v1 
         = (((0U != (IData)(vlSelf->Core__DOT__mwreg_wb_type)) 
             & (0U != (IData)(vlSelf->Core__DOT__mwreg_rd)))
@@ -77,6 +68,7 @@ VL_INLINE_OPT void VCore___024root___nba_sequent__TOP__0(VCore___024root* vlSelf
     __Vdlyvdim0__Core__DOT__regfile__DOT__regs_ext__DOT__Memory__v1 
         = vlSelf->Core__DOT__mwreg_rd;
     if (vlSelf->reset) {
+        __Vdly__Core__DOT__fetch__DOT__pc = 0x80000000ULL;
         vlSelf->Core__DOT__mwreg_wb_type = 0U;
         vlSelf->Core__DOT__mwreg_rd = 0U;
         vlSelf->Core__DOT__mwreg_alu_res = 0ULL;
@@ -90,6 +82,10 @@ VL_INLINE_OPT void VCore___024root___nba_sequent__TOP__0(VCore___024root* vlSelf
         vlSelf->Core__DOT__dereg_op_a = 0ULL;
         vlSelf->Core__DOT__fdreg_pc = 0x80000000ULL;
     } else {
+        if (vlSelf->Core__DOT__fetch__DOT__started) {
+            __Vdly__Core__DOT__fetch__DOT__pc = (4ULL 
+                                                 + vlSelf->Core__DOT__fetch__DOT__pc);
+        }
         vlSelf->Core__DOT__mwreg_wb_type = vlSelf->Core__DOT__emreg_wb_type;
         vlSelf->Core__DOT__mwreg_rd = vlSelf->Core__DOT__emreg_rd;
         vlSelf->Core__DOT__mwreg_alu_res = vlSelf->Core__DOT__emreg_alu_res;
@@ -139,8 +135,9 @@ VL_INLINE_OPT void VCore___024root___nba_sequent__TOP__0(VCore___024root* vlSelf
                                           : vlSelf->Core__DOT__fdreg_pc);
         vlSelf->Core__DOT__fdreg_pc = vlSelf->io_ramio_pc_bits;
     }
-    vlSelf->Core__DOT__fetch__DOT__started = __Vdly__Core__DOT__fetch__DOT__started;
     vlSelf->Core__DOT__fetch__DOT__pc = __Vdly__Core__DOT__fetch__DOT__pc;
+    vlSelf->Core__DOT__fetch__DOT__started = (1U & 
+                                              (~ (IData)(vlSelf->reset)));
     vlSelf->io_ramio_pc_valid = vlSelf->Core__DOT__fetch__DOT__started;
     vlSelf->Core__DOT__regfile__DOT__regs_ext__DOT__Memory[0U] = 0ULL;
     vlSelf->Core__DOT__regfile__DOT__regs_ext__DOT__Memory[__Vdlyvdim0__Core__DOT__regfile__DOT__regs_ext__DOT__Memory__v1] 
@@ -195,7 +192,7 @@ void VCore___024root___eval(VCore___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VCore___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Core.v", 280, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("vsrc/Core.v", 281, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -218,7 +215,7 @@ void VCore___024root___eval(VCore___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VCore___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("vsrc/Core.v", 280, "", "Active region did not converge.");
+                    VL_FATAL_MT("vsrc/Core.v", 281, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -233,7 +230,7 @@ void VCore___024root___eval(VCore___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VCore___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Core.v", 280, "", "NBA region did not converge.");
+                VL_FATAL_MT("vsrc/Core.v", 281, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VCore___024root___eval_nba(vlSelf);

@@ -83,6 +83,10 @@ VL_ATTR_COLD void VCore___024root__trace_init_sub__TOP__0(VCore___024root* vlSel
     tracep->declQuad(c+25,"pc", false,-1, 63,0);
     tracep->pushNamePrefix("unnamedblk1 ");
     tracep->popNamePrefix(2);
+    tracep->pushNamePrefix("interact ");
+    tracep->declBus(c+112,"inst", false,-1, 31,0);
+    tracep->declBit(c+96,"clk", false,-1);
+    tracep->popNamePrefix(1);
     tracep->pushNamePrefix("mem ");
     tracep->declQuad(c+14,"io_emio_alu_res", false,-1, 63,0);
     tracep->declBus(c+16,"io_emio_wb_type", false,-1, 1,0);
@@ -101,25 +105,25 @@ VL_ATTR_COLD void VCore___024root__trace_init_sub__TOP__0(VCore___024root* vlSel
     tracep->declQuad(c+103,"io_RfDe_reg1_rdata", false,-1, 63,0);
     tracep->pushNamePrefix("regs_ext ");
     tracep->declBus(c+21,"R0_addr", false,-1, 4,0);
-    tracep->declBit(c+116,"R0_en", false,-1);
+    tracep->declBit(c+117,"R0_en", false,-1);
     tracep->declBit(c+96,"R0_clk", false,-1);
     tracep->declBus(c+105,"R1_addr", false,-1, 4,0);
-    tracep->declBit(c+116,"R1_en", false,-1);
+    tracep->declBit(c+117,"R1_en", false,-1);
     tracep->declBit(c+96,"R1_clk", false,-1);
     tracep->declBus(c+106,"R2_addr", false,-1, 4,0);
-    tracep->declBit(c+116,"R2_en", false,-1);
+    tracep->declBit(c+117,"R2_en", false,-1);
     tracep->declBit(c+96,"R2_clk", false,-1);
-    tracep->declBus(c+117,"W0_addr", false,-1, 4,0);
-    tracep->declBit(c+116,"W0_en", false,-1);
+    tracep->declBus(c+118,"W0_addr", false,-1, 4,0);
+    tracep->declBit(c+117,"W0_en", false,-1);
     tracep->declBit(c+96,"W0_clk", false,-1);
-    tracep->declQuad(c+118,"W0_data", false,-1, 63,0);
+    tracep->declQuad(c+119,"W0_data", false,-1, 63,0);
     tracep->declBus(c+21,"W1_addr", false,-1, 4,0);
-    tracep->declBit(c+116,"W1_en", false,-1);
+    tracep->declBit(c+117,"W1_en", false,-1);
     tracep->declBit(c+96,"W1_clk", false,-1);
     tracep->declQuad(c+28,"W1_data", false,-1, 63,0);
     tracep->declQuad(c+30,"R0_data", false,-1, 63,0);
-    tracep->declQuad(c+112,"R1_data", false,-1, 63,0);
-    tracep->declQuad(c+114,"R2_data", false,-1, 63,0);
+    tracep->declQuad(c+113,"R1_data", false,-1, 63,0);
+    tracep->declQuad(c+115,"R2_data", false,-1, 63,0);
     for (int i = 0; i < 32; ++i) {
         tracep->declQuad(c+32+i*2,"Memory", true,(i+0), 63,0);
     }
@@ -288,17 +292,20 @@ VL_ATTR_COLD void VCore___024root__trace_full_sub_0(VCore___024root* vlSelf, Ver
                                 ? (0x1fU & (vlSelf->io_ramio_dataOut_bits 
                                             >> 7U))
                                 : 0U)),5);
-    bufp->fullQData(oldp+112,(vlSelf->Core__DOT__regfile__DOT__regs_ext__DOT__Memory
+    bufp->fullIData(oldp+112,(((IData)(vlSelf->io_ramio_dataOut_valid)
+                                ? vlSelf->io_ramio_dataOut_bits
+                                : 0U)),32);
+    bufp->fullQData(oldp+113,(vlSelf->Core__DOT__regfile__DOT__regs_ext__DOT__Memory
                               [((IData)(vlSelf->io_ramio_dataOut_valid)
                                  ? (0x1fU & (vlSelf->io_ramio_dataOut_bits 
                                              >> 0xfU))
                                  : 0U)]),64);
-    bufp->fullQData(oldp+114,(vlSelf->Core__DOT__regfile__DOT__regs_ext__DOT__Memory
+    bufp->fullQData(oldp+115,(vlSelf->Core__DOT__regfile__DOT__regs_ext__DOT__Memory
                               [((IData)(vlSelf->io_ramio_dataOut_valid)
                                  ? (0x1fU & (vlSelf->io_ramio_dataOut_bits 
                                              >> 0x14U))
                                  : 0U)]),64);
-    bufp->fullBit(oldp+116,(1U));
-    bufp->fullCData(oldp+117,(0U),5);
-    bufp->fullQData(oldp+118,(0ULL),64);
+    bufp->fullBit(oldp+117,(1U));
+    bufp->fullCData(oldp+118,(0U),5);
+    bufp->fullQData(oldp+119,(0ULL),64);
 }

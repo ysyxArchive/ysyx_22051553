@@ -138,12 +138,15 @@ void VCore___024root__trace_chg_sub_0(VCore___024root* vlSelf, VerilatedVcd::Buf
     bufp->chgCData(oldp+110,(((IData)(vlSelf->io_ramio_dataOut_valid)
                                ? (0x1fU & (vlSelf->io_ramio_dataOut_bits 
                                            >> 7U)) : 0U)),5);
-    bufp->chgQData(oldp+111,(vlSelf->Core__DOT__regfile__DOT__regs_ext__DOT__Memory
+    bufp->chgIData(oldp+111,(((IData)(vlSelf->io_ramio_dataOut_valid)
+                               ? vlSelf->io_ramio_dataOut_bits
+                               : 0U)),32);
+    bufp->chgQData(oldp+112,(vlSelf->Core__DOT__regfile__DOT__regs_ext__DOT__Memory
                              [((IData)(vlSelf->io_ramio_dataOut_valid)
                                 ? (0x1fU & (vlSelf->io_ramio_dataOut_bits 
                                             >> 0xfU))
                                 : 0U)]),64);
-    bufp->chgQData(oldp+113,(vlSelf->Core__DOT__regfile__DOT__regs_ext__DOT__Memory
+    bufp->chgQData(oldp+114,(vlSelf->Core__DOT__regfile__DOT__regs_ext__DOT__Memory
                              [((IData)(vlSelf->io_ramio_dataOut_valid)
                                 ? (0x1fU & (vlSelf->io_ramio_dataOut_bits 
                                             >> 0x14U))
