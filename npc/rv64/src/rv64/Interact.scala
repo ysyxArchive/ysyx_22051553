@@ -7,7 +7,7 @@ import Define._
 
 class Interact extends BlackBox with HasBlackBoxInline{
     val io = IO(new Bundle {
-        val inst = Input(UInt(PC_LEN.W))
+        val inst = Input(UInt(INST_LEN.W))
         val clk = Input(Clock())
     })
 
