@@ -30,7 +30,6 @@ class VCore___024root final : public VerilatedModule {
     CData/*0:0*/ __Vtrigrprev__TOP__clock;
     CData/*0:0*/ __VactContinue;
     VL_IN(io_ramio_dataOut_bits,31,0);
-    IData/*31:0*/ Core__DOT__fetch__DOT__pc;
     IData/*31:0*/ Core__DOT__decode__DOT___inst_T;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VicoIterCount;
@@ -41,6 +40,7 @@ class VCore___024root final : public VerilatedModule {
     QData/*63:0*/ Core__DOT__dereg_op_b;
     QData/*63:0*/ Core__DOT__emreg_alu_res;
     QData/*63:0*/ Core__DOT__mwreg_alu_res;
+    QData/*63:0*/ Core__DOT__fetch__DOT__pc;
     QData/*63:0*/ Core__DOT__regfile__DOT___regs_ext_R0_data;
     VlUnpacked<QData/*63:0*/, 32> Core__DOT__regfile__DOT__regs_ext__DOT__Memory;
     VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;

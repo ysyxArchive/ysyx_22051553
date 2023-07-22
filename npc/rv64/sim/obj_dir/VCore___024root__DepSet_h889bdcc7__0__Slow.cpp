@@ -50,7 +50,7 @@ VL_ATTR_COLD void VCore___024root___eval_settle(VCore___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VCore___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Core.v", 278, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Core.v", 280, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -80,7 +80,7 @@ VL_ATTR_COLD void VCore___024root___stl_sequent__TOP__0(VCore___024root* vlSelf)
     VL_DEBUG_IF(VL_DBG_MSGF("+    VCore___024root___stl_sequent__TOP__0\n"); );
     // Body
     vlSelf->io_ramio_pc_valid = vlSelf->Core__DOT__fetch__DOT__started;
-    vlSelf->io_ramio_pc_bits = (QData)((IData)(vlSelf->Core__DOT__fetch__DOT__pc));
+    vlSelf->io_ramio_pc_bits = vlSelf->Core__DOT__fetch__DOT__pc;
     vlSelf->Core__DOT__regfile__DOT___regs_ext_R0_data 
         = vlSelf->Core__DOT__regfile__DOT__regs_ext__DOT__Memory
         [vlSelf->Core__DOT__mwreg_rd];
@@ -181,7 +181,7 @@ VL_ATTR_COLD void VCore___024root___ctor_var_reset(VCore___024root* vlSelf) {
     vlSelf->Core__DOT__mwreg_wb_type = VL_RAND_RESET_I(2);
     vlSelf->Core__DOT__mwreg_rd = VL_RAND_RESET_I(5);
     vlSelf->Core__DOT__fetch__DOT__started = VL_RAND_RESET_I(1);
-    vlSelf->Core__DOT__fetch__DOT__pc = VL_RAND_RESET_I(32);
+    vlSelf->Core__DOT__fetch__DOT__pc = VL_RAND_RESET_Q(64);
     vlSelf->Core__DOT__decode__DOT___cu_io_opa_type = VL_RAND_RESET_I(1);
     vlSelf->Core__DOT__decode__DOT___inst_T = VL_RAND_RESET_I(32);
     vlSelf->Core__DOT__decode__DOT__cu__DOT___controlsig_T_9 = VL_RAND_RESET_I(1);

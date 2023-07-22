@@ -92,18 +92,18 @@ module Fetch(	// <stdin>:2:10
   output        io_pc_valid,
   output [63:0] io_pc_bits);
 
-  reg         started;	// Fetch.scala:24:26
-  reg  [31:0] pc;	// Fetch.scala:27:21
-  wire [63:0] _GEN = {32'h0, pc};	// Fetch.scala:27:21, :31:16
+  reg        started;	// Fetch.scala:24:26
+  reg [63:0] pc;	// Fetch.scala:27:21
   always @(posedge clock) begin
     if (reset) begin
       started <= 1'h0;	// Fetch.scala:24:26
-      pc <= 32'h80000000;	// Fetch.scala:27:21
+      pc <= 64'h80000000;	// Fetch.scala:27:21
+      $finish;
     end
     else begin
       started <= 1'h1;	// Fetch.scala:24:26, :25:13
       if (started)	// Fetch.scala:24:26
-        pc <= pc + 32'h4;	// Fetch.scala:27:21, :28:34
+        pc <= pc + 64'h4;	// Fetch.scala:27:21, :28:34
     end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:2:10
@@ -113,23 +113,25 @@ module Fetch(	// <stdin>:2:10
     initial begin	// <stdin>:2:10
       automatic logic [31:0] _RANDOM_0;	// <stdin>:2:10
       automatic logic [31:0] _RANDOM_1;	// <stdin>:2:10
+      automatic logic [31:0] _RANDOM_2;	// <stdin>:2:10
       `ifdef INIT_RANDOM_PROLOG_	// <stdin>:2:10
         `INIT_RANDOM_PROLOG_	// <stdin>:2:10
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// <stdin>:2:10
         _RANDOM_0 = `RANDOM;	// <stdin>:2:10
         _RANDOM_1 = `RANDOM;	// <stdin>:2:10
+        _RANDOM_2 = `RANDOM;	// <stdin>:2:10
         started = _RANDOM_0[0];	// Fetch.scala:24:26
-        pc = {_RANDOM_0[31:1], _RANDOM_1[0]};	// Fetch.scala:24:26, :27:21
+        pc = {_RANDOM_0[31:1], _RANDOM_1, _RANDOM_2[0]};	// Fetch.scala:24:26, :27:21
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:2:10
       `FIRRTL_AFTER_INITIAL	// <stdin>:2:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
-  assign io_fdio_pc = _GEN;	// <stdin>:2:10, Fetch.scala:31:16
+  assign io_fdio_pc = pc;	// <stdin>:2:10, Fetch.scala:27:21
   assign io_pc_valid = started;	// <stdin>:2:10, Fetch.scala:24:26
-  assign io_pc_bits = _GEN;	// <stdin>:2:10, Fetch.scala:31:16
+  assign io_pc_bits = pc;	// <stdin>:2:10, Fetch.scala:27:21
 endmodule
 
 module ControlUnit(	// <stdin>:20:10
