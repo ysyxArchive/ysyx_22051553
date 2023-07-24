@@ -142,9 +142,9 @@ void cpu_exec(uint64_t n) {
 
       for(int i = 0; i < 16; i ++){
         if(i == irb_pos)
-          printf("\t-->");
+          printf("  --> ");
         else 
-          printf("\t\t");
+          printf("      ");
 
         printf("%s\n", iringbuf[i]);
         
