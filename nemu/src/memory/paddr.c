@@ -24,6 +24,8 @@ static uint8_t *pmem = NULL;
 static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};                   //pmem是客户机的内存空间，单位大小为字节
 #endif
 
+
+//从客户机地址，转到pmem地址
 uint8_t* guest_to_host(paddr_t paddr) { return pmem + paddr - CONFIG_MBASE; }     //这就相当于总线上的一个
 /*                                                                                //地址映射
   由于riscv64的内存物理地址从0x8000_0000开始，所以paddr是在0x8000_0000基础上增长的
@@ -35,11 +37,17 @@ uint8_t* guest_to_host(paddr_t paddr) { return pmem + paddr - CONFIG_MBASE; }   
 paddr_t host_to_guest(uint8_t *haddr) { return haddr - pmem + CONFIG_MBASE; }
 
 static word_t pmem_read(paddr_t addr, int len) {
+  #ifdef CONFIG_MTRACE
+    Log("read mem at " FMT_PADDR " for %d bytes",addr, len);
+  #endif
   word_t ret = host_read(guest_to_host(addr), len);
   return ret;
 }
 
 static void pmem_write(paddr_t addr, int len, word_t data) {
+  #ifdef CONFIG_MTRACE
+    Log("write mem at " FMT_PADDR " for %d bytes",addr, len);
+  #endif
   host_write(guest_to_host(addr), len, data);
 }
 
