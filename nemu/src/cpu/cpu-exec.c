@@ -32,6 +32,10 @@ CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
+//iringbuf
+char iringbuf [16][32];
+uint8_t irb_pos = 0;
+
 
 void device_update();
 
@@ -74,6 +78,10 @@ static void exec_once(Decode *s, vaddr_t pc) {
   p[0] = '\0'; // the upstream llvm does not support loongarch32r
 #endif
 #endif
+  
+  strcpy(iringbuf[irb_pos], s->logbuf);
+  irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
+  
 }
 
 static void execute(uint64_t n) {
@@ -81,7 +89,7 @@ static void execute(uint64_t n) {
   for (;n > 0; n --) {
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++;
-    trace_and_difftest(&s, cpu.pc);
+    trace_and_difftest(&s, cpu.pc);                   //写log
     if (nemu_state.state != NEMU_RUNNING) break;
     IFDEF(CONFIG_DEVICE, device_update());
   }
@@ -126,7 +134,20 @@ void cpu_exec(uint64_t n) {
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
            (nemu_state.halt_ret == 0 ? ANSI_FMT("HIT GOOD TRAP", ANSI_FG_GREEN) :
             ANSI_FMT("HIT BAD TRAP", ANSI_FG_RED))),
-          nemu_state.halt_pc);              
+          nemu_state.halt_pc);    
+
+      for(int i = 0; i < 16; i ++){
+        if(i == irb_pos)
+          printf("\t-->");
+        else 
+          printf("\t\t");
+
+        Log("%s", 
+          iringbuf[i]
+        );
+        
+      }
+
       // fall through  --没有break
     case NEMU_QUIT: statistic();
   }
