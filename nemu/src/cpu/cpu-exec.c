@@ -142,9 +142,7 @@ void cpu_exec(uint64_t n) {
         else 
           printf("\t\t");
 
-        Log("%s", 
-          iringbuf[i]
-        );
+        printf("%s\n", iringbuf[i]);
         
       }
 
