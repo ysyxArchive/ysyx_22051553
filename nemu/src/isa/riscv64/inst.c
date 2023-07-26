@@ -101,8 +101,8 @@ static int decode_exec(Decode *s) {
   word_t src1 = 0, src2 = 0, imm = 0;     //无符号
   char inst_name[10];
 
-  int func_level = 0;
-  int func_name[50] = {};
+  static int func_level = 0;
+  static int func_name[50] = {};
 
   __uint128_t u264_1 = 18446744073709551615ULL;  //写18446744073709551615声明的是一个int字面量
 
