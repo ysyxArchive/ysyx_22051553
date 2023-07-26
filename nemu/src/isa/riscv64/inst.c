@@ -213,7 +213,7 @@ static int decode_exec(Decode *s) {
       if(s->dnpc == func[i].addr){
         printf("0x%08lx: ", s->pc);
         for(int level = func_level; level >= 0; level--){
-          printf("   ");
+          printf("  ");
         }
         printf("call [%s@0x%08x]\n", func[i].name, func[i].addr);
 
