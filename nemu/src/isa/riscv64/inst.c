@@ -208,34 +208,36 @@ static int decode_exec(Decode *s) {
 
   R(0) = 0; // reset $zero to 0
 
-  if(strcmp(inst_name, "jal") == 0 && rd == 1){      //call判定
-    for(int i = 0; i < nr_func; i ++){
-      if(s->dnpc == func[i].addr){
-        printf("0x%08lx: ", s->pc);
-        for(int level = func_level; level >= 0; level--){
-          printf("  ");
-        }
-        printf("call [%s@0x%08x]\n", func[i].name, func[i].addr);
+  #ifdef CONFIG_FTRACE
+    if(strcmp(inst_name, "jal") == 0 && rd == 1){      //call判定
+      for(int i = 0; i < nr_func; i ++){
+        if(s->dnpc == func[i].addr){
+          printf("0x%08lx: ", s->pc);
+          for(int level = func_level; level >= 0; level--){
+            printf("  ");
+          }
+          printf("call [%s@0x%08x]\n", func[i].name, func[i].addr);
 
-        func_name[func_level] = i;
-        func_level ++;
+          func_name[func_level] = i;
+          func_level ++;
+        }
       }
     }
-  }
 
-  if(strcmp(inst_name, "jalr") == 0 && rd == 0 && rs1 == 1){      //ret判定
-    for(int i = 0; i < nr_func; i ++){
-      if(s->pc <= func[i].addr + func[i].len - 4 && s->pc >= func[i].addr){
-        printf("0x%08lx: ", s->pc);
+    if(strcmp(inst_name, "jalr") == 0 && rd == 0 && rs1 == 1){      //ret判定
+      for(int i = 0; i < nr_func; i ++){
+        if(s->pc <= func[i].addr + func[i].len - 4 && s->pc >= func[i].addr){
+          printf("0x%08lx: ", s->pc);
 
-        func_level --;
-        for(int level = func_level; level > 0; level--){
-          printf("   ");
+          func_level --;
+          for(int level = func_level; level > 0; level--){
+            printf("   ");
+          }
+          printf("ret [%s]\n", func[func_name[func_level]].name);
         }
-        printf("ret [%s]\n", func[func_name[func_level]].name);
       }
     }
-  }
+  #endif
 
 
   return 0;
