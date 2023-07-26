@@ -223,7 +223,7 @@ static int decode_exec(Decode *s) {
     }
   }
 
-  if(strcmp(inst_name, "jalr") == 0 && rd == 0 && rs1 == 1){      //call判定
+  if(strcmp(inst_name, "jalr") == 0 && rd == 0 && rs1 == 1){      //ret判定
     for(int i = 0; i < nr_func; i ++){
       if(s->pc == func[i].addr + func[i].len){
         printf("0x%08lx: ", s->pc);
