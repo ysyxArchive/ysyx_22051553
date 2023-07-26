@@ -227,10 +227,11 @@ static int decode_exec(Decode *s) {
     for(int i = 0; i < nr_func; i ++){
       if(s->pc <= func[i].addr + func[i].len - 4 && s->pc >= func[i].addr){
         printf("0x%08lx: ", s->pc);
+
+        func_level --;
         for(int level = func_level; level > 0; level--){
           printf("   ");
         }
-        func_level --;
         printf("ret [%s]\n", func[func_name[func_level]].name);
       }
     }
