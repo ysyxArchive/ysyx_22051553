@@ -225,7 +225,7 @@ static int decode_exec(Decode *s) {
 
   if(strcmp(inst_name, "jalr") == 0 && rd == 0 && rs1 == 1){      //ret判定
     for(int i = 0; i < nr_func; i ++){
-      if(s->pc == func[i].addr + func[i].len){
+      if(s->pc <= func[i].addr + func[i].len - 4 && s->pc >= func[i].addr){
         printf("0x%08lx: ", s->pc);
         for(int level = func_level; level > 0; level--){
           printf("   ");
