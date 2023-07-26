@@ -2,7 +2,17 @@
 #include <elf.h>
 
 
+typedef struct{
+    char name[20];
+    paddr_t addr;
+    int len;
+}Func;
+
 FILE *elf_fp = NULL;
+Func func[50] = {};
+int nr_func = 0;
+
+
 
 void init_elf(const char *elf_file){
 
@@ -42,15 +52,30 @@ void init_elf(const char *elf_file){
 
 
     
-    for(int i = 0; i < ehdr.e_shnum; i++){                  //符号表
+    int entnum = 0;                                         //符号表
+
+    for(int i = 0; i < ehdr.e_shnum; i++){                  
         if( strcmp(".symtab", &shstrtab[shdr[i].sh_name]) == 0){
             fseek(elf_fp, shdr[i].sh_offset, SEEK_SET);
-            avoid_warning = fread(symtab, shdr[i].sh_entsize, shdr[i].sh_size/shdr[i].sh_entsize, elf_fp);
-            assert(avoid_warning == shdr[i].sh_size/shdr[i].sh_entsize);
+            entnum = shdr[i].sh_size/shdr[i].sh_entsize;
+            avoid_warning = fread(symtab, shdr[i].sh_entsize, entnum, elf_fp);
+            assert(avoid_warning == entnum);
             break;
         }
     }
 
+    //解析函数项    
+    for(int i = 0; i < entnum; i ++){
+        if( (symtab[i].st_info & 0x0f) == STT_FUNC){ //低四位
+            if(symtab[i].st_size != 0){   //例如_start
+                strcpy(func[nr_func].name, &strtab[symtab[i].st_name]);
+                func[nr_func].addr = symtab[i].st_value;
+                func[nr_func].len = symtab[i].st_size;
+                nr_func ++;
+            }
+        
+        }
+    }
 
     return ;
 }
