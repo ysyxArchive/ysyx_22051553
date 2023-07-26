@@ -7,11 +7,11 @@ AM_SRCS := platform/nemu/trm.c \
            platform/nemu/ioe/disk.c \
            platform/nemu/mpe.c
 
-CFLAGS    += -fdata-sections -ffunction-sections
+CFLAGS    += -fdata-sections -ffunction-sections -DBATCH_MODE
 LDFLAGS   += -T $(AM_HOME)/scripts/linker.ld \
              --defsym=_pmem_start=0x80000000 --defsym=_entry_offset=0x0
 LDFLAGS   += --gc-sections -e _start
-NEMUFLAGS += -l $(shell dirname $(IMAGE).elf)/nemu-log.txt --elf=$(abspath $(IMAGE).elf)  -DBATCH_MODE
+NEMUFLAGS += -l $(shell dirname $(IMAGE).elf)/nemu-log.txt --elf=$(abspath $(IMAGE).elf)  
 # 新增elf选项 批处理模式
 
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
