@@ -69,8 +69,8 @@ void sim_t::diff_get_regs(void* diff_context) {
 void sim_t::diff_set_regs(void* diff_context) {
   struct diff_context_t* ctx = (struct diff_context_t*)diff_context;
   for (int i = 0; i < NXPR; i++) {
-    state->XPR.write(i, (sword_t)ctx->gpr[i]);
-  }
+    state->XPR.write(i, (sword_t)ctx->gpr[i]);   //XPR的顺序与gpr顺序一致
+  }                                             //及x0,x1 与 x0,x1表示相同寄存器
   state->pc = ctx->pc;
 }
 
