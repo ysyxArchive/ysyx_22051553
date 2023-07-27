@@ -61,6 +61,9 @@ int printf(const char *fmt, ...) {
   int partial_off = 0;
   int total = 0;
 
+  char control[10] = {};
+  int ctrl_off = 0;
+
   while(fmt[fmt_off] != '\0'){
     if(fmt[fmt_off] != '%'){
       putch(fmt[fmt_off]);
@@ -69,6 +72,14 @@ int printf(const char *fmt, ...) {
     }
     else{
       char str[20];
+      while(in[fmt_off+1] != 's' && in[fmt_off+1] != 'd'){
+        control[ctrl_off] = in[fmt_off+1];
+        ctrl_off ++;
+        fmt_off++;
+        total++;
+      }
+      control[ctrl_off] = '\0';
+
       switch(in[fmt_off+1]){
         case 's':
           strcpy(str,(const char*)(va_arg(valist,const char*)));
@@ -81,7 +92,22 @@ int printf(const char *fmt, ...) {
           partial_off=0;
           break;
         case 'd':
-          int2str(va_arg(valist,int), str);
+          int value = va_arg(valist,int);
+          int2str(value, str);
+
+          if(control[0] == '0'){
+            int len = control[1] - 48;
+            int maxvalue = 1;
+            while(len > 1){
+              maxvalue *= 10;
+              len --;
+            }
+            for(int v = value; v < maxvalue; v*=10){
+              putch('0');
+            }
+          }
+
+
           while(str[partial_off] != '\0'){
             putch(str[partial_off]);
             partial_off ++;
