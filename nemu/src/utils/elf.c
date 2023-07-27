@@ -9,7 +9,7 @@ typedef struct{
 }Func;
 
 FILE *elf_fp = NULL;
-Func func[100] = {};
+Func func[500] = {};
 int nr_func = 0;
 
 
@@ -78,6 +78,6 @@ void init_elf(const char *elf_file){
         }
     }
 
-    printf("p1\n");
+    
     return ;
 }
