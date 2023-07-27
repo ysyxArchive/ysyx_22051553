@@ -112,10 +112,10 @@ void init_monitor(int argc, char *argv[]) {
 
   /* Open the log file. */
   init_log(log_file);
-
+  printf("p1\n");
   /* Read the elf file. */
   init_elf(elf_file);
-
+  printf("p2\n");
   /* Initialize memory. */
   init_mem();
 
