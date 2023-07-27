@@ -81,7 +81,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   p = iringbuf[irb_pos];
   strcpy(p, "0x");
   p += 2;
-  snprintf(p, 11, "%s", s->logbuf + 10);
+  snprintf(p, 11, "%.10s", s->logbuf + 10);
   p += 10;
   strcpy(p, s->logbuf + 32);
   irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
