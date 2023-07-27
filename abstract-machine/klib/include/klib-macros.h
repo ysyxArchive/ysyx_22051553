@@ -19,6 +19,9 @@
   ({ reg##_T __io_param; \
     ioe_read(reg, &__io_param); \
     __io_param; })
+//io_read创建一个设备对象缓冲，复制当前设备状态到缓冲中，并返回缓冲
+//类似快照
+
 
 #define io_write(reg, ...) \
   ({ reg##_T __io_param = (reg##_T) { __VA_ARGS__ }; \
