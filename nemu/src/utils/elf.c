@@ -9,7 +9,7 @@ typedef struct{
 }Func;
 
 FILE *elf_fp = NULL;
-Func func[50] = {};
+Func func[100] = {};
 int nr_func = 0;
 
 
