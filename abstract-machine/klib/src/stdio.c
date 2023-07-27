@@ -51,7 +51,51 @@ void int2str(int num, char* str){
 
 
 int printf(const char *fmt, ...) {
-  panic("Not implemented");
+  
+  const char *in = fmt;
+
+  va_list valist;
+  va_start(valist,fmt);
+
+  int fmt_off = 0;
+  int partial_off = 0;
+  int total = 0;
+
+  while(fmt[fmt_off] != '\0'){
+    if(fmt[fmt_off] != '%'){
+      putch(fmt[fmt_off]);
+      fmt_off ++;
+      total ++;
+    }
+    else{
+      char str[20];
+      switch(in[fmt_off+1]){
+        case 's':
+          strcpy(str,(const char*)(va_arg(valist,const char*)));
+          while(str[partial_off] != '\0'){
+            putch(str[partial_off]);
+            partial_off ++;
+            total ++;
+          }
+          fmt_off+=2;
+          partial_off=0;
+          break;
+        case 'd':
+          int2str(va_arg(valist,int), str);
+          while(str[partial_off] != '\0'){
+            putch(str[partial_off]);
+            partial_off ++;
+            total ++;
+          }
+          fmt_off+=2;
+          partial_off=0;
+          break;
+        default:assert(0);break;
+      }
+    }
+  }
+
+  return total;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
