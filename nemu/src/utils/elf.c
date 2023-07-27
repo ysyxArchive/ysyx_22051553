@@ -17,7 +17,7 @@ int nr_func = 0;
 void init_elf(const char *elf_file){
 
     char shstrtab[512];
-    char strtab[512];
+    char strtab[1024];
     Elf64_Sym symtab[128];
 
     int avoid_warning = 0;
