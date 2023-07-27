@@ -3,7 +3,7 @@
 
 
 typedef struct{
-    char name[20];
+    char name[40];
     paddr_t addr;
     int len;
 }Func;
