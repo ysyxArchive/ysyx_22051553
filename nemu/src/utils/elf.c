@@ -49,7 +49,7 @@ void init_elf(const char *elf_file){
             break;
         }
     }
-    printf("p1\n");
+    
 
     
     int entnum = 0;                                         //符号表
@@ -63,7 +63,7 @@ void init_elf(const char *elf_file){
             break;
         }
     }
-    
+    printf("p1\n");
 
     //解析函数项    
     for(int i = 0; i < entnum; i ++){
