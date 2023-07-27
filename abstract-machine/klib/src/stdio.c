@@ -98,13 +98,23 @@ int printf(const char *fmt, ...) {
           if(control[0] == '0'){
             int len = control[1] - 48;
             int maxvalue = 1;
-            while(len > 1){
-              maxvalue *= 10;
-              len --;
+            if(value == 0){
+              while(len > 0){
+                putch('0');
+                len --;  
+              }
             }
-            for(int v = value; v < maxvalue; v*=10){
-              putch('0');
+            else{
+              while(len > 1){
+                maxvalue *= 10;
+                len --;
+              }
+            
+              for(int v = value; v < maxvalue; v*=10){
+                putch('0');
+              }
             }
+            
           }
 
 
