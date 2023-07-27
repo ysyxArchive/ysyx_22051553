@@ -37,11 +37,11 @@ void init_elf(const char *elf_file){
     for(int i = 0; i < ehdr.e_shnum; i++){
         avoid_warning = fread(&shdr[i], sizeof(Elf64_Shdr), 1, elf_fp);
     }
-
+    
     Elf64_Shdr shdr_shstrtab = shdr[ehdr.e_shstrndx];       //段表字符串表
     fseek(elf_fp, shdr_shstrtab.sh_offset, SEEK_SET);
     avoid_warning = fread(shstrtab, shdr_shstrtab.sh_size, 1, elf_fp);
-    
+    printf("p1\n");
     for(int i = 0; i < ehdr.e_shnum; i++){                  //字符串表
         if( strcmp(".strtab", &shstrtab[shdr[i].sh_name]) == 0){
             fseek(elf_fp, shdr[i].sh_offset, SEEK_SET);
