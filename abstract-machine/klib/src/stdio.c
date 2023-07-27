@@ -95,7 +95,7 @@ int printf(const char *fmt, ...) {
           int value = va_arg(valist,int);
           int2str(value, str);
 
-          if(control[0] == '0'){
+          if(control[0] == '0'){   //%02d
             int len = control[1] - 48;
             int maxvalue = 1;
             if(value == 0){
@@ -114,7 +114,6 @@ int printf(const char *fmt, ...) {
                 putch('0');
               }
             }
-            
           }
 
 

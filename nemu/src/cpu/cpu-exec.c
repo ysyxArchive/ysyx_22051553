@@ -77,7 +77,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #else
   p[0] = '\0'; // the upstream llvm does not support loongarch32r
 #endif
-#endif
+
   p = iringbuf[irb_pos];
   strcpy(p, "0x");
   p += 2;
@@ -85,6 +85,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   p += 10;
   strcpy(p, s->logbuf + 32);
   irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
+#endif
   
 }
 
