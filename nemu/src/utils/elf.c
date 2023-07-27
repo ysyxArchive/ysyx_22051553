@@ -3,7 +3,7 @@
 
 
 typedef struct{
-    char name[40];
+    char name[30];
     paddr_t addr;
     int len;
 }Func;
@@ -77,7 +77,6 @@ void init_elf(const char *elf_file){
         
         }
     }
-    printf("p2\n");
 
     return ;
 }
