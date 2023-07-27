@@ -12,7 +12,7 @@ size_t strlen(const char *s) {
 }
 
 char *strcpy(char *dst, const char *src) {
-	// assert(dst!=NULL && src!= NULL);
+	assert(dst!=NULL && src!= NULL);
 	size_t offset = 0;
 	while(*(src+offset) != '\0'){
 		*(dst+offset) = *(src+offset);
