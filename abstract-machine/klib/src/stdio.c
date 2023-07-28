@@ -5,6 +5,59 @@
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
+char hex_char[16] = {'0', '1', '2', '3', '4', '5', 
+'6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+
+void uint2strx(unsigned int num, char* str){
+  int length = 0;
+  unsigned int temp = num;
+
+  while(temp){
+    length ++;
+    temp /= 16;
+  }
+
+  if(length == 0){
+    str[0] = '0';
+    str[1] = '\0';
+  }
+
+  temp = num;
+  
+  str[length] = '\0';
+  length --;
+  while(length >= 0){
+    str[length] = hex_char[temp%16];
+    temp /= 16;
+    length --;
+  }
+}
+
+void uint2str(unsigned int num, char* str){
+  int length = 0;
+  unsigned int temp = num;
+
+  while(temp){
+    length ++;
+    temp /= 10;
+  }
+
+  if(length == 0){
+    str[0] = '0';
+    str[1] = '\0';
+  }
+
+  temp = num;
+  
+  str[length] = '\0';
+  length --;
+  while(length >= 0){
+    str[length] = temp % 10 + 48;
+    temp /= 10;
+    length --;
+  }
+}
+
 void int2str(int num, char* str){
   int neg = 0;
   int length = 0;
@@ -26,7 +79,6 @@ void int2str(int num, char* str){
   }
 
   temp = num;
-
 
   if(neg){
     length ++;
@@ -72,7 +124,7 @@ int printf(const char *fmt, ...) {
     }
     else{
       char str[100];
-      while(in[fmt_off+1] != 's' && in[fmt_off+1] != 'd' && in[fmt_off+1] != 'u' && in[fmt_off+1] != 'x'){
+      while(in[fmt_off+1] != 's' && in[fmt_off+1] != 'd' && in[fmt_off+1] != 'u' && in[fmt_off+1] != 'x'){  //若有其他选项，会报错
         control[ctrl_off] = in[fmt_off+1];
         ctrl_off ++;
         fmt_off++;
@@ -95,13 +147,13 @@ int printf(const char *fmt, ...) {
           break;
         
         case 'd':
-          int value = va_arg(valist,int);
-          int2str(value, str);
+          int d_type = va_arg(valist,int);
+          int2str(d_type, str);
 
           if(control[0] == '0'){   //%02d
             int len = control[1] - 48;
             int maxvalue = 1;
-            if(value == 0){
+            if(d_type == 0){
               while(len > 0){
                 putch('0');
                 len --;  
@@ -113,7 +165,7 @@ int printf(const char *fmt, ...) {
                 len --;
               }
             
-              for(int v = value; v < maxvalue; v*=10){
+              for(int v = d_type; v < maxvalue; v*=10){
                 putch('0');
               }
             }
@@ -128,6 +180,77 @@ int printf(const char *fmt, ...) {
           fmt_off+=2;
           partial_off=0;
           break;
+
+          case 'x':                          //unsigned int
+          unsigned int x_type = va_arg(valist,unsigned int);
+          uint2strx(x_type, str);
+
+          if(control[0] == '0'){   //%02x
+            int len = control[1] - 48;
+            int maxvalue = 1;
+            if(x_type == 0){
+              while(len > 0){
+                putch('0');
+                len --;  
+              }
+            }
+            else{
+              while(len > 1){
+                maxvalue *= 16;
+                len --;
+              }
+            
+              for(int v = x_type; v < maxvalue; v*=16){
+                putch('0');
+              }
+            }
+          }
+
+
+          while(str[partial_off] != '\0'){
+            putch(str[partial_off]);
+            partial_off ++;
+            total ++;
+          }
+          fmt_off+=2;
+          partial_off=0;
+          break;
+
+          case 'u':        //unsigned int
+          unsigned int u_type = va_arg(valist,unsigned int);
+          uint2str(u_type, str);
+          if(control[0] == '0'){   //%02d
+            int len = control[1] - 48;
+            int maxvalue = 1;
+            if(u_type == 0){
+              while(len > 0){
+                putch('0');
+                len --;  
+              }
+            }
+            else{
+              while(len > 1){
+                maxvalue *= 10;
+                len --;
+              }
+            
+              for(int v = u_type; v < maxvalue; v*=10){
+                putch('0');
+              }
+            }
+          }
+
+
+          while(str[partial_off] != '\0'){
+            putch(str[partial_off]);
+            partial_off ++;
+            total ++;
+          }
+          fmt_off+=2;
+          partial_off=0;
+          break;
+
+          
         default:assert(0);break;
       }
     }
