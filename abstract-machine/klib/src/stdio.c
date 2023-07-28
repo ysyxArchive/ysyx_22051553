@@ -17,7 +17,7 @@ void uint2strx(unsigned int num, char* str){
     temp /= 16;
   }
 
-  if(length == 0){
+  if(num == 0){
     str[0] = '0';
     str[1] = '\0';
   }
@@ -42,7 +42,7 @@ void uint2str(unsigned int num, char* str){
     temp /= 10;
   }
 
-  if(length == 0){
+  if(num == 0){
     str[0] = '0';
     str[1] = '\0';
   }
@@ -73,7 +73,7 @@ void int2str(int num, char* str){
     temp /= 10;
   }
 
-  if(length == 0){
+  if(num == 0){
     str[0] = '0';
     str[1] = '\0';
   }
