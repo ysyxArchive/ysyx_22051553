@@ -71,7 +71,7 @@ int printf(const char *fmt, ...) {
       total ++;
     }
     else{
-      char str[20];
+      char str[100];
       while(in[fmt_off+1] != 's' && in[fmt_off+1] != 'd'){
         control[ctrl_off] = in[fmt_off+1];
         ctrl_off ++;
