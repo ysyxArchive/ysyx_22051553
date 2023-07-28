@@ -82,15 +82,23 @@ int printf(const char *fmt, ...) {
 
       switch(in[fmt_off+1]){
         case 's':
-          strcpy(str,(const char*)(va_arg(valist,const char*)));
-          while(str[partial_off] != '\0'){
-            putch(str[partial_off]);
-            partial_off ++;
-            total ++;
+          const char * src = va_arg(valist,const char*);
+          if(src == NULL){
+            fmt_off += 2;
+            break;
           }
-          fmt_off+=2;
-          partial_off=0;
-          break;
+          else {
+            strcpy(str,src);
+            while(str[partial_off] != '\0'){
+              putch(str[partial_off]);
+              partial_off ++;
+              total ++;
+            }
+            fmt_off+=2;
+            partial_off=0;
+            break;
+          }
+          
         case 'd':
           int value = va_arg(valist,int);
           int2str(value, str);
