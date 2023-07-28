@@ -130,6 +130,8 @@ int printf(const char *fmt, ...) {
     }
   }
 
+  va_end(valist);
+
   return total;
 }
 
