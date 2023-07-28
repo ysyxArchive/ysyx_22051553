@@ -41,6 +41,7 @@ f(UP) f(DOWN) f(LEFT) f(RIGHT) f(INSERT) f(DELETE) f(HOME) f(END) f(PAGEUP) f(PA
 enum {
   _KEY_NONE = 0,
   MAP(_KEYS, _KEY_NAME)
+  //_KEY_ESCAPE, _KEY_F1, ...
 };
 
 #define SDL_KEYMAP(k) keymap[concat(SDL_SCANCODE_, k)] = concat(_KEY_, k);
@@ -48,6 +49,7 @@ static uint32_t keymap[256] = {};
 
 static void init_keymap() {
   MAP(_KEYS, SDL_KEYMAP)
+  //SDL_KEYMAP(ESCAPE) -> keymap[SDL_SCANCODE_ESCAPE] = _KEY_ESCAPE;
 }
 
 #define KEY_QUEUE_LEN 1024
