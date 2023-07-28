@@ -72,7 +72,7 @@ int printf(const char *fmt, ...) {
     }
     else{
       char str[100];
-      while(in[fmt_off+1] != 's' && in[fmt_off+1] != 'd'){
+      while(in[fmt_off+1] != 's' && in[fmt_off+1] != 'd' && in[fmt_off+1] != 'u' && in[fmt_off+1] != 'x'){
         control[ctrl_off] = in[fmt_off+1];
         ctrl_off ++;
         fmt_off++;
@@ -83,22 +83,17 @@ int printf(const char *fmt, ...) {
       switch(in[fmt_off+1]){
         case 's':
           const char * src = va_arg(valist,const char*);
-          if(src == NULL){
-            fmt_off += 2;
-            break;
+        
+          strcpy(str,src);
+          while(str[partial_off] != '\0'){
+            putch(str[partial_off]);
+            partial_off ++;
+            total ++;
           }
-          else {
-            strcpy(str,src);
-            while(str[partial_off] != '\0'){
-              putch(str[partial_off]);
-              partial_off ++;
-              total ++;
-            }
-            fmt_off+=2;
-            partial_off=0;
-            break;
-          }
-          
+          fmt_off+=2;
+          partial_off=0;
+          break;
+        
         case 'd':
           int value = va_arg(valist,int);
           int2str(value, str);
