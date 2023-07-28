@@ -76,6 +76,7 @@ void int2str(int num, char* str){
   if(num == 0){
     str[0] = '0';
     str[1] = '\0';
+    return;
   }
 
   temp = num;
@@ -99,6 +100,7 @@ void int2str(int num, char* str){
       length --;
     }
   }
+  return ;
 }
 
 
