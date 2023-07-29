@@ -65,7 +65,7 @@ void device_update() {                //每执行一条指令，update一次
         break;
       }
 #endif
-      default: break;
+      default: printf("in event\n");break;
     }
   }
 #endif
