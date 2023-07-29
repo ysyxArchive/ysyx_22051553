@@ -47,25 +47,23 @@ void device_update() {                //每执行一条指令，update一次
 
 #ifndef CONFIG_TARGET_AM
   SDL_Event event;
-  
   while (SDL_PollEvent(&event)) {
+    SDL_Delay(1);
     switch (event.type) {
       case SDL_QUIT:
-      printf("in event\n");
         nemu_state.state = NEMU_QUIT;
         break;
 #ifdef CONFIG_HAS_KEYBOARD
       // If a key was pressed
       case SDL_KEYDOWN:
       case SDL_KEYUP: {
-        printf("in event\n");
         uint8_t k = event.key.keysym.scancode;
         bool is_keydown = (event.key.type == SDL_KEYDOWN);
         send_key(k, is_keydown);
         break;
       }
 #endif
-      default: printf("in event\n");break;
+      default: break;
     }
   }
 #endif
