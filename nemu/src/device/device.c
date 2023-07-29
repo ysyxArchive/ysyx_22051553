@@ -34,7 +34,7 @@ void send_key(uint8_t, bool);
 void vga_update_screen();
 
 void device_update() {                //每执行一条指令，update一次
-  printf("key using\n");
+  
   
   static uint64_t last = 0;
   uint64_t now = get_time();
@@ -47,6 +47,7 @@ void device_update() {                //每执行一条指令，update一次
 
 #ifndef CONFIG_TARGET_AM
   SDL_Event event;
+  printf("key using\n");
   while (SDL_PollEvent(&event)) {
     
     switch (event.type) {
