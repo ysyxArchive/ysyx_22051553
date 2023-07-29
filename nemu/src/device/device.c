@@ -47,7 +47,7 @@ void device_update() {                //每执行一条指令，update一次
 
 #ifndef CONFIG_TARGET_AM
   SDL_Event event;
-  printf("key using\n");
+  
   while (SDL_PollEvent(&event)) {
     
     switch (event.type) {
