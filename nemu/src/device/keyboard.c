@@ -21,6 +21,9 @@
 #ifndef CONFIG_TARGET_AM
 #include <SDL2/SDL.h>
 
+
+
+
 // Note that this is not the standard
 #define _KEYS(f) \
   f(ESCAPE) f(F1) f(F2) f(F3) f(F4) f(F5) f(F6) f(F7) f(F8) f(F9) f(F10) f(F11) f(F12) \
@@ -47,7 +50,7 @@ enum {
 #define SDL_KEYMAP(k) keymap[concat(SDL_SCANCODE_, k)] = concat(_KEY_, k);
 static uint32_t keymap[256] = {};
 
-static void init_keymap() {
+static void init_keymap() {       //创建按键如SDL_SCANCODE_ESCAPE按键与返回值_KEY_ESCAPE的映射
   MAP(_KEYS, SDL_KEYMAP)
   //SDL_KEYMAP(ESCAPE) -> keymap[SDL_SCANCODE_ESCAPE] = _KEY_ESCAPE;
 }
@@ -59,7 +62,7 @@ static int key_f = 0, key_r = 0;
 static void key_enqueue(uint32_t am_scancode) {
   key_queue[key_r] = am_scancode;
   key_r = (key_r + 1) % KEY_QUEUE_LEN;
-  Assert(key_r != key_f, "key queue overflow!");
+  Assert(key_r != key_f, "key queue overflow!");    //队头指针在队尾指针的下一个位置时就满
 }
 
 static uint32_t key_dequeue() {
@@ -71,12 +74,12 @@ static uint32_t key_dequeue() {
   return key;
 }
 
-void send_key(uint8_t scancode, bool is_keydown) {
+void send_key(uint8_t scancode, bool is_keydown) {        //scancode是SDL_SCANCODE_ESCAPE表示按键
   if (nemu_state.state == NEMU_RUNNING && keymap[scancode] != _KEY_NONE) {
-    uint32_t am_scancode = keymap[scancode] | (is_keydown ? KEYDOWN_MASK : 0);
-    key_enqueue(am_scancode);
-  }
-}
+    uint32_t am_scancode = keymap[scancode] | (is_keydown ? KEYDOWN_MASK : 0);  //am_scancode是_KEY_ESCAPE
+    key_enqueue(am_scancode);                                                   //表示按键对应的值
+  }                                                                             //KEYDOWN_MASK=0x8000，通码起始位为1
+}                                                                               //导致通码和断碼不同
 #else // !CONFIG_TARGET_AM
 #define _KEY_NONE 0
 
@@ -89,11 +92,13 @@ static uint32_t key_dequeue() {
 
 static uint32_t *i8042_data_port_base = NULL;
 
-static void i8042_data_io_handler(uint32_t offset, int len, bool is_write) {
+static void i8042_data_io_handler(uint32_t offset, int len, bool is_write) {  //把队列中的值读出到寄存器
   assert(!is_write);
   assert(offset == 0);
   i8042_data_port_base[0] = key_dequeue();
 }
+
+//每条指令执行完成后，device_uptate函数会将按键入队
 
 void init_i8042() {
   i8042_data_port_base = (uint32_t *)new_space(4);
