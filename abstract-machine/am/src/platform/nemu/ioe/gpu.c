@@ -7,7 +7,7 @@ void __am_gpu_init() {
   uint32_t vga_ctrl_bundle = inl(VGACTL_ADDR);
   int i;
   int w = vga_ctrl_bundle>>16;  // TODO: get the correct width
-  int h = vga_ctrl_bundle & 0xffff;  // TODO: get the correct height
+  int h = vga_ctrl_bundle & 0x0000ffff;  // TODO: get the correct height
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   for (i = 0; i < w * h; i ++) fb[i] = i;
   outl(SYNC_ADDR, 1);
