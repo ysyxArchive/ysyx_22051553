@@ -50,7 +50,7 @@ void device_update() {                //每执行一条指令，update一次
       case SDL_QUIT:
         nemu_state.state = NEMU_QUIT;
         break;
-#ifdef CONFIG_HAS_KEYBOARD
+
       // If a key was pressed
       case SDL_KEYDOWN:
       case SDL_KEYUP: {
@@ -60,7 +60,7 @@ void device_update() {                //每执行一条指令，update一次
         send_key(k, is_keydown);
         break;
       }
-#endif
+
       default: break;
     }
   }
