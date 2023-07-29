@@ -48,7 +48,6 @@ void device_update() {                //每执行一条指令，update一次
 #ifndef CONFIG_TARGET_AM
   SDL_Event event;
   while (SDL_PollEvent(&event)) {
-    printf("in sdl\n");
     switch (event.type) {
       case SDL_QUIT:
         nemu_state.state = NEMU_QUIT;
