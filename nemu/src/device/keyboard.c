@@ -78,7 +78,7 @@ void send_key(uint8_t scancode, bool is_keydown) {        //scancode是SDL_SCANC
   if (nemu_state.state == NEMU_RUNNING && keymap[scancode] != _KEY_NONE) {
     uint32_t am_scancode = keymap[scancode] | (is_keydown ? KEYDOWN_MASK : 0);  //am_scancode是_KEY_ESCAPE
     key_enqueue(am_scancode);                                                   //表示按键对应的值
-  }                                                                             //KEYDOWN_MASK=0x8000，通码起始位为1
+  }                                                                             //KEYDOWN_MASK=0x8000，通码第15位为1
 }                                                                               //导致通码和断碼不同
 #else // !CONFIG_TARGET_AM
 #define _KEY_NONE 0
