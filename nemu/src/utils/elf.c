@@ -9,8 +9,8 @@ typedef struct{
 }Func;
 
 FILE *elf_fp = NULL;
-Func elf_func[100];
-int nr_elffunc;
+Func elf_func[100] = {};
+int nr_elffunc = 0;
 
 
 
