@@ -16,6 +16,15 @@
 #include <isa.h>
 #include <memory/paddr.h>
 
+typedef struct{
+    char name[20];
+    paddr_t addr;
+    int len;
+}Func;
+
+extern Func func[];
+extern int nr_func;
+
 void init_rand();
 void init_log(const char *log_file);
 void init_elf(const char *elf_file);
@@ -117,6 +126,9 @@ void init_monitor(int argc, char *argv[]) {
   /* Read the elf file. */
   init_elf(elf_file);
 #endif
+  for(int i = 0; i < nr_func; i++)
+    printf("func[%d] is %s addr is %x\n", i, func[nr_func].name, func[nr_func].addr);
+
   /* Initialize memory. */
   init_mem();
 
