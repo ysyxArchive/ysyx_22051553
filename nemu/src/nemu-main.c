@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 
   printf("in main\n");
   for(int i = 0; i < nr_elffunc; i++)
-    printf("func[%d] is %s addr is %x\n", i, elf_func[i].name, elf_func[i].addr);
+    printf("func[%d] is %s addr is %x\n", i, ((Func*)(elf_func))->name, ((Func*)(elf_func))->addr);
 
   /* Start engine. */
   engine_start();
