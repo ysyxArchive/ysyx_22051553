@@ -158,11 +158,13 @@ void init_monitor(int argc, char *argv[]) {
 #endif
 
 
-  for(int i = 0; i < nr_elffunc; i++)
-    printf("func[%d] is %s addr is %x\n", i, elf_func[i].name, elf_func[i].addr);
+
 
   /* Display welcome message. */
   welcome();
+
+    for(int i = 0; i < nr_elffunc; i++)
+    printf("func[%d] is %s addr is %x\n", i, elf_func[i].name, elf_func[i].addr);
 }
 #else // CONFIG_TARGET_AM
 static long load_img() {
