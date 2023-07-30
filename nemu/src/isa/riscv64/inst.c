@@ -209,10 +209,11 @@ static int decode_exec(Decode *s) {
   INSTPAT_END();
 
   R(0) = 0; // reset $zero to 0
-  printf("p1\n");
+  
 
   #ifdef CONFIG_FTRACE
     if(strcmp(inst_name, "jal") == 0 && rd == 1){      //call判定
+    printf("p1\n");
       for(int i = 0; i < nr_func; i ++){
         if(s->dnpc == func[i].addr){
           printf("0x%08lx: ", s->pc);
@@ -242,7 +243,7 @@ static int decode_exec(Decode *s) {
     }
   #endif
 
-  printf("p2\n");
+  
 
 
   return 0;
