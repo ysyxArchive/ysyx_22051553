@@ -209,6 +209,7 @@ static int decode_exec(Decode *s) {
   INSTPAT_END();
 
   R(0) = 0; // reset $zero to 0
+  printf("p1\n");
 
   #ifdef CONFIG_FTRACE
     if(strcmp(inst_name, "jal") == 0 && rd == 1){      //call判定
@@ -241,13 +242,13 @@ static int decode_exec(Decode *s) {
     }
   #endif
 
+  printf("p2\n");
+
 
   return 0;
 }
 
 int isa_exec_once(Decode *s) {
-  printf("p1\n");
   s->isa.inst.val = inst_fetch(&s->snpc, 4);          //获取指令并更新snpc
-  printf("p2\n");
   return decode_exec(s);                            //译码并执行指令操作
 }
