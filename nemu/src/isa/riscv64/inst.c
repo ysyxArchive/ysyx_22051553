@@ -210,6 +210,8 @@ static int decode_exec(Decode *s) {
 
   R(0) = 0; // reset $zero to 0
   
+    for(int i = 0; i < nr_elffunc; i++)
+      printf("func[%d] is %s addr is %x\n", i, elf_func[i].name, elf_func[i].addr);
 
   #ifdef CONFIG_FTRACE
     if(strcmp(inst_name, "jal") == 0 && rd == 1){      //call判定

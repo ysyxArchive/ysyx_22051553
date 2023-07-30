@@ -127,8 +127,7 @@ void init_monitor(int argc, char *argv[]) {
   init_elf(elf_file);
 #endif
 
-  for(int i = 0; i < nr_elffunc; i++)
-      printf("func[%d] is %s addr is %x\n", i, elf_func[i].name, elf_func[i].addr);
+
 
   /* Initialize memory. */
   init_mem();
