@@ -132,6 +132,9 @@ void init_monitor(int argc, char *argv[]) {
   /* Initialize memory. */
   init_mem();
 
+  for(int i = 0; i < nr_elffunc; i++)
+    printf("func[%d] is %s addr is %x\n", i, elf_func[i].name, elf_func[i].addr);
+
   /* Initialize devices. */
   IFDEF(CONFIG_DEVICE, init_device());
 
