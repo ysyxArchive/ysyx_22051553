@@ -16,7 +16,7 @@
 #include <common.h>
 
 typedef struct{
-    char name[20];
+    char name[100];
     paddr_t addr;
     int len;
 }eFunc;
