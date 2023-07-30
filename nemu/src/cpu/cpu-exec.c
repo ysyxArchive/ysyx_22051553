@@ -52,7 +52,6 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 static void exec_once(Decode *s, vaddr_t pc) {
   s->pc = pc;
   s->snpc = pc;
-  printf("p1\n");
   isa_exec_once(s);
   cpu.pc = s->dnpc;             //注意静态指令和动态指令    静态是pc+4,动态可能是跳转地址          注意pc指的就是当前的pc,和流水线硬件不一样        nemu是单周期模拟器   设置snpc、dnpc的原因是，pc在该指令完全模拟结束之前，还需要使用
 #ifdef CONFIG_ITRACE
@@ -86,7 +85,6 @@ static void exec_once(Decode *s, vaddr_t pc) {
   p += 10;
   strcpy(p, s->logbuf + 32);
   irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
-  printf("p2\n");
 #endif
   
 }
