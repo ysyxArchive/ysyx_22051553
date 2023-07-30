@@ -47,8 +47,8 @@ static void init_screen() {
   sprintf(title, "%s-NEMU", str(__GUEST_ISA__));
   SDL_Init(SDL_INIT_VIDEO);
   SDL_CreateWindowAndRenderer(                       //创建800*600的窗口
-      SCREEN_W * (MUXDEF(CONFIG_VGA_SIZE_400x300, 2, 1)),
-      SCREEN_H * (MUXDEF(CONFIG_VGA_SIZE_400x300, 2, 1)),
+      SCREEN_W ,
+      SCREEN_H ,
       0, &window, &renderer);
   SDL_SetWindowTitle(window, title);
   texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888,
@@ -92,7 +92,7 @@ void init_vga() {
   vgactl_port_base = (uint32_t *)new_space(8);               //vga控制寄存器 + 同步控制器
   vgactl_port_base[0] = (screen_width() << 16) | screen_height(); 
 
-  printf("width is %d\n", SCREEN_W * (MUXDEF(CONFIG_VGA_SIZE_400x300, 2, 1)));
+  printf("width is %d\n", vgactl_port_base[0] >> 16);
   printf("height is %d\n", vgactl_port_base[0] & 0xffff);
   printf("size is %d\n", screen_size());
 #ifdef CONFIG_HAS_PORT_IO
