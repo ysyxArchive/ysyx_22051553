@@ -132,8 +132,6 @@ void init_monitor(int argc, char *argv[]) {
   /* Initialize memory. */
   init_mem();
 
-  for(int i = 0; i < nr_elffunc; i++)
-    printf("func[%d] is %s addr is %x\n", i, elf_func[i].name, elf_func[i].addr);
 
   /* Initialize devices. */
   IFDEF(CONFIG_DEVICE, init_device());
@@ -158,6 +156,10 @@ void init_monitor(int argc, char *argv[]) {
     MUXDEF(CONFIG_ISA_riscv64, "riscv64", "bad")))) "-pc-linux-gnu"
   ));
 #endif
+
+
+  for(int i = 0; i < nr_elffunc; i++)
+    printf("func[%d] is %s addr is %x\n", i, elf_func[i].name, elf_func[i].addr);
 
   /* Display welcome message. */
   welcome();
