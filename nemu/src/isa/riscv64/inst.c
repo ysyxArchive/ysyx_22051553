@@ -29,7 +29,7 @@ typedef struct{
     int len;
 }Func;
 
-extern Func elf_func[100];
+extern Func elf_func[];
 extern int nr_elffunc;
 
 enum {                                        //每种type的立即数位域相同
