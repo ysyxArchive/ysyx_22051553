@@ -54,6 +54,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   s->snpc = pc;
   isa_exec_once(s);
   cpu.pc = s->dnpc;             //注意静态指令和动态指令    静态是pc+4,动态可能是跳转地址          注意pc指的就是当前的pc,和流水线硬件不一样        nemu是单周期模拟器   设置snpc、dnpc的原因是，pc在该指令完全模拟结束之前，还需要使用
+  printf("p1\n");
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;               //p指针不断后移    snprint返回值是写入的字符长度
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);      //"0x%016x" 将pc写入log
@@ -77,7 +78,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #else
   p[0] = '\0'; // the upstream llvm does not support loongarch32r
 #endif
-
+  printf("p2\n");
   p = iringbuf[irb_pos];
   strcpy(p, "0x");
   p += 2;
@@ -92,14 +93,10 @@ static void exec_once(Decode *s, vaddr_t pc) {
 static void execute(uint64_t n) {
   Decode s;
   for (;n > 0; n --) {
-    printf("p1\n");
     exec_once(&s, cpu.pc);
-    printf("end\n");
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);                   //写log
-    printf("%d\n", nemu_state.state);
     if (nemu_state.state != NEMU_RUNNING) break;
-    printf("p2\n");
     IFDEF(CONFIG_DEVICE, device_update());
   }
 }
