@@ -6,11 +6,11 @@ typedef struct{
     char name[100];
     paddr_t addr;
     int len;
-}Func;
+}eFunc;
 
 FILE *elf_fp = NULL;
-extern Func elf_func[];
-extern int nr_elffunc;
+eFunc elf_func[100] = {};
+int nr_elffunc = 0;
 
 
 

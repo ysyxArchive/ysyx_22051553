@@ -19,10 +19,10 @@ typedef struct{
     char name[20];
     paddr_t addr;
     int len;
-}Func;
+}eFunc;
 
-Func elf_func[100] = {};
-int nr_elffunc = 0;
+extern eFunc *elf_func;
+extern int nr_elffunc;
 
 void init_monitor(int, char *[]);
 void am_init_monitor();
@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 
   printf("in main\n");
   for(int i = 0; i < nr_elffunc; i++)
-    printf("func[%d] is %s addr is %x\n", i, ((Func*)(elf_func) + i)->name, ((Func*)(elf_func) + i)->addr);
+    printf("func[%d] is %s addr is %x\n", i, ((eFunc*)(elf_func) + i)->name, ((eFunc*)(elf_func) + i)->addr);
 
   /* Start engine. */
   engine_start();
