@@ -226,6 +226,7 @@ static int decode_exec(Decode *s) {
           func_level ++;
         }
       }
+      printf("p2\n");
     }
 
     if(strcmp(inst_name, "jalr") == 0 && rd == 0 && rs1 == 1){      //ret判定
