@@ -18,15 +18,6 @@
 
 #include <common.h>
 
-// -----------elf-----------
-typedef struct{
-    char name[100];
-    paddr_t addr;
-    int len;
-}Func;
-
-Func elf_func[100] = {};
-int nr_elffunc = 0;
 
 // ----------- state -----------
 

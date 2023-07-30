@@ -14,7 +14,15 @@
 ***************************************************************************************/
 
 #include <common.h>
-#include <utils.h>
+
+typedef struct{
+    char name[20];
+    paddr_t addr;
+    int len;
+}Func;
+
+extern Func elf_func[];
+extern int nr_elffunc;
 
 void init_monitor(int, char *[]);
 void am_init_monitor();

@@ -1,8 +1,16 @@
 #include <common.h>
 #include <elf.h>
-#include <utils.h>
+
+
+typedef struct{
+    char name[100];
+    paddr_t addr;
+    int len;
+}Func;
 
 FILE *elf_fp = NULL;
+Func elf_func[100] = {};
+int nr_elffunc = 0;
 
 
 
