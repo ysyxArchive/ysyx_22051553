@@ -16,14 +16,6 @@
 #include <isa.h>
 #include <memory/paddr.h>
 
-// typedef struct{
-//     char name[100];
-//     paddr_t addr;
-//     int len;
-// }Func;
-
-// extern Func elf_func[];
-// extern int nr_elffunc;
 
 void init_rand();
 void init_log(const char *log_file);
@@ -127,8 +119,6 @@ void init_monitor(int argc, char *argv[]) {
   init_elf(elf_file);
 #endif
 
-
-
   /* Initialize memory. */
   init_mem();
 
@@ -162,9 +152,6 @@ void init_monitor(int argc, char *argv[]) {
 
   /* Display welcome message. */
   welcome();
-  // printf("in init_monitor\n");
-  // for(int i = 0; i < nr_elffunc; i++)
-  //   printf("func[%d] is %s addr is %x\n", i, elf_func[i].name, elf_func[i].addr);
 
 }
 #else // CONFIG_TARGET_AM
