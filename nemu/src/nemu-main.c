@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 
 
   for(int i = 0; i < nr_func; i++)
-    printf("func[%d] is %s addr is %x\n", nr_func, func[nr_func].name, func[nr_func].addr);
+    printf("func[%d] is %s addr is %x\n", i, func[nr_func].name, func[nr_func].addr);
 
   /* Start engine. */
   engine_start();
