@@ -9,8 +9,8 @@ typedef struct{
 }Func;
 
 FILE *elf_fp = NULL;
-Func func[500] = {};
-int nr_func = 0;
+Func elf_func[100] = {};
+int nr_elffunc = 0;
 
 
 
@@ -69,14 +69,14 @@ void init_elf(const char *elf_file){
     for(int i = 0; i < entnum; i ++){
         if( (symtab[i].st_info & 0x0f) == STT_FUNC){ //低四位
             if(symtab[i].st_size != 0){   //例如_start
-                strcpy(func[nr_func].name, &strtab[symtab[i].st_name]);
+                strcpy(elf_func[nr_elffunc].name, &strtab[symtab[i].st_name]);
                 
-                func[nr_func].addr = symtab[i].st_value;
-                func[nr_func].len = symtab[i].st_size;
+                elf_func[nr_elffunc].addr = symtab[i].st_value;
+                elf_func[nr_elffunc].len = symtab[i].st_size;
 
-                printf("func[%d] is %s addr is %x\n", nr_func, func[nr_func].name, func[nr_func].addr);
+                printf("func[%d] is %s addr is %x\n", nr_elffunc, elf_func[nr_elffunc].name, elf_func[nr_elffunc].addr);
 
-                nr_func ++;
+                nr_elffunc ++;
             }
         
         }

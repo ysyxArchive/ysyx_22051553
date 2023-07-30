@@ -29,8 +29,8 @@ typedef struct{
     int len;
 }Func;
 
-extern Func func[50];
-extern int nr_func;
+extern Func elf_func[100];
+extern int nr_elffunc;
 
 enum {                                        //每种type的立即数位域相同
   TYPE_I, TYPE_U, TYPE_S, TYPE_J, TYPE_R, TYPE_B, 
@@ -213,14 +213,14 @@ static int decode_exec(Decode *s) {
 
   #ifdef CONFIG_FTRACE
     if(strcmp(inst_name, "jal") == 0 && rd == 1){      //call判定
-      for(int i = 0; i < nr_func; i ++){
+      for(int i = 0; i < nr_elffunc; i ++){
 
-        if( (s->dnpc) == func[i].addr ){
+        if( (s->dnpc) == elf_func[i].addr ){
           printf("0x%08lx: ", s->pc);
           for(int level = func_level; level >= 0; level--){
             printf("  ");
           }
-          printf("call [%s@0x%08x]\n", func[i].name, func[i].addr);
+          printf("call [%s@0x%08x]\n", elf_func[i].name, elf_func[i].addr);
 
           func_name[func_level] = i;
           func_level ++;
@@ -230,15 +230,15 @@ static int decode_exec(Decode *s) {
     }
 
     if(strcmp(inst_name, "jalr") == 0 && rd == 0 && rs1 == 1){      //ret判定
-      for(int i = 0; i < nr_func; i ++){
-        if(s->pc <= func[i].addr + func[i].len - 4 && s->pc >= func[i].addr){
+      for(int i = 0; i < nr_elffunc; i ++){
+        if(s->pc <= elf_func[i].addr + elf_func[i].len - 4 && s->pc >= elf_func[i].addr){
           printf("0x%08lx: ", s->pc);
 
           func_level --;
           for(int level = func_level; level > 0; level--){
             printf("   ");
           }
-          printf("ret [%s]\n", func[func_name[func_level]].name);
+          printf("ret [%s]\n", elf_func[func_name[func_level]].name);
         }
       }
     }
