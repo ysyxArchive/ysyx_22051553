@@ -21,7 +21,7 @@ typedef struct{
     int len;
 }eFunc;
 
-extern eFunc *elf_func;
+extern eFunc elf_func[];
 extern int nr_elffunc;
 
 void init_monitor(int, char *[]);
