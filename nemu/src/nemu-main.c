@@ -15,6 +15,15 @@
 
 #include <common.h>
 
+typedef struct{
+    char name[20];
+    paddr_t addr;
+    int len;
+}Func;
+
+extern Func elf_func[100];
+extern int nr_elffunc;
+
 void init_monitor(int, char *[]);
 void am_init_monitor();
 void engine_start();
@@ -27,6 +36,9 @@ int main(int argc, char *argv[]) {
 #else
   init_monitor(argc, argv);             //显现出预处理的效果，如果没有该宏，那么就不编译某些代码
 #endif                                  //如果是if else程序，那么会导致编译开销和控制的计算开销
+
+    for(int i = 0; i < nr_elffunc; i++)
+      printf("func[%d] is %s addr is %x\n", i, elf_func[i].name, elf_func[i].addr);
 
   /* Start engine. */
   engine_start();
