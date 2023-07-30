@@ -91,6 +91,8 @@ static void vga_updata_handler(uint32_t offset, int len, bool is_write){
 void init_vga() {
   vgactl_port_base = (uint32_t *)new_space(8);               //vga控制寄存器 + 同步控制器
   vgactl_port_base[0] = (screen_width() << 16) | screen_height(); 
+  printf("width is %d\n", vgactl_port_base[0] >> 16);
+  printf("height is %d\n", vgactl_port_base[0] & 0xffff);
 #ifdef CONFIG_HAS_PORT_IO
   add_pio_map ("vgactl", CONFIG_VGA_CTL_PORT, vgactl_port_base, 8, NULL);   //vga控制寄存器和同步控制器不需要回调函数--回调函数是用于驱动设备
 #else                                                                       //vga控制器的值不变，同步控制器被vga_update_screen更新
