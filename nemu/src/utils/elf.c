@@ -70,9 +70,12 @@ void init_elf(const char *elf_file){
         if( (symtab[i].st_info & 0x0f) == STT_FUNC){ //低四位
             if(symtab[i].st_size != 0){   //例如_start
                 strcpy(func[nr_func].name, &strtab[symtab[i].st_name]);
-                printf("func[%d] is %s\n", nr_func, func[nr_func].name);
+                
                 func[nr_func].addr = symtab[i].st_value;
                 func[nr_func].len = symtab[i].st_size;
+
+                printf("func[%d] is %s addr is %x\n", nr_func, func[nr_func].name, func[nr_func].addr);
+
                 nr_func ++;
             }
         
