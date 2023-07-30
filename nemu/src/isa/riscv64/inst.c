@@ -213,8 +213,8 @@ static int decode_exec(Decode *s) {
 
   #ifdef CONFIG_FTRACE
     if(strcmp(inst_name, "jal") == 0 && rd == 1){      //call判定
-    printf("p1\n");
       for(int i = 0; i < nr_func; i ++){
+        printf("p2\n");  
         if(s->dnpc == func[i].addr){
           printf("0x%08lx: ", s->pc);
           for(int level = func_level; level >= 0; level--){
@@ -226,7 +226,7 @@ static int decode_exec(Decode *s) {
           func_level ++;
         }
       }
-      printf("p2\n");
+      
     }
 
     if(strcmp(inst_name, "jalr") == 0 && rd == 0 && rs1 == 1){      //ret判定
