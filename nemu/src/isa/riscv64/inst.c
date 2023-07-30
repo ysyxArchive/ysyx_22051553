@@ -248,6 +248,6 @@ static int decode_exec(Decode *s) {
 int isa_exec_once(Decode *s) {
   printf("p1\n");
   s->isa.inst.val = inst_fetch(&s->snpc, 4);          //获取指令并更新snpc
-  return decode_exec(s);                            //译码并执行指令操作
   printf("p2\n");
+  return decode_exec(s);                            //译码并执行指令操作
 }
