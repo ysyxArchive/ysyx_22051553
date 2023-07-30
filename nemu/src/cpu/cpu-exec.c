@@ -92,6 +92,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
 static void execute(uint64_t n) {
   Decode s;
   for (;n > 0; n --) {
+    printf("p1\n");
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);                   //写log
@@ -128,7 +129,7 @@ void cpu_exec(uint64_t n) {
   uint64_t timer_start = get_time();
   
   execute(n);
-printf("p1\n");
+
   uint64_t timer_end = get_time();
   g_timer += timer_end - timer_start;
 
