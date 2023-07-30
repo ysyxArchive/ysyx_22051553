@@ -20,15 +20,6 @@ void am_init_monitor();
 void engine_start();
 int is_exit_status_bad();
 
-typedef struct{
-    char name[20];
-    paddr_t addr;
-    int len;
-}Func;
-
-extern Func func[];
-extern int nr_func;
-
 int main(int argc, char *argv[]) {
   /* Initialize the monitor. */
 #ifdef CONFIG_TARGET_AM                  
@@ -36,10 +27,6 @@ int main(int argc, char *argv[]) {
 #else
   init_monitor(argc, argv);             //显现出预处理的效果，如果没有该宏，那么就不编译某些代码
 #endif                                  //如果是if else程序，那么会导致编译开销和控制的计算开销
-
-
-  for(int i = 0; i < nr_func; i++)
-    printf("func[%d] is %s addr is %x\n", i, func[nr_func].name, func[nr_func].addr);
 
   /* Start engine. */
   engine_start();
