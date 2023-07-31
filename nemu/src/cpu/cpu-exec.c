@@ -33,7 +33,7 @@ uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
 //iringbuf
-char iringbuf [16][32];
+char iringbuf [16][64];  //32会导致溢出，所以调整到64
 uint8_t irb_pos = 0;
 
 
