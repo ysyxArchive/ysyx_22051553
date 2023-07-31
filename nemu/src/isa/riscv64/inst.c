@@ -24,7 +24,7 @@
 
 
 typedef struct{
-    char name[20];
+    char name[100];
     paddr_t addr;
     int len;
 }Func;
@@ -101,10 +101,10 @@ static int decode_exec(Decode *s) {
   word_t src1 = 0, src2 = 0, imm = 0;     //无符号
   char inst_name[10];
 
-  // #ifdef CONFIG_FTRACE
-  // static int func_level = 0;
-  // static int func_name[100] = {};
-  // #endif
+  #ifdef CONFIG_FTRACE
+  static int func_level = 0;
+  static int func_name[100] = {};
+  #endif
 
   __uint128_t u264_1 = 18446744073709551615ULL;  //写18446744073709551615声明的是一个int字面量
 
@@ -211,38 +211,38 @@ static int decode_exec(Decode *s) {
   R(0) = 0; // reset $zero to 0
   
 
-  // #ifdef CONFIG_FTRACE
-  //   if(strcmp(inst_name, "jal") == 0 && rd == 1){      //call判定
-  //     for(int i = 0; i < nr_elffunc; i ++){
+  #ifdef CONFIG_FTRACE
+    if(strcmp(inst_name, "jal") == 0 && rd == 1){      //call判定
+      for(int i = 0; i < nr_elffunc; i ++){
 
-  //       if( (s->dnpc) == elf_func[i].addr ){
-  //         printf("0x%08lx: ", s->pc);
-  //         for(int level = func_level; level >= 0; level--){
-  //           printf("  ");
-  //         }
-  //         printf("call [%s@0x%08x]\n", elf_func[i].name, elf_func[i].addr);
+        if( (s->dnpc) == elf_func[i].addr ){
+          printf("0x%08lx: ", s->pc);
+          for(int level = func_level; level >= 0; level--){
+            printf("  ");
+          }
+          printf("call [%s@0x%08x]\n", elf_func[i].name, elf_func[i].addr);
 
-  //         func_name[func_level] = i;
-  //         func_level ++;
-  //       }
-  //     }
+          func_name[func_level] = i;
+          func_level ++;
+        }
+      }
       
-  //   }
+    }
 
-  //   if(strcmp(inst_name, "jalr") == 0 && rd == 0 && rs1 == 1){      //ret判定
-  //     for(int i = 0; i < nr_elffunc; i ++){
-  //       if(s->pc <= elf_func[i].addr + elf_func[i].len - 4 && s->pc >= elf_func[i].addr){
-  //         printf("0x%08lx: ", s->pc);
+    if(strcmp(inst_name, "jalr") == 0 && rd == 0 && rs1 == 1){      //ret判定
+      for(int i = 0; i < nr_elffunc; i ++){
+        if(s->pc <= elf_func[i].addr + elf_func[i].len - 4 && s->pc >= elf_func[i].addr){
+          printf("0x%08lx: ", s->pc);
 
-  //         func_level --;
-  //         for(int level = func_level; level > 0; level--){
-  //           printf("   ");
-  //         }
-  //         printf("ret [%s]\n", elf_func[func_name[func_level]].name);
-  //       }
-  //     }
-  //   }
-  // #endif
+          func_level --;
+          for(int level = func_level; level > 0; level--){
+            printf("   ");
+          }
+          printf("ret [%s]\n", elf_func[func_name[func_level]].name);
+        }
+      }
+    }
+  #endif
 
   
 
