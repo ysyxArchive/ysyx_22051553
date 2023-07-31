@@ -23,14 +23,14 @@
 #define Mw vaddr_write
 
 
-// typedef struct{
-//     char name[20];
-//     paddr_t addr;
-//     int len;
-// }Func;
+typedef struct{
+    char name[20];
+    paddr_t addr;
+    int len;
+}Func;
 
-// extern Func elf_func[];
-// extern int nr_elffunc;
+extern Func elf_func[];
+extern int nr_elffunc;
 
 enum {                                        //每种type的立即数位域相同
   TYPE_I, TYPE_U, TYPE_S, TYPE_J, TYPE_R, TYPE_B, 

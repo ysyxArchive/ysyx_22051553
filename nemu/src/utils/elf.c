@@ -6,10 +6,10 @@ typedef struct{
     char name[100];
     paddr_t addr;
     int len;
-}eFunc;
+}Func;
 
 FILE *elf_fp = NULL;
-eFunc elf_func[100] = {};
+Func elf_func[100] = {};
 int nr_elffunc = 0;
 
 
