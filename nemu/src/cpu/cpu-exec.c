@@ -78,13 +78,13 @@ static void exec_once(Decode *s, vaddr_t pc) {
   p[0] = '\0'; // the upstream llvm does not support loongarch32r
 #endif
   
-  // p = iringbuf[irb_pos];
-  // strcpy(p, "0x");
-  // p += 2;
-  // snprintf(p, 11, "%.10s", s->logbuf + 10);  //.10s表示最多打印10个字符，否则会Werror
-  // p += 10;
-  // strcpy(p, s->logbuf + 32);
-  // irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
+  p = iringbuf[irb_pos];
+  strcpy(p, "0x");
+  p += 2;
+  snprintf(p, 11, "%.10s", s->logbuf + 10);  //.10s表示最多打印10个字符，否则会Werror
+  p += 10;
+  strcpy(p, s->logbuf + 32);
+  irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
 #endif
   
 }
