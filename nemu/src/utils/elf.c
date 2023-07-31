@@ -74,8 +74,6 @@ void init_elf(const char *elf_file){
                 elf_func[nr_elffunc].addr = symtab[i].st_value;
                 elf_func[nr_elffunc].len = symtab[i].st_size;
 
-                printf("func[%d] is %s addr is %x\n", nr_elffunc, elf_func[nr_elffunc].name, elf_func[nr_elffunc].addr);
-
                 nr_elffunc ++;
             }
         
