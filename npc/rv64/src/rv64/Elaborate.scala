@@ -3,7 +3,7 @@ package rv64
 import circt.stage._
 
 object Elaborate extends App {
-  def top = new Decode()
+  def top = new Core()
   val useMFC = false  // use MLIR-based firrtl compiler  -- 无法实例化loadMemory
   val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
   if (useMFC) {
