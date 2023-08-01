@@ -25,7 +25,7 @@ class Eximm extends Module{
 
     io.eximm := MuxLookup(
         io.imm_type,
-        0.U,
+        1.U,
         Seq(
             IMM_I -> Cat(Fill(52, io.inst(31)), io.inst(31, 20)),
             IMM_U -> Cat(Fill(32, io.inst(31)), io.inst(31,12), Fill(20, 0.U(1.W)))
