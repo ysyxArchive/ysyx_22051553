@@ -18,17 +18,38 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___nba_sequent__TOP__0\n"); );
     // Body
     if (VL_UNLIKELY((0x100073U == ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                    ? (IData)(vlSelf->Soc__DOT__ram__DOT__SyncMem
-                                              [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0])
+                                    ? (((vlSelf->Soc__DOT__ram__DOT__SyncMem
+                                         [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0] 
+                                         << 0x18U) 
+                                        | (vlSelf->Soc__DOT__ram__DOT__SyncMem
+                                           [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_1_addr_pipe_0] 
+                                           << 0x10U)) 
+                                       | ((vlSelf->Soc__DOT__ram__DOT__SyncMem
+                                           [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_2_addr_pipe_0] 
+                                           << 8U) | 
+                                          vlSelf->Soc__DOT__ram__DOT__SyncMem
+                                          [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_3_addr_pipe_0]))
                                     : 0U)))) {
         VL_FINISH_MT("vsrc/Interact.v", 8, "");
     }
     if (vlSelf->Soc__DOT__core__DOT__fetch__DOT__started) {
+        vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_3_en_pipe_0 = 1U;
+        vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_1_en_pipe_0 = 1U;
+        vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_2_en_pipe_0 = 1U;
         vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_en_pipe_0 = 1U;
         vlSelf->Soc__DOT__ram__DOT__inst_valid = 1U;
         vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0 
+            = (0xffU & ((IData)(3U) + (IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc)));
+        vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_1_addr_pipe_0 
+            = (0xffU & ((IData)(2U) + (IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc)));
+        vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_2_addr_pipe_0 
+            = (0xffU & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc)));
+        vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_3_addr_pipe_0 
             = (0xffU & (IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc));
     } else {
+        vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_3_en_pipe_0 = 0U;
+        vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_1_en_pipe_0 = 0U;
+        vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_2_en_pipe_0 = 0U;
         vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_en_pipe_0 = 0U;
         vlSelf->Soc__DOT__ram__DOT__inst_valid = 0U;
     }
@@ -88,7 +109,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VSoc___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("vsrc/Soc.v", 187, "", "Active region did not converge.");
+                    VL_FATAL_MT("vsrc/Soc.v", 246, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -103,7 +124,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 187, "", "NBA region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 246, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VSoc___024root___eval_nba(vlSelf);

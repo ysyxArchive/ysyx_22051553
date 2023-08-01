@@ -18,6 +18,12 @@ class VSoc___024root final : public VerilatedModule {
     CData/*0:0*/ Soc__DOT__core__DOT__fetch__DOT__started;
     CData/*0:0*/ Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_en_pipe_0;
     CData/*7:0*/ Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0;
+    CData/*0:0*/ Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_1_en_pipe_0;
+    CData/*7:0*/ Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_1_addr_pipe_0;
+    CData/*0:0*/ Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_2_en_pipe_0;
+    CData/*7:0*/ Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_2_addr_pipe_0;
+    CData/*0:0*/ Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_3_en_pipe_0;
+    CData/*7:0*/ Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_3_addr_pipe_0;
     CData/*0:0*/ Soc__DOT__ram__DOT__inst_valid;
     CData/*0:0*/ __Vtrigrprev__TOP__clock;
     CData/*0:0*/ __VactContinue;
@@ -26,7 +32,7 @@ class VSoc___024root final : public VerilatedModule {
     IData/*31:0*/ __VactIterCount;
     QData/*63:0*/ Soc__DOT__core__DOT__fetch__DOT__pc;
     QData/*63:0*/ Soc__DOT__core__DOT__fetch__DOT___next_pc_T_1;
-    VlUnpacked<QData/*63:0*/, 256> Soc__DOT__ram__DOT__SyncMem;
+    VlUnpacked<CData/*7:0*/, 256> Soc__DOT__ram__DOT__SyncMem;
     VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
     VlTriggerVec<1> __VstlTriggered;
     VlTriggerVec<1> __VactTriggered;

@@ -30,7 +30,7 @@ VL_ATTR_COLD void VSoc___024root___eval_initial__TOP(VSoc___024root* vlSelf) {
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___eval_initial__TOP\n"); );
     // Body
-    VL_READMEM_N(true, 64, 256, 0, std::string{"inst"}
+    VL_READMEM_N(true, 8, 256, 0, std::string{"inst"}
                  ,  &(vlSelf->Soc__DOT__ram__DOT__SyncMem)
                  , 0, ~0ULL);
 }
@@ -65,7 +65,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 187, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 246, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -149,10 +149,16 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_1 = VL_RAND_RESET_Q(64);
     for (int __Vi0 = 0; __Vi0 < 256; ++__Vi0) {
-        vlSelf->Soc__DOT__ram__DOT__SyncMem[__Vi0] = VL_RAND_RESET_Q(64);
+        vlSelf->Soc__DOT__ram__DOT__SyncMem[__Vi0] = VL_RAND_RESET_I(8);
     }
     vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_en_pipe_0 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0 = VL_RAND_RESET_I(8);
+    vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_1_en_pipe_0 = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_1_addr_pipe_0 = VL_RAND_RESET_I(8);
+    vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_2_en_pipe_0 = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_2_addr_pipe_0 = VL_RAND_RESET_I(8);
+    vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_3_en_pipe_0 = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_3_addr_pipe_0 = VL_RAND_RESET_I(8);
     vlSelf->Soc__DOT__ram__DOT__inst_valid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__ram__DOT__initvar = VL_RAND_RESET_I(32);
     vlSelf->__Vtrigrprev__TOP__clock = VL_RAND_RESET_I(1);

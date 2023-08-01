@@ -115,23 +115,70 @@ module Ram(
   reg [31:0] _RAND_0;
   reg [31:0] _RAND_1;
   reg [31:0] _RAND_2;
+  reg [31:0] _RAND_3;
+  reg [31:0] _RAND_4;
+  reg [31:0] _RAND_5;
+  reg [31:0] _RAND_6;
+  reg [31:0] _RAND_7;
+  reg [31:0] _RAND_8;
 `endif // RANDOMIZE_REG_INIT
-  reg [63:0] SyncMem [0:255]; // @[Ram.scala 18:30]
+  reg [7:0] SyncMem [0:255]; // @[Ram.scala 18:30]
   wire  SyncMem_io_dataOut_bits_MPORT_en; // @[Ram.scala 18:30]
   wire [7:0] SyncMem_io_dataOut_bits_MPORT_addr; // @[Ram.scala 18:30]
-  wire [63:0] SyncMem_io_dataOut_bits_MPORT_data; // @[Ram.scala 18:30]
+  wire [7:0] SyncMem_io_dataOut_bits_MPORT_data; // @[Ram.scala 18:30]
+  wire  SyncMem_io_dataOut_bits_MPORT_1_en; // @[Ram.scala 18:30]
+  wire [7:0] SyncMem_io_dataOut_bits_MPORT_1_addr; // @[Ram.scala 18:30]
+  wire [7:0] SyncMem_io_dataOut_bits_MPORT_1_data; // @[Ram.scala 18:30]
+  wire  SyncMem_io_dataOut_bits_MPORT_2_en; // @[Ram.scala 18:30]
+  wire [7:0] SyncMem_io_dataOut_bits_MPORT_2_addr; // @[Ram.scala 18:30]
+  wire [7:0] SyncMem_io_dataOut_bits_MPORT_2_data; // @[Ram.scala 18:30]
+  wire  SyncMem_io_dataOut_bits_MPORT_3_en; // @[Ram.scala 18:30]
+  wire [7:0] SyncMem_io_dataOut_bits_MPORT_3_addr; // @[Ram.scala 18:30]
+  wire [7:0] SyncMem_io_dataOut_bits_MPORT_3_data; // @[Ram.scala 18:30]
   reg  SyncMem_io_dataOut_bits_MPORT_en_pipe_0;
   reg [7:0] SyncMem_io_dataOut_bits_MPORT_addr_pipe_0;
+  reg  SyncMem_io_dataOut_bits_MPORT_1_en_pipe_0;
+  reg [7:0] SyncMem_io_dataOut_bits_MPORT_1_addr_pipe_0;
+  reg  SyncMem_io_dataOut_bits_MPORT_2_en_pipe_0;
+  reg [7:0] SyncMem_io_dataOut_bits_MPORT_2_addr_pipe_0;
+  reg  SyncMem_io_dataOut_bits_MPORT_3_en_pipe_0;
+  reg [7:0] SyncMem_io_dataOut_bits_MPORT_3_addr_pipe_0;
   reg  inst_valid; // @[Ram.scala 22:29]
+  wire [63:0] _io_dataOut_bits_T_1 = io_pc_bits + 64'h3; // @[Ram.scala 26:51]
+  wire [63:0] _io_dataOut_bits_T_5 = io_pc_bits + 64'h2; // @[Ram.scala 26:94]
+  wire [63:0] _io_dataOut_bits_T_9 = io_pc_bits + 64'h1; // @[Ram.scala 27:32]
+  wire [15:0] io_dataOut_bits_lo = {SyncMem_io_dataOut_bits_MPORT_2_data,SyncMem_io_dataOut_bits_MPORT_3_data}; // @[Cat.scala 33:92]
+  wire [15:0] io_dataOut_bits_hi = {SyncMem_io_dataOut_bits_MPORT_data,SyncMem_io_dataOut_bits_MPORT_1_data}; // @[Cat.scala 33:92]
   assign SyncMem_io_dataOut_bits_MPORT_en = SyncMem_io_dataOut_bits_MPORT_en_pipe_0;
   assign SyncMem_io_dataOut_bits_MPORT_addr = SyncMem_io_dataOut_bits_MPORT_addr_pipe_0;
   assign SyncMem_io_dataOut_bits_MPORT_data = SyncMem[SyncMem_io_dataOut_bits_MPORT_addr]; // @[Ram.scala 18:30]
+  assign SyncMem_io_dataOut_bits_MPORT_1_en = SyncMem_io_dataOut_bits_MPORT_1_en_pipe_0;
+  assign SyncMem_io_dataOut_bits_MPORT_1_addr = SyncMem_io_dataOut_bits_MPORT_1_addr_pipe_0;
+  assign SyncMem_io_dataOut_bits_MPORT_1_data = SyncMem[SyncMem_io_dataOut_bits_MPORT_1_addr]; // @[Ram.scala 18:30]
+  assign SyncMem_io_dataOut_bits_MPORT_2_en = SyncMem_io_dataOut_bits_MPORT_2_en_pipe_0;
+  assign SyncMem_io_dataOut_bits_MPORT_2_addr = SyncMem_io_dataOut_bits_MPORT_2_addr_pipe_0;
+  assign SyncMem_io_dataOut_bits_MPORT_2_data = SyncMem[SyncMem_io_dataOut_bits_MPORT_2_addr]; // @[Ram.scala 18:30]
+  assign SyncMem_io_dataOut_bits_MPORT_3_en = SyncMem_io_dataOut_bits_MPORT_3_en_pipe_0;
+  assign SyncMem_io_dataOut_bits_MPORT_3_addr = SyncMem_io_dataOut_bits_MPORT_3_addr_pipe_0;
+  assign SyncMem_io_dataOut_bits_MPORT_3_data = SyncMem[SyncMem_io_dataOut_bits_MPORT_3_addr]; // @[Ram.scala 18:30]
   assign io_dataOut_valid = inst_valid; // @[Ram.scala 23:22]
-  assign io_dataOut_bits = SyncMem_io_dataOut_bits_MPORT_data[31:0]; // @[Ram.scala 25:21]
+  assign io_dataOut_bits = {io_dataOut_bits_hi,io_dataOut_bits_lo}; // @[Cat.scala 33:92]
   always @(posedge clock) begin
     SyncMem_io_dataOut_bits_MPORT_en_pipe_0 <= io_pc_valid;
     if (io_pc_valid) begin
-      SyncMem_io_dataOut_bits_MPORT_addr_pipe_0 <= io_pc_bits[7:0];
+      SyncMem_io_dataOut_bits_MPORT_addr_pipe_0 <= _io_dataOut_bits_T_1[7:0];
+    end
+    SyncMem_io_dataOut_bits_MPORT_1_en_pipe_0 <= io_pc_valid;
+    if (io_pc_valid) begin
+      SyncMem_io_dataOut_bits_MPORT_1_addr_pipe_0 <= _io_dataOut_bits_T_5[7:0];
+    end
+    SyncMem_io_dataOut_bits_MPORT_2_en_pipe_0 <= io_pc_valid;
+    if (io_pc_valid) begin
+      SyncMem_io_dataOut_bits_MPORT_2_addr_pipe_0 <= _io_dataOut_bits_T_9[7:0];
+    end
+    SyncMem_io_dataOut_bits_MPORT_3_en_pipe_0 <= io_pc_valid;
+    if (io_pc_valid) begin
+      SyncMem_io_dataOut_bits_MPORT_3_addr_pipe_0 <= io_pc_bits[7:0];
     end
     inst_valid <= io_pc_valid; // @[Ram.scala 22:29]
   end
@@ -174,7 +221,19 @@ initial begin
   _RAND_1 = {1{`RANDOM}};
   SyncMem_io_dataOut_bits_MPORT_addr_pipe_0 = _RAND_1[7:0];
   _RAND_2 = {1{`RANDOM}};
-  inst_valid = _RAND_2[0:0];
+  SyncMem_io_dataOut_bits_MPORT_1_en_pipe_0 = _RAND_2[0:0];
+  _RAND_3 = {1{`RANDOM}};
+  SyncMem_io_dataOut_bits_MPORT_1_addr_pipe_0 = _RAND_3[7:0];
+  _RAND_4 = {1{`RANDOM}};
+  SyncMem_io_dataOut_bits_MPORT_2_en_pipe_0 = _RAND_4[0:0];
+  _RAND_5 = {1{`RANDOM}};
+  SyncMem_io_dataOut_bits_MPORT_2_addr_pipe_0 = _RAND_5[7:0];
+  _RAND_6 = {1{`RANDOM}};
+  SyncMem_io_dataOut_bits_MPORT_3_en_pipe_0 = _RAND_6[0:0];
+  _RAND_7 = {1{`RANDOM}};
+  SyncMem_io_dataOut_bits_MPORT_3_addr_pipe_0 = _RAND_7[7:0];
+  _RAND_8 = {1{`RANDOM}};
+  inst_valid = _RAND_8[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
   $readmemh("inst", SyncMem);

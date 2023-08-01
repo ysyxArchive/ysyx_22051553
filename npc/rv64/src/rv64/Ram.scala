@@ -23,7 +23,8 @@ class Ram extends Module{
     io.dataOut.valid := inst_valid
     
     //当io.pc.valid为0时，默认读出SyncMem[0]的数据
-    io.dataOut.bits := Cat(SyncMem.read(io.pc.bits+3.U, io.pc.valid), SyncMem.read(io.pc.bits+2.U, io.pc.valid),
-        SyncMem.read(io.pc.bits+1.U, io.pc.valid), SyncMem.read(io.pc.bits, io.pc.valid))
-
+    io.dataOut.bits := Mux(io.dataOut.valid, 
+        Cat(SyncMem.read(io.pc.bits+3.U, io.pc.valid), SyncMem.read(io.pc.bits+2.U, io.pc.valid),
+            SyncMem.read(io.pc.bits+1.U, io.pc.valid), SyncMem.read(io.pc.bits, io.pc.valid)),
+        0.U(32.W))
 }
