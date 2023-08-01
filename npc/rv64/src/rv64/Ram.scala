@@ -16,7 +16,7 @@ class Ram extends Module{
     val io = IO(new RamIO) //在没有extend Module时，IO报错
    
     val SyncMem = SyncReadMem(256, UInt(PC_LEN.W))
-    loadMemoryFromFileInline(SyncMem, "../inst")
+    loadMemoryFromFileInline(SyncMem, "inst")
 
 
     val inst_valid = RegNext(io.pc.valid)
