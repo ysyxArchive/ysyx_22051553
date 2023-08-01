@@ -21,8 +21,8 @@ class Core extends Module{
     //DataPath -----------------------------------------
 
     //五级
-    // val fetch = Module(new Fetch)
-    val decode = Module(new Decode)
+    val fetch = Module(new Fetch)
+    // val decode = Module(new Decode)
     val excute = Module(new Excute)
     // val mem = new Mem              使用包名来避免冲突
     val mem = Module(new rv64.Mem)
