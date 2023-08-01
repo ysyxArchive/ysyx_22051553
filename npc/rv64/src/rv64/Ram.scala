@@ -15,12 +15,15 @@ class Ram extends Module{
    
     val io = IO(new RamIO) //在没有extend Module时，IO报错
    
-    val SyncMem = SyncReadMem(256, UInt(PC_LEN.W))
+    val SyncMem = SyncReadMem(256, UInt(8.W))
     loadMemoryFromFileInline(SyncMem, "inst")
 
 
     val inst_valid = RegNext(io.pc.valid)
     io.dataOut.valid := inst_valid
     
-    io.dataOut.bits := SyncMem.read(io.pc.bits, io.pc.valid)      //当io.pc.valid为0时，默认读出SyncMem[0]的数据
+    //当io.pc.valid为0时，默认读出SyncMem[0]的数据
+    io.dataOut.bits := Cat(SyncMem.read(io.pc.bits+3.U, io.pc.valid), SyncMem.read(io.pc.bits+2.U, io.pc.valid),
+        SyncMem.read(io.pc.bits+1.U, io.pc.valid), SyncMem.read(io.pc.bits, io.pc.valid))
+
 }
