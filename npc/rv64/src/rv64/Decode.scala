@@ -50,18 +50,21 @@ class Decode extends Module {
 
     io.deio.op_a := MuxLookup(
         cu.io.opa_type,
-        io.fdio.pc,
+        0.U,
         Seq(
+            ControlUnit.A_ZERO -> 0.U,
             ControlUnit.A_PC -> io.fdio.pc,
             ControlUnit.A_REG1 -> io.rfio.reg1_rdata
         )
     )
     io.deio.op_b := MuxLookup(
         cu.io.opb_type,
-        eximm.io.eximm,
+        0.U,
         Seq(
+            ControlUnit.B_ZERO -> 0.U,
             ControlUnit.B_IMM -> eximm.io.eximm,
-            ControlUnit.B_REG2 -> io.rfio.reg2_rdata
+            ControlUnit.B_REG2 -> io.rfio.reg2_rdata,
+            ControlUnit.B_CONS4 -> 4.U
         )
     )
 

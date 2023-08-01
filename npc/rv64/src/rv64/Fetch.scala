@@ -7,13 +7,12 @@ import Define._
 
 
 class FetchIO extends Bundle {
-    // val if_stall = Input(Bool())
-    // val if_jump_flag = Input(Bool())
-    // val if_jump_pc = Input(UInt(PC_LEN.W))
     //流水线
     val fdio = Output(new FDRegIO)
     //to ram
     val pc = Output(ValidIO(UInt(PC_LEN.W)))
+    //from FlowControl
+    val fcfe = Flipped(new FcFeIO)
 }
 
 
@@ -25,10 +24,27 @@ class Fetch extends Module{
     started := true.B
 
     val pc = RegInit(("h80000000".U)(PC_LEN.W))          //为什么不能用PC_START 
-    val next_pc = Mux(started, pc+4.U, pc)
-    pc := next_pc
+    val next_pc = MuxCase(
+        pc,
+        Seq(
+            (started === 1.B) -> (pc+4.U),
+            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> (io.fcfe.jump_pc+4.U)
+        )
+    )
+    pc := Mux(io.fcfe.stall, pc, next_pc)
 
-    io.fdio.pc := pc
-    io.pc.bits := pc
+    io.fdio.pc := MuxCase(
+        pc,
+        Seq(
+            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc    
+        )
+    )
+
+    io.pc.bits := MuxCase(
+        pc,
+        Seq(
+            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc    //直接变寻址地址
+        )
+    )
     io.pc.valid := started
 }

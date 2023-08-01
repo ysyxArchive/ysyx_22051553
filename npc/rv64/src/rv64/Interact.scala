@@ -31,7 +31,7 @@ class Interact extends BlackBox with HasBlackBoxInline{  //起始应该放到写
         |       end
         |   end
         |
-        |   always@(posedge clk)begin
+        |   always@(posedge clk)begin  //需要等前面指令执行结束，再停止程序
         |       if(rst)
         |           over_count <= 'd0;
         |       else begin

@@ -645,8 +645,6 @@ module Interact(input [31:0] inst,
        else
        if(inst == 32'b00000000000100000000000001110011)begin
            ebreak_flag <= 1'b1;
-           $display("ebreak hit!");
-           $finish;
        end
    end
 

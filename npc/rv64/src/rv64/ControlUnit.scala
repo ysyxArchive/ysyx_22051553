@@ -6,26 +6,28 @@ import Define._
 import Alu._
 
 object ControlUnit {    //译码特征, 类型、需要做哪些任务
-    //addr_type
-    val ADDR_DEFAULT = 0.U
-    val PC = 0.U
-    val PC_4 = 1.U
-    val ADDR_0 = 2.U   //地址为0
+    //jump_type
+    val NO_JUMP = 0.U
+    val JUMP_JAL = 1.U
+    val JUMP_JALR= 2.U
+    val JUMP_B = 3 .U
 
     //opa_type
-    val A_DEFAULT = 0.U
-    val A_PC = 0.U             //使用地址相关数据
-    val A_REG1 = 1.U
+    val A_ZERO = 0.U
+    val A_PC = 1.U             //使用PC
+    val A_REG1 = 2.U
 
     //opb_type
-    val B_DEFAULT = 0.U
-    val B_IMM = 0.U
-    val B_REG2 = 1.U
+    val B_ZERO = 0.U
+    val B_IMM = 1.U
+    val B_REG2 = 2.U
+    val B_CONS4 = 3.U
 
     //imm_type
     val IMM_DEFAULT = 0.U
     val IMM_I       = 0.U
     val IMM_U       = 1.U
+    val IMM_J       = 2.U          //JAL
 
     //wb_type   --用什么结果写回
     val WB_NO   = 0.U   //不写回
@@ -36,13 +38,16 @@ object ControlUnit {    //译码特征, 类型、需要做哪些任务
     // 对照表
     val default = 
 
-        List(ADDR_DEFAULT, A_DEFAULT, B_DEFAULT, IMM_DEFAULT, ALU_NO_OP, WB_NO)
+        List(NO_JUMP, A_ZERO, B_ZERO, IMM_DEFAULT, ALU_NO_OP, WB_NO)
 
     
     val map = Array(
         BitPat("b00000000000000000000000000010011") -> default,               //NOP
-        ADDI -> List(ADDR_DEFAULT, A_REG1, B_IMM, IMM_I, ALU_ADD, WB_ALU),
-        AUIPC -> List(PC, A_PC, B_IMM, IMM_U, ALU_ADD, WB_ALU)
+        ADDI -> List(NO_JUMP, A_REG1, B_IMM, IMM_I, ALU_ADD, WB_ALU),
+        AUIPC -> List(NO_JUMP, A_PC, B_IMM, IMM_U, ALU_ADD, WB_ALU),
+        LUI -> List(NO_JUMP, A_ZERO, B_IMM, IMM_U, ALU_ADD, WB_ALU),
+        JAL -> List(JUMP_JAL, A_PC, B_CONS4, IMM_J, ALU_ADD, WB_ALU)
+
     )
 }
 
@@ -60,7 +65,7 @@ class CUIO extends Bundle {
 class ControlUnit extends Module{
     val io = IO(new CUIO)
 
-    val controlsig = ListLookup(io.inst, ControlUnit.default, ControlUnit.map)   //若写map会报错
+    val controlsig = ListLookup(io.inst, ControlUnit.default, ControlUnit.map)   //若写map会报错,专用于指令的
 
     
     io.addr_type    := controlsig(0)
