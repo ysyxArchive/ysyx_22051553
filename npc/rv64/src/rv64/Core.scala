@@ -28,7 +28,7 @@ class Core extends Module{
     val mem = Module(new rv64.Mem)
     val wb = Module(new Wb)
 
-    //流水线寄存器
+    //纯粹的流水线寄存器
     val fdreg = RegInit(
         (new FDRegIO).Lit(
             _.pc -> PC_START
