@@ -22,7 +22,6 @@ class Core extends Module{
 
     //五级
     val fetch = Module(new Fetch)
-    dontTouch(fetch.io.fdio)
     val decode = Module(new Decode)
     val excute = Module(new Excute)
     // val mem = new Mem              使用包名来避免冲突
