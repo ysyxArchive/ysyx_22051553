@@ -144,11 +144,11 @@ module Ram(
   reg  SyncMem_io_dataOut_bits_MPORT_3_en_pipe_0;
   reg [7:0] SyncMem_io_dataOut_bits_MPORT_3_addr_pipe_0;
   reg  inst_valid; // @[Ram.scala 22:29]
-  wire [63:0] _io_dataOut_bits_T_1 = io_pc_bits + 64'h3; // @[Ram.scala 26:51]
-  wire [63:0] _io_dataOut_bits_T_5 = io_pc_bits + 64'h2; // @[Ram.scala 26:94]
-  wire [63:0] _io_dataOut_bits_T_9 = io_pc_bits + 64'h1; // @[Ram.scala 27:32]
-  wire [15:0] io_dataOut_bits_lo = {SyncMem_io_dataOut_bits_MPORT_2_data,SyncMem_io_dataOut_bits_MPORT_3_data}; // @[Cat.scala 33:92]
-  wire [15:0] io_dataOut_bits_hi = {SyncMem_io_dataOut_bits_MPORT_data,SyncMem_io_dataOut_bits_MPORT_1_data}; // @[Cat.scala 33:92]
+  wire [63:0] _io_dataOut_bits_T_1 = io_pc_bits + 64'h3; // @[Ram.scala 27:36]
+  wire [63:0] _io_dataOut_bits_T_5 = io_pc_bits + 64'h2; // @[Ram.scala 27:79]
+  wire [63:0] _io_dataOut_bits_T_9 = io_pc_bits + 64'h1; // @[Ram.scala 28:36]
+  wire [31:0] _io_dataOut_bits_T_14 = {SyncMem_io_dataOut_bits_MPORT_data,SyncMem_io_dataOut_bits_MPORT_1_data,
+    SyncMem_io_dataOut_bits_MPORT_2_data,SyncMem_io_dataOut_bits_MPORT_3_data}; // @[Cat.scala 33:92]
   assign SyncMem_io_dataOut_bits_MPORT_en = SyncMem_io_dataOut_bits_MPORT_en_pipe_0;
   assign SyncMem_io_dataOut_bits_MPORT_addr = SyncMem_io_dataOut_bits_MPORT_addr_pipe_0;
   assign SyncMem_io_dataOut_bits_MPORT_data = SyncMem[SyncMem_io_dataOut_bits_MPORT_addr]; // @[Ram.scala 18:30]
@@ -162,7 +162,7 @@ module Ram(
   assign SyncMem_io_dataOut_bits_MPORT_3_addr = SyncMem_io_dataOut_bits_MPORT_3_addr_pipe_0;
   assign SyncMem_io_dataOut_bits_MPORT_3_data = SyncMem[SyncMem_io_dataOut_bits_MPORT_3_addr]; // @[Ram.scala 18:30]
   assign io_dataOut_valid = inst_valid; // @[Ram.scala 23:22]
-  assign io_dataOut_bits = {io_dataOut_bits_hi,io_dataOut_bits_lo}; // @[Cat.scala 33:92]
+  assign io_dataOut_bits = io_dataOut_valid ? _io_dataOut_bits_T_14 : 32'h0; // @[Ram.scala 26:27]
   always @(posedge clock) begin
     SyncMem_io_dataOut_bits_MPORT_en_pipe_0 <= io_pc_valid;
     if (io_pc_valid) begin

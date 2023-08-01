@@ -18,18 +18,19 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___nba_sequent__TOP__0\n"); );
     // Body
     if (VL_UNLIKELY((0x100073U == ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                    ? (((vlSelf->Soc__DOT__ram__DOT__SyncMem
-                                         [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0] 
-                                         << 0x18U) 
-                                        | (vlSelf->Soc__DOT__ram__DOT__SyncMem
-                                           [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_1_addr_pipe_0] 
-                                           << 0x10U)) 
-                                       | ((vlSelf->Soc__DOT__ram__DOT__SyncMem
-                                           [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_2_addr_pipe_0] 
-                                           << 8U) | 
-                                          vlSelf->Soc__DOT__ram__DOT__SyncMem
-                                          [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_3_addr_pipe_0]))
-                                    : 0U)))) {
+                                    ? ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
+                                        ? ((vlSelf->Soc__DOT__ram__DOT__SyncMem
+                                            [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_addr_pipe_0] 
+                                            << 0x18U) 
+                                           | ((vlSelf->Soc__DOT__ram__DOT__SyncMem
+                                               [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_1_addr_pipe_0] 
+                                               << 0x10U) 
+                                              | ((vlSelf->Soc__DOT__ram__DOT__SyncMem
+                                                  [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_2_addr_pipe_0] 
+                                                  << 8U) 
+                                                 | vlSelf->Soc__DOT__ram__DOT__SyncMem
+                                                 [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_3_addr_pipe_0])))
+                                        : 0U) : 0U)))) {
         VL_FINISH_MT("vsrc/Interact.v", 8, "");
     }
     if (vlSelf->Soc__DOT__core__DOT__fetch__DOT__started) {
