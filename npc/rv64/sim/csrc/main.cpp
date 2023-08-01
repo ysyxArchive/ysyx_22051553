@@ -1,11 +1,11 @@
 #include <verilated_vcd_c.h>
 #include <verilated.h>
-#include "VCore.h"
+#include "VSoc.h"
 #include <iostream>
 
 vluint64_t sim_time = 0;
 
-static VCore dut;
+static VSoc dut;
 
 static void single_cycle() {  //clock总是为1
   dut.clock = 0; dut.eval();
@@ -31,31 +31,14 @@ int main(int argc, char **argv) {
   dut.trace(vcd,0);
   vcd->open("wave.vcd");
 
-  dut.io_ramio_dataOut_valid = 0;
-  dut.io_ramio_dataOut_bits = 0x00a30313;
 
-  reset(2);             //verilog中使用finish会直接导致仿真程序结束
+  reset(2);        
 
-  while(!Verilated::gotFinish()){
-    //从下降延开始
-    if(sim_time == 2)
-      dut.io_ramio_dataOut_valid = 1;
-    else if(sim_time == 4)
-      dut.io_ramio_dataOut_valid = 0;
-
-    if(sim_time == 8){
-      dut.io_ramio_dataOut_valid = 1;
-      dut.io_ramio_dataOut_bits = 0b00000000000100000000000001110011;
-    }
-    else if(sim_time == 10){
-      dut.io_ramio_dataOut_valid = 0;
-    }
-      
+  while(!Verilated::gotFinish()){      
     edge_change();   //第一次进入时，是第一个下降沿
     vcd->dump(sim_time);
     sim_time++;
   }
-
 
   vcd->close();
     

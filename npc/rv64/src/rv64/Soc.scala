@@ -10,5 +10,7 @@ class Soc extends Module{
     val core = Module(new Core)
     val ram = Module(new Ram)
 
-    core.io.ramio <> ram.io
+    core.io.ramio.dataOut := ram.io.dataOut
+    ram.io.pc.bits := core.io.ramio.pc.bits - "h80000000".U(PC_LEN.W)
+    ram.io.pc.valid := core.io.ramio.pc.valid
 }
