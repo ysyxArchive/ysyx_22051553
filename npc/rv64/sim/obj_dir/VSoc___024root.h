@@ -22,6 +22,8 @@ class VSoc___024root final : public VerilatedModule {
     CData/*4:0*/ Soc__DOT__core__DOT__emreg_rd;
     CData/*1:0*/ Soc__DOT__core__DOT__mwreg_wb_type;
     CData/*4:0*/ Soc__DOT__core__DOT__mwreg_rd;
+    CData/*0:0*/ Soc__DOT__core__DOT__interact__DOT__ebreak_flag;
+    CData/*2:0*/ Soc__DOT__core__DOT__interact__DOT__over_count;
     CData/*0:0*/ Soc__DOT__core__DOT__fetch__DOT__started;
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___controlsig_T_9;
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h166f560e__0;
