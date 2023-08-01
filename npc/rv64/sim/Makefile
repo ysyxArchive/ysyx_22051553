@@ -2,6 +2,8 @@ Module := VSoc
 
 
 compile:
+	rm vsrc/*.v
+	cp ../build/*.v vsrc/
 	verilator -cc -trace vsrc/*.v -top-module Soc
 
 wave:
