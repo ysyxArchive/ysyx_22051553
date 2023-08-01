@@ -16,14 +16,14 @@ class Interact extends BlackBox with HasBlackBoxInline{  //起始应该放到写
         """
         |module Interact(input [31:0] inst,
         |                input  clk,
-        |                input  reset
+        |                input  rst
         |);
         |   
         |   reg ebreak_flag;
         |   reg [2:0] over_count;
         |
         |   always@(posedge clk)begin
-        |       if(reset)
+        |       if(rst)
         |           ebreak_flag <= 1'b0;
         |       else
         |       if(inst == 32'b00000000000100000000000001110011)begin
@@ -34,7 +34,7 @@ class Interact extends BlackBox with HasBlackBoxInline{  //起始应该放到写
         |   end
         |
         |   always@(posedge clk)begin
-        |       if(reset)
+        |       if(rst)
         |           over_count <= 'd0;
         |       else begin
         |           if(ebreak_flag)begin
