@@ -42,6 +42,11 @@ int main(int argc, char **argv) {
     //   break;
   }
 
+  for(int over = 10; over > 0; over --){
+    edge_change();   //第一次进入时，是第一个下降沿
+    vcd->dump(sim_time);
+  }
+
   vcd->close();
     
 }

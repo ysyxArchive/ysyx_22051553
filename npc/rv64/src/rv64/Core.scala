@@ -17,6 +17,7 @@ class Core extends Module{
     val interact = Module(new Interact)
     interact.io.inst := Mux(io.ramio.dataOut.valid, io.ramio.dataOut.bits, 0.U)
     interact.io.clk := clock   //可以直接显式使用clock
+    interact.io.rst := reset
 
     //DataPath -----------------------------------------
 
