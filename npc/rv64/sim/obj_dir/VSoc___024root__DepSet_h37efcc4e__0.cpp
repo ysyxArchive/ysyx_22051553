@@ -31,7 +31,8 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
                                                  | vlSelf->Soc__DOT__ram__DOT__SyncMem
                                                  [vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_3_addr_pipe_0])))
                                         : 0U) : 0U)))) {
-        VL_FINISH_MT("vsrc/Interact.v", 8, "");
+        VL_WRITEF("ebreak hit!\n");
+        VL_FINISH_MT("vsrc/Interact.v", 9, "");
     }
     if (vlSelf->Soc__DOT__core__DOT__fetch__DOT__started) {
         vlSelf->Soc__DOT__ram__DOT__SyncMem_io_dataOut_bits_MPORT_3_en_pipe_0 = 1U;
