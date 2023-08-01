@@ -42,7 +42,7 @@ object ControlUnit {    //译码特征, 类型、需要做哪些任务
     val map = Array(
         BitPat("b00000000000000000000000000010011") -> default,               //NOP
         ADDI -> List(ADDR_DEFAULT, A_REG1, B_IMM, IMM_I, ALU_ADD, WB_ALU),
-        // AUIPC -> List(PC, A_PC, B_IMM, IMM_U, ALU_ADD, WB_ALU)
+        AUIPC -> List(PC, A_PC, B_IMM, IMM_U, ALU_ADD, WB_ALU)
     )
 }
 
