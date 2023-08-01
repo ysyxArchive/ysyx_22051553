@@ -13,10 +13,10 @@ class CoreIO extends Bundle {
 class Core extends Module{
     val io = IO(new CoreIO)
 
-    // //interact
-    // val interact = Module(new Interact)
-    // interact.io.inst := Mux(io.ramio.dataOut.valid, io.ramio.dataOut.bits, 0.U)
-    // interact.io.clk := clock   //可以直接显式使用clock
+    //interact
+    val interact = Module(new Interact)
+    interact.io.inst := Mux(io.ramio.dataOut.valid, io.ramio.dataOut.bits, 0.U)
+    interact.io.clk := clock   //可以直接显式使用clock
 
     //DataPath -----------------------------------------
 
