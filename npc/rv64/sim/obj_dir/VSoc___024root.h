@@ -44,6 +44,7 @@ class VSoc___024root final : public VerilatedModule {
     CData/*7:0*/ Soc__DOT__ram__DOT__SyncMem_ext__DOT___GEN_4;
     CData/*0:0*/ Soc__DOT__ram__DOT__SyncMem_ext__DOT___GEN_5;
     CData/*7:0*/ Soc__DOT__ram__DOT__SyncMem_ext__DOT___GEN_6;
+    CData/*4:0*/ __VdfgTmp_h049a0a75__0;
     CData/*7:0*/ __VdfgTmp_h7cec4c01__0;
     CData/*7:0*/ __VdfgTmp_h483daa03__0;
     CData/*0:0*/ __Vtrigrprev__TOP__clock;
@@ -53,7 +54,6 @@ class VSoc___024root final : public VerilatedModule {
     IData/*31:0*/ Soc__DOT___ram_io_dataOut_bits;
     IData/*31:0*/ Soc__DOT__core__DOT__decode__DOT___inst_T;
     IData/*31:0*/ __VdfgTmp_h27324541__0;
-    IData/*23:0*/ __VdfgTmp_h7f65c8dc__0;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VactIterCount;
     QData/*63:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;

@@ -41,19 +41,11 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgCData(oldp+20,(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type),2);
         bufp->chgCData(oldp+21,(vlSelf->Soc__DOT__core__DOT__mwreg_rd),5);
         bufp->chgQData(oldp+22,((((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid) 
-                                  & (0U != ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                             ? (0x1fU 
-                                                & (vlSelf->__VdfgTmp_h7f65c8dc__0 
-                                                   >> 0xfU))
-                                             : 0U)))
+                                  & (0U != (IData)(vlSelf->__VdfgTmp_h049a0a75__0)))
                                   ? vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
                                  [((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                    ? ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                        ? (0x1fU & 
-                                           (vlSelf->__VdfgTmp_h7f65c8dc__0 
-                                            >> 0xfU))
-                                        : 0U) : 0U)]
-                                  : 0ULL)),64);
+                                    ? (IData)(vlSelf->__VdfgTmp_h049a0a75__0)
+                                    : 0U)] : 0ULL)),64);
         bufp->chgQData(oldp+24,((((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid) 
                                   & (0U != ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                              ? (0x1fU 
@@ -69,10 +61,8 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                         : 0U) : 0U)]
                                   : 0ULL)),64);
         bufp->chgCData(oldp+26,(((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                  ? ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                      ? (0x1fU & (vlSelf->__VdfgTmp_h7f65c8dc__0 
-                                                  >> 0xfU))
-                                      : 0U) : 0U)),5);
+                                  ? (IData)(vlSelf->__VdfgTmp_h049a0a75__0)
+                                  : 0U)),5);
         bufp->chgCData(oldp+27,(((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                   ? ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                       ? (0x1fU & (vlSelf->__VdfgTmp_h27324541__0 
@@ -103,10 +93,18 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgQData(oldp+36,(((1U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type))
                                   ? (vlSelf->Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm 
                                      + vlSelf->Soc__DOT__core__DOT__fdreg_pc)
-                                  : (QData)((IData)(
-                                                    ((2U 
-                                                      != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type)) 
-                                                     << 0x1fU))))),64);
+                                  : ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type))
+                                      ? (0xfffffffffffffffeULL 
+                                         & (vlSelf->Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm 
+                                            + (((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid) 
+                                                & (0U 
+                                                   != (IData)(vlSelf->__VdfgTmp_h049a0a75__0)))
+                                                ? vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
+                                               [((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
+                                                  ? (IData)(vlSelf->__VdfgTmp_h049a0a75__0)
+                                                  : 0U)]
+                                                : 0ULL)))
+                                      : 0x80000000ULL))),64);
         bufp->chgIData(oldp+38,(vlSelf->Soc__DOT__core__DOT__decode__DOT___inst_T),32);
         bufp->chgCData(oldp+39,(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type),2);
         bufp->chgBit(oldp+40,(((0x13U != vlSelf->Soc__DOT__core__DOT__decode__DOT___inst_T) 
@@ -143,10 +141,8 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                 [vlSelf->Soc__DOT__core__DOT__mwreg_rd]),64);
         bufp->chgQData(oldp+59,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
                                 [((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                   ? ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                       ? (0x1fU & (vlSelf->__VdfgTmp_h7f65c8dc__0 
-                                                   >> 0xfU))
-                                       : 0U) : 0U)]),64);
+                                   ? (IData)(vlSelf->__VdfgTmp_h049a0a75__0)
+                                   : 0U)]),64);
         bufp->chgQData(oldp+61,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
                                 [((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                    ? ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)

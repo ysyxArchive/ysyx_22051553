@@ -305,7 +305,8 @@ module Decode(	// <stdin>:138:10
   assign io_deio_op_b = _cu_io_opb_type ? _eximm_io_eximm : 64'h0;	// <stdin>:138:10, Decode.scala:39:20, :40:23, Mux.scala:81:58
   assign io_deio_rd = _inst_T[11:7];	// <stdin>:138:10, Decode.scala:43:16, :46:15
   assign io_jump_flag = _io_jump_pc_T | _io_jump_pc_T_3;	// <stdin>:138:10, Decode.scala:80:{38,63,82}
-  assign io_jump_pc = _io_jump_pc_T ? io_fdio_pc + _eximm_io_eximm : {32'h0, ~_io_jump_pc_T_3, 31'h0};	// <stdin>:138:10, Decode.scala:40:23, :80:{38,82}, :84:71, Mux.scala:101:16
+  assign io_jump_pc = _io_jump_pc_T ? io_fdio_pc + _eximm_io_eximm : _io_jump_pc_T_3 ? io_rfio_reg1_rdata +
+                _eximm_io_eximm & 64'hFFFFFFFFFFFFFFFE : 64'h80000000;	// <stdin>:138:10, Decode.scala:40:23, :80:{38,82}, :84:71, :85:{81,99,102}, Mux.scala:101:16
 endmodule
 
 module Alu(	// <stdin>:200:10
@@ -733,4 +734,6 @@ module Interact(input [31:0] inst,
 
    
 endmodule
+        
+
 

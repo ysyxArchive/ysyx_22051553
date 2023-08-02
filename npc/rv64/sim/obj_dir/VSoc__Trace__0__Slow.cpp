@@ -244,17 +244,11 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+21,(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type),2);
     bufp->fullCData(oldp+22,(vlSelf->Soc__DOT__core__DOT__mwreg_rd),5);
     bufp->fullQData(oldp+23,((((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid) 
-                               & (0U != ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                          ? (0x1fU 
-                                             & (vlSelf->__VdfgTmp_h7f65c8dc__0 
-                                                >> 0xfU))
-                                          : 0U))) ? 
-                              vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
+                               & (0U != (IData)(vlSelf->__VdfgTmp_h049a0a75__0)))
+                               ? vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
                               [((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                 ? ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                     ? (0x1fU & (vlSelf->__VdfgTmp_h7f65c8dc__0 
-                                                 >> 0xfU))
-                                     : 0U) : 0U)] : 0ULL)),64);
+                                 ? (IData)(vlSelf->__VdfgTmp_h049a0a75__0)
+                                 : 0U)] : 0ULL)),64);
     bufp->fullQData(oldp+25,((((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid) 
                                & (0U != ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                           ? (0x1fU 
@@ -268,10 +262,8 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                  >> 0x14U))
                                      : 0U) : 0U)] : 0ULL)),64);
     bufp->fullCData(oldp+27,(((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                               ? ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                   ? (0x1fU & (vlSelf->__VdfgTmp_h7f65c8dc__0 
-                                               >> 0xfU))
-                                   : 0U) : 0U)),5);
+                               ? (IData)(vlSelf->__VdfgTmp_h049a0a75__0)
+                               : 0U)),5);
     bufp->fullCData(oldp+28,(((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                ? ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                    ? (0x1fU & (vlSelf->__VdfgTmp_h27324541__0 
@@ -301,9 +293,18 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullQData(oldp+37,(((1U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type))
                                ? (vlSelf->Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm 
                                   + vlSelf->Soc__DOT__core__DOT__fdreg_pc)
-                               : (QData)((IData)(((2U 
-                                                   != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type)) 
-                                                  << 0x1fU))))),64);
+                               : ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type))
+                                   ? (0xfffffffffffffffeULL 
+                                      & (vlSelf->Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm 
+                                         + (((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid) 
+                                             & (0U 
+                                                != (IData)(vlSelf->__VdfgTmp_h049a0a75__0)))
+                                             ? vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
+                                            [((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
+                                               ? (IData)(vlSelf->__VdfgTmp_h049a0a75__0)
+                                               : 0U)]
+                                             : 0ULL)))
+                                   : 0x80000000ULL))),64);
     bufp->fullIData(oldp+39,(vlSelf->Soc__DOT__core__DOT__decode__DOT___inst_T),32);
     bufp->fullCData(oldp+40,(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type),2);
     bufp->fullBit(oldp+41,(((0x13U != vlSelf->Soc__DOT__core__DOT__decode__DOT___inst_T) 
@@ -339,10 +340,8 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                              [vlSelf->Soc__DOT__core__DOT__mwreg_rd]),64);
     bufp->fullQData(oldp+60,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
                              [((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                ? ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
-                                    ? (0x1fU & (vlSelf->__VdfgTmp_h7f65c8dc__0 
-                                                >> 0xfU))
-                                    : 0U) : 0U)]),64);
+                                ? (IData)(vlSelf->__VdfgTmp_h049a0a75__0)
+                                : 0U)]),64);
     bufp->fullQData(oldp+62,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
                              [((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                 ? ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
