@@ -277,9 +277,11 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                    ? (0x1fU & (vlSelf->__VdfgTmp_h27324541__0 
                                                >> 0x14U))
                                    : 0U) : 0U)),5);
-    bufp->fullQData(oldp+29,((((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h4b61693b__0) 
-                               & ((0x17U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
-                                  | (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h253792fe__0)))
+    bufp->fullQData(oldp+29,((((0x13U != vlSelf->Soc__DOT__core__DOT__decode__DOT___inst_T) 
+                               & ((0x13U != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)) 
+                                  & ((0x17U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
+                                     | ((0x37U != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
+                                        & (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h5d4f4c30__0)))))
                                ? vlSelf->Soc__DOT__core__DOT__fdreg_pc
                                : 0ULL)),64);
     bufp->fullQData(oldp+31,(((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type)
@@ -291,25 +293,27 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                >> 7U))
                                    : 0U) : 0U)),5);
     bufp->fullCData(oldp+34,((0x1fU & (- (IData)((1U 
-                                                  & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)) 
+                                                  & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_0)) 
                                                      | (0x13U 
                                                         == vlSelf->Soc__DOT__core__DOT__decode__DOT___inst_T))))))),5);
     bufp->fullCData(oldp+35,(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type),2);
-    bufp->fullBit(oldp+36,(vlSelf->__VdfgTmp_h35b167b6__0));
-    bufp->fullQData(oldp+37,(((IData)(vlSelf->__VdfgTmp_h35b167b6__0)
+    bufp->fullBit(oldp+36,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_flag));
+    bufp->fullQData(oldp+37,(((1U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type))
                                ? (vlSelf->Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm 
                                   + vlSelf->Soc__DOT__core__DOT__fdreg_pc)
-                               : 0x80000000ULL)),64);
+                               : (QData)((IData)(((2U 
+                                                   != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type)) 
+                                                  << 0x1fU))))),64);
     bufp->fullIData(oldp+39,(vlSelf->Soc__DOT__core__DOT__decode__DOT___inst_T),32);
-    bufp->fullCData(oldp+40,(vlSelf->__VdfgTmp_h35b167b6__0),2);
-    bufp->fullBit(oldp+41,(((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h4b61693b__0) 
-                            & ((0x17U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
-                               | (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h253792fe__0)))));
+    bufp->fullCData(oldp+40,(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type),2);
+    bufp->fullBit(oldp+41,(((0x13U != vlSelf->Soc__DOT__core__DOT__decode__DOT___inst_T) 
+                            & ((0x13U != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)) 
+                               & ((0x17U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
+                                  | ((0x37U != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
+                                     & (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h5d4f4c30__0)))))));
     bufp->fullBit(oldp+42,(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type));
-    bufp->fullCData(oldp+43,((((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT___inst_T) 
-                               | (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___controlsig_T_3))
-                               ? 0U : (((0x17U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
-                                        | (0x37U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)))
+    bufp->fullCData(oldp+43,(((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hd7167e15__0)
+                               ? 0U : ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h86e6c972__0)
                                         ? 1U : ((0x6fU 
                                                  == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
                                                 << 1U)))),2);

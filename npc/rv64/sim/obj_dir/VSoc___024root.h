@@ -15,6 +15,7 @@ class VSoc___024root final : public VerilatedModule {
     // DESIGN SPECIFIC STATE
     VL_IN8(clock,0,0);
     VL_IN8(reset,0,0);
+    CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_flag;
     CData/*4:0*/ Soc__DOT__core__DOT__dereg_rd;
     CData/*4:0*/ Soc__DOT__core__DOT__dereg_alu_op;
     CData/*1:0*/ Soc__DOT__core__DOT__dereg_wb_type;
@@ -25,11 +26,12 @@ class VSoc___024root final : public VerilatedModule {
     CData/*0:0*/ Soc__DOT__core__DOT__interact__DOT__ebreak_flag;
     CData/*2:0*/ Soc__DOT__core__DOT__interact__DOT__over_count;
     CData/*0:0*/ Soc__DOT__core__DOT__fetch__DOT__started;
+    CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type;
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type;
-    CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___controlsig_T_3;
-    CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN;
-    CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h4b61693b__0;
-    CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h253792fe__0;
+    CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_0;
+    CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hd7167e15__0;
+    CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h86e6c972__0;
+    CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h5d4f4c30__0;
     CData/*6:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0;
     CData/*7:0*/ Soc__DOT__ram__DOT___SyncMem_ext_R0_data;
     CData/*7:0*/ Soc__DOT__ram__DOT___SyncMem_ext_R1_data;
@@ -42,11 +44,11 @@ class VSoc___024root final : public VerilatedModule {
     CData/*7:0*/ Soc__DOT__ram__DOT__SyncMem_ext__DOT___GEN_4;
     CData/*0:0*/ Soc__DOT__ram__DOT__SyncMem_ext__DOT___GEN_5;
     CData/*7:0*/ Soc__DOT__ram__DOT__SyncMem_ext__DOT___GEN_6;
-    CData/*0:0*/ __VdfgTmp_h35b167b6__0;
-    CData/*7:0*/ __VdfgTmp_h483daa03__0;
     CData/*7:0*/ __VdfgTmp_h7cec4c01__0;
+    CData/*7:0*/ __VdfgTmp_h483daa03__0;
     CData/*0:0*/ __Vtrigrprev__TOP__clock;
     CData/*0:0*/ __VactContinue;
+    SData/*9:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN;
     SData/*15:0*/ __VdfgTmp_h50f8190e__0;
     IData/*31:0*/ Soc__DOT___ram_io_dataOut_bits;
     IData/*31:0*/ Soc__DOT__core__DOT__decode__DOT___inst_T;
