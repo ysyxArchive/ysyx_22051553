@@ -28,8 +28,9 @@ class VSoc___024root final : public VerilatedModule {
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type;
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___controlsig_T_3;
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN;
+    CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h4b61693b__0;
+    CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h253792fe__0;
     CData/*6:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0;
-    CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0;
     CData/*7:0*/ Soc__DOT__ram__DOT___SyncMem_ext_R0_data;
     CData/*7:0*/ Soc__DOT__ram__DOT___SyncMem_ext_R1_data;
     CData/*0:0*/ Soc__DOT__ram__DOT__inst_valid;
@@ -41,9 +42,9 @@ class VSoc___024root final : public VerilatedModule {
     CData/*7:0*/ Soc__DOT__ram__DOT__SyncMem_ext__DOT___GEN_4;
     CData/*0:0*/ Soc__DOT__ram__DOT__SyncMem_ext__DOT___GEN_5;
     CData/*7:0*/ Soc__DOT__ram__DOT__SyncMem_ext__DOT___GEN_6;
+    CData/*0:0*/ __VdfgTmp_h35b167b6__0;
     CData/*7:0*/ __VdfgTmp_h483daa03__0;
     CData/*7:0*/ __VdfgTmp_h7cec4c01__0;
-    CData/*7:0*/ __VdfgTmp_hae2d2759__0;
     CData/*0:0*/ __Vtrigrprev__TOP__clock;
     CData/*0:0*/ __VactContinue;
     SData/*15:0*/ __VdfgTmp_h50f8190e__0;
@@ -53,12 +54,15 @@ class VSoc___024root final : public VerilatedModule {
     IData/*23:0*/ __VdfgTmp_h7f65c8dc__0;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VactIterCount;
+    QData/*63:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
+    QData/*63:0*/ Soc__DOT__core__DOT___fetch_io_fdio_pc;
     QData/*63:0*/ Soc__DOT__core__DOT__fdreg_pc;
     QData/*63:0*/ Soc__DOT__core__DOT__dereg_op_a;
     QData/*63:0*/ Soc__DOT__core__DOT__dereg_op_b;
     QData/*63:0*/ Soc__DOT__core__DOT__emreg_alu_res;
     QData/*63:0*/ Soc__DOT__core__DOT__mwreg_alu_res;
     QData/*63:0*/ Soc__DOT__core__DOT__fetch__DOT__pc;
+    QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm;
     QData/*63:0*/ Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data;
     VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
     VlUnpacked<CData/*7:0*/, 256> Soc__DOT__ram__DOT__SyncMem_ext__DOT__Memory;

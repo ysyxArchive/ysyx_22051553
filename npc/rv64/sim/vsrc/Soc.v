@@ -65,8 +65,6 @@ module regs_combMem(	// Regfile.scala:32:19
     if (W1_en)	// Regfile.scala:32:19
       Memory[W1_addr] <= W1_data;	// Regfile.scala:32:19
   end // always @(posedge)
-
-  
   `ifndef SYNTHESIS	// Regfile.scala:32:19
     `ifdef RANDOMIZE_MEM_INIT	// Regfile.scala:32:19
       integer initvar;	// Regfile.scala:32:19
@@ -174,6 +172,9 @@ endmodule
 module Fetch(	// <stdin>:8:10
   input         clock,
                 reset,
+                io_fcfe_jump_flag,
+  input  [63:0] io_fcfe_jump_pc,
+  input         io_fcfe_flush,
   output [63:0] io_fdio_pc,
   output        io_pc_valid,
   output [63:0] io_pc_bits);
@@ -189,6 +190,8 @@ module Fetch(	// <stdin>:8:10
       started <= 1'h1;	// Fetch.scala:23:26, :24:13
       if (started)	// Fetch.scala:23:26
         pc <= pc + 64'h4;	// Fetch.scala:26:21, :30:37
+      else if (io_fcfe_flush & io_fcfe_jump_flag)	// Fetch.scala:23:26, :31:36
+        pc <= io_fcfe_jump_pc + 64'h4;	// Fetch.scala:26:21, :30:37, :31:85
     end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:8:10
@@ -214,13 +217,14 @@ module Fetch(	// <stdin>:8:10
       `FIRRTL_AFTER_INITIAL	// <stdin>:8:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
-  assign io_fdio_pc = pc;	// <stdin>:8:10, Fetch.scala:26:21
+  assign io_fdio_pc = io_fcfe_flush & io_fcfe_jump_flag ? io_fcfe_jump_pc : pc;	// <stdin>:8:10, Fetch.scala:26:21, :39:36, Mux.scala:101:16
   assign io_pc_valid = started;	// <stdin>:8:10, Fetch.scala:23:26
-  assign io_pc_bits = pc;	// <stdin>:8:10, Fetch.scala:26:21
+  assign io_pc_bits = io_fcfe_flush & io_fcfe_jump_flag ? io_fcfe_jump_pc : pc;	// <stdin>:8:10, Fetch.scala:26:21, :46:36, Mux.scala:101:16
 endmodule
 
 module ControlUnit(	// <stdin>:43:10
   input  [31:0] io_inst,
+  output [1:0]  io_jump_type,
   output        io_opa_type,
                 io_opb_type,
   output [1:0]  io_imm_type,
@@ -233,6 +237,8 @@ module ControlUnit(	// <stdin>:43:10
   wire _controlsig_T_7 = io_inst[6:0] == 7'h37;	// Lookup.scala:31:38
   wire _controlsig_T_30 = io_inst[6:0] == 7'h6F;	// Lookup.scala:31:38
   wire _GEN = _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 | _controlsig_T_30;	// Lookup.scala:31:38, :34:39
+  assign io_jump_type = {1'h0, ~_controlsig_T_1 & ~_controlsig_T_3 & ~_controlsig_T_5 & ~_controlsig_T_7 &
+                _controlsig_T_30};	// <stdin>:43:10, ControlUnit.scala:71:21, Lookup.scala:31:38, :34:39
   assign io_opa_type = ~_controlsig_T_1 & ~_controlsig_T_3 & (_controlsig_T_5 | ~_controlsig_T_7 &
                 _controlsig_T_30);	// <stdin>:43:10, Lookup.scala:31:38, :34:39
   assign io_opb_type = ~_controlsig_T_1 & _GEN;	// <stdin>:43:10, Lookup.scala:31:38, :34:39
@@ -265,20 +271,26 @@ module Decode(	// <stdin>:130:10
                 io_deio_op_b,
   output [4:0]  io_deio_rd,
                 io_deio_alu_op,
-  output [1:0]  io_deio_wb_type);
+  output [1:0]  io_deio_wb_type,
+  output        io_jump_flag,
+  output [63:0] io_jump_pc);
 
   wire [63:0] _eximm_io_eximm;	// Decode.scala:40:23
+  wire [1:0]  _cu_io_jump_type;	// Decode.scala:39:20
   wire        _cu_io_opa_type;	// Decode.scala:39:20
   wire        _cu_io_opb_type;	// Decode.scala:39:20
   wire [1:0]  _cu_io_imm_type;	// Decode.scala:39:20
   wire [31:0] _inst_T = io_inst_valid ? io_inst_bits : 32'h13;	// Decode.scala:43:16
+  wire        _io_jump_pc_T = _cu_io_jump_type == 2'h1;	// Decode.scala:39:20, :80:38
+  wire        _io_jump_pc_T_3 = _cu_io_jump_type == 2'h2;	// Decode.scala:39:20, :80:82, Mux.scala:81:61
   ControlUnit cu (	// Decode.scala:39:20
-    .io_inst     (_inst_T),	// Decode.scala:43:16
-    .io_opa_type (_cu_io_opa_type),
-    .io_opb_type (_cu_io_opb_type),
-    .io_imm_type (_cu_io_imm_type),
-    .io_alu_op   (io_deio_alu_op),
-    .io_wb_type  (io_deio_wb_type)
+    .io_inst      (_inst_T),	// Decode.scala:43:16
+    .io_jump_type (_cu_io_jump_type),
+    .io_opa_type  (_cu_io_opa_type),
+    .io_opb_type  (_cu_io_opb_type),
+    .io_imm_type  (_cu_io_imm_type),
+    .io_alu_op    (io_deio_alu_op),
+    .io_wb_type   (io_deio_wb_type)
   );
   Eximm eximm (	// Decode.scala:40:23
     .io_inst     (_inst_T),	// Decode.scala:43:16
@@ -290,6 +302,9 @@ module Decode(	// <stdin>:130:10
   assign io_deio_op_a = _cu_io_opa_type ? io_fdio_pc : 64'h0;	// <stdin>:130:10, Decode.scala:39:20, Mux.scala:81:58
   assign io_deio_op_b = _cu_io_opb_type ? _eximm_io_eximm : 64'h0;	// <stdin>:130:10, Decode.scala:39:20, :40:23, Mux.scala:81:58
   assign io_deio_rd = _inst_T[11:7];	// <stdin>:130:10, Decode.scala:43:16, :46:15
+  assign io_jump_flag = _io_jump_pc_T | _io_jump_pc_T_3;	// <stdin>:130:10, Decode.scala:80:{38,63,82}
+  assign io_jump_pc = _io_jump_pc_T ? io_fdio_pc + _eximm_io_eximm : _io_jump_pc_T_3 ? io_rfio_reg1_rdata +
+                _eximm_io_eximm : 64'h80000000;	// <stdin>:130:10, Decode.scala:40:23, :80:{38,82}, :84:71, :85:80, Mux.scala:101:16
 endmodule
 
 module Alu(	// <stdin>:190:10
@@ -386,6 +401,18 @@ module Regfile(	// <stdin>:237:10
   assign io_RfDe_reg2_rdata = (|io_RfDe_reg2_raddr) ? _regs_ext_R2_data : 64'h0;	// <stdin>:237:10, Regfile.scala:32:19, :35:13, :44:{30,50}
 endmodule
 
+module FlowControl(	// <stdin>:260:10
+  input         io_fcde_jump_flag,
+  input  [63:0] io_fcde_jump_pc,
+  output        io_fcfe_jump_flag,
+  output [63:0] io_fcfe_jump_pc,
+  output        io_fcfe_flush);
+
+  assign io_fcfe_jump_flag = io_fcde_jump_flag;	// <stdin>:260:10
+  assign io_fcfe_jump_pc = io_fcde_jump_flag ? io_fcde_jump_pc : 64'h80000000;	// <stdin>:260:10, Mux.scala:101:16
+  assign io_fcfe_flush = io_fcde_jump_flag;	// <stdin>:260:10
+endmodule
+
 module Core(	// <stdin>:305:10
   input         clock,
                 reset,
@@ -394,6 +421,9 @@ module Core(	// <stdin>:305:10
   output        io_ramio_pc_valid,
   output [63:0] io_ramio_pc_bits);
 
+  wire        _fc_io_fcfe_jump_flag;	// Core.scala:66:20
+  wire [63:0] _fc_io_fcfe_jump_pc;	// Core.scala:66:20
+  wire        _fc_io_fcfe_flush;	// Core.scala:66:20
   wire [63:0] _regfile_io_RfDe_reg1_rdata;	// Core.scala:63:25
   wire [63:0] _regfile_io_RfDe_reg2_rdata;	// Core.scala:63:25
   wire [4:0]  _wb_io_rfio_rd;	// Core.scala:30:20
@@ -412,6 +442,8 @@ module Core(	// <stdin>:305:10
   wire [4:0]  _decode_io_deio_rd;	// Core.scala:26:24
   wire [4:0]  _decode_io_deio_alu_op;	// Core.scala:26:24
   wire [1:0]  _decode_io_deio_wb_type;	// Core.scala:26:24
+  wire        _decode_io_jump_flag;	// Core.scala:26:24
+  wire [63:0] _decode_io_jump_pc;	// Core.scala:26:24
   wire [63:0] _fetch_io_fdio_pc;	// Core.scala:25:23
   reg  [63:0] fdreg_pc;	// Core.scala:33:24
   reg  [63:0] dereg_op_a;	// Core.scala:38:24
@@ -510,11 +542,14 @@ module Core(	// <stdin>:305:10
     .rst  (reset)
   );
   Fetch fetch (	// Core.scala:25:23
-    .clock       (clock),
-    .reset       (reset),
-    .io_fdio_pc  (_fetch_io_fdio_pc),
-    .io_pc_valid (io_ramio_pc_valid),
-    .io_pc_bits  (io_ramio_pc_bits)
+    .clock             (clock),
+    .reset             (reset),
+    .io_fcfe_jump_flag (_fc_io_fcfe_jump_flag),	// Core.scala:66:20
+    .io_fcfe_jump_pc   (_fc_io_fcfe_jump_pc),	// Core.scala:66:20
+    .io_fcfe_flush     (_fc_io_fcfe_flush),	// Core.scala:66:20
+    .io_fdio_pc        (_fetch_io_fdio_pc),
+    .io_pc_valid       (io_ramio_pc_valid),
+    .io_pc_bits        (io_ramio_pc_bits)
   );
   Decode decode (	// Core.scala:26:24
     .io_inst_valid      (io_ramio_dataOut_valid),
@@ -528,7 +563,9 @@ module Core(	// <stdin>:305:10
     .io_deio_op_b       (_decode_io_deio_op_b),
     .io_deio_rd         (_decode_io_deio_rd),
     .io_deio_alu_op     (_decode_io_deio_alu_op),
-    .io_deio_wb_type    (_decode_io_deio_wb_type)
+    .io_deio_wb_type    (_decode_io_deio_wb_type),
+    .io_jump_flag       (_decode_io_jump_flag),
+    .io_jump_pc         (_decode_io_jump_pc)
   );
   Excute excute (	// Core.scala:27:24
     .io_deio_op_a    (dereg_op_a),	// Core.scala:38:24
@@ -565,6 +602,13 @@ module Core(	// <stdin>:305:10
     .io_RfWb_reg_wdata  (_wb_io_rfio_reg_wdata),	// Core.scala:30:20
     .io_RfDe_reg1_rdata (_regfile_io_RfDe_reg1_rdata),
     .io_RfDe_reg2_rdata (_regfile_io_RfDe_reg2_rdata)
+  );
+  FlowControl fc (	// Core.scala:66:20
+    .io_fcde_jump_flag (_decode_io_jump_flag),	// Core.scala:26:24
+    .io_fcde_jump_pc   (_decode_io_jump_pc),	// Core.scala:26:24
+    .io_fcfe_jump_flag (_fc_io_fcfe_jump_flag),
+    .io_fcfe_jump_pc   (_fc_io_fcfe_jump_pc),
+    .io_fcfe_flush     (_fc_io_fcfe_flush)
   );
 endmodule
 

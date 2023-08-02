@@ -38,8 +38,8 @@ int main(int argc, char **argv) {
     edge_change();   //第一次进入时，是第一个下降沿
     vcd->dump(sim_time);
     sim_time++;
-    // if(sim_time > 100)
-    //   break;
+    if(sim_time > 100)
+      break;
   }
 
   vcd->close();
