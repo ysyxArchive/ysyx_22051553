@@ -77,13 +77,15 @@ class Decode extends Module {
     io.deio.alu_op := cu.io.alu_op
     io.deio.wb_type := cu.io.wb_type
 
+
+    val mask = ~(1.U(64.W))
     io.jump_flag := (cu.io.jump_type === ControlUnit.JUMP_JAL || cu.io.jump_type === ControlUnit.JUMP_JALR)
     io.jump_pc := MuxCase(
         "h80000000".U,
         Seq(
             (cu.io.jump_type === ControlUnit.JUMP_JAL) -> (io.fdio.pc + eximm.io.eximm),
             // (cu.io.jump_type === ControlUnit.JUMP_JALR) -> ((io.rfio.reg1_rdata + eximm.io.eximm) & (~(1.U(64.W)))), 无效
-            (cu.io.jump_type === ControlUnit.JUMP_JALR) -> ((io.rfio.reg1_rdata + eximm.io.eximm) & ("hfffffffffffffffe".U)),
+            (cu.io.jump_type === ControlUnit.JUMP_JALR) -> ((io.rfio.reg1_rdata + eximm.io.eximm) & mask),
         )
     )
 
