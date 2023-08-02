@@ -11,8 +11,8 @@ class ExcuteIO extends Bundle{
     val emio = Output(new EMRegIO)
 
     //to fc
-    val stall = Output(Bool())
-    val flush = Output(Bool())
+    val jump_flag = Output(Bool())
+    val jump_pc = Output(UInt(PC_LEN.W))
 }
 
 class Excute extends Module{
@@ -30,8 +30,8 @@ class Excute extends Module{
     io.emio.wb_type := io.deio.wb_type
     io.emio.rd := io.deio.rd
 
-    io.stall := DontCare
-    io.flush := DontCare
+    io.jump_flag := DontCare
+    io.jump_pc := DontCare
     
     //alu
     alu.io.op_a := io.deio.op_a

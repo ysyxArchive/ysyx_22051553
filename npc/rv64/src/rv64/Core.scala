@@ -97,6 +97,12 @@ class Core extends Module{
     wb.io.mwio.rd := mwreg.rd
     wb.io.rfio <> regfile.io.RfWb
 
+    //FlowControl
+    fc.io.fcde.jump_flag := decode.io.jump_flag
+    fc.io.fcde.jump_pc := decode.io.jump_pc
+
+    fc.io.fcex.jump_flag := excute.io.jump_flag
+    fc.io.fcex.jump_pc := excute.io.jump_pc
 
     //流水线寄存器
     //fdreg
