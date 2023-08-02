@@ -78,20 +78,20 @@ class FlowControl extends Module{
 
 
 
-    io.fcfe.stall := SFBundle(0)
+    io.fcfe.stall := DontCare
     io.fcfe.flush := SFBundle(5)
     io.fcfe.jump_pc := io.fcde.jump_pc
     io.fcfe.jump_flag := io.fcde.jump_flag
 
-    io.fcde.stall := SFBundle(1)
-    io.fcde.flush := SFBundle(6)
+    io.fcde.stall := DontCare
+    io.fcde.flush := DontCare
 
-    io.fcex.stall := SFBundle(2)
-    io.fcex.flush := SFBundle(7)
+    io.fcex.stall := DontCare
+    io.fcex.flush := DontCare
 
-    io.fcmem.stall := SFBundle(3)
-    io.fcmem.flush := SFBundle(8)
+    io.fcmem.stall := DontCare
+    io.fcmem.flush := DontCare
 
-    io.fcwb.stall := SFBundle(4)
-    io.fcwb.flush := SFBundle(9)
+    io.fcwb.stall := DontCare
+    io.fcwb.flush := DontCare
 }

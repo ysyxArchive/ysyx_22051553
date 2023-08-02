@@ -62,11 +62,17 @@ class Core extends Module{
     //寄存器
     val regfile = Module(new Regfile)
 
+    //FlowControl
+    val fc = Module(new FlowControl)
+
     
     //互联
+    //寄存器不是有单一方向的，不能用<>
     //fetch相关
     fetch.io.pc <> io.ramio.pc
-    fdreg.pc := fetch.io.fdio.pc          //寄存器不是有单一方向的，不能用<>
+    fdreg.pc := fetch.io.fdio.pc          
+
+    fetch.io.fcfe <> fc.io.fcfe
     //decode
     decode.io.inst.valid := io.ramio.dataOut.valid
     decode.io.inst.bits := io.ramio.dataOut.bits
