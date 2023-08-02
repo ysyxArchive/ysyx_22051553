@@ -254,8 +254,8 @@ module Eximm(	// <stdin>:95:10
   input  [1:0]  io_imm_type,
   output [63:0] io_eximm);
 
-  wire [3:0][63:0] _GEN = {{64'h0}, {{{44{io_inst[31]}}, io_inst[10:1], io_inst[11], io_inst[19:12], 1'h0}},
-                {{{32{io_inst[31]}}, io_inst[31:12], 12'h0}}, {{{52{io_inst[31]}}, io_inst[31:20]}}};	// Bitwise.scala:77:12, Cat.scala:33:92, Eximm.scala:30:{42,56}, :31:56, :32:{56,71,84}, Mux.scala:81:{58,61}
+  wire [3:0][63:0] _GEN = {{64'h0}, {{{44{io_inst[31]}}, io_inst[19:12], io_inst[20], io_inst[30:21], 1'h0}},
+                {{{32{io_inst[31]}}, io_inst[31:12], 12'h0}}, {{{52{io_inst[31]}}, io_inst[31:20]}}};	// Bitwise.scala:77:12, Cat.scala:33:92, Eximm.scala:30:{42,56}, :31:56, :32:{56,72,85}, Mux.scala:81:{58,61}
   assign io_eximm = _GEN[io_imm_type];	// <stdin>:95:10, Mux.scala:81:{58,61}
 endmodule
 
@@ -733,4 +733,5 @@ module Interact(input [31:0] inst,
    
 endmodule
         
+
 

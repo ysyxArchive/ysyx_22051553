@@ -98,7 +98,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     __VdfgTmp_hae2d2759__0 = 0;
     CData/*7:0*/ __VdfgTmp_h8133e384__0;
     __VdfgTmp_h8133e384__0 = 0;
-    VlWide<8>/*255:0*/ __Vtemp_hb27e78c7__0;
+    VlWide<8>/*255:0*/ __Vtemp_hbe08221f__0;
     // Body
     vlSelf->Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data 
         = vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
@@ -166,7 +166,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h4b61693b__0 
         = ((0x13U != vlSelf->Soc__DOT__core__DOT__decode__DOT___inst_T) 
            & (~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___controlsig_T_3)));
-    __Vtemp_hb27e78c7__0[0U] = (((IData)((0xfffffffffffffULL 
+    __Vtemp_hbe08221f__0[0U] = (((IData)((0xfffffffffffffULL 
                                           & (- (QData)((IData)(Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0))))) 
                                  << 0xcU) | ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                               ? ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
@@ -181,14 +181,14 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                       : 0U))
                                                   : 0U)
                                               : 0U));
-    __Vtemp_hb27e78c7__0[1U] = (((IData)((0xfffffffffffffULL 
+    __Vtemp_hbe08221f__0[1U] = (((IData)((0xfffffffffffffULL 
                                           & (- (QData)((IData)(Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0))))) 
                                  >> 0x14U) | ((IData)(
                                                       ((0xfffffffffffffULL 
                                                         & (- (QData)((IData)(Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0)))) 
                                                        >> 0x20U)) 
                                               << 0xcU));
-    __Vtemp_hb27e78c7__0[2U] = ((((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
+    __Vtemp_hbe08221f__0[2U] = ((((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                    ? ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                        ? (((IData)(vlSelf->Soc__DOT__ram__DOT___SyncMem_ext_R0_data) 
                                            << 0xcU) 
@@ -206,47 +206,47 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                        & (- (QData)((IData)(Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0)))) 
                                                       >> 0x20U)) 
                                              >> 0x14U));
-    __Vtemp_hb27e78c7__0[3U] = (- (IData)((IData)(Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0)));
-    __Vtemp_hb27e78c7__0[4U] = (((IData)((0xfffffffffffULL 
+    __Vtemp_hbe08221f__0[3U] = (- (IData)((IData)(Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0)));
+    __Vtemp_hbe08221f__0[4U] = (((IData)((0xfffffffffffULL 
                                           & (- (QData)((IData)(Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0))))) 
                                  << 0x14U) | ((((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                                  ? 
                                                 ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                                   ? 
-                                                 (0x3ffU 
-                                                  & ((IData)(vlSelf->__VdfgTmp_h50f8190e__0) 
-                                                     >> 1U))
+                                                 (0xffU 
+                                                  & (vlSelf->__VdfgTmp_h7f65c8dc__0 
+                                                     >> 0xcU))
                                                   : 0U)
-                                                 : 9U) 
-                                               << 0xaU) 
-                                              | ((0xfffffe00U 
+                                                 : 0U) 
+                                               << 0xcU) 
+                                              | ((0xfffff800U 
                                                   & (((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid) 
-                                                      << 9U) 
-                                                     & (((IData)(vlSelf->Soc__DOT__ram__DOT__SyncMem_ext__DOT___GEN_3) 
-                                                         << 9U) 
-                                                        & ((IData)(vlSelf->__VdfgTmp_h483daa03__0) 
-                                                           << 6U)))) 
+                                                      << 0xbU) 
+                                                     & (((IData)(vlSelf->Soc__DOT__ram__DOT__SyncMem_ext__DOT___GEN_1) 
+                                                         << 0xbU) 
+                                                        & ((IData)(__VdfgTmp_hae2d2759__0) 
+                                                           << 7U)))) 
                                                  | (((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                                       ? 
                                                      ((IData)(vlSelf->Soc__DOT__ram__DOT__inst_valid)
                                                        ? 
-                                                      (0xffU 
-                                                       & (vlSelf->__VdfgTmp_h7f65c8dc__0 
-                                                          >> 0xcU))
+                                                      (0x3ffU 
+                                                       & (vlSelf->__VdfgTmp_h27324541__0 
+                                                          >> 0x15U))
                                                        : 0U)
                                                       : 0U) 
                                                     << 1U))));
-    __Vtemp_hb27e78c7__0[5U] = (((IData)((0xfffffffffffULL 
+    __Vtemp_hbe08221f__0[5U] = (((IData)((0xfffffffffffULL 
                                           & (- (QData)((IData)(Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0))))) 
                                  >> 0xcU) | ((IData)(
                                                      ((0xfffffffffffULL 
                                                        & (- (QData)((IData)(Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0)))) 
                                                       >> 0x20U)) 
                                              << 0x14U));
-    __Vtemp_hb27e78c7__0[6U] = 0U;
-    __Vtemp_hb27e78c7__0[7U] = 0U;
+    __Vtemp_hbe08221f__0[6U] = 0U;
+    __Vtemp_hbe08221f__0[7U] = 0U;
     vlSelf->Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm 
-        = (((QData)((IData)(__Vtemp_hb27e78c7__0[(((IData)(0x3fU) 
+        = (((QData)((IData)(__Vtemp_hbe08221f__0[(((IData)(0x3fU) 
                                                    + 
                                                    (0xffU 
                                                     & ((((0x13U 
@@ -299,7 +299,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                     == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
                                                    << 1U))) 
                                 << 6U))) ? 0ULL : ((QData)((IData)(
-                                                                   __Vtemp_hb27e78c7__0[
+                                                                   __Vtemp_hbe08221f__0[
                                                                    (((IData)(0x1fU) 
                                                                      + 
                                                                      (0xffU 
@@ -338,7 +338,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                             == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
                                                            << 1U))) 
                                                         << 6U))))) 
-              | ((QData)((IData)(__Vtemp_hb27e78c7__0[
+              | ((QData)((IData)(__Vtemp_hbe08221f__0[
                                  (6U & ((((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT___inst_T) 
                                           | (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___controlsig_T_3))
                                           ? 0U : ((

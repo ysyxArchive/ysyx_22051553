@@ -46,8 +46,8 @@ object ControlUnit {    //译码特征, 类型、需要做哪些任务
         ADDI -> List(NO_JUMP, A_REG1, B_IMM, IMM_I, ALU_ADD, WB_ALU),
         AUIPC -> List(NO_JUMP, A_PC, B_IMM, IMM_U, ALU_ADD, WB_ALU),
         LUI -> List(NO_JUMP, A_ZERO, B_IMM, IMM_U, ALU_ADD, WB_ALU),
-        JAL -> List(JUMP_JAL, A_PC, B_CONS4, IMM_J, ALU_ADD, WB_ALU)
-
+        JAL -> List(JUMP_JAL, A_PC, B_CONS4, IMM_J, ALU_ADD, WB_ALU),
+        JALR -> List(JUMP_JALR, A_PC, B_CONS4, IMM_I, ALU_ADD, WB_ALU)
     )
 }
 
