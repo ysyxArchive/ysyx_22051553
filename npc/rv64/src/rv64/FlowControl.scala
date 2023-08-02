@@ -11,7 +11,7 @@ object FlowControl{
     val StallY = 1.B
     val StallN = 0.B
 
-    val FlushY = 1.B                  //Flush意味着下一周期Ex模块不从DE流水线寄存器中获取任何有效数据
+    val FlushY = 1.B                  //Flush DE意味着取消周期DE的运算结果，即抛弃DE部件中的指令
     val FlushN = 0.B              
 
     val default = 
@@ -33,10 +33,10 @@ class FcFeIO extends Bundle{
 }
 
 class FcDeIO extends Bundle{
-    val jump_flag = Input(Bool())
+    val jump_flag = Input(Bool())            //from De
     val jump_pc   = Input(UInt(PC_LEN.W))
 
-    val flush     = Output(Bool())
+    val flush     = Output(Bool())       //通往流水线寄存器
     val stall     = Output(Bool())
 }
 
@@ -78,20 +78,26 @@ class FlowControl extends Module{
 
 
 
-    io.fcfe.stall := DontCare
+    io.fcfe.stall := SFBundle(0)
     io.fcfe.flush := SFBundle(5)
-    io.fcfe.jump_pc := io.fcde.jump_pc
-    io.fcfe.jump_flag := io.fcde.jump_flag
+    io.fcfe.jump_pc := MuxCase(
+        "h80000000".U,
+        Seq(
+            io.fcex.jump_flag -> io.fcex.jump_pc,  //ex优先
+            io.fcde.jump_flag -> io.fcde.jump_pc
+        )
+    )
+    io.fcfe.jump_flag := io.fcde.jump_flag || io.fcex.jump_flag
 
-    io.fcde.stall := DontCare
-    io.fcde.flush := DontCare
+    io.fcde.stall := SFBundle(1)
+    io.fcde.flush := SFBundle(6)
 
-    io.fcex.stall := DontCare
-    io.fcex.flush := DontCare
+    io.fcex.stall := SFBundle(2)
+    io.fcex.flush := SFBundle(7)
 
-    io.fcmem.stall := DontCare
-    io.fcmem.flush := DontCare
+    io.fcmem.stall := SFBundle(3)
+    io.fcmem.flush := SFBundle(8)
 
-    io.fcwb.stall := DontCare
-    io.fcwb.flush := DontCare
+    io.fcwb.stall := SFBundle(4)
+    io.fcwb.flush := SFBundle(9)
 }

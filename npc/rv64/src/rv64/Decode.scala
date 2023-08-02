@@ -5,6 +5,7 @@ import chisel3.util._
 import Define._
 
 
+
 class DecodeIO extends Bundle{
     //Ram
     val inst = Flipped(ValidIO(UInt(INST_LEN.W)))
@@ -17,6 +18,10 @@ class DecodeIO extends Bundle{
     
     //to de_reg
     val deio = Output(new DERegIO)
+
+    //to fc
+    val jump_flag = Output(Bool())
+    val jump_pc = Output(UInt(PC_LEN.W))
 }
 
 class Decode extends Module {
@@ -71,6 +76,15 @@ class Decode extends Module {
     io.deio.rd := rd
     io.deio.alu_op := cu.io.alu_op
     io.deio.wb_type := cu.io.wb_type
+
+    io.jump_flag := (cu.io.jump_type === ControlUnit.JUMP_JAL || cu.io.jump_type === ControlUnit.JUMP_JALR)
+    io.jump_pc := MuxCase(
+        "h80000000".U,
+        Seq(
+            (cu.io.jump_type === ControlUnit.JUMP_JAL) -> (io.fdio.pc + eximm.io.eximm),
+            (cu.io.jump_type === ControlUnit.JUMP_JALR) -> (io.rfio.reg1_rdata + eximm.io.eximm),
+        )
+    )
 
     //CU
     cu.io.inst := inst

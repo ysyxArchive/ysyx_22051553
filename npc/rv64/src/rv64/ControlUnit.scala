@@ -54,7 +54,7 @@ object ControlUnit {    //译码特征, 类型、需要做哪些任务
 class CUIO extends Bundle {
     val inst = Input(UInt(INST_LEN.W))
 
-    val addr_type = Output(UInt(2.W))
+    val jump_type = Output(UInt(2.W))
     val opa_type = Output(UInt(1.W))
     val opb_type = Output(UInt(1.W))
     val imm_type = Output(UInt(2.W))
@@ -68,7 +68,7 @@ class ControlUnit extends Module{
     val controlsig = ListLookup(io.inst, ControlUnit.default, ControlUnit.map)   //若写map会报错,专用于指令的
 
     
-    io.addr_type    := controlsig(0)
+    io.jump_type    := controlsig(0)
     io.opa_type         := controlsig(1)
     io.opb_type         := controlsig(2)
     io.imm_type     := controlsig(3)

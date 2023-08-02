@@ -9,6 +9,10 @@ class ExcuteIO extends Bundle{
     // val rd     = Output()  --去往em  用两个Bundle可以解决命名冲突
     val deio = Input(new DERegIO)
     val emio = Output(new EMRegIO)
+
+    //to fc
+    val stall = Output(Bool())
+    val flush = Output(Bool())
 }
 
 class Excute extends Module{
@@ -26,10 +30,15 @@ class Excute extends Module{
     io.emio.wb_type := io.deio.wb_type
     io.emio.rd := io.deio.rd
 
+    io.stall := DontCare
+    io.flush := DontCare
+    
     //alu
     alu.io.op_a := io.deio.op_a
     alu.io.op_b := io.deio.op_b
     alu.io.alu_op := io.deio.alu_op
     
+    
+
 
 }
