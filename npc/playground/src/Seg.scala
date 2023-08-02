@@ -3,8 +3,7 @@ import chisel3.util._
 
 class Seg extends Module{  //Module会有clk和rst  //共阳
     val io = IO(new Bundle {
-        val dataIn      = Input(Vec(4,UInt(4.W)))
-        val encodeOut   = Output(Vec(4,UInt(7.W)))
+        val encodeOut   = Output(UInt(64.W))
     })
     
 
@@ -48,21 +47,7 @@ class Seg extends Module{  //Module会有clk和rst  //共阳
     // io.encodeOut(2) := genMapArray(io.dataIn(2))
     // io.encodeOut(3) := genMapArray(io.dataIn(3))
 
+      io.encodeOut := ~(1.U(64.W))
 
-
-     val lut = VecInit("b1111110".U,
-                    "b0110000".U,
-                    "b1101101".U,
-                    "b1111001".U,
-                    "b0110011".U,
-                    "b1011011".U,
-                    "b1011111".U,
-                    "b1110000".U,
-                    "b1111111".U,
-                    "b1111011".U)
-
-  for (i <- 0 until 4) {
-    io.encodeOut(i) := lut(io.dataIn(i))
-  }
 
 }

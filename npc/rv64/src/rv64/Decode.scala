@@ -82,7 +82,7 @@ class Decode extends Module {
         "h80000000".U,
         Seq(
             (cu.io.jump_type === ControlUnit.JUMP_JAL) -> (io.fdio.pc + eximm.io.eximm),
-            // (cu.io.jump_type === ControlUnit.JUMP_JALR) -> ((io.rfio.reg1_rdata + eximm.io.eximm) & (~(1.U(64.W)))),
+            // (cu.io.jump_type === ControlUnit.JUMP_JALR) -> ((io.rfio.reg1_rdata + eximm.io.eximm) & (~(1.U(64.W)))), 无效
             (cu.io.jump_type === ControlUnit.JUMP_JALR) -> ((io.rfio.reg1_rdata + eximm.io.eximm) & ("hfffffffffffffffe".U)),
         )
     )
