@@ -1,6 +1,7 @@
 #ifndef KLIB_MACROS_H__
 #define KLIB_MACROS_H__
 
+//向上取size倍数
 #define ROUNDUP(a, sz)      ((((uintptr_t)a) + (sz) - 1) & ~((sz) - 1))
 #define ROUNDDOWN(a, sz)    ((((uintptr_t)a)) & ~((sz) - 1))
 #define LENGTH(arr)         (sizeof(arr) / sizeof((arr)[0]))
@@ -19,6 +20,9 @@
   ({ reg##_T __io_param; \
     ioe_read(reg, &__io_param); \
     __io_param; })
+//io_read创建一个设备对象缓冲，复制当前设备状态到缓冲中，并返回缓冲
+//类似快照
+
 
 #define io_write(reg, ...) \
   ({ reg##_T __io_param = (reg##_T) { __VA_ARGS__ }; \

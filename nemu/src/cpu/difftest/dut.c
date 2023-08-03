@@ -87,8 +87,8 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
       "If it is not necessary, you can turn it off in menuconfig.", ref_so_file);
 
   ref_difftest_init(port);
-  ref_difftest_memcpy(RESET_VECTOR, guest_to_host(RESET_VECTOR), img_size, DIFFTEST_TO_REF);
-  ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
+  ref_difftest_memcpy(RESET_VECTOR, guest_to_host(RESET_VECTOR), img_size, DIFFTEST_TO_REF);  //拷贝程序到REF
+  ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);  //拷贝寄存器到REF
 }
 
 static void checkregs(CPU_state *ref, vaddr_t pc) {
@@ -116,7 +116,7 @@ void difftest_step(vaddr_t pc, vaddr_t npc) {
   }
 
   if (is_skip_ref) {
-    // to skip the checking of an instruction, just copy the reg state to reference design
+    // to skip the checking of an instruction, just copy the reg state to reference design --为什么只复制寄存器
     ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
     is_skip_ref = false;
     return;

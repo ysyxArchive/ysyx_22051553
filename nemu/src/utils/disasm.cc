@@ -46,7 +46,7 @@ static llvm::MCDisassembler *gDisassembler = nullptr;
 static llvm::MCSubtargetInfo *gSTI = nullptr;
 static llvm::MCInstPrinter *gIP = nullptr;
 
-extern "C" void init_disasm(const char *triple) {
+extern "C" void init_disasm(const char *triple) {       //按照c语言方式编译链接
   llvm::InitializeAllTargetInfos();
   llvm::InitializeAllTargetMCs();
   llvm::InitializeAllAsmParsers();
@@ -55,9 +55,9 @@ extern "C" void init_disasm(const char *triple) {
   std::string errstr;
   std::string gTriple(triple);
 
-  llvm::MCInstrInfo *gMII = nullptr;
+  llvm::MCInstrInfo *gMII = nullptr;             //MC机器代码
   llvm::MCRegisterInfo *gMRI = nullptr;
-  auto target = llvm::TargetRegistry::lookupTarget(gTriple, errstr);
+  auto target = llvm::TargetRegistry::lookupTarget(gTriple, errstr);  //在注册表中找gTriple匹配的目标，找不到就打印错误信息至errstr
   if (!target) {
     llvm::errs() << "Can't find target for " << gTriple << ": " << errstr << "\n";
     assert(0);

@@ -32,6 +32,10 @@ CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
+//iringbuf
+char iringbuf [16][64];  //32会导致溢出，所以调整到64
+uint8_t irb_pos = 0;
+
 
 void device_update();
 
@@ -49,14 +53,14 @@ static void exec_once(Decode *s, vaddr_t pc) {
   s->pc = pc;
   s->snpc = pc;
   isa_exec_once(s);
-  cpu.pc = s->dnpc;
+  cpu.pc = s->dnpc;             //注意静态指令和动态指令    静态是pc+4,动态可能是跳转地址          注意pc指的就是当前的pc,和流水线硬件不一样        nemu是单周期模拟器   设置snpc、dnpc的原因是，pc在该指令完全模拟结束之前，还需要使用
 #ifdef CONFIG_ITRACE
-  char *p = s->logbuf;
-  p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
+  char *p = s->logbuf;               //p指针不断后移    snprint返回值是写入的字符长度
+  p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);      //"0x%016x" 将pc写入log
   int ilen = s->snpc - s->pc;
   int i;
   uint8_t *inst = (uint8_t *)&s->isa.inst.val;
-  for (i = ilen - 1; i >= 0; i --) {
+  for (i = ilen - 1; i >= 0; i --) {                  //写入2个字节的指令到p位置  --最大不超过4字节
     p += snprintf(p, 4, " %02x", inst[i]);
   }
   int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
@@ -73,7 +77,16 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #else
   p[0] = '\0'; // the upstream llvm does not support loongarch32r
 #endif
+  
+  p = iringbuf[irb_pos];
+  strcpy(p, "0x");
+  p += 2;
+  snprintf(p, 11, "%.10s", s->logbuf + 10);  //.10s表示最多打印10个字符，否则会Werror
+  p += 10;
+  strcpy(p, s->logbuf + 32);
+  irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
 #endif
+  
 }
 
 static void execute(uint64_t n) {
@@ -81,7 +94,7 @@ static void execute(uint64_t n) {
   for (;n > 0; n --) {
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++;
-    trace_and_difftest(&s, cpu.pc);
+    trace_and_difftest(&s, cpu.pc);                   //写log
     if (nemu_state.state != NEMU_RUNNING) break;
     IFDEF(CONFIG_DEVICE, device_update());
   }
@@ -103,6 +116,7 @@ void assert_fail_msg() {
 
 /* Simulate how the CPU works. */
 void cpu_exec(uint64_t n) {
+  
   g_print_step = (n < MAX_INST_TO_PRINT);
   switch (nemu_state.state) {
     case NEMU_END: case NEMU_ABORT:
@@ -112,7 +126,7 @@ void cpu_exec(uint64_t n) {
   }
 
   uint64_t timer_start = get_time();
-
+  
   execute(n);
 
   uint64_t timer_end = get_time();
@@ -121,13 +135,33 @@ void cpu_exec(uint64_t n) {
   switch (nemu_state.state) {
     case NEMU_RUNNING: nemu_state.state = NEMU_STOP; break;
 
-    case NEMU_END: case NEMU_ABORT:
+    case NEMU_END: 
       Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
            (nemu_state.halt_ret == 0 ? ANSI_FMT("HIT GOOD TRAP", ANSI_FG_GREEN) :
             ANSI_FMT("HIT BAD TRAP", ANSI_FG_RED))),
-          nemu_state.halt_pc);
-      // fall through
+          nemu_state.halt_pc);    
+      statistic();
+      break;
+
+
+    case NEMU_ABORT:
+      Log("nemu: %s at pc = " FMT_WORD,
+          (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
+           (nemu_state.halt_ret == 0 ? ANSI_FMT("HIT GOOD TRAP", ANSI_FG_GREEN) :
+            ANSI_FMT("HIT BAD TRAP", ANSI_FG_RED))),
+          nemu_state.halt_pc);    
+
+      for(int i = 0; i < 16; i ++){
+        if(i == irb_pos)
+          printf("  --> ");
+        else 
+          printf("      ");
+
+        printf("%s\n", iringbuf[i]);
+      }
+
+      // fall through  --没有break
     case NEMU_QUIT: statistic();
   }
 }
