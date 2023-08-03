@@ -26,6 +26,8 @@
 
 void watchpoints_diff();
 
+vaddr_t debug_pc = 0;
+
 #define MAX_INST_TO_PRINT 10
 
 CPU_state cpu = {};
@@ -50,6 +52,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 }
 
 static void exec_once(Decode *s, vaddr_t pc) {
+  debug_pc = pc;
   s->pc = pc;
   s->snpc = pc;
   isa_exec_once(s);
