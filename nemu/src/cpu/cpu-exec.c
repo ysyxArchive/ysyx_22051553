@@ -98,7 +98,7 @@ static void execute(uint64_t n) {
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);                   //写log
-    if (nemu_state.state != NEMU_RUNNING) break;
+    if (nemu_state.state != NEMU_RUNNING) break;  //即使上一条指令有错，会导致NEMU_ABORT,也会执行完，到这里，再跳转出去
     IFDEF(CONFIG_DEVICE, device_update());
   }
 }
@@ -156,7 +156,7 @@ void cpu_exec(uint64_t n) {
           nemu_state.halt_pc);    
 
       for(int i = 0; i < 16; i ++){
-        if(i == irb_pos)
+        if((i== 15 && irb_pos == 0) || (i == irb_pos - 1))
           printf("  --> ");
         else 
           printf("      ");

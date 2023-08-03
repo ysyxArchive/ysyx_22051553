@@ -18,9 +18,16 @@
 
 #include <common.h>
 
+#define MEPC 0x341
+#define MCAUSE 0x342
+#define MTVEC 0x305
+
+enum {mepc, mcause, mtvec};
+
 typedef struct {
   word_t gpr[32];
   vaddr_t pc;
+  word_t csr[3];
 } riscv64_CPU_state;
 
 // decode

@@ -19,6 +19,7 @@
 #include <cpu/decode.h>
 
 #define R(i) gpr(i)
+#define SR(i) csr(i)
 #define Mr vaddr_read
 #define Mw vaddr_write
 
@@ -33,7 +34,7 @@ extern Func elf_func[];
 extern int nr_elffunc;
 
 enum {                                        //每种type的立即数位域相同
-  TYPE_I, TYPE_U, TYPE_S, TYPE_J, TYPE_R, TYPE_B, 
+  TYPE_I, TYPE_U, TYPE_S, TYPE_J, TYPE_R, TYPE_B, TYPE_C,
   TYPE_N, // none
 };
 
@@ -75,12 +76,14 @@ while(0)
 #define immB() do \
 { *imm = (SEXT(BITS(i, 31, 31), 1) << 12) | BITS(i, 7, 7) << 11 | BITS(i, 30, 25) << 5 | BITS(i, 11, 8) << 1; } \
 while(0)
+#define immC() do { *imm = BITS(i, 19, 15); } while(0)
 
-static void decode_operand(Decode *s, char* name, int *rd, int *rs1, word_t *src1, word_t *src2, word_t *imm, int* shamt, int type, char* inst_name) {  //为src1、src2、rd、imm等赋值
+static void decode_operand(Decode *s, char* name, int *rd, int *rs1, int *csr, word_t *src1, word_t *src2, word_t *imm, int* shamt, int type, char* inst_name) {  //为src1、src2、rd、imm等赋值
   uint32_t i = s->isa.inst.val;
   *rs1 = BITS(i, 19, 15);
   int rs2 = BITS(i, 24, 20);
   *rd     = BITS(i, 11, 7);
+  *csr    = BITS(i, 31, 20);
   *shamt  = BITS(i, 25, 20);
   strcpy(inst_name, name);
   switch (type) {
@@ -90,6 +93,7 @@ static void decode_operand(Decode *s, char* name, int *rd, int *rs1, word_t *src
     case TYPE_J: src1R();          immJ(); break;
     case TYPE_R: src1R(); src2R();         break;
     case TYPE_B: src1R(); src2R(); immB(); break;
+    case TYPE_C:                   immC(); break;
     case TYPE_N:                           break;
   }
 }
@@ -97,6 +101,7 @@ static void decode_operand(Decode *s, char* name, int *rd, int *rs1, word_t *src
 static int decode_exec(Decode *s) {
   int rs1 = 0;
   int rd = 0;
+  int csr = 0;
   int shamt = 0;
   word_t src1 = 0, src2 = 0, imm = 0;     //无符号
   char inst_name[10];
@@ -112,7 +117,7 @@ static int decode_exec(Decode *s) {
 
 #define INSTPAT_INST(s) ((s)->isa.inst.val)          
 #define INSTPAT_MATCH(s, name, type, ... /* execute body */ ) { \
-  decode_operand(s, name, &rd, &rs1, &src1, &src2, &imm, &shamt, concat(TYPE_, type), inst_name); \
+  decode_operand(s, name, &rd, &csr, &rs1, &src1, &src2, &imm, &shamt, concat(TYPE_, type), inst_name); \
   __VA_ARGS__ ; \
 }
 //取inst
@@ -207,10 +212,14 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000000 00001 00000 000 00000 11100 11", "ebreak" , N, NEMUTRAP(s->pc, R(10))); 
   INSTPAT("0000000 00000 00000 000 00000 11100 11", "ecall" , N, isa_raise_intr(0, s->pc + 4)); 
   INSTPAT("??????? ????? ????? ??? ????? ????? ??", "inv"    , N, INV(s->pc));             
+
+  INSTPAT("????????????? ????? 001 ????? 1110011", "csrrw" , C, R(rd) = SR(csr); SR(csr) = src1); 
+
   INSTPAT_END();
 
   R(0) = 0; // reset $zero to 0
-  
+  //mepc, mstatus, mcause
+  //mret
 
   #ifdef CONFIG_FTRACE
     if(strcmp(inst_name, "jal") == 0 && rd == 1){      //call判定
