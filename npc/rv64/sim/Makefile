@@ -3,7 +3,7 @@ SRCS = $(shell find ./wrapper/src -name *.cpp)
 
 
 build:
-	rm vsrc/*.sv
+	-rm vsrc/*.sv
 	cp ../build/*.sv vsrc/
 	verilator -cc -trace vsrc/*.sv -top-module Soc
 
