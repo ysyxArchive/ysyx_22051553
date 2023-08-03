@@ -36,56 +36,6 @@
 `endif // RANDOMIZE
 
 // VCS coverage exclude_file
-module regs_combMem(	// Regfile.scala:32:19
-  input  [4:0]  R0_addr,
-  input         R0_en,
-                R0_clk,
-  input  [4:0]  R1_addr,
-  input         R1_en,
-                R1_clk,
-  input  [4:0]  R2_addr,
-  input         R2_en,
-                R2_clk,
-  input  [4:0]  W0_addr,
-  input         W0_en,
-                W0_clk,
-  input  [63:0] W0_data,
-  input  [4:0]  W1_addr,
-  input         W1_en,
-                W1_clk,
-  input  [63:0] W1_data,
-  output [63:0] R0_data,
-                R1_data,
-                R2_data);
-
-  reg [63:0] Memory[0:31];	// Regfile.scala:32:19
-  always @(posedge W0_clk) begin	// Regfile.scala:32:19
-    if (W0_en)	// Regfile.scala:32:19
-      Memory[W0_addr] <= W0_data;	// Regfile.scala:32:19
-    if (W1_en)	// Regfile.scala:32:19
-      Memory[W1_addr] <= W1_data;	// Regfile.scala:32:19
-  end // always @(posedge)
-  `ifndef SYNTHESIS	// Regfile.scala:32:19
-    `ifdef RANDOMIZE_MEM_INIT	// Regfile.scala:32:19
-      integer initvar;	// Regfile.scala:32:19
-      reg [63:0] _RANDOM_MEM;	// Regfile.scala:32:19
-    `endif // RANDOMIZE_MEM_INIT
-    initial begin	// Regfile.scala:32:19
-      `INIT_RANDOM_PROLOG_	// Regfile.scala:32:19
-      `ifdef RANDOMIZE_MEM_INIT	// Regfile.scala:32:19
-        for (initvar = 0; initvar < 32; initvar = initvar + 1) begin
-          _RANDOM_MEM = {{`RANDOM}, {`RANDOM}};
-          Memory[initvar] = _RANDOM_MEM[63:0];
-        end	// Regfile.scala:32:19
-      `endif // RANDOMIZE_MEM_INIT
-    end // initial
-  `endif // not def SYNTHESIS
-  assign R0_data = R0_en ? Memory[R0_addr] : 64'bx;	// Regfile.scala:32:19
-  assign R1_data = R1_en ? Memory[R1_addr] : 64'bx;	// Regfile.scala:32:19
-  assign R2_data = R2_en ? Memory[R2_addr] : 64'bx;	// Regfile.scala:32:19
-endmodule
-
-// VCS coverage exclude_file
 module SyncMem_combMem(	// Ram.scala:18:30
   input  [7:0] R0_addr,
   input        R0_en,
@@ -158,13 +108,223 @@ module SyncMem_combMem(	// Ram.scala:18:30
         _GEN_5 = _RANDOM[27];	// Ram.scala:18:30
         _GEN_6 = {_RANDOM[31:28], _RANDOM_0[3:0]};	// Ram.scala:18:30
       `endif // RANDOMIZE_REG_INIT
-      $readmemh("inst", Memory);
     end // initial
   `endif // not def SYNTHESIS
   assign R0_data = _GEN ? Memory[_GEN_0] : 8'bx;	// Ram.scala:18:30
   assign R1_data = _GEN_1 ? Memory[_GEN_2] : 8'bx;	// Ram.scala:18:30
   assign R2_data = _GEN_3 ? Memory[_GEN_4] : 8'bx;	// Ram.scala:18:30
   assign R3_data = _GEN_5 ? Memory[_GEN_6] : 8'bx;	// Ram.scala:18:30
+endmodule
+
+// VCS coverage exclude_file
+module regs_combMem(	// Regfile.scala:32:19
+  input  [4:0]  R0_addr,
+  input         R0_en,
+                R0_clk,
+  input  [4:0]  R1_addr,
+  input         R1_en,
+                R1_clk,
+  input  [4:0]  R2_addr,
+  input         R2_en,
+                R2_clk,
+  input  [4:0]  R3_addr,
+  input         R3_en,
+                R3_clk,
+  input  [4:0]  R4_addr,
+  input         R4_en,
+                R4_clk,
+  input  [4:0]  R5_addr,
+  input         R5_en,
+                R5_clk,
+  input  [4:0]  R6_addr,
+  input         R6_en,
+                R6_clk,
+  input  [4:0]  R7_addr,
+  input         R7_en,
+                R7_clk,
+  input  [4:0]  R8_addr,
+  input         R8_en,
+                R8_clk,
+  input  [4:0]  R9_addr,
+  input         R9_en,
+                R9_clk,
+  input  [4:0]  R10_addr,
+  input         R10_en,
+                R10_clk,
+  input  [4:0]  R11_addr,
+  input         R11_en,
+                R11_clk,
+  input  [4:0]  R12_addr,
+  input         R12_en,
+                R12_clk,
+  input  [4:0]  R13_addr,
+  input         R13_en,
+                R13_clk,
+  input  [4:0]  R14_addr,
+  input         R14_en,
+                R14_clk,
+  input  [4:0]  R15_addr,
+  input         R15_en,
+                R15_clk,
+  input  [4:0]  R16_addr,
+  input         R16_en,
+                R16_clk,
+  input  [4:0]  R17_addr,
+  input         R17_en,
+                R17_clk,
+  input  [4:0]  R18_addr,
+  input         R18_en,
+                R18_clk,
+  input  [4:0]  R19_addr,
+  input         R19_en,
+                R19_clk,
+  input  [4:0]  R20_addr,
+  input         R20_en,
+                R20_clk,
+  input  [4:0]  R21_addr,
+  input         R21_en,
+                R21_clk,
+  input  [4:0]  R22_addr,
+  input         R22_en,
+                R22_clk,
+  input  [4:0]  R23_addr,
+  input         R23_en,
+                R23_clk,
+  input  [4:0]  R24_addr,
+  input         R24_en,
+                R24_clk,
+  input  [4:0]  R25_addr,
+  input         R25_en,
+                R25_clk,
+  input  [4:0]  R26_addr,
+  input         R26_en,
+                R26_clk,
+  input  [4:0]  R27_addr,
+  input         R27_en,
+                R27_clk,
+  input  [4:0]  R28_addr,
+  input         R28_en,
+                R28_clk,
+  input  [4:0]  R29_addr,
+  input         R29_en,
+                R29_clk,
+  input  [4:0]  R30_addr,
+  input         R30_en,
+                R30_clk,
+  input  [4:0]  R31_addr,
+  input         R31_en,
+                R31_clk,
+  input  [4:0]  R32_addr,
+  input         R32_en,
+                R32_clk,
+  input  [4:0]  R33_addr,
+  input         R33_en,
+                R33_clk,
+  input  [4:0]  R34_addr,
+  input         R34_en,
+                R34_clk,
+  input  [4:0]  W0_addr,
+  input         W0_en,
+                W0_clk,
+  input  [63:0] W0_data,
+  input  [4:0]  W1_addr,
+  input         W1_en,
+                W1_clk,
+  input  [63:0] W1_data,
+  output [63:0] R0_data,
+                R1_data,
+                R2_data,
+                R3_data,
+                R4_data,
+                R5_data,
+                R6_data,
+                R7_data,
+                R8_data,
+                R9_data,
+                R10_data,
+                R11_data,
+                R12_data,
+                R13_data,
+                R14_data,
+                R15_data,
+                R16_data,
+                R17_data,
+                R18_data,
+                R19_data,
+                R20_data,
+                R21_data,
+                R22_data,
+                R23_data,
+                R24_data,
+                R25_data,
+                R26_data,
+                R27_data,
+                R28_data,
+                R29_data,
+                R30_data,
+                R31_data,
+                R32_data,
+                R33_data,
+                R34_data);
+
+  reg [63:0] Memory[0:31];	// Regfile.scala:32:19
+  always @(posedge W0_clk) begin	// Regfile.scala:32:19
+    if (W0_en)	// Regfile.scala:32:19
+      Memory[W0_addr] <= W0_data;	// Regfile.scala:32:19
+    if (W1_en)	// Regfile.scala:32:19
+      Memory[W1_addr] <= W1_data;	// Regfile.scala:32:19
+  end // always @(posedge)
+  `ifndef SYNTHESIS	// Regfile.scala:32:19
+    `ifdef RANDOMIZE_MEM_INIT	// Regfile.scala:32:19
+      integer initvar;	// Regfile.scala:32:19
+      reg [63:0] _RANDOM_MEM;	// Regfile.scala:32:19
+    `endif // RANDOMIZE_MEM_INIT
+    initial begin	// Regfile.scala:32:19
+      `INIT_RANDOM_PROLOG_	// Regfile.scala:32:19
+      `ifdef RANDOMIZE_MEM_INIT	// Regfile.scala:32:19
+        for (initvar = 0; initvar < 32; initvar = initvar + 1) begin
+          _RANDOM_MEM = {{`RANDOM}, {`RANDOM}};
+          Memory[initvar] = _RANDOM_MEM[63:0];
+        end	// Regfile.scala:32:19
+      `endif // RANDOMIZE_MEM_INIT
+      $readmemh("inst", Memory);
+    end // initial
+  `endif // not def SYNTHESIS
+  assign R0_data = R0_en ? Memory[R0_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R1_data = R1_en ? Memory[R1_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R2_data = R2_en ? Memory[R2_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R3_data = R3_en ? Memory[R3_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R4_data = R4_en ? Memory[R4_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R5_data = R5_en ? Memory[R5_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R6_data = R6_en ? Memory[R6_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R7_data = R7_en ? Memory[R7_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R8_data = R8_en ? Memory[R8_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R9_data = R9_en ? Memory[R9_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R10_data = R10_en ? Memory[R10_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R11_data = R11_en ? Memory[R11_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R12_data = R12_en ? Memory[R12_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R13_data = R13_en ? Memory[R13_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R14_data = R14_en ? Memory[R14_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R15_data = R15_en ? Memory[R15_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R16_data = R16_en ? Memory[R16_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R17_data = R17_en ? Memory[R17_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R18_data = R18_en ? Memory[R18_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R19_data = R19_en ? Memory[R19_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R20_data = R20_en ? Memory[R20_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R21_data = R21_en ? Memory[R21_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R22_data = R22_en ? Memory[R22_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R23_data = R23_en ? Memory[R23_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R24_data = R24_en ? Memory[R24_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R25_data = R25_en ? Memory[R25_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R26_data = R26_en ? Memory[R26_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R27_data = R27_en ? Memory[R27_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R28_data = R28_en ? Memory[R28_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R29_data = R29_en ? Memory[R29_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R30_data = R30_en ? Memory[R30_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R31_data = R31_en ? Memory[R31_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R32_data = R32_en ? Memory[R32_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R33_data = R33_en ? Memory[R33_addr] : 64'bx;	// Regfile.scala:32:19
+  assign R34_data = R34_en ? Memory[R34_addr] : 64'bx;	// Regfile.scala:32:19
 endmodule
 
 // external module Interact
@@ -237,31 +397,31 @@ module ControlUnit(	// <stdin>:43:10
   wire       _controlsig_T_5 = io_inst[6:0] == 7'h17;	// Lookup.scala:31:38
   wire       _controlsig_T_7 = io_inst[6:0] == 7'h37;	// Lookup.scala:31:38
   wire       _controlsig_T_9 = io_inst[6:0] == 7'h6F;	// Lookup.scala:31:38
-  wire       _controlsig_T_37 = _GEN == 10'h67;	// Lookup.scala:31:38
-  wire       _GEN_0 = _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 | _controlsig_T_9 | _controlsig_T_37;	// Lookup.scala:31:38, :34:39
+  wire       _controlsig_T_45 = _GEN == 10'h67;	// Lookup.scala:31:38
+  wire       _GEN_0 = _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 | _controlsig_T_9 | _controlsig_T_45;	// Lookup.scala:31:38, :34:39
   assign io_jump_type = _controlsig_T_1 | _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 ? 2'h0 :
-                _controlsig_T_9 ? 2'h1 : {_controlsig_T_37, 1'h0};	// <stdin>:43:10, Lookup.scala:31:38, :34:39
+                _controlsig_T_9 ? 2'h1 : {_controlsig_T_45, 1'h0};	// <stdin>:43:10, Lookup.scala:31:38, :34:39
   assign io_opa_type = ~_controlsig_T_1 & ~_controlsig_T_3 & (_controlsig_T_5 | ~_controlsig_T_7 &
-                (_controlsig_T_9 | _controlsig_T_37));	// <stdin>:43:10, Lookup.scala:31:38, :34:39
+                (_controlsig_T_9 | _controlsig_T_45));	// <stdin>:43:10, Lookup.scala:31:38, :34:39
   assign io_opb_type = ~_controlsig_T_1 & _GEN_0;	// <stdin>:43:10, Lookup.scala:31:38, :34:39
   assign io_imm_type = _controlsig_T_1 | _controlsig_T_3 ? 2'h0 : _controlsig_T_5 | _controlsig_T_7 ? 2'h1 :
                 {_controlsig_T_9, 1'h0};	// <stdin>:43:10, Lookup.scala:31:38, :34:39
   assign io_alu_op = {5{_controlsig_T_1 | ~_GEN_0}};	// <stdin>:43:10, Lookup.scala:31:38, :34:39
   assign io_wb_type = {1'h0, ~_controlsig_T_1 & (_controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 |
-                _controlsig_T_9 | _controlsig_T_37)};	// <stdin>:43:10, ControlUnit.scala:76:21, Lookup.scala:31:38, :34:39
+                _controlsig_T_9 | _controlsig_T_45)};	// <stdin>:43:10, ControlUnit.scala:77:21, Lookup.scala:31:38, :34:39
 endmodule
 
-module Eximm(	// <stdin>:103:10
+module Eximm(	// <stdin>:111:10
   input  [31:0] io_inst,
   input  [1:0]  io_imm_type,
   output [63:0] io_eximm);
 
   wire [3:0][63:0] _GEN = {{64'h0}, {{{44{io_inst[31]}}, io_inst[19:12], io_inst[20], io_inst[30:21], 1'h0}},
                 {{{32{io_inst[31]}}, io_inst[31:12], 12'h0}}, {{{52{io_inst[31]}}, io_inst[31:20]}}};	// Bitwise.scala:77:12, Cat.scala:33:92, Eximm.scala:30:{42,56}, :31:56, :32:{56,72,85}, Mux.scala:81:{58,61}
-  assign io_eximm = _GEN[io_imm_type];	// <stdin>:103:10, Mux.scala:81:{58,61}
+  assign io_eximm = _GEN[io_imm_type];	// <stdin>:111:10, Mux.scala:81:{58,61}
 endmodule
 
-module Decode(	// <stdin>:138:10
+module Decode(	// <stdin>:146:10
   input         io_inst_valid,
   input  [31:0] io_inst_bits,
   input  [63:0] io_fdio_pc,
@@ -283,8 +443,8 @@ module Decode(	// <stdin>:138:10
   wire        _cu_io_opb_type;	// Decode.scala:39:20
   wire [1:0]  _cu_io_imm_type;	// Decode.scala:39:20
   wire [31:0] _inst_T = io_inst_valid ? io_inst_bits : 32'h13;	// Decode.scala:43:16
-  wire        _io_jump_pc_T = _cu_io_jump_type == 2'h1;	// Decode.scala:39:20, :82:38
-  wire        _io_jump_pc_T_3 = _cu_io_jump_type == 2'h2;	// Decode.scala:39:20, :82:82, Mux.scala:81:61
+  wire        _io_jump_pc_T = _cu_io_jump_type == 2'h1;	// Decode.scala:39:20, :81:38
+  wire        _io_jump_pc_T_3 = _cu_io_jump_type == 2'h2;	// Decode.scala:39:20, :81:82, Mux.scala:81:61
   ControlUnit cu (	// Decode.scala:39:20
     .io_inst      (_inst_T),	// Decode.scala:43:16
     .io_jump_type (_cu_io_jump_type),
@@ -299,26 +459,26 @@ module Decode(	// <stdin>:138:10
     .io_imm_type (_cu_io_imm_type),	// Decode.scala:39:20
     .io_eximm    (_eximm_io_eximm)
   );
-  assign io_rfio_reg1_raddr = _inst_T[19:15];	// <stdin>:138:10, Decode.scala:43:16, :44:16
-  assign io_rfio_reg2_raddr = _inst_T[24:20];	// <stdin>:138:10, Decode.scala:43:16, :45:16
-  assign io_deio_op_a = _cu_io_opa_type ? io_fdio_pc : 64'h0;	// <stdin>:138:10, Decode.scala:39:20, Mux.scala:81:58
-  assign io_deio_op_b = _cu_io_opb_type ? _eximm_io_eximm : 64'h0;	// <stdin>:138:10, Decode.scala:39:20, :40:23, Mux.scala:81:58
-  assign io_deio_rd = _inst_T[11:7];	// <stdin>:138:10, Decode.scala:43:16, :46:15
-  assign io_jump_flag = _io_jump_pc_T | _io_jump_pc_T_3;	// <stdin>:138:10, Decode.scala:82:{38,63,82}
+  assign io_rfio_reg1_raddr = _inst_T[19:15];	// <stdin>:146:10, Decode.scala:43:16, :44:16
+  assign io_rfio_reg2_raddr = _inst_T[24:20];	// <stdin>:146:10, Decode.scala:43:16, :45:16
+  assign io_deio_op_a = _cu_io_opa_type ? io_fdio_pc : 64'h0;	// <stdin>:146:10, Decode.scala:39:20, Mux.scala:81:58
+  assign io_deio_op_b = _cu_io_opb_type ? _eximm_io_eximm : 64'h0;	// <stdin>:146:10, Decode.scala:39:20, :40:23, Mux.scala:81:58
+  assign io_deio_rd = _inst_T[11:7];	// <stdin>:146:10, Decode.scala:43:16, :46:15
+  assign io_jump_flag = _io_jump_pc_T | _io_jump_pc_T_3;	// <stdin>:146:10, Decode.scala:81:{38,63,82}
   assign io_jump_pc = _io_jump_pc_T ? io_fdio_pc + _eximm_io_eximm : _io_jump_pc_T_3 ? io_rfio_reg1_rdata +
-                _eximm_io_eximm & 64'hFFFFFFFFFFFFFFFE : 64'h80000000;	// <stdin>:138:10, Decode.scala:40:23, :81:16, :82:{38,82}, :86:71, :87:{81,99}, Mux.scala:101:16
+                _eximm_io_eximm & 64'hFFFFFFFFFFFFFFFE : 64'h80000000;	// <stdin>:146:10, Decode.scala:40:23, :81:{38,82}, :85:71, :86:{81,99,102}, Mux.scala:101:16
 endmodule
 
-module Alu(	// <stdin>:201:10
+module Alu(	// <stdin>:208:10
   input  [63:0] io_op_a,
                 io_op_b,
   input  [4:0]  io_alu_op,
   output [63:0] io_result);
 
-  assign io_result = io_alu_op == 5'h0 ? io_op_a + io_op_b : 64'h0;	// <stdin>:201:10, Alu.scala:49:33, Mux.scala:81:{58,61}
+  assign io_result = io_alu_op == 5'h0 ? io_op_a + io_op_b : 64'h0;	// <stdin>:208:10, Alu.scala:49:33, Mux.scala:81:{58,61}
 endmodule
 
-module Excute(	// <stdin>:212:10
+module Excute(	// <stdin>:219:10
   input  [63:0] io_deio_op_a,
                 io_deio_op_b,
   input  [4:0]  io_deio_rd,
@@ -334,11 +494,11 @@ module Excute(	// <stdin>:212:10
     .io_alu_op (io_deio_alu_op),
     .io_result (io_emio_alu_res)
   );
-  assign io_emio_wb_type = io_deio_wb_type;	// <stdin>:212:10
-  assign io_emio_rd = io_deio_rd;	// <stdin>:212:10
+  assign io_emio_wb_type = io_deio_wb_type;	// <stdin>:219:10
+  assign io_emio_rd = io_deio_rd;	// <stdin>:219:10
 endmodule
 
-module Mem(	// <stdin>:229:10
+module Mem(	// <stdin>:236:10
   input  [63:0] io_emio_alu_res,
   input  [1:0]  io_emio_wb_type,
   input  [4:0]  io_emio_rd,
@@ -346,12 +506,12 @@ module Mem(	// <stdin>:229:10
   output [1:0]  io_mwio_wb_type,
   output [4:0]  io_mwio_rd);
 
-  assign io_mwio_alu_res = io_emio_alu_res;	// <stdin>:229:10
-  assign io_mwio_wb_type = io_emio_wb_type;	// <stdin>:229:10
-  assign io_mwio_rd = io_emio_rd;	// <stdin>:229:10
+  assign io_mwio_alu_res = io_emio_alu_res;	// <stdin>:236:10
+  assign io_mwio_wb_type = io_emio_wb_type;	// <stdin>:236:10
+  assign io_mwio_rd = io_emio_rd;	// <stdin>:236:10
 endmodule
 
-module Wb(	// <stdin>:238:10
+module Wb(	// <stdin>:245:10
   input  [63:0] io_mwio_alu_res,
   input  [1:0]  io_mwio_wb_type,
   input  [4:0]  io_mwio_rd,
@@ -359,12 +519,14 @@ module Wb(	// <stdin>:238:10
   output        io_rfio_reg_wen,
   output [63:0] io_rfio_reg_wdata);
 
-  assign io_rfio_rd = io_mwio_rd;	// <stdin>:238:10
-  assign io_rfio_reg_wen = |io_mwio_wb_type;	// <stdin>:238:10, Wb.scala:21:40
-  assign io_rfio_reg_wdata = io_mwio_alu_res;	// <stdin>:238:10
+  assign io_rfio_rd = io_mwio_rd;	// <stdin>:245:10
+  assign io_rfio_reg_wen = |io_mwio_wb_type;	// <stdin>:245:10, Wb.scala:21:40
+  assign io_rfio_reg_wdata = io_mwio_alu_res;	// <stdin>:245:10
 endmodule
 
-module Regfile(	// <stdin>:248:10
+// external module RegsInterface
+
+module Regfile(	// <stdin>:259:10
   input         clock,
   input  [4:0]  io_RfDe_reg1_raddr,
                 io_RfDe_reg2_raddr,
@@ -377,45 +539,239 @@ module Regfile(	// <stdin>:248:10
   wire [63:0] _regs_ext_R0_data;	// Regfile.scala:32:19
   wire [63:0] _regs_ext_R1_data;	// Regfile.scala:32:19
   wire [63:0] _regs_ext_R2_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R3_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R4_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R5_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R6_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R7_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R8_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R9_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R10_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R11_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R12_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R13_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R14_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R15_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R16_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R17_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R18_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R19_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R20_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R21_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R22_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R23_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R24_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R25_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R26_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R27_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R28_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R29_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R30_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R31_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R32_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R33_data;	// Regfile.scala:32:19
+  wire [63:0] _regs_ext_R34_data;	// Regfile.scala:32:19
   regs_combMem regs_ext (	// Regfile.scala:32:19
-    .R0_addr (io_RfWb_rd),
-    .R0_en   (1'h1),	// <stdin>:248:10
-    .R0_clk  (clock),
-    .R1_addr (io_RfDe_reg1_raddr),
-    .R1_en   (1'h1),	// <stdin>:248:10
-    .R1_clk  (clock),
-    .R2_addr (io_RfDe_reg2_raddr),
-    .R2_en   (1'h1),	// <stdin>:248:10
-    .R2_clk  (clock),
-    .W0_addr (5'h0),	// Regfile.scala:35:9
-    .W0_en   (1'h1),	// <stdin>:248:10
-    .W0_clk  (clock),
-    .W0_data (64'h0),	// Regfile.scala:35:13
-    .W1_addr (io_RfWb_rd),
-    .W1_en   (1'h1),	// <stdin>:248:10
-    .W1_clk  (clock),
-    .W1_data (io_RfWb_reg_wen & (|io_RfWb_rd) ? io_RfWb_reg_wdata : _regs_ext_R0_data),	// Regfile.scala:32:19, :37:{28,45,60}
-    .R0_data (_regs_ext_R0_data),
-    .R1_data (_regs_ext_R1_data),
-    .R2_data (_regs_ext_R2_data)
+    .R0_addr  (io_RfWb_rd),
+    .R0_en    (1'h1),	// <stdin>:259:10
+    .R0_clk   (clock),
+    .R1_addr  (5'h0),	// Regfile.scala:37:9
+    .R1_en    (1'h1),	// <stdin>:259:10
+    .R1_clk   (clock),
+    .R2_addr  (5'hA),	// Regfile.scala:46:37
+    .R2_en    (1'h1),	// <stdin>:259:10
+    .R2_clk   (clock),
+    .R3_addr  (5'hB),	// Regfile.scala:46:37
+    .R3_en    (1'h1),	// <stdin>:259:10
+    .R3_clk   (clock),
+    .R4_addr  (5'hC),	// Regfile.scala:46:37
+    .R4_en    (1'h1),	// <stdin>:259:10
+    .R4_clk   (clock),
+    .R5_addr  (5'hD),	// Regfile.scala:46:37
+    .R5_en    (1'h1),	// <stdin>:259:10
+    .R5_clk   (clock),
+    .R6_addr  (5'hE),	// Regfile.scala:46:37
+    .R6_en    (1'h1),	// <stdin>:259:10
+    .R6_clk   (clock),
+    .R7_addr  (5'hF),	// Regfile.scala:46:37
+    .R7_en    (1'h1),	// <stdin>:259:10
+    .R7_clk   (clock),
+    .R8_addr  (5'h10),	// Regfile.scala:46:37
+    .R8_en    (1'h1),	// <stdin>:259:10
+    .R8_clk   (clock),
+    .R9_addr  (5'h11),	// Regfile.scala:46:37
+    .R9_en    (1'h1),	// <stdin>:259:10
+    .R9_clk   (clock),
+    .R10_addr (5'h12),	// Regfile.scala:46:37
+    .R10_en   (1'h1),	// <stdin>:259:10
+    .R10_clk  (clock),
+    .R11_addr (5'h13),	// Regfile.scala:46:37
+    .R11_en   (1'h1),	// <stdin>:259:10
+    .R11_clk  (clock),
+    .R12_addr (5'h1),	// Regfile.scala:46:37
+    .R12_en   (1'h1),	// <stdin>:259:10
+    .R12_clk  (clock),
+    .R13_addr (5'h14),	// Regfile.scala:46:37
+    .R13_en   (1'h1),	// <stdin>:259:10
+    .R13_clk  (clock),
+    .R14_addr (5'h15),	// Regfile.scala:46:37
+    .R14_en   (1'h1),	// <stdin>:259:10
+    .R14_clk  (clock),
+    .R15_addr (5'h16),	// Regfile.scala:46:37
+    .R15_en   (1'h1),	// <stdin>:259:10
+    .R15_clk  (clock),
+    .R16_addr (5'h17),	// Regfile.scala:46:37
+    .R16_en   (1'h1),	// <stdin>:259:10
+    .R16_clk  (clock),
+    .R17_addr (5'h18),	// Regfile.scala:46:37
+    .R17_en   (1'h1),	// <stdin>:259:10
+    .R17_clk  (clock),
+    .R18_addr (5'h19),	// Regfile.scala:46:37
+    .R18_en   (1'h1),	// <stdin>:259:10
+    .R18_clk  (clock),
+    .R19_addr (5'h1A),	// Regfile.scala:46:37
+    .R19_en   (1'h1),	// <stdin>:259:10
+    .R19_clk  (clock),
+    .R20_addr (5'h1B),	// Regfile.scala:46:37
+    .R20_en   (1'h1),	// <stdin>:259:10
+    .R20_clk  (clock),
+    .R21_addr (5'h1C),	// Regfile.scala:46:37
+    .R21_en   (1'h1),	// <stdin>:259:10
+    .R21_clk  (clock),
+    .R22_addr (5'h1D),	// Regfile.scala:46:37
+    .R22_en   (1'h1),	// <stdin>:259:10
+    .R22_clk  (clock),
+    .R23_addr (5'h2),	// Regfile.scala:46:37
+    .R23_en   (1'h1),	// <stdin>:259:10
+    .R23_clk  (clock),
+    .R24_addr (5'h1E),	// Regfile.scala:46:37
+    .R24_en   (1'h1),	// <stdin>:259:10
+    .R24_clk  (clock),
+    .R25_addr (5'h1F),	// Regfile.scala:46:37
+    .R25_en   (1'h1),	// <stdin>:259:10
+    .R25_clk  (clock),
+    .R26_addr (5'h3),	// Regfile.scala:46:37
+    .R26_en   (1'h1),	// <stdin>:259:10
+    .R26_clk  (clock),
+    .R27_addr (5'h4),	// Regfile.scala:46:37
+    .R27_en   (1'h1),	// <stdin>:259:10
+    .R27_clk  (clock),
+    .R28_addr (5'h5),	// Regfile.scala:46:37
+    .R28_en   (1'h1),	// <stdin>:259:10
+    .R28_clk  (clock),
+    .R29_addr (5'h6),	// Regfile.scala:46:37
+    .R29_en   (1'h1),	// <stdin>:259:10
+    .R29_clk  (clock),
+    .R30_addr (5'h7),	// Regfile.scala:46:37
+    .R30_en   (1'h1),	// <stdin>:259:10
+    .R30_clk  (clock),
+    .R31_addr (5'h8),	// Regfile.scala:46:37
+    .R31_en   (1'h1),	// <stdin>:259:10
+    .R31_clk  (clock),
+    .R32_addr (5'h9),	// Regfile.scala:46:37
+    .R32_en   (1'h1),	// <stdin>:259:10
+    .R32_clk  (clock),
+    .R33_addr (io_RfDe_reg1_raddr),
+    .R33_en   (1'h1),	// <stdin>:259:10
+    .R33_clk  (clock),
+    .R34_addr (io_RfDe_reg2_raddr),
+    .R34_en   (1'h1),	// <stdin>:259:10
+    .R34_clk  (clock),
+    .W0_addr  (5'h0),	// Regfile.scala:37:9
+    .W0_en    (1'h1),	// <stdin>:259:10
+    .W0_clk   (clock),
+    .W0_data  (64'h0),	// Regfile.scala:37:13
+    .W1_addr  (io_RfWb_rd),
+    .W1_en    (1'h1),	// <stdin>:259:10
+    .W1_clk   (clock),
+    .W1_data  (io_RfWb_reg_wen & (|io_RfWb_rd) ? io_RfWb_reg_wdata : _regs_ext_R0_data),	// Regfile.scala:32:19, :39:{28,45,60}
+    .R0_data  (_regs_ext_R0_data),
+    .R1_data  (_regs_ext_R1_data),
+    .R2_data  (_regs_ext_R2_data),
+    .R3_data  (_regs_ext_R3_data),
+    .R4_data  (_regs_ext_R4_data),
+    .R5_data  (_regs_ext_R5_data),
+    .R6_data  (_regs_ext_R6_data),
+    .R7_data  (_regs_ext_R7_data),
+    .R8_data  (_regs_ext_R8_data),
+    .R9_data  (_regs_ext_R9_data),
+    .R10_data (_regs_ext_R10_data),
+    .R11_data (_regs_ext_R11_data),
+    .R12_data (_regs_ext_R12_data),
+    .R13_data (_regs_ext_R13_data),
+    .R14_data (_regs_ext_R14_data),
+    .R15_data (_regs_ext_R15_data),
+    .R16_data (_regs_ext_R16_data),
+    .R17_data (_regs_ext_R17_data),
+    .R18_data (_regs_ext_R18_data),
+    .R19_data (_regs_ext_R19_data),
+    .R20_data (_regs_ext_R20_data),
+    .R21_data (_regs_ext_R21_data),
+    .R22_data (_regs_ext_R22_data),
+    .R23_data (_regs_ext_R23_data),
+    .R24_data (_regs_ext_R24_data),
+    .R25_data (_regs_ext_R25_data),
+    .R26_data (_regs_ext_R26_data),
+    .R27_data (_regs_ext_R27_data),
+    .R28_data (_regs_ext_R28_data),
+    .R29_data (_regs_ext_R29_data),
+    .R30_data (_regs_ext_R30_data),
+    .R31_data (_regs_ext_R31_data),
+    .R32_data (_regs_ext_R32_data),
+    .R33_data (_regs_ext_R33_data),
+    .R34_data (_regs_ext_R34_data)
   );
-  assign io_RfDe_reg1_rdata = (|io_RfDe_reg1_raddr) ? _regs_ext_R1_data : 64'h0;	// <stdin>:248:10, Regfile.scala:32:19, :35:13, :43:{30,50}
-  assign io_RfDe_reg2_rdata = (|io_RfDe_reg2_raddr) ? _regs_ext_R2_data : 64'h0;	// <stdin>:248:10, Regfile.scala:32:19, :35:13, :44:{30,50}
+  RegsInterface interface_0 (	// Regfile.scala:34:27
+    .DPIc_0  (_regs_ext_R1_data),	// Regfile.scala:32:19
+    .DPIc_1  (_regs_ext_R12_data),	// Regfile.scala:32:19
+    .DPIc_2  (_regs_ext_R23_data),	// Regfile.scala:32:19
+    .DPIc_3  (_regs_ext_R26_data),	// Regfile.scala:32:19
+    .DPIc_4  (_regs_ext_R27_data),	// Regfile.scala:32:19
+    .DPIc_5  (_regs_ext_R28_data),	// Regfile.scala:32:19
+    .DPIc_6  (_regs_ext_R29_data),	// Regfile.scala:32:19
+    .DPIc_7  (_regs_ext_R30_data),	// Regfile.scala:32:19
+    .DPIc_8  (_regs_ext_R31_data),	// Regfile.scala:32:19
+    .DPIc_9  (_regs_ext_R32_data),	// Regfile.scala:32:19
+    .DPIc_10 (_regs_ext_R2_data),	// Regfile.scala:32:19
+    .DPIc_11 (_regs_ext_R3_data),	// Regfile.scala:32:19
+    .DPIc_12 (_regs_ext_R4_data),	// Regfile.scala:32:19
+    .DPIc_13 (_regs_ext_R5_data),	// Regfile.scala:32:19
+    .DPIc_14 (_regs_ext_R6_data),	// Regfile.scala:32:19
+    .DPIc_15 (_regs_ext_R7_data),	// Regfile.scala:32:19
+    .DPIc_16 (_regs_ext_R8_data),	// Regfile.scala:32:19
+    .DPIc_17 (_regs_ext_R9_data),	// Regfile.scala:32:19
+    .DPIc_18 (_regs_ext_R10_data),	// Regfile.scala:32:19
+    .DPIc_19 (_regs_ext_R11_data),	// Regfile.scala:32:19
+    .DPIc_20 (_regs_ext_R13_data),	// Regfile.scala:32:19
+    .DPIc_21 (_regs_ext_R14_data),	// Regfile.scala:32:19
+    .DPIc_22 (_regs_ext_R15_data),	// Regfile.scala:32:19
+    .DPIc_23 (_regs_ext_R16_data),	// Regfile.scala:32:19
+    .DPIc_24 (_regs_ext_R17_data),	// Regfile.scala:32:19
+    .DPIc_25 (_regs_ext_R18_data),	// Regfile.scala:32:19
+    .DPIc_26 (_regs_ext_R19_data),	// Regfile.scala:32:19
+    .DPIc_27 (_regs_ext_R20_data),	// Regfile.scala:32:19
+    .DPIc_28 (_regs_ext_R21_data),	// Regfile.scala:32:19
+    .DPIc_29 (_regs_ext_R22_data),	// Regfile.scala:32:19
+    .DPIc_30 (_regs_ext_R24_data),	// Regfile.scala:32:19
+    .DPIc_31 (_regs_ext_R25_data)	// Regfile.scala:32:19
+  );
+  assign io_RfDe_reg1_rdata = (|io_RfDe_reg1_raddr) ? _regs_ext_R33_data : 64'h0;	// <stdin>:259:10, Regfile.scala:32:19, :37:13, :51:{30,50}
+  assign io_RfDe_reg2_rdata = (|io_RfDe_reg2_raddr) ? _regs_ext_R34_data : 64'h0;	// <stdin>:259:10, Regfile.scala:32:19, :37:13, :52:{30,50}
 endmodule
 
-module FlowControl(	// <stdin>:271:10
+module FlowControl(	// <stdin>:348:10
   input         io_fcde_jump_flag,
   input  [63:0] io_fcde_jump_pc,
   output        io_fcfe_jump_flag,
   output [63:0] io_fcfe_jump_pc,
   output        io_fcfe_flush);
 
-  assign io_fcfe_jump_flag = io_fcde_jump_flag;	// <stdin>:271:10
-  assign io_fcfe_jump_pc = io_fcde_jump_flag ? io_fcde_jump_pc : 64'h80000000;	// <stdin>:271:10, Mux.scala:101:16
-  assign io_fcfe_flush = io_fcde_jump_flag;	// <stdin>:271:10
+  assign io_fcfe_jump_flag = io_fcde_jump_flag;	// <stdin>:348:10
+  assign io_fcfe_jump_pc = io_fcde_jump_flag ? io_fcde_jump_pc : 64'h80000000;	// <stdin>:348:10, Mux.scala:101:16
+  assign io_fcfe_flush = io_fcde_jump_flag;	// <stdin>:348:10
 endmodule
 
-module Core(	// <stdin>:316:10
+module Core(	// <stdin>:393:10
   input         clock,
                 reset,
                 io_ramio_dataOut_valid,
@@ -461,18 +817,18 @@ module Core(	// <stdin>:316:10
   reg  [4:0]  mwreg_rd;	// Core.scala:54:24
   always @(posedge clock) begin
     if (reset) begin
-      fdreg_pc <= 64'h80000000;	// <stdin>:345:20, Core.scala:33:24
+      fdreg_pc <= 64'h80000000;	// <stdin>:422:20, Core.scala:33:24
       dereg_op_a <= 64'h0;	// Core.scala:38:24, :66:20
       dereg_op_b <= 64'h0;	// Core.scala:38:24, :66:20
-      dereg_rd <= 5'h0;	// <stdin>:351:20, Core.scala:38:24
-      dereg_alu_op <= 5'h1F;	// <stdin>:350:27, Core.scala:38:24
-      dereg_wb_type <= 2'h0;	// <stdin>:349:25, Core.scala:38:24
+      dereg_rd <= 5'h0;	// <stdin>:428:20, Core.scala:38:24
+      dereg_alu_op <= 5'h1F;	// <stdin>:427:27, Core.scala:38:24
+      dereg_wb_type <= 2'h0;	// <stdin>:426:25, Core.scala:38:24
       emreg_alu_res <= 64'h0;	// Core.scala:47:24, :66:20
-      emreg_wb_type <= 2'h0;	// <stdin>:349:25, Core.scala:47:24
-      emreg_rd <= 5'h0;	// <stdin>:351:20, Core.scala:47:24
+      emreg_wb_type <= 2'h0;	// <stdin>:426:25, Core.scala:47:24
+      emreg_rd <= 5'h0;	// <stdin>:428:20, Core.scala:47:24
       mwreg_alu_res <= 64'h0;	// Core.scala:54:24, :66:20
-      mwreg_wb_type <= 2'h0;	// <stdin>:349:25, Core.scala:54:24
-      mwreg_rd <= 5'h0;	// <stdin>:351:20, Core.scala:54:24
+      mwreg_wb_type <= 2'h0;	// <stdin>:426:25, Core.scala:54:24
+      mwreg_rd <= 5'h0;	// <stdin>:428:20, Core.scala:54:24
     end
     else begin
       fdreg_pc <= _fetch_io_fdio_pc;	// Core.scala:25:23, :33:24
@@ -489,37 +845,37 @@ module Core(	// <stdin>:316:10
       mwreg_rd <= _mem_io_mwio_rd;	// Core.scala:29:21, :54:24
     end
   end // always @(posedge)
-  `ifndef SYNTHESIS	// <stdin>:316:10
-    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:316:10
-      `FIRRTL_BEFORE_INITIAL	// <stdin>:316:10
+  `ifndef SYNTHESIS	// <stdin>:393:10
+    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:393:10
+      `FIRRTL_BEFORE_INITIAL	// <stdin>:393:10
     `endif // FIRRTL_BEFORE_INITIAL
-    initial begin	// <stdin>:316:10
-      automatic logic [31:0] _RANDOM_0;	// <stdin>:316:10
-      automatic logic [31:0] _RANDOM_1;	// <stdin>:316:10
-      automatic logic [31:0] _RANDOM_2;	// <stdin>:316:10
-      automatic logic [31:0] _RANDOM_3;	// <stdin>:316:10
-      automatic logic [31:0] _RANDOM_4;	// <stdin>:316:10
-      automatic logic [31:0] _RANDOM_5;	// <stdin>:316:10
-      automatic logic [31:0] _RANDOM_6;	// <stdin>:316:10
-      automatic logic [31:0] _RANDOM_7;	// <stdin>:316:10
-      automatic logic [31:0] _RANDOM_8;	// <stdin>:316:10
-      automatic logic [31:0] _RANDOM_9;	// <stdin>:316:10
-      automatic logic [31:0] _RANDOM_10;	// <stdin>:316:10
-      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:316:10
-        `INIT_RANDOM_PROLOG_	// <stdin>:316:10
+    initial begin	// <stdin>:393:10
+      automatic logic [31:0] _RANDOM_0;	// <stdin>:393:10
+      automatic logic [31:0] _RANDOM_1;	// <stdin>:393:10
+      automatic logic [31:0] _RANDOM_2;	// <stdin>:393:10
+      automatic logic [31:0] _RANDOM_3;	// <stdin>:393:10
+      automatic logic [31:0] _RANDOM_4;	// <stdin>:393:10
+      automatic logic [31:0] _RANDOM_5;	// <stdin>:393:10
+      automatic logic [31:0] _RANDOM_6;	// <stdin>:393:10
+      automatic logic [31:0] _RANDOM_7;	// <stdin>:393:10
+      automatic logic [31:0] _RANDOM_8;	// <stdin>:393:10
+      automatic logic [31:0] _RANDOM_9;	// <stdin>:393:10
+      automatic logic [31:0] _RANDOM_10;	// <stdin>:393:10
+      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:393:10
+        `INIT_RANDOM_PROLOG_	// <stdin>:393:10
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// <stdin>:316:10
-        _RANDOM_0 = `RANDOM;	// <stdin>:316:10
-        _RANDOM_1 = `RANDOM;	// <stdin>:316:10
-        _RANDOM_2 = `RANDOM;	// <stdin>:316:10
-        _RANDOM_3 = `RANDOM;	// <stdin>:316:10
-        _RANDOM_4 = `RANDOM;	// <stdin>:316:10
-        _RANDOM_5 = `RANDOM;	// <stdin>:316:10
-        _RANDOM_6 = `RANDOM;	// <stdin>:316:10
-        _RANDOM_7 = `RANDOM;	// <stdin>:316:10
-        _RANDOM_8 = `RANDOM;	// <stdin>:316:10
-        _RANDOM_9 = `RANDOM;	// <stdin>:316:10
-        _RANDOM_10 = `RANDOM;	// <stdin>:316:10
+      `ifdef RANDOMIZE_REG_INIT	// <stdin>:393:10
+        _RANDOM_0 = `RANDOM;	// <stdin>:393:10
+        _RANDOM_1 = `RANDOM;	// <stdin>:393:10
+        _RANDOM_2 = `RANDOM;	// <stdin>:393:10
+        _RANDOM_3 = `RANDOM;	// <stdin>:393:10
+        _RANDOM_4 = `RANDOM;	// <stdin>:393:10
+        _RANDOM_5 = `RANDOM;	// <stdin>:393:10
+        _RANDOM_6 = `RANDOM;	// <stdin>:393:10
+        _RANDOM_7 = `RANDOM;	// <stdin>:393:10
+        _RANDOM_8 = `RANDOM;	// <stdin>:393:10
+        _RANDOM_9 = `RANDOM;	// <stdin>:393:10
+        _RANDOM_10 = `RANDOM;	// <stdin>:393:10
         fdreg_pc = {_RANDOM_0, _RANDOM_1};	// Core.scala:33:24
         dereg_op_a = {_RANDOM_2, _RANDOM_3};	// Core.scala:38:24
         dereg_op_b = {_RANDOM_4, _RANDOM_5};	// Core.scala:38:24
@@ -534,8 +890,8 @@ module Core(	// <stdin>:316:10
         mwreg_rd = _RANDOM_10[25:21];	// Core.scala:54:24
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:316:10
-      `FIRRTL_AFTER_INITIAL	// <stdin>:316:10
+    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:393:10
+      `FIRRTL_AFTER_INITIAL	// <stdin>:393:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   Interact interact (	// Core.scala:17:26
@@ -614,7 +970,7 @@ module Core(	// <stdin>:316:10
   );
 endmodule
 
-module Ram(	// <stdin>:433:10
+module Ram(	// <stdin>:510:10
   input         clock,
                 io_pc_valid,
   input  [63:0] io_pc_bits,
@@ -628,22 +984,22 @@ module Ram(	// <stdin>:433:10
   reg        inst_valid;	// Ram.scala:22:29
   always @(posedge clock)
     inst_valid <= io_pc_valid;	// Ram.scala:22:29
-  `ifndef SYNTHESIS	// <stdin>:433:10
-    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:433:10
-      `FIRRTL_BEFORE_INITIAL	// <stdin>:433:10
+  `ifndef SYNTHESIS	// <stdin>:510:10
+    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:510:10
+      `FIRRTL_BEFORE_INITIAL	// <stdin>:510:10
     `endif // FIRRTL_BEFORE_INITIAL
-    initial begin	// <stdin>:433:10
-      automatic logic [31:0] _RANDOM_0;	// <stdin>:433:10
-      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:433:10
-        `INIT_RANDOM_PROLOG_	// <stdin>:433:10
+    initial begin	// <stdin>:510:10
+      automatic logic [31:0] _RANDOM_0;	// <stdin>:510:10
+      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:510:10
+        `INIT_RANDOM_PROLOG_	// <stdin>:510:10
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// <stdin>:433:10
-        _RANDOM_0 = `RANDOM;	// <stdin>:433:10
+      `ifdef RANDOMIZE_REG_INIT	// <stdin>:510:10
+        _RANDOM_0 = `RANDOM;	// <stdin>:510:10
         inst_valid = _RANDOM_0[0];	// Ram.scala:22:29
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:433:10
-      `FIRRTL_AFTER_INITIAL	// <stdin>:433:10
+    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:510:10
+      `FIRRTL_AFTER_INITIAL	// <stdin>:510:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   SyncMem_combMem SyncMem_ext (	// Ram.scala:18:30
@@ -664,12 +1020,12 @@ module Ram(	// <stdin>:433:10
     .R2_data (_SyncMem_ext_R2_data),
     .R3_data (_SyncMem_ext_R3_data)
   );
-  assign io_dataOut_valid = inst_valid;	// <stdin>:433:10, Ram.scala:22:29
+  assign io_dataOut_valid = inst_valid;	// <stdin>:510:10, Ram.scala:22:29
   assign io_dataOut_bits = inst_valid ? {_SyncMem_ext_R0_data, _SyncMem_ext_R1_data, _SyncMem_ext_R2_data,
-                _SyncMem_ext_R3_data} : 32'h0;	// <stdin>:433:10, Cat.scala:33:92, Ram.scala:18:30, :22:29, :26:27
+                _SyncMem_ext_R3_data} : 32'h0;	// <stdin>:510:10, Cat.scala:33:92, Ram.scala:18:30, :22:29, :26:27
 endmodule
 
-module Soc(	// <stdin>:483:10
+module Soc(	// <stdin>:560:10
   input clock,
         reset);
 
@@ -736,4 +1092,18 @@ module Interact(input [31:0] inst,
 endmodule
         
 
+// ----- 8< ----- FILE "rv64/./build/RegsInterface.v" ----- 8< -----
+
+
+import "DPI-C" function void get_gpr(uint64_t *gpr);
+
+module RegsInterface(input [64:0] DPic [0:31]);
+
+   initial get_gpr(DPic);
+
+
+endmodule
+
+
+        
 

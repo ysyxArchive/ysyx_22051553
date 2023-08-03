@@ -7,9 +7,9 @@
 
 uint64_t cpu_gpr[32] = {};
 
-extern "C" void get_gpr(uint64_t *gpr)){
-  for(int i = 0; i < 32; i++)
-    cpu_gpr[i] = gpr[i];
+extern "C" void get_gpr(uint64_t gpr0, uint64_t gpr1)){
+  for(int i = 0; i < 2; i++)
+    cpu_gpr[i] = gpr##i;
 }
 
 void single_cycle();
