@@ -205,6 +205,7 @@ static int decode_exec(Decode *s) {
 
 
   INSTPAT("0000000 00001 00000 000 00000 11100 11", "ebreak" , N, NEMUTRAP(s->pc, R(10))); 
+  INSTPAT("0000000 00000 00000 000 00000 11100 11", "ecall" , N, isa_raise_intr(0, s->pc + 4)); 
   INSTPAT("??????? ????? ????? ??? ????? ????? ??", "inv"    , N, INV(s->pc));             
   INSTPAT_END();
 
