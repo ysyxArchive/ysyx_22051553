@@ -14,7 +14,7 @@ class RegsInterface extends BlackBox with HasBlackBoxInline{
         """
         |import "DPI-C" function void get_gpr(uint64_t gpr0, uint64_t gpr1);
         |
-        |module RegsInterface(input [64:0] DPIc [0:31]);
+        |module RegsInterface(input [63:0] DPIc [0:31]);
         |
         |   initial get_gpr(DPIc[0],DPIc[1]);
         |

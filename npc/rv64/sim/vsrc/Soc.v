@@ -1095,15 +1095,16 @@ endmodule
 // ----- 8< ----- FILE "rv64/./build/RegsInterface.v" ----- 8< -----
 
 
-import "DPI-C" function void get_gpr(uint64_t *gpr);
+import "DPI-C" function void get_gpr(reg [63:0] gpr0,reg [63:0] gpr1);
 
-module RegsInterface(input [64:0] DPic [0:31]);
+module RegsInterface(input [63:0] DPIc [0:31]);
 
-   initial get_gpr(DPic);
+   initial get_gpr(DPIc[0],DPIc[1]);
 
 
 endmodule
 
 
         
+
 
