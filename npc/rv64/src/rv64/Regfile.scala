@@ -31,7 +31,7 @@ class Regfile extends Module {
 
     val regs = Mem(32, UInt(X_LEN.W))
 
-    val interface = Module(new RegsInterface)
+    // val interface = Module(new RegsInterface)
 
     //内部逻辑
     regs(0) := 0.U
@@ -42,8 +42,8 @@ class Regfile extends Module {
     )
 
 
-    for(i <- 0 to 31)
-        interface.io.DPIc(i) := regs(i)
+    // for(i <- 0 to 31)
+    //     interface.io.DPIc(i) := regs(i)
     
     
 
