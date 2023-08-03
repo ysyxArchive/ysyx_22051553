@@ -96,7 +96,6 @@ static void decode_operand(Decode *s, char* name, int *rd, int *rs1, int *csrn, 
     case TYPE_C:                   immC(); break;
     case TYPE_N:                           break;
   }
-  printf("1csrn is %d\n", *csrn) ;
 }
 
 static int decode_exec(Decode *s) {
@@ -118,7 +117,7 @@ static int decode_exec(Decode *s) {
 
 #define INSTPAT_INST(s) ((s)->isa.inst.val)          
 #define INSTPAT_MATCH(s, name, type, ... /* execute body */ ) { \
-  decode_operand(s, name, &rd, &csrn, &rs1, &src1, &src2, &imm, &shamt, concat(TYPE_, type), inst_name); \
+  decode_operand(s, name, &rd,  &rs1, &csrn, &src1, &src2, &imm, &shamt, concat(TYPE_, type), inst_name); \
   __VA_ARGS__ ; \
 }
 //取inst
@@ -213,7 +212,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000000 00001 00000 000 00000 11100 11", "ebreak" , N, NEMUTRAP(s->pc, R(10))); 
   INSTPAT("0000000 00000 00000 000 00000 11100 11", "ecall" , N, isa_raise_intr(0, s->pc + 4)); 
   
-  INSTPAT("????????????? ????? 001 ????? 1110011", "csrrw" , C, printf("2csrn is %d\n", csrn) ;R(rd) = SR(csrn); SR(csrn) = src1); 
+  INSTPAT("????????????? ????? 001 ????? 1110011", "csrrw" , C, R(rd) = SR(csrn); SR(csrn) = src1); 
 
   INSTPAT("??????? ????? ????? ??? ????? ????? ??", "inv"    , N, INV(s->pc));             
 
