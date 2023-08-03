@@ -5,15 +5,23 @@
 #include <readline/history.h>
 #include <verilated_dpi.h>
 
-uint64_t cpu_gpr[32] = {};
-
-extern "C" void get_gpr(uint64_t gpr0, uint64_t gpr1)){
-  for(int i = 0; i < 2; i++)
-    cpu_gpr[i] = gpr##i;
-}
-
 void single_cycle();
 int exam_exit();
+
+uint64_t *cpu_gpr = NULL;
+extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
+  cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
+}
+
+
+//输出寄存器
+void dump_gpr() {
+  int i;
+  for (i = 0; i < 32; i++) {
+    printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
+  }
+}
+
 
 static char* rl_gets() {
   static char *line_read = NULL;

@@ -10,13 +10,13 @@ class RegsInterface extends BlackBox with HasBlackBoxInline{
     })
 
 
-    setInline("RegsInterface.v",
+    setInline("RegsInterface.sv",
         """
-        |import "DPI-C" function void get_gpr(uint64_t gpr0, uint64_t gpr1);
+        |import "DPI-C" function void get_gpr(input logic [63:0] a[]);
         |
-        |module RegsInterface(input [63:0] DPIc [0:31]);
+        |module RegsInterface(input logic [63:0] DPIc[0:31]);
         |
-        |   initial get_gpr(DPIc[0],DPIc[1]);
+        |   initial get_gpr(DPIc);
         |
         |
         |endmodule
