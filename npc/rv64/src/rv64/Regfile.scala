@@ -23,6 +23,11 @@ class RfIO extends Bundle{
     val RfDe = new RfDeIO
     val RfWb = new RfWbIO
 
+    val DPIc = Output(new RfDPIcIO)
+}
+
+class RfDPIcIO extends Bundle{
+    val gprs = Vec(32, UInt(X_LEN.W))
 }
 
 class Regfile extends Module {
@@ -42,4 +47,9 @@ class Regfile extends Module {
     //端口驱动
     io.RfDe.reg1_rdata := Mux(io.RfDe.reg1_raddr.orR, regs(io.RfDe.reg1_raddr), 0.U)
     io.RfDe.reg2_rdata := Mux(io.RfDe.reg2_raddr.orR, regs(io.RfDe.reg2_raddr), 0.U)
+
+    for(i <- 0 to 31){
+        io.DPIc.gprs(i) := regs(i)
+    }
+
 }
