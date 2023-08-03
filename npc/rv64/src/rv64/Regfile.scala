@@ -22,19 +22,16 @@ class RfWbIO extends Bundle{
 class RfIO extends Bundle{
     val RfDe = new RfDeIO
     val RfWb = new RfWbIO
-
-    val DPIc = Output(new RfDPIcIO)
 }
 
-class RfDPIcIO extends Bundle{
-    val gprs = UInt((32*X_LEN).W)
-}
 
 class Regfile extends Module {
 
     val io = IO(new RfIO)
 
     val regs = Mem(32, UInt(X_LEN.W))
+
+    val interface = Module(new RegsInterface)
 
     //内部逻辑
     regs(0) := 0.U
@@ -44,13 +41,17 @@ class Regfile extends Module {
         regs(io.RfWb.rd)
     )
 
+
+    for(i <- 0 to 31)
+        interface.io.DPIc(i) := regs(i)
+    
+    
+
     //端口驱动
     io.RfDe.reg1_rdata := Mux(io.RfDe.reg1_raddr.orR, regs(io.RfDe.reg1_raddr), 0.U)
     io.RfDe.reg2_rdata := Mux(io.RfDe.reg2_raddr.orR, regs(io.RfDe.reg2_raddr), 0.U)
 
     
-    io.DPIc.gprs := Cat(
-        (31 to 0 by -1).map(i => regs(i))
-    )
     
+
 }

@@ -3,7 +3,14 @@
 #include "../../../include/macro.h"
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <verilated_dpi.h>
 
+uint64_t cpu_gpr[32] = {};
+
+extern "C" void get_gpr(uint64_t *gpr)){
+  for(int i = 0; i < 32; i++)
+    cpu_gpr[i] = gpr[i];
+}
 
 void single_cycle();
 int exam_exit();
