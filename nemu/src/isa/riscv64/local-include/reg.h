@@ -30,7 +30,9 @@ static inline int get_csr_idx(int idx){
     case MEPC: return mepc;
     case MCAUSE: return mcause;
     case MTVEC: return mtvec;
-    default: assert(0);
+    default: 
+      printf("%x\n", idx);
+      assert(0);
   }
   return 0;
 }
