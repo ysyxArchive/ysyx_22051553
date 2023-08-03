@@ -151,6 +151,7 @@ int printf(const char *fmt, ...) {
           }
           fmt_off+=2;
           partial_off=0;
+          putch('o');
           break;
         
         case 'd':
