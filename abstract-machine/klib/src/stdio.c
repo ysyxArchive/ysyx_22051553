@@ -265,6 +265,7 @@ int printf(const char *fmt, ...) {
 
   va_end(valist);
   putch('o');
+  total = 0;
   return total;
 }
 
