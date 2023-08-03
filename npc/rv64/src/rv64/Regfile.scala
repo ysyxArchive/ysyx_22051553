@@ -48,8 +48,8 @@ class Regfile extends Module {
     io.RfDe.reg1_rdata := Mux(io.RfDe.reg1_raddr.orR, regs(io.RfDe.reg1_raddr), 0.U)
     io.RfDe.reg2_rdata := Mux(io.RfDe.reg2_raddr.orR, regs(io.RfDe.reg2_raddr), 0.U)
 
-    for(i <- 0 to 31){
+    for(i <- 0 to 31)
         io.DPIc.gprs(i) := regs(i)
-    }
+    
 
 }
