@@ -93,7 +93,7 @@ static void decode_operand(Decode *s, char* name, int *rd, int *rs1, int *csrn, 
     case TYPE_J: src1R();          immJ(); break;
     case TYPE_R: src1R(); src2R();         break;
     case TYPE_B: src1R(); src2R(); immB(); break;
-    case TYPE_C:                   immC(); break;
+    case TYPE_C: src1R();          immC(); break;
     case TYPE_N:                           break;
   }
 }
