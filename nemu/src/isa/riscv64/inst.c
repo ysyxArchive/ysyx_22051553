@@ -113,7 +113,7 @@ static int decode_exec(Decode *s) {
 
   __uint128_t u264_1 = 18446744073709551615ULL;  //写18446744073709551615声明的是一个int字面量
 
-  s->dnpc = s->snpc;
+  s->dnpc = s->snpc;   //默认dnpc会+4
 
 #define INSTPAT_INST(s) ((s)->isa.inst.val)          
 #define INSTPAT_MATCH(s, name, type, ... /* execute body */ ) { \
