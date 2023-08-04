@@ -2,7 +2,7 @@
 
 static Context* do_event(Event e, Context* c) {
 
-  printf("%lx\n", c->gpr[0]);
+  printf("%lx\n", c->gpr[1]);
 
   switch (e.event) {
     default: panic("Unhandled event ID = %d", e.event);
