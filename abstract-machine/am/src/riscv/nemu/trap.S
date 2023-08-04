@@ -18,6 +18,19 @@ f(10) f(11) f(12) f(13) f(14) f(15) f(16) f(17) f(18) f(19) \
 f(20) f(21) f(22) f(23) f(24) f(25) f(26) f(27) f(28) f(29) \
 f(30) f(31)
 
+# context在栈中的存储：上到下->高到低 每个位置为XLEN长度8
+# pdir
+# epc
+# status
+# cause
+# gpr[31]
+# ...
+# gpr[1]
+# gpr[0]没有显式存储，但是占了位置 --0不需要存储，用来保存地址空间信息（pa4）
+# 所以对于结构体参数在内存中的存储，是从左到右，以此上升的
+
+
+
 #define PUSH(n) STORE concat(x, n), (n * XLEN)(sp);
 #define POP(n)  LOAD  concat(x, n), (n * XLEN)(sp);
 

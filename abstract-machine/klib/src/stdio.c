@@ -130,7 +130,7 @@ int printf(const char *fmt, ...) {
       total ++;
     }
     else{
-      char str[100];
+      char str[2000];
       while(in[fmt_off+1] != 's' && in[fmt_off+1] != 'd' && in[fmt_off+1] != 'u' && in[fmt_off+1] != 'x'){  //若有其他选项，会报错
         control[ctrl_off] = in[fmt_off+1];
         ctrl_off ++;
@@ -264,7 +264,6 @@ int printf(const char *fmt, ...) {
   }
 
   va_end(valist);
-
   return total;
 }
 
