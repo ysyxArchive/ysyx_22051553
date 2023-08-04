@@ -25,6 +25,8 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
   cpu.csr[mepc] = epc;
   cpu.csr[mcause] = NO;
 
+  printf("mtvec is %lx", cpu.csr[mtvec]);
+
   return cpu.csr[mtvec];
 }
 
