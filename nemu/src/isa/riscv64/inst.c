@@ -221,7 +221,6 @@ static int decode_exec(Decode *s) {
 
   R(0) = 0; // reset $zero to 0
 
-  printf("mcause is %lx\n", cpu.csr[mcause]);
 
   #ifdef CONFIG_FTRACE
     if(strcmp(inst_name, "jal") == 0 && rd == 1){      //call判定
