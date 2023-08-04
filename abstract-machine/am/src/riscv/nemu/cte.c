@@ -26,6 +26,12 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
   // initialize exception entry
   asm volatile("csrw mtvec, %0" : : "r"(__am_asm_trap));
 
+  // initialize for difftest
+  // asm volatile("csrw mstatus, %0" : : "i"(0xa00001800)); 立即数域没有这么大
+  unsigned long int temp = 0xa00001800;
+  asm volatile("csrw mstatus, %0" : : "r"(temp));
+
+
   // register event handler
   user_handler = handler;
 
