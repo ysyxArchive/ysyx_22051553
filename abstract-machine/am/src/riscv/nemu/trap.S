@@ -18,6 +18,8 @@ f(10) f(11) f(12) f(13) f(14) f(15) f(16) f(17) f(18) f(19) \
 f(20) f(21) f(22) f(23) f(24) f(25) f(26) f(27) f(28) f(29) \
 f(30) f(31)
 
+//f(1)存在了(XLEN)(sp)，那(sp)存什么
+
 #define PUSH(n) STORE concat(x, n), (n * XLEN)(sp);
 #define POP(n)  LOAD  concat(x, n), (n * XLEN)(sp);
 
