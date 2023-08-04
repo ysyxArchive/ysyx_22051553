@@ -14,15 +14,18 @@
 ***************************************************************************************/
 
 #include <isa.h>
+#include <isa-def.h>
+
+extern riscv64_CPU_state cpu;
 
 word_t isa_raise_intr(word_t NO, vaddr_t epc) {
   /* TODO: Trigger an interrupt/exception with ``NO''.
    * Then return the address of the interrupt/exception vector.
    */
-  printf("get intr\n");
+  cpu.csr[mepc] = epc;
+  cpu.csr[mcause] = NO;
 
-
-  return 0;
+  return cpu.csr[mtvec];
 }
 
 word_t isa_query_intr() {
