@@ -23,7 +23,6 @@
 extern riscv64_CPU_state cpu;
 
 static inline int check_reg_idx(int idx) {
-  printf("idx gpr is %d\n",idx);
   IFDEF(CONFIG_RT_CHECK, assert(idx >= 0 && idx < 32));
   return idx;
 }
@@ -34,6 +33,7 @@ static inline int get_csr_idx(int idx){
     case MEPC: return mepc;
     case MCAUSE: return mcause;
     case MTVEC: return mtvec;
+    case MSTATUS: return mstatus;
     default: 
       printf("%lx\n", cpu.pc);
       printf("%x\n", idx);
