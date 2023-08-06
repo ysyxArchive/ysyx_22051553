@@ -6,10 +6,9 @@
 static Context* (*user_handler)(Event, Context*) = NULL;
 
 Context* __am_irq_handle(Context *c) {  //根据系统调用号，得到事件原因
-  #ifdef CONFIG_ITRACE
-    printf("ITRACE");
-    
-  #endif
+
+ 
+
 
   if (user_handler) {
     Event ev = {0};
@@ -17,6 +16,10 @@ Context* __am_irq_handle(Context *c) {  //根据系统调用号，得到事件�
       case 0xffffffffffffffff: ev.event = EVENT_YIELD; break;
       default: ev.event = EVENT_ERROR; break;
     }
+
+    #ifdef CONFIG_ETRACE
+      printf("irq happen, event is %d\n", ev.event);
+    #endif
 
     c = user_handler(ev, c);
     assert(c != NULL);
