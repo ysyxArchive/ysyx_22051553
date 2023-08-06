@@ -17,7 +17,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Ehdr elf_header;
   assert(sizeof(Elf_Ehdr) ==  ramdisk_read(&elf_header, 0, sizeof(Elf_Ehdr)));
 
-  assert(*(uint32_t*)(elf_header.e_ident) == 0x7f454c46);  //只读4个字节的方式
+  assert(*(uint32_t*)(elf_header.e_ident) == 0x464c457f);  //只读4个字节的方式
   
   Elf_Phdr elf_ph[elf_header.e_phnum];
   for(int i = 0; i < elf_header.e_phnum; i ++){
