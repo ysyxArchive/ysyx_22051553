@@ -9,6 +9,16 @@
 # define Elf_Phdr Elf32_Phdr
 #endif
 
+//在AM的Makefile中定义
+#if defined(__ISA_AM_NATIVE__)
+# define EXPECT_TYPE EM_X86_64
+#elif defined(__ISA_RISCV64__)
+# define EXPECT_TYPE EM_RISCV 
+#else
+# error Unsupported ISA
+#endif
+
+
 size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
 
@@ -17,7 +27,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Ehdr elf_header;
   assert(sizeof(Elf_Ehdr) ==  ramdisk_read(&elf_header, 0, sizeof(Elf_Ehdr)));
 
-  assert(*(uint32_t*)(elf_header.e_ident) == 0x464c457f);  //只读4个字节的方式
+  assert(*(uint32_t*)(elf_header.e_ident) == 0x464c457f);  //只读4个字节的方式，小端存储，结构体从[0]到[3]地址递增
+  assert(elf_header.e_machine == EXPECT_TYPE);
   
   Elf_Phdr elf_ph[elf_header.e_phnum];
   for(int i = 0; i < elf_header.e_phnum; i ++){
