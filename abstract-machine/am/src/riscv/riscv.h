@@ -3,7 +3,8 @@
 
 #include <stdint.h>
 
-enum {
+//系统调用号
+enum {                                
   SYS_exit,
   SYS_yield,
   SYS_open,
