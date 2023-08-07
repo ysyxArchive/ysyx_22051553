@@ -16,7 +16,7 @@ void do_syscall(Context *c) {
   uintptr_t a[4];
   a[0] = c->GPR1;
 
-  Log("syscall: %s happen\nparas:a0:0x%lx a1:0x%lx a2:0x%lx a7:0x%lx", 
+  printf("syscall: %s happen\nparas:a0:0x%lx a1:0x%lx a2:0x%lx a7:0x%lx\n", 
   syscall_name[a[0]], c->GPR2,  c->GPR3, c->GPR4, c->GPR1);
 
   switch (a[0]) {
@@ -24,6 +24,6 @@ void do_syscall(Context *c) {
     case SYS_exit: sys_exit(c); break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
-  Log("syscall: %s over\nreturn value is 0x%lx", 
+  printf("syscall: %s over\nreturn value is 0x%lx\n", 
   syscall_name[a[0]], c->GPRx);
 }
