@@ -3,6 +3,30 @@
 
 #include <stdint.h>
 
+enum {
+  SYS_exit,
+  SYS_yield,
+  SYS_open,
+  SYS_read,
+  SYS_write,
+  SYS_kill,
+  SYS_getpid,
+  SYS_close,
+  SYS_lseek,
+  SYS_brk,
+  SYS_fstat,
+  SYS_time,
+  SYS_signal,
+  SYS_execve,
+  SYS_fork,
+  SYS_link,
+  SYS_unlink,
+  SYS_wait,
+  SYS_times,
+  SYS_gettimeofday
+};
+
+
 static inline uint8_t  inb(uintptr_t addr) { return *(volatile uint8_t  *)addr; }
 static inline uint16_t inw(uintptr_t addr) { return *(volatile uint16_t *)addr; }
 static inline uint32_t inl(uintptr_t addr) { return *(volatile uint32_t *)addr; }

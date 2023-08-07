@@ -14,12 +14,13 @@ Context* __am_irq_handle(Context *c) {  //根据系统调用号，得到事件�
     Event ev = {0};
     switch (c->mcause) {
       case 0xffffffffffffffff: ev.event = EVENT_YIELD; break;
+      case SYS_yield: ev.event = EVENT_SYSCALL; break;
       default: ev.event = EVENT_ERROR; break;
     }
 
-    #ifdef CONFIG_ETRACE
-      printf("irq happen, event is %d\n", ev.event);
-    #endif
+    // #ifdef CONFIG_ETRACE
+    //   printf("irq happen, event is %d\n", ev.event);
+    // #endif
 
     c = user_handler(ev, c);
     assert(c != NULL);
