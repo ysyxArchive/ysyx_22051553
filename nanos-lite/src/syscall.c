@@ -1,6 +1,8 @@
 #include <common.h>
 #include "syscall.h"
 
+#define CONFIG_STRACE
+
 static void sys_yield(Context *c){
   yield();
   c->GPRx = 0;
