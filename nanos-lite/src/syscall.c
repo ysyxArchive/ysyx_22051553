@@ -14,6 +14,7 @@ static void sys_write(Context *c){
   }
 
   c->GPRx = c->GPR4;
+  printf("%ld\n",c->GPRx);
 }
 
 static void sys_exit(Context *c){
