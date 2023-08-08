@@ -44,9 +44,6 @@ static inline void outl(uintptr_t addr, uint32_t data) { *(volatile uint32_t *)a
 #define PTE_A 0x40
 #define PTE_D 0x80
 
-#define CONFIG_STRACE
-// #define CONFIG_ETRACE
-
 
 
 enum { MODE_U, MODE_S, MODE_M = 3 };
