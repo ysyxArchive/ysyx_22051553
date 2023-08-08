@@ -8,7 +8,7 @@ static void sys_yield(Context *c){
 
 static void sys_write(Context *c){
   if(c->GPR2 == 1 || c->GPR2 == 2){
-    for(int i = 0; i < c-> GPR4; i --){
+    for(int i = 0; i < c-> GPR4; i ++){
       putch(*((char *)(c->GPR3) + i));
     }
   }
