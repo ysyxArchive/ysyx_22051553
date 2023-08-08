@@ -1,6 +1,8 @@
 #include <common.h>
 #include "syscall.h"
 
+
+
 static void sys_yield(Context *c){
   yield();
   c->GPRx = 0;
@@ -25,6 +27,10 @@ static void sys_exit(Context *c){
   halt(c->GPRx);
 }
 
+static void sys_brk(Context *c){
+  c->GPRx = 0;
+}
+
 
 
 void do_syscall(Context *c) {
@@ -37,6 +43,7 @@ void do_syscall(Context *c) {
   #endif
 
   switch (a[0]) {
+    case SYS_brk: sys_brk(c); break;
     case SYS_yield: sys_yield(c); break;
     case SYS_exit: sys_exit(c); break;                     //不在该循环中打印返回值
     case SYS_write: sys_write(c); break;
