@@ -9,7 +9,7 @@
 #define GPR2 gpr[10]
 #define GPR3 gpr[11]
 #define GPR4 gpr[12]
-#define GPRx gpr[17] // 返回值也是a7
+#define GPRx gpr[10] // 返回值是a0
 
 struct Context {
   // TODO: fix the order of these members to match trap.S
