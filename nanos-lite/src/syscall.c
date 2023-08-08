@@ -32,7 +32,6 @@ void do_syscall(Context *c) {
   a[0] = c->GPR1;
 
   #ifdef CONFIG_STRACE
-  printf("egt\n");
   printf("syscall: %s happen\nparas:a0:0x%lx a1:0x%lx a2:0x%lx a7:0x%lx\n", 
   syscall_name[a[0]], c->GPR2,  c->GPR3, c->GPR4, c->GPR1);
   #endif
