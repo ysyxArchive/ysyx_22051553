@@ -105,6 +105,10 @@ int fs_close(int fd){
 }
 
 
+size_t fs_begin(int fd){
+  return file_table[fd].disk_offset;
+}
+
 
 
 

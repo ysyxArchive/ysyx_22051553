@@ -48,10 +48,11 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     }
   }
   
-  
+  size_t begin = fs_begin(fd);
+
   fs_close(fd);
 
-  return elf_header.e_entry;
+  return begin + elf_header.e_entry;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
