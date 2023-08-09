@@ -48,11 +48,10 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     }
   }
   
-  size_t begin = fs_begin(fd);
 
   fs_close(fd);
 
-  printf("entry = %lx\n", begin + elf_header.e_entry);
+  printf("entry = %lx\n", elf_header.e_entry);
 
   return elf_header.e_entry;
 }
