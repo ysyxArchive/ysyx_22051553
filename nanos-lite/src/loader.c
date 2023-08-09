@@ -38,7 +38,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   fs_lseek(fd, elf_header.e_phoff, SEEK_SET);
   for(int i = 0; i < elf_header.e_phnum; i ++){
     printf("i = %d\n", i);
-    printf("size = %d\n", elf_header.e_phentsize);
+    
     fs_read(fd, &elf_ph[i], elf_header.e_phentsize);
     
     if(elf_ph[i].p_type == PT_LOAD){
