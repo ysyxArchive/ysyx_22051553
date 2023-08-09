@@ -32,6 +32,7 @@ static void sys_read(Context *c){
     assert(0);
   }
   else{
+    printf("p1\n");
     c->GPRx = fs_read((int)(c->GPR2), (void*)(c->GPR3), (size_t)(c->GPR4));
   }
 }
