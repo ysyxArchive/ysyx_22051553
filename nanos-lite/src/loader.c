@@ -38,7 +38,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   for(int i = 0; i < elf_header.e_phnum; i ++){
     
     fs_read(fd, &elf_ph[i], elf_header.e_phentsize);
-    
+    printf("is find %d\n", i);
     if(elf_ph[i].p_type == PT_LOAD){
       printf("load is %d\n", i);
       char Segment[elf_ph[i].p_filesz];
