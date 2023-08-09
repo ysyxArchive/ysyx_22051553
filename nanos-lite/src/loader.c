@@ -47,7 +47,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
       memset((void *)(elf_ph[i].p_vaddr + elf_ph[i].p_filesz), 0, elf_ph[i].p_memsz - elf_ph[i].p_filesz);  //清零
     }
   }
-
+  
+  printf("p1\n");
   fs_close(fd);
 
   return elf_header.e_entry;
