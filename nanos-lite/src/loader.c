@@ -52,7 +52,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 
   fs_close(fd);
 
-  printf("entry = %ld\n", begin + elf_header.e_entry);
+  printf("entry = %lx\n", begin + elf_header.e_entry);
 
   return begin + elf_header.e_entry;
 }
