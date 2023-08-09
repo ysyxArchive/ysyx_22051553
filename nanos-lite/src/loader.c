@@ -1,5 +1,6 @@
 #include <proc.h>
 #include <elf.h>
+#include "fs.h"
 
 #ifdef __LP64__
 # define Elf_Ehdr Elf64_Ehdr
@@ -23,26 +24,30 @@ size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
+
+  int fd = fs_open(filename, 0, 0);
   
   Elf_Ehdr elf_header;
-  assert(sizeof(Elf_Ehdr) ==  ramdisk_read(&elf_header, 0, sizeof(Elf_Ehdr)));
+  assert(sizeof(Elf_Ehdr) ==  fs_read(fd, &elf_header, sizeof(Elf_Ehdr)));
 
   assert(*(uint32_t*)(elf_header.e_ident) == 0x464c457f);  //只读4个字节的方式，小端存储，结构体从[0]到[3]地址递增
   assert(elf_header.e_machine == EXPECT_TYPE);
   
   Elf_Phdr elf_ph[elf_header.e_phnum];
+  fs_lseek(fd, elf_header.e_phoff, SEEK_SET);
   for(int i = 0; i < elf_header.e_phnum; i ++){
-    ramdisk_read(&elf_ph[i], elf_header.e_phoff + i * elf_header.e_phentsize,
-    elf_header.e_phentsize);
+    fs_read(fd, &elf_ph[i], elf_header.e_phentsize);
 
     if(elf_ph[i].p_type == PT_LOAD){
       char Segment[elf_ph[i].p_filesz];
-      ramdisk_read(&Segment, elf_ph[i].p_offset, elf_ph[i].p_filesz);
+      fs_lseek(fd, elf_ph[i].p_offset, SEEK_SET);
+      fs_read(fd, &Segment, elf_ph[i].p_filesz);
       memcpy((void *)(elf_ph[i].p_vaddr), &Segment, elf_ph[i].p_filesz);
       memset((void *)(elf_ph[i].p_vaddr + elf_ph[i].p_filesz), 0, elf_ph[i].p_memsz - elf_ph[i].p_filesz);  //清零
     }
   }
 
+  fs_close(fd);
 
   return elf_header.e_entry;
 }

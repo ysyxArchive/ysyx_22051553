@@ -1,6 +1,6 @@
 #include <common.h>
 #include "syscall.h"
-
+#include "fs.h"
 
 
 static void sys_yield(Context *c){
@@ -8,15 +8,61 @@ static void sys_yield(Context *c){
   c->GPRx = 0;
 }
 
+static void sys_open(Context *c){
+  c->GPRx = fs_open((const char*)(c->GPR2), (int)(c->GPR3), (int)(c->GPR4));
+}
+
 static void sys_write(Context *c){
   if(c->GPR2 == 1 || c->GPR2 == 2){
     for(int i = 0; i < c-> GPR4; i ++){
       putch(*((char *)(c->GPR3) + i));
     }
-  }
 
-  c->GPRx = c->GPR4;
+    c->GPRx = c->GPR4;
+  }
+  else if(c-> GPR2 <= 0)
+    assert(0);
+  else {
+    c->GPRx = fs_write((int)(c->GPR2), (const void*)(c->GPR3), (size_t)(c->GPR4));
+  }
 }
+
+static void sys_read(Context *c){
+  if( c->GPR2 <= 2){
+    assert(0);
+  }
+  else{
+    c->GPRx = fs_read((int)(c->GPR2), (void*)(c->GPR3), (size_t)(c->GPR4));
+  }
+}
+
+static void sys_lseek(Context *c){
+  if( c->GPR2 <= 2){
+    assert(0);
+  }
+  else{
+    c->GPRx = fs_lseek((int)(c->GPR2), (size_t)(c->GPR3), (int)(c->GPR4));
+  }
+}
+
+static void sys_close(Context *c){
+  if( c->GPR2 <= 2){
+    assert(0);
+  }
+  else{
+    c->GPRx = fs_close((int)(c->GPR2));
+  }
+}
+
+
+
+
+
+
+static void sys_brk(Context *c){
+  c->GPRx = 0;
+}
+
 
 static void sys_exit(Context *c){
   #ifdef CONFIG_STRACE
@@ -26,12 +72,6 @@ static void sys_exit(Context *c){
 
   halt(c->GPRx);
 }
-
-static void sys_brk(Context *c){
-  c->GPRx = 0;
-}
-
-
 
 void do_syscall(Context *c) {
   uintptr_t a[4];
@@ -47,6 +87,10 @@ void do_syscall(Context *c) {
     case SYS_yield: sys_yield(c); break;
     case SYS_exit: sys_exit(c); break;                     //不在该循环中打印返回值
     case SYS_write: sys_write(c); break;
+    case SYS_read: sys_read(c); break;
+    case SYS_open: sys_open(c); break;
+    case SYS_lseek: sys_lseek(c); break;
+    case SYS_close: sys_close(c); break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 

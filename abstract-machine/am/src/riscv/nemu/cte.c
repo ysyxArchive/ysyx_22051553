@@ -12,6 +12,10 @@ Context* __am_irq_handle(Context *c) {  //根据系统调用号，得到事件�
     Event ev = {0};
     switch (c->mcause) {
       case 0xffffffffffffffff: ev.event = EVENT_YIELD; break;
+      case SYS_open:
+      case SYS_read:
+      case SYS_close:
+      case SYS_lseek:
       case SYS_brk:
       case SYS_write:
       case SYS_exit:
