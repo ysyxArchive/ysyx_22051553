@@ -111,6 +111,7 @@ void *memmove(void *dst, const void *src, size_t n) {  //确保重叠不产生�
 
 void *memcpy(void *out, const void *in, size_t n) {
   int offset = 0;
+  printf("p\n");
   while(offset < n){
 	*(char*)(out+offset) = *(char *)(in+offset);
 	offset ++;
