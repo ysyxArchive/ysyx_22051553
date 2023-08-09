@@ -54,7 +54,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 
   printf("entry = %lx\n", begin + elf_header.e_entry);
 
-  return begin + elf_header.e_entry;
+  return elf_header.e_entry;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
