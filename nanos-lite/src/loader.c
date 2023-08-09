@@ -40,7 +40,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     
     fs_lseek(fd, elf_ph[i].p_offset, SEEK_SET);   //每次需要重新找位置，不能直接靠open_off
     fs_read(fd, &elf_ph[i], elf_header.e_phentsize);
-
+    printf("begin\n");
     if(elf_ph[i].p_type == PT_LOAD){
       char Segment[elf_ph[i].p_filesz];
       fs_lseek(fd, elf_ph[i].p_offset, SEEK_SET);
