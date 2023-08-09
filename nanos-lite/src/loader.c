@@ -26,7 +26,6 @@ size_t ramdisk_read(void *buf, size_t offset, size_t len);
 static uintptr_t loader(PCB *pcb, const char *filename) {
 
   int fd = fs_open(filename, 0, 0);
-  printf("fd = %d\n", fd);
   
   Elf_Ehdr elf_header;
   assert(sizeof(Elf_Ehdr) ==  fs_read(fd, &elf_header, sizeof(Elf_Ehdr)));
@@ -37,7 +36,6 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   Elf_Phdr elf_ph[elf_header.e_phnum];
   fs_lseek(fd, elf_header.e_phoff, SEEK_SET);
   for(int i = 0; i < elf_header.e_phnum; i ++){
-    printf("i = %d\n", i);
     
     fs_read(fd, &elf_ph[i], elf_header.e_phentsize);
     
