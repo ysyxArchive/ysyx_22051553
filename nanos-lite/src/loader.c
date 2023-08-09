@@ -35,12 +35,12 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   
   Elf_Phdr elf_ph[elf_header.e_phnum];
   fs_lseek(fd, elf_header.e_phoff, SEEK_SET);
+  printf("begin!\n");
   for(int i = 0; i < elf_header.e_phnum; i ++){
     
     fs_read(fd, &elf_ph[i], elf_header.e_phentsize);
-    printf("type is %d\n", elf_ph[2].p_type);
+
     if(elf_ph[i].p_type == PT_LOAD){
-      printf("load is %d\n", i);
       char Segment[elf_ph[i].p_filesz];
       fs_lseek(fd, elf_ph[i].p_offset, SEEK_SET);
       fs_read(fd, &Segment, elf_ph[i].p_filesz);
