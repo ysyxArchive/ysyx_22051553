@@ -40,12 +40,12 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     fs_read(fd, &elf_ph[i], elf_header.e_phentsize);
     
     if(elf_ph[i].p_type == PT_LOAD){
+      printf("load is %d\n", i);
       char Segment[elf_ph[i].p_filesz];
       fs_lseek(fd, elf_ph[i].p_offset, SEEK_SET);
       fs_read(fd, &Segment, elf_ph[i].p_filesz);
       memcpy((void *)(elf_ph[i].p_vaddr), &Segment, elf_ph[i].p_filesz);
       memset((void *)(elf_ph[i].p_vaddr + elf_ph[i].p_filesz), 0, elf_ph[i].p_memsz - elf_ph[i].p_filesz);  //清零
-      printf("once \n");
     }
   }
   
