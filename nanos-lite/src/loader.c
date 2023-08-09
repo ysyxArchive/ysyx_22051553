@@ -38,7 +38,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 
   for(int i = 0; i < elf_header.e_phnum; i ++){
     
-    fs_lseek(fd, elf_ph[i].p_offset, SEEK_SET);   //每次需要重新找位置，不能直接靠open_off
+    fs_lseek(fd, elf_header.e_phoff + i*elf_header.e_phentsize, SEEK_SET);   //每次需要重新找位置，不能直接靠open_off,因为在for循环中
     fs_read(fd, &elf_ph[i], elf_header.e_phentsize);
     printf("begin\n");
     if(elf_ph[i].p_type == PT_LOAD){
