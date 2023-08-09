@@ -83,10 +83,12 @@ int _write(int fd, void *buf, size_t count) {
 
 int _read(int fd, void *buf, size_t count) {
 
-  if(_syscall_(SYS_read, fd, (intptr_t)buf, count) == count)
-    return count;
+  int ret = _syscall_(SYS_read, fd, (intptr_t)buf, count);
+
+  if(ret == -1)
+    _exit(SYS_write);
   else
-    _exit(SYS_read);
+    return ret;
 
 }
 
