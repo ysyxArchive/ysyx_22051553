@@ -4,10 +4,16 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/time.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+
 
 static int evtdev = -1;
 static int fbdev = -1;
 static int screen_w = 0, screen_h = 0;
+
 
 uint32_t NDL_GetTicks() {  //1Tick->1ms
   
@@ -19,7 +25,10 @@ uint32_t NDL_GetTicks() {  //1Tick->1ms
 }
 
 int NDL_PollEvent(char *buf, int len) {
-  return 0;
+
+  int fd = open("/dev/events", 0, 0);
+
+  return read(fd, buf, len);
 }
 
 void NDL_OpenCanvas(int *w, int *h) {

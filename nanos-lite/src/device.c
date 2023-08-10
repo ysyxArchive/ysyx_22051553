@@ -7,6 +7,9 @@
 # define MULTIPROGRAM_YIELD()
 #endif
 
+char events[1000] = {}; //在最后一个事件的末尾加上\0
+int events_loc = 1;  // \0位置
+
 #define NAME(key) \
   [AM_KEY_##key] = #key,
 
@@ -27,10 +30,11 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   AM_INPUT_KEYBRD_T ev_keybrd = io_read(AM_INPUT_KEYBRD);
 
   if(ev_keybrd.keycode != AM_KEY_NONE){
-    if(ev_keybrd.keydown == true){
-      fs_write()
-    }
+      int ret = snprintf(&events[events_loc], len, "k%c %s\n", (ev_keybrd.keydown == true) ? 'd' : 'u',  keyname[ev_keybrd.keycode]);
+      events_loc += ret;
+      return ret;
   }
+  
   
   return 0;
 }

@@ -438,6 +438,14 @@ int snprintf(char *out, size_t n, const char *fmt, ...) {
           fmt_off+=2;
           partial_off=0;
           break;
+        case 'c':
+          char ch = va_arg(valist,int);
+
+          out[out_off] = ch;
+          out_off ++;
+
+          fmt_off+=2;
+          break;
         default:assert(0);break;
       }
     }
