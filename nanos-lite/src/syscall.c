@@ -49,14 +49,14 @@ static void sys_lseek(Context *c){
 }
 
 static void sys_close(Context *c){
-  printf("close %d\n", c->GPR2);
+  
 
-  if( c->GPR2 <= 2){
-    assert(0);
-  }
-  else{
+  // if( c->GPR2 <= 2){        好像最后系统会产生close(0)
+  //   assert(0);
+  // }
+  // else{
     c->GPRx = fs_close((int)(c->GPR2));
-  }
+  // }
 }
 
 
