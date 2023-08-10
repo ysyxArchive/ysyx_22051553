@@ -8,7 +8,7 @@
 #endif
 
 char events[1000] = {}; //在最后一个事件的末尾加上\0
-int events_loc = 1;  // \0位置
+int events_loc = 0;  // \0位置
 
 #define NAME(key) \
   [AM_KEY_##key] = #key,
@@ -32,32 +32,26 @@ size_t events_read(void *buf, size_t offset, size_t len) {
 
 
   if(ev_keybrd.keycode != AM_KEY_NONE){
-      printf("in\n");
-      printf("len is %ld\n", len);
+
       int ret = snprintf(&events[events_loc], len, "k%c %s\n", (ev_keybrd.keydown == true) ? 'd' : 'u',  keyname[ev_keybrd.keycode]);
-      
-      for(int i = 0; events[i] != '\0'; i++){
-        printf("in for\n");
-        printf("%d: \n", i);
-      }
       
       events_loc += ret;
 
   }
 
-  if(events_loc <= 2)
+  if(events_loc < 2)
     return 0;
 
   printf("%s", events);
   events_loc -= 2;  //到最后一个事件的\n前一个位置
-  while(events[events_loc-1] != '\n'){ //到最后一个事件开始位置
+  while(events[events_loc-1] != '\n' && events_loc != 0){ //到最后一个事件开始位置
     events_loc --;
   }
 
   strcpy(buf, &events[events_loc]);
   printf("buf is %s\n", buf);
   
-  events[events_loc-1] = '\0';
+  events[events_loc] = '\0';
   
   return 1;
 }
