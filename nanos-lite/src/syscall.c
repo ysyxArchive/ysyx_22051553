@@ -12,6 +12,7 @@ static void sys_open(Context *c){
 
   printf("file is %s\n", (const char*)(c->GPR2));
   c->GPRx = fs_open((const char*)(c->GPR2), (int)(c->GPR3), (int)(c->GPR4));
+  printf("return value = %d\n", (int)(c->GPRx));
 }
 
 static void sys_write(Context *c){

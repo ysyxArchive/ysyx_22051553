@@ -74,8 +74,6 @@ int _write(int fd, void *buf, size_t count) {
 
   int ret = _syscall_(SYS_write, fd, (intptr_t)buf, count);
 
-  printf("ret = %d\n", ret);
-
   if(ret == -1)
     _exit(SYS_write);
   else
