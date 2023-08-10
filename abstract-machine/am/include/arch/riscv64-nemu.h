@@ -1,7 +1,7 @@
 #ifndef ARCH_H__
 #define ARCH_H__
 
-#define CONFIG_STRACE
+// #define CONFIG_STRACE
 // #define CONFIG_ETRACE
 
 
