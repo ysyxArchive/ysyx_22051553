@@ -1,16 +1,21 @@
 #include <stdio.h>
 #include <assert.h>
 #include <sys/time.h>
+#include <NDL.h>
 
 int main() {
-  struct timeval tv;
-  gettimeofday(&tv, NULL);
+  
+  NDL_Init(0);
+  
   __uint64_t period = 500;
+
+
+
   while (1) {
-    while ((tv.tv_sec * 1000 + tv.tv_usec / 1000) < period) {
-      gettimeofday(&tv, NULL);
-    }
+    while ((NDL_GetTicks()) < period);
+    printf("time = %ldms\n", period);
     period += 500;
-    printf("time = %ld\n", period);
   }
+
+  NDL_Quit();
 }
