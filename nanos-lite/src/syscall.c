@@ -9,6 +9,7 @@ static void sys_yield(Context *c){
 }
 
 static void sys_open(Context *c){
+  printf("here\n");
   c->GPRx = fs_open((const char*)(c->GPR2), (int)(c->GPR3), (int)(c->GPR4));
 }
 
