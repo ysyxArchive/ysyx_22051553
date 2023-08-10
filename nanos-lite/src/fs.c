@@ -33,6 +33,7 @@ size_t event_fsread(void *buf, size_t offset, size_t len) {
   if(events_loc <= 2)
     return 0;
 
+  printf("%s", events);
   events_loc -= 2;  //到最后一个事件的\n前一个位置
   while(events[events_loc-1] != '\n'){ //到最后一个事件开始位置
     events_loc --;
@@ -80,7 +81,6 @@ size_t fs_read(int fd, void *buf, size_t len){
 
   
   if(fd <= FD_EVENTS){
-    printf("is read\n");
     return file_table[fd].read(buf, 0, len);
   }
   else {
