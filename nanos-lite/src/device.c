@@ -37,19 +37,18 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       
       events_loc += ret;
 
+      events[events_loc] = '\0';
   }
 
   if(events_loc < 2)
     return 0;
 
-  printf("%s", events);
   events_loc -= 2;  //到最后一个事件的\n前一个位置
   while(events[events_loc-1] != '\n' && events_loc != 0){ //到最后一个事件开始位置
     events_loc --;
   }
 
   strcpy(buf, &events[events_loc]);
-  printf("buf is %s\n", buf);
   
   events[events_loc] = '\0';
   
