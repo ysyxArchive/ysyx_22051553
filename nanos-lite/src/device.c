@@ -44,6 +44,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   }
 
   strcpy(buf, &events[events_loc]);
+  printf("buf is %s\n", buf);
   
   events[events_loc-1] = '\0';
   
