@@ -8,6 +8,7 @@ size_t ramdisk_read(void *buf, size_t offset, size_t len);
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 
 size_t serial_write(const void *buf, size_t offset, size_t len);
+size_t events_read(void *buf, size_t offset, size_t len);
 
 extern char* events; //在最后一个事件的末尾加上\0
 extern int events_loc;  // \0位置
@@ -29,22 +30,6 @@ size_t invalid_read(void *buf, size_t offset, size_t len) {
   return 0;
 }
 
-size_t event_fsread(void *buf, size_t offset, size_t len) {
-  if(events_loc <= 2)
-    return 0;
-
-  printf("%s", events);
-  events_loc -= 2;  //到最后一个事件的\n前一个位置
-  while(events[events_loc-1] != '\n'){ //到最后一个事件开始位置
-    events_loc --;
-  }
-
-  strcpy(buf, &events[events_loc]);
-  
-  events[events_loc-1] = '\0';
-
-  return 1;
-}
 
 size_t invalid_write(const void *buf, size_t offset, size_t len) {
   panic("should not reach here");
@@ -56,7 +41,7 @@ static Finfo file_table[] __attribute__((used)) = {
   [FD_STDIN]  = {"stdin", 0, 0, invalid_read, invalid_write},
   [FD_STDOUT] = {"stdout", 0, 0, invalid_read, serial_write},
   [FD_STDERR] = {"stderr", 0, 0, invalid_read, serial_write},
-  [FD_EVENTS] = {"/dev/events", 0, 0, event_fsread, invalid_write},
+  [FD_EVENTS] = {"/dev/events", 0, 0, events_read, invalid_write},
 #include "files.h"
 };
 

@@ -32,11 +32,22 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   if(ev_keybrd.keycode != AM_KEY_NONE){
       int ret = snprintf(&events[events_loc], len, "k%c %s\n", (ev_keybrd.keydown == true) ? 'd' : 'u',  keyname[ev_keybrd.keycode]);
       events_loc += ret;
-      return ret;
   }
+
+  if(events_loc <= 2)
+    return 0;
+
+  printf("%s", events);
+  events_loc -= 2;  //到最后一个事件的\n前一个位置
+  while(events[events_loc-1] != '\n'){ //到最后一个事件开始位置
+    events_loc --;
+  }
+
+  strcpy(buf, &events[events_loc]);
   
+  events[events_loc-1] = '\0';
   
-  return 0;
+  return 1;
 }
 
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
