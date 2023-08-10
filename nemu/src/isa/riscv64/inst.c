@@ -108,7 +108,7 @@ static int decode_exec(Decode *s) {
 
   #ifdef CONFIG_FTRACE
   static int func_level = 0;
-  static int func_name[1000] = {};
+  static int func_name[5000] = {};
   #endif
 
   __uint128_t u264_1 = 18446744073709551615ULL;  //写18446744073709551615声明的是一个int字面量
