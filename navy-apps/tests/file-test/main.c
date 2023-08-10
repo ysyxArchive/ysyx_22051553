@@ -3,13 +3,10 @@
 
 int main() {
   FILE *fp = fopen("/share/files/num", "r+");
-  printf("fp = %d\n", fp->_file);
   assert(fp);
 
   long off = fseek(fp, 0, SEEK_END);
-  printf("off = %ld\n", off);
   long size = ftell(fp);
-  printf("size = %ld\n", size);
   assert(size == 5000);
 
   fseek(fp, 500 * 5, SEEK_SET);

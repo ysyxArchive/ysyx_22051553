@@ -10,8 +10,8 @@ static void sys_yield(Context *c){
 
 static void sys_open(Context *c){
 
-  printf("file is %s\n", (const char*)(c->GPR2));
   c->GPRx = fs_open((const char*)(c->GPR2), (int)(c->GPR3), (int)(c->GPR4));
+  
 }
 
 static void sys_write(Context *c){
@@ -34,7 +34,6 @@ static void sys_read(Context *c){
     assert(0);
   }
   else{
-    printf("p1\n");
     c->GPRx = fs_read((int)(c->GPR2), (void*)(c->GPR3), (size_t)(c->GPR4));
   }
 }
