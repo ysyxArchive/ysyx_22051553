@@ -49,6 +49,8 @@ static void sys_lseek(Context *c){
 }
 
 static void sys_close(Context *c){
+  printf("close %d\n", c->GPR2);
+
   if( c->GPR2 <= 2){
     assert(0);
   }
