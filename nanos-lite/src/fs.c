@@ -10,8 +10,6 @@ size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t serial_write(const void *buf, size_t offset, size_t len);
 size_t events_read(void *buf, size_t offset, size_t len);
 
-extern char* events; //在最后一个事件的末尾加上\0
-extern int events_loc;  // \0位置
 
 typedef struct {
   char *name;
