@@ -26,7 +26,7 @@ size_t ramdisk_read(void *buf, size_t offset, size_t len);
 static uintptr_t loader(PCB *pcb, const char *filename) {
 
   int fd = fs_open(filename, 0, 0);
-  
+  printf("file is %s\n", filename);
   Elf_Ehdr elf_header;
   assert(sizeof(Elf_Ehdr) ==  fs_read(fd, &elf_header, sizeof(Elf_Ehdr)));
 
