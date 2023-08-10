@@ -139,6 +139,8 @@ void int2str(int num, char* str){
 
 int printf(const char *fmt, ...) {
   
+  putch('0');
+
   const char *in = fmt;
 
   va_list valist;
