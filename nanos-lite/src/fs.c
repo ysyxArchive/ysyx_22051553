@@ -45,7 +45,6 @@ int fs_open(const char *pathname, int flags, int mode){
   for(int i = 0; i < NR_FILES; i ++){
     if(strcmp(file_table[i].name, pathname) == 0){
       file_table[i].open_offset = 0;
-      printf("ok, i = %d\n", i);
       return i;
     }
   }
@@ -64,7 +63,6 @@ size_t fs_read(int fd, void *buf, size_t len){
   else {
     real_len = len;
   }
-  printf("is reading from 0x%lx\n",file_table[fd].open_offset);
   ramdisk_read(buf, file_table[fd].disk_offset+file_table[fd].open_offset, real_len);
   file_table[fd].open_offset += real_len;
   return real_len;
