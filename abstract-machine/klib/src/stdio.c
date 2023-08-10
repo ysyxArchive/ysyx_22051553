@@ -292,35 +292,7 @@ int printf(const char *fmt, ...) {
           putch('0');
           putch('x');
 
-          if(control[0] == '0'){   //%02d
-            int len = control[1] - 48;
-            int maxvalue = 1;
-            if(p_type == 0){
-              while(len > 0){
-                putch('0');
-                len --;  
-              }
-            }
-            else{
-              while(len > 1){
-                maxvalue *= 10;
-                len --;
-              }
-            
-              for(int v = p_type; v < maxvalue; v*=10){
-                putch('0');
-              }
-            }
-          }
-
-
-          while(str[partial_off] != '\0'){
-            putch(str[partial_off]);
-            partial_off ++;
-            total ++;
-          }
-          fmt_off+=2;
-          partial_off=0;
+   
           break;
 
           
