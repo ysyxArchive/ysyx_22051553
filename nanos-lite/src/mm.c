@@ -23,8 +23,6 @@ int mm_brk(uintptr_t brk) {
 
 void init_mm() {
   pf = (void *)ROUNDUP(heap.start, PGSIZE);
-  printf("in mm\n");
-  printf("start is %p\n", heap.start);
 
   Log("free physical pages starting from %p", pf);
 
