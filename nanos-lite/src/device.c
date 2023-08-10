@@ -36,7 +36,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
       printf("len is %ld\n", len);
       int ret = snprintf(&events[events_loc], len, "k%c %s\n", (ev_keybrd.keydown == true) ? 'd' : 'u',  keyname[ev_keybrd.keycode]);
       for(int i = 0; events[i] != '\0'; i++){
-        printf("%c\n", events[i]);
+        printf("%d: %c\n", i, events[i]);
       }
       events_loc += ret;
 
