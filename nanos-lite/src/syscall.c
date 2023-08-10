@@ -1,7 +1,7 @@
 #include <common.h>
 #include "syscall.h"
 #include "fs.h"
-
+#include <sys/time.h>
 
 static void sys_yield(Context *c){
   yield();
@@ -15,14 +15,7 @@ static void sys_open(Context *c){
 }
 
 static void sys_write(Context *c){
-  // if(c->GPR2 == 1 || c->GPR2 == 2){
-  //   // for(int i = 0; i < c-> GPR4; i ++){
-  //   //   putch(*((char *)(c->GPR3) + i));
-  //   // }
 
-
-  //   c->GPRx = ;
-  // }
   if(c-> GPR2 <= 0)
     assert(0);
   else {
@@ -61,11 +54,30 @@ static void sys_close(Context *c){
 
 
 
-
-
-
 static void sys_brk(Context *c){
   c->GPRx = 0;
+}
+
+static void sys_gettimeofday(Context *c){
+  
+  __uint64_t time = 0;
+  time = io_read(AM_TIMER_UPTIME).us;
+
+  struct timeval *tv = (void*)(c->GPR2);
+  struct timezone *tz = (void*)(c->GPR3);
+
+  if(tv != NULL){
+    tv->tv_sec = time/(1000000);
+    tv->tv_usec = time%(1000000);
+  }
+
+  if(tz != NULL){
+
+  }
+
+  c->GPRx = 0;
+
+
 }
 
 
@@ -88,6 +100,7 @@ void do_syscall(Context *c) {
   #endif
 
   switch (a[0]) {
+    case SYS_gettimeofday: sys_gettimeofday(c); break;
     case SYS_brk: sys_brk(c); break;
     case SYS_yield: sys_yield(c); break;
     case SYS_exit: sys_exit(c); break;                     //不在该循环中打印返回值
