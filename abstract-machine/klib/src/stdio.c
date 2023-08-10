@@ -288,6 +288,11 @@ int printf(const char *fmt, ...) {
           case 'p':        //unsigned long int / void*
           unsigned long int p_type = va_arg(valist,unsigned long int);
           ulint2strx(p_type, str);
+
+          putch('0');
+          putch('x');
+
+          
           if(control[0] == '0'){   //%02d
             int len = control[1] - 48;
             int maxvalue = 1;
