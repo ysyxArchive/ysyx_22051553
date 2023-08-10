@@ -66,7 +66,7 @@ int _open(const char *path, int flags, mode_t mode) {
   if(ret == -1)
     _exit(SYS_open);
   else
-    return -1;
+    return ret;
     
 }
 
