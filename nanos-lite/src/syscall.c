@@ -9,7 +9,8 @@ static void sys_yield(Context *c){
 }
 
 static void sys_open(Context *c){
-  printf("here\n");
+
+  printf("file is %s\n", (const char*)(c->GPR2));
   c->GPRx = fs_open((const char*)(c->GPR2), (int)(c->GPR3), (int)(c->GPR4));
 }
 
