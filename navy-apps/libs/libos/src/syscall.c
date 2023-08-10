@@ -86,7 +86,7 @@ int _read(int fd, void *buf, size_t count) {
   int ret = _syscall_(SYS_read, fd, (intptr_t)buf, count);
 
   if(ret == -1)
-    _exit(SYS_write);
+    _exit(SYS_read);
   else
     return ret;
 
