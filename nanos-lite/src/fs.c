@@ -80,6 +80,7 @@ size_t fs_read(int fd, void *buf, size_t len){
 
   
   if(fd <= FD_EVENTS){
+    printf("is read\n");
     return file_table[fd].read(buf, 0, len);
   }
   else {

@@ -24,7 +24,7 @@ static void sys_write(Context *c){
 }
 
 static void sys_read(Context *c){
-  printf("reading\n");
+  
   if( c->GPR2 <= 2){
     assert(0);
   }
