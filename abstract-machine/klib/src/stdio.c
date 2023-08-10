@@ -358,7 +358,7 @@ int sprintf(char *out, const char *fmt, ...) {
       fmt_off++;
     }
     else if(in[fmt_off] == '%'){
-      char str[20] = {};
+      char str[50] = {};
       switch(in[fmt_off+1]){
         case 's':
           strcpy(str,(const char*)(va_arg(valist,const char*)));
@@ -391,7 +391,60 @@ int sprintf(char *out, const char *fmt, ...) {
 }
 
 int snprintf(char *out, size_t n, const char *fmt, ...) {
-  panic("Not implemented");
+  const char *in = fmt;
+
+  va_list valist;
+  va_start(valist,fmt);
+
+  
+  int out_off = 0;
+  int partial_off = 0;
+  int fmt_off = 0;
+
+
+  while(in[fmt_off] != '\0' && (out_off < n)){
+    if(in[fmt_off] != '%'){
+      out[out_off] = in[fmt_off];
+      out_off++;
+      fmt_off++;
+    }
+    else if(in[fmt_off] == '%'){
+      char str[100] = {};
+      switch(in[fmt_off+1]){
+        case 's':
+          strcpy(str,(const char*)(va_arg(valist,const char*)));
+          while(str[partial_off] != '\0'){
+            if(out_off >= n)
+              break;
+
+            out[out_off] = str[partial_off];
+            out_off ++;
+            partial_off ++;
+          }
+          fmt_off+=2;
+          partial_off=0;
+          break;
+        case 'd':
+          int2str(va_arg(valist,int), str);
+          while(str[partial_off] != '\0'){
+            if(out_off >= n)
+              break;
+
+            out[out_off] = str[partial_off];
+            out_off ++;
+            partial_off ++;
+
+          }
+          fmt_off+=2;
+          partial_off=0;
+          break;
+        default:assert(0);break;
+      }
+    }
+  }
+  out[out_off] = '\0';
+
+  return out_off;
 }
 
 int vsnprintf(char *out, size_t n, const char *fmt, va_list ap) {

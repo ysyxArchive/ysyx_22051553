@@ -19,7 +19,7 @@ typedef struct {
 } Finfo;
 
 
-enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB};
+enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB, FD_EVENTS};
 
 size_t invalid_read(void *buf, size_t offset, size_t len) {
   panic("should not reach here");
@@ -36,6 +36,7 @@ static Finfo file_table[] __attribute__((used)) = {
   [FD_STDIN]  = {"stdin", 0, 0, invalid_read, invalid_write},
   [FD_STDOUT] = {"stdout", 0, 0, invalid_read, serial_write},
   [FD_STDERR] = {"stderr", 0, 0, invalid_read, serial_write},
+  [FD_EVENTS] = {"/dev/events", 0, 0, invalid_read, invalid_write},
 #include "files.h"
 };
 
@@ -57,17 +58,27 @@ int fs_open(const char *pathname, int flags, int mode){
 
 size_t fs_read(int fd, void *buf, size_t len){
 
-  size_t real_len = 0;
-
-  if(file_table[fd].disk_offset+file_table[fd].open_offset + len > file_table[fd].disk_offset + file_table[fd].size){
-    real_len = (file_table[fd].disk_offset + file_table[fd].size) - (file_table[fd].disk_offset+file_table[fd].open_offset);
+  if(fd <= FD_STDERR){
+    assert(0);
+  }
+  else if(fd == FD_EVENTS){
+    
   }
   else {
-    real_len = len;
+    size_t real_len = 0;
+
+    if(file_table[fd].disk_offset+file_table[fd].open_offset + len > file_table[fd].disk_offset + file_table[fd].size){
+      real_len = (file_table[fd].disk_offset + file_table[fd].size) - (file_table[fd].disk_offset+file_table[fd].open_offset);
+    }
+    else {
+      real_len = len;
+    }
+    ramdisk_read(buf, file_table[fd].disk_offset+file_table[fd].open_offset, real_len);
+    file_table[fd].open_offset += real_len;
+    return real_len;
   }
-  ramdisk_read(buf, file_table[fd].disk_offset+file_table[fd].open_offset, real_len);
-  file_table[fd].open_offset += real_len;
-  return real_len;
+
+
 }
 
 size_t fs_write(int fd, const void *buf, size_t len){

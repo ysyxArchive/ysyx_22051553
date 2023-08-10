@@ -1,4 +1,5 @@
 #include <common.h>
+#include "fs.h"
 
 #if defined(MULTIPROGRAM) && !defined(TIME_SHARING)
 # define MULTIPROGRAM_YIELD() yield()
@@ -22,6 +23,15 @@ size_t serial_write(const void *buf, size_t offset, size_t len) {
 }
 
 size_t events_read(void *buf, size_t offset, size_t len) {
+  
+  AM_INPUT_KEYBRD_T ev_keybrd = io_read(AM_INPUT_KEYBRD);
+
+  if(ev_keybrd.keycode != AM_KEY_NONE){
+    if(ev_keybrd.keydown == true){
+      fs_write()
+    }
+  }
+  
   return 0;
 }
 
