@@ -26,7 +26,7 @@ size_t ramdisk_read(void *buf, size_t offset, size_t len);
 static uintptr_t loader(PCB *pcb, const char *filename) {
 
   int fd = fs_open(filename, 0, 0);
-  
+  printf("here\n");
   Elf_Ehdr elf_header;
   assert(sizeof(Elf_Ehdr) ==  fs_read(fd, &elf_header, sizeof(Elf_Ehdr)));
 
@@ -58,7 +58,6 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 
 void naive_uload(PCB *pcb, const char *filename) {
   uintptr_t entry = loader(pcb, filename);
-  printf("here\n");
   Log("Jump to entry = 0x%lx", (entry));
   ((void(*)())entry) ();
 }
