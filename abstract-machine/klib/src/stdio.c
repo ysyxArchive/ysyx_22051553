@@ -36,6 +36,34 @@ void uint2strx(unsigned int num, char* str){
   return ;
 }
 
+void ulint2strx(unsigned long int num, char* str){
+  int length = 0;
+  unsigned long int temp = num;
+
+  while(temp){
+    length ++;
+    temp /= 16;
+  }
+
+  if(num == 0){
+    str[0] = '0';
+    str[1] = '\0';
+    return ;
+  }
+
+  temp = num;
+  
+  str[length] = '\0';
+  length --;
+  while(length >= 0){
+    str[length] = hex_char[temp%16];
+    temp /= 16;
+    length --;
+  }
+
+  return ;
+}
+
 void uint2str(unsigned int num, char* str){
   int length = 0;
   unsigned int temp = num;
@@ -242,6 +270,44 @@ int printf(const char *fmt, ...) {
               }
             
               for(int v = u_type; v < maxvalue; v*=10){
+                putch('0');
+              }
+            }
+          }
+
+
+          while(str[partial_off] != '\0'){
+            putch(str[partial_off]);
+            partial_off ++;
+            total ++;
+          }
+          fmt_off+=2;
+          partial_off=0;
+          break;
+
+          case 'p':        //unsigned long int
+          unsigned long int p_type = va_arg(valist,unsigned long int);
+          ulint2strx(p_type, str);
+
+          putch('0');
+          putch('x');
+
+          if(control[0] == '0'){   //%02d
+            int len = control[1] - 48;
+            int maxvalue = 1;
+            if(p_type == 0){
+              while(len > 0){
+                putch('0');
+                len --;  
+              }
+            }
+            else{
+              while(len > 1){
+                maxvalue *= 10;
+                len --;
+              }
+            
+              for(int v = p_type; v < maxvalue; v*=10){
                 putch('0');
               }
             }
