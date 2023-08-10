@@ -49,6 +49,7 @@ int fs_open(const char *pathname, int flags, int mode){
     }
   }
 
+  printf("get here\n");
   assert(0);
   return 0;
 }
