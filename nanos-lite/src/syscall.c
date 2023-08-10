@@ -15,14 +15,15 @@ static void sys_open(Context *c){
 }
 
 static void sys_write(Context *c){
-  if(c->GPR2 == 1 || c->GPR2 == 2){
-    for(int i = 0; i < c-> GPR4; i ++){
-      putch(*((char *)(c->GPR3) + i));
-    }
+  // if(c->GPR2 == 1 || c->GPR2 == 2){
+  //   // for(int i = 0; i < c-> GPR4; i ++){
+  //   //   putch(*((char *)(c->GPR3) + i));
+  //   // }
 
-    c->GPRx = c->GPR4;
-  }
-  else if(c-> GPR2 <= 0)
+
+  //   c->GPRx = ;
+  // }
+  if(c-> GPR2 <= 0)
     assert(0);
   else {
     c->GPRx = fs_write((int)(c->GPR2), (const void*)(c->GPR3), (size_t)(c->GPR4));
