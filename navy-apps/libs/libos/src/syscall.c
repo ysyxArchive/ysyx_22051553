@@ -99,10 +99,13 @@ int _close(int fd) {
 
 off_t _lseek(int fd, off_t offset, int whence) {
 
-  if(_syscall_(SYS_lseek, fd, (intptr_t)offset, whence) == offset)
-    return offset;
-  else
+  int ret = _syscall_(SYS_lseek, fd, (intptr_t)offset, (intptr_t)whence);
+
+  if(ret == -1)
     _exit(SYS_lseek);
+  else
+    return ret;
+    
 }
 
 
