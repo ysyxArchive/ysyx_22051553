@@ -6,7 +6,8 @@ int main() {
   printf("fp = %d\n", fp->_file);
   assert(fp);
 
-  fseek(fp, 0, SEEK_END);
+  long off = fseek(fp, 0, SEEK_END);
+  printf("off = %ld\n", off);
   long size = ftell(fp);
   printf("size = %ld\n", size);
   assert(size == 5000);
