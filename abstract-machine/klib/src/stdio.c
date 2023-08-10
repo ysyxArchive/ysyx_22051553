@@ -286,13 +286,12 @@ int printf(const char *fmt, ...) {
           break;
 
           case 'p':        //unsigned long int
-          unsigned long int p_type = va_arg(valist,unsigned long int);
-          ulint2strx(p_type, str);
+
 
           putch('0');
           putch('x');
 
-   
+ 
           break;
 
           
