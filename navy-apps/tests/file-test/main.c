@@ -26,8 +26,11 @@ int main() {
   // }
     // fscanf(fp, "%d", &n);
     fscanf(fp, "%d", &n);
+    printf("%d\n", n);
     fscanf(fp, "%d", &n);
-
+    printf("%d\n", n);
+    fscanf(fp, "%d", &n);
+    printf("%d\n", n);
     
   // fseek(fp, 0, SEEK_SET);
   // for (i = 0; i < 500; i ++) {
