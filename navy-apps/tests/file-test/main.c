@@ -3,7 +3,7 @@
 
 int main() {
 
-  printf("here\n");
+  
 
   FILE *fp = fopen("/share/files/num", "r+");
   assert(fp);
@@ -18,7 +18,7 @@ int main() {
 
   // fseek(fp, 500 * 5, SEEK_SET);
 
-  // int i, n;
+  int i, n;
 
   // for (i = 500; i < 502; i ++) {
   //   fscanf(fp, "%d", &n);
