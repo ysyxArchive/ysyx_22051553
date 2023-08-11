@@ -41,7 +41,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     fs_lseek(fd, elf_header.e_phoff + i*elf_header.e_phentsize, SEEK_SET);   //每次需要重新找位置，不能直接靠open_off,因为在for循环中
     fs_read(fd, &elf_ph[i], elf_header.e_phentsize);
     if(elf_ph[i].p_type == PT_LOAD){
-      char Segment[elf_ph[i].p_filesz];
+      // char Segment[elf_ph[i].p_filesz];
+      char Segment[elf_ph[i].p_memsz];
       fs_lseek(fd, elf_ph[i].p_offset, SEEK_SET);
       fs_read(fd, &Segment, elf_ph[i].p_filesz);
       memcpy((void *)(elf_ph[i].p_vaddr), &Segment, elf_ph[i].p_filesz);
