@@ -6,6 +6,7 @@
 static Context* (*user_handler)(Event, Context*) = NULL;
 
 extern char _end;
+extern char _stack_pointer;
 
 Context* __am_irq_handle(Context *c) {  //根据系统调用号，得到事件原因
 
@@ -54,6 +55,7 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
   user_handler = handler;
   printf("cteuser : %p\n", user_handler);
   printf("_end : %p\n", &_end);
+  printf("_end : %p\n", &_stack_pointer);
 
   return true;
 }
