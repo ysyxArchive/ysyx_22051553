@@ -17,11 +17,12 @@ int main() {
   fseek(fp, 500 * 5, SEEK_SET);
   int i, n;
 
-  for (i = 500; i < 502; i ++) {
+  // for (i = 500; i < 502; i ++) {
+  //   fscanf(fp, "%d", &n);
+  //   assert(n == i + 1);
+  // }
     fscanf(fp, "%d", &n);
-    assert(n == i + 1);
-  }
-
+      fscanf(fp, "%d", &n);
 
   // fseek(fp, 0, SEEK_SET);
   // for (i = 0; i < 500; i ++) {
