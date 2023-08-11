@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <assert.h>
+// #include <assert.h>
 
 
 static int evtdev = -1;            // /dev/events
@@ -62,7 +62,7 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
 
     screen_w = *w; screen_h = *h;  //记录画布大小
 
-    assert(screen_w <= sys_w && screen_h <= sys_h);
+    // assert(screen_w <= sys_w && screen_h <= sys_h);
     //先不管后面的过程
     char buf[64];
     int len = sprintf(buf, "%d %d", screen_w, screen_h);
