@@ -81,7 +81,7 @@ size_t fs_read(int fd, void *buf, size_t len){
     ramdisk_read(buf, file_table[fd].disk_offset+file_table[fd].open_offset, real_len);
     file_table[fd].open_offset += real_len;
 
-    // printf("offset = %d\n", file_table[fd].open_offset);
+    printf("offset = %d\n", file_table[fd].open_offset);
     
     return real_len;
   }
@@ -91,7 +91,7 @@ size_t fs_read(int fd, void *buf, size_t len){
 
 size_t fs_write(int fd, const void *buf, size_t len){
 
-  if(fd == 1 || fd == 2){
+  if(fd <= FD_FB){
     return file_table[fd].write(buf, 0, len);
   }
   else 
