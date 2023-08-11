@@ -51,10 +51,10 @@ static Finfo file_table[] __attribute__((used)) = {
 
 
 int fs_open(const char *pathname, int flags, int mode){
-  printf("here\n");
 
   for(int i = 0; i < NR_FILES; i ++){
     if(strcmp(file_table[i].name, pathname) == 0){
+      printf("nu = %d\n", i);
       file_table[i].open_offset = 0;
       return i;
     }
