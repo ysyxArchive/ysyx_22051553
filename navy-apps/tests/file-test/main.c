@@ -23,7 +23,6 @@ int main() {
   // }
     fscanf(fp, "%d", &n);
     fscanf(fp, "%d", &n);
-        fscanf(fp, "%d", &n);
     fscanf(fp, "%d", &n);
 
   // fseek(fp, 0, SEEK_SET);
