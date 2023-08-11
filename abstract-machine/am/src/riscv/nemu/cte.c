@@ -46,7 +46,7 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
   unsigned long int temp = 0xa00001800;
   asm volatile("csrw mstatus, %0" : : "r"(temp));
 
-
+  printf("%p\n", handler);
   // register event handler
   user_handler = handler;
 
