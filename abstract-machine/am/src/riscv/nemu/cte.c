@@ -7,8 +7,6 @@ static Context* (*user_handler)(Event, Context*) = NULL;
 
 Context* __am_irq_handle(Context *c) {  //根据系统调用号，得到事件原因
 
-    printf("user : %p\n", user_handler);
-
   if (user_handler) {
     Event ev = {0};
     switch (c->mcause) {
