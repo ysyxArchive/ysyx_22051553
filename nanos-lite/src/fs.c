@@ -81,8 +81,7 @@ size_t fs_read(int fd, void *buf, size_t len){
     ramdisk_read(buf, file_table[fd].disk_offset+file_table[fd].open_offset, real_len);
     file_table[fd].open_offset += real_len;
 
-    printf("buf == %s\n", buf);
-
+    printf("is reading %s\n", file_table[fd].name);
     return real_len;
   }
 
