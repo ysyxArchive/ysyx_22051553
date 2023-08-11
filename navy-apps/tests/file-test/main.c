@@ -14,14 +14,13 @@ int main() {
   long size = ftell(fp);
   assert(size == 5000);
 
-  fseek(fp, 500 * 5, SEEK_SET);
+  fseek(fp, 505 * 5, SEEK_SET);
   int i, n;
 
   // for (i = 500; i < 502; i ++) {
   //   fscanf(fp, "%d", &n);
   //    assert(n == i + 1);
   // }
-    fscanf(fp, "%d", &n);
     fscanf(fp, "%d", &n);
     fscanf(fp, "%d", &n);
     fscanf(fp, "%d", &n);
