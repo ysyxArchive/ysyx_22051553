@@ -18,21 +18,18 @@ int main() {
 
   // fseek(fp, 500 * 5, SEEK_SET);
 
-  int i, n = 0;
+  int i, n;
 
   // for (i = 500; i < 502; i ++) {
   //   fscanf(fp, "%d", &n);
   //    assert(n == i + 1);
   // }
     // fscanf(fp, "%d", &n);
-
+    fscanf(fp, "%d", &n);
     printf("%d\n", n);
+    fscanf(fp, "%d", &n);
     printf("%d\n", n);
-    printf("%d\n", n);
-    printf("%d\n", n);
-    printf("%d\n", n);
-    printf("%d\n", n);
-
+    fscanf(fp, "%d", &n);
 
     
   // fseek(fp, 0, SEEK_SET);
