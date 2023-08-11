@@ -7,11 +7,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <assert.h>
 
 
-
-static int evtdev = -1;
-static int fbdev = -1;
+static int evtdev = -1;            // /dev/events
+static int fbdev = -1;             // /dev/fb 
 static int screen_w = 0, screen_h = 0;
 
 
@@ -31,11 +31,35 @@ int NDL_PollEvent(char *buf, int len) {
   return read(fd, buf, len);
 }
 
-void NDL_OpenCanvas(int *w, int *h) {
+void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
   if (getenv("NWM_APP")) {
-    int fbctl = 4;
+    int fbctl = 4;               // 存储屏幕尺寸信息
     fbdev = 5;
-    screen_w = *w; screen_h = *h;
+    
+    int sys_w, sys_h = 0;
+    char dispinfo[32];
+    read(fbctl, dispinfo, 32);
+
+    char* token = strtok(dispinfo, " :\n");
+    while(token != NULL){
+      if(strcmp(token, "WIDTH")==0 ||  strcmp(token, "HEIGHT")==0){
+        if(strcmp(token, "WIDTH") == 0){
+          token = strtok(NULL, " :\n");
+          sys_w = atoi(token);
+        }
+        else if(strcmp(token, "HEIGHT")==0){
+          token = strtok(NULL, " :\n");
+          sys_h = atoi(token);
+        }
+      }
+    }
+
+    printf("sys_w : %d\nsys_h : %d\n", sys_w, sys_h);
+
+    screen_w = *w; screen_h = *h;  //记录画布大小
+
+    assert(screen_w <= sys_w && screen_h <= sys_h);
+    //先不管后面的过程
     char buf[64];
     int len = sprintf(buf, "%d %d", screen_w, screen_h);
     // let NWM resize the window and create the frame buffer

@@ -9,6 +9,7 @@ size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 
 size_t serial_write(const void *buf, size_t offset, size_t len);
 size_t events_read(void *buf, size_t offset, size_t len);
+size_t dispinfo_read(void *buf, size_t offset, size_t len);
 
 
 typedef struct {
@@ -21,7 +22,7 @@ typedef struct {
 } Finfo;
 
 
-enum {FD_STDIN, FD_STDOUT, FD_STDERR,  FD_EVENTS,  FD_FB};
+enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_EVENTS, FD_DISPINFO , FD_FB}; //特殊文件
 
 size_t invalid_read(void *buf, size_t offset, size_t len) {
   panic("should not reach here");
@@ -40,6 +41,8 @@ static Finfo file_table[] __attribute__((used)) = {
   [FD_STDOUT] = {"stdout", 0, 0, invalid_read, serial_write},
   [FD_STDERR] = {"stderr", 0, 0, invalid_read, serial_write},
   [FD_EVENTS] = {"/dev/events", 0, 0, events_read, invalid_write},
+  [FD_DISPINFO] = {"/proc/dispinfo", 0, 0, dispinfo_read, invalid_write},
+  [FD_FB] = {"/dev/fb", 0, 0, invalid_read, invalid_write},
 #include "files.h"
 };
 
@@ -63,7 +66,7 @@ int fs_open(const char *pathname, int flags, int mode){
 size_t fs_read(int fd, void *buf, size_t len){
 
   
-  if(fd <= FD_EVENTS){
+  if(fd <= FD_FB){
     return file_table[fd].read(buf, 0, len);
   }
   else {
