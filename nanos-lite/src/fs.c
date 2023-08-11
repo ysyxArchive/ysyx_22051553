@@ -51,6 +51,7 @@ static Finfo file_table[] __attribute__((used)) = {
 
 
 int fs_open(const char *pathname, int flags, int mode){
+  printf("path = %s\n", pathname);
 
   for(int i = 0; i < NR_FILES; i ++){
     if(strcmp(file_table[i].name, pathname) == 0){
@@ -64,7 +65,6 @@ int fs_open(const char *pathname, int flags, int mode){
 }
 
 size_t fs_read(int fd, void *buf, size_t len){
-printf("is reading %d\n", fd);
   
   if(fd <= FD_FB){
     return file_table[fd].read(buf, 0, len);
