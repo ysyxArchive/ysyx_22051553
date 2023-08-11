@@ -27,7 +27,7 @@ Context* __am_irq_handle(Context *c) {  //根据系统调用号，得到事件�
       printf("irq happen, event is %d\n", ev.event);
     #endif
 
-
+    printf("usr = %p\n", user_handler);
 
     c = user_handler(ev, c);
     assert(c != NULL);
