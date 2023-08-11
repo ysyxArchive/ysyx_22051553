@@ -64,7 +64,7 @@ int fs_open(const char *pathname, int flags, int mode){
 }
 
 size_t fs_read(int fd, void *buf, size_t len){
-printf("is reading %s\n", file_table[fd].name);
+
   
   if(fd <= FD_FB){
     return file_table[fd].read(buf, 0, len);
