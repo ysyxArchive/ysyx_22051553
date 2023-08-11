@@ -38,7 +38,7 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
     
     int sys_w, sys_h = 0;
     char dispinfo[32];
-    printf("get here\n");
+    
     read(fbctl, dispinfo, 32);
 
     char* token = strtok(dispinfo, " :\n");
