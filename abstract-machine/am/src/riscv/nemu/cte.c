@@ -55,7 +55,7 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
   user_handler = handler;
   printf("cteuser : %p\n", user_handler);
   printf("_end : %p\n", &_end);
-  printf("_end : %p\n", &_stack_pointer);
+  printf("_stack_pointer : %p\n", &_stack_pointer);
 
   return true;
 }
