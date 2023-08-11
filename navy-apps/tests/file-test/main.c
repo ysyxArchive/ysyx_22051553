@@ -8,6 +8,7 @@ int main() {
 
   int n;
   fscanf(fp, "%d", &n);
+  printf("n = %d\n", n);
 
   // long off = fseek(fp, 0, SEEK_END);
   // long size = ftell(fp);
