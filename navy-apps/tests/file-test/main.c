@@ -29,8 +29,7 @@ int main() {
     printf("%d\n", n);
     fscanf(fp, "%d", &n);
     printf("%d\n", n);
-    fscanf(fp, "%d", &n);
-    printf("%d\n", n);
+
 
 
     

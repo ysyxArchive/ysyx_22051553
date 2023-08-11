@@ -5,6 +5,8 @@
 
 static Context* (*user_handler)(Event, Context*) = NULL;
 
+extern char _end;
+
 Context* __am_irq_handle(Context *c) {  //根据系统调用号，得到事件原因
 
   if (user_handler) {
@@ -27,6 +29,7 @@ Context* __am_irq_handle(Context *c) {  //根据系统调用号，得到事件�
       printf("irq happen, event is %d\n", ev.event);
     #endif
 
+    printf("_end = %p\n", &_end);
     printf("usr = %p\n", user_handler);
 
     c = user_handler(ev, c);
