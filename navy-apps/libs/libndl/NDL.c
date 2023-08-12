@@ -44,13 +44,12 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
       screen_w = *w; 
       screen_h = *h;  //记录画布大小
     }
-    printf("in open:\nw:%d\nh:%d\n", sys_w, sys_h);
     
     assert(screen_w <= sys_w && screen_h <= sys_h);
     //先不管后面的过程
     char buf[64];
     int len = sprintf(buf, "%d %d", screen_w, screen_h);
-      printf("in open:\nw:%d\nh:%d\n", screen_w, screen_h);
+
     // let NWM resize the window and create the frame buffer
     write(fbctl, buf, len);         //在文件系统中用缓存记录画布大小
     while (1) {
