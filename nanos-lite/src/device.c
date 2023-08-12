@@ -55,6 +55,8 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   
   events[events_loc] = '\0';
   
+  printf("len : %d\n", strlen(buf));
+
   return strlen(buf);
 }
 
