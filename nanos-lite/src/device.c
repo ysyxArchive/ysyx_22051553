@@ -57,7 +57,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   
   printf("len : %d\n", strlen(buf));
 
-  return strlen(buf);
+  return strlen(buf) - 1;   //不包含\n的长度
 }
 
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {   //使用ioe
