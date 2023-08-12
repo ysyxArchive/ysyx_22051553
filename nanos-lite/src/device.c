@@ -71,6 +71,7 @@ size_t screeninfo_write(const void *buf, size_t offset, size_t len) { //不使�
   int num = snprintf(&events[events_loc], 10, "%s", "mmap ok\n");
   events_loc += num;
   events[events_loc] = '\0';
+  printf("event:%s\n", events);
 
 
   //----待实现库函数
