@@ -9,7 +9,7 @@ void __am_gpu_init() {
   int w = vga_ctrl_bundle>>16;  
   int h = vga_ctrl_bundle & 0xffff;  
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
-  for (i = 0; i < w * h; i ++) fb[i] = 0x000000FF;
+  for (i = 0; i < w * h; i ++) fb[i] = 0x00FFFFFF;
   outl(SYNC_ADDR, 1);
 }
 
