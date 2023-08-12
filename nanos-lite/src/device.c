@@ -10,6 +10,9 @@
 char events[1000] = {}; //在最后一个事件的末尾加上\0
 int events_loc = 0;  // \0位置
 
+char screen_info[10] = {};
+int screen_w = 0, screen_h = 0;
+
 #define NAME(key) \
   [AM_KEY_##key] = #key,
 
@@ -55,10 +58,32 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   return 1;
 }
 
-size_t dispinfo_read(void *buf, size_t offset, size_t len) {
+size_t dispinfo_read(void *buf, size_t offset, size_t len) {   //使用ioe
   AM_GPU_CONFIG_T ev_gpuconf = io_read(AM_GPU_CONFIG);
 
   return snprintf(buf, len, "WIDTH : %d\nHEIGHT : %d\n", ev_gpuconf.width, ev_gpuconf.height);
+}
+
+size_t screeninfo_write(const void *buf, size_t offset, size_t len) { //不使用ioe,用缓存
+  snprintf(screen_info, len, "%s", buf);
+  
+
+  //----待实现库函数
+  int loc = 0;
+  char sw[10], sh[10];
+  while(screen_info[loc] != ' '){
+    loc ++;
+  }
+  strncpy(sw, screen_info, loc);
+  strncpy(sh, &screen_info[loc+1], loc);
+  //-----------
+
+  screen_w = atoi(sw);
+  screen_h = atoi(sh);
+
+  printf("w:%d\nh:%d\n", screen_w, screen_h);
+
+  return 0;
 }
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
@@ -68,7 +93,7 @@ size_t fb_write(const void *buf, size_t offset, size_t len) {
 
   char dispinfo[32];
   fs_read(4, dispinfo, 32);
-  printf("%s\n", dispinfo);
+  printf("s:%s\n", dispinfo);
 
 
   // AM_GPU_FBDRAW_T ctl = {
