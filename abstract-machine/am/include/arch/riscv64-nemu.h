@@ -1,8 +1,8 @@
 #ifndef ARCH_H__
 #define ARCH_H__
 
-#define CONFIG_STRACE
-#define CONFIG_ETRACE
+// #define CONFIG_STRACE
+// #define CONFIG_ETRACE
 
 
 #define GPR1 gpr[17] // 系统调用号a7

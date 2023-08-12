@@ -42,7 +42,6 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     fs_read(fd, &elf_ph[i], elf_header.e_phentsize);
     if(elf_ph[i].p_type == PT_LOAD){
       // char Segment[elf_ph[i].p_filesz];
-      printf("%d long = %d\n",i,elf_ph[i].p_memsz);
       // char Segment[elf_ph[i].p_memsz];   不需要这个中间缓冲
       fs_lseek(fd, elf_ph[i].p_offset, SEEK_SET);
       // fs_read(fd, &Segment, elf_ph[i].p_filesz);
