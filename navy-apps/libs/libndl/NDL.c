@@ -52,7 +52,7 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
 
     // let NWM resize the window and create the frame buffer
     write(fbctl, buf, len);         //在文件系统中用缓存记录画布大小
-    printf("here\n");
+
     while (1) {
       // 3 = evtdev
       int nread = read(3, buf, sizeof(buf) - 1);
@@ -60,14 +60,14 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
       buf[nread] = '\0';
       if (strcmp(buf, "mmap ok") == 0) break;
     }
-    printf("here\n");
+  
     close(fbctl);
   }
 }
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
-  printf("here\n");
-  lseek(fbdev, x+sys_w*y, SEEK_SET);
+
+  lseek(fbdev, (sys_w-w)/2 + (sys_h-h)/2*sys_w , SEEK_SET);  //移动画布从左上角到中间
   write(fbdev, pixels, w*h);
 
 }
