@@ -54,10 +54,8 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   strcpy(buf, &events[events_loc]);
   
   events[events_loc] = '\0';
-  
-  printf("len : %d\n", strlen(buf));
 
-  return strlen(buf) - 1;   //不包含\n的长度
+  return strlen(buf) - 1;   //不包含\n的长度， strlen本身不包含\0
 }
 
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {   //使用ioe
@@ -73,7 +71,6 @@ size_t screeninfo_write(const void *buf, size_t offset, size_t len) { //不使�
   int num = snprintf(&events[events_loc], 10, "%s", "mmap ok\n");
   events_loc += num;
   events[events_loc] = '\0';
-  printf("event:%s\n", events);
 
 
   //----待实现库函数
