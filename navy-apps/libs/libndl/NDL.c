@@ -41,19 +41,19 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
     
     read(fbctl, dispinfo, 32);
 
-    // char* token = strtok(dispinfo, " :\n");          //这些是am中没有实现的
-    // while(token != NULL){
-    //   if(strcmp(token, "WIDTH")==0 ||  strcmp(token, "HEIGHT")==0){
-    //     if(strcmp(token, "WIDTH") == 0){
-    //       token = strtok(NULL, " :\n");
-    //       sys_w = atoi(token);
-    //     }
-    //     else if(strcmp(token, "HEIGHT")==0){
-    //       token = strtok(NULL, " :\n");
-    //       sys_h = atoi(token);
-    //     }
-    //   }
-    // }
+    char* token = strtok(dispinfo, " :\n");          //这些是am中没有实现的
+    while(token != NULL){
+      if(strcmp(token, "WIDTH")==0 ||  strcmp(token, "HEIGHT")==0){
+        if(strcmp(token, "WIDTH") == 0){
+          token = strtok(NULL, " :\n");
+          sys_w = atoi(token);
+        }
+        else if(strcmp(token, "HEIGHT")==0){
+          token = strtok(NULL, " :\n");
+          sys_h = atoi(token);
+        }
+      }
+    }
 
     // printf("sys_w : %d\nsys_h : %d\n", sys_w, sys_h);
     printf("%s", dispinfo);
