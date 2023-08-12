@@ -7,12 +7,13 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-// #include <assert.h>
+#include <assert.h>
 
 
 static int evtdev = -1;            // /dev/events
 static int fbdev = -1;             // /dev/fb 
 static int screen_w = 0, screen_h = 0;
+static int sys_w = 0, sys_h = 0;
 
 
 uint32_t NDL_GetTicks() {  //1Tick->1ms
@@ -33,39 +34,24 @@ int NDL_PollEvent(char *buf, int len) {   //轮询？
 
 void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
   if (getenv("NWM_APP")) {
-    int fbctl = 4;               // 存储屏幕尺寸信息
+    int fbctl = 4;               // 存储了系统屏幕尺寸信息
     fbdev = 5;
-    
-    int sys_w, sys_h = 0;
-    char dispinfo[32];
-    
-    read(fbctl, dispinfo, 32);
 
-    char* token = strtok(dispinfo, " :\n");          //这些是am中没有实现的
-    while(token != NULL){
-      if(strcmp(token, "WIDTH")==0 ||  strcmp(token, "HEIGHT")==0){
-        if(strcmp(token, "WIDTH") == 0){
-          token = strtok(NULL, " :\n");
-          sys_w = atoi(token);
-        }
-        else if(strcmp(token, "HEIGHT")==0){
-          token = strtok(NULL, " :\n");
-          sys_h = atoi(token);
-        }
-      }
-      token = strtok(NULL, " :\n");
+    if(*w == 0 || *h == 0){
+      screen_h = sys_h;
+      screen_w = sys_w;
+    }  
+    else{
+      screen_w = *w; 
+      screen_h = *h;  //记录画布大小
     }
-
-    printf("sys_w : %d\nsys_h : %d\n", sys_w, sys_h);
-
-    screen_w = *w; screen_h = *h;  //记录画布大小
-
-    // assert(screen_w <= sys_w && screen_h <= sys_h);
+    
+    assert(screen_w <= sys_w && screen_h <= sys_h);
     //先不管后面的过程
     char buf[64];
     int len = sprintf(buf, "%d %d", screen_w, screen_h);
     // let NWM resize the window and create the frame buffer
-    write(fbctl, buf, len);
+    write(fbctl, buf, len);         //再记录画布大小
     while (1) {
       // 3 = evtdev
       int nread = read(3, buf, sizeof(buf) - 1);
@@ -78,6 +64,10 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
 }
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
+
+  lseek(fbdev, x+sys_w*y, SEEK_SET);
+  write(fbdev, pixels, w*h);
+
 }
 
 void NDL_OpenAudio(int freq, int channels, int samples) {
@@ -101,6 +91,32 @@ int NDL_Init(uint32_t flags) {
   if (getenv("NWM_APP")) {
     evtdev = 3;
   }
+
+
+  //获取系统屏幕大小
+  char dispinfo[32];
+  
+  read(4, dispinfo, 32);
+
+  char* token = strtok(dispinfo, " :\n");         
+  while(token != NULL){
+    if(strcmp(token, "WIDTH")==0 ||  strcmp(token, "HEIGHT")==0){
+      if(strcmp(token, "WIDTH") == 0){
+        token = strtok(NULL, " :\n");
+        sys_w = atoi(token);
+      }
+      else if(strcmp(token, "HEIGHT")==0){
+        token = strtok(NULL, " :\n");
+        sys_h = atoi(token);
+      }
+    }
+    token = strtok(NULL, " :\n");
+  }
+  //---------------------
+
+
+
+
   return 0;
 }
 

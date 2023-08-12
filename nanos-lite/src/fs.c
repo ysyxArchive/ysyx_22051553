@@ -10,6 +10,7 @@ size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t serial_write(const void *buf, size_t offset, size_t len);
 size_t events_read(void *buf, size_t offset, size_t len);
 size_t dispinfo_read(void *buf, size_t offset, size_t len);
+size_t fb_write(const void *buf, size_t offset, size_t len);
 
 
 typedef struct {
@@ -42,7 +43,7 @@ static Finfo file_table[] __attribute__((used)) = {
   [FD_STDERR] = {"stderr", 0, 0, invalid_read, serial_write},
   [FD_EVENTS] = {"/dev/events", 0, 0, events_read, invalid_write},
   [FD_DISPINFO] = {"/proc/dispinfo", 0, 0, dispinfo_read, invalid_write},
-  [FD_FB] = {"/dev/fb", 0, 0, invalid_read, invalid_write},
+  [FD_FB] = {"/dev/fb", 0, 0, invalid_read, fb_write},
 #include "files.h"
 };
 
@@ -66,7 +67,7 @@ int fs_open(const char *pathname, int flags, int mode){
 size_t fs_read(int fd, void *buf, size_t len){
   
   if(file_table[fd].read != NULL){
-    return file_table[fd].read(buf, 0, len);
+    return file_table[fd].read(buf, file_table[fd].open_offset, len);
   }
   else {
     size_t real_len = 0;
@@ -90,7 +91,7 @@ size_t fs_read(int fd, void *buf, size_t len){
 size_t fs_write(int fd, const void *buf, size_t len){
 
   if(file_table[fd].write != NULL){
-    return file_table[fd].write(buf, 0, len);
+    return file_table[fd].write(buf, file_table[fd].open_offset, len);
   }
   else 
   {  

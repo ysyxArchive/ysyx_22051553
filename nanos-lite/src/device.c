@@ -62,6 +62,27 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 }
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
+
+  // AM_GPU_CONFIG_T ev_gpuconf = io_read(AM_GPU_CONFIG);
+  // int sys_w = ev_gpuconf.width, sys_h = ev_gpuconf.height;
+
+  char dispinfo[32];
+  fs_read(4, dispinfo, 32);
+  printf("%s\n", dispinfo);
+
+
+  // AM_GPU_FBDRAW_T ctl = {
+  //   .x = offset%sys_w;
+  //   .y = offset/sys_w;
+  //   .pixels = buf;
+  //   .w = len
+
+  // }
+
+
+
+
+
   return 0;
 }
 
