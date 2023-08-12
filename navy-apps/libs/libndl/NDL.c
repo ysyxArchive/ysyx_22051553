@@ -24,7 +24,7 @@ uint32_t NDL_GetTicks() {  //1Tick->1ms
   return ms;
 }
 
-int NDL_PollEvent(char *buf, int len) {
+int NDL_PollEvent(char *buf, int len) {   //轮询？
 
   int fd = open("/dev/events", 0, 0);
 
