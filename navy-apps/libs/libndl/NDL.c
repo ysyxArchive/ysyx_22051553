@@ -44,6 +44,7 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
       screen_w = *w; 
       screen_h = *h;  //记录画布大小
     }
+    printf("in open:\nw:%d\nh:%d\n", sys_w, sys_h);
     
     assert(screen_w <= sys_w && screen_h <= sys_h);
     //先不管后面的过程
@@ -98,7 +99,7 @@ int NDL_Init(uint32_t flags) {
   char dispinfo[32];
   
   read(4, dispinfo, 32);
-  printf("in init:\ns:%s\n", dispinfo);
+
   char* token = strtok(dispinfo, " :\n");         
   while(token != NULL){
     if(strcmp(token, "WIDTH")==0 ||  strcmp(token, "HEIGHT")==0){
