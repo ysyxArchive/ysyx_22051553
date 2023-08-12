@@ -98,7 +98,7 @@ int NDL_Init(uint32_t flags) {
   char dispinfo[32];
   
   read(4, dispinfo, 32);
-
+  printf("in init:\ns:%s\n", dispinfo);
   char* token = strtok(dispinfo, " :\n");         
   while(token != NULL){
     if(strcmp(token, "WIDTH")==0 ||  strcmp(token, "HEIGHT")==0){
