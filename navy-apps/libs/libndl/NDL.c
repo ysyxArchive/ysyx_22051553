@@ -60,6 +60,7 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
       buf[nread] = '\0';
       if (strcmp(buf, "mmap ok") == 0) break;
     }
+    printf("here\n");
     close(fbctl);
   }
 }
