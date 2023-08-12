@@ -65,7 +65,7 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
   }
 }
 
-void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
+void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) { //NDL_DrawRect(x, 0, 0, w, h);即在中间显示
 
   lseek(fbdev, (sys_w-w)/2 + (sys_h-h)/2*sys_w , SEEK_SET);  //移动画布从左上角到中间
   write(fbdev, pixels, w*h);
