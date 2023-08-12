@@ -53,10 +53,10 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
           sys_h = atoi(token);
         }
       }
+      token = strtok(NULL, " :\n");
     }
 
-    // printf("sys_w : %d\nsys_h : %d\n", sys_w, sys_h);
-    printf("%s", dispinfo);
+    printf("sys_w : %d\nsys_h : %d\n", sys_w, sys_h);
 
     screen_w = *w; screen_h = *h;  //记录画布大小
 
