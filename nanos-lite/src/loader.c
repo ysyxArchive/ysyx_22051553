@@ -43,10 +43,11 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     if(elf_ph[i].p_type == PT_LOAD){
       // char Segment[elf_ph[i].p_filesz];
       printf("%d long = %d\n",i,elf_ph[i].p_memsz);
-      char Segment[elf_ph[i].p_memsz];
+      // char Segment[elf_ph[i].p_memsz];   不需要这个中间缓冲
       fs_lseek(fd, elf_ph[i].p_offset, SEEK_SET);
-      fs_read(fd, &Segment, elf_ph[i].p_filesz);
-      memcpy((void *)(elf_ph[i].p_vaddr), &Segment, elf_ph[i].p_filesz);
+      // fs_read(fd, &Segment, elf_ph[i].p_filesz);
+      // memcpy((void *)(elf_ph[i].p_vaddr), &Segment, elf_ph[i].p_filesz);
+      fs_read(fd, (void *)(elf_ph[i].p_vaddr), elf_ph[i].p_filesz);
       memset((void *)(elf_ph[i].p_vaddr + elf_ph[i].p_filesz), 0, elf_ph[i].p_memsz - elf_ph[i].p_filesz);  //清零
     }
   }
