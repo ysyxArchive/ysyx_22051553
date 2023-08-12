@@ -35,7 +35,6 @@ int NDL_PollEvent(char *buf, int len) {   //轮询？
 void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
   if (getenv("NWM_APP")) {
     int fbctl = 4;               // 存储了系统屏幕尺寸信息
-    fbdev = 5;
 
     if(*w == 0 || *h == 0){
       screen_h = sys_h;
@@ -93,6 +92,7 @@ int NDL_Init(uint32_t flags) {
   }
 
 
+  fbdev = 5;
   //获取系统屏幕大小
   char dispinfo[32];
   
