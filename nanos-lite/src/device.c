@@ -55,7 +55,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   
   events[events_loc] = '\0';
   
-  return 1;
+  return strlen(buf);
 }
 
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {   //使用ioe
@@ -67,6 +67,11 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {   //使用ioe
 size_t screeninfo_write(const void *buf, size_t offset, size_t len) { //不使用ioe,用缓存
   snprintf(screen_info, len, "%s", buf);
   
+  //mmap ok
+  int num = snprintf(&events[events_loc], 10, "%s", "mmap ok\n");
+  events_loc += num;
+  events[events_loc] = '\0';
+
 
   //----待实现库函数
   int loc = 0;
