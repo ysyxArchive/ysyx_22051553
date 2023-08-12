@@ -63,7 +63,7 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
 }
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
-
+  printf("here\n");
   lseek(fbdev, x+sys_w*y, SEEK_SET);
   write(fbdev, pixels, w*h);
 
