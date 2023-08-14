@@ -13,7 +13,7 @@
 static int evtdev = -1;            // /dev/events
 static int fbdev = -1;             // /dev/fb 
 static int screen_w = 0, screen_h = 0;
-static int sys_w = 0, sys_h = 0;
+static int disp_w = 0, disp_h = 0;
 
 
 uint32_t NDL_GetTicks() {  //1Tick->1ms
@@ -33,26 +33,28 @@ int NDL_PollEvent(char *buf, int len) {   //轮询？
 }
 
 void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
+
   if (getenv("NWM_APP")) {
     int fbctl = 4;               // 从ioe读取系统屏幕尺寸信息
 
     if(*w == 0 || *h == 0){
-      screen_h = sys_h;
-      screen_w = sys_w;
+      screen_h = disp_h;
+      screen_w = disp_w;
     }  
     else{
       screen_w = *w; 
       screen_h = *h;  //记录画布大小
     }
     
-    assert(screen_w <= sys_w && screen_h <= sys_h);
+
+    // assert(screen_w <= disp_w && screen_h <= disp_h);
     //先不管后面的过程
     char buf[64];
     int len = sprintf(buf, "%d %d", screen_w, screen_h);
-
+  
     // let NWM resize the window and create the frame buffer
     write(fbctl, buf, len);         //在文件系统中用缓存记录画布大小
-
+  
     while (1) {
       // 3 = evtdev
       int nread = read(3, buf, sizeof(buf) - 1);
@@ -67,7 +69,7 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) { //NDL_DrawRect(x, 0, 0, w, h);即在中间显示
 
-  lseek(fbdev, (sys_w-w)/2 + (sys_h-h)/2*sys_w , SEEK_SET);  //移动画布从左上角到中间
+  lseek(fbdev, (disp_w-w)/2 + (disp_h-h)/2*disp_w , SEEK_SET);  //移动画布从左上角到中间
   write(fbdev, pixels, w*h);
 
 }
@@ -88,9 +90,10 @@ int NDL_QueryAudio() {
 
 int NDL_Init(uint32_t flags) {
 
-  setenv("NWM_APP", "", 0);
+  setenv("NWM_APP", "1", 1);
 
   if (getenv("NWM_APP")) {
+    printf("in");
     evtdev = 3;
   }
 
@@ -106,18 +109,16 @@ int NDL_Init(uint32_t flags) {
     if(strcmp(token, "WIDTH")==0 ||  strcmp(token, "HEIGHT")==0){
       if(strcmp(token, "WIDTH") == 0){
         token = strtok(NULL, " :\n");
-        sys_w = atoi(token);
+        disp_w = atoi(token);
       }
       else if(strcmp(token, "HEIGHT")==0){
         token = strtok(NULL, " :\n");
-        sys_h = atoi(token);
+        disp_h = atoi(token);
       }
     }
     token = strtok(NULL, " :\n");
   }
   //---------------------
-
-
 
 
   return 0;

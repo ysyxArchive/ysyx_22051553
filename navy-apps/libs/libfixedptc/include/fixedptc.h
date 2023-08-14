@@ -151,7 +151,15 @@ static inline fixedpt fixedpt_abs(fixedpt A) {
 }
 
 static inline fixedpt fixedpt_floor(fixedpt A) {
-	return 0;
+	if(A > 0){
+		return (A >> FIXEDPT_FBITS) << FIXEDPT_FBITS;
+	}
+	else if(A == fixedpt_fromint(0)){
+		return 0;
+	}
+	else{
+		return (A >> FIXEDPT_FBITS) << FIXEDPT_FBITS - FIXEDPT_ONE;
+	}
 }
 
 static inline fixedpt fixedpt_ceil(fixedpt A) {
