@@ -131,10 +131,6 @@ int NDL_Init(uint32_t flags) {
   }
   //---------------------
 
-  close(evtdev);
-  close(fbdev);
-  close(fbctl);
-
   return 0;
 }
 

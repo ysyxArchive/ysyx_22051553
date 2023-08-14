@@ -38,6 +38,8 @@ static SDL_Texture *texture = NULL;
 static int dummy_fd = -1;
 static int dispinfo_fd = -1;
 static int fb_memfd = -1;
+//--
+static int fbsync_memfd = -1;
 static int evt_fd = -1;
 static int sb_fifo[2] = {-1, -1};
 static int sbctl_fd = -1;
@@ -120,6 +122,10 @@ static void open_display() {
   SDL_CreateThread(event_thread, "event thread", nullptr);
   SDL_AddTimer(1000 / FPS, timer_handler, NULL);
   texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STATIC, disp_w, disp_h);
+  //---
+  fbsync_memfd = memfd_create("fb_sync", 0);
+  assert(fbsync_memfd != -1);
+
 
   fb_memfd = memfd_create("fb", 0);
   assert(fb_memfd != -1);
@@ -178,6 +184,8 @@ int open(const char *path, int flags, ...) {
     return sb_fifo[1];
   } else if (strcmp(path, "/dev/sbctl") == 0) {
     return sbctl_fd;
+  } else if (strcmp(path, "/dev/fb_sync") == 0) {
+    return fbsync_memfd;
   } else {
     char newpath[512];
     return glibc_open(redirect_path(newpath, path), flags);
@@ -226,10 +234,15 @@ ssize_t read(int fd, void *buf, size_t count) {
     int free = pipe_size - used;
     return snprintf((char *)buf, count, "%d", free);
   }
+
   return glibc_read(fd, buf, count);
 }
 
 ssize_t write(int fd, const void *buf, size_t count) {
+
+
+
+
   if (fd == sbctl_fd) {
     // open audio
     const int *args = (const int *)buf;
@@ -247,12 +260,24 @@ ssize_t write(int fd, const void *buf, size_t count) {
   }
   //--添加
   else if(fd == dispinfo_fd){
-    printf("dispfd = %d\n", fd);
     mmap_flag = 1;
   }
   else if(fd == fb_memfd){
-    update_screen();
+    memcpy(fb, buf, count);
+    
+    printf("test\n");
+
+    printf("buf is %x\nn is %d\n", fb[0], 1);
+    printf("over\n");
+    
+    return 0;
   }
+  else if(fd == fbsync_memfd){
+    update_screen();
+    return 0;
+  }
+
+
   return glibc_write(fd, buf, count);
 }
 
