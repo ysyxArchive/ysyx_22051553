@@ -32,14 +32,13 @@ static ssize_t (*glibc_read)(int fd, void *buf, size_t count) = NULL;
 static ssize_t (*glibc_write)(int fd, const void *buf, size_t count) = NULL;
 static int (*glibc_execve)(const char *filename, char *const argv[], char *const envp[]) = NULL;
 
-//需要自己设置
 static SDL_Window *window = NULL;
 static SDL_Renderer *renderer = NULL;
 static SDL_Texture *texture = NULL;
 static int dummy_fd = -1;
-static int dispinfo_fd = 4;
-static int fb_memfd = 5;
-static int evt_fd = 3;
+static int dispinfo_fd = -1;
+static int fb_memfd = -1;
+static int evt_fd = -1;
 static int sb_fifo[2] = {-1, -1};
 static int sbctl_fd = -1;
 static uint32_t *fb = NULL;
@@ -278,9 +277,9 @@ struct Init {
     setenv("PATH", newpath, 1); // overwrite the current PATH
 
     SDL_Init(0);
+    // setenv("NWM_APP", "1", 0);
 
     if (!getenv("NWM_APP")) {
-
       open_display();
       open_event();
     }

@@ -35,7 +35,8 @@ int NDL_PollEvent(char *buf, int len) {   //轮询？
 void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
 
   if (getenv("NWM_APP")) {
-    int fbctl = 4;               // 从ioe读取系统屏幕尺寸信息
+    // int fbctl = 4;               // 从ioe读取系统屏幕尺寸信息
+    int fbctl = open("/proc/dispinfo", 0);
 
     if(*w == 0 || *h == 0){
       screen_h = disp_h;
@@ -57,7 +58,8 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
   
     while (1) {
       // 3 = evtdev
-      int nread = read(3, buf, sizeof(buf) - 1);
+      // int nread = read(3, buf, sizeof(buf) - 1);
+      int nread = read(evtdev, buf, sizeof(buf) - 1);
       if (nread <= 0) continue;
       buf[nread] = '\0';
       if (strcmp(buf, "mmap ok") == 0) break;
@@ -91,18 +93,23 @@ int NDL_QueryAudio() {
 int NDL_Init(uint32_t flags) {
 
   setenv("NWM_APP", "1", 0);
+  //replace为0时，设置该变量，若存在该变量，则不修改值
+  //replace为1时，若存在该变量，则修改值，若不存在该变量，则无效
 
   if (getenv("NWM_APP")) {
-    printf("in");
-    evtdev = 3;
+    // evtdev = 3;
+    evtdev = open("/dev/events", 0);
   }
 
 
-  fbdev = 5;
+  // fbdev = 5;
+  fbdev = open("/dev/fb", 0);
   //获取系统屏幕大小
   char dispinfo[32];
   
-  read(4, dispinfo, 32);
+  // read(4, dispinfo, 32);
+  int fbctl = open("/proc/dispinfo", 0);
+  read(fbctl, dispinfo, 32);
 
   char* token = strtok(dispinfo, " :\n");         
   while(token != NULL){
@@ -120,6 +127,9 @@ int NDL_Init(uint32_t flags) {
   }
   //---------------------
 
+  close(evtdev);
+  close(fbdev);
+  close(fbctl);
 
   return 0;
 }
