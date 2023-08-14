@@ -250,6 +250,9 @@ int execve(const char *filename, char *const argv[], char *const envp[]) {
 
 struct Init {
   Init() {
+
+    
+
     glibc_fopen = (FILE*(*)(const char*, const char*))dlsym(RTLD_NEXT, "fopen");
     assert(glibc_fopen != NULL);
     glibc_open = (int(*)(const char*, int, ...))dlsym(RTLD_NEXT, "open");
@@ -266,6 +269,7 @@ struct Init {
     dispinfo_fd = dummy_fd;
 
     char *navyhome = getenv("NAVY_HOME");
+    printf("n is %s\n", navyhome);
     assert(navyhome);
     sprintf(fsimg_path, "%s/fsimg", navyhome);
 
