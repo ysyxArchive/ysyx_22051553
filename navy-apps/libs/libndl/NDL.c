@@ -12,6 +12,7 @@
 
 static int evtdev = -1;            // /dev/events
 static int fbdev = -1;             // /dev/fb 
+static int fbsync = -1;
 static int screen_w = 0, screen_h = 0;
 static int disp_w = 0, disp_h = 0;
 
@@ -73,6 +74,7 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) { //NDL_DrawRect
 
   lseek(fbdev, (disp_w-w)/2 + (disp_h-h)/2*disp_w , SEEK_SET);  //移动画布从左上角到中间
   write(fbdev, pixels, w*h);
+  write(fbsync, 0, 0);
 
 }
 
@@ -104,6 +106,8 @@ int NDL_Init(uint32_t flags) {
 
   // fbdev = 5;
   fbdev = open("/dev/fb", 0);
+  fbsync = open("/dev/fb_sync", 0);
+
   //获取系统屏幕大小
   char dispinfo[32];
   

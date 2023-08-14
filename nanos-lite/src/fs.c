@@ -11,6 +11,7 @@ size_t serial_write(const void *buf, size_t offset, size_t len);
 size_t events_read(void *buf, size_t offset, size_t len);
 size_t dispinfo_read(void *buf, size_t offset, size_t len);
 size_t fb_write(const void *buf, size_t offset, size_t len);
+size_t fbsync_write(const void *buf, size_t offset, size_t len);
 size_t screeninfo_write(const void *buf, size_t offset, size_t len);
 
 
@@ -24,7 +25,7 @@ typedef struct {
 } Finfo;
 
 
-enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_EVENTS, FD_DISPINFO , FD_FB}; //特殊文件
+enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_EVENTS, FD_DISPINFO , FD_FB, FD_SYNC}; //特殊文件
 
 size_t invalid_read(void *buf, size_t offset, size_t len) {
   panic("should not reach here");
@@ -45,6 +46,7 @@ static Finfo file_table[] __attribute__((used)) = {
   [FD_EVENTS] = {"/dev/events", 0, 0, events_read, invalid_write},
   [FD_DISPINFO] = {"/proc/dispinfo", 0, 0, dispinfo_read, screeninfo_write},
   [FD_FB] = {"/dev/fb", 0, 0, invalid_read, fb_write},
+  [FD_SYNC] = {"/dev/fb_sync", 0, 0, invalid_read, fbsync_write},
 #include "files.h"
 };
 

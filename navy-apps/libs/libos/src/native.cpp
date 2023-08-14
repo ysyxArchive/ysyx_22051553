@@ -44,6 +44,9 @@ static int sbctl_fd = -1;
 static uint32_t *fb = NULL;
 static char fsimg_path[512] = "";
 
+static int mmap_flag = 0;
+
+
 static inline void get_fsimg_path(char *newpath, const char *path) {
   sprintf(newpath, "%s%s", fsimg_path, path);
 }
@@ -187,7 +190,7 @@ ssize_t read(int fd, void *buf, size_t count) {
   if (fd == dispinfo_fd) {
     return snprintf((char *)buf, count, "WIDTH: %d\nHEIGHT: %d\n", disp_w, disp_h);
   } else if (fd == evt_fd) {
-    printf("2\n");
+
     int has_key = 0;
     SDL_Event ev = {};
     SDL_LockMutex(key_queue_lock);
@@ -208,7 +211,11 @@ ssize_t read(int fd, void *buf, size_t count) {
       if (name) return snprintf((char *)buf, count, "k%c %s\n", keydown ? 'd' : 'u', name);
     }
 
-
+    //---------自加
+    if(mmap_flag == 1){
+      mmap_flag = 0;
+      return snprintf((char *)buf, count, "%s", "mmap ok\n") - 1; //返回不包含\n的长度
+    }
     
 
     return 0;
@@ -237,6 +244,14 @@ ssize_t write(int fd, const void *buf, size_t count) {
     SDL_OpenAudio(&spec, NULL);
     SDL_PauseAudio(0);
     return count;
+  }
+  //--添加
+  else if(fd == dispinfo_fd){
+    printf("dispfd = %d\n", fd);
+    mmap_flag = 1;
+  }
+  else if(fd == fb_memfd){
+    update_screen();
   }
   return glibc_write(fd, buf, count);
 }

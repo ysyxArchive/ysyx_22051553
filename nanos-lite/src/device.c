@@ -55,7 +55,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   
   events[events_loc] = '\0';
 
-  return strlen(buf) - 1;   //不包含\n的长度， strlen本身不包含\0
+  return strlen(buf) - 1;   //返回不包含\n的长度， strlen本身不包含\0
 }
 
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {   //使用ioe
@@ -96,8 +96,13 @@ size_t fb_write(const void *buf, size_t offset, size_t len) {
   int sys_w = ev_gpuconf.width;
 
 
-  io_write(AM_GPU_FBDRAW, offset%sys_w, offset/sys_w, (void *)buf, screen_w, screen_h, true);
+  io_write(AM_GPU_FBDRAW, offset%sys_w, offset/sys_w, (void *)buf, screen_w, screen_h, false);
 
+  return 0;
+}
+
+size_t fbsync_write(const void *buf, size_t offset, size_t len) {
+  io_write(AM_GPU_FBDRAW, 0, 0, 0, 0, 0, true);
   return 0;
 }
 
