@@ -9,7 +9,14 @@ static VSoc dut;
 vluint64_t sim_time = 0;
 VerilatedVcdC * vcd = new VerilatedVcdC;
 
-void sdb_mainloop();
+extern "C" {
+  void sdb_mainloop();
+
+  int exam_exit();
+
+  void single_cycle();
+
+}
 
 int exam_exit(){
   if(Verilated::gotFinish()){

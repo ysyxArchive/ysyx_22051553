@@ -8,11 +8,6 @@
 void single_cycle();
 int exam_exit();
 
-uint64_t *cpu_gpr = NULL;
-extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
-  cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
-}
-
 
 //输出寄存器
 void dump_gpr() {
