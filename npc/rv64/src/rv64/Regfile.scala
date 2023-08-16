@@ -41,9 +41,6 @@ class Regfile extends Module {
         regs(io.RfWb.rd)
     )
 
-
-    // for(i <- 0 to 31)
-    //     interface.io.DPIc(i) := regs(i)
     
     
 

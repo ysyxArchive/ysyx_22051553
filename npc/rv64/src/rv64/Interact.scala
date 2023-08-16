@@ -12,7 +12,7 @@ class Interact extends BlackBox with HasBlackBoxInline{  //起始应该放到写
         val rst = Input(Reset())
     })
 
-    setInline("Interact.sv",
+    setInline("Interact.v",
         """
         |module Interact(input [31:0] inst,
         |                input  clk,
