@@ -33,9 +33,9 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     setInline("DebugInterface.v",
     """
     |
-    |import "DPI-C" function void update_debuginfo(unsigned long pc, bool pc_req, unsigned int inst, 
-    |  bool inst_valid, unsigned long op_a, unsigned long op_b, unsigned long result, unsigned int rd, unsigned long reg_wdata,
-    |  bool reg_wen);
+    |import "DPI-C" function void update_debuginfo(input wire[63:0] pc, input pc_req, input wire[31:0] inst, 
+    |  input inst_valid, input wire[63:0] op_a, input wire[63:0] op_b, input wire[63:0] result, input wire[63:0] rd, input wire[63:0] reg_wdata,
+    |  input reg_wen);
     |
     |module WbInterface(
     |                   input        clk,

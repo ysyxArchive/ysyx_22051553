@@ -415,7 +415,9 @@ module FlowControl(	// <stdin>:278:10
   assign io_fcfe_flush = io_fcde_jump_flag;	// <stdin>:278:10
 endmodule
 
-module Core(	// <stdin>:323:10
+// external module DebugInterface
+
+module Core(	// <stdin>:337:10
   input         clock,
                 reset,
                 io_ramio_dataOut_valid,
@@ -447,6 +449,8 @@ module Core(	// <stdin>:323:10
   wire        _decode_io_jump_flag;	// Core.scala:26:24
   wire [63:0] _decode_io_jump_pc;	// Core.scala:26:24
   wire [63:0] _fetch_io_fdio_pc;	// Core.scala:25:23
+  wire        _fetch_io_pc_valid;	// Core.scala:25:23
+  wire [63:0] _fetch_io_pc_bits;	// Core.scala:25:23
   reg  [63:0] fdreg_pc;	// Core.scala:33:24
   reg  [63:0] dereg_op_a;	// Core.scala:38:24
   reg  [63:0] dereg_op_b;	// Core.scala:38:24
@@ -461,18 +465,18 @@ module Core(	// <stdin>:323:10
   reg  [4:0]  mwreg_rd;	// Core.scala:54:24
   always @(posedge clock) begin
     if (reset) begin
-      fdreg_pc <= 64'h80000000;	// <stdin>:352:20, Core.scala:33:24
+      fdreg_pc <= 64'h80000000;	// <stdin>:366:20, Core.scala:33:24
       dereg_op_a <= 64'h0;	// Core.scala:38:24, :66:20
       dereg_op_b <= 64'h0;	// Core.scala:38:24, :66:20
-      dereg_rd <= 5'h0;	// <stdin>:358:20, Core.scala:38:24
-      dereg_alu_op <= 5'h1F;	// <stdin>:357:27, Core.scala:38:24
-      dereg_wb_type <= 2'h0;	// <stdin>:356:25, Core.scala:38:24
+      dereg_rd <= 5'h0;	// <stdin>:372:20, Core.scala:38:24
+      dereg_alu_op <= 5'h1F;	// <stdin>:371:27, Core.scala:38:24
+      dereg_wb_type <= 2'h0;	// <stdin>:370:25, Core.scala:38:24
       emreg_alu_res <= 64'h0;	// Core.scala:47:24, :66:20
-      emreg_wb_type <= 2'h0;	// <stdin>:356:25, Core.scala:47:24
-      emreg_rd <= 5'h0;	// <stdin>:358:20, Core.scala:47:24
+      emreg_wb_type <= 2'h0;	// <stdin>:370:25, Core.scala:47:24
+      emreg_rd <= 5'h0;	// <stdin>:372:20, Core.scala:47:24
       mwreg_alu_res <= 64'h0;	// Core.scala:54:24, :66:20
-      mwreg_wb_type <= 2'h0;	// <stdin>:356:25, Core.scala:54:24
-      mwreg_rd <= 5'h0;	// <stdin>:358:20, Core.scala:54:24
+      mwreg_wb_type <= 2'h0;	// <stdin>:370:25, Core.scala:54:24
+      mwreg_rd <= 5'h0;	// <stdin>:372:20, Core.scala:54:24
     end
     else begin
       fdreg_pc <= _fetch_io_fdio_pc;	// Core.scala:25:23, :33:24
@@ -489,37 +493,37 @@ module Core(	// <stdin>:323:10
       mwreg_rd <= _mem_io_mwio_rd;	// Core.scala:29:21, :54:24
     end
   end // always @(posedge)
-  `ifndef SYNTHESIS	// <stdin>:323:10
-    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:323:10
-      `FIRRTL_BEFORE_INITIAL	// <stdin>:323:10
+  `ifndef SYNTHESIS	// <stdin>:337:10
+    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:337:10
+      `FIRRTL_BEFORE_INITIAL	// <stdin>:337:10
     `endif // FIRRTL_BEFORE_INITIAL
-    initial begin	// <stdin>:323:10
-      automatic logic [31:0] _RANDOM_0;	// <stdin>:323:10
-      automatic logic [31:0] _RANDOM_1;	// <stdin>:323:10
-      automatic logic [31:0] _RANDOM_2;	// <stdin>:323:10
-      automatic logic [31:0] _RANDOM_3;	// <stdin>:323:10
-      automatic logic [31:0] _RANDOM_4;	// <stdin>:323:10
-      automatic logic [31:0] _RANDOM_5;	// <stdin>:323:10
-      automatic logic [31:0] _RANDOM_6;	// <stdin>:323:10
-      automatic logic [31:0] _RANDOM_7;	// <stdin>:323:10
-      automatic logic [31:0] _RANDOM_8;	// <stdin>:323:10
-      automatic logic [31:0] _RANDOM_9;	// <stdin>:323:10
-      automatic logic [31:0] _RANDOM_10;	// <stdin>:323:10
-      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:323:10
-        `INIT_RANDOM_PROLOG_	// <stdin>:323:10
+    initial begin	// <stdin>:337:10
+      automatic logic [31:0] _RANDOM_0;	// <stdin>:337:10
+      automatic logic [31:0] _RANDOM_1;	// <stdin>:337:10
+      automatic logic [31:0] _RANDOM_2;	// <stdin>:337:10
+      automatic logic [31:0] _RANDOM_3;	// <stdin>:337:10
+      automatic logic [31:0] _RANDOM_4;	// <stdin>:337:10
+      automatic logic [31:0] _RANDOM_5;	// <stdin>:337:10
+      automatic logic [31:0] _RANDOM_6;	// <stdin>:337:10
+      automatic logic [31:0] _RANDOM_7;	// <stdin>:337:10
+      automatic logic [31:0] _RANDOM_8;	// <stdin>:337:10
+      automatic logic [31:0] _RANDOM_9;	// <stdin>:337:10
+      automatic logic [31:0] _RANDOM_10;	// <stdin>:337:10
+      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:337:10
+        `INIT_RANDOM_PROLOG_	// <stdin>:337:10
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// <stdin>:323:10
-        _RANDOM_0 = `RANDOM;	// <stdin>:323:10
-        _RANDOM_1 = `RANDOM;	// <stdin>:323:10
-        _RANDOM_2 = `RANDOM;	// <stdin>:323:10
-        _RANDOM_3 = `RANDOM;	// <stdin>:323:10
-        _RANDOM_4 = `RANDOM;	// <stdin>:323:10
-        _RANDOM_5 = `RANDOM;	// <stdin>:323:10
-        _RANDOM_6 = `RANDOM;	// <stdin>:323:10
-        _RANDOM_7 = `RANDOM;	// <stdin>:323:10
-        _RANDOM_8 = `RANDOM;	// <stdin>:323:10
-        _RANDOM_9 = `RANDOM;	// <stdin>:323:10
-        _RANDOM_10 = `RANDOM;	// <stdin>:323:10
+      `ifdef RANDOMIZE_REG_INIT	// <stdin>:337:10
+        _RANDOM_0 = `RANDOM;	// <stdin>:337:10
+        _RANDOM_1 = `RANDOM;	// <stdin>:337:10
+        _RANDOM_2 = `RANDOM;	// <stdin>:337:10
+        _RANDOM_3 = `RANDOM;	// <stdin>:337:10
+        _RANDOM_4 = `RANDOM;	// <stdin>:337:10
+        _RANDOM_5 = `RANDOM;	// <stdin>:337:10
+        _RANDOM_6 = `RANDOM;	// <stdin>:337:10
+        _RANDOM_7 = `RANDOM;	// <stdin>:337:10
+        _RANDOM_8 = `RANDOM;	// <stdin>:337:10
+        _RANDOM_9 = `RANDOM;	// <stdin>:337:10
+        _RANDOM_10 = `RANDOM;	// <stdin>:337:10
         fdreg_pc = {_RANDOM_0, _RANDOM_1};	// Core.scala:33:24
         dereg_op_a = {_RANDOM_2, _RANDOM_3};	// Core.scala:38:24
         dereg_op_b = {_RANDOM_4, _RANDOM_5};	// Core.scala:38:24
@@ -534,8 +538,8 @@ module Core(	// <stdin>:323:10
         mwreg_rd = _RANDOM_10[25:21];	// Core.scala:54:24
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:323:10
-      `FIRRTL_AFTER_INITIAL	// <stdin>:323:10
+    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:337:10
+      `FIRRTL_AFTER_INITIAL	// <stdin>:337:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   Interact interact (	// Core.scala:17:26
@@ -550,8 +554,8 @@ module Core(	// <stdin>:323:10
     .io_fcfe_jump_pc   (_fc_io_fcfe_jump_pc),	// Core.scala:66:20
     .io_fcfe_flush     (_fc_io_fcfe_flush),	// Core.scala:66:20
     .io_fdio_pc        (_fetch_io_fdio_pc),
-    .io_pc_valid       (io_ramio_pc_valid),
-    .io_pc_bits        (io_ramio_pc_bits)
+    .io_pc_valid       (_fetch_io_pc_valid),
+    .io_pc_bits        (_fetch_io_pc_bits)
   );
   Decode decode (	// Core.scala:26:24
     .io_inst_valid      (io_ramio_dataOut_valid),
@@ -612,9 +616,24 @@ module Core(	// <stdin>:323:10
     .io_fcfe_jump_pc   (_fc_io_fcfe_jump_pc),
     .io_fcfe_flush     (_fc_io_fcfe_flush)
   );
+  DebugInterface DI (	// Core.scala:193:19
+    .clk        (clock),
+    .pc         (_fetch_io_pc_bits),	// Core.scala:25:23
+    .pc_req     (_fetch_io_pc_valid),	// Core.scala:25:23
+    .inst       (io_ramio_dataOut_bits),
+    .inst_valid (io_ramio_dataOut_valid),
+    .op_a       (dereg_op_a),	// Core.scala:38:24
+    .op_b       (dereg_op_b),	// Core.scala:38:24
+    .result     (_excute_io_emio_alu_res),	// Core.scala:27:24
+    .rd         (_wb_io_rfio_rd),	// Core.scala:30:20
+    .reg_wen    (_wb_io_rfio_reg_wen),	// Core.scala:30:20
+    .reg_wdata  (_wb_io_rfio_reg_wdata)	// Core.scala:30:20
+  );
+  assign io_ramio_pc_valid = _fetch_io_pc_valid;	// <stdin>:337:10, Core.scala:25:23
+  assign io_ramio_pc_bits = _fetch_io_pc_bits;	// <stdin>:337:10, Core.scala:25:23
 endmodule
 
-module Ram(	// <stdin>:440:10
+module Ram(	// <stdin>:477:10
   input         clock,
                 io_pc_valid,
   input  [63:0] io_pc_bits,
@@ -628,22 +647,22 @@ module Ram(	// <stdin>:440:10
   reg        inst_valid;	// Ram.scala:22:29
   always @(posedge clock)
     inst_valid <= io_pc_valid;	// Ram.scala:22:29
-  `ifndef SYNTHESIS	// <stdin>:440:10
-    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:440:10
-      `FIRRTL_BEFORE_INITIAL	// <stdin>:440:10
+  `ifndef SYNTHESIS	// <stdin>:477:10
+    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:477:10
+      `FIRRTL_BEFORE_INITIAL	// <stdin>:477:10
     `endif // FIRRTL_BEFORE_INITIAL
-    initial begin	// <stdin>:440:10
-      automatic logic [31:0] _RANDOM_0;	// <stdin>:440:10
-      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:440:10
-        `INIT_RANDOM_PROLOG_	// <stdin>:440:10
+    initial begin	// <stdin>:477:10
+      automatic logic [31:0] _RANDOM_0;	// <stdin>:477:10
+      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:477:10
+        `INIT_RANDOM_PROLOG_	// <stdin>:477:10
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// <stdin>:440:10
-        _RANDOM_0 = `RANDOM;	// <stdin>:440:10
+      `ifdef RANDOMIZE_REG_INIT	// <stdin>:477:10
+        _RANDOM_0 = `RANDOM;	// <stdin>:477:10
         inst_valid = _RANDOM_0[0];	// Ram.scala:22:29
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:440:10
-      `FIRRTL_AFTER_INITIAL	// <stdin>:440:10
+    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:477:10
+      `FIRRTL_AFTER_INITIAL	// <stdin>:477:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   SyncMem_combMem SyncMem_ext (	// Ram.scala:18:30
@@ -664,12 +683,12 @@ module Ram(	// <stdin>:440:10
     .R2_data (_SyncMem_ext_R2_data),
     .R3_data (_SyncMem_ext_R3_data)
   );
-  assign io_dataOut_valid = inst_valid;	// <stdin>:440:10, Ram.scala:22:29
+  assign io_dataOut_valid = inst_valid;	// <stdin>:477:10, Ram.scala:22:29
   assign io_dataOut_bits = inst_valid ? {_SyncMem_ext_R0_data, _SyncMem_ext_R1_data, _SyncMem_ext_R2_data,
-                _SyncMem_ext_R3_data} : 32'h0;	// <stdin>:440:10, Cat.scala:33:92, Ram.scala:18:30, :22:29, :26:27
+                _SyncMem_ext_R3_data} : 32'h0;	// <stdin>:477:10, Cat.scala:33:92, Ram.scala:18:30, :22:29, :26:27
 endmodule
 
-module Soc(	// <stdin>:490:10
+module Soc(	// <stdin>:527:10
   input clock,
         reset);
 
@@ -735,4 +754,44 @@ module Interact(input [31:0] inst,
 endmodule
         
 
+// ----- 8< ----- FILE "rv64/./build/DebugInterface.v" ----- 8< -----
+
+
+
+import "DPI-C" function void update_debuginfo(unsigned long pc, bool pc_req, unsigned int inst, 
+  bool inst_valid, unsigned long op_a, unsigned long op_b, unsigned long result, unsigned int rd, unsigned long reg_wdata,
+  bool reg_wen);
+
+module WbInterface(
+                   input        clk,
+   
+                   input [63:0] pc,
+                   input        pc_req,
+
+                   input [31:0] inst,
+                   input        inst_valid,
+
+                   input [63:0] op_a,
+                   input [63:0] op_b,
+                   input [63:0] result,
+
+
+                   input [4:0] rd,
+                   input [63:0] reg_wdata,
+                   input        reg_wen
+);
+
+
+
+
+always@(posedge clk)begin
+   update_debuginfo(pc,pc_req,inst,inst_valid,op_a,op_b,result,rd,reg_wdata,reg_wen);
+end
+
+
+
+endmodule
+
+
+    
 
