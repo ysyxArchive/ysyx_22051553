@@ -1,22 +1,50 @@
 #include <stdlib.h>
-#include <stdint.h>
-#include "../../../include/macro.h"
+#include "macro.h"
+#include <cstring>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <verilated_dpi.h>
+#include <verilated.h>
+#include "isa-def.hpp"
+#include "VSoc__Dpi.h"
+#include "debug.hpp"
+
 
 void single_cycle();
-int exam_exit();
 
+extern "C" {
+  void update_debuginfo(unsigned long pc, bool pc_req, unsigned int inst, 
+  bool inst_valid, unsigned long op_a, unsigned long op_b, unsigned long result, unsigned int rd, unsigned long reg_wdata,
+  bool reg_wen);
+}
 
-//输出寄存器
-void dump_gpr() {
-  int i;
-  for (i = 0; i < 32; i++) {
-    printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
+void update_debuginfo(
+        unsigned long pc,
+        bool pc_req,
+        unsigned int inst,
+        bool inst_valid,
+        unsigned long op_a,
+        unsigned long op_b,
+        unsigned long result,
+        unsigned int rd,
+        unsigned long reg_wdata,
+        bool reg_wen)
+{
+  debug_ins.update(pc,pc_req,inst,inst_valid,op_a,op_b,result,rd,reg_wdata,reg_wen);
+  if(reg_wen){
+    diff_cpu.set_value(rd,reg_wdata);
   }
 }
 
+
+int exam_exit(){
+  if(Verilated::gotFinish()){
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
 
 static char* rl_gets() {
   static char *line_read = NULL;
@@ -33,6 +61,25 @@ static char* rl_gets() {
   }
 
   return line_read;
+}
+
+static int cmd_q(char *args) {
+  Verilated::gotFinish(true);
+
+  return 0;
+}
+
+
+static int cmd_i(char *args) {
+  
+  if(strcmp(args, "r") == 0){
+    diff_cpu.gpr_display();
+  }
+  else if(strcmp(args, "w") == 0){
+    return 0;
+  }
+
+  return 0;
 }
 
 static int cmd_s(char *args){
@@ -56,9 +103,9 @@ static struct {
 } cmd_table [] = {
   // { "help", "Display information about all supported commands", cmd_help },
   // { "c", "Continue the execution of the program", cmd_c },
-  // { "q", "Exit NEMU", cmd_q },
+  { "q", "Exit NEMU", cmd_q },
   { "si", "Execute N insts, default 1 inst", cmd_s },
-  // { "info", "print state, including regs and watchpoints", cmd_i },
+  { "info", "print state, including regs and watchpoints", cmd_i },
   // { "x", "print mem", cmd_x },
   // { "p", "print expr", cmd_p },
   // { "w", "set a watchpoint", cmd_w },

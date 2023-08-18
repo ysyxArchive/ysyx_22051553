@@ -189,9 +189,17 @@ class Core extends Module{
     )
 
 
-
-        
-
-
-
+    //---debug
+    val DI= Module(new DebugInterface)
+    DI.io.clk := clock
+    DI.io.pc := fetch.io.pc.bits
+    DI.io.pc_req := fetch.io.pc.valid
+    DI.io.inst := io.ramio.dataOut.bits
+    DI.io.inst_valid := io.ramio.dataOut.valid
+    DI.io.op_a  := dereg.op_a
+    DI.io.op_b  := dereg.op_b
+    DI.io.result := excute.alu.io.result
+    DI.io.rd := wb.io.rfio.rd
+    DI.io.reg_wen := wb.io.rfio.reg_wen
+    DI.io.reg_wdata := wb.io.rfio.reg_wdata
 }

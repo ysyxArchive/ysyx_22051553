@@ -1,7 +1,7 @@
 #include "stdlib.h"
 #include <verilated_vcd_c.h>
 #include <verilated.h>
-#include "../../obj_dir/VSoc.h"
+#include "VSoc.h"
 #include <iostream>
 
 static VSoc dut;
@@ -9,23 +9,10 @@ static VSoc dut;
 vluint64_t sim_time = 0;
 VerilatedVcdC * vcd = new VerilatedVcdC;
 
-extern "C" {
-  void sdb_mainloop();
+void sdb_mainloop();
 
-  int exam_exit();
 
-  void single_cycle();
 
-}
-
-int exam_exit(){
-  if(Verilated::gotFinish()){
-    return 1;
-  }
-  else {
-    return 0;
-  }
-}
 
 
 void single_cycle() {  //clock总是为1

@@ -35,6 +35,7 @@ VM_PREFIX = VSoc
 VM_MODPREFIX = VSoc
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
+	-I/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/include -I/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/isa/include \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
@@ -42,12 +43,14 @@ VM_USER_LDLIBS = \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
+	cpu \
 	main \
 	sdb \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
 	./wrapper/src \
+	./wrapper/src/isa \
 	./wrapper/src/monitor/sdb \
 
 
@@ -60,6 +63,8 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
+cpu.o: ./wrapper/src/isa/cpu.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 main.o: ./wrapper/src/main.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sdb.o: ./wrapper/src/monitor/sdb/sdb.cpp
