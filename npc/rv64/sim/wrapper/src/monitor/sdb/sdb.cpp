@@ -8,31 +8,51 @@
 #include "isa-def.hpp"
 #include "VSoc__Dpi.h"
 #include "debug.hpp"
+#include "svdpi.h"
 
 
 void single_cycle();
 
 extern "C" {
-  void update_debuginfo(unsigned long pc, bool pc_req, unsigned int inst, 
-  bool inst_valid, unsigned long op_a, unsigned long op_b, unsigned long result, unsigned int rd, unsigned long reg_wdata,
-  bool reg_wen);
+  void update_debuginfo(
+    const svLogicVecVal* pc,
+    svLogic pc_req,
+    const svLogicVecVal* inst,
+    svLogic inst_valid,
+    const svLogicVecVal* op_a,
+    const svLogicVecVal* op_b,
+    const svLogicVecVal* result,
+    const svLogicVecVal* rd,
+    const svLogicVecVal* reg_wdata,
+    svLogic reg_wen);
+
 }
 
 void update_debuginfo(
-        unsigned long pc,
-        bool pc_req,
-        unsigned int inst,
-        bool inst_valid,
-        unsigned long op_a,
-        unsigned long op_b,
-        unsigned long result,
-        unsigned int rd,
-        unsigned long reg_wdata,
-        bool reg_wen)
+  const svLogicVecVal* pc,
+  svLogic pc_req,
+  const svLogicVecVal* inst,
+  svLogic inst_valid,
+  const svLogicVecVal* op_a,
+  const svLogicVecVal* op_b,
+  const svLogicVecVal* result,
+  const svLogicVecVal* rd,
+  const svLogicVecVal* reg_wdata,
+  svLogic reg_wen)
 {
-  debug_ins.update(pc,pc_req,inst,inst_valid,op_a,op_b,result,rd,reg_wdata,reg_wen);
-  if(reg_wen){
-    diff_cpu.set_value(rd,reg_wdata);
+  debug_ins.update(
+    (unsigned long)pc[1].aval << 32 | pc[0].aval,
+    (bool)pc_req,
+    (unsigned int)inst[0].aval,
+    (bool)inst_valid,
+    (unsigned long)op_a[1].aval << 32 | op_a[0].aval,
+    (unsigned long)op_b[1].aval << 32 | op_b[0].aval,
+    (unsigned long)result[1].aval << 32 | result[0].aval,
+    (unsigned int)rd[0].aval,
+    (unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval,
+    (bool)reg_wen);
+  if((bool)reg_wen){
+    diff_cpu.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);
   }
 }
 

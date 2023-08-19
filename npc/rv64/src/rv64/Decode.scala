@@ -7,7 +7,7 @@ import Define._
 
 
 class DecodeIO extends Bundle{
-    //Ram
+    //TempMem
     val inst = Flipped(ValidIO(UInt(INST_LEN.W)))
     
     //fd_reg
@@ -76,6 +76,9 @@ class Decode extends Module {
     io.deio.rd := rd
     io.deio.alu_op := cu.io.alu_op
     io.deio.wb_type := cu.io.wb_type
+    io.deio.sd_type := cu.io.sd_type
+    io.deio.reg2_rdata := io.rfio.reg2_rdata
+    io.deio.ld_type := cu.io.ld_type
 
 
     io.jump_flag := (cu.io.jump_type === ControlUnit.JUMP_JAL || cu.io.jump_type === ControlUnit.JUMP_JALR)

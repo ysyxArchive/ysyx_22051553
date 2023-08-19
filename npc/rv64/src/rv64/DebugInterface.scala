@@ -37,7 +37,7 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     |  input inst_valid, input wire[63:0] op_a, input wire[63:0] op_b, input wire[63:0] result, input wire[63:0] rd, input wire[63:0] reg_wdata,
     |  input reg_wen);
     |
-    |module WbInterface(
+    |module DebugInterface(
     |                   input        clk,
     |   
     |                   input [63:0] pc,

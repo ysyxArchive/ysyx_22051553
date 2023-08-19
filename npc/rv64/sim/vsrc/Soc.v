@@ -758,11 +758,11 @@ endmodule
 
 
 
-import "DPI-C" function void update_debuginfo(unsigned long pc, bool pc_req, unsigned int inst, 
-  bool inst_valid, unsigned long op_a, unsigned long op_b, unsigned long result, unsigned int rd, unsigned long reg_wdata,
-  bool reg_wen);
+import "DPI-C" function void update_debuginfo(input reg[63:0] pc, input pc_req, input reg[31:0] inst, 
+  input inst_valid, input reg[63:0] op_a, input reg[63:0] op_b, input reg[63:0] result, input reg[4:0] rd, input reg[63:0] reg_wdata,
+  input reg_wen);
 
-module WbInterface(
+module DebugInterface(
                    input        clk,
    
                    input [63:0] pc,
@@ -785,7 +785,10 @@ module WbInterface(
 
 
 always@(posedge clk)begin
-   update_debuginfo(pc,pc_req,inst,inst_valid,op_a,op_b,result,rd,reg_wdata,reg_wen);
+  if(rd == 'd0)
+    update_debuginfo(pc,pc_req,inst,inst_valid,op_a,op_b,result,rd,reg_wdata,0);
+  else 
+    update_debuginfo(pc,pc_req,inst,inst_valid,op_a,op_b,result,rd,reg_wdata,reg_wen);
 end
 
 
@@ -793,5 +796,4 @@ end
 endmodule
 
 
-    
 

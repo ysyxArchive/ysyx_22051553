@@ -6,16 +6,16 @@ import chisel3.experimental.BundleLiterals._
 import Define._
 
 
-class CoreIO extends Bundle {
-    val ramio = Flipped(new RamIO)
-}
+// class CoreIO extends Bundle {
+//     val ramio = Flipped(new RamIO)
+// }
 
 class Core extends Module{
-    val io = IO(new CoreIO)
+    val io = IO(Flipped(new TmIO))
 
     //interact
     val interact = Module(new Interact)
-    interact.io.inst := Mux(io.ramio.dataOut.valid, io.ramio.dataOut.bits, 0.U)
+    interact.io.inst := io.inst;
     interact.io.clk := clock   //可以直接显式使用clock
     interact.io.rst := reset
 
@@ -41,7 +41,10 @@ class Core extends Module{
             _.op_b -> 0.U,
             _.rd -> 0.U,
             _.alu_op -> Alu.ALU_NO_OP,
-            _.wb_type -> ControlUnit.WB_NO
+            _.wb_type -> ControlUnit.WB_NO,
+            _.sd_type -> ControlUnit.SD_NO,
+            _.ld_type -> ControlUnit.LD_NO
+
         )
     )
     val emreg = RegInit(
@@ -70,12 +73,13 @@ class Core extends Module{
     //寄存器不是有单一方向的，不能用<>
     
     //fetch相关
-    fetch.io.pc <> io.ramio.pc
+    io.pc := fetch.io.pc.bits
     fetch.io.fcfe <> fc.io.fcfe
 
     //decode
-    decode.io.inst.valid := io.ramio.dataOut.valid
-    decode.io.inst.bits := io.ramio.dataOut.bits
+    decode.io.inst := io.inst
+    decode.io.inst.valid := 1.B
+    decode.io.inst.bits := io.rdata
     decode.io.fdio.pc := fdreg.pc
     decode.io.rfio <> regfile.io.RfDe
 
@@ -85,16 +89,23 @@ class Core extends Module{
     excute.io.deio.rd := dereg.rd
     excute.io.deio.alu_op := dereg.alu_op
     excute.io.deio.wb_type := dereg.wb_type
+    excute.io.deio.sd_type := dereg.sd_type
+    excute.io.deio.ld_type := dereg.ld_type
 
     //mem
     mem.io.emio.alu_res := emreg.alu_res
     mem.io.emio.wb_type := emreg.wb_type
     mem.io.emio.rd := emreg.rd
+    mem.io.emio.sd_type := emreg.sd_type
+    mem.io.emio.ld_type := emreg.ld_type
 
     //wb
     wb.io.mwio.alu_res := mwreg.alu_res
     wb.io.mwio.wb_type := mwreg.wb_type
     wb.io.mwio.rd := mwreg.rd
+    wb.io.mwio.sd_type := mwreg.sd_type
+    wb.io.mwio.ld_type := mwreg.ld_type
+    wb.io.mwio.ld_data := mwreg.ld_data
     wb.io.rfio <> regfile.io.RfWb
 
     //FlowControl
@@ -143,6 +154,27 @@ class Core extends Module{
             (fc.io.fcde.flush) -> 0.U,
         )
     )
+    dereg.sd_type := MuxCase(
+        decode.io.deio.sd_type,
+        Seq(
+            (fc.io.fcde.stall) -> dereg.sd_type,
+            (fc.io.fcde.flush) -> 0.U,
+        )
+    )
+    dereg.reg2_rdata := MuxCase(
+        decode.io.deio.reg2_rdata,
+        Seq(
+            (fc.io.fcde.stall) -> dereg.reg2_rdata,
+            (fc.io.fcde.flush) -> 0.U,
+        )
+    )
+    dereg.ld_type := MuxCase(
+        decode.io.deio.ld_type,
+        Seq(
+            (fc.io.fcde.stall) -> dereg.ld_type,
+            (fc.io.fcde.flush) -> 0.U,
+        )
+    )
     //emreg
     emreg.alu_res := MuxCase(
         excute.io.emio.alu_res,
@@ -162,6 +194,20 @@ class Core extends Module{
         excute.io.emio.rd,
         Seq(
             (fc.io.fcex.stall) -> emreg.rd,
+            (fc.io.fcex.flush) -> 0.U,
+        )
+    )
+    emreg.sd_type := MuxCase(
+        excute.io.emio.sd_type,
+        Seq(
+            (fc.io.fcex.stall) -> emreg.sd_type,
+            (fc.io.fcex.flush) -> 0.U,
+        )
+    )
+    emreg.ld_type := MuxCase(
+        excute.io.emio.ld_type,
+        Seq(
+            (fc.io.fcex.stall) -> emreg.ld_type,
             (fc.io.fcex.flush) -> 0.U,
         )
     )
@@ -187,19 +233,43 @@ class Core extends Module{
             (fc.io.fcmem.flush) -> 0.U,
         )
     )
-
+    mwreg.sd_type := MuxCase(
+        mem.io.mwio.sd_type,
+        Seq(
+            (fc.io.fcmem.stall) -> mwreg.sd_type,
+            (fc.io.fcmem.flush) -> 0.U,
+        )
+    )
+    mwreg.ld_type := MuxCase(
+        mem.io.mwio.ld_type,
+        Seq(
+            (fc.io.fcmem.stall) -> mwreg.ld_type,
+            (fc.io.fcmem.flush) -> 0.U,
+        )
+    )
+    mwreg.ld_data := MuxCase(
+        mem.io.mwio.ld_data,
+        Seq(
+            (fc.io.fcmem.stall) -> mwreg.ld_data,
+            (fc.io.fcmem.flush) -> 0.U,
+        )
+    )
 
     //---debug
     val DI= Module(new DebugInterface)
     DI.io.clk := clock
     DI.io.pc := fetch.io.pc.bits
     DI.io.pc_req := fetch.io.pc.valid
-    DI.io.inst := io.ramio.dataOut.bits
-    DI.io.inst_valid := io.ramio.dataOut.valid
+    DI.io.inst := io.rdata
+    DI.io.inst_valid := DontCare
     DI.io.op_a  := dereg.op_a
     DI.io.op_b  := dereg.op_b
     DI.io.result := excute.io.emio.alu_res
     DI.io.rd := wb.io.rfio.rd
     DI.io.reg_wen := wb.io.rfio.reg_wen
     DI.io.reg_wdata := wb.io.rfio.reg_wdata
+
+
+    //---TM
+
 }

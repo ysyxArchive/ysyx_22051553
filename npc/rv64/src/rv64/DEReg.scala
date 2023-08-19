@@ -13,4 +13,8 @@ class DERegIO extends Bundle {
 
     val alu_op = (UInt(ALU_OP_LEN.W))
     val wb_type = (UInt(2.W))
+
+    val sd_type = (UInt(3.W))
+    val reg2_rdata = (UInt(X_LEN.W))
+    val ld_type = (UInt(3.W))
 }
