@@ -101,6 +101,7 @@ class Core extends Module{
     excute.io.deio.alu_op := dereg.alu_op
     excute.io.deio.wb_type := dereg.wb_type
     excute.io.deio.sd_type := dereg.sd_type
+    excute.io.deio.reg2_rdata := dereg.reg2_rdata
     excute.io.deio.ld_type := dereg.ld_type
 
     //mem
