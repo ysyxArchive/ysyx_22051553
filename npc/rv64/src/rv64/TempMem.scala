@@ -5,23 +5,20 @@ import chisel3.util._
 import Define._
 
 
-class TmIO extends Bundle{
-
-    val inst = Output(UInt(INST_LEN.W))
-    val pc   = Input(UInt(PC_LEN.W))
-
-    val raddr = Input(UInt(X_LEN.W))
-    val rdata = Output(UInt(X_LEN.W))
-
-    val waddr = Input(UInt(X_LEN.W))
-    val wdata = Input(UInt(X_LEN.W))
-    val wmask = Input(UInt(8.W))
-}
-
 class TempMem extends BlackBox with HasBlackBoxInline{
     val io = IO(new Bundle{
-        val tmio = new TmIO
+        
         val clk = Input(Clock())
+
+        val inst = Output(UInt(INST_LEN.W))
+        val pc   = Input(UInt(PC_LEN.W))
+
+        val raddr = Input(UInt(X_LEN.W))
+        val rdata = Output(UInt(X_LEN.W))
+
+        val waddr = Input(UInt(X_LEN.W))
+        val wdata = Input(UInt(X_LEN.W))
+        val wmask = Input(UInt(8.W))
     })
 
     setInline("TempMem.v",

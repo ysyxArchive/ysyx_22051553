@@ -11,7 +11,17 @@ import Define._
 // }
 
 class Core extends Module{
-    val io = IO(Flipped(new TmIO))
+    val io = IO(new Bundle {
+        val inst = Input(UInt(INST_LEN.W))
+        val pc   = Output(UInt(PC_LEN.W))
+
+        val raddr = Output(UInt(X_LEN.W))
+        val rdata = Input(UInt(X_LEN.W))
+
+        val waddr = Output(UInt(X_LEN.W))
+        val wdata = Output(UInt(X_LEN.W))
+        val wmask = Output(UInt(8.W))
+    })
 
     //interact
     val interact = Module(new Interact)
