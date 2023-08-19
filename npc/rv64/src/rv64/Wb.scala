@@ -18,16 +18,18 @@ class Wb extends Module{
     //内部逻辑
     val mem_data = Wire(UInt(X_LEN.W))
     mem_data := MuxLookup(io.mwio.ld_type, 0.U, 
-        Seq(                                        //尝试扩展方式
-            LD_LB -> io.mwio.ld_data(7,0).asSInt,
-            LD_LH -> io.mwio.ld_data(15,0).asSInt,
-            LD_LW -> io.mwio.ld_data(31,0).asSInt,
+        Seq(
+            LD_LB -> Cat(Fill(56, io.mwio.ld_data(7)), io.mwio.ld_data(6,0)),
+            LD_LH -> Cat(Fill(48, io.mwio.ld_data(15)), io.mwio.ld_data(15,0)),
+            LD_LW -> Cat(Fill(56, io.mwio.ld_data(31)), io.mwio.ld_data(31,0)),
             LD_LD -> io.mwio.ld_data,
-            LD_LBU -> io.mwio.ld_data(7,0).zext,
-            LD_LHU -> io.mwio.ld_data(15,0).zext,
-            LD_LWU -> io.mwio.ld_data(31,0).zext,
+            LD_LBU -> Cat(Fill(56, 0.U), io.mwio.ld_data(6,0)),
+            LD_LHU -> Cat(Fill(48, 0.U), io.mwio.ld_data(15,0)),
+            LD_LWU -> Cat(Fill(56, 0.U), io.mwio.ld_data(31,0)),
         )
     )
+
+
 
     //端口驱动
     io.rfio.rd := io.mwio.rd
@@ -35,7 +37,7 @@ class Wb extends Module{
     io.rfio.reg_wdata := MuxLookup(io.mwio.wb_type, 0.U,
         Seq(
             WB_ALU -> io.mwio.alu_res,
-            WB_MEM -> mem_data,
+            WB_MEM -> io.mwio.ld_data,
         )
     )
 }
