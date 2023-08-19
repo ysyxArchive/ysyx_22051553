@@ -269,6 +269,4 @@ class Core extends Module{
     DI.io.reg_wdata := wb.io.rfio.reg_wdata
 
 
-    //---TM
-
 }

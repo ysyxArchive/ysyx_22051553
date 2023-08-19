@@ -37,6 +37,9 @@ class Excute extends Module{
     io.emio.wb_type := io.deio.wb_type
     io.emio.rd := io.deio.rd
 
+    io.emio.sd_type := io.deio.sd_type
+    io.emio.ld_type := io.deio.ld_type
+
     io.jump_flag := DontCare
     io.jump_pc := DontCare
 
