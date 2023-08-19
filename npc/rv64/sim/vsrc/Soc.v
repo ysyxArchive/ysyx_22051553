@@ -733,28 +733,32 @@ endmodule
 // ----- 8< ----- FILE "rv64/./build/TempMem.v" ----- 8< -----
 
 
-import "DPI-C" function longint pmem_read(
-   input longint raddr);
+import "DPI-C" function reg[63:0] pmem_read(
+   input reg[31:0] raddr);
 
 import "DPI-C" function void pmem_write(
-   input longint waddr, input longint wdata, input byte wmask);
+   input reg[31:0] waddr, input reg[63:0] wdata, input byte wmask);
 
 module TempMem(
    input           clk,
 
-   output  reg [31:0]  inst,
+   output  [31:0]  inst,
    input   [63:0]  pc,
 
    input   [63:0]  raddr,
-   output  reg [63:0]  rdata,
+   output  [63:0]  rdata,
 
    input   [63:0]  wdata,
    input   [63:0]  waddr,
    input   [7:0]   wmask
 );
 
+   reg [63:0] temp_inst;
+
+   assign inst = temp_inst[31:0];
+
    always@(posedge clk)begin
-       inst <= pmem_read(pc);
+       temp_inst <= pmem_read(pc);
        
        if(raddr != 'd0)
            rdata <= pmem_read(raddr);
