@@ -77,7 +77,6 @@ class Core extends Module{
     fetch.io.fcfe <> fc.io.fcfe
 
     //decode
-    decode.io.inst := io.inst
     decode.io.inst.valid := 1.B
     decode.io.inst.bits := io.rdata
     decode.io.fdio.pc := fdreg.pc
