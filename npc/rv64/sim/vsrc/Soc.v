@@ -742,11 +742,11 @@ import "DPI-C" function void pmem_write(
 module TempMem(
    input           clk,
 
-   output  [31:0]  inst,
+   output  reg [31:0]  inst,
    input   [63:0]  pc,
 
    input   [63:0]  raddr,
-   output  [63:0]  rdata,
+   output  reg [63:0]  rdata,
 
    input   [63:0]  wdata,
    input   [63:0]  waddr,
@@ -769,3 +769,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
+
