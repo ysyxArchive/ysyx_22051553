@@ -32,7 +32,7 @@ class TempMem extends BlackBox with HasBlackBoxInline{
     |module TempMem(
     |   input           clk,
     |
-    |   input   [31:0]  inst,
+    |   output  [31:0]  inst,
     |   input   [63:0]  pc,
     |
     |   input   [63:0]  raddr,
