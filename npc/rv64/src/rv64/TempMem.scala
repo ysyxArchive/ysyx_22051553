@@ -6,7 +6,7 @@ import Define._
 
 
 class TmIO extends Bundle{
-    val clk = Input(Clock())
+    
 
     val inst = Output(UInt(INST_LEN.W))
     val pc   = Input(UInt(PC_LEN.W))
