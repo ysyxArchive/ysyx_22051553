@@ -1,4 +1,4 @@
-// Verilated -*- C++ -*-
+x// Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Prototypes for DPI import and export functions.
 //
 // Verilator includes this file in all generated .cpp files that use DPI functions.
