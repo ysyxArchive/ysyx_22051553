@@ -367,8 +367,8 @@ module Core(	// <stdin>:423:10
   input  [31:0] io_inst,
   input  [63:0] io_rdata,
   output [31:0] io_pc,
-  output [63:0] io_waddr,
-                io_wdata,
+                io_waddr,
+  output [63:0] io_wdata,
   output [7:0]  io_wmask);
 
   wire        _fc_io_fcfe_jump_flag;	// Core.scala:85:20
@@ -386,7 +386,6 @@ module Core(	// <stdin>:423:10
   wire [63:0] _excute_io_emio_alu_res;	// Core.scala:37:24
   wire [1:0]  _excute_io_emio_wb_type;	// Core.scala:37:24
   wire [4:0]  _excute_io_emio_rd;	// Core.scala:37:24
-  wire [31:0] _excute_io_waddr;	// Core.scala:37:24
   wire [4:0]  _decode_io_rfio_reg1_raddr;	// Core.scala:36:24
   wire [4:0]  _decode_io_rfio_reg2_raddr;	// Core.scala:36:24
   wire [63:0] _decode_io_deio_op_a;	// Core.scala:36:24
@@ -419,20 +418,20 @@ module Core(	// <stdin>:423:10
   always @(posedge clock) begin
     if (reset) begin
       fdreg_pc <= 32'h80000000;	// <stdin>:451:23, Core.scala:43:24
-      dereg_op_a <= 64'h0;	// <stdin>:423:10, Core.scala:48:24
-      dereg_op_b <= 64'h0;	// <stdin>:423:10, Core.scala:48:24
+      dereg_op_a <= 64'h0;	// <stdin>:456:28, Core.scala:48:24
+      dereg_op_b <= 64'h0;	// <stdin>:456:28, Core.scala:48:24
       dereg_rd <= 5'h0;	// <stdin>:460:20, Core.scala:48:24
       dereg_alu_op <= 5'h1F;	// <stdin>:459:27, Core.scala:48:24
       dereg_wb_type <= 2'h0;	// <stdin>:458:25, Core.scala:48:24
       dereg_sd_type <= 3'h0;	// Core.scala:48:24, :70:24
-      dereg_reg2_rdata <= 64'h0;	// <stdin>:423:10, Core.scala:48:24
-      emreg_alu_res <= 64'h0;	// <stdin>:423:10, Core.scala:61:24
+      dereg_reg2_rdata <= 64'h0;	// <stdin>:456:28, Core.scala:48:24
+      emreg_alu_res <= 64'h0;	// <stdin>:456:28, Core.scala:61:24
       emreg_wb_type <= 2'h0;	// <stdin>:458:25, Core.scala:61:24
       emreg_rd <= 5'h0;	// <stdin>:460:20, Core.scala:61:24
-      mwreg_alu_res <= 64'h0;	// <stdin>:423:10, Core.scala:70:24
+      mwreg_alu_res <= 64'h0;	// <stdin>:456:28, Core.scala:70:24
       mwreg_wb_type <= 2'h0;	// <stdin>:458:25, Core.scala:70:24
       mwreg_rd <= 5'h0;	// <stdin>:460:20, Core.scala:70:24
-      mwreg_ld_data <= 64'h0;	// <stdin>:423:10, Core.scala:70:24
+      mwreg_ld_data <= 64'h0;	// <stdin>:456:28, Core.scala:70:24
     end
     else begin
       fdreg_pc <= _fetch_io_fdio_pc;	// Core.scala:35:23, :43:24
@@ -555,7 +554,7 @@ module Core(	// <stdin>:423:10
     .io_emio_alu_res    (_excute_io_emio_alu_res),
     .io_emio_wb_type    (_excute_io_emio_wb_type),
     .io_emio_rd         (_excute_io_emio_rd),
-    .io_waddr           (_excute_io_waddr),
+    .io_waddr           (io_waddr),
     .io_wdata           (io_wdata),
     .io_wmask           (io_wmask)
   );
@@ -609,7 +608,6 @@ module Core(	// <stdin>:423:10
     .reg_wdata  (_wb_io_rfio_reg_wdata)	// Core.scala:40:20
   );
   assign io_pc = _fetch_io_pc_bits;	// <stdin>:423:10, Core.scala:35:23
-  assign io_waddr = {32'h0, _excute_io_waddr};	// <stdin>:423:10, Core.scala:37:24, :92:14
 endmodule
 
 // external module TempMem
@@ -621,7 +619,7 @@ module Soc(	// <stdin>:618:10
   wire [31:0] _tm_inst;	// Soc.scala:13:20
   wire [63:0] _tm_rdata;	// Soc.scala:13:20
   wire [31:0] _core_io_pc;	// Soc.scala:10:22
-  wire [63:0] _core_io_waddr;	// Soc.scala:10:22
+  wire [31:0] _core_io_waddr;	// Soc.scala:10:22
   wire [63:0] _core_io_wdata;	// Soc.scala:10:22
   wire [7:0]  _core_io_wmask;	// Soc.scala:10:22
   Core core (	// Soc.scala:10:22
@@ -637,7 +635,7 @@ module Soc(	// <stdin>:618:10
   TempMem tm (	// Soc.scala:13:20
     .clk   (clock),
     .pc    (_core_io_pc),	// Soc.scala:10:22
-    .raddr (64'h0),	// Soc.scala:13:20
+    .raddr (32'h0),	// Soc.scala:13:20
     .waddr (_core_io_waddr),	// Soc.scala:10:22
     .wdata (_core_io_wdata),	// Soc.scala:10:22
     .wmask (_core_io_wmask),	// Soc.scala:10:22
@@ -741,13 +739,13 @@ module TempMem(
    input           clk,
 
    output  [31:0]  inst,
-   input   [63:0]  pc,
+   input   [31:0]  pc,
 
-   input   [63:0]  raddr,
+   input   [31:0]  raddr,
    output  [63:0]  rdata,
 
    input   [63:0]  wdata,
-   input   [63:0]  waddr,
+   input   [31:0]  waddr,
    input   [7:0]   wmask
 );
 

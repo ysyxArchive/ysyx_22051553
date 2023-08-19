@@ -36,7 +36,7 @@ class TempMem extends BlackBox with HasBlackBoxInline{
     |   input   [31:0]  pc,
     |
     |   input   [31:0]  raddr,
-    |   output  [63:0]  rdata,
+    |   output  reg [63:0]  rdata,
     |
     |   input   [63:0]  wdata,
     |   input   [31:0]  waddr,
