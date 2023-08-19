@@ -13,10 +13,10 @@ class TempMem extends BlackBox with HasBlackBoxInline{
         val inst = Output(UInt(INST_LEN.W))
         val pc   = Input(UInt(PC_LEN.W))
 
-        val raddr = Input(UInt(X_LEN.W))
+        val raddr = Input(UInt(32.W))
         val rdata = Output(UInt(X_LEN.W))
 
-        val waddr = Input(UInt(X_LEN.W))
+        val waddr = Input(UInt(32.W))
         val wdata = Input(UInt(X_LEN.W))
         val wmask = Input(UInt(8.W))
     })
@@ -33,13 +33,13 @@ class TempMem extends BlackBox with HasBlackBoxInline{
     |   input           clk,
     |
     |   output  [31:0]  inst,
-    |   input   [63:0]  pc,
+    |   input   [31:0]  pc,
     |
-    |   input   [63:0]  raddr,
+    |   input   [31:0]  raddr,
     |   output  [63:0]  rdata,
     |
     |   input   [63:0]  wdata,
-    |   input   [63:0]  waddr,
+    |   input   [31:0]  waddr,
     |   input   [7:0]   wmask
     |);
     |

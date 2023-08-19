@@ -15,10 +15,10 @@ class Core extends Module{
         val inst = Input(UInt(INST_LEN.W))
         val pc   = Output(UInt(PC_LEN.W))
 
-        val raddr = Output(UInt(X_LEN.W))
+        val raddr = Output(UInt(32.W))
         val rdata = Input(UInt(X_LEN.W))
 
-        val waddr = Output(UInt(X_LEN.W))
+        val waddr = Output(UInt(32.W))
         val wdata = Output(UInt(X_LEN.W))
         val wmask = Output(UInt(8.W))
     })
