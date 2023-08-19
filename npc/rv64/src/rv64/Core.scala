@@ -43,6 +43,7 @@ class Core extends Module{
             _.alu_op -> Alu.ALU_NO_OP,
             _.wb_type -> ControlUnit.WB_NO,
             _.sd_type -> ControlUnit.SD_NO,
+            _.reg2_rdata -> 0.U,
             _.ld_type -> ControlUnit.LD_NO
 
         )
@@ -51,14 +52,19 @@ class Core extends Module{
         (new EMRegIO).Lit(
             _.alu_res -> 0.U,
             _.wb_type -> ControlUnit.WB_NO,
-            _.rd -> 0.U
+            _.rd -> 0.U,
+            _.sd_type -> ControlUnit.SD_NO,
+            _.ld_type -> ControlUnit.LD_NO
         )
     )
     val mwreg = RegInit(
         (new MWRegIO).Lit(
             _.alu_res -> 0.U,
             _.wb_type -> ControlUnit.WB_NO,
-            _.rd -> 0.U
+            _.rd -> 0.U,
+            _.sd_type -> ControlUnit.SD_NO,
+            _.ld_type -> ControlUnit.LD_NO,
+            _.ld_data -> 0.U
         )
     )
 
@@ -70,15 +76,21 @@ class Core extends Module{
 
     
     //互联 -- 以被驱动方为标准
+    //顶层
+    io.pc := fetch.io.pc.bits
+    io.raddr := excute.io.raddr
+    io.waddr := excute.io.waddr
+    io.wdata := excute.io.wdata
+    io.wmask := excute.io.wmask
+
     //寄存器不是有单一方向的，不能用<>
     
     //fetch相关
-    io.pc := fetch.io.pc.bits
     fetch.io.fcfe <> fc.io.fcfe
 
     //decode
     decode.io.inst.valid := 1.B
-    decode.io.inst.bits := io.rdata
+    decode.io.inst.bits := io.inst
     decode.io.fdio.pc := fdreg.pc
     decode.io.rfio <> regfile.io.RfDe
 
@@ -97,6 +109,7 @@ class Core extends Module{
     mem.io.emio.rd := emreg.rd
     mem.io.emio.sd_type := emreg.sd_type
     mem.io.emio.ld_type := emreg.ld_type
+    mem.io.rdata := io.rdata
 
     //wb
     wb.io.mwio.alu_res := mwreg.alu_res
