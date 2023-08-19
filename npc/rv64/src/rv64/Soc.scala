@@ -12,5 +12,13 @@ class Soc extends Module{
 
     val tm = Module(new TempMem)
     
-    tm.io <> core.io
+    tm.io.clk := clock
+    tm.io.pc := core.io.pc
+    tm.io.raddr := core.io.raddr
+    tm.io.waddr := core.io.waddr
+    tm.io.wdata := core.io.wdata
+    tm.io.wmask := core.io.wmask
+
+    core.io.inst := tm.io.inst
+    core.io.rdata := tm.io.rdata
 }
