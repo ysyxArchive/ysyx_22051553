@@ -6,7 +6,6 @@ import Define._
 
 
 class TmIO extends Bundle{
-    
 
     val inst = Output(UInt(INST_LEN.W))
     val pc   = Input(UInt(PC_LEN.W))
@@ -20,7 +19,10 @@ class TmIO extends Bundle{
 }
 
 class TempMem extends BlackBox with HasBlackBoxInline{
-    val io = IO(new TmIO)
+    val io = IO(new Bundle{
+        val tmio = new TmIO
+        val clk = Input(Clock())
+    })
 
     setInline("TempMem.v",
     """
