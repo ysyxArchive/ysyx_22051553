@@ -23,7 +23,7 @@ class TempMem extends BlackBox with HasBlackBoxInline{
 
     setInline("TempMem.v",
     """
-    |import "DPI-C" function longint pmem_read(
+    |import "DPI-C" function void pmem_read(
     |   input longint raddr);
     |
     |import "DPI-C" function void pmem_write(
