@@ -91,25 +91,25 @@ module Fetch(	// <stdin>:8:10
   input         clock,
                 reset,
                 io_fcfe_jump_flag,
-  input  [31:0] io_fcfe_jump_pc,
+  input  [63:0] io_fcfe_jump_pc,
   input         io_fcfe_flush,
-  output [31:0] io_fdio_pc,
+  output [63:0] io_fdio_pc,
   output        io_pc_valid,
-  output [31:0] io_pc_bits);
+  output [63:0] io_pc_bits);
 
   reg        started;	// Fetch.scala:23:26
-  reg [31:0] pc;	// Fetch.scala:26:21
+  reg [63:0] pc;	// Fetch.scala:26:21
   always @(posedge clock) begin
     if (reset) begin
       started <= 1'h0;	// <stdin>:8:10, Fetch.scala:23:26
-      pc <= 32'h80000000;	// Fetch.scala:26:21
+      pc <= 64'h80000000;	// Fetch.scala:26:21
     end
     else begin
       started <= 1'h1;	// Fetch.scala:23:26, :24:13
       if (started)	// Fetch.scala:23:26
-        pc <= pc + 32'h4;	// Fetch.scala:26:21, :30:37
+        pc <= pc + 64'h4;	// Fetch.scala:26:21, :30:37
       else if (io_fcfe_flush & io_fcfe_jump_flag)	// Fetch.scala:23:26, :31:36
-        pc <= io_fcfe_jump_pc + 32'h4;	// Fetch.scala:26:21, :30:37, :31:85
+        pc <= io_fcfe_jump_pc + 64'h4;	// Fetch.scala:26:21, :30:37, :31:85
     end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:8:10
@@ -119,14 +119,16 @@ module Fetch(	// <stdin>:8:10
     initial begin	// <stdin>:8:10
       automatic logic [31:0] _RANDOM_0;	// <stdin>:8:10
       automatic logic [31:0] _RANDOM_1;	// <stdin>:8:10
+      automatic logic [31:0] _RANDOM_2;	// <stdin>:8:10
       `ifdef INIT_RANDOM_PROLOG_	// <stdin>:8:10
         `INIT_RANDOM_PROLOG_	// <stdin>:8:10
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// <stdin>:8:10
         _RANDOM_0 = `RANDOM;	// <stdin>:8:10
         _RANDOM_1 = `RANDOM;	// <stdin>:8:10
+        _RANDOM_2 = `RANDOM;	// <stdin>:8:10
         started = _RANDOM_0[0];	// Fetch.scala:23:26
-        pc = {_RANDOM_0[31:1], _RANDOM_1[0]};	// Fetch.scala:23:26, :26:21
+        pc = {_RANDOM_0[31:1], _RANDOM_1, _RANDOM_2[0]};	// Fetch.scala:23:26, :26:21
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:8:10
@@ -186,8 +188,8 @@ endmodule
 
 module Decode(	// <stdin>:162:10
   input  [31:0] io_inst_bits,
-                io_fdio_pc,
-  input  [63:0] io_rfio_reg1_rdata,
+  input  [63:0] io_fdio_pc,
+                io_rfio_reg1_rdata,
                 io_rfio_reg2_rdata,
   output [4:0]  io_rfio_reg1_raddr,
                 io_rfio_reg2_raddr,
@@ -199,7 +201,7 @@ module Decode(	// <stdin>:162:10
   output [2:0]  io_deio_sd_type,
   output [63:0] io_deio_reg2_rdata,
   output        io_jump_flag,
-  output [31:0] io_jump_pc);
+  output [63:0] io_jump_pc);
 
   wire [63:0]      _eximm_io_eximm;	// Decode.scala:40:23
   wire [1:0]       _cu_io_jump_type;	// Decode.scala:39:20
@@ -209,7 +211,6 @@ module Decode(	// <stdin>:162:10
   wire [3:0][63:0] _GEN = {{64'h4}, {io_rfio_reg2_rdata}, {_eximm_io_eximm}, {64'h0}};	// Decode.scala:40:23, Mux.scala:81:{58,61}
   wire             _io_jump_pc_T = _cu_io_jump_type == 2'h1;	// Decode.scala:39:20, :84:38, Mux.scala:81:61
   wire             _io_jump_pc_T_3 = _cu_io_jump_type == 2'h2;	// Decode.scala:39:20, :84:82, Mux.scala:81:61
-  wire [31:0]      _GEN_0 = io_rfio_reg1_rdata[31:0] + _eximm_io_eximm[31:0];	// Decode.scala:40:23, :89:81
   ControlUnit cu (	// Decode.scala:39:20
     .io_inst      (io_inst_bits),
     .io_jump_type (_cu_io_jump_type),
@@ -227,14 +228,13 @@ module Decode(	// <stdin>:162:10
   );
   assign io_rfio_reg1_raddr = io_inst_bits[19:15];	// <stdin>:162:10, Decode.scala:44:16
   assign io_rfio_reg2_raddr = io_inst_bits[24:20];	// <stdin>:162:10, Decode.scala:45:16
-  assign io_deio_op_a = _cu_io_opa_type == 2'h2 ? io_rfio_reg1_rdata : {32'h0, _cu_io_opa_type == 2'h1 ? io_fdio_pc
-                : 32'h0};	// <stdin>:162:10, Decode.scala:39:20, Mux.scala:81:{58,61}
+  assign io_deio_op_a = _cu_io_opa_type == 2'h2 ? io_rfio_reg1_rdata : _cu_io_opa_type == 2'h1 ? io_fdio_pc : 64'h0;	// <stdin>:162:10, Decode.scala:39:20, Mux.scala:81:{58,61}
   assign io_deio_op_b = _GEN[_cu_io_opb_type];	// <stdin>:162:10, Decode.scala:39:20, Mux.scala:81:{58,61}
   assign io_deio_rd = io_inst_bits[11:7];	// <stdin>:162:10, Decode.scala:46:15
   assign io_deio_reg2_rdata = io_rfio_reg2_rdata;	// <stdin>:162:10
   assign io_jump_flag = _io_jump_pc_T | _io_jump_pc_T_3;	// <stdin>:162:10, Decode.scala:84:{38,63,82}
-  assign io_jump_pc = _io_jump_pc_T ? io_fdio_pc + _eximm_io_eximm[31:0] : _io_jump_pc_T_3 ? {_GEN_0[31:1], 1'h0}
-                : 32'h80000000;	// <stdin>:162:10, Decode.scala:40:23, :84:{38,82}, :88:71, :89:{81,99}, Mux.scala:101:16
+  assign io_jump_pc = _io_jump_pc_T ? io_fdio_pc + _eximm_io_eximm : _io_jump_pc_T_3 ? io_rfio_reg1_rdata +
+                _eximm_io_eximm & 64'hFFFFFFFFFFFFFFFE : 64'h80000000;	// <stdin>:162:10, Decode.scala:40:23, :84:{38,82}, :88:71, :89:{81,99,102}, Mux.scala:101:16
 endmodule
 
 module Alu(	// <stdin>:229:10
@@ -344,13 +344,13 @@ endmodule
 
 module FlowControl(	// <stdin>:505:10
   input         io_fcde_jump_flag,
-  input  [31:0] io_fcde_jump_pc,
+  input  [63:0] io_fcde_jump_pc,
   output        io_fcfe_jump_flag,
-  output [31:0] io_fcfe_jump_pc,
+  output [63:0] io_fcfe_jump_pc,
   output        io_fcfe_flush);
 
   assign io_fcfe_jump_flag = io_fcde_jump_flag;	// <stdin>:505:10
-  assign io_fcfe_jump_pc = io_fcde_jump_flag ? io_fcde_jump_pc : 32'h80000000;	// <stdin>:505:10, Mux.scala:101:16
+  assign io_fcfe_jump_pc = io_fcde_jump_flag ? io_fcde_jump_pc : 64'h80000000;	// <stdin>:505:10, Mux.scala:101:16
   assign io_fcfe_flush = io_fcde_jump_flag;	// <stdin>:505:10
 endmodule
 
@@ -361,13 +361,13 @@ module Core(	// <stdin>:564:10
                 reset,
   input  [31:0] io_inst,
   input  [63:0] io_rdata,
-  output [31:0] io_pc,
-  output [63:0] io_waddr,
+  output [63:0] io_pc,
+                io_waddr,
                 io_wdata,
   output [7:0]  io_wmask);
 
   wire        _fc_io_fcfe_jump_flag;	// Core.scala:86:20
-  wire [31:0] _fc_io_fcfe_jump_pc;	// Core.scala:86:20
+  wire [63:0] _fc_io_fcfe_jump_pc;	// Core.scala:86:20
   wire        _fc_io_fcfe_flush;	// Core.scala:86:20
   wire [63:0] _regfile_io_RfDe_reg1_rdata;	// Core.scala:83:25
   wire [63:0] _regfile_io_RfDe_reg2_rdata;	// Core.scala:83:25
@@ -390,11 +390,11 @@ module Core(	// <stdin>:564:10
   wire [2:0]  _decode_io_deio_sd_type;	// Core.scala:36:24
   wire [63:0] _decode_io_deio_reg2_rdata;	// Core.scala:36:24
   wire        _decode_io_jump_flag;	// Core.scala:36:24
-  wire [31:0] _decode_io_jump_pc;	// Core.scala:36:24
-  wire [31:0] _fetch_io_fdio_pc;	// Core.scala:35:23
+  wire [63:0] _decode_io_jump_pc;	// Core.scala:36:24
+  wire [63:0] _fetch_io_fdio_pc;	// Core.scala:35:23
   wire        _fetch_io_pc_valid;	// Core.scala:35:23
-  wire [31:0] _fetch_io_pc_bits;	// Core.scala:35:23
-  reg  [31:0] fdreg_pc;	// Core.scala:43:24
+  wire [63:0] _fetch_io_pc_bits;	// Core.scala:35:23
+  reg  [63:0] fdreg_pc;	// Core.scala:43:24
   reg  [63:0] dereg_op_a;	// Core.scala:48:24
   reg  [63:0] dereg_op_b;	// Core.scala:48:24
   reg  [4:0]  dereg_rd;	// Core.scala:48:24
@@ -410,7 +410,7 @@ module Core(	// <stdin>:564:10
   reg  [4:0]  mwreg_rd;	// Core.scala:71:24
   always @(posedge clock) begin
     if (reset) begin
-      fdreg_pc <= 32'h80000000;	// <stdin>:592:23, Core.scala:43:24
+      fdreg_pc <= 64'h80000000;	// <stdin>:592:20, Core.scala:43:24
       dereg_op_a <= 64'h0;	// <stdin>:564:10, Core.scala:48:24
       dereg_op_b <= 64'h0;	// <stdin>:564:10, Core.scala:48:24
       dereg_rd <= 5'h0;	// <stdin>:601:20, Core.scala:48:24
@@ -460,6 +460,7 @@ module Core(	// <stdin>:564:10
       automatic logic [31:0] _RANDOM_10;	// <stdin>:564:10
       automatic logic [31:0] _RANDOM_11;	// <stdin>:564:10
       automatic logic [31:0] _RANDOM_12;	// <stdin>:564:10
+      automatic logic [31:0] _RANDOM_13;	// <stdin>:564:10
       `ifdef INIT_RANDOM_PROLOG_	// <stdin>:564:10
         `INIT_RANDOM_PROLOG_	// <stdin>:564:10
       `endif // INIT_RANDOM_PROLOG_
@@ -477,20 +478,21 @@ module Core(	// <stdin>:564:10
         _RANDOM_10 = `RANDOM;	// <stdin>:564:10
         _RANDOM_11 = `RANDOM;	// <stdin>:564:10
         _RANDOM_12 = `RANDOM;	// <stdin>:564:10
-        fdreg_pc = _RANDOM_0;	// Core.scala:43:24
-        dereg_op_a = {_RANDOM_1, _RANDOM_2};	// Core.scala:48:24
-        dereg_op_b = {_RANDOM_3, _RANDOM_4};	// Core.scala:48:24
-        dereg_rd = _RANDOM_5[4:0];	// Core.scala:48:24
-        dereg_alu_op = _RANDOM_5[9:5];	// Core.scala:48:24
-        dereg_wb_type = _RANDOM_5[11:10];	// Core.scala:48:24
-        dereg_sd_type = _RANDOM_5[14:12];	// Core.scala:48:24
-        dereg_reg2_rdata = {_RANDOM_5[31:15], _RANDOM_6, _RANDOM_7[14:0]};	// Core.scala:48:24
-        emreg_alu_res = {_RANDOM_7[31:18], _RANDOM_8, _RANDOM_9[17:0]};	// Core.scala:48:24, :61:24
-        emreg_wb_type = _RANDOM_9[19:18];	// Core.scala:61:24
-        emreg_rd = _RANDOM_9[24:20];	// Core.scala:61:24
-        mwreg_alu_res = {_RANDOM_9[31], _RANDOM_10, _RANDOM_11[30:0]};	// Core.scala:61:24, :71:24
-        mwreg_wb_type = {_RANDOM_11[31], _RANDOM_12[0]};	// Core.scala:71:24
-        mwreg_rd = _RANDOM_12[5:1];	// Core.scala:71:24
+        _RANDOM_13 = `RANDOM;	// <stdin>:564:10
+        fdreg_pc = {_RANDOM_0, _RANDOM_1};	// Core.scala:43:24
+        dereg_op_a = {_RANDOM_2, _RANDOM_3};	// Core.scala:48:24
+        dereg_op_b = {_RANDOM_4, _RANDOM_5};	// Core.scala:48:24
+        dereg_rd = _RANDOM_6[4:0];	// Core.scala:48:24
+        dereg_alu_op = _RANDOM_6[9:5];	// Core.scala:48:24
+        dereg_wb_type = _RANDOM_6[11:10];	// Core.scala:48:24
+        dereg_sd_type = _RANDOM_6[14:12];	// Core.scala:48:24
+        dereg_reg2_rdata = {_RANDOM_6[31:15], _RANDOM_7, _RANDOM_8[14:0]};	// Core.scala:48:24
+        emreg_alu_res = {_RANDOM_8[31:18], _RANDOM_9, _RANDOM_10[17:0]};	// Core.scala:48:24, :61:24
+        emreg_wb_type = _RANDOM_10[19:18];	// Core.scala:61:24
+        emreg_rd = _RANDOM_10[24:20];	// Core.scala:61:24
+        mwreg_alu_res = {_RANDOM_10[31], _RANDOM_11, _RANDOM_12[30:0]};	// Core.scala:61:24, :71:24
+        mwreg_wb_type = {_RANDOM_12[31], _RANDOM_13[0]};	// Core.scala:71:24
+        mwreg_rd = _RANDOM_13[5:1];	// Core.scala:71:24
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:564:10
@@ -601,7 +603,7 @@ module Soc(	// <stdin>:759:10
 
   wire [31:0] _tm_inst;	// Soc.scala:13:20
   wire [63:0] _tm_rdata;	// Soc.scala:13:20
-  wire [31:0] _core_io_pc;	// Soc.scala:10:22
+  wire [63:0] _core_io_pc;	// Soc.scala:10:22
   wire [63:0] _core_io_waddr;	// Soc.scala:10:22
   wire [63:0] _core_io_wdata;	// Soc.scala:10:22
   wire [7:0]  _core_io_wmask;	// Soc.scala:10:22
@@ -752,4 +754,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 
