@@ -689,14 +689,14 @@ endmodule
 
 
 
-import "DPI-C" function void update_debuginfo(input reg[63:0] pc, input pc_req, input reg[31:0] inst, 
+import "DPI-C" function void update_debuginfo(input reg[31:0] pc, input pc_req, input reg[31:0] inst, 
   input inst_valid, input reg[63:0] op_a, input reg[63:0] op_b, input reg[63:0] result, input reg[4:0] rd, input reg[63:0] reg_wdata,
   input reg_wen);
 
 module DebugInterface(
                    input        clk,
    
-                   input [63:0] pc,
+                   input [31:0] pc,
                    input        pc_req,
 
                    input [31:0] inst,
@@ -729,7 +729,7 @@ endmodule
 // ----- 8< ----- FILE "rv64/./build/TempMem.v" ----- 8< -----
 
 
-import "DPI-C" function reg[63:0] pmem_read(
+import "DPI-C" function logic[63:0] pmem_read(
    input reg[31:0] raddr);
 
 import "DPI-C" function void pmem_write(
@@ -742,7 +742,7 @@ module TempMem(
    input   [31:0]  pc,
 
    input   [31:0]  raddr,
-   output  [63:0]  rdata,
+   output  reg [63:0]  rdata,
 
    input   [63:0]  wdata,
    input   [31:0]  waddr,
@@ -769,5 +769,3 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
-
