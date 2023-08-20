@@ -729,7 +729,7 @@ endmodule
 // ----- 8< ----- FILE "rv64/./build/TempMem.v" ----- 8< -----
 
 
-import "DPI-C" function logic[63:0] pmem_read(
+import "DPI-C" function longint pmem_read(
    input reg[31:0] raddr);
 
 import "DPI-C" function void pmem_write(
@@ -769,3 +769,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+

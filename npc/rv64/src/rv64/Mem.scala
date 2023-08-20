@@ -23,8 +23,8 @@ class Mem extends Module{
     io.mwio.wb_type := io.emio.wb_type
     io.mwio.rd := io.emio.rd
 
-    io.mwio.sd_type := io.emio.sd_type    
     io.mwio.ld_type := io.emio.ld_type
+    io.mwio.ld_addr_lowbit := io.emio.ld_addr_lowbit
     io.mwio.ld_data := io.rdata
 
 }

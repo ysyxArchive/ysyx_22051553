@@ -16,8 +16,8 @@ class ExcuteIO extends Bundle{
     val jump_pc = Output(UInt(PC_LEN.W))
 
     //to TM
-    val raddr = Output(UInt(32.W))
-    val waddr = Output(UInt(32.W))
+    val raddr = Output(UInt(X_LEN.W))
+    val waddr = Output(UInt(X_LEN.W))
     val wdata = Output(UInt(X_LEN.W))
     val wmask = Output(UInt(8.W))
 }
@@ -37,8 +37,8 @@ class Excute extends Module{
     io.emio.wb_type := io.deio.wb_type
     io.emio.rd := io.deio.rd
 
-    io.emio.sd_type := io.deio.sd_type
     io.emio.ld_type := io.deio.ld_type
+    io.emio.ld_addr_lowbit := io.raddr(1,0)
 
     io.jump_flag := DontCare
     io.jump_pc := DontCare

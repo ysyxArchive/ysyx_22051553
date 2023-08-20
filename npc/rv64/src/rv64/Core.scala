@@ -15,10 +15,10 @@ class Core extends Module{
         val inst = Input(UInt(INST_LEN.W))
         val pc   = Output(UInt(PC_LEN.W))
 
-        val raddr = Output(UInt(32.W))
+        val raddr = Output(UInt(X_LEN.W))
         val rdata = Input(UInt(X_LEN.W))
 
-        val waddr = Output(UInt(32.W))
+        val waddr = Output(UInt(X_LEN.W))
         val wdata = Output(UInt(X_LEN.W))
         val wmask = Output(UInt(8.W))
     })
@@ -63,8 +63,9 @@ class Core extends Module{
             _.alu_res -> 0.U,
             _.wb_type -> ControlUnit.WB_NO,
             _.rd -> 0.U,
-            _.sd_type -> ControlUnit.SD_NO,
-            _.ld_type -> ControlUnit.LD_NO
+            _.ld_type -> ControlUnit.LD_NO,
+            _.ld_addr_lowbit -> 0.U
+
         )
     )
     val mwreg = RegInit(
@@ -72,8 +73,8 @@ class Core extends Module{
             _.alu_res -> 0.U,
             _.wb_type -> ControlUnit.WB_NO,
             _.rd -> 0.U,
-            _.sd_type -> ControlUnit.SD_NO,
             _.ld_type -> ControlUnit.LD_NO,
+            _.ld_addr_lowbit -> 0.U,
             _.ld_data -> 0.U
         )
     )
@@ -118,16 +119,16 @@ class Core extends Module{
     mem.io.emio.alu_res := emreg.alu_res
     mem.io.emio.wb_type := emreg.wb_type
     mem.io.emio.rd := emreg.rd
-    mem.io.emio.sd_type := emreg.sd_type
     mem.io.emio.ld_type := emreg.ld_type
+    mem.io.emio.ld_addr_lowbit := emreg.ld_addr_lowbit
     mem.io.rdata := io.rdata
 
     //wb
     wb.io.mwio.alu_res := mwreg.alu_res
     wb.io.mwio.wb_type := mwreg.wb_type
     wb.io.mwio.rd := mwreg.rd
-    wb.io.mwio.sd_type := mwreg.sd_type
     wb.io.mwio.ld_type := mwreg.ld_type
+    wb.io.mwio.ld_addr_lowbit := mwreg.ld_addr_lowbit
     wb.io.mwio.ld_data := mwreg.ld_data
     wb.io.rfio <> regfile.io.RfWb
 
@@ -220,17 +221,17 @@ class Core extends Module{
             (fc.io.fcex.flush) -> 0.U,
         )
     )
-    emreg.sd_type := MuxCase(
-        excute.io.emio.sd_type,
-        Seq(
-            (fc.io.fcex.stall) -> emreg.sd_type,
-            (fc.io.fcex.flush) -> 0.U,
-        )
-    )
     emreg.ld_type := MuxCase(
         excute.io.emio.ld_type,
         Seq(
             (fc.io.fcex.stall) -> emreg.ld_type,
+            (fc.io.fcex.flush) -> 0.U,
+        )
+    )
+    emreg.ld_addr_lowbit := MuxCase(
+        excute.io.emio.ld_addr_lowbit,
+        Seq(
+            (fc.io.fcex.stall) -> emreg.ld_addr_lowbit,
             (fc.io.fcex.flush) -> 0.U,
         )
     )
@@ -256,17 +257,17 @@ class Core extends Module{
             (fc.io.fcmem.flush) -> 0.U,
         )
     )
-    mwreg.sd_type := MuxCase(
-        mem.io.mwio.sd_type,
-        Seq(
-            (fc.io.fcmem.stall) -> mwreg.sd_type,
-            (fc.io.fcmem.flush) -> 0.U,
-        )
-    )
     mwreg.ld_type := MuxCase(
         mem.io.mwio.ld_type,
         Seq(
             (fc.io.fcmem.stall) -> mwreg.ld_type,
+            (fc.io.fcmem.flush) -> 0.U,
+        )
+    )
+    mwreg.ld_addr_lowbit := MuxCase(
+        mem.io.mwio.ld_addr_lowbit,
+        Seq(
+            (fc.io.fcmem.stall) -> mwreg.ld_addr_lowbit,
             (fc.io.fcmem.flush) -> 0.U,
         )
     )
