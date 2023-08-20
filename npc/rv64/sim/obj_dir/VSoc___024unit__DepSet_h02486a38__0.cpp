@@ -38,11 +38,11 @@ VL_INLINE_OPT void VSoc___024unit____Vdpiimwrap_update_debuginfo_TOP____024unit(
 
 extern "C" long long pmem_read(const svLogicVecVal* raddr);
 
-VL_INLINE_OPT void VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit(IData/*31:0*/ raddr, QData/*63:0*/ &pmem_read__Vfuncrtn) {
+VL_INLINE_OPT void VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit(QData/*63:0*/ raddr, QData/*63:0*/ &pmem_read__Vfuncrtn) {
     VL_DEBUG_IF(VL_DBG_MSGF("+        VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit\n"); );
     // Body
-    svLogicVecVal raddr__Vcvt[1];
-    for (size_t raddr__Vidx = 0; raddr__Vidx < 1; ++raddr__Vidx) VL_SET_SVLV_I(32, raddr__Vcvt + 1 * raddr__Vidx, raddr);
+    svLogicVecVal raddr__Vcvt[2];
+    for (size_t raddr__Vidx = 0; raddr__Vidx < 1; ++raddr__Vidx) VL_SET_SVLV_Q(64, raddr__Vcvt + 2 * raddr__Vidx, raddr);
     long long pmem_read__Vfuncrtn__Vcvt;
     pmem_read__Vfuncrtn__Vcvt = pmem_read(raddr__Vcvt);
     pmem_read__Vfuncrtn = pmem_read__Vfuncrtn__Vcvt;
@@ -50,11 +50,11 @@ VL_INLINE_OPT void VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit(IData/*
 
 extern "C" void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask);
 
-VL_INLINE_OPT void VSoc___024unit____Vdpiimwrap_pmem_write_TOP____024unit(IData/*31:0*/ waddr, QData/*63:0*/ wdata, CData/*7:0*/ wmask) {
+VL_INLINE_OPT void VSoc___024unit____Vdpiimwrap_pmem_write_TOP____024unit(QData/*63:0*/ waddr, QData/*63:0*/ wdata, CData/*7:0*/ wmask) {
     VL_DEBUG_IF(VL_DBG_MSGF("+        VSoc___024unit____Vdpiimwrap_pmem_write_TOP____024unit\n"); );
     // Body
-    svLogicVecVal waddr__Vcvt[1];
-    for (size_t waddr__Vidx = 0; waddr__Vidx < 1; ++waddr__Vidx) VL_SET_SVLV_I(32, waddr__Vcvt + 1 * waddr__Vidx, waddr);
+    svLogicVecVal waddr__Vcvt[2];
+    for (size_t waddr__Vidx = 0; waddr__Vidx < 1; ++waddr__Vidx) VL_SET_SVLV_Q(64, waddr__Vcvt + 2 * waddr__Vidx, waddr);
     svLogicVecVal wdata__Vcvt[2];
     for (size_t wdata__Vidx = 0; wdata__Vidx < 1; ++wdata__Vidx) VL_SET_SVLV_Q(64, wdata__Vcvt + 2 * wdata__Vidx, wdata);
     char wmask__Vcvt;
