@@ -39,12 +39,13 @@ class VSoc___024root final : public VerilatedModule {
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hd7167e15__0;
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h86e6c972__0;
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hbf1f1a09__0;
-    CData/*0:0*/ Soc__DOT__tm__DOT__third_pc;
     CData/*0:0*/ __Vtrigrprev__TOP__clock;
     CData/*0:0*/ __VactContinue;
     SData/*9:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN;
+    IData/*31:0*/ Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VactIterCount;
+    QData/*63:0*/ Soc__DOT___tm_inst;
     QData/*63:0*/ Soc__DOT___tm_rdata;
     QData/*63:0*/ Soc__DOT___core_io_waddr;
     QData/*63:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
@@ -61,7 +62,6 @@ class VSoc___024root final : public VerilatedModule {
     QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm;
     QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___alu_io_result;
     QData/*63:0*/ Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data;
-    QData/*63:0*/ Soc__DOT__tm__DOT__temp_inst;
     VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
     VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
     VlTriggerVec<1> __VstlTriggered;

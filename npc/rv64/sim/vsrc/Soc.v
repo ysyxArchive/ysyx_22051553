@@ -726,7 +726,7 @@ import "DPI-C" function void pmem_write(
 module TempMem(
    input           clk,
 
-   output  [63:0]  inst,
+   output  reg [63:0]  inst,
    input   [63:0]  pc,
    input           valid,
 

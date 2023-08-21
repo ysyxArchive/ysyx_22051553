@@ -103,7 +103,7 @@ class Core extends Module{
 
     //decode
     decode.io.inst.valid := 1.B
-    decode.io.inst.bits := Mux(fdreg.pc(3) === 1.U, io.inst(63,32), io.inst(31,0))
+    decode.io.inst.bits := Mux(fdreg.pc(2) === 1.U, io.inst(63,32), io.inst(31,0))
     decode.io.fdio.pc := fdreg.pc
     decode.io.rfio <> regfile.io.RfDe
 
