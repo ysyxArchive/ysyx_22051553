@@ -223,9 +223,10 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgQData(oldp+22,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc),64);
     }
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[2U])) {
-        bufp->chgQData(oldp+24,(vlSelf->Soc__DOT___core_io_waddr),64);
-        bufp->chgQData(oldp+26,(vlSelf->Soc__DOT__core__DOT__dereg_reg2_rdata),64);
-        bufp->chgCData(oldp+28,(((4U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))
+        bufp->chgBit(oldp+24,(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started));
+        bufp->chgQData(oldp+25,(vlSelf->Soc__DOT___core_io_waddr),64);
+        bufp->chgQData(oldp+27,(vlSelf->Soc__DOT__core__DOT__dereg_reg2_rdata),64);
+        bufp->chgCData(oldp+29,(((4U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))
                                   ? 0xffU : ((3U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))
                                               ? 0xfU
                                               : ((2U 
@@ -234,20 +235,19 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                                   : 
                                                  (1U 
                                                   == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type)))))),8);
-        bufp->chgQData(oldp+29,(vlSelf->Soc__DOT__core__DOT__fdreg_pc),64);
-        bufp->chgQData(oldp+31,(vlSelf->Soc__DOT__core__DOT__dereg_op_a),64);
-        bufp->chgQData(oldp+33,(vlSelf->Soc__DOT__core__DOT__dereg_op_b),64);
-        bufp->chgCData(oldp+35,(vlSelf->Soc__DOT__core__DOT__dereg_rd),5);
-        bufp->chgCData(oldp+36,(vlSelf->Soc__DOT__core__DOT__dereg_alu_op),5);
-        bufp->chgCData(oldp+37,(vlSelf->Soc__DOT__core__DOT__dereg_wb_type),2);
-        bufp->chgCData(oldp+38,(vlSelf->Soc__DOT__core__DOT__dereg_sd_type),3);
-        bufp->chgQData(oldp+39,(vlSelf->Soc__DOT__core__DOT__emreg_alu_res),64);
-        bufp->chgCData(oldp+41,(vlSelf->Soc__DOT__core__DOT__emreg_wb_type),2);
-        bufp->chgCData(oldp+42,(vlSelf->Soc__DOT__core__DOT__emreg_rd),5);
-        bufp->chgQData(oldp+43,(vlSelf->Soc__DOT__core__DOT__mwreg_alu_res),64);
-        bufp->chgCData(oldp+45,(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type),2);
-        bufp->chgCData(oldp+46,(vlSelf->Soc__DOT__core__DOT__mwreg_rd),5);
-        bufp->chgBit(oldp+47,(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started));
+        bufp->chgQData(oldp+30,(vlSelf->Soc__DOT__core__DOT__fdreg_pc),64);
+        bufp->chgQData(oldp+32,(vlSelf->Soc__DOT__core__DOT__dereg_op_a),64);
+        bufp->chgQData(oldp+34,(vlSelf->Soc__DOT__core__DOT__dereg_op_b),64);
+        bufp->chgCData(oldp+36,(vlSelf->Soc__DOT__core__DOT__dereg_rd),5);
+        bufp->chgCData(oldp+37,(vlSelf->Soc__DOT__core__DOT__dereg_alu_op),5);
+        bufp->chgCData(oldp+38,(vlSelf->Soc__DOT__core__DOT__dereg_wb_type),2);
+        bufp->chgCData(oldp+39,(vlSelf->Soc__DOT__core__DOT__dereg_sd_type),3);
+        bufp->chgQData(oldp+40,(vlSelf->Soc__DOT__core__DOT__emreg_alu_res),64);
+        bufp->chgCData(oldp+42,(vlSelf->Soc__DOT__core__DOT__emreg_wb_type),2);
+        bufp->chgCData(oldp+43,(vlSelf->Soc__DOT__core__DOT__emreg_rd),5);
+        bufp->chgQData(oldp+44,(vlSelf->Soc__DOT__core__DOT__mwreg_alu_res),64);
+        bufp->chgCData(oldp+46,(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type),2);
+        bufp->chgCData(oldp+47,(vlSelf->Soc__DOT__core__DOT__mwreg_rd),5);
         bufp->chgQData(oldp+48,(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result),64);
         bufp->chgQData(oldp+50,((((2U == (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type)) 
                                   | (1U != (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type)))

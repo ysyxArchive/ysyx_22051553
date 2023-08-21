@@ -74,7 +74,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
             = (7U & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)));
         if (VL_UNLIKELY((4U == (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)))) {
             VL_WRITEF("ebreak!\n");
-            VL_FINISH_MT("vsrc/Soc.v", 662, "");
+            VL_FINISH_MT("vsrc/Soc.v", 667, "");
         }
     }
     __Vdlyvval__Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory__v1 
@@ -103,7 +103,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
                                               == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)))) 
                                        | (0x13U == vlSelf->Soc__DOT___tm_inst))))));
     }
-    if ((0ULL != vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc)) {
+    if (vlSelf->Soc__DOT__core__DOT__fetch__DOT__started) {
         VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc, __Vfunc_pmem_read__1__Vfuncout);
         vlSelf->Soc__DOT__tm__DOT__temp_inst = __Vfunc_pmem_read__1__Vfuncout;
     }
