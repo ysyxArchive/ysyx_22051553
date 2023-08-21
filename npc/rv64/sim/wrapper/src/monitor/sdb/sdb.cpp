@@ -67,7 +67,7 @@ long long pmem_read(const svLogicVecVal* raddr){
     (unsigned long)raddr[1].aval << 32 | raddr[0].aval
   );
 
-
+  printf("0x%lx: %016lx\n", (unsigned long)raddr[1].aval << 32 | raddr[0].aval, value);
   return (long long) value;
 }
 
@@ -127,6 +127,7 @@ static int cmd_i(char *args) {
 }
 
 static int cmd_s(char *args){
+
   if(args == NULL){
     single_cycle();
   }
