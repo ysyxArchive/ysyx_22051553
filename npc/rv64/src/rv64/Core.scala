@@ -258,6 +258,13 @@ class Core extends Module{
         )
     )
 
+    //Forward
+    val fw = Module(new Forward)
+    fw.io.fwde <> decode.io.fwde
+    fw.io.fwex <> excute.io.fwex
+    fw.io.fwmem <> mem.io.fwmem
+    fw.io.fwwb <> wb.io.fwwb
+
     //---debug
     val DI= Module(new DebugInterface)
     DI.io.clk := clock
