@@ -45,6 +45,8 @@ void update_debuginfo(
   const svLogicVecVal* reg_wdata,
   svLogic reg_wen)
 {
+  
+
   debug_ins.update(
     (unsigned long)pc[1].aval << 32 | pc[0].aval,
     (bool)pc_req,
@@ -59,6 +61,8 @@ void update_debuginfo(
   if((bool)reg_wen){
     diff_cpu.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);
   }
+
+  printf("here\n");
 }
 
 long long pmem_read(const svLogicVecVal* raddr){

@@ -77,7 +77,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+59,"io_deio_wb_type", false,-1, 1,0);
     tracep->declBus(c+60,"io_deio_sd_type", false,-1, 2,0);
     tracep->declQuad(c+49,"io_deio_reg2_rdata", false,-1, 63,0);
-    tracep->declBus(c+154,"io_deio_ld_type", false,-1, 2,0);
+    tracep->declBus(c+60,"io_deio_ld_type", false,-1, 2,0);
     tracep->declBit(c+61,"io_jump_flag", false,-1);
     tracep->declQuad(c+62,"io_jump_pc", false,-1, 63,0);
     tracep->pushNamePrefix("cu ");
@@ -89,7 +89,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+58,"io_alu_op", false,-1, 4,0);
     tracep->declBus(c+59,"io_wb_type", false,-1, 1,0);
     tracep->declBus(c+60,"io_sd_type", false,-1, 2,0);
-    tracep->declBus(c+154,"io_ld_type", false,-1, 2,0);
+    tracep->declBus(c+60,"io_ld_type", false,-1, 2,0);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("eximm ");
     tracep->declBus(c+46,"io_inst", false,-1, 31,0);
@@ -173,20 +173,20 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declQuad(c+49,"io_RfDe_reg2_rdata", false,-1, 63,0);
     tracep->pushNamePrefix("regs_ext ");
     tracep->declBus(c+35,"R0_addr", false,-1, 4,0);
-    tracep->declBit(c+155,"R0_en", false,-1);
+    tracep->declBit(c+154,"R0_en", false,-1);
     tracep->declBit(c+149,"R0_clk", false,-1);
     tracep->declBus(c+51,"R1_addr", false,-1, 4,0);
-    tracep->declBit(c+155,"R1_en", false,-1);
+    tracep->declBit(c+154,"R1_en", false,-1);
     tracep->declBit(c+149,"R1_clk", false,-1);
     tracep->declBus(c+52,"R2_addr", false,-1, 4,0);
-    tracep->declBit(c+155,"R2_en", false,-1);
+    tracep->declBit(c+154,"R2_en", false,-1);
     tracep->declBit(c+149,"R2_clk", false,-1);
-    tracep->declBus(c+156,"W0_addr", false,-1, 4,0);
-    tracep->declBit(c+155,"W0_en", false,-1);
+    tracep->declBus(c+155,"W0_addr", false,-1, 4,0);
+    tracep->declBit(c+154,"W0_en", false,-1);
     tracep->declBit(c+149,"W0_clk", false,-1);
-    tracep->declQuad(c+157,"W0_data", false,-1, 63,0);
+    tracep->declQuad(c+156,"W0_data", false,-1, 63,0);
     tracep->declBus(c+35,"W1_addr", false,-1, 4,0);
-    tracep->declBit(c+155,"W1_en", false,-1);
+    tracep->declBit(c+154,"W1_en", false,-1);
     tracep->declBit(c+149,"W1_clk", false,-1);
     tracep->declQuad(c+77,"W1_data", false,-1, 63,0);
     tracep->declQuad(c+79,"R0_data", false,-1, 63,0);
@@ -502,10 +502,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                         ? 1U : ((0x1a3U 
                                                  == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)) 
                                                 << 1U)))),2);
-    bufp->fullCData(oldp+60,((((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_ha79e1490__0) 
-                               | (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_0))
-                               ? 0U : ((0x1a3U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)) 
-                                       << 2U))),3);
+    bufp->fullCData(oldp+60,(vlSelf->Soc__DOT__core__DOT___decode_io_deio_sd_type),3);
     bufp->fullBit(oldp+61,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_flag));
     bufp->fullQData(oldp+62,(((1U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type))
                                ? (vlSelf->Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm 
@@ -640,8 +637,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullBit(oldp+150,(vlSelf->reset));
     bufp->fullQData(oldp+151,(vlSelf->io_next_pc),64);
     bufp->fullBit(oldp+153,(0U));
-    bufp->fullCData(oldp+154,(0U),3);
-    bufp->fullBit(oldp+155,(1U));
-    bufp->fullCData(oldp+156,(0U),5);
-    bufp->fullQData(oldp+157,(0ULL),64);
+    bufp->fullBit(oldp+154,(1U));
+    bufp->fullCData(oldp+155,(0U),5);
+    bufp->fullQData(oldp+156,(0ULL),64);
 }

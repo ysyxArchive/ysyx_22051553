@@ -20,6 +20,7 @@ class VSoc___024root final : public VerilatedModule {
     VL_IN8(clock,0,0);
     VL_IN8(reset,0,0);
     CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_flag;
+    CData/*2:0*/ Soc__DOT__core__DOT___decode_io_deio_sd_type;
     CData/*4:0*/ Soc__DOT__core__DOT__dereg_rd;
     CData/*4:0*/ Soc__DOT__core__DOT__dereg_alu_op;
     CData/*1:0*/ Soc__DOT__core__DOT__dereg_wb_type;
