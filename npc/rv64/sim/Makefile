@@ -2,7 +2,7 @@ Module := VSoc
 SRCS = $(shell find ./wrapper/src -name "*.cpp" -or -name "*.c")
 WORK_DIR := $(shell pwd)
 INC_PATH := $(abspath $(shell find . -type d -name "include"))
-INCLUDE := $(INC_PATH:%=-I%)
+INCLUDE := $(INC_PATH:%=-I %)
 
 
 $(info $(INC_PATH))

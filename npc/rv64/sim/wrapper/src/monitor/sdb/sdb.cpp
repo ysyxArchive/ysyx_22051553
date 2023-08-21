@@ -9,6 +9,7 @@
 #include "VSoc__Dpi.h"
 #include "debug.hpp"
 #include "svdpi.h"
+#include "memory.hpp"
 
 
 void single_cycle();
@@ -26,6 +27,9 @@ extern "C" {
     const svLogicVecVal* reg_wdata,
     svLogic reg_wen);
 
+  long long pmem_read(const svLogicVecVal* raddr);
+
+  void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask);
 }
 
 void update_debuginfo(
@@ -55,6 +59,27 @@ void update_debuginfo(
     diff_cpu.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);
   }
 }
+
+long long pmem_read(const svLogicVecVal* raddr){
+  
+  printf("addr is %lx\n", (unsigned long)raddr[1].aval << 32 | raddr[0].aval);
+
+  uint64_t value =  pmem.mem_read(
+    (unsigned long)raddr[1].aval << 32 | raddr[0].aval
+  );
+
+
+  return (long long) value;
+}
+
+  void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask){
+    pmem.mem_write(
+        (unsigned long)waddr[1].aval << 32 | waddr[0].aval,
+        (unsigned long)wdata[1].aval << 32 | wdata[0].aval,
+        wmask
+    );
+  }
+
 
 
 int exam_exit(){

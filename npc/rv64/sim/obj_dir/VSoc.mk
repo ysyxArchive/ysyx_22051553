@@ -4,7 +4,7 @@
 # Execute this makefile from the object directory:
 #    make -f VSoc.mk
 
-default: VSoc__ALL.a
+default: VSoc
 
 ### Constants...
 # Perl executable (from $PERL)
@@ -35,15 +35,27 @@ VM_PREFIX = VSoc
 VM_MODPREFIX = VSoc
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
+	-I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/monitor/debug/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/memory/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/isa/include \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
+	-lreadline \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
+	cpu \
+	main \
+	memory \
+	debug \
+	sdb \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
+	./wrapper/src \
+	./wrapper/src/isa \
+	./wrapper/src/memory \
+	./wrapper/src/monitor/debug \
+	./wrapper/src/monitor/sdb \
 
 
 ### Default rules...
@@ -51,5 +63,24 @@ VM_USER_DIR = \
 include VSoc_classes.mk
 # Include global rules
 include $(VERILATOR_ROOT)/include/verilated.mk
+
+### Executable rules... (from --exe)
+VPATH += $(VM_USER_DIR)
+
+cpu.o: ./wrapper/src/isa/cpu.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+main.o: ./wrapper/src/main.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+memory.o: ./wrapper/src/memory/memory.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+debug.o: ./wrapper/src/monitor/debug/debug.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+sdb.o: ./wrapper/src/monitor/sdb/sdb.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+
+### Link rules... (from --exe)
+VSoc: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)
+	$(LINK) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) $(LIBS) $(SC_LIBS) -o $@
+
 
 # Verilated -*- Makefile -*-

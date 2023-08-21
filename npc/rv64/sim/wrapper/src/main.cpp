@@ -3,6 +3,8 @@
 #include <verilated.h>
 #include "VSoc.h"
 #include <iostream>
+#include <cstdio>
+#include "memory.hpp"
 
 static VSoc dut;
 
@@ -36,12 +38,17 @@ static void reset(int n) {
 
 int main(int argc, char **argv) {
   
+
+  pmem.mem_loader("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
+
   Verilated::traceEverOn(true);
   
   dut.trace(vcd,0);
   vcd->open("wave.vcd");
+  
   reset(2);        
   
+
   sdb_mainloop();
   
   vcd->close();

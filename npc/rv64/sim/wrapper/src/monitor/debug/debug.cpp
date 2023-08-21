@@ -1,4 +1,4 @@
-#include "debug.hpp"
+#include "./include/debug.hpp"
 
 debug debug_ins;
 
