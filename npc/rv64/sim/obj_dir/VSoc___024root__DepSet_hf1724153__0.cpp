@@ -101,7 +101,9 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
                                                                         == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)))) 
                                                                    | (0x13U 
                                                                       == vlSelf->Soc__DOT___tm_inst)))))));
-    VL_WRITEF("tempinst is %x\n\n",64,vlSelf->Soc__DOT__tm__DOT__temp_inst);
+    VL_WRITEF("tempinst is %x\n\ninst is %x\n\n",64,
+              vlSelf->Soc__DOT__tm__DOT__temp_inst,
+              32,vlSelf->Soc__DOT___tm_inst);
     if (vlSelf->Soc__DOT__core__DOT__fetch__DOT__started) {
         VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc, __Vfunc_pmem_read__1__Vfuncout);
         vlSelf->Soc__DOT__tm__DOT__temp_inst = __Vfunc_pmem_read__1__Vfuncout;

@@ -286,7 +286,7 @@ class Core extends Module{
     DI.io.clk := clock
     DI.io.pc := fetch.io.pc.bits
     DI.io.pc_req := fetch.io.pc.valid
-    DI.io.inst := io.rdata
+    DI.io.inst := io.inst
     DI.io.inst_valid := DontCare
     DI.io.op_a  := dereg.op_a
     DI.io.op_b  := dereg.op_b
