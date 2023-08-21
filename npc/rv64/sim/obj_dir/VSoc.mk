@@ -39,7 +39,7 @@ VM_USER_CFLAGS = \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
-	-lreadline \
+	-lreadline -lpcre \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
@@ -47,6 +47,7 @@ VM_USER_CLASSES = \
 	main \
 	memory \
 	debug \
+	expr \
 	sdb \
 
 # User .cpp directories (from .cpp's on Verilator command line)
@@ -74,6 +75,8 @@ main.o: ./wrapper/src/main.cpp
 memory.o: ./wrapper/src/memory/memory.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 debug.o: ./wrapper/src/monitor/debug/debug.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+expr.o: ./wrapper/src/monitor/sdb/expr.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sdb.o: ./wrapper/src/monitor/sdb/sdb.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<

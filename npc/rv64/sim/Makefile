@@ -13,7 +13,7 @@ build:
 	verilator -cc -trace vsrc/*.v -top-module Soc
 
 compile:
-	verilator -cc -trace vsrc/*.v -CFLAGS "$(INCLUDE)" -top-module Soc --exe $(SRCS) -LDFLAGS -lreadline
+	verilator -cc -trace vsrc/*.v -CFLAGS "$(INCLUDE)" -top-module Soc --exe $(SRCS) -LDFLAGS "-lreadline -lpcre"
 
 #是需要在cflags里加include,而不是直接-Iinclude
 

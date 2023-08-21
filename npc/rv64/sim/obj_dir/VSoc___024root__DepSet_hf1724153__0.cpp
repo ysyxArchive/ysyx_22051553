@@ -103,8 +103,10 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
                                               == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)))) 
                                        | (0x13U == vlSelf->Soc__DOT___tm_inst))))));
     }
-    VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc, __Vfunc_pmem_read__1__Vfuncout);
-    vlSelf->Soc__DOT__tm__DOT__temp_inst = __Vfunc_pmem_read__1__Vfuncout;
+    if ((0ULL != vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc)) {
+        VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc, __Vfunc_pmem_read__1__Vfuncout);
+        vlSelf->Soc__DOT__tm__DOT__temp_inst = __Vfunc_pmem_read__1__Vfuncout;
+    }
     if ((0ULL != vlSelf->Soc__DOT___core_io_waddr)) {
         VSoc___024unit____Vdpiimwrap_pmem_write_TOP____024unit(vlSelf->Soc__DOT___core_io_waddr, vlSelf->Soc__DOT__core__DOT__dereg_reg2_rdata, 
                                                                ((4U 

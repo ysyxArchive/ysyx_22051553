@@ -14,6 +14,7 @@ class Soc extends Module{
     
     tm.io.clk := clock
     tm.io.pc := core.io.pc
+    tm.io.valid := core.io.valid
     tm.io.raddr := core.io.raddr
     tm.io.waddr := core.io.waddr
     tm.io.wdata := core.io.wdata

@@ -1,5 +1,6 @@
 #include "isa-def.hpp"
-#include <cstdio>
+#include <string.h>
+#include <stdio.h>
 #include <cassert>
 
 void cpu::gpr_display(){
@@ -13,6 +14,27 @@ void cpu::gpr_display(){
 void cpu::set_value(int num, unsigned long value){
   assert(num < 32 && num >= 0);
   gpr[num] = value;
+}
+
+unsigned long cpu::isa_reg_str2val(const char *s, bool *success){
+  
+  *success = true;
+
+  if(strcmp(s, "$0") == 0)
+    return diff_cpu.gpr[0];
+
+  if(strcmp(s+1, "pc") == 0)
+    return diff_cpu.pc;
+
+  for(int i = 1; i < 32; i++){
+    if(strcmp(s+1, regs[i]) == 0)
+      return diff_cpu.gpr[i];
+  }
+
+  
+  printf("no such reg\n");
+  return 0;
+  
 }
 
 

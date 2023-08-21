@@ -12,7 +12,7 @@ vluint64_t sim_time = 0;
 VerilatedVcdC * vcd = new VerilatedVcdC;
 
 void sdb_mainloop();
-
+void init_regex();
 
 
 
@@ -37,7 +37,7 @@ static void reset(int n) {
 }
 
 int main(int argc, char **argv) {
-  
+  init_regex();
 
   pmem.mem_loader("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
 

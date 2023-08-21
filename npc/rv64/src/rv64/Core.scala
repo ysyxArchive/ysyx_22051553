@@ -14,6 +14,7 @@ class Core extends Module{
     val io = IO(new Bundle {
         val inst = Input(UInt(INST_LEN.W))
         val pc   = Output(UInt(PC_LEN.W))
+        val valid = Output(Bool())
 
         val raddr = Output(UInt(X_LEN.W))
         val rdata = Input(UInt(X_LEN.W))
@@ -89,6 +90,7 @@ class Core extends Module{
     //互联 -- 以被驱动方为标准
     //顶层
     io.pc := fetch.io.pc.bits
+    io.valid := fetch.io.pc.valid
     io.raddr := excute.io.raddr
     io.waddr := excute.io.waddr
     io.wdata := excute.io.wdata

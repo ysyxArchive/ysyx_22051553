@@ -13,6 +13,7 @@
 
 
 void single_cycle();
+uint64_t expr(char *e, bool *success);
 
 extern "C" {
   void update_debuginfo(
@@ -61,8 +62,6 @@ void update_debuginfo(
 }
 
 long long pmem_read(const svLogicVecVal* raddr){
-  
-  printf("addr is %lx\n", (unsigned long)raddr[1].aval << 32 | raddr[0].aval);
 
   uint64_t value =  pmem.mem_read(
     (unsigned long)raddr[1].aval << 32 | raddr[0].aval
@@ -141,6 +140,23 @@ static int cmd_s(char *args){
   return 0;
 }
 
+static int cmd_x(char *args){
+  char * arg[2];
+
+  arg[0] = strtok(args, " ");
+  arg[1] = strtok(NULL, " ");
+
+  int length = atoi(arg[0]);
+  
+  bool success = true;
+  unsigned long addr = expr(arg[1], &success);
+
+  pmem.mem_display(addr, length);
+
+
+  return 0;
+}
+
 static struct {
   const char *name;
   const char *description;
@@ -151,7 +167,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "si", "Execute N insts, default 1 inst", cmd_s },
   { "info", "print state, including regs and watchpoints", cmd_i },
-  // { "x", "print mem", cmd_x },
+  { "x", "print mem", cmd_x },
   // { "p", "print expr", cmd_p },
   // { "w", "set a watchpoint", cmd_w },
   // { "d", "delete a watchpoint", cmd_d },

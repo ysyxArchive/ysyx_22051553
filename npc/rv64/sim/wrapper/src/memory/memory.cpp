@@ -8,12 +8,23 @@
 
 memory pmem;
 
-uint64_t memory::mem_read(uint64_t raddr){
+uint64_t memory::mem_read(uint64_t raddr){ //用于rtl
     // uint32_t addr = (pmem.mem + raddr - CONFIG_MBASE) & ~0x7ul; //错误
 
     uint64_t addr = (uint64_t)(pmem.mem + raddr - CONFIG_MBASE) & ~0x7ull; 
 
     return *(uint64_t*)addr;
+}
+
+uint64_t memory::mem_readbylen(uint64_t raddr, int len){ //用于仿真
+    // uint32_t addr = (pmem.mem + raddr - CONFIG_MBASE) & ~0x7ul; //错误
+    switch (len) {
+        case 1: return *(uint8_t  *)(pmem.mem + raddr - CONFIG_MBASE);
+        case 2: return *(uint16_t *)(pmem.mem + raddr - CONFIG_MBASE);
+        case 4: return *(uint32_t *)(pmem.mem + raddr - CONFIG_MBASE);
+    }
+
+    return 0;
 }
 
 void memory::mem_write(uint64_t waddr, uint64_t wdata, uint8_t wmask){
