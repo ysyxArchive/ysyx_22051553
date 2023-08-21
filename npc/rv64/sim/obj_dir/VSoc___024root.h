@@ -19,7 +19,7 @@ class VSoc___024root final : public VerilatedModule {
     // DESIGN SPECIFIC STATE
     VL_IN8(clock,0,0);
     VL_IN8(reset,0,0);
-    CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_flag;
+    CData/*0:0*/ Soc__DOT__core__DOT___decode_io_jump_flag;
     CData/*4:0*/ Soc__DOT__core__DOT__dereg_rd;
     CData/*4:0*/ Soc__DOT__core__DOT__dereg_alu_op;
     CData/*1:0*/ Soc__DOT__core__DOT__dereg_wb_type;
@@ -39,9 +39,13 @@ class VSoc___024root final : public VerilatedModule {
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hd7167e15__0;
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h86e6c972__0;
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hbf1f1a09__0;
+    CData/*0:0*/ __VstlDidInit;
     CData/*0:0*/ __Vtrigrprev__TOP__clock;
+    CData/*0:0*/ __VactDidInit;
     CData/*0:0*/ __VactContinue;
     SData/*9:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN;
+    IData/*31:0*/ Soc__DOT___tm_inst;
+    IData/*31:0*/ __Vtrigrprev__TOP__Soc__DOT___tm_inst;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VactIterCount;
     QData/*63:0*/ Soc__DOT___tm_rdata;
@@ -62,10 +66,10 @@ class VSoc___024root final : public VerilatedModule {
     QData/*63:0*/ Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data;
     QData/*63:0*/ Soc__DOT__tm__DOT__temp_inst;
     VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
-    VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
-    VlTriggerVec<1> __VstlTriggered;
-    VlTriggerVec<1> __VactTriggered;
-    VlTriggerVec<1> __VnbaTriggered;
+    VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
+    VlTriggerVec<2> __VstlTriggered;
+    VlTriggerVec<2> __VactTriggered;
+    VlTriggerVec<2> __VnbaTriggered;
 
     // INTERNAL VARIABLES
     VSoc__Syms* const vlSymsp;
