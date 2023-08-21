@@ -30,8 +30,8 @@ class Eximm extends Module{
             IMM_I -> Cat(Fill(52, io.inst(31)), io.inst(31, 20)),
             IMM_U -> Cat(Fill(32, io.inst(31)), io.inst(31,12), Fill(12, 0.U(1.W))),
             IMM_J -> Cat(Fill(44, io.inst(31)), io.inst(19,12), io.inst(20), io.inst(30,21), 0.U(1.W)),
-            IMM_S -> Cat(Fill(52, io.inst(31)), io.inst(31,25), io.inst(11,7)))
+            IMM_S -> Cat(Fill(52, io.inst(31)), io.inst(31,25), io.inst(11,7))
         )
-
     )
+    
 }
