@@ -316,6 +316,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
     }
     bufp->chgBit(oldp+136,(vlSelf->clock));
     bufp->chgBit(oldp+137,(vlSelf->reset));
+    bufp->chgQData(oldp+138,(vlSelf->io_next_pc),64);
 }
 
 void VSoc___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {

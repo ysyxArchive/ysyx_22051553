@@ -14,6 +14,7 @@ VSoc::VSoc(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new VSoc__Syms(contextp(), _vcname__, this)}
     , clock{vlSymsp->TOP.clock}
     , reset{vlSymsp->TOP.reset}
+    , io_next_pc{vlSymsp->TOP.io_next_pc}
     , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
     , rootp{&(vlSymsp->TOP)}
 {

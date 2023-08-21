@@ -29,8 +29,10 @@ class Fetch extends Module{
     val next_pc = MuxCase(
         pc,
         Seq(
+            // (started === 1.B) -> (pc+4.U),
+            // (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> (io.fcfe.jump_pc+4.U)
+            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> (io.fcfe.jump_pc+4.U),
             (started === 1.B) -> (pc+4.U),
-            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> (io.fcfe.jump_pc+4.U)
         )
     )
     io.next_pc := next_pc

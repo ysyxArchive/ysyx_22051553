@@ -30,6 +30,7 @@ class VSoc VL_NOT_FINAL : public VerilatedModel {
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clock,0,0);
     VL_IN8(&reset,0,0);
+    VL_OUT64(&io_next_pc,63,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
