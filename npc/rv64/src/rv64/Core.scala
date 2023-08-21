@@ -25,7 +25,7 @@ class Core extends Module{
 
         val next_pc = Output(UInt(PC_LEN.W))
     })
-    io.next_pc := fetch.io.next_pc
+    
 
     //interact
     val interact = Module(new Interact)
@@ -43,6 +43,7 @@ class Core extends Module{
     val mem = Module(new rv64.Mem)
     val wb = Module(new Wb)
 
+    io.next_pc := fetch.io.next_pc
     //纯粹的流水线寄存器
     val fdreg = RegInit(
         (new FDRegIO).Lit(

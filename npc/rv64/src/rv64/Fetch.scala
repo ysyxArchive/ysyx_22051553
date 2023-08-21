@@ -34,6 +34,7 @@ class Fetch extends Module{
         )
     )
     io.next_pc := next_pc
+    
     pc := Mux(io.fcfe.stall, pc, next_pc)
 
     io.fdio.pc := MuxCase(
