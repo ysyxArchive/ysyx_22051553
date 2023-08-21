@@ -13,6 +13,8 @@ class FetchIO extends Bundle {
     val pc = Output(ValidIO(UInt(PC_LEN.W)))
     //from FlowControl
     val fcfe = Flipped(new FcFeIO)
+
+    val next_pc = Output(UInt(PC_LEN.W))
 }
 
 
@@ -31,6 +33,7 @@ class Fetch extends Module{
             (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> (io.fcfe.jump_pc+4.U)
         )
     )
+    io.next_pc := next_pc
     pc := Mux(io.fcfe.stall, pc, next_pc)
 
     io.fdio.pc := MuxCase(

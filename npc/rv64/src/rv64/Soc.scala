@@ -5,7 +5,9 @@ import chisel3.util._
 import Define._
 
 class Soc extends Module{
-    val io = IO(new Bundle{})
+    val io = IO(new Bundle{
+        val next_pc = Output(UInt(PC_LEN.W))
+    })
 
     val core = Module(new Core)
     // val ram = Module(new Ram)
@@ -22,4 +24,6 @@ class Soc extends Module{
 
     core.io.inst := tm.io.inst
     core.io.rdata := tm.io.rdata
+
+    io.next_pc := core.io.next_pc
 }

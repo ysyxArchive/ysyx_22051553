@@ -52,6 +52,11 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     __Vdly__Soc__DOT__core__DOT__fetch__DOT__pc = vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc;
     __Vdly__Soc__DOT__core__DOT__interact__DOT__over_count 
         = vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count;
+    VL_WRITEF("inst is %x\n",32,((1U & (IData)((vlSelf->Soc__DOT__core__DOT__fdreg_pc 
+                                                >> 2U)))
+                                  ? (IData)((vlSelf->Soc__DOT___tm_inst 
+                                             >> 0x20U))
+                                  : (IData)(vlSelf->Soc__DOT___tm_inst)));
     VSoc___024unit____Vdpiimwrap_update_debuginfo_TOP____024unit(vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc, (IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started), (IData)(vlSelf->Soc__DOT___tm_inst), 0U, vlSelf->Soc__DOT__core__DOT__dereg_op_a, vlSelf->Soc__DOT__core__DOT__dereg_op_b, vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result, (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_rd), 
                                                                  (((2U 
                                                                     == (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type)) 
@@ -86,7 +91,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
             = (7U & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)));
         if (VL_UNLIKELY((4U == (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)))) {
             VL_WRITEF("ebreak!\n");
-            VL_FINISH_MT("vsrc/Soc.v", 664, "");
+            VL_FINISH_MT("vsrc/Soc.v", 670, "");
         }
     }
     vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc = __Vdly__Soc__DOT__core__DOT__fetch__DOT__pc;
@@ -345,7 +350,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
         = (1U & (~ (IData)(vlSelf->reset)));
     vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
         = ((1U & (IData)((vlSelf->Soc__DOT__core__DOT__fdreg_pc 
-                          >> 3U))) ? (IData)((vlSelf->Soc__DOT___tm_inst 
+                          >> 2U))) ? (IData)((vlSelf->Soc__DOT___tm_inst 
                                               >> 0x20U))
             : (IData)(vlSelf->Soc__DOT___tm_inst));
     vlSelf->Soc__DOT__core__DOT___regfile_io_RfDe_reg2_rdata 

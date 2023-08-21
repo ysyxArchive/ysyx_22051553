@@ -226,6 +226,8 @@ module Decode(	// <stdin>:162:10
     .io_imm_type (_cu_io_imm_type),	// Decode.scala:39:20
     .io_eximm    (_eximm_io_eximm)
   );
+
+
   assign io_rfio_reg1_raddr = io_inst_bits[19:15];	// <stdin>:162:10, Decode.scala:44:16
   assign io_rfio_reg2_raddr = io_inst_bits[24:20];	// <stdin>:162:10, Decode.scala:45:16
   assign io_deio_op_a = _cu_io_opa_type == 2'h2 ? io_rfio_reg1_rdata : _cu_io_opa_type == 2'h1 ? io_fdio_pc : 64'h0;	// <stdin>:162:10, Decode.scala:39:20, Mux.scala:81:{58,61}
@@ -514,8 +516,12 @@ module Core(	// <stdin>:564:10
     .io_pc_valid       (_fetch_io_pc_valid),
     .io_pc_bits        (_fetch_io_pc_bits)
   );
+  always@(posedge clock)begin
+    $display("inst is %h", fdreg_pc[2] ? io_inst[63:32] : io_inst[31:0]);
+  end
+
   Decode decode (	// Core.scala:37:24
-    .io_inst_bits       (fdreg_pc[3] ? io_inst[63:32] : io_inst[31:0]),	// Core.scala:44:24, :106:{31,40,60,76}
+    .io_inst_bits       (fdreg_pc[2] ? io_inst[63:32] : io_inst[31:0]),	// Core.scala:44:24, :106:{31,40,60,76}
     .io_fdio_pc         (fdreg_pc),	// Core.scala:44:24
     .io_rfio_reg1_rdata (_regfile_io_RfDe_reg1_rdata),	// Core.scala:84:25
     .io_rfio_reg2_rdata (_regfile_io_RfDe_reg2_rdata),	// Core.scala:84:25
@@ -757,5 +763,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 

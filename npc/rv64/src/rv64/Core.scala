@@ -22,7 +22,10 @@ class Core extends Module{
         val waddr = Output(UInt(X_LEN.W))
         val wdata = Output(UInt(X_LEN.W))
         val wmask = Output(UInt(8.W))
+
+        val next_pc = Output(UInt(PC_LEN.W))
     })
+    io.next_pc := fetch.io.next_pc
 
     //interact
     val interact = Module(new Interact)
