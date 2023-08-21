@@ -97,4 +97,6 @@ class ControlUnit extends Module{
     io.sd_type      := controlsig(6)
     io.ld_type      := controlsig(7)
 
+    dontTouch(io.ld_type)
+
 }

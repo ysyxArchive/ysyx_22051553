@@ -60,7 +60,7 @@ class VSoc___024root final : public VerilatedModule {
     QData/*63:0*/ Soc__DOT__core__DOT__emreg_alu_res;
     QData/*63:0*/ Soc__DOT__core__DOT__mwreg_alu_res;
     QData/*63:0*/ Soc__DOT__core__DOT__fetch__DOT__pc;
-    QData/*63:0*/ Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2;
+    QData/*63:0*/ Soc__DOT__core__DOT__fetch__DOT___next_pc_T_7;
     QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm;
     QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___alu_io_result;
     QData/*63:0*/ Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data;
