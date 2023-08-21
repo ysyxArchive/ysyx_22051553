@@ -22,6 +22,9 @@ class DecodeIO extends Bundle{
     //to fc
     val jump_flag = Output(Bool())
     val jump_pc = Output(UInt(PC_LEN.W))
+
+    //Forward
+    val fwde    = Flipped(new FwDeIO)
 }
 
 class Decode extends Module {
@@ -38,6 +41,11 @@ class Decode extends Module {
 
     val cu = Module(new ControlUnit)
     val eximm = Module(new Eximm)
+
+    //Forward
+    io.fwde.reg1_raddr := rs1
+    io.fwde.reg2_raddr := rs2
+
 
     //内部逻辑
     inst := Mux(io.inst.valid, io.inst.bits, NOP)
@@ -59,7 +67,7 @@ class Decode extends Module {
         Seq(
             ControlUnit.A_ZERO -> 0.U,
             ControlUnit.A_PC -> io.fdio.pc,
-            ControlUnit.A_REG1 -> io.rfio.reg1_rdata
+            ControlUnit.A_REG1 -> Mux(io.fwde.fw_sel1, io.fwde.fw_data1, io.rfio.reg1_rdata)
         )
     )
     io.deio.op_b := MuxLookup(
@@ -68,7 +76,7 @@ class Decode extends Module {
         Seq(
             ControlUnit.B_ZERO -> 0.U,
             ControlUnit.B_IMM -> eximm.io.eximm,
-            ControlUnit.B_REG2 -> io.rfio.reg2_rdata,
+            ControlUnit.B_REG2 -> Mux(io.fwde.fw_sel2, io.fwde.fw_data2, io.rfio.reg2_rdata),
             ControlUnit.B_CONS4 -> 4.U
         )
     )
@@ -95,5 +103,6 @@ class Decode extends Module {
     //Eximm
     eximm.io.inst := inst
     eximm.io.imm_type := cu.io.imm_type
+
 
 }

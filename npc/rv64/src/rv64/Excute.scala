@@ -20,6 +20,9 @@ class ExcuteIO extends Bundle{
     val waddr = Output(UInt(X_LEN.W))
     val wdata = Output(UInt(X_LEN.W))
     val wmask = Output(UInt(8.W))
+
+    //Forward
+    val fwex = Flipped(new FwPipeIO)
 }
 
 class Excute extends Module{
@@ -57,10 +60,10 @@ class Excute extends Module{
         )
     )
 
+    io.fwex.reg_waddr := io.deio.rd
+    io.fwex.reg_we := (io.deio.wb_type === WB_ALU)
+    io.fwex.reg_wdata := alu.io.result
 
-
-
-    
     //alu
     alu.io.op_a := io.deio.op_a
     alu.io.op_b := io.deio.op_b
