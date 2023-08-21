@@ -748,7 +748,7 @@ module TempMem(
 
    always@(posedge clk)begin
    
-       sequnce <= pc[2];
+       sequence <= pc[2];
 
        if(valid == 'd1)
            temp_inst <= pmem_read(pc);
@@ -766,4 +766,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 
