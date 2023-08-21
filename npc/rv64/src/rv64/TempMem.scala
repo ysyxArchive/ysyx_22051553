@@ -52,7 +52,7 @@ class TempMem extends BlackBox with HasBlackBoxInline{
     |
     |   always@(posedge clk)begin
     |   
-    |       sequnce <= pc[2];
+    |       sequence <= pc[2];
     |
     |       if(valid == 'd1)
     |           temp_inst <= pmem_read(pc);

@@ -742,11 +742,14 @@ module TempMem(
 );
 
    reg [63:0] temp_inst;
+   reg sequence;   
 
-   assign inst = (pc[2] == 'd1) ? temp_inst[63:32] : temp_inst[31:0];
+   assign inst = (sequence == 'd0) ? temp_inst[63:32] : temp_inst[31:0];
 
    always@(posedge clk)begin
    
+       sequnce <= pc[2];
+
        if(valid == 'd1)
            temp_inst <= pmem_read(pc);
        
@@ -763,5 +766,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 
