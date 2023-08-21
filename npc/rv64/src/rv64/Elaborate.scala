@@ -8,7 +8,7 @@ object Elaborate extends App {
   val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
   if (useMFC) {
     (new ChiselStage).execute(args, generator :+ CIRCTTargetAnnotation(CIRCTTarget.Verilog)) //需要在.v中添加$readmemh("inst", Memory);
-  } else {
+  } else {                                                                                  ///* verilator lint_off UNOPTFLAT */需要添加
     (new chisel3.stage.ChiselStage).execute(args, generator)
   }
 }

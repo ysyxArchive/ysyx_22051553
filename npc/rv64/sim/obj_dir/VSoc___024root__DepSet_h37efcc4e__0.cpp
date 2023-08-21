@@ -275,7 +275,8 @@ VL_INLINE_OPT void VSoc___024root___act_sequent__TOP__0(VSoc___024root* vlSelf) 
         vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
             = vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc;
     }
-    vlSelf->Soc__DOT___tm_inst = ((1U & (IData)(vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc))
+    vlSelf->Soc__DOT___tm_inst = ((1U & (IData)((vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
+                                                 >> 2U)))
                                    ? (IData)((vlSelf->Soc__DOT__tm__DOT__temp_inst 
                                               >> 0x20U))
                                    : (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst));
@@ -339,7 +340,8 @@ VL_INLINE_OPT void VSoc___024root___nba_comb__TOP__0(VSoc___024root* vlSelf) {
         vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
             = vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc;
     }
-    vlSelf->Soc__DOT___tm_inst = ((1U & (IData)(vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc))
+    vlSelf->Soc__DOT___tm_inst = ((1U & (IData)((vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
+                                                 >> 2U)))
                                    ? (IData)((vlSelf->Soc__DOT__tm__DOT__temp_inst 
                                               >> 0x20U))
                                    : (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst));

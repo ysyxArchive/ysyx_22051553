@@ -743,7 +743,7 @@ module TempMem(
 
    reg [63:0] temp_inst;
 
-   assign inst = (pc[0] == 'd1) ? temp_inst[63:32] : temp_inst[31:0];
+   assign inst = (pc[2] == 'd1) ? temp_inst[63:32] : temp_inst[31:0];
 
    always@(posedge clk)begin
    
@@ -763,4 +763,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 
