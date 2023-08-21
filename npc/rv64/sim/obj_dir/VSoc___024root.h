@@ -43,7 +43,6 @@ class VSoc___024root final : public VerilatedModule {
     CData/*0:0*/ __Vtrigrprev__TOP__clock;
     CData/*0:0*/ __VactContinue;
     SData/*9:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN;
-    IData/*31:0*/ Soc__DOT___tm_inst;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VactIterCount;
     QData/*63:0*/ Soc__DOT___tm_rdata;

@@ -11,16 +11,15 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     // Init
     const int c = vlSymsp->__Vm_baseCode;
     // Body
-    tracep->declBit(c+137,"clock", false,-1);
-    tracep->declBit(c+138,"reset", false,-1);
+    tracep->declBit(c+136,"clock", false,-1);
+    tracep->declBit(c+137,"reset", false,-1);
     tracep->pushNamePrefix("Soc ");
-    tracep->declBit(c+137,"clock", false,-1);
-    tracep->declBit(c+138,"reset", false,-1);
+    tracep->declBit(c+136,"clock", false,-1);
+    tracep->declBit(c+137,"reset", false,-1);
     tracep->pushNamePrefix("core ");
-    tracep->declBit(c+137,"clock", false,-1);
-    tracep->declBit(c+138,"reset", false,-1);
+    tracep->declBit(c+136,"clock", false,-1);
+    tracep->declBit(c+137,"reset", false,-1);
     tracep->declBus(c+1,"io_inst", false,-1, 31,0);
-    tracep->declQuad(c+139,"io_rdata", false,-1, 63,0);
     tracep->declQuad(c+2,"io_pc", false,-1, 63,0);
     tracep->declBit(c+4,"io_valid", false,-1);
     tracep->declQuad(c+5,"io_waddr", false,-1, 63,0);
@@ -41,11 +40,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+26,"mwreg_wb_type", false,-1, 1,0);
     tracep->declBus(c+27,"mwreg_rd", false,-1, 4,0);
     tracep->pushNamePrefix("DI ");
-    tracep->declBit(c+137,"clk", false,-1);
+    tracep->declBit(c+136,"clk", false,-1);
     tracep->declQuad(c+2,"pc", false,-1, 63,0);
     tracep->declBit(c+4,"pc_req", false,-1);
-    tracep->declBus(c+141,"inst", false,-1, 31,0);
-    tracep->declBit(c+142,"inst_valid", false,-1);
+    tracep->declBus(c+1,"inst", false,-1, 31,0);
+    tracep->declBit(c+138,"inst_valid", false,-1);
     tracep->declQuad(c+12,"op_a", false,-1, 63,0);
     tracep->declQuad(c+14,"op_b", false,-1, 63,0);
     tracep->declQuad(c+28,"result", false,-1, 63,0);
@@ -112,8 +111,8 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBit(c+47,"io_fcfe_flush", false,-1);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("fetch ");
-    tracep->declBit(c+137,"clock", false,-1);
-    tracep->declBit(c+138,"reset", false,-1);
+    tracep->declBit(c+136,"clock", false,-1);
+    tracep->declBit(c+137,"reset", false,-1);
     tracep->declBit(c+47,"io_fcfe_jump_flag", false,-1);
     tracep->declQuad(c+56,"io_fcfe_jump_pc", false,-1, 63,0);
     tracep->declBit(c+47,"io_fcfe_flush", false,-1);
@@ -126,8 +125,8 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->popNamePrefix(2);
     tracep->pushNamePrefix("interact ");
     tracep->declBus(c+1,"inst", false,-1, 31,0);
-    tracep->declBit(c+137,"clk", false,-1);
-    tracep->declBit(c+138,"rst", false,-1);
+    tracep->declBit(c+136,"clk", false,-1);
+    tracep->declBit(c+137,"rst", false,-1);
     tracep->declBit(c+60,"ebreak_flag", false,-1);
     tracep->declBus(c+61,"over_count", false,-1, 2,0);
     tracep->popNamePrefix(1);
@@ -140,7 +139,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+23,"io_mwio_rd", false,-1, 4,0);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("regfile ");
-    tracep->declBit(c+137,"clock", false,-1);
+    tracep->declBit(c+136,"clock", false,-1);
     tracep->declBus(c+37,"io_RfDe_reg1_raddr", false,-1, 4,0);
     tracep->declBus(c+38,"io_RfDe_reg2_raddr", false,-1, 4,0);
     tracep->declBus(c+27,"io_RfWb_rd", false,-1, 4,0);
@@ -150,21 +149,21 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declQuad(c+35,"io_RfDe_reg2_rdata", false,-1, 63,0);
     tracep->pushNamePrefix("regs_ext ");
     tracep->declBus(c+27,"R0_addr", false,-1, 4,0);
-    tracep->declBit(c+143,"R0_en", false,-1);
-    tracep->declBit(c+137,"R0_clk", false,-1);
+    tracep->declBit(c+139,"R0_en", false,-1);
+    tracep->declBit(c+136,"R0_clk", false,-1);
     tracep->declBus(c+37,"R1_addr", false,-1, 4,0);
-    tracep->declBit(c+143,"R1_en", false,-1);
-    tracep->declBit(c+137,"R1_clk", false,-1);
+    tracep->declBit(c+139,"R1_en", false,-1);
+    tracep->declBit(c+136,"R1_clk", false,-1);
     tracep->declBus(c+38,"R2_addr", false,-1, 4,0);
-    tracep->declBit(c+143,"R2_en", false,-1);
-    tracep->declBit(c+137,"R2_clk", false,-1);
-    tracep->declBus(c+144,"W0_addr", false,-1, 4,0);
-    tracep->declBit(c+143,"W0_en", false,-1);
-    tracep->declBit(c+137,"W0_clk", false,-1);
-    tracep->declQuad(c+145,"W0_data", false,-1, 63,0);
+    tracep->declBit(c+139,"R2_en", false,-1);
+    tracep->declBit(c+136,"R2_clk", false,-1);
+    tracep->declBus(c+140,"W0_addr", false,-1, 4,0);
+    tracep->declBit(c+139,"W0_en", false,-1);
+    tracep->declBit(c+136,"W0_clk", false,-1);
+    tracep->declQuad(c+141,"W0_data", false,-1, 63,0);
     tracep->declBus(c+27,"W1_addr", false,-1, 4,0);
-    tracep->declBit(c+143,"W1_en", false,-1);
-    tracep->declBit(c+137,"W1_clk", false,-1);
+    tracep->declBit(c+139,"W1_en", false,-1);
+    tracep->declBit(c+136,"W1_clk", false,-1);
     tracep->declQuad(c+62,"W1_data", false,-1, 63,0);
     tracep->declQuad(c+64,"R0_data", false,-1, 63,0);
     tracep->declQuad(c+66,"R1_data", false,-1, 63,0);
@@ -184,17 +183,17 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declQuad(c+30,"io_rfio_reg_wdata", false,-1, 63,0);
     tracep->popNamePrefix(2);
     tracep->pushNamePrefix("tm ");
-    tracep->declBit(c+137,"clk", false,-1);
+    tracep->declBit(c+136,"clk", false,-1);
     tracep->declBus(c+1,"inst", false,-1, 31,0);
     tracep->declQuad(c+2,"pc", false,-1, 63,0);
     tracep->declBit(c+4,"valid", false,-1);
-    tracep->declQuad(c+145,"raddr", false,-1, 63,0);
-    tracep->declQuad(c+139,"rdata", false,-1, 63,0);
+    tracep->declQuad(c+141,"raddr", false,-1, 63,0);
+    tracep->declQuad(c+143,"rdata", false,-1, 63,0);
     tracep->declQuad(c+7,"wdata", false,-1, 63,0);
     tracep->declQuad(c+5,"waddr", false,-1, 63,0);
     tracep->declBus(c+9,"wmask", false,-1, 7,0);
     tracep->declQuad(c+134,"temp_inst", false,-1, 63,0);
-    tracep->declBit(c+136,"third_pc", false,-1);
+    tracep->declBit(c+145,"third_pc", false,-1);
     tracep->popNamePrefix(2);
 }
 
@@ -239,7 +238,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     uint32_t* const oldp VL_ATTR_UNUSED = bufp->oldp(vlSymsp->__Vm_baseCode);
     VlWide<8>/*255:0*/ __Vtemp_h1de70962__0;
     // Body
-    bufp->fullIData(oldp+1,(vlSelf->Soc__DOT___tm_inst),32);
+    bufp->fullIData(oldp+1,((IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst)),32);
     bufp->fullQData(oldp+2,(vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc),64);
     bufp->fullBit(oldp+4,(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started));
     bufp->fullQData(oldp+5,(vlSelf->Soc__DOT___core_io_waddr),64);
@@ -270,10 +269,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullBit(oldp+32,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type))));
     bufp->fullQData(oldp+33,(vlSelf->Soc__DOT__core__DOT___regfile_io_RfDe_reg1_rdata),64);
     bufp->fullQData(oldp+35,(vlSelf->Soc__DOT__core__DOT___regfile_io_RfDe_reg2_rdata),64);
-    bufp->fullCData(oldp+37,((0x1fU & (vlSelf->Soc__DOT___tm_inst 
-                                       >> 0xfU))),5);
-    bufp->fullCData(oldp+38,((0x1fU & (vlSelf->Soc__DOT___tm_inst 
-                                       >> 0x14U))),5);
+    bufp->fullCData(oldp+37,((0x1fU & (IData)((vlSelf->Soc__DOT__tm__DOT__temp_inst 
+                                               >> 0xfU)))),5);
+    bufp->fullCData(oldp+38,((0x1fU & (IData)((vlSelf->Soc__DOT__tm__DOT__temp_inst 
+                                               >> 0x14U)))),5);
     bufp->fullQData(oldp+39,(((2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type))
                                ? vlSelf->Soc__DOT__core__DOT___regfile_io_RfDe_reg1_rdata
                                : ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type))
@@ -294,7 +293,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                  + 
                                                  (0xffU 
                                                   & (((0x13U 
-                                                       == vlSelf->Soc__DOT___tm_inst)
+                                                       == (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst))
                                                        ? 0U
                                                        : 
                                                       ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h73d7e1c7__0)
@@ -309,7 +308,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                 >> 5U)])) 
                                << ((0U == (0x1fU & 
                                            (((0x13U 
-                                              == vlSelf->Soc__DOT___tm_inst)
+                                              == (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst))
                                               ? 0U : 
                                              ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h73d7e1c7__0)
                                                ? 1U
@@ -322,7 +321,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                     ? 0x20U : ((IData)(0x40U) 
                                                - (0x1fU 
                                                   & (((0x13U 
-                                                       == vlSelf->Soc__DOT___tm_inst)
+                                                       == (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst))
                                                        ? 0U
                                                        : 
                                                       ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h73d7e1c7__0)
@@ -336,7 +335,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                      << 6U))))) 
                               | (((0U == (0x1fU & (
                                                    ((0x13U 
-                                                     == vlSelf->Soc__DOT___tm_inst)
+                                                     == (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst))
                                                      ? 0U
                                                      : 
                                                     ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h73d7e1c7__0)
@@ -354,7 +353,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                                + 
                                                                (0xffU 
                                                                 & (((0x13U 
-                                                                     == vlSelf->Soc__DOT___tm_inst)
+                                                                     == (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst))
                                                                      ? 0U
                                                                      : 
                                                                     ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h73d7e1c7__0)
@@ -371,7 +370,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                  - 
                                                  (0x1fU 
                                                   & (((0x13U 
-                                                       == vlSelf->Soc__DOT___tm_inst)
+                                                       == (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst))
                                                        ? 0U
                                                        : 
                                                       ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h73d7e1c7__0)
@@ -387,7 +386,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                     __Vtemp_h1de70962__0[
                                                     (6U 
                                                      & (((0x13U 
-                                                          == vlSelf->Soc__DOT___tm_inst)
+                                                          == (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst))
                                                           ? 0U
                                                           : 
                                                          ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h73d7e1c7__0)
@@ -400,7 +399,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                             == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN))))) 
                                                         << 1U))])) 
                                     >> (0x1fU & (((0x13U 
-                                                   == vlSelf->Soc__DOT___tm_inst)
+                                                   == (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst))
                                                    ? 0U
                                                    : 
                                                   ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h73d7e1c7__0)
@@ -412,16 +411,16 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                     (0x1a3U 
                                                      == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN))))) 
                                                  << 6U)))))),64);
-    bufp->fullCData(oldp+43,((0x1fU & (vlSelf->Soc__DOT___tm_inst 
-                                       >> 7U))),5);
+    bufp->fullCData(oldp+43,((0x1fU & (IData)((vlSelf->Soc__DOT__tm__DOT__temp_inst 
+                                               >> 7U)))),5);
     bufp->fullCData(oldp+44,((0x1fU & (- (IData)((1U 
                                                   & ((~ 
                                                       ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hbf1f1a09__0) 
                                                        | (0x1a3U 
                                                           == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)))) 
                                                      | (0x13U 
-                                                        == vlSelf->Soc__DOT___tm_inst))))))),5);
-    bufp->fullCData(oldp+45,(((0x13U == vlSelf->Soc__DOT___tm_inst)
+                                                        == (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst)))))))),5);
+    bufp->fullCData(oldp+45,(((0x13U == (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst))
                                ? 0U : ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hbf1f1a09__0)
                                         ? 1U : ((0x1a3U 
                                                  == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)) 
@@ -441,7 +440,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                    : 0x80000000ULL))),64);
     bufp->fullCData(oldp+50,(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type),2);
     bufp->fullCData(oldp+51,(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type),2);
-    bufp->fullCData(oldp+52,(((0x13U == vlSelf->Soc__DOT___tm_inst)
+    bufp->fullCData(oldp+52,(((0x13U == (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst))
                                ? 0U : ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h73d7e1c7__0)
                                         ? 1U : ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_0)
                                                  ? 3U
@@ -453,7 +452,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                         ? 1U : ((0x6fU 
                                                  == 
                                                  (0x7fU 
-                                                  & vlSelf->Soc__DOT___tm_inst))
+                                                  & (IData)(vlSelf->Soc__DOT__tm__DOT__temp_inst)))
                                                  ? 2U
                                                  : 
                                                 ((0x67U 
@@ -479,11 +478,11 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullQData(oldp+64,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
                              [vlSelf->Soc__DOT__core__DOT__mwreg_rd]),64);
     bufp->fullQData(oldp+66,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
-                             [(0x1fU & (vlSelf->Soc__DOT___tm_inst 
-                                        >> 0xfU))]),64);
+                             [(0x1fU & (IData)((vlSelf->Soc__DOT__tm__DOT__temp_inst 
+                                                >> 0xfU)))]),64);
     bufp->fullQData(oldp+68,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
-                             [(0x1fU & (vlSelf->Soc__DOT___tm_inst 
-                                        >> 0x14U))]),64);
+                             [(0x1fU & (IData)((vlSelf->Soc__DOT__tm__DOT__temp_inst 
+                                                >> 0x14U)))]),64);
     bufp->fullQData(oldp+70,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[0]),64);
     bufp->fullQData(oldp+72,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[1]),64);
     bufp->fullQData(oldp+74,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[2]),64);
@@ -517,13 +516,12 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullQData(oldp+130,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[30]),64);
     bufp->fullQData(oldp+132,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[31]),64);
     bufp->fullQData(oldp+134,(vlSelf->Soc__DOT__tm__DOT__temp_inst),64);
-    bufp->fullBit(oldp+136,(vlSelf->Soc__DOT__tm__DOT__third_pc));
-    bufp->fullBit(oldp+137,(vlSelf->clock));
-    bufp->fullBit(oldp+138,(vlSelf->reset));
-    bufp->fullQData(oldp+139,(vlSelf->Soc__DOT___tm_rdata),64);
-    bufp->fullIData(oldp+141,((IData)(vlSelf->Soc__DOT___tm_rdata)),32);
-    bufp->fullBit(oldp+142,(0U));
-    bufp->fullBit(oldp+143,(1U));
-    bufp->fullCData(oldp+144,(0U),5);
-    bufp->fullQData(oldp+145,(0ULL),64);
+    bufp->fullBit(oldp+136,(vlSelf->clock));
+    bufp->fullBit(oldp+137,(vlSelf->reset));
+    bufp->fullBit(oldp+138,(0U));
+    bufp->fullBit(oldp+139,(1U));
+    bufp->fullCData(oldp+140,(0U),5);
+    bufp->fullQData(oldp+141,(0ULL),64);
+    bufp->fullQData(oldp+143,(vlSelf->Soc__DOT___tm_rdata),64);
+    bufp->fullBit(oldp+145,(vlSelf->Soc__DOT__tm__DOT__third_pc));
 }

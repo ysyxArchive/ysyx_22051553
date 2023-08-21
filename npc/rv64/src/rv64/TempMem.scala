@@ -10,7 +10,7 @@ class TempMem extends BlackBox with HasBlackBoxInline{
         
         val clk = Input(Clock())
 
-        val inst = Output(UInt(INST_LEN.W))
+        val inst = Output(UInt(64.W))
         val pc   = Input(UInt(PC_LEN.W))
         val valid = Input(Bool())
 
@@ -33,7 +33,7 @@ class TempMem extends BlackBox with HasBlackBoxInline{
     |module TempMem(
     |   input           clk,
     |
-    |   output  [31:0]  inst,
+    |   output  [63:0]  inst,
     |   input   [63:0]  pc,
     |   input           valid,
     |
@@ -45,15 +45,11 @@ class TempMem extends BlackBox with HasBlackBoxInline{
     |   input   [7:0]   wmask
     |);
     |
-    |   reg [63:0] temp_inst;
-    |   reg third_pc;   
-    |
-    |   assign inst =  temp_inst[31:0];
     |
     |   always@(posedge clk)begin
     |          
     |       if(valid == 'd1)begin
-    |           temp_inst <= pmem_read(pc);
+    |           inst <= pmem_read(pc);
     |       end
     |       if(raddr != 'd0)
     |           rdata <= pmem_read(raddr);

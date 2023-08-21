@@ -361,7 +361,6 @@ module Core(	// <stdin>:564:10
   input         clock,
                 reset,
   input  [31:0] io_inst,
-  input  [63:0] io_rdata,
   output [63:0] io_pc,
   output        io_valid,
   output [63:0] io_waddr,
@@ -585,7 +584,7 @@ module Core(	// <stdin>:564:10
     .clk        (clock),
     .pc         (_fetch_io_pc_bits),	// Core.scala:36:23
     .pc_req     (_fetch_io_pc_valid),	// Core.scala:36:23
-    .inst       (io_rdata[31:0]),	// Core.scala:289:16
+    .inst       (io_inst),
     .inst_valid (1'h0),	// Core.scala:285:19
     .op_a       (dereg_op_a),	// Core.scala:49:24
     .op_b       (dereg_op_b),	// Core.scala:49:24
@@ -615,7 +614,6 @@ module Soc(	// <stdin>:761:10
     .clock    (clock),
     .reset    (reset),
     .io_inst  (_tm_inst),	// Soc.scala:13:20
-    .io_rdata (_tm_rdata),	// Soc.scala:13:20
     .io_pc    (_core_io_pc),
     .io_valid (_core_io_valid),
     .io_waddr (_core_io_waddr),
@@ -744,16 +742,12 @@ module TempMem(
    reg [63:0] temp_inst;
    reg third_pc;   
 
-   assign inst = (third_pc == 'd0) ? temp_inst[63:32] : temp_inst[31:0];
+   assign inst =  temp_inst[31:0];
 
    always@(posedge clk)begin
           
-       $display("tempinst is %h\n", temp_inst);
-       $display("inst is %h\n", inst);       
-
        if(valid == 'd1)begin
            temp_inst <= pmem_read(pc);
-           third_pc <= pc[2];
        end
        if(raddr != 'd0)
            rdata <= pmem_read(raddr);

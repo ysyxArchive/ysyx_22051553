@@ -12,7 +12,7 @@ import Define._
 
 class Core extends Module{
     val io = IO(new Bundle {
-        val inst = Input(UInt(INST_LEN.W))
+        val inst = Input(UInt(64.W))
         val pc   = Output(UInt(PC_LEN.W))
         val valid = Output(Bool())
 
@@ -103,7 +103,7 @@ class Core extends Module{
 
     //decode
     decode.io.inst.valid := 1.B
-    decode.io.inst.bits := io.inst
+    decode.io.inst.bits := Mux(fdreg.pc(3) === 1.U, io.inst(63,32), io.inst(31,0))
     decode.io.fdio.pc := fdreg.pc
     decode.io.rfio <> regfile.io.RfDe
 
