@@ -75,12 +75,9 @@ class Core extends Module{
     )
     val mwreg = RegInit(
         (new MWRegIO).Lit(
-            _.alu_res -> 0.U,
             _.wb_type -> ControlUnit.WB_NO,
             _.rd -> 0.U,
-            _.ld_type -> ControlUnit.LD_NO,
-            _.ld_addr_lowbit -> 0.U,
-            _.ld_data -> 0.U
+            _.wb_data -> 0.U
         )
     )
 
@@ -130,12 +127,9 @@ class Core extends Module{
     mem.io.rdata := io.rdata
 
     //wb
-    wb.io.mwio.alu_res := mwreg.alu_res
     wb.io.mwio.wb_type := mwreg.wb_type
     wb.io.mwio.rd := mwreg.rd
-    wb.io.mwio.ld_type := mwreg.ld_type
-    wb.io.mwio.ld_addr_lowbit := mwreg.ld_addr_lowbit
-    wb.io.mwio.ld_data := mwreg.ld_data
+    wb.io.mwio.wb_data := mwreg.wb_data
     wb.io.rfio <> regfile.io.RfWb
 
     //FlowControl
@@ -242,13 +236,6 @@ class Core extends Module{
         )
     )
     //mwreg
-    mwreg.alu_res := MuxCase(
-        mem.io.mwio.alu_res,
-        Seq(
-            (fc.io.fcmem.stall) -> mwreg.alu_res,
-            (fc.io.fcmem.flush) -> 0.U,
-        )
-    )
     mwreg.wb_type := MuxCase(
         mem.io.mwio.wb_type,
         Seq(
@@ -263,24 +250,10 @@ class Core extends Module{
             (fc.io.fcmem.flush) -> 0.U,
         )
     )
-    mwreg.ld_type := MuxCase(
-        mem.io.mwio.ld_type,
+    mwreg.wb_data := MuxCase(
+        mem.io.mwio.wb_data,
         Seq(
-            (fc.io.fcmem.stall) -> mwreg.ld_type,
-            (fc.io.fcmem.flush) -> 0.U,
-        )
-    )
-    mwreg.ld_addr_lowbit := MuxCase(
-        mem.io.mwio.ld_addr_lowbit,
-        Seq(
-            (fc.io.fcmem.stall) -> mwreg.ld_addr_lowbit,
-            (fc.io.fcmem.flush) -> 0.U,
-        )
-    )
-    mwreg.ld_data := MuxCase(
-        mem.io.mwio.ld_data,
-        Seq(
-            (fc.io.fcmem.stall) -> mwreg.ld_data,
+            (fc.io.fcmem.stall) -> mwreg.wb_data,
             (fc.io.fcmem.flush) -> 0.U,
         )
     )
