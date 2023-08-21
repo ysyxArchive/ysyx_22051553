@@ -1,4 +1,5 @@
 #include "./include/debug.hpp"
+#include <stdio.h>
 
 debug debug_ins;
 
@@ -25,4 +26,7 @@ void debug::update(
     this->reg_wdata = reg_wdata;
     this->reg_wen = reg_wen;
 }
-        
+
+void debug::show(){
+    printf("inst is %08x\n", inst);
+}

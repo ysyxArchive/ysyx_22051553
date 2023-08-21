@@ -51,12 +51,12 @@ class TempMem extends BlackBox with HasBlackBoxInline{
     |   assign inst = (third_pc == 'd0) ? temp_inst[63:32] : temp_inst[31:0];
     |
     |   always@(posedge clk)begin
-    |       
-    |       third_pc <= 'd1;
+    |          
+    |       $display("tempinst is %h\n", temp_inst);
     |   
     |       if(valid == 'd1)begin
     |           temp_inst <= pmem_read(pc);
-    |           third_pc <= ~third_pc;
+    |           third_pc <= pc[2];
     |       end
     |       if(raddr != 'd0)
     |           rdata <= pmem_read(raddr);

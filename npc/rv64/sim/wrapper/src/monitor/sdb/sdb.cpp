@@ -122,6 +122,9 @@ static int cmd_i(char *args) {
   else if(strcmp(args, "w") == 0){
     return 0;
   }
+    else if(strcmp(args, "debug") == 0){
+      debug_ins.show();
+  }
 
   return 0;
 }
