@@ -65,7 +65,7 @@ object ControlUnit {    //译码特征, 类型、需要做哪些任务
         LUI -> List(NO_JUMP, A_ZERO, B_IMM, IMM_U, ALU_ADD, WB_ALU, SD_NO, LD_NO),
         JAL -> List(JUMP_JAL, A_PC, B_CONS4, IMM_J, ALU_ADD, WB_ALU, SD_NO, LD_NO),
         JALR -> List(JUMP_JALR, A_PC, B_CONS4, IMM_I, ALU_ADD, WB_ALU, SD_NO, LD_NO),
-        SD -> List(NO_JUMP, A_REG1, B_IMM, IMM_S, ALU_ADD, WB_MEM, SD_SD, LD_NO)
+        SD -> List(NO_JUMP, A_REG1, B_IMM, IMM_S, ALU_ADD, WB_MEM, SD_SD, LD_LD)
     )
 }
 
