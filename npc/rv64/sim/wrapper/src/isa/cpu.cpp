@@ -4,16 +4,16 @@
 #include <cassert>
 
 void cpu::gpr_display(){
-    printf("pc\t\t0x%-16lx\t\t%-20ld\n", pc, pc);
+    printf("pc\t\t0x%-16lx\t\t%-20ld\n", regs_state.pc, regs_state.pc);
 
-    for(int i = 0; i < 31; i ++){
-      printf("%s\t\t0x%-16lx\t\t%-20ld\n", regs[i], gpr[i], gpr[i]);
+    for(int i = 0; i < 32; i ++){
+      printf("%s\t\t0x%-16lx\t\t%-20ld\n", regs[i], regs_state.gpr[i], gpr[i]);
     }    
 }
 
 void cpu::set_value(int num, unsigned long value){
   assert(num < 32 && num >= 0);
-  gpr[num] = value;
+  regs_state.gpr[num] = value;
 }
 
 unsigned long cpu::isa_reg_str2val(const char *s, bool *success){
@@ -21,20 +21,24 @@ unsigned long cpu::isa_reg_str2val(const char *s, bool *success){
   *success = true;
 
   if(strcmp(s, "$0") == 0)
-    return diff_cpu.gpr[0];
+    return cpu_ins.regs_state.gpr[0];
 
   if(strcmp(s+1, "pc") == 0)
-    return diff_cpu.pc;
+    return cpu_ins.regs_state.pc;
 
   for(int i = 1; i < 32; i++){
     if(strcmp(s+1, regs[i]) == 0)
-      return diff_cpu.gpr[i];
+      return cpu_ins.regs_state.gpr[i];
   }
 
   
   printf("no such reg\n");
   return 0;
   
+}
+
+void* cpu::get_reg_bundle(){
+  return &regs_state;
 }
 
 
@@ -46,5 +50,5 @@ const char *cpu::regs[] = {
 };
 
 
-cpu diff_cpu;
+cpu cpu_ins;
 

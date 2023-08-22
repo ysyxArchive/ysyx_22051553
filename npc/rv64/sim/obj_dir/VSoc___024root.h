@@ -19,8 +19,6 @@ class VSoc___024root final : public VerilatedModule {
     // DESIGN SPECIFIC STATE
     VL_IN8(clock,0,0);
     VL_IN8(reset,0,0);
-    CData/*0:0*/ Soc__DOT__core__DOT___fw_io_fwde_fw_sel1;
-    CData/*0:0*/ Soc__DOT__core__DOT___fw_io_fwde_fw_sel2;
     CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_flag;
     CData/*0:0*/ Soc__DOT__core__DOT___mem_io_fwmem_reg_we;
     CData/*4:0*/ Soc__DOT__core__DOT__dereg_rd;
@@ -45,6 +43,12 @@ class VSoc___024root final : public VerilatedModule {
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hd7167e15__0;
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h86e6c972__0;
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hbf1f1a09__0;
+    CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_ex_hazard;
+    CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_ex_hazard;
+    CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_mem_hazard;
+    CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_mem_hazard;
+    CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_wb_hazard;
+    CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_wb_hazard;
     CData/*0:0*/ __Vtrigrprev__TOP__clock;
     CData/*0:0*/ __VactContinue;
     SData/*9:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN;
@@ -58,6 +62,7 @@ class VSoc___024root final : public VerilatedModule {
     QData/*63:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
     QData/*63:0*/ Soc__DOT__core__DOT___regfile_io_RfDe_reg1_rdata;
     QData/*63:0*/ Soc__DOT__core__DOT___regfile_io_RfDe_reg2_rdata;
+    QData/*63:0*/ Soc__DOT__core__DOT___mem_io_fwmem_reg_wdata;
     QData/*63:0*/ Soc__DOT__core__DOT___fetch_io_fdio_pc;
     QData/*63:0*/ Soc__DOT__core__DOT__fdreg_pc;
     QData/*63:0*/ Soc__DOT__core__DOT__dereg_op_a;

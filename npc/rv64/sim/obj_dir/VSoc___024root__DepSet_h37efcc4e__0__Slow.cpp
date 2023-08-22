@@ -51,7 +51,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 765, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 779, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -840,11 +840,16 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data 
         = vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
         [vlSelf->Soc__DOT__core__DOT__mwreg_rd];
-    vlSelf->__VdfgTmp_h6424cc69__0 = (vlSelf->Soc__DOT__core__DOT__dereg_op_a 
-                                      + vlSelf->Soc__DOT__core__DOT__dereg_op_b);
+    vlSelf->Soc__DOT__core__DOT___mem_io_fwmem_reg_wdata 
+        = ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__emreg_wb_type))
+            ? vlSelf->Soc__DOT__core__DOT__emreg_alu_res
+            : ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__emreg_wb_type))
+                ? vlSelf->Soc__DOT___tm_rdata : 0ULL));
     vlSelf->Soc__DOT__core__DOT___mem_io_fwmem_reg_we 
         = ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__emreg_wb_type)) 
            | (2U == (IData)(vlSelf->Soc__DOT__core__DOT__emreg_wb_type)));
+    vlSelf->__VdfgTmp_h6424cc69__0 = (vlSelf->Soc__DOT__core__DOT__dereg_op_a 
+                                      + vlSelf->Soc__DOT__core__DOT__dereg_op_b);
     vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
         = ((1U & (IData)((vlSelf->Soc__DOT__core__DOT__fdreg_pc 
                           >> 2U))) ? (IData)((vlSelf->Soc__DOT___tm_inst 
@@ -858,46 +863,48 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                             >> 0x14U))) ? vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
            [(0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
                       >> 0x14U))] : 0ULL);
-    vlSelf->Soc__DOT__core__DOT___fw_io_fwde_fw_sel1 
-        = (((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                             >> 0xfU))) & ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_wb_type)) 
+    vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_ex_hazard 
+        = ((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                            >> 0xfU))) & ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_wb_type)) 
+                                          & ((0x1fU 
+                                              & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                                                 >> 0xfU)) 
+                                             == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_rd))));
+    vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_mem_hazard 
+        = ((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                            >> 0xfU))) & ((IData)(vlSelf->Soc__DOT__core__DOT___mem_io_fwmem_reg_we) 
+                                          & ((0x1fU 
+                                              & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                                                 >> 0xfU)) 
+                                             == (IData)(vlSelf->Soc__DOT__core__DOT__emreg_rd))));
+    vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_wb_hazard 
+        = ((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                            >> 0xfU))) & ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type)) 
+                                          & ((0x1fU 
+                                              & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                                                 >> 0xfU)) 
+                                             == (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_rd))));
+    vlSelf->Soc__DOT__core__DOT__fw__DOT__reg2_ex_hazard 
+        = ((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                            >> 0x14U))) & ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_wb_type)) 
                                            & ((0x1fU 
                                                & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                                  >> 0xfU)) 
-                                              == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_rd)))) 
-           | (((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                >> 0xfU))) & ((IData)(vlSelf->Soc__DOT__core__DOT___mem_io_fwmem_reg_we) 
-                                              & ((0x1fU 
-                                                  & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                                     >> 0xfU)) 
-                                                 == (IData)(vlSelf->Soc__DOT__core__DOT__emreg_rd)))) 
-              | ((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                  >> 0xfU))) & ((0U 
-                                                 != (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type)) 
-                                                & ((0x1fU 
-                                                    & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                                       >> 0xfU)) 
-                                                   == (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_rd))))));
-    vlSelf->Soc__DOT__core__DOT___fw_io_fwde_fw_sel2 
-        = (((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                             >> 0x14U))) & ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_wb_type)) 
-                                            & ((0x1fU 
-                                                & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                                   >> 0x14U)) 
-                                               == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_rd)))) 
-           | (((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                >> 0x14U))) & ((IData)(vlSelf->Soc__DOT__core__DOT___mem_io_fwmem_reg_we) 
-                                               & ((0x1fU 
-                                                   & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                                      >> 0x14U)) 
-                                                  == (IData)(vlSelf->Soc__DOT__core__DOT__emreg_rd)))) 
-              | ((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                  >> 0x14U))) & ((0U 
-                                                  != (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type)) 
-                                                 & ((0x1fU 
-                                                     & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                                        >> 0x14U)) 
-                                                    == (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_rd))))));
+                                                  >> 0x14U)) 
+                                              == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_rd))));
+    vlSelf->Soc__DOT__core__DOT__fw__DOT__reg2_mem_hazard 
+        = ((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                            >> 0x14U))) & ((IData)(vlSelf->Soc__DOT__core__DOT___mem_io_fwmem_reg_we) 
+                                           & ((0x1fU 
+                                               & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                                                  >> 0x14U)) 
+                                              == (IData)(vlSelf->Soc__DOT__core__DOT__emreg_rd))));
+    vlSelf->Soc__DOT__core__DOT__fw__DOT__reg2_wb_hazard 
+        = ((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                            >> 0x14U))) & ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type)) 
+                                           & ((0x1fU 
+                                               & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                                                  >> 0x14U)) 
+                                              == (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_rd))));
     vlSelf->Soc__DOT__core__DOT___regfile_io_RfDe_reg1_rdata 
         = ((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
                             >> 0xfU))) ? vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
@@ -1189,12 +1196,11 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT___tm_inst = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT___tm_rdata = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT___core_io_waddr = VL_RAND_RESET_Q(64);
-    vlSelf->Soc__DOT__core__DOT___fw_io_fwde_fw_sel1 = VL_RAND_RESET_I(1);
-    vlSelf->Soc__DOT__core__DOT___fw_io_fwde_fw_sel2 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_flag = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___regfile_io_RfDe_reg1_rdata = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___regfile_io_RfDe_reg2_rdata = VL_RAND_RESET_Q(64);
+    vlSelf->Soc__DOT__core__DOT___mem_io_fwmem_reg_wdata = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___mem_io_fwmem_reg_we = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__fdreg_pc = VL_RAND_RESET_Q(64);
@@ -1237,6 +1243,12 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     for (int __Vi0 = 0; __Vi0 < 32; ++__Vi0) {
         vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[__Vi0] = VL_RAND_RESET_Q(64);
     }
+    vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_ex_hazard = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__fw__DOT__reg2_ex_hazard = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_mem_hazard = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__fw__DOT__reg2_mem_hazard = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_wb_hazard = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__fw__DOT__reg2_wb_hazard = VL_RAND_RESET_I(1);
     vlSelf->__VdfgTmp_h6424cc69__0 = 0;
     vlSelf->__Vtrigrprev__TOP__clock = VL_RAND_RESET_I(1);
     for (int __Vi0 = 0; __Vi0 < 2; ++__Vi0) {

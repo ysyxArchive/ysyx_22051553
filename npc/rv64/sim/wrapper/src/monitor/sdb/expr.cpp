@@ -326,7 +326,7 @@ static uint64_t eval(int begin, int end, bool *success){
     case TK_HEX:
       return strtol(tokens[begin].str, NULL, 16);
     case TK_REG:
-      return diff_cpu.isa_reg_str2val(tokens[begin].str, success);
+      return cpu_ins.isa_reg_str2val(tokens[begin].str, success);
     
     default:
       assert(0);

@@ -323,6 +323,7 @@ module Mem(	// <stdin>:292:10
   output [63:0] io_mwio_wb_data,
   output [4:0]  io_mwio_rd,
                 io_fwmem_reg_waddr,
+  output [63:0] io_fwmem_reg_wdata,
   output        io_fwmem_reg_we);
 
   wire             _rvalue_T_148 = io_emio_ld_addr_lowbit == 3'h2;	// Mux.scala:81:61
@@ -352,6 +353,7 @@ module Mem(	// <stdin>:292:10
                 : 64'h0;	// <stdin>:292:10, Mem.scala:87:30, :88:30, Mux.scala:81:{58,61}, :101:16
   assign io_mwio_rd = io_emio_rd;	// <stdin>:292:10
   assign io_fwmem_reg_waddr = io_emio_rd;	// <stdin>:292:10
+  assign io_fwmem_reg_wdata = _io_fwmem_reg_wdata_T ? io_emio_alu_res : _io_fwmem_reg_wdata_T_1 ? io_rdata : 64'h0;	// <stdin>:292:10, Mem.scala:87:30, :88:30, Mux.scala:81:58, :101:16
   assign io_fwmem_reg_we = _io_fwmem_reg_wdata_T | _io_fwmem_reg_wdata_T_1;	// <stdin>:292:10, Mem.scala:87:30, :88:30, :94:52
 endmodule
 
@@ -363,12 +365,14 @@ module Wb(	// <stdin>:495:10
   output        io_rfio_reg_wen,
   output [63:0] io_rfio_reg_wdata,
   output [4:0]  io_fwwb_reg_waddr,
+  output [63:0] io_fwwb_reg_wdata,
   output        io_fwwb_reg_we);
 
   assign io_rfio_rd = io_mwio_rd;	// <stdin>:495:10
   assign io_rfio_reg_wen = |io_mwio_wb_type;	// <stdin>:495:10, Wb.scala:24:40
   assign io_rfio_reg_wdata = io_mwio_wb_data;	// <stdin>:495:10
   assign io_fwwb_reg_waddr = io_mwio_rd;	// <stdin>:495:10
+  assign io_fwwb_reg_wdata = io_mwio_wb_data;	// <stdin>:495:10
   assign io_fwwb_reg_we = |io_mwio_wb_type;	// <stdin>:495:10, Wb.scala:24:40
 endmodule
 
@@ -430,8 +434,10 @@ module Forward(	// <stdin>:577:10
   input  [63:0] io_fwex_reg_wdata,
   input         io_fwex_reg_we,
   input  [4:0]  io_fwmem_reg_waddr,
+  input  [63:0] io_fwmem_reg_wdata,
   input         io_fwmem_reg_we,
   input  [4:0]  io_fwwb_reg_waddr,
+  input  [63:0] io_fwwb_reg_wdata,
   input         io_fwwb_reg_we,
   output        io_fwde_fw_sel1,
                 io_fwde_fw_sel2,
@@ -446,8 +452,10 @@ module Forward(	// <stdin>:577:10
   wire reg2_wb_hazard = (|io_fwde_reg2_raddr) & io_fwwb_reg_we & io_fwwb_reg_waddr == io_fwde_reg2_raddr;	// Forward.scala:39:46, :45:{73,95}
   assign io_fwde_fw_sel1 = reg1_ex_hazard | reg1_mem_hazard | reg1_wb_hazard;	// <stdin>:577:10, Forward.scala:38:73, :41:75, :44:73, :47:57
   assign io_fwde_fw_sel2 = reg2_ex_hazard | reg2_mem_hazard | reg2_wb_hazard;	// <stdin>:577:10, Forward.scala:39:73, :42:75, :45:73, :48:57
-  assign io_fwde_fw_data1 = reg1_ex_hazard | reg1_mem_hazard | reg1_wb_hazard ? io_fwex_reg_wdata : 64'h0;	// <stdin>:577:10, Forward.scala:38:73, :41:75, :44:73, Mux.scala:101:16
-  assign io_fwde_fw_data2 = reg2_ex_hazard | reg2_mem_hazard | reg2_wb_hazard ? io_fwex_reg_wdata : 64'h0;	// <stdin>:577:10, Forward.scala:39:73, :42:75, :45:73, Mux.scala:101:16
+  assign io_fwde_fw_data1 = reg1_ex_hazard ? io_fwex_reg_wdata : reg1_mem_hazard ? io_fwmem_reg_wdata : reg1_wb_hazard
+                ? io_fwwb_reg_wdata : 64'h0;	// <stdin>:577:10, Forward.scala:38:73, :41:75, :44:73, Mux.scala:101:16
+  assign io_fwde_fw_data2 = reg2_ex_hazard ? io_fwex_reg_wdata : reg2_mem_hazard ? io_fwmem_reg_wdata : reg2_wb_hazard
+                ? io_fwwb_reg_wdata : 64'h0;	// <stdin>:577:10, Forward.scala:39:73, :42:75, :45:73, Mux.scala:101:16
 endmodule
 
 // external module DebugInterface
@@ -478,11 +486,13 @@ module Core(	// <stdin>:635:10
   wire        _wb_io_rfio_reg_wen;	// Core.scala:44:20
   wire [63:0] _wb_io_rfio_reg_wdata;	// Core.scala:44:20
   wire [4:0]  _wb_io_fwwb_reg_waddr;	// Core.scala:44:20
+  wire [63:0] _wb_io_fwwb_reg_wdata;	// Core.scala:44:20
   wire        _wb_io_fwwb_reg_we;	// Core.scala:44:20
   wire [1:0]  _mem_io_mwio_wb_type;	// Core.scala:43:21
   wire [63:0] _mem_io_mwio_wb_data;	// Core.scala:43:21
   wire [4:0]  _mem_io_mwio_rd;	// Core.scala:43:21
   wire [4:0]  _mem_io_fwmem_reg_waddr;	// Core.scala:43:21
+  wire [63:0] _mem_io_fwmem_reg_wdata;	// Core.scala:43:21
   wire        _mem_io_fwmem_reg_we;	// Core.scala:43:21
   wire [63:0] _excute_io_emio_alu_res;	// Core.scala:41:24
   wire [1:0]  _excute_io_emio_wb_type;	// Core.scala:41:24
@@ -699,6 +709,7 @@ module Core(	// <stdin>:635:10
     .io_mwio_wb_data        (_mem_io_mwio_wb_data),
     .io_mwio_rd             (_mem_io_mwio_rd),
     .io_fwmem_reg_waddr     (_mem_io_fwmem_reg_waddr),
+    .io_fwmem_reg_wdata     (_mem_io_fwmem_reg_wdata),
     .io_fwmem_reg_we        (_mem_io_fwmem_reg_we)
   );
   Wb wb (	// Core.scala:44:20
@@ -709,6 +720,7 @@ module Core(	// <stdin>:635:10
     .io_rfio_reg_wen   (_wb_io_rfio_reg_wen),
     .io_rfio_reg_wdata (_wb_io_rfio_reg_wdata),
     .io_fwwb_reg_waddr (_wb_io_fwwb_reg_waddr),
+    .io_fwwb_reg_wdata (_wb_io_fwwb_reg_wdata),
     .io_fwwb_reg_we    (_wb_io_fwwb_reg_we)
   );
   Regfile regfile (	// Core.scala:85:25
@@ -735,8 +747,10 @@ module Core(	// <stdin>:635:10
     .io_fwex_reg_wdata  (_excute_io_fwex_reg_wdata),	// Core.scala:41:24
     .io_fwex_reg_we     (_excute_io_fwex_reg_we),	// Core.scala:41:24
     .io_fwmem_reg_waddr (_mem_io_fwmem_reg_waddr),	// Core.scala:43:21
+    .io_fwmem_reg_wdata (_mem_io_fwmem_reg_wdata),	// Core.scala:43:21
     .io_fwmem_reg_we    (_mem_io_fwmem_reg_we),	// Core.scala:43:21
     .io_fwwb_reg_waddr  (_wb_io_fwwb_reg_waddr),	// Core.scala:44:20
+    .io_fwwb_reg_wdata  (_wb_io_fwwb_reg_wdata),	// Core.scala:44:20
     .io_fwwb_reg_we     (_wb_io_fwwb_reg_we),	// Core.scala:44:20
     .io_fwde_fw_sel1    (_fw_io_fwde_fw_sel1),
     .io_fwde_fw_sel2    (_fw_io_fwde_fw_sel2),

@@ -39,7 +39,8 @@ static void reset(int n) {
 int main(int argc, char **argv) {
   init_regex();
 
-  pmem.mem_loader("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
+  uint64_t size = pmem.mem_loader("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
+  init_difftest();
 
   Verilated::traceEverOn(true);
   

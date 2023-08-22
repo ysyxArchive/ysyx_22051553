@@ -8,6 +8,10 @@
 
 memory pmem;
 
+uint8_t* memory::get_mem(){
+    return mem;
+}
+
 uint64_t memory::mem_read(uint64_t raddr){ //用于rtl
     // uint32_t addr = (pmem.mem + raddr - CONFIG_MBASE) & ~0x7ul; //错误
 
@@ -76,6 +80,8 @@ void memory::mem_display(uint64_t addr, int len){  //1个单位打印4字节
 
 
 void memory::mem_loader(const char* filename){
+    uint64_t size = 0;
+
     std::ifstream file;
     file.open(filename, std::ios::binary);
     assert(file.is_open());
@@ -95,6 +101,7 @@ void memory::mem_loader(const char* filename){
             file.seekg(elf_ph[i].p_offset, std::ios::beg);
             file.read( (char *)(pmem.mem + elf_ph[i].p_vaddr - CONFIG_MBASE), (elf_ph[i].p_filesz));
             memset((void *)(pmem.mem + elf_ph[i].p_vaddr + elf_ph[i].p_filesz - CONFIG_MBASE), 0, elf_ph[i].p_memsz - elf_ph[i].p_filesz);
+            size += elf_ph[i].p_memsz;
         }
     }
 
