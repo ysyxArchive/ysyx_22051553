@@ -91,7 +91,8 @@ __EXPORT void difftest_regcpy(void *dut, bool direction) {
 __EXPORT void difftest_exec(uint64_t n) {   //dut执行n步后执行
 
   struct diff_context_t dut_r;
-
+  printf("in exec\n");
+  isa_reg_display();
   cpu_exec(n);
   difftest_regcpy(&dut_r, DIFFTEST_TO_REF);
   
