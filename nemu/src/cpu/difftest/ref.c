@@ -90,7 +90,6 @@ __EXPORT void difftest_exec(uint64_t n) {   //dut执行n步后执行
   struct diff_context_t dut_r;
 
   cpu_exec(n);
-  printf("hrere\n");
   difftest_regcpy(&dut_r, DIFFTEST_TO_REF);
   
 
