@@ -52,6 +52,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 }
 
 static void exec_once(Decode *s, vaddr_t pc) {
+  printf("hrere\n");
   debug_pc = pc;
   s->pc = pc;
   s->snpc = pc;
@@ -96,7 +97,6 @@ static void execute(uint64_t n) {
   Decode s;
   for (;n > 0; n --) {
     exec_once(&s, cpu.pc);
-    printf("hrere\n");
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);                   //写log
     if (nemu_state.state != NEMU_RUNNING) break;  //即使上一条指令有错，会导致NEMU_ABORT,也会执行完，到这里，再跳转出去
