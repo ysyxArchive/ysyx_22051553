@@ -45,8 +45,6 @@ static void get_regs(void* diff_context){  //设置npc的寄存器
 
 static bool difftest_checkregs(void* diff_context){
   struct diff_context_t* ctx = (struct diff_context_t*)diff_context;
-  printf("in difftest_checkregs\n");
-  isa_reg_display();
 
   for(int i = 0; i < 32; i++){
     if(ctx->gpr[i] != cpu.gpr[i])
@@ -93,12 +91,8 @@ __EXPORT void difftest_regcpy(void *dut, bool direction) {
 __EXPORT void difftest_exec(uint64_t n) {   //dut执行n步后执行
 
   struct diff_context_t dut_r;
-  printf("in exec\n");
-  isa_reg_display();
   cpu_exec(n);
   difftest_regcpy(&dut_r, DIFFTEST_TO_REF);
-  printf("in exec2\n");
-  isa_reg_display();
 
   checkregs(&dut_r);
 }
