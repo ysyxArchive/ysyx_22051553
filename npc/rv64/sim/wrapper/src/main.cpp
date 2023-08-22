@@ -38,7 +38,7 @@ static void reset(int n) {
 }
 
 static void syn_diff(){
-  int n = 6;
+  int n = 5;
   while(n -- > 0) single_cycle();
 }
 

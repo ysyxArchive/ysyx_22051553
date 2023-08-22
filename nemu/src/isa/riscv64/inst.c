@@ -99,6 +99,7 @@ static void decode_operand(Decode *s, char* name, int *rd, int *rs1, int *csrn, 
 }
 
 static int decode_exec(Decode *s) {
+  printf("decoding\n");
   int rs1 = 0;
   int rd = 0;
   int csrn = 0;
