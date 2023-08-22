@@ -62,7 +62,6 @@ void update_debuginfo(
     cpu_ins.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);
   }
 
-  printf("here\n");
 }
 
 long long pmem_read(const svLogicVecVal* raddr){
