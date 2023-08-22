@@ -166,9 +166,6 @@ module ControlUnit(	// <stdin>:44:10
   wire       _controlsig_T_26 = _GEN == 10'h1A3;	// Lookup.scala:31:38
   wire [1:0] _controlsig_T_44 = {_controlsig_T_26, 1'h0};	// Lookup.scala:31:38, :34:39
   wire       _GEN_0 = _controlsig_T_9 | _controlsig_T_11;	// Lookup.scala:31:38, :34:39
-  wire [2:0] _controlsig_T_56 = {_controlsig_T_26, 2'h0};	// Lookup.scala:31:38, :34:39
-  wire       _GEN_1 = _controlsig_T_1 | _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 | _controlsig_T_9 |
-                _controlsig_T_11;	// Lookup.scala:31:38, :34:39
   assign io_jump_type = _controlsig_T_1 | _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 ? 2'h0 :
                 _controlsig_T_9 ? 2'h1 : {_controlsig_T_11, 1'h0};	// <stdin>:44:10, Lookup.scala:31:38, :34:39
   assign io_opa_type = _controlsig_T_1 ? 2'h0 : _controlsig_T_3 ? 2'h2 : _controlsig_T_5 ? 2'h1 : _controlsig_T_7
@@ -181,8 +178,9 @@ module ControlUnit(	// <stdin>:44:10
                 _controlsig_T_9 | _controlsig_T_11 | _controlsig_T_26)}};	// <stdin>:44:10, Lookup.scala:31:38, :34:39
   assign io_wb_type = _controlsig_T_1 ? 2'h0 : _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 |
                 _controlsig_T_9 | _controlsig_T_11 ? 2'h1 : _controlsig_T_44;	// <stdin>:44:10, Lookup.scala:31:38, :34:39
-  assign io_sd_type = _GEN_1 ? 3'h0 : _controlsig_T_56;	// <stdin>:44:10, Lookup.scala:34:39
-  assign io_ld_type = _GEN_1 ? 3'h0 : _controlsig_T_56;	// <stdin>:44:10, Lookup.scala:34:39
+  assign io_sd_type = _controlsig_T_1 | _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 | _controlsig_T_9 |
+                _controlsig_T_11 ? 3'h0 : {_controlsig_T_26, 2'h0};	// <stdin>:44:10, Lookup.scala:31:38, :34:39
+  assign io_ld_type = 3'h0;	// <stdin>:44:10, Lookup.scala:34:39
 endmodule
 
 module Eximm(	// <stdin>:128:10

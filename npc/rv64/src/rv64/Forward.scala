@@ -50,15 +50,15 @@ class Forward extends Module{
     io.fwde.fw_data1 := MuxCase(0.U,
         Seq(
             (reg1_ex_hazard) -> io.fwex.reg_wdata,
-            (reg1_mem_hazard) -> io.fwex.reg_wdata,
-            (reg1_wb_hazard) -> io.fwex.reg_wdata,
+            (reg1_mem_hazard) -> io.fwmem.reg_wdata,
+            (reg1_wb_hazard) -> io.fwwb.reg_wdata,
         )
     )
     io.fwde.fw_data2 := MuxCase(0.U,
         Seq(
             (reg2_ex_hazard) -> io.fwex.reg_wdata,
-            (reg2_mem_hazard) -> io.fwex.reg_wdata,
-            (reg2_wb_hazard) -> io.fwex.reg_wdata,
+            (reg2_mem_hazard) -> io.fwmem.reg_wdata,
+            (reg2_wb_hazard) -> io.fwwb.reg_wdata,
         )
     )
 

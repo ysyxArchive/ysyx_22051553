@@ -16,11 +16,11 @@ extern "C" {
 
 
     // DPI IMPORTS
-    // DPI import at vsrc/Soc.v:891:33
+    // DPI import at vsrc/Soc.v:889:33
     extern long long pmem_read(const svLogicVecVal* raddr);
-    // DPI import at vsrc/Soc.v:894:30
+    // DPI import at vsrc/Soc.v:892:30
     extern void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask);
-    // DPI import at vsrc/Soc.v:851:30
+    // DPI import at vsrc/Soc.v:849:30
     extern void update_debuginfo(const svLogicVecVal* pc, svLogic pc_req, const svLogicVecVal* inst, svLogic inst_valid, const svLogicVecVal* op_a, const svLogicVecVal* op_b, const svLogicVecVal* result, const svLogicVecVal* rd, const svLogicVecVal* reg_wdata, svLogic reg_wen);
 
 #ifdef __cplusplus
