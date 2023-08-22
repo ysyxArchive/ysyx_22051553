@@ -137,6 +137,7 @@ static int cmd_s(char *args){
 
   if(args == NULL){
     single_cycle();
+    ref_difftest_exec(1);
   }
   else {
     uint64_t n = atoi(args);
