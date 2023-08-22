@@ -13,6 +13,7 @@ VerilatedVcdC * vcd = new VerilatedVcdC;
 
 void sdb_mainloop();
 void init_regex();
+void init_difftest(const char *ref_so_file, long img_size, int port);
 
 
 
@@ -36,11 +37,16 @@ static void reset(int n) {
   dut.reset = 0;
 }
 
+static void syn_diff(){
+  int n = 6;
+  while(n -- > 0) single_cycle();
+}
+
 int main(int argc, char **argv) {
   init_regex();
 
   uint64_t size = pmem.mem_loader("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
-  init_difftest();
+  init_difftest("/home/shikye/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so", size, 0);
 
   Verilated::traceEverOn(true);
   
@@ -48,6 +54,8 @@ int main(int argc, char **argv) {
   vcd->open("wave.vcd");
   
   reset(2);        
+
+  syn_diff();
   
 
   sdb_mainloop();

@@ -7,7 +7,7 @@ void cpu::gpr_display(){
     printf("pc\t\t0x%-16lx\t\t%-20ld\n", regs_state.pc, regs_state.pc);
 
     for(int i = 0; i < 32; i ++){
-      printf("%s\t\t0x%-16lx\t\t%-20ld\n", regs[i], regs_state.gpr[i], gpr[i]);
+      printf("%s\t\t0x%-16lx\t\t%-20ld\n", regs[i], regs_state.gpr[i], regs_state.gpr[i]);
     }    
 }
 

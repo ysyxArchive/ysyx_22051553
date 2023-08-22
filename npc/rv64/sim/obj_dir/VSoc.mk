@@ -43,6 +43,7 @@ VM_USER_LDLIBS = \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
+	difftest \
 	cpu \
 	main \
 	memory \
@@ -53,6 +54,7 @@ VM_USER_CLASSES = \
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
 	./wrapper/src \
+	./wrapper/src/difftest \
 	./wrapper/src/isa \
 	./wrapper/src/memory \
 	./wrapper/src/monitor/debug \
@@ -68,6 +70,8 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
+difftest.o: ./wrapper/src/difftest/difftest.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 cpu.o: ./wrapper/src/isa/cpu.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 main.o: ./wrapper/src/main.cpp

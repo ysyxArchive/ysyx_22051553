@@ -79,7 +79,7 @@ void memory::mem_display(uint64_t addr, int len){  //1个单位打印4字节
 }
 
 
-void memory::mem_loader(const char* filename){
+uint64_t memory::mem_loader(const char* filename){
     uint64_t size = 0;
 
     std::ifstream file;
@@ -104,6 +104,8 @@ void memory::mem_loader(const char* filename){
             size += elf_ph[i].p_memsz;
         }
     }
+
+    return size;
 
 }
 

@@ -11,7 +11,7 @@
 #include "svdpi.h"
 #include "memory.hpp"
 
-
+extern void (*ref_difftest_exec)(uint64_t n);
 void single_cycle();
 uint64_t expr(char *e, bool *success);
 
@@ -59,7 +59,7 @@ void update_debuginfo(
     (unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval,
     (bool)reg_wen);
   if((bool)reg_wen){
-    diff_cpu.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);
+    cpu_ins.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);
   }
 
   printf("here\n");
@@ -121,7 +121,7 @@ static int cmd_q(char *args) {
 static int cmd_i(char *args) {
   
   if(strcmp(args, "r") == 0){
-    diff_cpu.gpr_display();
+    cpu_ins.gpr_display();
   }
   else if(strcmp(args, "w") == 0){
     return 0;
@@ -142,6 +142,7 @@ static int cmd_s(char *args){
     uint64_t n = atoi(args);
     while(n > 0){
       single_cycle();
+      ref_difftest_exec(1);
       n --;
     }
   }

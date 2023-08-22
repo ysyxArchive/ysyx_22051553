@@ -51,6 +51,7 @@ static bool difftest_checkregs(void* diff_context){
   if(ctx->pc != cpu.pc) 
     return false;
   
+  printf("difftest checkregs ok!\n");
   return true;
 }
 
