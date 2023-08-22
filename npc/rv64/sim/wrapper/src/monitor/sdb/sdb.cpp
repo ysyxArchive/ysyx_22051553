@@ -136,6 +136,8 @@ static int cmd_s(char *args){
 
   if(args == NULL){
     single_cycle();
+    cpu_ins.gpr_display();
+    printf("--------------------\n");
     ref_difftest_exec(1);
   }
   else {

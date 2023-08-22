@@ -63,6 +63,7 @@ static void checkregs(void* diff_context){
     nemu_state.halt_pc = ctx->pc ;
     isa_reg_display();
   }
+  isa_reg_display();
 }
 
 __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {  //这里的addr是0x80000000
