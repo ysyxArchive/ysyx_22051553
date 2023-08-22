@@ -52,7 +52,6 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 }
 
 static void exec_once(Decode *s, vaddr_t pc) {
-  printf("hrere\n");
   debug_pc = pc;
   s->pc = pc;
   s->snpc = pc;
