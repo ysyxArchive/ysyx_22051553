@@ -19,7 +19,10 @@ class VSoc___024root final : public VerilatedModule {
     // DESIGN SPECIFIC STATE
     VL_IN8(clock,0,0);
     VL_IN8(reset,0,0);
+    CData/*0:0*/ Soc__DOT__core__DOT___fw_io_fwde_fw_sel1;
+    CData/*0:0*/ Soc__DOT__core__DOT___fw_io_fwde_fw_sel2;
     CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_flag;
+    CData/*0:0*/ Soc__DOT__core__DOT___mem_io_fwmem_reg_we;
     CData/*2:0*/ Soc__DOT__core__DOT___decode_io_deio_sd_type;
     CData/*4:0*/ Soc__DOT__core__DOT__dereg_rd;
     CData/*4:0*/ Soc__DOT__core__DOT__dereg_alu_op;
@@ -32,8 +35,6 @@ class VSoc___024root final : public VerilatedModule {
     CData/*2:0*/ Soc__DOT__core__DOT__emreg_ld_addr_lowbit;
     CData/*1:0*/ Soc__DOT__core__DOT__mwreg_wb_type;
     CData/*4:0*/ Soc__DOT__core__DOT__mwreg_rd;
-    CData/*2:0*/ Soc__DOT__core__DOT__mwreg_ld_type;
-    CData/*2:0*/ Soc__DOT__core__DOT__mwreg_ld_addr_lowbit;
     CData/*0:0*/ Soc__DOT__core__DOT__interact__DOT__ebreak_flag;
     CData/*2:0*/ Soc__DOT__core__DOT__interact__DOT__over_count;
     CData/*0:0*/ Soc__DOT__core__DOT__fetch__DOT__started;
@@ -64,14 +65,13 @@ class VSoc___024root final : public VerilatedModule {
     QData/*63:0*/ Soc__DOT__core__DOT__dereg_op_b;
     QData/*63:0*/ Soc__DOT__core__DOT__dereg_reg2_rdata;
     QData/*63:0*/ Soc__DOT__core__DOT__emreg_alu_res;
-    QData/*63:0*/ Soc__DOT__core__DOT__mwreg_alu_res;
-    QData/*63:0*/ Soc__DOT__core__DOT__mwreg_ld_data;
+    QData/*63:0*/ Soc__DOT__core__DOT__mwreg_wb_data;
     QData/*63:0*/ Soc__DOT__core__DOT__fetch__DOT__pc;
     QData/*63:0*/ Soc__DOT__core__DOT__fetch__DOT___next_pc_T_7;
     QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm;
     QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___io_raddr_T_1;
     QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___alu_io_result;
-    VlWide<16>/*511:0*/ Soc__DOT__core__DOT__wb__DOT___GEN_1;
+    VlWide<16>/*511:0*/ Soc__DOT__core__DOT__mem__DOT___GEN_1;
     QData/*63:0*/ Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data;
     QData/*63:0*/ __VdfgTmp_h6424cc69__0;
     VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
