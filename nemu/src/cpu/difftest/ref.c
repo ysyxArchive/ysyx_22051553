@@ -43,6 +43,8 @@ static void get_regs(void* diff_context){  //设置npc的寄存器
 
 static bool difftest_checkregs(void* diff_context){
   struct diff_context_t* ctx = (struct diff_context_t*)diff_context;
+  printf("in difftest_checkregs\n");
+  isa_reg_display();
 
   for(int i = 0; i < 32; i++){
     if(ctx->gpr[i] != cpu.gpr[i])
