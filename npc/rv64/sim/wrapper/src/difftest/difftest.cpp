@@ -27,7 +27,7 @@ void init_difftest(const char *ref_so_file, long img_size, int port){
     ref_difftest_raise_intr = (void(*)(uint64_t))dlsym(handle, "difftest_raise_intr");
     assert(ref_difftest_raise_intr);
 
-    void (*ref_difftest_init)(int) = (void (*)(int))dlsym(handle, "difftest_init");
+    void (*ref_difftest_init)(int, struct diff_context_t*) = (void (*)(int, struct diff_context_t))dlsym(handle, "difftest_init");
     assert(ref_difftest_init);
 
     Log("Differential testing: %s", ANSI_FMT("ON", ANSI_FG_GREEN));
@@ -35,7 +35,7 @@ void init_difftest(const char *ref_so_file, long img_size, int port){
       "This will help you a lot for debugging, but also significantly reduce the performance. "
       "If it is not necessary, you can turn it off in menuconfig.", ref_so_file);
 
-    ref_difftest_init(port);
+    ref_difftest_init(port, cpu_ins.get_reg_bundle());
     ref_difftest_memcpy(0x80000000, pmem.get_mem(), img_size, 1);
     // ref_difftest_regcpy(cpu_ins.get_reg_bundle(), 1);
 

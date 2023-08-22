@@ -25,20 +25,22 @@ struct diff_context_t {   //c和c++之间传结构体指针，模仿spike的ref
   unsigned long pc;
 };
 
-static void set_regs(void* diff_context){  //设置ref的寄存器
+struct diff_context_t* dut_state;
+
+static void set_regs(void* diff_context){  //设置ref中的寄存器
   struct diff_context_t* ctx = (struct diff_context_t*)diff_context;
   for(int i = 0; i < 32; i++){
-    cpu.gpr[i] = ctx->gpr[i];
+    ctx->gpr[i] = dut_state->gpr[i];
   }
-  cpu.pc = ctx->pc;
+  ctx->pc = dut_state->pc;
 }
 
 static void get_regs(void* diff_context){  //设置npc的寄存器
   struct diff_context_t* ctx = (struct diff_context_t*)diff_context;
   for(int i = 0; i < 32; i++){
-    ctx->gpr[i] = cpu.gpr[i];
+    dut_state->gpr[i] = ctx->gpr[i];
   }
-  ctx->pc = cpu.pc;
+  dut_state->pc = ctx->pc;
 }
 
 static bool difftest_checkregs(void* diff_context){
@@ -105,9 +107,11 @@ __EXPORT void difftest_raise_intr(word_t NO) {
   assert(0);
 }
 
-__EXPORT void difftest_init(int port) {
+__EXPORT void difftest_init(int port, struct diff_context_t* regs_state) {
   void init_mem();
   init_mem();
   /* Perform ISA dependent initialization. */
   init_isa();
+
+  dut_state = regs_state; 
 }
