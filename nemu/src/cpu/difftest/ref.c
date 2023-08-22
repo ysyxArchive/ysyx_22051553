@@ -95,7 +95,8 @@ __EXPORT void difftest_exec(uint64_t n) {   //dut执行n步后执行
   isa_reg_display();
   cpu_exec(n);
   difftest_regcpy(&dut_r, DIFFTEST_TO_REF);
-  
+  printf("in exec2\n");
+  isa_reg_display();
 
   checkregs(&dut_r);
 }
