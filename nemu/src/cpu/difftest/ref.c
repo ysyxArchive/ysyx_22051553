@@ -108,4 +108,5 @@ __EXPORT void difftest_init(int port, struct diff_context_t* regs_state) {
   init_isa();
 
   dut_state = regs_state; 
+  difftest_regcpy(&cpu, DIFFTEST_TO_REF);
 }

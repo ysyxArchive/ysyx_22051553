@@ -12,8 +12,11 @@ void cpu::gpr_display(){
 }
 
 void cpu::set_value(int num, unsigned long value){
-  assert(num < 32 && num >= 0);
-  regs_state.gpr[num] = value;
+  assert(num < 33 && num >= 0);
+  if(num == 32)
+    regs_state.pc = value;  
+  else
+    regs_state.gpr[num] = value;
 }
 
 unsigned long cpu::isa_reg_str2val(const char *s, bool *success){

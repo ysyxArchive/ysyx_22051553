@@ -58,6 +58,9 @@ void update_debuginfo(
     (unsigned int)rd[0].aval,
     (unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval,
     (bool)reg_wen);
+
+  cpu_ins.set_value(32, (unsigned long)pc[1].aval << 32 | pc[0].aval); //fetch中
+
   if((bool)reg_wen){
     cpu_ins.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);
   }
