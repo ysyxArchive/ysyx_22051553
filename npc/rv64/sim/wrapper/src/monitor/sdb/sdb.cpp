@@ -70,6 +70,7 @@ void update_debuginfo(
     sync_flag = true;
 
   if(sync_flag){
+    printf("ok\n");
 
     unsigned long set_pc = old_pc.front();
     old_pc.pop();
