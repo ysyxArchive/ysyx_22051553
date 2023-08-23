@@ -60,7 +60,6 @@ class VSoc___024root final : public VerilatedModule {
     QData/*63:0*/ Soc__DOT___tm_rdata;
     QData/*63:0*/ Soc__DOT___core_io_waddr;
     QData/*63:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
-    QData/*63:0*/ Soc__DOT__core__DOT___regfile_io_RfDe_reg1_rdata;
     QData/*63:0*/ Soc__DOT__core__DOT___regfile_io_RfDe_reg2_rdata;
     QData/*63:0*/ Soc__DOT__core__DOT___mem_io_fwmem_reg_wdata;
     QData/*63:0*/ Soc__DOT__core__DOT___fetch_io_fdio_pc;
@@ -73,6 +72,7 @@ class VSoc___024root final : public VerilatedModule {
     QData/*63:0*/ Soc__DOT__core__DOT__fetch__DOT__pc;
     QData/*63:0*/ Soc__DOT__core__DOT__fetch__DOT___next_pc_T_7;
     QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm;
+    QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___io_jump_pc_T_4;
     QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___io_raddr_T_1;
     QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___alu_io_result;
     VlWide<16>/*511:0*/ Soc__DOT__core__DOT__mem__DOT___GEN_1;

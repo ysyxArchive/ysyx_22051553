@@ -57,7 +57,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   s->snpc = pc;
   isa_exec_once(s);
   cpu.pc = s->dnpc;             //注意静态指令和动态指令    静态是pc+4,动态可能是跳转地址          注意pc指的就是当前的pc,和流水线硬件不一样        nemu是单周期模拟器   设置snpc、dnpc的原因是，pc在该指令完全模拟结束之前，还需要使用
-  printf("after exec pc is 0x%lx\n", cpu.pc);
+  // printf("after exec pc is 0x%lx\n", cpu.pc);
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;               //p指针不断后移    snprint返回值是写入的字符长度
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);      //"0x%016x" 将pc写入log

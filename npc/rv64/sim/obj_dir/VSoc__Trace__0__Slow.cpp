@@ -326,7 +326,12 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullQData(oldp+37,(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result),64);
     bufp->fullBit(oldp+39,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type))));
     bufp->fullIData(oldp+40,(vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits),32);
-    bufp->fullQData(oldp+41,(vlSelf->Soc__DOT__core__DOT___regfile_io_RfDe_reg1_rdata),64);
+    bufp->fullQData(oldp+41,(((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                                               >> 0xfU)))
+                               ? vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
+                              [(0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                                         >> 0xfU))]
+                               : 0ULL)),64);
     bufp->fullQData(oldp+43,(vlSelf->Soc__DOT__core__DOT___regfile_io_RfDe_reg2_rdata),64);
     bufp->fullBit(oldp+45,(((IData)(vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_ex_hazard) 
                             | ((IData)(vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_mem_hazard) 
@@ -353,17 +358,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+52,((0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
                                        >> 0x14U))),5);
     bufp->fullQData(oldp+53,(((2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type))
-                               ? (((IData)(vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_ex_hazard) 
-                                   | ((IData)(vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_mem_hazard) 
-                                      | (IData)(vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_wb_hazard)))
-                                   ? ((IData)(vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_ex_hazard)
-                                       ? vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result
-                                       : ((IData)(vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_mem_hazard)
-                                           ? vlSelf->Soc__DOT__core__DOT___mem_io_fwmem_reg_wdata
-                                           : ((IData)(vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_wb_hazard)
-                                               ? vlSelf->Soc__DOT__core__DOT__mwreg_wb_data
-                                               : 0ULL)))
-                                   : vlSelf->Soc__DOT__core__DOT___regfile_io_RfDe_reg1_rdata)
+                               ? vlSelf->Soc__DOT__core__DOT__decode__DOT___io_jump_pc_T_4
                                : ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type))
                                    ? vlSelf->Soc__DOT__core__DOT__fdreg_pc
                                    : 0ULL))),64);
@@ -546,8 +541,8 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                   + vlSelf->Soc__DOT__core__DOT__fdreg_pc)
                                : ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type))
                                    ? (0xfffffffffffffffeULL 
-                                      & (vlSelf->Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm 
-                                         + vlSelf->Soc__DOT__core__DOT___regfile_io_RfDe_reg1_rdata))
+                                      & (vlSelf->Soc__DOT__core__DOT__decode__DOT___io_jump_pc_T_4 
+                                         + vlSelf->Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm))
                                    : 0x80000000ULL))),64);
     bufp->fullCData(oldp+64,(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type),2);
     bufp->fullCData(oldp+65,(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type),2);
