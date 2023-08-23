@@ -49,6 +49,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+35,"mwreg_rd", false,-1, 4,0);
     tracep->pushNamePrefix("DI ");
     tracep->declBit(c+161,"clk", false,-1);
+    tracep->declBit(c+162,"rst", false,-1);
     tracep->declQuad(c+5,"pc", false,-1, 63,0);
     tracep->declBit(c+7,"pc_req", false,-1);
     tracep->declBus(c+36,"inst", false,-1, 31,0);

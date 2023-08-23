@@ -42,30 +42,7 @@ static void get_regs(void* diff_context){  //设置npc的寄存器
   ctx->pc = cpu.pc;
 }
 
-static bool difftest_checkregs(void* diff_context){
-  struct diff_context_t* ctx = (struct diff_context_t*)diff_context;
 
-  for(int i = 0; i < 32; i++){
-    if(ctx->gpr[i] != cpu.gpr[i])
-      return false;
-  }
-  if(ctx->pc != cpu.pc) 
-    return false;
-  
-  printf("difftest checkregs ok!\n");
-  return true;
-}
-
-static void checkregs(void* diff_context){
-  struct diff_context_t* ctx = (struct diff_context_t*)diff_context;
-
-  if (!difftest_checkregs(ctx)) {
-    printf("not equal\n");
-    nemu_state.state = NEMU_ABORT;
-    nemu_state.halt_pc = ctx->pc ;
-    isa_reg_display();
-  }
-}
 
 __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {  //这里的addr是0x80000000
   

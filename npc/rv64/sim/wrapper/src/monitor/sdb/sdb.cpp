@@ -12,7 +12,7 @@
 #include "memory.hpp"
 #include <queue>
 
-void difftest_step(uint64_t pc);
+bool difftest_step(uint64_t pc);
 void single_cycle();
 
 uint64_t expr(char *e, bool *success);
@@ -70,7 +70,8 @@ void update_debuginfo(
     sync_flag = true;
 
   if(sync_flag){
-    unsigned long set_pc = old_pc.pop();
+    unsigned long set_pc = old_pc.front();
+    old_pc.pop();
 
     cpu_ins.set_value(32, set_pc); //wb中的
   }
@@ -157,14 +158,20 @@ static int cmd_s(char *args){
   if(args == NULL){
     single_cycle();
     cpu_ins.gpr_display();
-    printf("--------------------\n");
-    ref_difftest_exec(1);
+    unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
+    if(! difftest_step(pc_comp))
+      Verilated::gotFinish(1);
   }
   else {
     uint64_t n = atoi(args);
     while(n > 0){
       single_cycle();
-      ref_difftest_exec(1);
+      unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
+      if(! difftest_step(pc_comp)){
+        Verilated::gotFinish(1);
+        break;
+      }
+        
       n --;
     }
   }
