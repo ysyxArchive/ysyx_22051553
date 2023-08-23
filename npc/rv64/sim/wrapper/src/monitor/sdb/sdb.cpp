@@ -159,6 +159,8 @@ static int cmd_s(char *args){
   if(args == NULL){
     single_cycle();
     unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
+    printf("dut pc after exec is 0x%lx\n", pc_comp);
+
     if(! difftest_step(pc_comp)){
       printf("not equal");
       Verilated::gotFinish(1);
