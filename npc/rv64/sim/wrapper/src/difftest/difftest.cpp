@@ -48,6 +48,17 @@ bool difftest_checkregs(struct diff_context_t* ref_r, uint64_t pc){
 
   struct diff_context_t* cpu = (struct diff_context_t*)(cpu_ins.get_reg_bundle());  
 
+    printf("ref:\n");
+
+    printf("pc\t\t0x%-16lx\t\t%-20ld\n", ref_r -> pc, ref_r -> pc);
+
+    for(int i = 0; i < 32; i ++){
+      printf("0x%-16lx\t\t%-20ld\n", ref_r -> gpr[i], ref_r -> gpr[i]);
+    }  
+
+    printf("dut:\n");
+    cpu_ins.gpr_display();
+
   for(int i = 0; i < 32; i++){
     if(ref_r->gpr[i] != cpu -> gpr[i])
       return false;

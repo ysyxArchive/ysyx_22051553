@@ -49,7 +49,7 @@ void update_debuginfo(
 {
   
   static bool sync_flag = 0;
-  std::queue<unsigned long> old_pc;
+  static std::queue<unsigned long> old_pc;
   
   
   debug_ins.update(
@@ -70,6 +70,7 @@ void update_debuginfo(
     sync_flag = true;
 
   if(sync_flag){
+
     unsigned long set_pc = old_pc.front();
     old_pc.pop();
 
@@ -77,7 +78,7 @@ void update_debuginfo(
   }
     
 
-  if((bool)reg_wen){
+  if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
     cpu_ins.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);
   }
 
@@ -157,10 +158,12 @@ static int cmd_s(char *args){
 
   if(args == NULL){
     single_cycle();
-    cpu_ins.gpr_display();
     unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
-    if(! difftest_step(pc_comp))
+    if(! difftest_step(pc_comp)){
+      printf("not equal");
       Verilated::gotFinish(1);
+    }
+      
   }
   else {
     uint64_t n = atoi(args);
@@ -168,6 +171,7 @@ static int cmd_s(char *args){
       single_cycle();
       unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
       if(! difftest_step(pc_comp)){
+        printf("not equal");
         Verilated::gotFinish(1);
         break;
       }
