@@ -10,6 +10,7 @@ import Define._
 class DebugInterface extends BlackBox with HasBlackBoxInline{
     val io = IO(new Bundle {
         val clk = Input(Clock())
+        val rst = Input(Reset())
         //------IF
         val pc = Input(UInt(PC_LEN.W))
         val pc_req = Input(Bool())
@@ -39,7 +40,8 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     |
     |module DebugInterface(
     |                   input        clk,
-    |   
+    |                   input        rst,            
+    |           
     |                   input [63:0] pc,
     |                   input        pc_req,
     |
@@ -60,7 +62,8 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     |
     |
     |always@(posedge clk)begin
-    |   update_debuginfo(pc,pc_req,inst,inst_valid,op_a,op_b,result,rd,reg_wdata,reg_wen);
+    |   if(rst != 'd1)
+    |       update_debuginfo(pc,pc_req,inst,inst_valid,op_a,op_b,result,rd,reg_wdata,reg_wen);
     |end
     |
     |

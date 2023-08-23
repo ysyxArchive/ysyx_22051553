@@ -25,22 +25,21 @@ struct diff_context_t {   //c和c++之间传结构体指针，模仿spike的ref
   unsigned long pc;
 };
 
-struct diff_context_t* dut_state;
 
 static void set_regs(void* diff_context){  //设置ref中的寄存器
   struct diff_context_t* ctx = (struct diff_context_t*)diff_context;
   for(int i = 0; i < 32; i++){
-    ctx->gpr[i] = dut_state->gpr[i];
+    cpu.gpr[i] = ctx->gpr[i];
   }
-  ctx->pc = dut_state->pc;
+  cpu.pc = ctx->pc;
 }
 
 static void get_regs(void* diff_context){  //设置npc的寄存器
   struct diff_context_t* ctx = (struct diff_context_t*)diff_context;
   for(int i = 0; i < 32; i++){
-    dut_state->gpr[i] = ctx->gpr[i];
+    ctx->gpr[i] = cpu.gpr[i];
   }
-  dut_state->pc = ctx->pc;
+  ctx->pc = cpu.pc;
 }
 
 static bool difftest_checkregs(void* diff_context){
@@ -89,12 +88,7 @@ __EXPORT void difftest_regcpy(void *dut, bool direction) {
 }
 
 __EXPORT void difftest_exec(uint64_t n) {   //dut执行n步后执行
-
-  struct diff_context_t dut_r;
   cpu_exec(n);
-  difftest_regcpy(&dut_r, DIFFTEST_TO_REF);
-
-  checkregs(&dut_r);
 }
 
 __EXPORT void difftest_raise_intr(word_t NO) {
@@ -106,7 +100,4 @@ __EXPORT void difftest_init(int port, struct diff_context_t* regs_state) {
   init_mem();
   /* Perform ISA dependent initialization. */
   init_isa();
-
-  dut_state = regs_state; 
-  difftest_regcpy(&cpu, DIFFTEST_TO_REF);
 }

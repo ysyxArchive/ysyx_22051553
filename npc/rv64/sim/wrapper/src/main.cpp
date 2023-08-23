@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
   init_regex();
 
   uint64_t size = pmem.mem_loader("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
-  init_difftest("/home/shikye/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so", size, 0);
+  
 
   Verilated::traceEverOn(true);
   
@@ -56,6 +56,7 @@ int main(int argc, char **argv) {
   reset(2);        
 
   syn_diff();
+  init_difftest("/home/shikye/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so", size, 0);
   
 
   sdb_mainloop();

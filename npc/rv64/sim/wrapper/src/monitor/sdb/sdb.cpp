@@ -10,9 +10,11 @@
 #include "debug.hpp"
 #include "svdpi.h"
 #include "memory.hpp"
+#include <queue>
 
-extern void (*ref_difftest_exec)(uint64_t n);
+void difftest_step(uint64_t pc);
 void single_cycle();
+
 uint64_t expr(char *e, bool *success);
 
 extern "C" {
@@ -46,7 +48,10 @@ void update_debuginfo(
   svLogic reg_wen)
 {
   
-
+  static bool sync_flag = 0;
+  std::queue<unsigned long> old_pc;
+  
+  
   debug_ins.update(
     (unsigned long)pc[1].aval << 32 | pc[0].aval,
     (bool)pc_req,
@@ -58,12 +63,24 @@ void update_debuginfo(
     (unsigned int)rd[0].aval,
     (unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval,
     (bool)reg_wen);
+  
 
-  cpu_ins.set_value(32, (unsigned long)pc[1].aval << 32 | pc[0].aval); //fetch中
+  old_pc.push((unsigned long)pc[1].aval << 32 | pc[0].aval);
+  if(old_pc.size() == 4)
+    sync_flag = true;
+
+  if(sync_flag){
+    unsigned long set_pc = old_pc.pop();
+
+    cpu_ins.set_value(32, set_pc); //wb中的
+  }
+    
 
   if((bool)reg_wen){
     cpu_ins.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);
   }
+
+
 
 }
 

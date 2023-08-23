@@ -9,6 +9,7 @@ void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
 void (*ref_difftest_exec)(uint64_t n) = NULL;
 void (*ref_difftest_raise_intr)(uint64_t NO) = NULL;
 
+
 void init_difftest(const char *ref_so_file, long img_size, int port){
     assert(ref_so_file != NULL);
 
@@ -39,4 +40,29 @@ void init_difftest(const char *ref_so_file, long img_size, int port){
     ref_difftest_memcpy(0x80000000, pmem.get_mem(), img_size, 1);
     // ref_difftest_regcpy(cpu_ins.get_reg_bundle(), 1);
 
+}
+
+
+
+bool difftest_checkregs(struct diff_context_t* ref_r, uint64_t pc){
+
+  struct diff_context_t* cpu = (struct diff_context_t*)(cpu_ins.get_reg_bundle());  
+
+  for(int i = 0; i < 32; i++){
+    if(ref_r->gpr[i] != cpu -> gpr[i])
+      return false;
+  }
+  if(ref_r->pc != cpu -> pc) 
+    return false;
+  
+  return true;
+}
+
+bool difftest_step(uint64_t pc) {
+  struct diff_context_t ref_r;
+
+  ref_difftest_exec(1);
+  ref_difftest_regcpy(&ref_r, 0);
+
+  return difftest_checkregs(&ref_r, pc);
 }

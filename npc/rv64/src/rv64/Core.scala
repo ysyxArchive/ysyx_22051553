@@ -268,6 +268,7 @@ class Core extends Module{
     //---debug
     val DI= Module(new DebugInterface)
     DI.io.clk := clock
+    DI.io.rst := reset
     DI.io.pc := fetch.io.pc.bits
     DI.io.pc_req := fetch.io.pc.valid
     DI.io.inst := io.inst
