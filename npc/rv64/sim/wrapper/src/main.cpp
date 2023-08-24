@@ -14,7 +14,7 @@ VerilatedVcdC * vcd = new VerilatedVcdC;
 void sdb_mainloop();
 void init_regex();
 void init_difftest(const char *ref_so_file, long img_size, int port);
-
+void init_disasm(const char *triple);
 
 
 
@@ -44,6 +44,7 @@ static void syn_diff(){
 
 int main(int argc, char **argv) {
   init_regex();
+  init_disasm("riscv64" "-pc-linux-gnu");
 
   uint64_t size = pmem.mem_loader("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
   

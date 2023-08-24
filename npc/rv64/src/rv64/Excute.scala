@@ -43,8 +43,8 @@ class Excute extends Module{
     io.emio.ld_type := io.deio.ld_type
     io.emio.ld_addr_lowbit := io.raddr(1,0)
 
-    io.jump_flag := DontCare
-    io.jump_pc := DontCare
+    io.jump_flag := (io.deio.branch_type).asBool && (alu.io.result).asBool
+    io.jump_pc := io.deio.branch_addr
 
 
     io.raddr := Mux(io.deio.ld_type =/= 0.U, alu.io.result, 0.U)
@@ -68,6 +68,7 @@ class Excute extends Module{
     alu.io.op_a := io.deio.op_a
     alu.io.op_b := io.deio.op_b
     alu.io.alu_op := io.deio.alu_op
+    alu.io.shamt := io.deio.shamt
     
     
 

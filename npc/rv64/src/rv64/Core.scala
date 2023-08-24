@@ -55,7 +55,10 @@ class Core extends Module{
             _.op_a -> 0.U,
             _.op_b -> 0.U,
             _.rd -> 0.U,
+            _.branch_type -> ControlUnit.NO_BR,
+            _.branch_addr -> 0.U,
             _.alu_op -> Alu.ALU_NO_OP,
+            _.shamt -> 0.U,
             _.wb_type -> ControlUnit.WB_NO,
             _.sd_type -> ControlUnit.SD_NO,
             _.reg2_rdata -> 0.U,
@@ -112,6 +115,8 @@ class Core extends Module{
     excute.io.deio.op_a := dereg.op_a
     excute.io.deio.op_b := dereg.op_b
     excute.io.deio.rd := dereg.rd
+    excute.io.deio.branch_type := dereg.branch_type
+    excute.io.deio.branch_addr := dereg.branch_addr
     excute.io.deio.alu_op := dereg.alu_op
     excute.io.deio.wb_type := dereg.wb_type
     excute.io.deio.sd_type := dereg.sd_type
@@ -164,10 +169,31 @@ class Core extends Module{
             (fc.io.fcde.flush) -> 0.U,
         )
     )
+    dereg.branch_type := MuxCase(
+        decode.io.deio.branch_type,
+        Seq(
+            (fc.io.fcde.stall) -> dereg.branch_type,
+            (fc.io.fcde.flush) -> 0.U,
+        )
+    )
+    dereg.branch_addr := MuxCase(
+        decode.io.deio.branch_addr,
+        Seq(
+            (fc.io.fcde.stall) -> dereg.branch_addr,
+            (fc.io.fcde.flush) -> 0.U,
+        )
+    )
     dereg.alu_op := MuxCase(
         decode.io.deio.alu_op,
         Seq(
             (fc.io.fcde.stall) -> dereg.alu_op,
+            (fc.io.fcde.flush) -> 0.U,
+        )
+    )
+    dereg.shamt := MuxCase(
+        decode.io.deio.shamt,
+        Seq(
+            (fc.io.fcde.stall) -> dereg.shamt,
             (fc.io.fcde.flush) -> 0.U,
         )
     )

@@ -762,7 +762,7 @@ module Core(	// <stdin>:637:10
     .rst        (reset),
     .pc         (_fetch_io_pc_bits),	// Core.scala:39:23
     .pc_req     (_fetch_io_pc_valid),	// Core.scala:39:23
-    .inst       (io_inst[31:0]),	// Core.scala:32:22
+    .inst       (fdreg_pc[2] ? io_inst[63:32] : io_inst[31:0]),	// Core.scala:48:24, :107:{40,60,76}, :274:22
     .inst_valid (1'h0),	// Core.scala:269:19
     .op_a       (dereg_op_a),	// Core.scala:53:24
     .op_b       (dereg_op_b),	// Core.scala:53:24
@@ -777,7 +777,7 @@ endmodule
 
 // external module TempMem
 
-module Soc(	// <stdin>:840:10
+module Soc(	// <stdin>:845:10
   input         clock,
                 reset,
   output [63:0] io_next_pc);
@@ -943,4 +943,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "macro.h"
+#include <common.h>
 #include <cstring>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -14,18 +15,22 @@
 
 
 
-
 bool difftest_step(uint64_t pc);
 void single_cycle();
 
 uint64_t expr(char *e, bool *success);
-
+void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 
 static bool sync_pc = 0;
 static bool sync_inst = 0;
 static std::queue<unsigned long> old_pc;  //同一条指令从uptate函数中获得pc和inst的时间不是同步的
 static std::queue<uint32_t> old_inst;
 static uint64_t pc_disasm;
+
+char log_itrace[128];
+char iringbuf [16][64];  //32会导致溢出，所以调整到64
+uint8_t irb_pos = 0;
+
 
 
 extern "C" {
@@ -87,7 +92,7 @@ void update_debuginfo(
   }
 
   old_inst.push((unsigned int)inst[0].aval);
-  if(old_inst.size() == 3)
+  if(old_inst.size() == 4)
     sync_inst = true;
   if(sync_inst){
     old_inst.pop();
@@ -108,7 +113,6 @@ long long pmem_read(const svLogicVecVal* raddr){
     (unsigned long)raddr[1].aval << 32 | raddr[0].aval
   );
 
-  printf("0x%lx: %016lx\n", (unsigned long)raddr[1].aval << 32 | raddr[0].aval, value);
   return (long long) value;
 }
 
@@ -173,20 +177,49 @@ static int cmd_i(char *args) {
 static int cmd_s(char *args){
 
   if(args == NULL){
-    //-----disasmble
-  printf("pc: 0x%lx\n", pc_disasm);
-  printf("inst: 0x%08x\n", old_inst.front());
+  //-----disasmble
 
+    char* p = log_itrace;
+    p += snprintf(p, sizeof(log_itrace), "0x%016lx" ":", pc_disasm);
+    int ilen = 4;
+    uint8_t* inst = (uint8_t *)(&old_inst.front());
+    for(int i = ilen - 1; i >= 0; i--){
+      p += snprintf(p, 4, "%02x", inst[i]);
+    }
 
-    
+    p += snprintf(p, 4, " ");
+
+  disassemble(p, log_itrace + sizeof(log_itrace) - p, pc_disasm,
+    (uint8_t *)(&old_inst.front()), ilen);
+
+    printf("%s\n", log_itrace);
+
+    p = iringbuf[irb_pos];
+    strcpy(p, "0x");
+    p += 2;
+    snprintf(p, 11, "%.10s", log_itrace + 10);  //.10s表示最多打印10个字符，否则会Werror
+    p += 10;
+    strcpy(p, log_itrace + 32);
+    irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
+
+    //-----------------
     single_cycle();   //update之后，pc变成下一条指令的pc
 
 
     unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
-    printf("dut pc after exec is 0x%lx\n", pc_comp);
 
-    if(! difftest_step(pc_comp)){
-      printf("not equal\n");
+    if(! difftest_step(pc_comp)){  //比较当前的通用寄存器状态和下一条指令的pc
+
+    //-----itrace
+      for(int i = 0; i < 16; i ++){
+        if((i== 15 && irb_pos == 0) || (i == irb_pos - 1))
+          printf("  --> ");
+        else 
+          printf("      ");
+
+        printf("%s\n", iringbuf[i]);
+      }
+    //---------------
       Verilated::gotFinish(1);
     }
       
@@ -194,10 +227,46 @@ static int cmd_s(char *args){
   else {
     uint64_t n = atoi(args);
     while(n > 0){
+  //-----disasmble
+
+    char* p = log_itrace;
+    p += snprintf(p, sizeof(log_itrace), "0x%016lx" ":", pc_disasm);
+    int ilen = 4;
+    uint8_t* inst = (uint8_t *)(&old_inst.front());
+    for(int i = ilen - 1; i >= 0; i--){
+      p += snprintf(p, 4, "%02x", inst[i]);
+    }
+
+    p += snprintf(p, 4, " ");
+
+  disassemble(p, log_itrace + sizeof(log_itrace) - p, pc_disasm,
+    (uint8_t *)(&old_inst.front()), ilen);
+
+    printf("%s\n", log_itrace);
+
+    p = iringbuf[irb_pos];
+    strcpy(p, "0x");
+    p += 2;
+    snprintf(p, 11, "%.10s", log_itrace + 10);  //.10s表示最多打印10个字符，否则会Werror
+    p += 10;
+    strcpy(p, log_itrace + 32);
+    irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
+
+    //-----------------
+
       single_cycle();
       unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
       if(! difftest_step(pc_comp)){
-        printf("not equal\n");
+    //-----itrace
+      for(int i = 0; i < 16; i ++){
+        if((i== 15 && irb_pos == 0) || (i == irb_pos - 1))
+          printf("  --> ");
+        else 
+          printf("      ");
+
+        printf("%s\n", iringbuf[i]);
+      }
+    //---------------
         Verilated::gotFinish(1);
         break;
       }

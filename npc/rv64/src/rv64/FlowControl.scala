@@ -18,9 +18,13 @@ object FlowControl{
         VecInit(StallN, StallN, StallN, StallN, StallN,       
             FlushN, FlushN, FlushN, FlushN, FlushN)
     
-    val JAL_SFBundle = 
+    val JUMP_SFBundle = 
         VecInit(StallN, StallN, StallN, StallN, StallN,       
-            FlushY, FlushN, FlushN, FlushN, FlushN)     
+            FlushN, FlushN, FlushN, FlushN, FlushN)     
+
+    val BRANCH_SFBundle = 
+        VecInit(StallN, StallN, StallN, StallN, StallN,       
+            FlushN, FlushY, FlushN, FlushN, FlushN)     
 
 }
 
@@ -72,7 +76,7 @@ class FlowControl extends Module{
 
     val SFBundle = MuxCase(FlowControl.default,
         Seq(
-            (io.fcde.jump_flag === 1.B) -> FlowControl.JAL_SFBundle
+            (io.fcde.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle
         )
     )
 

@@ -82,7 +82,10 @@ class Decode extends Module {
     )
 
     io.deio.rd := rd
+    io.deio.branch_type := cu.io.branch_type
+    io.deio.branch_addr := eximm.io.eximm
     io.deio.alu_op := cu.io.alu_op
+    io.deio.shamt := shamt
     io.deio.wb_type := cu.io.wb_type
     io.deio.sd_type := cu.io.sd_type
     io.deio.reg2_rdata := io.rfio.reg2_rdata
