@@ -21,9 +21,8 @@ class VSoc___024root final : public VerilatedModule {
     struct {
         VL_IN8(clock,0,0);
         VL_IN8(reset,0,0);
-        CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_flag;
+        CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_flush;
         CData/*0:0*/ Soc__DOT__core__DOT___mem_io_fwmem_reg_we;
-        CData/*0:0*/ Soc__DOT__core__DOT___excute_io_jump_flag;
         CData/*5:0*/ Soc__DOT__core__DOT___decode_io_deio_alu_op;
         CData/*0:0*/ Soc__DOT__core__DOT___decode_io_jump_flag;
         CData/*4:0*/ Soc__DOT__core__DOT__dereg_rd;
@@ -42,6 +41,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__interact__DOT__ebreak_flag;
         CData/*2:0*/ Soc__DOT__core__DOT__interact__DOT__over_count;
         CData/*0:0*/ Soc__DOT__core__DOT__fetch__DOT__started;
+        CData/*0:0*/ Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2;
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type;
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type;
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type;

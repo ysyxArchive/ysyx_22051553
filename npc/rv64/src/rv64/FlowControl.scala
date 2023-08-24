@@ -76,7 +76,8 @@ class FlowControl extends Module{
 
     val SFBundle = MuxCase(FlowControl.default,
         Seq(
-            (io.fcex.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
+            
+            (io.fcde.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
             
         )
     )
