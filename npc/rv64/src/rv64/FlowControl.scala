@@ -20,7 +20,7 @@ object FlowControl{
     
     val JUMP_SFBundle = 
         VecInit(StallN, StallN, StallN, StallN, StallN,       
-            FlushN, FlushN, FlushN, FlushN, FlushN)     
+            FlushY, FlushN, FlushN, FlushN, FlushN)     
 
     val BRANCH_SFBundle = 
         VecInit(StallN, StallN, StallN, StallN, StallN,       
