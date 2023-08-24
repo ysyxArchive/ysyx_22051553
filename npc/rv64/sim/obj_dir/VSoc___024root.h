@@ -49,11 +49,11 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_4;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_5;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_6;
-        CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_7;
-        CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_10;
+        CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_9;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h69b28aa1__0;
-        CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h83c98ea0__0;
+        CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h5d4f4c30__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h238a4b90__0;
+        CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h83c98ea0__0;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_ex_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_ex_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_mem_hazard;
