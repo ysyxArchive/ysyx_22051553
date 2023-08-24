@@ -43,7 +43,8 @@ class Excute extends Module{
     io.emio.ld_type := io.deio.ld_type
     io.emio.ld_addr_lowbit := io.raddr(1,0)
 
-    io.jump_flag := (io.deio.branch_type).asBool && (alu.io.result).asBool
+    // io.jump_flag := (io.deio.branch_type).asBool && (alu.io.result).asBool
+    io.jump_flag := (io.deio.branch_type).asBool && (alu.io.result).orR
     io.jump_pc := io.deio.branch_addr
 
 
