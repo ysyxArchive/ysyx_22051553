@@ -615,13 +615,11 @@ module FlowControl(	// <stdin>:1397:10
   input  [63:0] io_fcex_jump_pc,
   output        io_fcfe_jump_flag,
   output [63:0] io_fcfe_jump_pc,
-  output        io_fcfe_flush,
-                io_fcde_flush);
+  output        io_fcfe_flush);
 
   assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag;	// <stdin>:1397:10, FlowControl.scala:96:44
   assign io_fcfe_jump_pc = io_fcex_jump_flag ? io_fcex_jump_pc : io_fcde_jump_flag ? io_fcde_jump_pc : 64'h80000000;	// <stdin>:1397:10, Mux.scala:101:16
   assign io_fcfe_flush = io_fcex_jump_flag | io_fcde_jump_flag;	// <stdin>:1397:10, Mux.scala:101:16
-  assign io_fcde_flush = io_fcex_jump_flag;	// <stdin>:1397:10
 endmodule
 
 module Forward(	// <stdin>:1455:10
@@ -677,7 +675,6 @@ module Core(	// <stdin>:1514:10
   wire        _fc_io_fcfe_jump_flag;	// Core.scala:91:20
   wire [63:0] _fc_io_fcfe_jump_pc;	// Core.scala:91:20
   wire        _fc_io_fcfe_flush;	// Core.scala:91:20
-  wire        _fc_io_fcde_flush;	// Core.scala:91:20
   wire [63:0] _regfile_io_RfDe_reg1_rdata;	// Core.scala:88:25
   wire [63:0] _regfile_io_RfDe_reg2_rdata;	// Core.scala:88:25
   wire [4:0]  _wb_io_rfio_rd;	// Core.scala:44:20
@@ -767,31 +764,17 @@ module Core(	// <stdin>:1514:10
     end
     else begin
       fdreg_pc <= _fetch_io_fdio_pc;	// Core.scala:39:23, :48:24
-      if (_fc_io_fcde_flush) begin	// Core.scala:91:20
-        dereg_op_a <= 64'h0;	// <stdin>:1548:28, Core.scala:53:24
-        dereg_op_b <= 64'h0;	// <stdin>:1548:28, Core.scala:53:24
-        dereg_rd <= 5'h0;	// <stdin>:1551:23, Core.scala:53:24
-        dereg_branch_addr <= 64'h0;	// <stdin>:1548:28, Core.scala:53:24
-        dereg_alu_op <= 6'h0;	// Core.scala:53:24, Mux.scala:101:16
-        dereg_shamt <= 5'h0;	// <stdin>:1551:23, Core.scala:53:24
-        dereg_wb_type <= 2'h0;	// <stdin>:1550:25, Core.scala:53:24
-        dereg_sd_type <= 3'h0;	// <stdin>:1547:25, Core.scala:53:24
-        dereg_reg2_rdata <= 64'h0;	// <stdin>:1548:28, Core.scala:53:24
-        dereg_ld_type <= 3'h0;	// <stdin>:1547:25, Core.scala:53:24
-      end
-      else begin	// Core.scala:91:20
-        dereg_op_a <= _decode_io_deio_op_a;	// Core.scala:40:24, :53:24
-        dereg_op_b <= _decode_io_deio_op_b;	// Core.scala:40:24, :53:24
-        dereg_rd <= _decode_io_deio_rd;	// Core.scala:40:24, :53:24
-        dereg_branch_addr <= _decode_io_deio_branch_addr;	// Core.scala:40:24, :53:24
-        dereg_alu_op <= _decode_io_deio_alu_op;	// Core.scala:40:24, :53:24
-        dereg_shamt <= _decode_io_deio_shamt;	// Core.scala:40:24, :53:24
-        dereg_wb_type <= _decode_io_deio_wb_type;	// Core.scala:40:24, :53:24
-        dereg_sd_type <= _decode_io_deio_sd_type;	// Core.scala:40:24, :53:24
-        dereg_reg2_rdata <= _decode_io_deio_reg2_rdata;	// Core.scala:40:24, :53:24
-        dereg_ld_type <= _decode_io_deio_ld_type;	// Core.scala:40:24, :53:24
-      end
-      dereg_branch_type <= ~_fc_io_fcde_flush & _decode_io_deio_branch_type;	// Core.scala:40:24, :53:24, :91:20, Mux.scala:101:16
+      dereg_op_a <= _decode_io_deio_op_a;	// Core.scala:40:24, :53:24
+      dereg_op_b <= _decode_io_deio_op_b;	// Core.scala:40:24, :53:24
+      dereg_rd <= _decode_io_deio_rd;	// Core.scala:40:24, :53:24
+      dereg_branch_type <= _decode_io_deio_branch_type;	// Core.scala:40:24, :53:24
+      dereg_branch_addr <= _decode_io_deio_branch_addr;	// Core.scala:40:24, :53:24
+      dereg_alu_op <= _decode_io_deio_alu_op;	// Core.scala:40:24, :53:24
+      dereg_shamt <= _decode_io_deio_shamt;	// Core.scala:40:24, :53:24
+      dereg_wb_type <= _decode_io_deio_wb_type;	// Core.scala:40:24, :53:24
+      dereg_sd_type <= _decode_io_deio_sd_type;	// Core.scala:40:24, :53:24
+      dereg_reg2_rdata <= _decode_io_deio_reg2_rdata;	// Core.scala:40:24, :53:24
+      dereg_ld_type <= _decode_io_deio_ld_type;	// Core.scala:40:24, :53:24
       emreg_alu_res <= _excute_io_emio_alu_res;	// Core.scala:41:24, :69:24
       emreg_wb_type <= _excute_io_emio_wb_type;	// Core.scala:41:24, :69:24
       emreg_rd <= _excute_io_emio_rd;	// Core.scala:41:24, :69:24
@@ -981,8 +964,7 @@ module Core(	// <stdin>:1514:10
     .io_fcex_jump_pc   (_excute_io_jump_pc),	// Core.scala:41:24
     .io_fcfe_jump_flag (_fc_io_fcfe_jump_flag),
     .io_fcfe_jump_pc   (_fc_io_fcfe_jump_pc),
-    .io_fcfe_flush     (_fc_io_fcfe_flush),
-    .io_fcde_flush     (_fc_io_fcde_flush)
+    .io_fcfe_flush     (_fc_io_fcfe_flush)
   );
   Forward fw (	// Core.scala:289:20
     .io_fwde_reg1_raddr (_decode_io_fwde_reg1_raddr),	// Core.scala:40:24
@@ -1187,3 +1169,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
+

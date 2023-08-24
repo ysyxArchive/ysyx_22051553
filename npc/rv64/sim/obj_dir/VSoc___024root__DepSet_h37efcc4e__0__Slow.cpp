@@ -51,7 +51,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 1024, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 1006, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -1791,7 +1791,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                                    (0x1a3U 
                                                                     == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)))))))))))) 
                               << 6U)))));
-    vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush 
+    vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__dereg_branch_type) 
            & ((~ (IData)((0x3fU == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op)))) 
               & (0U != vlSelf->__VdfgTmp_h0601aa63__0)));
@@ -2184,9 +2184,9 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                       : 0ULL));
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_flag 
         = ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
-           | (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush));
+           | (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag));
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush)
+        = ((IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag)
             ? vlSelf->Soc__DOT__core__DOT__dereg_branch_addr
             : ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag)
                 ? ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type))
@@ -2265,10 +2265,10 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT___core_io_waddr = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_flag = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc = VL_RAND_RESET_Q(64);
-    vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___regfile_io_RfDe_reg2_rdata = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___mem_io_fwmem_reg_wdata = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___mem_io_fwmem_reg_we = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___decode_io_deio_alu_op = VL_RAND_RESET_I(6);
     vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc = VL_RAND_RESET_Q(64);

@@ -148,7 +148,6 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBit(c+78,"io_fcfe_jump_flag", false,-1);
     tracep->declQuad(c+79,"io_fcfe_jump_pc", false,-1, 63,0);
     tracep->declBit(c+78,"io_fcfe_flush", false,-1);
-    tracep->declBit(c+76,"io_fcde_flush", false,-1);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("fetch ");
     tracep->declBit(c+169,"clock", false,-1);
@@ -646,7 +645,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                ? ((0x3fU == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op))
                                    ? 0U : (3U & (IData)(vlSelf->__VdfgTmp_h0601aa63__0)))
                                : 0U)),3);
-    bufp->fullBit(oldp+76,(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush));
+    bufp->fullBit(oldp+76,(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag));
     bufp->fullBit(oldp+77,((1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_wb_type))));
     bufp->fullBit(oldp+78,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_flag));
     bufp->fullQData(oldp+79,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc),64);
