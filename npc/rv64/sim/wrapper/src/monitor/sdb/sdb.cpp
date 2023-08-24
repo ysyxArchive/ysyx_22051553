@@ -12,10 +12,21 @@
 #include "memory.hpp"
 #include <queue>
 
+
+
+
 bool difftest_step(uint64_t pc);
 void single_cycle();
 
 uint64_t expr(char *e, bool *success);
+
+
+static bool sync_pc = 0;
+static bool sync_inst = 0;
+static std::queue<unsigned long> old_pc;  //同一条指令从uptate函数中获得pc和inst的时间不是同步的
+static std::queue<uint32_t> old_inst;
+static uint64_t pc_disasm;
+
 
 extern "C" {
   void update_debuginfo(
@@ -47,10 +58,7 @@ void update_debuginfo(
   const svLogicVecVal* reg_wdata,
   svLogic reg_wen)
 {
-  
-  static bool sync_flag = 0;
-  static std::queue<unsigned long> old_pc;
-  
+    
   
   debug_ins.update(
     (unsigned long)pc[1].aval << 32 | pc[0].aval,
@@ -65,19 +73,26 @@ void update_debuginfo(
     (bool)reg_wen);
   
 
+
   old_pc.push((unsigned long)pc[1].aval << 32 | pc[0].aval);
   if(old_pc.size() == 4)
-    sync_flag = true;
+    sync_pc = true;
 
-  if(sync_flag){
-    printf("ok\n");
-
+  if(sync_pc){
     unsigned long set_pc = old_pc.front();
-    old_pc.pop();
+    pc_disasm = old_pc.front();
 
-    cpu_ins.set_value(32, set_pc); //wb中的
+    old_pc.pop();
+    cpu_ins.set_value(32, set_pc);
   }
-    
+
+  old_inst.push((unsigned int)inst[0].aval);
+  if(old_inst.size() == 3)
+    sync_inst = true;
+  if(sync_inst){
+    old_inst.pop();
+  }
+
 
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
     cpu_ins.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);
@@ -158,12 +173,20 @@ static int cmd_i(char *args) {
 static int cmd_s(char *args){
 
   if(args == NULL){
-    single_cycle();
+    //-----disasmble
+  printf("pc: 0x%lx\n", pc_disasm);
+  printf("inst: 0x%08x\n", old_inst.front());
+
+
+    
+    single_cycle();   //update之后，pc变成下一条指令的pc
+
+
     unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
     printf("dut pc after exec is 0x%lx\n", pc_comp);
 
     if(! difftest_step(pc_comp)){
-      printf("not equal");
+      printf("not equal\n");
       Verilated::gotFinish(1);
     }
       
@@ -174,7 +197,7 @@ static int cmd_s(char *args){
       single_cycle();
       unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
       if(! difftest_step(pc_comp)){
-        printf("not equal");
+        printf("not equal\n");
         Verilated::gotFinish(1);
         break;
       }

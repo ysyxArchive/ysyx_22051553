@@ -35,11 +35,11 @@ VM_PREFIX = VSoc
 VM_MODPREFIX = VSoc
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
-	-I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/monitor/debug/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/memory/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/isa/include \
+	-I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/monitor/debug/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/memory/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/isa/include  -fPIE \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
-	-lreadline -lpcre \
+	-lreadline -lpcre -lLLVM-14 \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
@@ -50,6 +50,7 @@ VM_USER_CLASSES = \
 	debug \
 	expr \
 	sdb \
+	disasm \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
@@ -59,6 +60,7 @@ VM_USER_DIR = \
 	./wrapper/src/memory \
 	./wrapper/src/monitor/debug \
 	./wrapper/src/monitor/sdb \
+	./wrapper/src/utils \
 
 
 ### Default rules...
@@ -83,6 +85,8 @@ debug.o: ./wrapper/src/monitor/debug/debug.cpp
 expr.o: ./wrapper/src/monitor/sdb/expr.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sdb.o: ./wrapper/src/monitor/sdb/sdb.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+disasm.o: ./wrapper/src/utils/disasm.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
