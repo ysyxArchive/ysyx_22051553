@@ -23,8 +23,8 @@ class VSoc___024root final : public VerilatedModule {
         VL_IN8(reset,0,0);
         CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_flush;
         CData/*0:0*/ Soc__DOT__core__DOT___mem_io_fwmem_reg_we;
+        CData/*0:0*/ Soc__DOT__core__DOT___excute_io_jump_flag;
         CData/*5:0*/ Soc__DOT__core__DOT___decode_io_deio_alu_op;
-        CData/*0:0*/ Soc__DOT__core__DOT___decode_io_jump_flag;
         CData/*4:0*/ Soc__DOT__core__DOT__dereg_rd;
         CData/*0:0*/ Soc__DOT__core__DOT__dereg_branch_type;
         CData/*5:0*/ Soc__DOT__core__DOT__dereg_alu_op;

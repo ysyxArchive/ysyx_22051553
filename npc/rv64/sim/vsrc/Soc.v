@@ -617,9 +617,9 @@ module FlowControl(	// <stdin>:1397:10
   output [63:0] io_fcfe_jump_pc,
   output        io_fcfe_flush);
 
-  assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag;	// <stdin>:1397:10, FlowControl.scala:95:44
+  assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag;	// <stdin>:1397:10, FlowControl.scala:96:44
   assign io_fcfe_jump_pc = io_fcex_jump_flag ? io_fcex_jump_pc : io_fcde_jump_flag ? io_fcde_jump_pc : 64'h80000000;	// <stdin>:1397:10, Mux.scala:101:16
-  assign io_fcfe_flush = io_fcex_jump_flag;	// <stdin>:1397:10
+  assign io_fcfe_flush = io_fcde_jump_flag;	// <stdin>:1397:10
 endmodule
 
 module Forward(	// <stdin>:1453:10
