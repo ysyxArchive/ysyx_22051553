@@ -24,7 +24,7 @@ object FlowControl{
 
     val BRANCH_SFBundle = 
         VecInit(StallN, StallN, StallN, StallN, StallN,       
-            FlushN, FlushY, FlushN, FlushN, FlushN)     
+            FlushY, FlushY, FlushN, FlushN, FlushN)     //Fe的FlushY才能跳转
 
 }
 

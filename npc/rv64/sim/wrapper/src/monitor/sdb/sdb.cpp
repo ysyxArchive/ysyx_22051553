@@ -259,9 +259,7 @@ static int cmd_s(char *args){
     p = iringbuf[irb_pos];
     strcpy(p, "0x");
     p += 2;
-    snprintf(p, 11, "%.10s", log_itrace + 10);  //.10s表示最多打印10个字符，否则会Werror
-    p += 10;
-    strcpy(p, log_itrace + 32);
+    strcpy(p, log_itrace + 10);
     irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
 
     //-----------------
@@ -269,8 +267,21 @@ static int cmd_s(char *args){
       single_cycle();
       unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
       if(! difftest_step(pc_comp)){
+    //dut_regs
+    printf("-----------dut_regs--------------\n");
+    cpu_ins.gpr_display();
+    //ref_regs
+    struct diff_context_t ref_r;
+    ref_difftest_regcpy(&ref_r, 0);
+    printf("-----------ref_regs---------------\n");
+    printf("pc\t\t0x%-16lx\t\t%-20ld\n", ref_r.pc, ref_r.pc);
+    for(int i = 0; i < 32; i ++){
+      printf("%s\t\t0x%-16lx\t\t%-20ld\n", cpu::regs[i], ref_r.gpr[i], ref_r.gpr[i]);
+    }    
+
+
     //-----itrace
-      printf("-----------itrace--------------\n");
+    printf("-----------itrace--------------\n");
       for(int i = 0; i < 16; i ++){
         if((i== 15 && irb_pos == 0) || (i == irb_pos - 1))
           printf("  --> ");
