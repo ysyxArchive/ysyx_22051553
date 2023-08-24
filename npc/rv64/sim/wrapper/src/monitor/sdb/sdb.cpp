@@ -13,7 +13,10 @@
 #include "memory.hpp"
 #include <queue>
 
-
+typedef struct pc_stop{
+  unsigned long pc;
+  bool br_yes;
+}pc_stop;
 
 bool difftest_step(uint64_t pc);
 void single_cycle();
@@ -24,9 +27,10 @@ void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 
 static bool sync_pc = 0;
 static bool sync_inst = 0;
-static std::queue<unsigned long> old_pc;  //同一条指令从uptate函数中获得pc和inst的时间不是同步的
+static std::queue<pc_stop> old_pc;  //同一条指令从uptate函数中获得pc和inst的时间不是同步的
 static std::queue<uint32_t> old_inst;
 static uint64_t pc_disasm;
+static bool stop_nemu;
 
 char log_itrace[128];
 char iringbuf [16][64];  //32会导致溢出，所以调整到64
@@ -60,6 +64,7 @@ void update_debuginfo(
   const svLogicVecVal* op_a,
   const svLogicVecVal* op_b,
   const svLogicVecVal* result,
+  svLogic br_yes,
   const svLogicVecVal* rd,
   const svLogicVecVal* reg_wdata,
   svLogic reg_wen)
@@ -74,19 +79,24 @@ void update_debuginfo(
     (unsigned long)op_a[1].aval << 32 | op_a[0].aval,
     (unsigned long)op_b[1].aval << 32 | op_b[0].aval,
     (unsigned long)result[1].aval << 32 | result[0].aval,
+    (bool)br_yes,
     (unsigned int)rd[0].aval,
     (unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval,
     (bool)reg_wen);
-  
 
 
-  old_pc.push((unsigned long)pc[1].aval << 32 | pc[0].aval);
+  pc_stop ps_ins = {
+    .pc = (unsigned long)pc[1].aval << 32 | pc[0].aval,
+    .br_yes = (bool)br_yes
+  };
+  old_pc.push(ps_ins);
   if(old_pc.size() == 4)
     sync_pc = true;
 
   if(sync_pc){
-    unsigned long set_pc = old_pc.front();
-    pc_disasm = old_pc.front();
+    unsigned long set_pc = old_pc.front().pc;
+    pc_disasm = old_pc.front().pc;
+    stop_nemu = old_pc.front().br_yes;
 
     old_pc.pop();
     cpu_ins.set_value(32, set_pc);
@@ -204,6 +214,8 @@ static int cmd_s(char *args){
     //-----------------
     single_cycle();   //update之后，pc变成下一条指令的pc
 
+    if(stop_nemu)
+      break;
 
     unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
 
@@ -265,6 +277,10 @@ static int cmd_s(char *args){
     //-----------------
 
       single_cycle();
+
+      if(stop_nemu)
+        break;
+
       unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
       if(! difftest_step(pc_comp)){
     //dut_regs

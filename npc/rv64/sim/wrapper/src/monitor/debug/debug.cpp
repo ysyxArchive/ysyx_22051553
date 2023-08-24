@@ -11,6 +11,7 @@ void debug::update(
         unsigned long op_a,
         unsigned long op_b,
         unsigned long result,
+        bool br_yes,
         unsigned int rd,
         unsigned long reg_wdata,
         bool reg_wen)
@@ -22,6 +23,7 @@ void debug::update(
     this->op_a = op_a;
     this->op_b = op_b;
     this->result = result;
+    this->br_yes = br_yes;
     this->rd = rd;
     this->reg_wdata = reg_wdata;
     this->reg_wen = reg_wen;

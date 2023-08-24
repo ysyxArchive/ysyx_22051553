@@ -303,6 +303,7 @@ class Core extends Module{
     DI.io.op_a  := dereg.op_a
     DI.io.op_b  := dereg.op_b
     DI.io.result := excute.io.emio.alu_res
+    DI.io.br_yes := excute.io.jump_flag
     DI.io.rd := wb.io.rfio.rd
     DI.io.reg_wen := wb.io.rfio.reg_wen
     DI.io.reg_wdata := wb.io.rfio.reg_wdata

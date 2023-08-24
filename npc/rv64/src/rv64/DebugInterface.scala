@@ -22,6 +22,8 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
         val op_b  = Input(UInt(X_LEN.W))
 
         val result = Input(UInt(X_LEN.W))
+
+        val br_yes = Input(Bool())
         //------MEM
         
         //------WB
@@ -35,7 +37,9 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     """
     |
     |import "DPI-C" function void update_debuginfo(input reg[63:0] pc, input pc_req, input reg[31:0] inst, 
-    |  input inst_valid, input reg[63:0] op_a, input reg[63:0] op_b, input reg[63:0] result, input reg[4:0] rd, input reg[63:0] reg_wdata,
+    |  input inst_valid, input reg[63:0] op_a, input reg[63:0] op_b, input reg[63:0] result, 
+    |   input br_yes,
+    |   input reg[4:0] rd, input reg[63:0] reg_wdata,
     |  input reg_wen);
     |
     |module DebugInterface(
@@ -51,6 +55,7 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     |                   input [63:0] op_a,
     |                   input [63:0] op_b,
     |                   input [63:0] result,
+    |                   input        br_yes,
     |
     |
     |                   input [4:0] rd,
@@ -63,7 +68,7 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     |
     |always@(posedge clk)begin
     |   if(rst != 'd1)
-    |       update_debuginfo(pc,pc_req,inst,inst_valid,op_a,op_b,result,rd,reg_wdata,reg_wen);
+    |       update_debuginfo(pc,pc_req,inst,inst_valid,op_a,op_b,result,br_yes,rd,reg_wdata,reg_wen);
     |end
     |
     |
