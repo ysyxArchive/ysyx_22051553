@@ -118,6 +118,7 @@ class Core extends Module{
     excute.io.deio.branch_type := dereg.branch_type
     excute.io.deio.branch_addr := dereg.branch_addr
     excute.io.deio.alu_op := dereg.alu_op
+    excute.io.deio.shamt := dereg.shamt
     excute.io.deio.wb_type := dereg.wb_type
     excute.io.deio.sd_type := dereg.sd_type
     excute.io.deio.reg2_rdata := dereg.reg2_rdata
