@@ -81,7 +81,7 @@ class Alu extends Module {
 
     res := MuxLookup(
         io.alu_op,
-        0.U,
+        0.S,
         Seq(
             ALU_ADD -> (io.op_a.asSInt + io.op_b.asSInt),            //补码也是直接加法
             ALU_SUB -> (io.op_a.asSInt - io.op_b.asSInt),
