@@ -545,14 +545,14 @@ module Mem(	// <stdin>:1171:10
                 io_rdata[63:48]} : _rvalue_T_162 ? {{48{io_rdata[47]}}, io_rdata[47:32]} : _rvalue_T_148 ?
                 {{48{io_rdata[31]}}, io_rdata[31:16]} : _rvalue_T_160 ? {{48{io_rdata[15]}},
                 io_rdata[15:0]} : 64'h0}, {_GEN[io_emio_ld_addr_lowbit]}, {64'h0}};	// Bitwise.scala:77:12, Cat.scala:33:92, Mem.scala:29:49, :31:49, :33:49, :34:64, :35:{49,64}, :40:64, :41:64, :42:64, :43:64, :48:64, :49:64, Mux.scala:81:{58,61}
+  wire [63:0]      _rvalue_T_177 = _GEN_1[io_emio_ld_type];	// Mux.scala:81:{58,61}
   wire             _io_fwmem_reg_wdata_T = io_emio_wb_type == 2'h1;	// Mem.scala:87:30
   wire             _io_fwmem_reg_wdata_T_1 = io_emio_wb_type == 2'h2;	// Mem.scala:88:30, Mux.scala:81:61
   assign io_mwio_wb_type = io_emio_wb_type;	// <stdin>:1171:10
-  assign io_mwio_wb_data = _io_fwmem_reg_wdata_T ? io_emio_alu_res : _io_fwmem_reg_wdata_T_1 ? _GEN_1[io_emio_ld_type]
-                : 64'h0;	// <stdin>:1171:10, Mem.scala:87:30, :88:30, Mux.scala:81:{58,61}, :101:16
+  assign io_mwio_wb_data = _io_fwmem_reg_wdata_T ? io_emio_alu_res : _io_fwmem_reg_wdata_T_1 ? _rvalue_T_177 : 64'h0;	// <stdin>:1171:10, Mem.scala:87:30, :88:30, Mux.scala:81:58, :101:16
   assign io_mwio_rd = io_emio_rd;	// <stdin>:1171:10
   assign io_fwmem_reg_waddr = io_emio_rd;	// <stdin>:1171:10
-  assign io_fwmem_reg_wdata = _io_fwmem_reg_wdata_T ? io_emio_alu_res : _io_fwmem_reg_wdata_T_1 ? io_rdata : 64'h0;	// <stdin>:1171:10, Mem.scala:87:30, :88:30, Mux.scala:81:58, :101:16
+  assign io_fwmem_reg_wdata = _io_fwmem_reg_wdata_T ? io_emio_alu_res : _io_fwmem_reg_wdata_T_1 ? _rvalue_T_177 : 64'h0;	// <stdin>:1171:10, Mem.scala:87:30, :88:30, Mux.scala:81:58, :101:16
   assign io_fwmem_reg_we = _io_fwmem_reg_wdata_T | _io_fwmem_reg_wdata_T_1;	// <stdin>:1171:10, Mem.scala:87:30, :88:30, :94:52
 endmodule
 

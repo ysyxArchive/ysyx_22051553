@@ -19,8 +19,10 @@ class MemIO extends Bundle{  //需要在这里落实lbu等，为了前向传递
 class Mem extends Module{
     val io = IO(new MemIO)
 
+
     //内部逻辑
     val rvalue = Wire(UInt(X_LEN.W))                   //根据1.位宽进行扩展2.基地址偏移进行选择（总线上只能8字节对齐）
+    dontTouch(rvalue)
     rvalue := MuxLookup(io.emio.ld_type, 0.U, 
         Seq(
             LD_LB -> MuxLookup(io.emio.ld_addr_lowbit, 0.U,

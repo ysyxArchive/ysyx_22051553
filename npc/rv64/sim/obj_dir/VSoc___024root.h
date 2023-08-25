@@ -77,7 +77,7 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT___core_io_waddr;
         QData/*63:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
         QData/*63:0*/ Soc__DOT__core__DOT___regfile_io_RfDe_reg2_rdata;
-        QData/*63:0*/ Soc__DOT__core__DOT___mem_io_fwmem_reg_wdata;
+        QData/*63:0*/ Soc__DOT__core__DOT___mem_io_mwio_wb_data;
         QData/*63:0*/ Soc__DOT__core__DOT___fetch_io_fdio_pc;
         QData/*63:0*/ Soc__DOT__core__DOT__fdreg_pc;
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_op_a;
