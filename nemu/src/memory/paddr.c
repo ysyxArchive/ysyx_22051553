@@ -42,6 +42,7 @@ static word_t pmem_read(paddr_t addr, int len) {
     Log("read mem at " FMT_PADDR " for %d bytes",addr, len);
   #endif
   word_t ret = host_read(guest_to_host(addr), len);  //实际是读pmem[n]
+  printf("vpmem value is 0x%lx\n", ret);
   return ret;
 }
 
