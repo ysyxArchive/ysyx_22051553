@@ -498,14 +498,14 @@ module Excute(	// <stdin>:1127:10
   assign io_emio_wb_type = io_deio_wb_type;	// <stdin>:1127:10
   assign io_emio_rd = io_deio_rd;	// <stdin>:1127:10
   assign io_emio_ld_type = io_deio_ld_type;	// <stdin>:1127:10
-  assign io_emio_ld_addr_lowbit = {1'h0, _io_raddr_T_1[1:0]};	// <stdin>:1127:10, Excute.scala:44:{28,39}, :51:20
+  assign io_emio_ld_addr_lowbit = _io_raddr_T_1[2:0];	// <stdin>:1127:10, Excute.scala:44:39, :51:20
   assign io_jump_flag = io_deio_branch_type & (|_alu_io_result);	// <stdin>:1127:10, Excute.scala:32:21, :47:{50,69}
   assign io_jump_pc = io_deio_branch_addr;	// <stdin>:1127:10
   assign io_raddr = _io_raddr_T_1;	// <stdin>:1127:10, Excute.scala:51:20
   assign io_waddr = (|io_deio_sd_type) ? _alu_io_result : 64'h0;	// <stdin>:1127:10, Excute.scala:32:21, :51:20, :53:{20,37}
   assign io_wdata = io_deio_reg2_rdata;	// <stdin>:1127:10
   assign io_wmask = io_deio_sd_type == 3'h4 ? 8'hFF : {4'h0, io_deio_sd_type == 3'h3 ? 4'hF : {2'h0,
-                io_deio_sd_type == 3'h2 ? 2'h3 : {1'h0, io_deio_sd_type == 3'h1}}};	// <stdin>:1127:10, Excute.scala:44:28, Mux.scala:81:{58,61}
+                io_deio_sd_type == 3'h2 ? 2'h3 : {1'h0, io_deio_sd_type == 3'h1}}};	// <stdin>:1127:10, Mux.scala:81:{58,61}
   assign io_fwex_reg_waddr = io_deio_rd;	// <stdin>:1127:10
   assign io_fwex_reg_wdata = _alu_io_result;	// <stdin>:1127:10, Excute.scala:32:21
   assign io_fwex_reg_we = io_deio_wb_type == 2'h1;	// <stdin>:1127:10, Excute.scala:65:40
@@ -1211,5 +1211,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 

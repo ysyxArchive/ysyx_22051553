@@ -183,7 +183,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
         vlSelf->Soc__DOT__core__DOT__emreg_ld_addr_lowbit 
             = ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type))
                 ? ((0x3fU == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op))
-                    ? 0U : (3U & (IData)(vlSelf->__VdfgTmp_h0601aa63__0)))
+                    ? 0U : (7U & (IData)(vlSelf->__VdfgTmp_h0601aa63__0)))
                 : 0U);
         vlSelf->Soc__DOT__core__DOT__dereg_shamt = 
             (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
