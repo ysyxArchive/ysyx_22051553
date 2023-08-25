@@ -5,6 +5,8 @@
 #include <fstream>
 #include <elf.h>
 #include <array>
+#include <debug.h>
+
 
 memory pmem;
 
@@ -14,6 +16,8 @@ uint8_t* memory::get_mem(){
 
 uint64_t memory::mem_read(uint64_t raddr){ //用于rtl
     // uint32_t addr = (pmem.mem + raddr - CONFIG_MBASE) & ~0x7ul; //错误
+
+    printf(ANSI_FMT("read mem at " "0x%016x" " for %d bytes\n", ANSI_FG_YELLOW),raddr, 8);
 
     uint64_t addr = (uint64_t)(pmem.mem + raddr - CONFIG_MBASE) & ~0x7ull; 
 
@@ -32,6 +36,12 @@ uint64_t memory::mem_readbylen(uint64_t raddr, int len){ //用于仿真
 }
 
 void memory::mem_write(uint64_t waddr, uint64_t wdata, uint8_t wmask){
+    printf(ANSI_FMT("write mem at " "0x%016x" " for %d bytes\n", ANSI_FG_YELLOW),waddr, 
+    (wmask == 0xff) ? 8 : 
+    (wmask == 0x0f) ? 4 : 
+    (wmask == 0x03) ? 2 : 
+    (wmask == 0x01) ? 1 : 0
+    );
 
     assert(wmask == 0xff || wmask == 0x0f || wmask == 0x03 || wmask == 0x01);
 

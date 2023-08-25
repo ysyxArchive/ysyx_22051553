@@ -57,7 +57,6 @@ int main(int argc, char **argv) {
 
   syn_diff();
   init_difftest("/home/shikye/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so", size, 0);
-  
 
   sdb_mainloop();
   

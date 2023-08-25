@@ -50,6 +50,7 @@ __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction)
   
   for(int i = 0; i < n; i++){
     paddr_write(addr+i, 1, *(dut_mem+i));
+    printf("i is %d\n", i);
   }
   
 }

@@ -359,13 +359,19 @@ static int cmd_x(char *args){
   return 0;
 }
 
+static int cmd_c(char *args){
+  char num[] = "-1";
+  cmd_s(num);
+  return 0;
+}
+
 static struct {
   const char *name;
   const char *description;
   int (*handler) (char *);
 } cmd_table [] = {
   // { "help", "Display information about all supported commands", cmd_help },
-  // { "c", "Continue the execution of the program", cmd_c },
+  { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si", "Execute N insts, default 1 inst", cmd_s },
   { "info", "print state, including regs and watchpoints", cmd_i },
