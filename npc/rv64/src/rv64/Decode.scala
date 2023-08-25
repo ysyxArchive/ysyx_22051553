@@ -88,7 +88,7 @@ class Decode extends Module {
     io.deio.shamt := shamt
     io.deio.wb_type := cu.io.wb_type
     io.deio.sd_type := cu.io.sd_type
-    io.deio.reg2_rdata := io.rfio.reg2_rdata
+    io.deio.reg2_rdata := Mux(io.fwde.fw_sel2, io.fwde.fw_data2, io.rfio.reg2_rdata)
     io.deio.ld_type := cu.io.ld_type
 
 

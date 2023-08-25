@@ -106,7 +106,7 @@ uint64_t memory::mem_loader(const char* filename){
         file.seekg(elf_header.e_phoff + i*elf_header.e_phentsize, std::ios::beg);
         file.read(reinterpret_cast<char *>(&elf_ph[i]), (elf_header.e_phentsize));
 
-        if(elf_ph[i].p_type == PT_LOAD){
+        if(elf_ph[i].p_type == PT_LOAD && (elf_ph[i].p_memsz != 0)) {   //例如bit（cputest中）的某个Segment虽然是LOAD但是长度为0
             file.seekg(elf_ph[i].p_offset, std::ios::beg);
             file.read( (char *)(pmem.mem + elf_ph[i].p_vaddr - CONFIG_MBASE), (elf_ph[i].p_filesz));
             memset((void *)(pmem.mem + elf_ph[i].p_vaddr + elf_ph[i].p_filesz - CONFIG_MBASE), 0, elf_ph[i].p_memsz - elf_ph[i].p_filesz);
