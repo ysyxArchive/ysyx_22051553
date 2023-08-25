@@ -99,14 +99,10 @@ void update_debuginfo(
   }
 
 
-  inst_stop ins = {
+  inst_stop ins = {       //如果branch指令成功，那么下一条压入的指令是无效的      对于npc五级流水线而言，会冲刷下一条指令;对nemu而言，不存在下一条无效指令。所以解决方式是，让npc运行一周期，nemu停止一周期，且不做比较
     .inst = (unsigned int)inst[0].aval,
     .br = (bool)br_yes
   };
-
-  if(ins.br == 1){
-    printf("br inst is 0x%x\n", ins.inst);
-  }
 
   old_inst.push(ins);
 

@@ -42,17 +42,10 @@ static word_t pmem_read(paddr_t addr, int len) {
     Log("read mem at " FMT_PADDR " for %d bytes",addr, len);
   #endif
   word_t ret = host_read(guest_to_host(addr), len);  //实际是读pmem[n]
-  printf("vpmem value is 0x%lx\n", ret);
   return ret;
 }
 
 static void pmem_write(paddr_t addr, int len, word_t data) {
-  if(addr == 0x80000248){
-    printf("here\n");
-    printf("pc is 0x%lx\n", cpu.pc);
-    printf("write 0x%lx\n", data);
-  }
-    
 
   #ifdef CONFIG_MTRACE
     Log("write mem at " FMT_PADDR " for %d bytes",addr, len);

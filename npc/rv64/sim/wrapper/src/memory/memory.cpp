@@ -97,15 +97,12 @@ uint64_t memory::mem_loader(const char* filename){
         file.read(reinterpret_cast<char *>(&elf_ph[i]), (elf_header.e_phentsize));
 
         if(elf_ph[i].p_type == PT_LOAD){
-            printf("i is %d\n", i);
             file.seekg(elf_ph[i].p_offset, std::ios::beg);
             file.read( (char *)(pmem.mem + elf_ph[i].p_vaddr - CONFIG_MBASE), (elf_ph[i].p_filesz));
             memset((void *)(pmem.mem + elf_ph[i].p_vaddr + elf_ph[i].p_filesz - CONFIG_MBASE), 0, elf_ph[i].p_memsz - elf_ph[i].p_filesz);
             size = elf_ph[i].p_vaddr + elf_ph[i].p_memsz - CONFIG_MBASE; //最后一个Segment结束的地方，因为Segment之间会有对齐，占用空间
         }
     }
-
-    printf("totoal %ld bytes\n", size);
 
     return size;
 

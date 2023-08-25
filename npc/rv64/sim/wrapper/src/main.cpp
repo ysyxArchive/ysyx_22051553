@@ -47,8 +47,6 @@ int main(int argc, char **argv) {
   init_disasm("riscv64" "-pc-linux-gnu");
 
   uint64_t size = pmem.mem_loader("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
-  
-  printf("main 80000248 value in mem is %lx\n", pmem.mem_readbylen(0x80000248, 4));
 
   Verilated::traceEverOn(true);
   
