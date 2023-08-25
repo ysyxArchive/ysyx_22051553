@@ -41,7 +41,7 @@ class Excute extends Module{
     io.emio.rd := io.deio.rd
 
     io.emio.ld_type := io.deio.ld_type
-    io.emio.ld_addr_lowbit := io.raddr(1,0)
+    io.emio.ld_addr_lowbit := io.raddr(2,0)  //是3位!!
 
     // io.jump_flag := (io.deio.branch_type).asBool && (alu.io.result).asBool
     io.jump_flag := (io.deio.branch_type).asBool && (alu.io.result).orR

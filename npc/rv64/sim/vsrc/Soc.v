@@ -525,16 +525,17 @@ module Mem(	// <stdin>:1171:10
   output [63:0] io_fwmem_reg_wdata,
   output        io_fwmem_reg_we);
 
+  wire [63:0]      rvalue;	// Mem.scala:24:22
   wire             _rvalue_T_148 = io_emio_ld_addr_lowbit == 3'h2;	// Mux.scala:81:61
   wire             _rvalue_T_162 = io_emio_ld_addr_lowbit == 3'h4;	// Mux.scala:81:61
   wire             _rvalue_T_152 = io_emio_ld_addr_lowbit == 3'h6;	// Mux.scala:81:61
   wire [7:0][63:0] _GEN = {{{{56{io_rdata[63]}}, io_rdata[63:56]}}, {{{56{io_rdata[55]}}, io_rdata[55:48]}},
                 {{{56{io_rdata[47]}}, io_rdata[47:40]}}, {{{56{io_rdata[39]}}, io_rdata[39:32]}},
                 {{{56{io_rdata[31]}}, io_rdata[31:24]}}, {{{56{io_rdata[23]}}, io_rdata[23:16]}},
-                {{{56{io_rdata[15]}}, io_rdata[15:8]}}, {{{56{io_rdata[7]}}, io_rdata[7:0]}}};	// Bitwise.scala:77:12, Cat.scala:33:92, Mem.scala:28:{49,63}, :29:{49,64}, :30:{49,64}, :31:{49,64}, :32:{49,64}, :33:{49,64}, :34:{49,64}, :35:{49,64}, Mux.scala:81:{58,61}
+                {{{56{io_rdata[15]}}, io_rdata[15:8]}}, {{{56{io_rdata[7]}}, io_rdata[7:0]}}};	// Bitwise.scala:77:12, Cat.scala:33:92, Mem.scala:30:{49,63}, :31:{49,64}, :32:{49,64}, :33:{49,64}, :34:{49,64}, :35:{49,64}, :36:{49,64}, :37:{49,64}, Mux.scala:81:{58,61}
   wire             _rvalue_T_160 = io_emio_ld_addr_lowbit == 3'h0;	// Mux.scala:81:61
   wire [7:0][7:0]  _GEN_0 = {{io_rdata[7:0]}, {io_rdata[7:0]}, {io_rdata[47:40]}, {io_rdata[39:32]}, {io_rdata[31:24]},
-                {io_rdata[23:16]}, {io_rdata[15:8]}, {io_rdata[7:0]}};	// Mem.scala:28:63, :29:64, :30:64, :31:64, :32:64, :33:64, Mux.scala:81:{58,61}
+                {io_rdata[23:16]}, {io_rdata[15:8]}, {io_rdata[7:0]}};	// Mem.scala:30:63, :31:64, :32:64, :33:64, :34:64, :35:64, Mux.scala:81:{58,61}
   wire [7:0][63:0] _GEN_1 = {{_rvalue_T_162 ? {32'h0, io_rdata[63:32]} : _rvalue_T_160 ? {32'h0, io_rdata[31:0]} :
                 64'h0}, {_rvalue_T_152 ? {48'h0, io_rdata[63:48]} : _rvalue_T_162 ? {48'h0,
                 io_rdata[47:32]} : _rvalue_T_148 ? {48'h0, io_rdata[31:16]} : _rvalue_T_160 ? {48'h0,
@@ -544,16 +545,16 @@ module Mem(	// <stdin>:1171:10
                 {{32{io_rdata[31]}}, io_rdata[31:0]} : 64'h0}, {_rvalue_T_152 ? {{48{io_rdata[63]}},
                 io_rdata[63:48]} : _rvalue_T_162 ? {{48{io_rdata[47]}}, io_rdata[47:32]} : _rvalue_T_148 ?
                 {{48{io_rdata[31]}}, io_rdata[31:16]} : _rvalue_T_160 ? {{48{io_rdata[15]}},
-                io_rdata[15:0]} : 64'h0}, {_GEN[io_emio_ld_addr_lowbit]}, {64'h0}};	// Bitwise.scala:77:12, Cat.scala:33:92, Mem.scala:29:49, :31:49, :33:49, :34:64, :35:{49,64}, :40:64, :41:64, :42:64, :43:64, :48:64, :49:64, Mux.scala:81:{58,61}
-  wire [63:0]      _rvalue_T_177 = _GEN_1[io_emio_ld_type];	// Mux.scala:81:{58,61}
-  wire             _io_fwmem_reg_wdata_T = io_emio_wb_type == 2'h1;	// Mem.scala:87:30
-  wire             _io_fwmem_reg_wdata_T_1 = io_emio_wb_type == 2'h2;	// Mem.scala:88:30, Mux.scala:81:61
+                io_rdata[15:0]} : 64'h0}, {_GEN[io_emio_ld_addr_lowbit]}, {64'h0}};	// Bitwise.scala:77:12, Cat.scala:33:92, Mem.scala:31:49, :33:49, :35:49, :36:64, :37:{49,64}, :42:64, :43:64, :44:64, :45:64, :50:64, :51:64, Mux.scala:81:{58,61}
+  assign rvalue = _GEN_1[io_emio_ld_type];	// Mem.scala:26:12, Mux.scala:81:{58,61}
+  wire             _io_fwmem_reg_wdata_T = io_emio_wb_type == 2'h1;	// Mem.scala:89:30
+  wire             _io_fwmem_reg_wdata_T_1 = io_emio_wb_type == 2'h2;	// Mem.scala:90:30, Mux.scala:81:61
   assign io_mwio_wb_type = io_emio_wb_type;	// <stdin>:1171:10
-  assign io_mwio_wb_data = _io_fwmem_reg_wdata_T ? io_emio_alu_res : _io_fwmem_reg_wdata_T_1 ? _rvalue_T_177 : 64'h0;	// <stdin>:1171:10, Mem.scala:87:30, :88:30, Mux.scala:81:58, :101:16
+  assign io_mwio_wb_data = _io_fwmem_reg_wdata_T ? io_emio_alu_res : _io_fwmem_reg_wdata_T_1 ? rvalue : 64'h0;	// <stdin>:1171:10, Mem.scala:89:30, :90:30, Mux.scala:81:58, :101:16
   assign io_mwio_rd = io_emio_rd;	// <stdin>:1171:10
   assign io_fwmem_reg_waddr = io_emio_rd;	// <stdin>:1171:10
-  assign io_fwmem_reg_wdata = _io_fwmem_reg_wdata_T ? io_emio_alu_res : _io_fwmem_reg_wdata_T_1 ? _rvalue_T_177 : 64'h0;	// <stdin>:1171:10, Mem.scala:87:30, :88:30, Mux.scala:81:58, :101:16
-  assign io_fwmem_reg_we = _io_fwmem_reg_wdata_T | _io_fwmem_reg_wdata_T_1;	// <stdin>:1171:10, Mem.scala:87:30, :88:30, :94:52
+  assign io_fwmem_reg_wdata = _io_fwmem_reg_wdata_T ? io_emio_alu_res : _io_fwmem_reg_wdata_T_1 ? rvalue : 64'h0;	// <stdin>:1171:10, Mem.scala:89:30, :90:30, Mux.scala:81:58, :101:16
+  assign io_fwmem_reg_we = _io_fwmem_reg_wdata_T | _io_fwmem_reg_wdata_T_1;	// <stdin>:1171:10, Mem.scala:89:30, :90:30, :96:52
 endmodule
 
 module Wb(	// <stdin>:1374:10
@@ -1210,4 +1211,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 
