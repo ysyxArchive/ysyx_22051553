@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
 
   uint64_t size = pmem.mem_loader("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
   
-  printf("main 80000234 value in mem is %lx\n", pmem.mem_readbylen(0x80000234, 8));
+  printf("main 80000234 value in mem is %lx\n", pmem.mem_readbylen(0x80000234, 4));
 
   Verilated::traceEverOn(true);
   

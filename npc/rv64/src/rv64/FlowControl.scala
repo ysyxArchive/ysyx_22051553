@@ -24,7 +24,7 @@ object FlowControl{
 
     val BRANCH_SFBundle = 
         VecInit(StallN, StallN, StallN, StallN, StallN,       
-            FlushY, FlushY, FlushN, FlushN, FlushN)     //Fe的FlushY才能跳转
+            FlushY, FlushY, FlushY, FlushN, FlushN)     //Fe需要FlushY才能跳转
 
 }
 
@@ -40,7 +40,7 @@ class FcDeIO extends Bundle{
     val jump_flag = Input(Bool())            //from De
     val jump_pc   = Input(UInt(PC_LEN.W))
 
-    val flush     = Output(Bool())       //通往流水线寄存器
+    val flush     = Output(Bool())       //通往流水线寄存器 fede
     val stall     = Output(Bool())
 }
 
