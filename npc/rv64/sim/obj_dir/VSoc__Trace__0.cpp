@@ -392,7 +392,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgQData(oldp+75,(vlSelf->Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm),64);
         bufp->chgCData(oldp+77,(((0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type))
                                   ? ((0x3fU == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op))
-                                      ? 0U : (7U & (IData)(vlSelf->__VdfgTmp_h0601aa63__0)))
+                                      ? 0U : (7U & (IData)(vlSelf->__VdfgTmp_h0a6974a0__0)))
                                   : 0U)),3);
         bufp->chgBit(oldp+78,((1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_wb_type))));
         bufp->chgBit(oldp+79,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_flag));
