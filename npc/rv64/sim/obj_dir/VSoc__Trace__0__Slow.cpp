@@ -150,6 +150,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declQuad(c+81,"io_fcfe_jump_pc", false,-1, 63,0);
     tracep->declBit(c+80,"io_fcfe_flush", false,-1);
     tracep->declBit(c+43,"io_fcde_flush", false,-1);
+    tracep->declBit(c+43,"io_fcex_flush", false,-1);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("fetch ");
     tracep->declBit(c+171,"clock", false,-1);
