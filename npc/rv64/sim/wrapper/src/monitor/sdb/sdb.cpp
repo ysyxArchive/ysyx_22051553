@@ -12,11 +12,12 @@
 #include "svdpi.h"
 #include "memory.hpp"
 #include <queue>
+#include <list>
 
-typedef struct pc_stop{
-  unsigned long pc;
-  bool br_yes;
-}pc_stop;
+typedef struct inst_stop{
+  uint32_t inst;
+  bool br;
+}inst_stop;
 
 bool difftest_step(uint64_t pc);
 void single_cycle();
@@ -27,8 +28,8 @@ void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 
 static bool sync_pc = 0;
 static bool sync_inst = 0;
-static std::queue<pc_stop> old_pc;  //同一条指令从uptate函数中获得pc和inst的时间不是同步的
-static std::queue<uint32_t> old_inst;
+static std::list<unsigned long> old_pc;  //同一条指令从uptate函数中获得pc和inst的时间不是同步的
+static std::queue<inst_stop> old_inst;
 static uint64_t pc_disasm;
 static bool stop_nemu;
 
@@ -47,6 +48,7 @@ extern "C" {
     const svLogicVecVal* op_a,
     const svLogicVecVal* op_b,
     const svLogicVecVal* result,
+    svLogic br_yes,
     const svLogicVecVal* rd,
     const svLogicVecVal* reg_wdata,
     svLogic reg_wen);
@@ -69,8 +71,7 @@ void update_debuginfo(
   const svLogicVecVal* reg_wdata,
   svLogic reg_wen)
 {
-    
-  
+
   debug_ins.update(
     (unsigned long)pc[1].aval << 32 | pc[0].aval,
     (bool)pc_req,
@@ -85,24 +86,30 @@ void update_debuginfo(
     (bool)reg_wen);
 
 
-  pc_stop ps_ins = {
-    .pc = (unsigned long)pc[1].aval << 32 | pc[0].aval,
-    .br_yes = (bool)br_yes
-  };
-  old_pc.push(ps_ins);
+  old_pc.push_back((unsigned long)pc[1].aval << 32 | pc[0].aval);
   if(old_pc.size() == 4)
     sync_pc = true;
 
   if(sync_pc){
-    unsigned long set_pc = old_pc.front().pc;
-    pc_disasm = old_pc.front().pc;
-    stop_nemu = old_pc.front().br_yes;
+    unsigned long set_pc = old_pc.front();
+    pc_disasm = old_pc.front();
 
-    old_pc.pop();
+    old_pc.pop_front();
     cpu_ins.set_value(32, set_pc);
   }
 
-  old_inst.push((unsigned int)inst[0].aval);
+
+  inst_stop ins = {
+    .inst = (unsigned int)inst[0].aval,
+    .br = (bool)br_yes
+  };
+
+  if(ins.br == 1){
+    printf("br inst is 0x%x\n", ins.inst);
+  }
+
+  old_inst.push(ins);
+
   if(old_inst.size() == 4)
     sync_inst = true;
   if(sync_inst){
@@ -119,7 +126,8 @@ void update_debuginfo(
 }
 
 long long pmem_read(const svLogicVecVal* raddr){
-
+  printf("is reading from 0x%lx\n",(unsigned long)raddr[1].aval << 32 | raddr[0].aval);
+  printf("80000234 value in mem is %lx\n", pmem.mem_readbylen(0x80000234, 8));
   uint64_t value =  pmem.mem_read(
     (unsigned long)raddr[1].aval << 32 | raddr[0].aval
   );
@@ -188,12 +196,19 @@ static int cmd_i(char *args) {
 static int cmd_s(char *args){
 
   if(args == NULL){
-  //-----disasmble
+    stop_nemu = old_inst.front().br;
+    if(stop_nemu){
+      single_cycle();
+      return 0;
+    }
+      
+
+  //-----disasmble     --对当前wb中的pc
 
     char* p = log_itrace;
     p += snprintf(p, sizeof(log_itrace), "0x%016lx" ":", pc_disasm);
     int ilen = 4;
-    uint8_t* inst = (uint8_t *)(&old_inst.front());
+    uint8_t* inst = (uint8_t *)(&old_inst.front().inst);
     for(int i = ilen - 1; i >= 0; i--){
       p += snprintf(p, 4, "%02x", inst[i]);
     }
@@ -201,7 +216,7 @@ static int cmd_s(char *args){
     p += snprintf(p, 4, " ");
 
   disassemble(p, log_itrace + sizeof(log_itrace) - p, pc_disasm,
-    (uint8_t *)(&old_inst.front()), ilen);
+    (uint8_t *)(&old_inst.front().inst), ilen);
 
     printf("%s\n", log_itrace);
 
@@ -212,12 +227,15 @@ static int cmd_s(char *args){
     irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
 
     //-----------------
-    single_cycle();   //update之后，pc变成下一条指令的pc
+    single_cycle();   //执行当条pc, update之后，pc变成下一条指令的pc
 
-    if(stop_nemu)
-      break;
+        unsigned long pc_comp = 0;
+      if(old_inst.front().br){
+        pc_comp = *(old_pc.begin()++);
+      }
+      else
+        pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
 
-    unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
 
     if(! difftest_step(pc_comp)){  //比较当前的通用寄存器状态和下一条指令的pc
     //dut_regs
@@ -252,11 +270,19 @@ static int cmd_s(char *args){
     uint64_t n = atoi(args);
     while(n > 0){
   //-----disasmble
+    stop_nemu = old_inst.front().br;
+    if(stop_nemu){
+      printf("pc is 0x%lx\n", pc_disasm);
+      single_cycle();
+      continue;
+    }
+      
+
 
     char* p = log_itrace;
     p += snprintf(p, sizeof(log_itrace), "0x%016lx" ":", pc_disasm);
     int ilen = 4;
-    uint8_t* inst = (uint8_t *)(&old_inst.front());
+    uint8_t* inst = (uint8_t *)(&old_inst.front().inst);
     for(int i = ilen - 1; i >= 0; i--){
       p += snprintf(p, 4, "%02x", inst[i]);
     }
@@ -264,7 +290,7 @@ static int cmd_s(char *args){
     p += snprintf(p, 4, " ");
 
   disassemble(p, log_itrace + sizeof(log_itrace) - p, pc_disasm,
-    (uint8_t *)(&old_inst.front()), ilen);
+    (uint8_t *)(&old_inst.front().inst), ilen);
 
     printf("%s\n", log_itrace);
 
@@ -278,10 +304,15 @@ static int cmd_s(char *args){
 
       single_cycle();
 
-      if(stop_nemu)
-        break;
+      
+      unsigned long pc_comp = 0;
+      if(old_inst.front().br){
+        pc_comp = *(old_pc.begin()++);
+      }
+      else
+        pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
 
-      unsigned long pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
+
       if(! difftest_step(pc_comp)){
     //dut_regs
     printf("-----------dut_regs--------------\n");
