@@ -126,8 +126,6 @@ void update_debuginfo(
 }
 
 long long pmem_read(const svLogicVecVal* raddr){
-  printf("is reading from 0x%lx\n",(unsigned long)raddr[1].aval << 32 | raddr[0].aval);
-  printf("80000248 value in mem is %lx\n", pmem.mem_readbylen(0x80000248, 4));
   uint64_t value =  pmem.mem_read(
     (unsigned long)raddr[1].aval << 32 | raddr[0].aval
   );
@@ -136,7 +134,6 @@ long long pmem_read(const svLogicVecVal* raddr){
 }
 
   void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask){
-    printf("is writing 0x%lx\n", (unsigned long)waddr[1].aval << 32 | waddr[0].aval);
     pmem.mem_write(
         (unsigned long)waddr[1].aval << 32 | waddr[0].aval,
         (unsigned long)wdata[1].aval << 32 | wdata[0].aval,
