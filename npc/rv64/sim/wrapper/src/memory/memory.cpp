@@ -113,6 +113,7 @@ uint64_t memory::mem_loader(const char* filename){
             size = elf_ph[i].p_vaddr + elf_ph[i].p_memsz - CONFIG_MBASE; //最后一个Segment结束的地方，因为Segment之间会有对齐，占用空间
         }
     }
+    printf("size is %ld\n", size);
 
     return size;
 
