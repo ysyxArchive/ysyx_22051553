@@ -47,8 +47,12 @@ static word_t pmem_read(paddr_t addr, int len) {
 }
 
 static void pmem_write(paddr_t addr, int len, word_t data) {
-  if(addr == 0x80000238)
+  if(addr == 0x80000238){
     printf("here\n");
+    printf("pc is 0x%lx\n", cpu.pc);
+    printf("write 0x%lx\n", data);
+  }
+    
 
   #ifdef CONFIG_MTRACE
     Log("write mem at " FMT_PADDR " for %d bytes",addr, len);
