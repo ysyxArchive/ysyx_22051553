@@ -95,7 +95,7 @@ class Mem extends Module{
     io.fwmem.reg_wdata := MuxCase(0.U,
         Seq(
             (io.emio.wb_type === WB_ALU) -> io.emio.alu_res,
-            (io.emio.wb_type === WB_MEM) -> io.rdata
+            (io.emio.wb_type === WB_MEM) -> rvalue
         )                    
     )
 

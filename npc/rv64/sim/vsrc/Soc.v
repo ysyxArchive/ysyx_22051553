@@ -254,11 +254,6 @@ module ControlUnit(	// <stdin>:44:10
                 _controlsig_T_109 | _controlsig_T_111 | _controlsig_T_113 | _controlsig_T_115 |
                 _controlsig_T_117 | _controlsig_T_119 | _controlsig_T_121 | _controlsig_T_123 |
                 _controlsig_T_498;	// Lookup.scala:31:38, :34:39
-  wire        _GEN_9 = _controlsig_T_23 | _controlsig_T_25 | _controlsig_T_27 | _controlsig_T_29 |
-                _controlsig_T_31 | _controlsig_T_33 | _controlsig_T_35;	// Lookup.scala:31:38, :34:39
-  wire        _GEN_10 = _controlsig_T_1 | _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 | _controlsig_T_9 |
-                _controlsig_T_11 | _controlsig_T_13 | _controlsig_T_15 | _controlsig_T_17 |
-                _controlsig_T_19 | _controlsig_T_240;	// Lookup.scala:31:38, :34:39
   assign io_jump_type = _controlsig_T_1 | _controlsig_T_3 | _controlsig_T_5 ? 2'h0 : _controlsig_T_7 ? 2'h1 :
                 {_controlsig_T_9, 1'h0};	// <stdin>:44:10, Lookup.scala:31:38, :34:39
   assign io_branch_type = ~_controlsig_T_1 & ~_controlsig_T_3 & ~_controlsig_T_5 & ~_controlsig_T_7 &
@@ -305,14 +300,21 @@ module ControlUnit(	// <stdin>:44:10
                 _controlsig_T_111 ? 6'h20 : _controlsig_T_113 ? 6'h21 : _controlsig_T_115 ? 6'h22 :
                 _controlsig_T_117 ? 6'h23 : _controlsig_T_119 ? 6'h24 : _controlsig_T_121 ? 6'h25 :
                 _controlsig_T_123 ? 6'h26 : _controlsig_T_498 ? 6'h27 : 6'h3F;	// <stdin>:44:10, Lookup.scala:31:38, :34:39
-  assign io_wb_type = _controlsig_T_1 ? 2'h0 : _GEN_6 ? 2'h1 : _GEN_4 ? 2'h0 : _GEN_9 ? 2'h2 : {1'h0,
-                ~_controlsig_T_37 & ~_controlsig_T_39 & ~_controlsig_T_41 & ~_controlsig_T_43 & (_GEN_7 |
-                _GEN_8)};	// <stdin>:44:10, Lookup.scala:31:38, :34:39
-  assign io_sd_type = _GEN_10 ? 3'h0 : _GEN_9 ? 3'h4 : _controlsig_T_37 ? 3'h1 : _controlsig_T_39 ? 3'h2 :
+  assign io_wb_type = _controlsig_T_1 ? 2'h0 : _GEN_6 ? 2'h1 : _GEN_4 ? 2'h0 : _controlsig_T_23 |
+                _controlsig_T_25 | _controlsig_T_27 | _controlsig_T_29 | _controlsig_T_31 |
+                _controlsig_T_33 | _controlsig_T_35 ? 2'h2 : {1'h0, ~_controlsig_T_37 & ~_controlsig_T_39 &
+                ~_controlsig_T_41 & ~_controlsig_T_43 & (_GEN_7 | _GEN_8)};	// <stdin>:44:10, Lookup.scala:31:38, :34:39
+  assign io_sd_type = _controlsig_T_1 | _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 | _controlsig_T_9 |
+                _controlsig_T_11 | _controlsig_T_13 | _controlsig_T_15 | _controlsig_T_17 |
+                _controlsig_T_19 | _controlsig_T_240 | _controlsig_T_23 | _controlsig_T_25 |
+                _controlsig_T_27 | _controlsig_T_29 | _controlsig_T_31 | _controlsig_T_33 |
+                _controlsig_T_35 ? 3'h0 : _controlsig_T_37 ? 3'h1 : _controlsig_T_39 ? 3'h2 :
                 _controlsig_T_41 ? 3'h3 : {_controlsig_T_43, 2'h0};	// <stdin>:44:10, Lookup.scala:31:38, :34:39
-  assign io_ld_type = _GEN_10 ? 3'h0 : _controlsig_T_23 ? 3'h1 : _controlsig_T_25 ? 3'h2 : _controlsig_T_27 ?
-                3'h3 : _controlsig_T_29 ? 3'h5 : _controlsig_T_31 ? 3'h6 : _controlsig_T_33 ? 3'h7 :
-                {_controlsig_T_35, 2'h0};	// <stdin>:44:10, Lookup.scala:31:38, :34:39
+  assign io_ld_type = _controlsig_T_1 | _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 | _controlsig_T_9 |
+                _controlsig_T_11 | _controlsig_T_13 | _controlsig_T_15 | _controlsig_T_17 |
+                _controlsig_T_19 | _controlsig_T_240 ? 3'h0 : _controlsig_T_23 ? 3'h1 : _controlsig_T_25 ?
+                3'h2 : _controlsig_T_27 ? 3'h3 : _controlsig_T_29 ? 3'h5 : _controlsig_T_31 ? 3'h6 :
+                _controlsig_T_33 ? 3'h7 : {_controlsig_T_35, 2'h0};	// <stdin>:44:10, Lookup.scala:31:38, :34:39
 endmodule
 
 module Eximm(	// <stdin>:752:10
@@ -1208,5 +1210,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 
