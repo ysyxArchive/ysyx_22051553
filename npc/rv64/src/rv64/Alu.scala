@@ -123,7 +123,7 @@ class Alu extends Module {
             ALU_DIVUW -> ((io.op_a / io.op_b)(31,0)).asSInt,
             ALU_REMW -> ((io.op_a.asSInt % io.op_b.asSInt)(31,0)).asSInt,
             ALU_REMUW -> ((io.op_a % io.op_b)(31,0)).asSInt,
-            ALU_NO_OP -> (0.U)
+            ALU_NO_OP -> (0.U).asSInt
         )
     )
 
