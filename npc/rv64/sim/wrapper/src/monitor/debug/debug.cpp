@@ -8,6 +8,7 @@ void debug::update(
         bool pc_req,
         unsigned int inst,
         bool inst_valid,
+        bool load_use,
         unsigned long op_a,
         unsigned long op_b,
         unsigned long result,
@@ -20,6 +21,7 @@ void debug::update(
     this->pc_req = pc_req;
     this->inst = inst;
     this->inst_valid = inst_valid;
+    this->load_use = load_use;
     this->op_a = op_a;
     this->op_b = op_b;
     this->result = result;

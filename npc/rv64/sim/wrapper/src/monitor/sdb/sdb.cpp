@@ -17,6 +17,7 @@
 typedef struct inst_stop{
   uint32_t inst;
   bool br;
+  bool load_use;
 }inst_stop;
 
 bool difftest_step(uint64_t pc);
@@ -45,6 +46,7 @@ extern "C" {
     svLogic pc_req,
     const svLogicVecVal* inst,
     svLogic inst_valid,
+    svLogic load_use,
     const svLogicVecVal* op_a,
     const svLogicVecVal* op_b,
     const svLogicVecVal* result,
@@ -63,6 +65,7 @@ void update_debuginfo(
   svLogic pc_req,
   const svLogicVecVal* inst,
   svLogic inst_valid,
+  svLogic load_use,
   const svLogicVecVal* op_a,
   const svLogicVecVal* op_b,
   const svLogicVecVal* result,
@@ -77,6 +80,7 @@ void update_debuginfo(
     (bool)pc_req,
     (unsigned int)inst[0].aval,
     (bool)inst_valid,
+    (bool)load_use,
     (unsigned long)op_a[1].aval << 32 | op_a[0].aval,
     (unsigned long)op_b[1].aval << 32 | op_b[0].aval,
     (unsigned long)result[1].aval << 32 | result[0].aval,
@@ -101,10 +105,11 @@ void update_debuginfo(
 
   inst_stop ins = {       //如果branch指令成功，那么下一条压入的指令是无效的      对于npc五级流水线而言，会冲刷下一条指令;对nemu而言，不存在下一条无效指令。所以解决方式是，让npc运行一周期，nemu停止一周期，且不做比较
     .inst = (unsigned int)inst[0].aval,
-    .br = (bool)br_yes
+    .br = (bool)br_yes,
+    .load_use = (bool)load_use
   };
 
-  old_inst.push(ins);
+  old_inst.push(ins);      //
 
   if(old_inst.size() == 4)
     sync_inst = true;
@@ -190,7 +195,7 @@ static int cmd_i(char *args) {
 static int cmd_s(char *args){
 
   if(args == NULL){
-    stop_nemu = old_inst.front().br;
+    stop_nemu = old_inst.front().br || old_inst.front().load_use;
     if(stop_nemu){
       single_cycle();
       return 0;
@@ -264,7 +269,7 @@ static int cmd_s(char *args){
     uint64_t n = atoi(args);
     while(n > 0){
   //-----disasmble
-    stop_nemu = old_inst.front().br;
+    stop_nemu = old_inst.front().br || old_inst.front().load_use;
     if(stop_nemu){
       printf("pc is 0x%lx\n", pc_disasm);
       single_cycle();

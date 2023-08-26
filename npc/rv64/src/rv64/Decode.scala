@@ -22,6 +22,7 @@ class DecodeIO extends Bundle{
     //to fc
     val jump_flag = Output(Bool())
     val jump_pc = Output(UInt(PC_LEN.W))
+    val load_use = Output(Bool())
 
     //Forward
     val fwde    = Flipped(new FwDeIO)
@@ -55,6 +56,13 @@ class Decode extends Module {
     shamt := inst(25,20)
 
     
+    //---load_use
+    val lu_rd = RegInit(0.U(REG_ADDR_LEN.W))
+    val load_use = Wire(Bool())
+    lu_rd := Mux(cu.io.ld_type.orR, rd, 0.U)
+    load_use := (cu.io.opa_type === ControlUnit.A_REG1 && rs1 === lu_rd) || ((cu.io.opb_type === ControlUnit.B_REG2 && rs2 === lu_rd))
+    
+
 
     //驱动端口 -输出
     //顶层
@@ -100,6 +108,7 @@ class Decode extends Module {
             (cu.io.jump_type === ControlUnit.JUMP_JALR) -> ((Mux(io.fwde.fw_sel1, io.fwde.fw_data1, io.rfio.reg1_rdata) + eximm.io.eximm) & (~(1.U(64.W)))), 
         )
     )
+    io.load_use := load_use
 
     //CU
     cu.io.inst := inst

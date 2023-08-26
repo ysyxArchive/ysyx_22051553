@@ -25,6 +25,10 @@ object FlowControl{
     val BRANCH_SFBundle = 
         VecInit(StallN, StallN, StallN, StallN, StallN,       
             FlushY, FlushY, FlushY, FlushN, FlushN)     //Fe需要FlushY才能跳转
+    
+    val LoadUse_SFBundle = 
+        VecInit(StallY, StallY, StallY, StallY, StallY,       
+            FlushN, FlushN, FlushN, FlushN, FlushN)     
 
 }
 
@@ -39,6 +43,7 @@ class FcFeIO extends Bundle{
 class FcDeIO extends Bundle{
     val jump_flag = Input(Bool())            //from De
     val jump_pc   = Input(UInt(PC_LEN.W))
+    val load_use  = Input(Bool())
 
     val flush     = Output(Bool())       //通往流水线寄存器 fede
     val stall     = Output(Bool())
@@ -78,7 +83,7 @@ class FlowControl extends Module{
         Seq(
             (io.fcex.jump_flag === 1.B) -> FlowControl.BRANCH_SFBundle,
             (io.fcde.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
-            
+            (io.fcde.load_use === 1.B) -> FlowControl.LoadUse_SFBundle
         )
     )
 

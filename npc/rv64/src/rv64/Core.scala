@@ -141,6 +141,7 @@ class Core extends Module{
     //FlowControl
     fc.io.fcde.jump_flag := decode.io.jump_flag
     fc.io.fcde.jump_pc := decode.io.jump_pc
+    fc.io.fcde.load_use := decode.io.load_use
 
     fc.io.fcex.jump_flag := excute.io.jump_flag
     fc.io.fcex.jump_pc := excute.io.jump_pc
@@ -300,6 +301,7 @@ class Core extends Module{
     DI.io.pc_req := fetch.io.pc.valid
     DI.io.inst := Mux(fdreg.pc(2) === 1.U, io.inst(63,32), io.inst(31,0))
     DI.io.inst_valid := DontCare
+    DI.io.load_use := decode.io.load_use
     DI.io.op_a  := dereg.op_a
     DI.io.op_b  := dereg.op_b
     DI.io.result := excute.io.emio.alu_res
