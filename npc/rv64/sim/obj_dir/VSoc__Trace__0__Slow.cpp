@@ -96,6 +96,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBit(c+41,"io_load_use", false,-1);
     tracep->declBus(c+56,"io_fwde_reg1_raddr", false,-1, 4,0);
     tracep->declBus(c+57,"io_fwde_reg2_raddr", false,-1, 4,0);
+    tracep->declBus(c+40,"inst", false,-1, 31,0);
     tracep->declBus(c+75,"lu_rd", false,-1, 4,0);
     tracep->pushNamePrefix("cu ");
     tracep->declBus(c+40,"io_inst", false,-1, 31,0);
@@ -274,6 +275,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->popNamePrefix(2);
     tracep->pushNamePrefix("tm ");
     tracep->declBit(c+177,"clk", false,-1);
+    tracep->declBit(c+181,"load_use", false,-1);
     tracep->declQuad(c+1,"inst", false,-1, 63,0);
     tracep->declQuad(c+5,"pc", false,-1, 63,0);
     tracep->declBit(c+7,"valid", false,-1);
