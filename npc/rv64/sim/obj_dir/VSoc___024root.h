@@ -76,15 +76,16 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_96;
         VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_99;
         VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_168;
+        IData/*31:0*/ Soc__DOT__tm__DOT__old_inst;
         IData/*31:0*/ __VstlIterCount;
         IData/*31:0*/ __VactIterCount;
         VL_OUT64(io_next_pc,63,0);
         QData/*63:0*/ Soc__DOT___tm_inst;
         QData/*63:0*/ Soc__DOT___tm_rdata;
         QData/*63:0*/ Soc__DOT___core_io_waddr;
-        QData/*63:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
     };
     struct {
+        QData/*63:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
         QData/*63:0*/ Soc__DOT__core__DOT___mem_io_mwio_wb_data;
         QData/*63:0*/ Soc__DOT__core__DOT___fetch_io_fdio_pc;
         QData/*63:0*/ Soc__DOT__core__DOT__fdreg_pc;

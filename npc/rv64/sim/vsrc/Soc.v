@@ -1279,11 +1279,14 @@ module TempMem(
    input   [7:0]   wmask
 );
 
+   reg [31:0]  old_inst;
 
    always@(posedge clk)begin
 
+       old_inst <= inst;
+
        if(load_use == 'd1)
-           inst <= inst;          
+           inst <= old_inst;          
        if(valid == 'd1)
            inst <= pmem_read(pc);
        
@@ -1301,5 +1304,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 
