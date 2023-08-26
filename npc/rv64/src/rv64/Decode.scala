@@ -40,7 +40,7 @@ class Decode extends Module {
     val rs1 = Wire(UInt(REG_ADDR_LEN.W))
     val rs2 = Wire(UInt(REG_ADDR_LEN.W))
     val rd = Wire(UInt(REG_ADDR_LEN.W))
-
+ 
     val shamt = Wire(UInt(5.W))
 
     

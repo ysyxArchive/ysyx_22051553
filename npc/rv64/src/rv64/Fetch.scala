@@ -26,7 +26,7 @@ class Fetch extends Module{
     started := true.B
 
     val pc = RegInit(("h80000000".U)(PC_LEN.W))          //为什么不能用PC_START 
-
+    val old_pc = RegInit(0.U(PC_LEN.W))
 
     val next_pc = MuxCase(
         pc,
@@ -39,7 +39,10 @@ class Fetch extends Module{
     )
     io.next_pc := next_pc
     
-    pc := Mux(io.fcfe.stall, pc, next_pc)
+    pc := Mux(io.fcfe.stall, old_pc, next_pc)
+    //----for load_use -> 取指阶段需要再一次的use指令
+    old_pc := pc
+
 
     io.fdio.pc := MuxCase(
         pc,
@@ -48,10 +51,11 @@ class Fetch extends Module{
         )
     )
 
+ 
+
     io.pc.bits := MuxCase(
         pc,
         Seq(
-            io.fcfe.stall -> io.pc.bits,
             (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc    //直接变寻址地址
         )
     )
