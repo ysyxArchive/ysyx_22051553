@@ -39,8 +39,8 @@ class Fetch extends Module{
     )
     io.next_pc := next_pc
     
-    pc := Mux(io.fcfe.stall, old_pc, next_pc)
-    //----for load_use -> 取指阶段需要再一次的use指令
+    pc := Mux(io.fcfe.stall, pc, next_pc)
+    //----for load_use -> 取指阶段需要再一次的use指令,需要给出use的pc
     old_pc := io.fdio.pc //不应该跟pc
 
 
