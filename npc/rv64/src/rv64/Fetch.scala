@@ -47,6 +47,7 @@ class Fetch extends Module{
     io.fdio.pc := MuxCase(
         pc,
         Seq(
+            (io.fcfe.stall) -> old_pc,
             (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc    
         )
     )

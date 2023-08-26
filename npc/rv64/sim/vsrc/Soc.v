@@ -105,6 +105,7 @@ module Fetch(	// <stdin>:8:10
   wire        _next_pc_T_2 = io_fcfe_flush & io_fcfe_jump_flag;	// Fetch.scala:36:36
   wire [63:0] _next_pc_T_4 = io_fcfe_jump_pc + 64'h4;	// Fetch.scala:36:85
   wire [63:0] _next_pc_T_7 = pc + 64'h4;	// Fetch.scala:28:21, :36:85, :37:37
+  wire        _io_fdio_pc_T_2 = io_fcfe_flush & io_fcfe_jump_flag;	// Fetch.scala:50:36
   always @(posedge clock) begin
     if (reset) begin
       started <= 1'h0;	// Fetch.scala:25:26
@@ -119,7 +120,10 @@ module Fetch(	// <stdin>:8:10
         pc <= _next_pc_T_4;	// Fetch.scala:28:21, :36:85
       else if (started)	// Fetch.scala:25:26, :36:36
         pc <= _next_pc_T_7;	// Fetch.scala:28:21, :37:37
-      old_pc <= pc;	// Fetch.scala:28:21, :29:25
+      if (_io_fdio_pc_T_2)	// Fetch.scala:50:36
+        old_pc <= io_fcfe_jump_pc;	// Fetch.scala:29:25
+      else	// Fetch.scala:50:36
+        old_pc <= pc;	// Fetch.scala:28:21, :29:25
     end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:8:10
@@ -150,7 +154,7 @@ module Fetch(	// <stdin>:8:10
       `FIRRTL_AFTER_INITIAL	// <stdin>:8:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
-  assign io_fdio_pc = io_fcfe_flush & io_fcfe_jump_flag ? io_fcfe_jump_pc : pc;	// <stdin>:8:10, Fetch.scala:28:21, :50:36, Mux.scala:101:16
+  assign io_fdio_pc = _io_fdio_pc_T_2 ? io_fcfe_jump_pc : pc;	// <stdin>:8:10, Fetch.scala:28:21, :50:36, Mux.scala:101:16
   assign io_pc_valid = ~io_fcfe_stall & started;	// <stdin>:8:10, Fetch.scala:25:26, :63:23
   assign io_pc_bits = io_fcfe_flush & io_fcfe_jump_flag ? io_fcfe_jump_pc : pc;	// <stdin>:8:10, Fetch.scala:28:21, :59:36, Mux.scala:101:16
   assign io_next_pc = _next_pc_T_2 ? _next_pc_T_4 : started ? _next_pc_T_7 : pc;	// <stdin>:8:10, Fetch.scala:25:26, :28:21, :36:{36,85}, :37:37, Mux.scala:101:16
@@ -1311,4 +1315,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 
