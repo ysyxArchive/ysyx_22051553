@@ -46,6 +46,7 @@ class Decode extends Module {
     //load_use
     val lu_rd = RegInit(0.U(REG_ADDR_LEN.W))
     val load_use = Wire(Bool())
+    val old_inst = RegInit(0.U(INST_LEN.W))
 
     val cu = Module(new ControlUnit)
     val eximm = Module(new Eximm)
@@ -73,7 +74,7 @@ class Decode extends Module {
     load_use := ((cu.io.opa_type === ControlUnit.A_REG1 && rs1 === lu_rd) || ((cu.io.opb_type === ControlUnit.B_REG2 && rs2 === lu_rd))) && (lu_rd =/= 0.U)
     
 
-    val old_inst = RegInit(0.U(INST_LEN.W))
+    
     old_inst := inst
 
     //驱动端口 -输出
