@@ -62,14 +62,15 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgQData(oldp+36,(vlSelf->Soc__DOT__core__DOT__mwreg_wb_data),64);
         bufp->chgCData(oldp+38,(vlSelf->Soc__DOT__core__DOT__mwreg_rd),5);
         bufp->chgIData(oldp+39,(vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits),32);
-        bufp->chgBit(oldp+40,((((2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type)) 
-                                & ((0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                             >> 0xfU)) 
-                                   == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd))) 
-                               | ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type)) 
-                                  & ((0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                               >> 0x14U)) 
-                                     == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd))))));
+        bufp->chgBit(oldp+40,(((((2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type)) 
+                                 & ((0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                                              >> 0xfU)) 
+                                    == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd))) 
+                                | ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type)) 
+                                   & ((0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                                                >> 0x14U)) 
+                                      == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd)))) 
+                               & (0U != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd)))));
         bufp->chgQData(oldp+41,(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result),64);
         bufp->chgBit(oldp+43,(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush));
         bufp->chgBit(oldp+44,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type))));

@@ -24,6 +24,9 @@ class DecodeIO extends Bundle{
     val jump_pc = Output(UInt(PC_LEN.W))
     val load_use = Output(Bool())
 
+    //from fc 
+    val branch = Input(Bool())    //load_use需要。如果branch后接着load指令，随后跳转到use指令，不能作为load_use
+
     //Forward
     val fwde    = Flipped(new FwDeIO)
 }
@@ -59,7 +62,9 @@ class Decode extends Module {
     //---load_use
     val lu_rd = RegInit(0.U(REG_ADDR_LEN.W))
     val load_use = Wire(Bool())
-    lu_rd := Mux(cu.io.ld_type.orR, rd, 0.U)
+    lu_rd := Mux(io.branch, 0.U, 
+             Mux(cu.io.ld_type.orR, rd,
+             0.U))
     load_use := ((cu.io.opa_type === ControlUnit.A_REG1 && rs1 === lu_rd) || ((cu.io.opb_type === ControlUnit.B_REG2 && rs2 === lu_rd))) && (lu_rd =/= 0.U)
     
 

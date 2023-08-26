@@ -110,6 +110,7 @@ class Core extends Module{
     decode.io.inst.bits := Mux(fdreg.pc(2) === 1.U, io.inst(63,32), io.inst(31,0))
     decode.io.fdio.pc := fdreg.pc
     decode.io.rfio <> regfile.io.RfDe
+    decode.io.branch := fc.io.fcex.jump_flag
 
     //excute
     excute.io.deio.op_a := dereg.op_a

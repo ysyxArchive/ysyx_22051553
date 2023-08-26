@@ -359,14 +359,15 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullQData(oldp+37,(vlSelf->Soc__DOT__core__DOT__mwreg_wb_data),64);
     bufp->fullCData(oldp+39,(vlSelf->Soc__DOT__core__DOT__mwreg_rd),5);
     bufp->fullIData(oldp+40,(vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits),32);
-    bufp->fullBit(oldp+41,((((2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type)) 
-                             & ((0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                          >> 0xfU)) 
-                                == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd))) 
-                            | ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type)) 
-                               & ((0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                                            >> 0x14U)) 
-                                  == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd))))));
+    bufp->fullBit(oldp+41,(((((2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type)) 
+                              & ((0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                                           >> 0xfU)) 
+                                 == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd))) 
+                             | ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type)) 
+                                & ((0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                                             >> 0x14U)) 
+                                   == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd)))) 
+                            & (0U != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd)))));
     bufp->fullQData(oldp+42,(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result),64);
     bufp->fullBit(oldp+44,(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush));
     bufp->fullBit(oldp+45,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type))));
