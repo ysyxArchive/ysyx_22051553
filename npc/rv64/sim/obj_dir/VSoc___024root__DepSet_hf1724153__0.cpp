@@ -99,7 +99,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
             = (7U & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)));
         if (VL_UNLIKELY((4U == (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)))) {
             VL_WRITEF("ebreak!\n");
-            VL_FINISH_MT("vsrc/Soc.v", 1193, "");
+            VL_FINISH_MT("vsrc/Soc.v", 1195, "");
         }
     }
     __Vdlyvval__Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory__v1 
@@ -234,9 +234,10 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
             }
         }
         vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd 
-            = ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_ld_type))
-                ? (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
-                            >> 7U)) : 0U);
+            = (((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush) 
+                | (0U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_ld_type)))
+                ? 0U : (0x1fU & (vlSelf->Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits 
+                                 >> 7U)));
     }
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_127 
         = VL_MODDIV_QQQ(64, vlSelf->Soc__DOT__core__DOT__dereg_op_a, vlSelf->Soc__DOT__core__DOT__dereg_op_b);

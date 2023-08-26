@@ -52,7 +52,8 @@ class Decode extends Module {
 
 
     //内部逻辑
-    inst := Mux(io.inst.valid, io.inst.bits, NOP)
+    dontTouch(inst)
+    inst := Mux(load_use, old_inst, Mux(io.inst.valid, io.inst.bits, NOP))
     rs1 := inst(19,15)
     rs2 := inst(24,20)
     rd := inst(11,7)
@@ -68,6 +69,8 @@ class Decode extends Module {
     load_use := ((cu.io.opa_type === ControlUnit.A_REG1 && rs1 === lu_rd) || ((cu.io.opb_type === ControlUnit.B_REG2 && rs2 === lu_rd))) && (lu_rd =/= 0.U)
     
 
+    val old_inst = RegInit(0.U(INST_LEN.W))
+    old_inst := inst
 
     //驱动端口 -输出
     //顶层

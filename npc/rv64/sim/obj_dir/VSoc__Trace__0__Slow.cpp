@@ -73,6 +73,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declQuad(c+15,"io_fdio_pc", false,-1, 63,0);
     tracep->declQuad(c+46,"io_rfio_reg1_rdata", false,-1, 63,0);
     tracep->declQuad(c+48,"io_rfio_reg2_rdata", false,-1, 63,0);
+    tracep->declBit(c+44,"io_branch", false,-1);
     tracep->declBit(c+50,"io_fwde_fw_sel1", false,-1);
     tracep->declBit(c+51,"io_fwde_fw_sel2", false,-1);
     tracep->declQuad(c+52,"io_fwde_fw_data1", false,-1, 63,0);

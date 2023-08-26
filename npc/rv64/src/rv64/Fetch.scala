@@ -26,6 +26,8 @@ class Fetch extends Module{
     started := true.B
 
     val pc = RegInit(("h80000000".U)(PC_LEN.W))          //为什么不能用PC_START 
+
+
     val next_pc = MuxCase(
         pc,
         Seq(
