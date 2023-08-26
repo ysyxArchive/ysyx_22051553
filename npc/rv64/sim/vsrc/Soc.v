@@ -1279,7 +1279,7 @@ module TempMem(
    input   [7:0]   wmask
 );
 
-   reg [31:0]  old_inst;
+   reg [63:0]  old_inst;
 
    always@(posedge clk)begin
 
@@ -1304,4 +1304,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 

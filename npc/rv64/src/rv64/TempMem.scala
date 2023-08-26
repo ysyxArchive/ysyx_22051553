@@ -57,7 +57,7 @@ class TempMem extends BlackBox with HasBlackBoxInline{
     |
     |       if(load_use == 'd1)
     |           inst <= old_inst;          
-    |       if(valid == 'd1)
+    |       else if(valid == 'd1)
     |           inst <= pmem_read(pc);
     |       
     |

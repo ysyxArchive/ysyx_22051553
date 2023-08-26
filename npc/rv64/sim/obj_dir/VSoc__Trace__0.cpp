@@ -465,11 +465,11 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgQData(oldp+170,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[29]),64);
         bufp->chgQData(oldp+172,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[30]),64);
         bufp->chgQData(oldp+174,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[31]),64);
-        bufp->chgIData(oldp+176,(vlSelf->Soc__DOT__tm__DOT__old_inst),32);
+        bufp->chgQData(oldp+176,(vlSelf->Soc__DOT__tm__DOT__old_inst),64);
     }
-    bufp->chgBit(oldp+177,(vlSelf->clock));
-    bufp->chgBit(oldp+178,(vlSelf->reset));
-    bufp->chgQData(oldp+179,(vlSelf->io_next_pc),64);
+    bufp->chgBit(oldp+178,(vlSelf->clock));
+    bufp->chgBit(oldp+179,(vlSelf->reset));
+    bufp->chgQData(oldp+180,(vlSelf->io_next_pc),64);
 }
 
 void VSoc___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {
