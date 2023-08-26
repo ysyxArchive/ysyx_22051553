@@ -60,7 +60,7 @@ class Decode extends Module {
     val lu_rd = RegInit(0.U(REG_ADDR_LEN.W))
     val load_use = Wire(Bool())
     lu_rd := Mux(cu.io.ld_type.orR, rd, 0.U)
-    load_use := (cu.io.opa_type === ControlUnit.A_REG1 && rs1 === lu_rd) || ((cu.io.opb_type === ControlUnit.B_REG2 && rs2 === lu_rd))
+    load_use := ((cu.io.opa_type === ControlUnit.A_REG1 && rs1 === lu_rd) || ((cu.io.opb_type === ControlUnit.B_REG2 && rs2 === lu_rd))) && (lu_rd =/= 0.U)
     
 
 

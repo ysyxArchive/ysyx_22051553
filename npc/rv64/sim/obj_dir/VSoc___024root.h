@@ -22,6 +22,7 @@ class VSoc___024root final : public VerilatedModule {
         VL_IN8(clock,0,0);
         VL_IN8(reset,0,0);
         CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_flag;
+        CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_stall;
         CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcde_flush;
         CData/*0:0*/ Soc__DOT__core__DOT___mem_io_fwmem_reg_we;
         CData/*5:0*/ Soc__DOT__core__DOT___decode_io_deio_alu_op;
@@ -45,6 +46,8 @@ class VSoc___024root final : public VerilatedModule {
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type;
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type;
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type;
+        CData/*2:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_ld_type;
+        CData/*4:0*/ Soc__DOT__core__DOT__decode__DOT__lu_rd;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_3;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_4;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_5;
@@ -80,11 +83,11 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT___tm_rdata;
         QData/*63:0*/ Soc__DOT___core_io_waddr;
         QData/*63:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
+    };
+    struct {
         QData/*63:0*/ Soc__DOT__core__DOT___mem_io_mwio_wb_data;
         QData/*63:0*/ Soc__DOT__core__DOT___fetch_io_fdio_pc;
         QData/*63:0*/ Soc__DOT__core__DOT__fdreg_pc;
-    };
-    struct {
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_op_a;
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_op_b;
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_branch_addr;

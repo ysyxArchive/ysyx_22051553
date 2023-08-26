@@ -8,9 +8,9 @@
 #include "VSoc__Syms.h"
 #include "VSoc___024unit.h"
 
-extern "C" void update_debuginfo(const svLogicVecVal* pc, svLogic pc_req, const svLogicVecVal* inst, svLogic inst_valid, const svLogicVecVal* op_a, const svLogicVecVal* op_b, const svLogicVecVal* result, svLogic br_yes, const svLogicVecVal* rd, const svLogicVecVal* reg_wdata, svLogic reg_wen);
+extern "C" void update_debuginfo(const svLogicVecVal* pc, svLogic pc_req, const svLogicVecVal* inst, svLogic inst_valid, svLogic load_use, const svLogicVecVal* op_a, const svLogicVecVal* op_b, const svLogicVecVal* result, svLogic br_yes, const svLogicVecVal* rd, const svLogicVecVal* reg_wdata, svLogic reg_wen);
 
-VL_INLINE_OPT void VSoc___024unit____Vdpiimwrap_update_debuginfo_TOP____024unit(QData/*63:0*/ pc, CData/*0:0*/ pc_req, IData/*31:0*/ inst, CData/*0:0*/ inst_valid, QData/*63:0*/ op_a, QData/*63:0*/ op_b, QData/*63:0*/ result, CData/*0:0*/ br_yes, CData/*4:0*/ rd, QData/*63:0*/ reg_wdata, CData/*0:0*/ reg_wen) {
+VL_INLINE_OPT void VSoc___024unit____Vdpiimwrap_update_debuginfo_TOP____024unit(QData/*63:0*/ pc, CData/*0:0*/ pc_req, IData/*31:0*/ inst, CData/*0:0*/ inst_valid, CData/*0:0*/ load_use, QData/*63:0*/ op_a, QData/*63:0*/ op_b, QData/*63:0*/ result, CData/*0:0*/ br_yes, CData/*4:0*/ rd, QData/*63:0*/ reg_wdata, CData/*0:0*/ reg_wen) {
     VL_DEBUG_IF(VL_DBG_MSGF("+        VSoc___024unit____Vdpiimwrap_update_debuginfo_TOP____024unit\n"); );
     // Body
     svLogicVecVal pc__Vcvt[2];
@@ -21,6 +21,8 @@ VL_INLINE_OPT void VSoc___024unit____Vdpiimwrap_update_debuginfo_TOP____024unit(
     for (size_t inst__Vidx = 0; inst__Vidx < 1; ++inst__Vidx) VL_SET_SVLV_I(32, inst__Vcvt + 1 * inst__Vidx, inst);
     svLogic inst_valid__Vcvt;
     for (size_t inst_valid__Vidx = 0; inst_valid__Vidx < 1; ++inst_valid__Vidx) inst_valid__Vcvt = inst_valid;
+    svLogic load_use__Vcvt;
+    for (size_t load_use__Vidx = 0; load_use__Vidx < 1; ++load_use__Vidx) load_use__Vcvt = load_use;
     svLogicVecVal op_a__Vcvt[2];
     for (size_t op_a__Vidx = 0; op_a__Vidx < 1; ++op_a__Vidx) VL_SET_SVLV_Q(64, op_a__Vcvt + 2 * op_a__Vidx, op_a);
     svLogicVecVal op_b__Vcvt[2];
@@ -35,7 +37,7 @@ VL_INLINE_OPT void VSoc___024unit____Vdpiimwrap_update_debuginfo_TOP____024unit(
     for (size_t reg_wdata__Vidx = 0; reg_wdata__Vidx < 1; ++reg_wdata__Vidx) VL_SET_SVLV_Q(64, reg_wdata__Vcvt + 2 * reg_wdata__Vidx, reg_wdata);
     svLogic reg_wen__Vcvt;
     for (size_t reg_wen__Vidx = 0; reg_wen__Vidx < 1; ++reg_wen__Vidx) reg_wen__Vcvt = reg_wen;
-    update_debuginfo(pc__Vcvt, pc_req__Vcvt, inst__Vcvt, inst_valid__Vcvt, op_a__Vcvt, op_b__Vcvt, result__Vcvt, br_yes__Vcvt, rd__Vcvt, reg_wdata__Vcvt, reg_wen__Vcvt);
+    update_debuginfo(pc__Vcvt, pc_req__Vcvt, inst__Vcvt, inst_valid__Vcvt, load_use__Vcvt, op_a__Vcvt, op_b__Vcvt, result__Vcvt, br_yes__Vcvt, rd__Vcvt, reg_wdata__Vcvt, reg_wen__Vcvt);
 }
 
 extern "C" long long pmem_read(const svLogicVecVal* raddr);
