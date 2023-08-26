@@ -15,6 +15,7 @@ class Core extends Module{
         val inst = Input(UInt(64.W))
         val pc   = Output(UInt(PC_LEN.W))
         val valid = Output(Bool())
+        val load_use = Output(Bool())
 
         val raddr = Output(UInt(X_LEN.W))
         val rdata = Input(UInt(X_LEN.W))
@@ -100,6 +101,8 @@ class Core extends Module{
     io.wdata := excute.io.wdata
     io.wmask := excute.io.wmask
 
+    io.load_use := decode.io.load_use
+
     //寄存器不是有单一方向的，不能用<>
     
     //fetch相关
@@ -149,7 +152,13 @@ class Core extends Module{
 
     //流水线寄存器
     //fdreg
-    fdreg.pc := fetch.io.fdio.pc          //fetch.io.fdio.pc在Fetch模块中已经处理成了有效值
+    fdreg.pc := MuxCase(
+        fetch.io.fdio.pc,
+        Seq(
+            (fc.io.fcde.stall) -> fdreg.pc,
+            (fc.io.fcde.flush) -> 0.U,
+        )
+    )
     //dereg
     dereg.op_a := MuxCase(
         decode.io.deio.op_a,

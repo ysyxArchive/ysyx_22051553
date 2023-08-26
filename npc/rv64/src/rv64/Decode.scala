@@ -43,10 +43,8 @@ class Decode extends Module {
 
     val shamt = Wire(UInt(5.W))
 
-    //load_use
-    val lu_rd = RegInit(0.U(REG_ADDR_LEN.W))
-    val load_use = Wire(Bool())
-    val old_inst = RegInit(0.U(INST_LEN.W))
+    
+    
 
     val cu = Module(new ControlUnit)
     val eximm = Module(new Eximm)
@@ -59,7 +57,7 @@ class Decode extends Module {
     //内部逻辑
 
     dontTouch(inst)
-    inst := Mux(load_use, old_inst, Mux(io.inst.valid, io.inst.bits, NOP))
+    inst := Mux(io.inst.valid, io.inst.bits, NOP)
     rs1 := inst(19,15)
     rs2 := inst(24,20)
     rd := inst(11,7)
@@ -68,14 +66,13 @@ class Decode extends Module {
     
     //---load_use
 
+    val lu_rd = RegInit(0.U(REG_ADDR_LEN.W))
+    val load_use = Wire(Bool())
+
     lu_rd := Mux(io.branch, 0.U, 
              Mux(cu.io.ld_type.orR, rd,
              0.U))
     load_use := ((cu.io.opa_type === ControlUnit.A_REG1 && rs1 === lu_rd) || ((cu.io.opb_type === ControlUnit.B_REG2 && rs2 === lu_rd))) && (lu_rd =/= 0.U)
-    
-
-    
-    old_inst := inst
 
     //驱动端口 -输出
     //顶层
