@@ -152,13 +152,7 @@ class Core extends Module{
 
     //流水线寄存器
     //fdreg
-    fdreg.pc := MuxCase(
-        fetch.io.fdio.pc,
-        Seq(
-            (fc.io.fcde.stall) -> fdreg.pc,
-            (fc.io.fcde.flush) -> 0.U,
-        )
-    )
+    fdreg.pc := fetch.io.fdio.pc
     //dereg
     dereg.op_a := MuxCase(
         decode.io.deio.op_a,
