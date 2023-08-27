@@ -42,8 +42,6 @@ class VSoc___024root final : public VerilatedModule {
         CData/*2:0*/ Soc__DOT__core__DOT__emreg_ld_addr_lowbit;
         CData/*1:0*/ Soc__DOT__core__DOT__mwreg_wb_type;
         CData/*4:0*/ Soc__DOT__core__DOT__mwreg_rd;
-        CData/*0:0*/ Soc__DOT__core__DOT__interact__DOT__ebreak_flag;
-        CData/*2:0*/ Soc__DOT__core__DOT__interact__DOT__over_count;
         CData/*0:0*/ Soc__DOT__core__DOT__fetch__DOT__started;
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type;
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type;
@@ -66,6 +64,8 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_mem_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_wb_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_wb_hazard;
+        CData/*0:0*/ Soc__DOT__core__DOT__interact__DOT__ebreak_flag;
+        CData/*2:0*/ Soc__DOT__core__DOT__interact__DOT__over_count;
         CData/*0:0*/ __Vtrigrprev__TOP__clock;
         CData/*0:0*/ __VactContinue;
         SData/*9:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN;

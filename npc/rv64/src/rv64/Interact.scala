@@ -37,7 +37,7 @@ class Interact extends BlackBox with HasBlackBoxInline{  //起始应该放到写
         |       else begin
         |           if(ebreak_flag)begin
         |               over_count <= over_count + 1'b1;
-        |               if(over_count == 3'd4)begin
+        |               if(over_count == 3'd2)begin          
         |                   $display("ebreak!");
         |                   $finish;
         |               end
