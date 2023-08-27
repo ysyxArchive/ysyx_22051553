@@ -28,6 +28,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT___excute_io_jump_flag;
         CData/*5:0*/ Soc__DOT__core__DOT___decode_io_deio_alu_op;
         CData/*0:0*/ Soc__DOT__core__DOT___decode_io_jump_flag;
+        CData/*0:0*/ Soc__DOT__core__DOT___decode_io_load_use;
         CData/*4:0*/ Soc__DOT__core__DOT__dereg_rd;
         CData/*0:0*/ Soc__DOT__core__DOT__dereg_branch_type;
         CData/*5:0*/ Soc__DOT__core__DOT__dereg_alu_op;
@@ -65,7 +66,6 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_mem_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_wb_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_wb_hazard;
-        CData/*0:0*/ Soc__DOT__tm__DOT__load_use;
         CData/*0:0*/ __Vtrigrprev__TOP__clock;
         CData/*0:0*/ __VactContinue;
         SData/*9:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN;
