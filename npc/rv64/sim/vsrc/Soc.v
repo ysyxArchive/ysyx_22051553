@@ -482,6 +482,7 @@ module Alu(	// <stdin>:917:10
   wire [31:0]  _res_T_78 = io_op_a[31:0] + io_op_b[31:0];	// Alu.scala:112:36
   wire [31:0]  _GEN_10 = {26'h0, io_shamt};	// Alu.scala:114:42
   wire [31:0]  _res_T_85 = io_op_a[31:0] >> _GEN_10;	// Alu.scala:114:{35,42}
+  wire [31:0]  _res_T_89 = $signed($signed(io_op_a[31:0]) >>> _GEN_10);	// Alu.scala:114:{35,42}, :115:49
   wire [31:0]  _res_T_98 = io_op_a[31:0] - io_op_b[31:0];	// Alu.scala:112:36, :117:35
   wire [126:0] _res_T_101 = _GEN_1 << _GEN_2;	// Alu.scala:96:33, :118:35
   wire [31:0]  _GEN_11 = {26'h0, io_op_b[5:0]};	// Alu.scala:96:43, :114:42, :119:41
@@ -509,12 +510,12 @@ module Alu(	// <stdin>:917:10
                 6'h22 ? {{32{_res_T_112[31]}}, _res_T_112} : io_alu_op == 6'h21 ? {{32{_res_T_107[31]}},
                 _res_T_107} : io_alu_op == 6'h20 ? {{32{_res_T_101[31]}}, _res_T_101[31:0]} : io_alu_op ==
                 6'h1F ? {{32{_res_T_98[31]}}, _res_T_98} : io_alu_op == 6'h1E ? _GEN_12 : io_alu_op ==
-                6'h1D ? {32'h0, $signed($signed(io_op_a[31:0]) >>> _GEN_10)} : io_alu_op == 6'h1C ?
-                {{32{_res_T_85[31]}}, _res_T_85} : io_alu_op == 6'h1B ? {{32{_res_T_80[31]}},
-                _res_T_80[31:0]} : io_alu_op == 6'h1A ? _GEN_12 : io_alu_op == 6'h19 ? _res_T_131 :
-                io_alu_op == 6'h18 ? $signed(io_op_a) % $signed(io_op_b) : io_alu_op == 6'h17 ? _res_T_123
-                : io_alu_op == 6'h16 ? _res_T_68[63:0] : io_alu_op == 6'h15 ? _GEN_9[127:64] : io_alu_op ==
-                6'h14 ? _GEN_8[127:64] : io_alu_op == 6'h13 ? _GEN_6[127:64] : _res_T_172[63:0];	// <stdin>:917:10, Alu.scala:99:34, :104:34, :105:45, :106:{37,47}, :107:{36,46}, :108:40, :109:34, :110:40, :111:34, :113:48, :114:{35,42}, :115:49, :117:35, :118:{35,51}, :119:41, :120:48, :121:45, :122:{42,59}, :123:46, :124:{42,59}, :125:46, Mux.scala:81:{58,61}
+                6'h1D ? {{32{_res_T_89[31]}}, _res_T_89} : io_alu_op == 6'h1C ? {{32{_res_T_85[31]}},
+                _res_T_85} : io_alu_op == 6'h1B ? {{32{_res_T_80[31]}}, _res_T_80[31:0]} : io_alu_op ==
+                6'h1A ? _GEN_12 : io_alu_op == 6'h19 ? _res_T_131 : io_alu_op == 6'h18 ? $signed(io_op_a) %
+                $signed(io_op_b) : io_alu_op == 6'h17 ? _res_T_123 : io_alu_op == 6'h16 ? _res_T_68[63:0] :
+                io_alu_op == 6'h15 ? _GEN_9[127:64] : io_alu_op == 6'h14 ? _GEN_8[127:64] : io_alu_op ==
+                6'h13 ? _GEN_6[127:64] : _res_T_172[63:0];	// <stdin>:917:10, Alu.scala:99:34, :104:34, :105:45, :106:{37,47}, :107:{36,46}, :108:40, :109:34, :110:40, :111:34, :113:48, :114:42, :115:49, :117:35, :118:{35,51}, :119:41, :120:48, :121:45, :122:{42,59}, :123:46, :124:{42,59}, :125:46, Mux.scala:81:{58,61}
 endmodule
 
 module Excute(	// <stdin>:1154:10
