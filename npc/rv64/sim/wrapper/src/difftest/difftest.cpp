@@ -44,7 +44,7 @@ void init_difftest(const char *ref_so_file, long img_size, int port){
 
 
 
-bool difftest_checkregs(struct diff_context_t* ref_r, uint64_t pc){
+bool difftest_checkregs(struct diff_context_t* ref_r){
 
   struct diff_context_t* cpu = (struct diff_context_t*)(cpu_ins.get_reg_bundle());  
 
@@ -56,20 +56,15 @@ bool difftest_checkregs(struct diff_context_t* ref_r, uint64_t pc){
     }
       
   }
-  if(ref_r->pc != pc){
-    printf("pc diff\n");
-    return false;
-  }
-    
   
   return true;
 }
 
-bool difftest_step(uint64_t pc) {
+bool difftest_step() {
   struct diff_context_t ref_r;
 
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, 0);
 
-  return difftest_checkregs(&ref_r, pc);
+  return difftest_checkregs(&ref_r);
 }

@@ -114,8 +114,8 @@ module Fetch(	// <stdin>:8:10
     end
     else begin
       started <= 1'h1;	// Fetch.scala:25:26, :26:13
-      if (io_fcfe_stall)
-        pc <= old_pc;	// Fetch.scala:28:21, :29:25
+      if (io_fcfe_stall) begin
+      end
       else begin
         if (_next_pc_T_2)	// Fetch.scala:36:36
           pc <= _next_pc_T_4;	// Fetch.scala:28:21, :36:85
@@ -1317,5 +1317,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 

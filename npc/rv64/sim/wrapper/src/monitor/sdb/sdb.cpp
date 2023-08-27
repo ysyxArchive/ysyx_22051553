@@ -14,24 +14,23 @@
 #include <queue>
 #include <list>
 
-typedef struct inst_stop{
+typedef struct comp{
+  unsigned long pc;
   uint32_t inst;
   bool br;
   bool load_use;
-}inst_stop;
+}comp;
 
-bool difftest_step(uint64_t pc);
+bool difftest_step();
 void single_cycle();
 extern void (*ref_difftest_regcpy)(void *dut, bool direction);
 
 uint64_t expr(char *e, bool *success);
 void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 
-static bool sync_pc = 0;
-static bool sync_inst = 0;
-static std::list<unsigned long> old_pc;  //同一条指令从uptate函数中获得pc和inst的时间不是同步的
-static std::queue<inst_stop> old_inst;
-static uint64_t pc_disasm;
+static bool sync_comp = 0;
+static unsigned long co_pc = 0x80000000;   //指令对应的pc
+std::list<comp> comp_list;
 static bool stop_nemu;
 
 char log_itrace[128];
@@ -74,6 +73,7 @@ void update_debuginfo(
   const svLogicVecVal* reg_wdata,
   svLogic reg_wen)
 {
+  
 
   debug_ins.update(
     (unsigned long)pc[1].aval << 32 | pc[0].aval,
@@ -90,38 +90,32 @@ void update_debuginfo(
     (bool)reg_wen);
 
 
-  old_pc.push_back((unsigned long)pc[1].aval << 32 | pc[0].aval);
-  if(old_pc.size() == 4)
-    sync_pc = true;
 
-  if(sync_pc){
-    unsigned long set_pc = old_pc.front();
-    pc_disasm = old_pc.front();
+  comp ins = {       //如果branch指令成功，那么下一条压入的指令是无效的      对于npc五级流水线而言，会冲刷下一条指令;对nemu而言，不存在下一条无效指令。所以解决方式是，让npc运行一周期，nemu停止一周期，且不做比较
+    .pc = (unsigned long)pc[1].aval << 32 | pc[0].aval,        //fetch给出的pc
+    .inst = (unsigned int)inst[0].aval,                        //decode的指令  ---pc领先inst一个周期，这和nemu是一样的
+    .br = (bool)br_yes,                                        //excute的br
+    .load_use = (bool)load_use                                 //decode的load_use
+  };
 
-    old_pc.pop_front();
-    cpu_ins.set_value(32, set_pc);
+
+  if((bool)load_use){                  //如果load_use有效，会注入一条无效指令，需要让npc度过一个周期
+    comp_list.push_front(ins);
+  }else{
+    comp_list.push_back(ins);
   }
 
 
-  inst_stop ins = {       //如果branch指令成功，那么下一条压入的指令是无效的      对于npc五级流水线而言，会冲刷下一条指令;对nemu而言，不存在下一条无效指令。所以解决方式是，让npc运行一周期，nemu停止一周期，且不做比较
-    .inst = (unsigned int)inst[0].aval,
-    .br = (bool)br_yes,
-    .load_use = (bool)load_use
-  };
-
-  old_inst.push(ins);      //
-
-  if(old_inst.size() == 4)
-    sync_inst = true;
-  if(sync_inst){
-    old_inst.pop();
+  if(comp_list.size() == 5){  //保留decode,ex,mem,wb
+    sync_comp = true;
+    comp_list.pop_front();
+    comp_list.pop_front();
   }
 
 
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
     cpu_ins.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);
   }
-
 
 
 }
@@ -193,11 +187,21 @@ static int cmd_i(char *args) {
 }
 
 static int cmd_s(char *args){
+  
+
 
   if(args == NULL){
-    stop_nemu = old_inst.front().br || old_inst.front().load_use;
+  
+  for(auto arg : comp_list){
+    printf("inst is 0x%08x\n", arg.inst);
+  }
+
+    stop_nemu = comp_list.front().br || comp_list.front().load_use;
     if(stop_nemu){
+      printf("stop\n");
       single_cycle();
+      if(sync_comp)
+        comp_list.pop_front();
       return 0;
     }
       
@@ -205,17 +209,17 @@ static int cmd_s(char *args){
   //-----disasmble     --对当前wb中的pc
 
     char* p = log_itrace;
-    p += snprintf(p, sizeof(log_itrace), "0x%016lx" ":", pc_disasm);
+    p += snprintf(p, sizeof(log_itrace), "0x%016lx" ":", co_pc);
     int ilen = 4;
-    uint8_t* inst = (uint8_t *)(&old_inst.front().inst);
+    uint8_t* inst = (uint8_t *)(&(comp_list.front().inst));
     for(int i = ilen - 1; i >= 0; i--){
       p += snprintf(p, 4, "%02x", inst[i]);
     }
 
     p += snprintf(p, 4, " ");
 
-  disassemble(p, log_itrace + sizeof(log_itrace) - p, pc_disasm,
-    (uint8_t *)(&old_inst.front().inst), ilen);
+  disassemble(p, log_itrace + sizeof(log_itrace) - p, co_pc,
+    (uint8_t *)(&comp_list.front().inst), ilen);
 
     printf("%s\n", log_itrace);
 
@@ -225,20 +229,15 @@ static int cmd_s(char *args){
     strcpy(p, log_itrace + 10);
     irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
 
+
+    
     //-----------------
     single_cycle();   //执行当条pc, update之后，pc变成下一条指令的pc
 
-        unsigned long pc_comp = 0;
-      if(old_inst.front().br){
-        pc_comp = *(old_pc.begin()++);
-      }
-      else
-        pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
-
-
-    if(! difftest_step(pc_comp)){  //比较当前的通用寄存器状态和下一条指令的pc
+    if(! difftest_step()){  //比较当前的通用寄存器状态和下一条指令的pc
     //dut_regs
     printf("-----------dut_regs--------------\n");
+    printf("pc\t\t0x%-16lx\t\t%-20ld\n", co_pc, co_pc);
     cpu_ins.gpr_display();
     //ref_regs
     struct diff_context_t ref_r;
@@ -248,7 +247,6 @@ static int cmd_s(char *args){
     for(int i = 0; i < 32; i ++){
       printf("%s\t\t0x%-16lx\t\t%-20ld\n", cpu::regs[i], ref_r.gpr[i], ref_r.gpr[i]);
     }    
-
 
     //-----itrace
     printf("-----------itrace--------------\n");
@@ -263,33 +261,41 @@ static int cmd_s(char *args){
     //---------------
       Verilated::gotFinish(1);
     }
+    co_pc = comp_list.front().pc;
+    comp_list.pop_front(); //single_cycle和difftest_step使用后丢弃
       
   }
   else {
+
     uint64_t n = atoi(args);
     while(n > 0){
+            for(auto arg : comp_list){
+    printf("0x%lx:0x%08x\n",arg.pc, arg.inst);
+  }
   //-----disasmble
-    stop_nemu = old_inst.front().br || old_inst.front().load_use;
+    stop_nemu = comp_list.front().br || comp_list.front().load_use;
     if(stop_nemu){
-      printf("pc is 0x%lx\n", pc_disasm);
+      printf("stop\n");
+      printf("br %d, lu %d\n", comp_list.front().br, comp_list.front().load_use);
       single_cycle();
-      continue;
+      if(sync_comp)
+        comp_list.pop_front();
+      return 0;
     }
       
 
-
     char* p = log_itrace;
-    p += snprintf(p, sizeof(log_itrace), "0x%016lx" ":", pc_disasm);
+    p += snprintf(p, sizeof(log_itrace), "0x%016lx" ":", co_pc);
     int ilen = 4;
-    uint8_t* inst = (uint8_t *)(&old_inst.front().inst);
+    uint8_t* inst = (uint8_t *)(&comp_list.front().inst);
     for(int i = ilen - 1; i >= 0; i--){
       p += snprintf(p, 4, "%02x", inst[i]);
     }
 
     p += snprintf(p, 4, " ");
 
-  disassemble(p, log_itrace + sizeof(log_itrace) - p, pc_disasm,
-    (uint8_t *)(&old_inst.front().inst), ilen);
+  disassemble(p, log_itrace + sizeof(log_itrace) - p, co_pc,
+    (uint8_t *)(&comp_list.front().inst), ilen);
 
     printf("%s\n", log_itrace);
 
@@ -303,18 +309,10 @@ static int cmd_s(char *args){
 
       single_cycle();
 
-      
-      unsigned long pc_comp = 0;
-      if(old_inst.front().br){
-        pc_comp = *(old_pc.begin()++);
-      }
-      else
-        pc_comp = ((struct diff_context_t*)(cpu_ins.get_reg_bundle()))->pc;
-
-
-      if(! difftest_step(pc_comp)){
+      if(! difftest_step()){
     //dut_regs
     printf("-----------dut_regs--------------\n");
+    printf("pc\t\t0x%-16lx\t\t%-20ld\n", co_pc, co_pc);
     cpu_ins.gpr_display();
     //ref_regs
     struct diff_context_t ref_r;
@@ -325,7 +323,7 @@ static int cmd_s(char *args){
       printf("%s\t\t0x%-16lx\t\t%-20ld\n", cpu::regs[i], ref_r.gpr[i], ref_r.gpr[i]);
     }    
 
-
+  
     //-----itrace
     printf("-----------itrace--------------\n");
       for(int i = 0; i < 16; i ++){
@@ -340,6 +338,8 @@ static int cmd_s(char *args){
         Verilated::gotFinish(1);
         break;
       }
+      co_pc = comp_list.front().pc;
+      comp_list.pop_front(); //single_cycle和difftest_step使用后丢弃
         
       n --;
     }

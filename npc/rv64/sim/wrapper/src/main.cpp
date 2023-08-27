@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstdio>
 #include "memory.hpp"
+#include <list>
 
 static VSoc dut;
 
@@ -15,6 +16,7 @@ void sdb_mainloop();
 void init_regex();
 void init_difftest(const char *ref_so_file, long img_size, int port);
 void init_disasm(const char *triple);
+
 
 
 
@@ -56,6 +58,8 @@ int main(int argc, char **argv) {
   reset(2);        
 
   syn_diff();
+
+
   init_difftest("/home/shikye/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so", size, 0);
 
   sdb_mainloop();

@@ -57,6 +57,7 @@ class Fetch extends Module{
     io.pc.bits := MuxCase(
         pc,
         Seq(
+            (io.fcfe.stall) -> old_pc,
             (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc    //直接变寻址地址
         )
     )
