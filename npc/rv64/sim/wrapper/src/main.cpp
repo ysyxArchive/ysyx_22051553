@@ -56,9 +56,9 @@ int main(int argc, char **argv) {
   vcd->open("wave.vcd");
   
   reset(2);        
-
+  
   syn_diff();
-
+  
 
   init_difftest("/home/shikye/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so", size, 0);
 

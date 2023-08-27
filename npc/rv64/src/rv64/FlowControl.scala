@@ -24,11 +24,11 @@ object FlowControl{
 
     val BRANCH_SFBundle = 
         VecInit(StallN, StallN, StallN, StallN, StallN,       
-            FlushY, FlushY, FlushY, FlushN, FlushN)     //Fe需要FlushY才能跳转
+            FlushY, FlushY, FlushN, FlushN, FlushN)     //Fe需要FlushY才能跳转，branch成立，需要使当前decode指令无效
     
     val LoadUse_SFBundle = 
         VecInit(StallY, StallY, StallY, StallY, StallY,       
-            FlushN, FlushN, FlushN, FlushN, FlushN)     
+            FlushN, FlushY, FlushN, FlushN, FlushN)        //load_use的use指令应该flush掉，否则如果是要写寄存器，该指令仍然会写
 
 }
 

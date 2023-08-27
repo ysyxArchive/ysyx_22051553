@@ -86,7 +86,7 @@ class VSoc___024root final : public VerilatedModule {
     };
     struct {
         QData/*63:0*/ Soc__DOT__core__DOT___mem_io_mwio_wb_data;
-        QData/*63:0*/ Soc__DOT__core__DOT___fetch_io_pc_bits;
+        QData/*63:0*/ Soc__DOT__core__DOT___fetch_io_fdio_pc;
         QData/*63:0*/ Soc__DOT__core__DOT__fdreg_pc;
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_op_a;
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_op_b;
