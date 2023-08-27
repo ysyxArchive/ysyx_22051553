@@ -51,7 +51,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 1108, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 1107, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -1339,7 +1339,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     __Vtemp_h197b5ff8__1[2U] = 0U;
     __Vtemp_h197b5ff8__1[3U] = 0U;
     VL_MUL_W(4, __Vtemp_hd8984f98__0, vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___GEN_5, __Vtemp_h197b5ff8__1);
-    vlSelf->__VdfgTmp_hfec920a8__0 = ((0x27U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op))
+    vlSelf->__VdfgTmp_ha20108bb__0 = ((0x27U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op))
                                        ? (((QData)((IData)(
                                                            (- (IData)(
                                                                       (1U 
@@ -1449,15 +1449,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                          : 
                                                         ((0x1dU 
                                                           == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op))
-                                                          ? 
-                                                         (((QData)((IData)(
-                                                                           (- (IData)(
-                                                                                (1U 
-                                                                                & (IData)(
-                                                                                (vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_44 
-                                                                                >> 0x1fU))))))) 
-                                                           << 0x20U) 
-                                                          | (QData)((IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_44)))
+                                                          ? (QData)((IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_44))
                                                           : 
                                                          ((0x1cU 
                                                            == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op))
@@ -2011,11 +2003,11 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                 | (0x73bU == vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_1)))))))));
     vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result 
         = ((0x3fU == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op))
-            ? 0ULL : vlSelf->__VdfgTmp_hfec920a8__0);
+            ? 0ULL : vlSelf->__VdfgTmp_ha20108bb__0);
     vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__dereg_branch_type) 
            & ((~ (IData)((0x3fU == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op)))) 
-              & (0U != vlSelf->__VdfgTmp_hfec920a8__0)));
+              & (0U != vlSelf->__VdfgTmp_ha20108bb__0)));
     vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag 
         = ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type)) 
            | (2U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type)));
@@ -2626,7 +2618,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__interact__DOT__ebreak_flag = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count = VL_RAND_RESET_I(3);
     vlSelf->Soc__DOT__tm__DOT__old_inst = VL_RAND_RESET_Q(64);
-    vlSelf->__VdfgTmp_hfec920a8__0 = 0;
+    vlSelf->__VdfgTmp_ha20108bb__0 = 0;
     vlSelf->__Vtrigrprev__TOP__clock = VL_RAND_RESET_I(1);
     for (int __Vi0 = 0; __Vi0 < 2; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = 0;

@@ -119,7 +119,7 @@ class VSoc___024root final : public VerilatedModule {
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__mem__DOT___GEN_1;
         QData/*63:0*/ Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data;
         QData/*63:0*/ Soc__DOT__tm__DOT__old_inst;
-        QData/*63:0*/ __VdfgTmp_hfec920a8__0;
+        QData/*63:0*/ __VdfgTmp_ha20108bb__0;
         VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
         VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
     };
