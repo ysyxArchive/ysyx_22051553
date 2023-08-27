@@ -1292,7 +1292,7 @@ module TempMem(
        old_inst <= inst;
 
        if(load_use == 'd1)
-           inst <= old_inst;          
+           inst <= inst;         //不变，给decode再一次的use指令  
        else if(valid == 'd1)
            inst <= pmem_read(pc);
        

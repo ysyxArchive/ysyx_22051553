@@ -27,7 +27,7 @@ object FlowControl{
             FlushY, FlushY, FlushN, FlushN, FlushN)     //Fe需要FlushY才能跳转，branch成立，需要使当前decode指令无效
     
     val LoadUse_SFBundle = 
-        VecInit(StallY, StallY, StallY, StallY, StallY,       
+        VecInit(StallN, StallN, StallN, StallN, StallN,     //剩下的部件中的指令可以继续执行
             FlushN, FlushY, FlushN, FlushN, FlushN)        //load_use的use指令应该flush掉，否则如果是要写寄存器，该指令仍然会写
 
 }
