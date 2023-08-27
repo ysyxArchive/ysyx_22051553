@@ -490,8 +490,8 @@ module Alu(	// <stdin>:917:10
   wire [64:0]  _res_T_120 = $signed(_GEN) / $signed(_GEN_0);	// Alu.scala:86:40, :122:42
   wire [63:0]  _res_T_128 = $signed(io_op_a) % $signed(io_op_b);	// Alu.scala:124:42
   wire [63:0]  _res_T_154 = io_alu_op == 6'h9 ? io_op_a | io_op_b : io_alu_op == 6'h8 ? io_op_a ^ io_op_b : io_alu_op
-                == 6'h7 ? {63'h0, io_op_a > io_op_b} : io_alu_op == 6'h6 ? {63'h0, io_op_a < io_op_b} :
-                io_alu_op == 6'h5 ? {63'h0, $signed(io_op_a) > $signed(io_op_b)} : io_alu_op == 6'h4 ?
+                == 6'h7 ? {63'h0, io_op_a >= io_op_b} : io_alu_op == 6'h6 ? {63'h0, io_op_a < io_op_b} :
+                io_alu_op == 6'h5 ? {63'h0, $signed(io_op_a) >= $signed(io_op_b)} : io_alu_op == 6'h4 ?
                 {63'h0, $signed(io_op_a) < $signed(io_op_b)} : io_alu_op == 6'h3 ? {63'h0, io_op_a !=
                 io_op_b} : io_alu_op == 6'h2 ? {63'h0, io_op_a == io_op_b} : io_alu_op == 6'h1 ? io_op_a -
                 io_op_b : io_alu_op == 6'h0 ? io_op_a + io_op_b : 64'h0;	// Alu.scala:86:40, :87:40, :88:33, :89:33, :90:40, :91:40, :92:34, :93:34, :94:33, :95:32, :96:33, Mux.scala:81:{58,61}

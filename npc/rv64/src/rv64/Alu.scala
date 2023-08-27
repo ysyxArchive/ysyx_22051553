@@ -112,7 +112,7 @@ class Alu extends Module {
             ALU_ADDIW -> ((io.op_a + io.op_b)(31,0)).asSInt,   //这样可以直接做符号扩展吗
             ALU_SLLIW -> ((io.op_a << io.shamt)(31,0)).asSInt,   //io.op_a左移时能扩充位宽吗
             ALU_SRLIW -> ((io.op_a(31,0) >> io.shamt)(31,0)).asSInt,
-            ALU_SRAIW -> ((io.op_a(31,0).asSInt >> io.shamt)(31,0)).zext.asSInt,
+            ALU_SRAIW -> ((io.op_a(31,0).asSInt >> io.shamt)(31,0)).asSInt,
             ALU_ADDW -> ((io.op_a + io.op_b)(31,0)).asSInt,
             ALU_SUBW -> ((io.op_a - io.op_b)(31,0)).asSInt,
             ALU_SLLW -> ((io.op_a << io.op_b(5,0))(31,0)).asSInt,
