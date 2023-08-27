@@ -43,6 +43,8 @@ void memory::mem_write(uint64_t waddr, uint64_t wdata, uint8_t wmask){
     (wmask == 0x01) ? 1 : 0
     );
 
+    printf("write data is 0x%lx\n", wdata);
+
     assert(wmask == 0xff || wmask == 0x0f || wmask == 0x03 || wmask == 0x01);
 
     switch (wmask)

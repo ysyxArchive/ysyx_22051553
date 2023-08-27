@@ -72,7 +72,8 @@ class Decode extends Module {
     lu_rd := Mux(io.branch, 0.U, 
              Mux(cu.io.ld_type.orR, rd,
              0.U))
-    load_use := ((cu.io.opa_type === ControlUnit.A_REG1 && rs1 === lu_rd) || ((cu.io.opb_type === ControlUnit.B_REG2 && rs2 === lu_rd))) && (lu_rd =/= 0.U)
+    load_use := ((cu.io.opa_type === ControlUnit.A_REG1 && rs1 === lu_rd) || ((cu.io.opb_type === ControlUnit.B_REG2 && rs2 === lu_rd)) ||
+    (cu.io.sd_type.orR && (rs2 === lu_rd)) ) && (lu_rd =/= 0.U)
 
     //驱动端口 -输出
     //顶层
