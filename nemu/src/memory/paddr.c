@@ -40,8 +40,10 @@ paddr_t host_to_guest(uint8_t *haddr) { return haddr - pmem + CONFIG_MBASE; }
 static word_t pmem_read(paddr_t addr, int len) {
   #ifdef CONFIG_MTRACE
     Log("read mem at " FMT_PADDR " for %d bytes",addr, len);
+    
   #endif
   word_t ret = host_read(guest_to_host(addr), len);  //实际是读pmem[n]
+  printf("ret data is 0x%lx\n", ret);
   return ret;
 }
 
