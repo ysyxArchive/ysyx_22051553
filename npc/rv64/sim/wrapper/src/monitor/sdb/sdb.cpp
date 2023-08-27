@@ -14,6 +14,8 @@
 #include <queue>
 #include <list>
 
+extern bool batch;
+
 typedef struct fetch{  //同步到单周期，即fetch、decode、excute对应的是一条指令
   unsigned long pc;
 }fetch;
@@ -289,13 +291,13 @@ static int cmd_s(char *args){
 
     while(n > 0){
   
-    for(auto arg : fetch_list){
-      printf("pc:0x%lx\n", arg.pc);
-    }
+    // for(auto arg : fetch_list){
+    //   printf("pc:0x%lx\n", arg.pc);
+    // }
 
-    for(auto arg : decode_list){
-      printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
-    }
+    // for(auto arg : decode_list){
+    //   printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
+    // }
 
     if( decode_list.front().load_use){
       printf("load_use\n");
@@ -428,6 +430,14 @@ static struct {
 
 
 void sdb_mainloop(){
+
+  if(batch){
+    char str[10] = "any";
+    cmd_c(str);
+    if(exam_exit() == 1)
+      return ;
+  }
+
   for (char *str; (str = rl_gets()) != NULL; ) {
     char *str_end = str + strlen(str);    // 指向\0
 
@@ -458,7 +468,6 @@ void sdb_mainloop(){
 
     if(exam_exit() == 1)
       return ;
-
   }
 
   

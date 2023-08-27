@@ -201,51 +201,52 @@ module ControlUnit(	// <stdin>:43:10
   wire        _controlsig_T_51 = _GEN == 10'h213;	// Lookup.scala:31:38
   wire        _controlsig_T_53 = _GEN == 10'h313;	// Lookup.scala:31:38
   wire        _controlsig_T_55 = _GEN == 10'h393;	// Lookup.scala:31:38
-  wire [16:0] _GEN_0 = {io_inst[31:25], io_inst[14:12], io_inst[6:0]};	// Lookup.scala:31:38
-  wire        _controlsig_T_57 = _GEN_0 == 17'h93;	// Lookup.scala:31:38
-  wire        _controlsig_T_59 = _GEN_0 == 17'h293;	// Lookup.scala:31:38
-  wire        _controlsig_T_61 = _GEN_0 == 17'h8293;	// Lookup.scala:31:38
-  wire        _controlsig_T_63 = _GEN_0 == 17'h33;	// Lookup.scala:31:38
-  wire        _controlsig_T_65 = _GEN_0 == 17'h8033;	// Lookup.scala:31:38
-  wire        _controlsig_T_67 = _GEN_0 == 17'hB3;	// Lookup.scala:31:38
-  wire        _controlsig_T_69 = _GEN_0 == 17'h133;	// Lookup.scala:31:38
-  wire        _controlsig_T_71 = _GEN_0 == 17'h1B3;	// Lookup.scala:31:38
-  wire        _controlsig_T_73 = _GEN_0 == 17'h233;	// Lookup.scala:31:38
-  wire        _controlsig_T_75 = _GEN_0 == 17'h2B3;	// Lookup.scala:31:38
-  wire        _controlsig_T_77 = _GEN_0 == 17'h82B3;	// Lookup.scala:31:38
-  wire        _controlsig_T_79 = _GEN_0 == 17'h333;	// Lookup.scala:31:38
-  wire        _controlsig_T_81 = _GEN_0 == 17'h3B3;	// Lookup.scala:31:38
-  wire        _controlsig_T_83 = _GEN_0 == 17'h433;	// Lookup.scala:31:38
-  wire        _controlsig_T_85 = _GEN_0 == 17'h4B3;	// Lookup.scala:31:38
-  wire        _controlsig_T_87 = _GEN_0 == 17'h533;	// Lookup.scala:31:38
-  wire        _controlsig_T_89 = _GEN_0 == 17'h5B3;	// Lookup.scala:31:38
-  wire        _controlsig_T_91 = _GEN_0 == 17'h633;	// Lookup.scala:31:38
-  wire        _controlsig_T_93 = _GEN_0 == 17'h6B3;	// Lookup.scala:31:38
-  wire        _controlsig_T_95 = _GEN_0 == 17'h733;	// Lookup.scala:31:38
-  wire        _controlsig_T_97 = _GEN_0 == 17'h7B3;	// Lookup.scala:31:38
+  wire [15:0] _GEN_0 = {io_inst[31:26], io_inst[14:12], io_inst[6:0]};	// Lookup.scala:31:38
+  wire        _controlsig_T_57 = _GEN_0 == 16'h93;	// Lookup.scala:31:38
+  wire        _controlsig_T_59 = _GEN_0 == 16'h293;	// Lookup.scala:31:38
+  wire        _controlsig_T_61 = _GEN_0 == 16'h4293;	// Lookup.scala:31:38
+  wire [16:0] _GEN_1 = {io_inst[31:25], io_inst[14:12], io_inst[6:0]};	// Lookup.scala:31:38
+  wire        _controlsig_T_63 = _GEN_1 == 17'h33;	// Lookup.scala:31:38
+  wire        _controlsig_T_65 = _GEN_1 == 17'h8033;	// Lookup.scala:31:38
+  wire        _controlsig_T_67 = _GEN_0 == 16'hB3;	// Lookup.scala:31:38
+  wire        _controlsig_T_69 = _GEN_1 == 17'h133;	// Lookup.scala:31:38
+  wire        _controlsig_T_71 = _GEN_1 == 17'h1B3;	// Lookup.scala:31:38
+  wire        _controlsig_T_73 = _GEN_1 == 17'h233;	// Lookup.scala:31:38
+  wire        _controlsig_T_75 = _GEN_1 == 17'h2B3;	// Lookup.scala:31:38
+  wire        _controlsig_T_77 = _GEN_1 == 17'h82B3;	// Lookup.scala:31:38
+  wire        _controlsig_T_79 = _GEN_1 == 17'h333;	// Lookup.scala:31:38
+  wire        _controlsig_T_81 = _GEN_1 == 17'h3B3;	// Lookup.scala:31:38
+  wire        _controlsig_T_83 = _GEN_1 == 17'h433;	// Lookup.scala:31:38
+  wire        _controlsig_T_85 = _GEN_1 == 17'h4B3;	// Lookup.scala:31:38
+  wire        _controlsig_T_87 = _GEN_1 == 17'h533;	// Lookup.scala:31:38
+  wire        _controlsig_T_89 = _GEN_1 == 17'h5B3;	// Lookup.scala:31:38
+  wire        _controlsig_T_91 = _GEN_1 == 17'h633;	// Lookup.scala:31:38
+  wire        _controlsig_T_93 = _GEN_1 == 17'h6B3;	// Lookup.scala:31:38
+  wire        _controlsig_T_95 = _GEN_1 == 17'h733;	// Lookup.scala:31:38
+  wire        _controlsig_T_97 = _GEN_1 == 17'h7B3;	// Lookup.scala:31:38
   wire        _controlsig_T_99 = _GEN == 10'h1B;	// Lookup.scala:31:38
-  wire        _controlsig_T_101 = _GEN_0 == 17'h9B;	// Lookup.scala:31:38
-  wire        _controlsig_T_103 = _GEN_0 == 17'h29B;	// Lookup.scala:31:38
-  wire        _controlsig_T_105 = _GEN_0 == 17'h829B;	// Lookup.scala:31:38
-  wire        _controlsig_T_107 = _GEN_0 == 17'h3B;	// Lookup.scala:31:38
-  wire        _controlsig_T_109 = _GEN_0 == 17'h803B;	// Lookup.scala:31:38
-  wire        _controlsig_T_111 = _GEN_0 == 17'hBB;	// Lookup.scala:31:38
-  wire        _controlsig_T_113 = _GEN_0 == 17'h2BB;	// Lookup.scala:31:38
-  wire        _controlsig_T_115 = _GEN_0 == 17'h82BB;	// Lookup.scala:31:38
-  wire        _controlsig_T_117 = _GEN_0 == 17'h43B;	// Lookup.scala:31:38
-  wire        _controlsig_T_119 = _GEN_0 == 17'h63B;	// Lookup.scala:31:38
-  wire        _controlsig_T_121 = _GEN_0 == 17'h6BB;	// Lookup.scala:31:38
-  wire        _controlsig_T_123 = _GEN_0 == 17'h73B;	// Lookup.scala:31:38
-  wire        _controlsig_T_498 = _GEN_0 == 17'h7BB;	// Lookup.scala:31:38
+  wire        _controlsig_T_101 = _GEN_0 == 16'h9B;	// Lookup.scala:31:38
+  wire        _controlsig_T_103 = _GEN_0 == 16'h29B;	// Lookup.scala:31:38
+  wire        _controlsig_T_105 = _GEN_0 == 16'h429B;	// Lookup.scala:31:38
+  wire        _controlsig_T_107 = _GEN_1 == 17'h3B;	// Lookup.scala:31:38
+  wire        _controlsig_T_109 = _GEN_1 == 17'h803B;	// Lookup.scala:31:38
+  wire        _controlsig_T_111 = _GEN_1 == 17'hBB;	// Lookup.scala:31:38
+  wire        _controlsig_T_113 = _GEN_1 == 17'h2BB;	// Lookup.scala:31:38
+  wire        _controlsig_T_115 = _GEN_1 == 17'h82BB;	// Lookup.scala:31:38
+  wire        _controlsig_T_117 = _GEN_1 == 17'h43B;	// Lookup.scala:31:38
+  wire        _controlsig_T_119 = _GEN_1 == 17'h63B;	// Lookup.scala:31:38
+  wire        _controlsig_T_121 = _GEN_1 == 17'h6BB;	// Lookup.scala:31:38
+  wire        _controlsig_T_123 = _GEN_1 == 17'h73B;	// Lookup.scala:31:38
+  wire        _controlsig_T_498 = _GEN_1 == 17'h7BB;	// Lookup.scala:31:38
   wire [1:0]  _controlsig_T_312 = {_controlsig_T_498, 1'h0};	// Lookup.scala:31:38, :34:39
-  wire        _GEN_1 = _controlsig_T_11 | _controlsig_T_13 | _controlsig_T_15 | _controlsig_T_17 |
+  wire        _GEN_2 = _controlsig_T_11 | _controlsig_T_13 | _controlsig_T_15 | _controlsig_T_17 |
                 _controlsig_T_19 | _controlsig_T_240 | _controlsig_T_23 | _controlsig_T_25 |
                 _controlsig_T_27 | _controlsig_T_29 | _controlsig_T_31 | _controlsig_T_33 |
                 _controlsig_T_35 | _controlsig_T_37 | _controlsig_T_39 | _controlsig_T_41 |
                 _controlsig_T_43 | _controlsig_T_45 | _controlsig_T_47 | _controlsig_T_49 |
                 _controlsig_T_51 | _controlsig_T_53 | _controlsig_T_55 | _controlsig_T_57 |
                 _controlsig_T_59 | _controlsig_T_61 | _controlsig_T_63 | _controlsig_T_65;	// Lookup.scala:31:38, :34:39
-  wire        _GEN_2 = _controlsig_T_67 | _controlsig_T_69 | _controlsig_T_71 | _controlsig_T_73 |
+  wire        _GEN_3 = _controlsig_T_67 | _controlsig_T_69 | _controlsig_T_71 | _controlsig_T_73 |
                 _controlsig_T_75 | _controlsig_T_77 | _controlsig_T_79 | _controlsig_T_81 |
                 _controlsig_T_83 | _controlsig_T_85 | _controlsig_T_87 | _controlsig_T_89 |
                 _controlsig_T_91 | _controlsig_T_93 | _controlsig_T_95 | _controlsig_T_97 |
@@ -253,17 +254,17 @@ module ControlUnit(	// <stdin>:43:10
                 _controlsig_T_107 | _controlsig_T_109 | _controlsig_T_111 | _controlsig_T_113 |
                 _controlsig_T_115 | _controlsig_T_117 | _controlsig_T_119 | _controlsig_T_121 |
                 _controlsig_T_123;	// Lookup.scala:31:38, :34:39
-  wire        _GEN_3 = _controlsig_T_7 | _controlsig_T_9;	// Lookup.scala:31:38, :34:39
-  wire        _GEN_4 = _controlsig_T_11 | _controlsig_T_13 | _controlsig_T_15 | _controlsig_T_17 |
+  wire        _GEN_4 = _controlsig_T_7 | _controlsig_T_9;	// Lookup.scala:31:38, :34:39
+  wire        _GEN_5 = _controlsig_T_11 | _controlsig_T_13 | _controlsig_T_15 | _controlsig_T_17 |
                 _controlsig_T_19 | _controlsig_T_240;	// Lookup.scala:31:38, :34:39
-  wire        _GEN_5 = _controlsig_T_3 | _controlsig_T_5;	// Lookup.scala:31:38, :34:39
-  wire        _GEN_6 = _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 | _controlsig_T_9;	// Lookup.scala:31:38, :34:39
-  wire        _GEN_7 = _controlsig_T_45 | _controlsig_T_47 | _controlsig_T_49 | _controlsig_T_51 |
+  wire        _GEN_6 = _controlsig_T_3 | _controlsig_T_5;	// Lookup.scala:31:38, :34:39
+  wire        _GEN_7 = _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 | _controlsig_T_9;	// Lookup.scala:31:38, :34:39
+  wire        _GEN_8 = _controlsig_T_45 | _controlsig_T_47 | _controlsig_T_49 | _controlsig_T_51 |
                 _controlsig_T_53 | _controlsig_T_55 | _controlsig_T_57 | _controlsig_T_59 |
                 _controlsig_T_61 | _controlsig_T_63 | _controlsig_T_65 | _controlsig_T_67 |
                 _controlsig_T_69 | _controlsig_T_71 | _controlsig_T_73 | _controlsig_T_75 |
                 _controlsig_T_77 | _controlsig_T_79 | _controlsig_T_81 | _controlsig_T_83;	// Lookup.scala:31:38, :34:39
-  wire        _GEN_8 = _controlsig_T_85 | _controlsig_T_87 | _controlsig_T_89 | _controlsig_T_91 |
+  wire        _GEN_9 = _controlsig_T_85 | _controlsig_T_87 | _controlsig_T_89 | _controlsig_T_91 |
                 _controlsig_T_93 | _controlsig_T_95 | _controlsig_T_97 | _controlsig_T_99 |
                 _controlsig_T_101 | _controlsig_T_103 | _controlsig_T_105 | _controlsig_T_107 |
                 _controlsig_T_109 | _controlsig_T_111 | _controlsig_T_113 | _controlsig_T_115 |
@@ -274,9 +275,9 @@ module ControlUnit(	// <stdin>:43:10
   assign io_branch_type = ~_controlsig_T_1 & ~_controlsig_T_3 & ~_controlsig_T_5 & ~_controlsig_T_7 &
                 ~_controlsig_T_9 & (_controlsig_T_11 | _controlsig_T_13 | _controlsig_T_15 |
                 _controlsig_T_17 | _controlsig_T_19 | _controlsig_T_240);	// <stdin>:43:10, Lookup.scala:31:38, :34:39
-  assign io_opa_type = _controlsig_T_1 ? 2'h0 : _controlsig_T_3 ? 2'h1 : _controlsig_T_5 ? 2'h0 : _GEN_3 ? 2'h1 :
-                _GEN_1 | _GEN_2 ? 2'h2 : _controlsig_T_312;	// <stdin>:43:10, Lookup.scala:31:38, :34:39
-  assign io_opb_type = _controlsig_T_1 ? 2'h0 : _GEN_5 ? 2'h1 : _GEN_3 ? 2'h3 : _GEN_4 ? 2'h2 : _controlsig_T_23 |
+  assign io_opa_type = _controlsig_T_1 ? 2'h0 : _controlsig_T_3 ? 2'h1 : _controlsig_T_5 ? 2'h0 : _GEN_4 ? 2'h1 :
+                _GEN_2 | _GEN_3 ? 2'h2 : _controlsig_T_312;	// <stdin>:43:10, Lookup.scala:31:38, :34:39
+  assign io_opb_type = _controlsig_T_1 ? 2'h0 : _GEN_6 ? 2'h1 : _GEN_4 ? 2'h3 : _GEN_5 ? 2'h2 : _controlsig_T_23 |
                 _controlsig_T_25 | _controlsig_T_27 | _controlsig_T_29 | _controlsig_T_31 |
                 _controlsig_T_33 | _controlsig_T_35 | _controlsig_T_37 | _controlsig_T_39 |
                 _controlsig_T_41 | _controlsig_T_43 | _controlsig_T_45 | _controlsig_T_47 |
@@ -290,13 +291,13 @@ module ControlUnit(	// <stdin>:43:10
                 _controlsig_T_105 ? 2'h1 : _controlsig_T_107 | _controlsig_T_109 | _controlsig_T_111 |
                 _controlsig_T_113 | _controlsig_T_115 | _controlsig_T_117 | _controlsig_T_119 |
                 _controlsig_T_121 | _controlsig_T_123 ? 2'h2 : _controlsig_T_312;	// <stdin>:43:10, Lookup.scala:31:38, :34:39
-  assign io_imm_type = {1'h0, _controlsig_T_1 ? 2'h0 : _GEN_5 ? 2'h1 : _controlsig_T_7 ? 2'h2 : _controlsig_T_9 |
+  assign io_imm_type = {1'h0, _controlsig_T_1 ? 2'h0 : _GEN_6 ? 2'h1 : _controlsig_T_7 ? 2'h2 : _controlsig_T_9 |
                 _controlsig_T_11 | _controlsig_T_13 | _controlsig_T_15 | _controlsig_T_17 |
                 _controlsig_T_19 | _controlsig_T_240 | _controlsig_T_23 | _controlsig_T_25 |
                 _controlsig_T_27 | _controlsig_T_29 | _controlsig_T_31 | _controlsig_T_33 |
                 _controlsig_T_35 ? 2'h0 : _controlsig_T_37 | _controlsig_T_39 | _controlsig_T_41 ? 2'h3 :
                 {2{_controlsig_T_43}}};	// <stdin>:43:10, ControlUnit.scala:168:21, Lookup.scala:31:38, :34:39
-  assign io_alu_op = _controlsig_T_1 ? 6'h3F : _GEN_6 ? 6'h0 : _controlsig_T_11 ? 6'h2 : _controlsig_T_13 ? 6'h3
+  assign io_alu_op = _controlsig_T_1 ? 6'h3F : _GEN_7 ? 6'h0 : _controlsig_T_11 ? 6'h2 : _controlsig_T_13 ? 6'h3
                 : _controlsig_T_15 ? 6'h4 : _controlsig_T_17 ? 6'h5 : _controlsig_T_19 ? 6'h6 :
                 _controlsig_T_240 ? 6'h7 : _controlsig_T_23 | _controlsig_T_25 | _controlsig_T_27 |
                 _controlsig_T_29 | _controlsig_T_31 | _controlsig_T_33 | _controlsig_T_35 |
@@ -315,10 +316,10 @@ module ControlUnit(	// <stdin>:43:10
                 _controlsig_T_111 ? 6'h20 : _controlsig_T_113 ? 6'h21 : _controlsig_T_115 ? 6'h22 :
                 _controlsig_T_117 ? 6'h23 : _controlsig_T_119 ? 6'h24 : _controlsig_T_121 ? 6'h25 :
                 _controlsig_T_123 ? 6'h26 : _controlsig_T_498 ? 6'h27 : 6'h3F;	// <stdin>:43:10, Lookup.scala:31:38, :34:39
-  assign io_wb_type = _controlsig_T_1 ? 2'h0 : _GEN_6 ? 2'h1 : _GEN_4 ? 2'h0 : _controlsig_T_23 |
+  assign io_wb_type = _controlsig_T_1 ? 2'h0 : _GEN_7 ? 2'h1 : _GEN_5 ? 2'h0 : _controlsig_T_23 |
                 _controlsig_T_25 | _controlsig_T_27 | _controlsig_T_29 | _controlsig_T_31 |
                 _controlsig_T_33 | _controlsig_T_35 ? 2'h2 : {1'h0, ~_controlsig_T_37 & ~_controlsig_T_39 &
-                ~_controlsig_T_41 & ~_controlsig_T_43 & (_GEN_7 | _GEN_8)};	// <stdin>:43:10, Lookup.scala:31:38, :34:39
+                ~_controlsig_T_41 & ~_controlsig_T_43 & (_GEN_8 | _GEN_9)};	// <stdin>:43:10, Lookup.scala:31:38, :34:39
   assign io_sd_type = _controlsig_T_1 | _controlsig_T_3 | _controlsig_T_5 | _controlsig_T_7 | _controlsig_T_9 |
                 _controlsig_T_11 | _controlsig_T_13 | _controlsig_T_15 | _controlsig_T_17 |
                 _controlsig_T_19 | _controlsig_T_240 | _controlsig_T_23 | _controlsig_T_25 |
@@ -1285,4 +1286,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 

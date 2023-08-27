@@ -11,20 +11,20 @@ LLVM_LIB := $(shell llvm-config --libs)
 $(info $(INC_PATH))
 
 build:
-	-rm vsrc/*.v
-	cp ../build/*.v vsrc/
-	verilator -cc -trace vsrc/*.v -top-module Soc
+	@-rm vsrc/*.v
+	@cp ../build/*.v vsrc/
+	@verilator -cc -trace vsrc/*.v -top-module Soc
 
 compile:
-	verilator -cc -trace vsrc/*.v -CFLAGS "$(INCLUDE) $(LLVM_FLAGS)" -top-module Soc --exe $(SRCS) -LDFLAGS "-lreadline -lpcre $(LLVM_LIB)"
+	@verilator -cc -trace vsrc/*.v -CFLAGS "$(INCLUDE) $(LLVM_FLAGS)" -top-module Soc --exe $(SRCS) -LDFLAGS "-lreadline -lpcre $(LLVM_LIB)"
 
 #是需要在cflags里加include,而不是直接-Iinclude
 
 exe:
-	make -C obj_dir/ -f $(Module).mk
+	@make -C obj_dir/ -f $(Module).mk
 
 run: build compile exe
-	./obj_dir/$(Module)
+	@./obj_dir/$(Module)
 
 clean:
 	rm -rf obj_dir/*

@@ -12,6 +12,8 @@ static VSoc dut;
 vluint64_t sim_time = 0;
 VerilatedVcdC * vcd = new VerilatedVcdC;
 
+bool batch = 0;
+
 void sdb_mainloop();
 void init_regex();
 void init_difftest(const char *ref_so_file, long img_size, int port);
@@ -55,6 +57,8 @@ int main(int argc, char **argv) {
   dut.trace(vcd,0);
   vcd->open("wave.vcd");
   
+  batch = 1;
+
   reset(2);        
   
   syn_diff();
