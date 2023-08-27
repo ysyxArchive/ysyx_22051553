@@ -93,6 +93,7 @@ module Fetch(	// <stdin>:8:10
                 io_fcfe_jump_flag,
   input  [63:0] io_fcfe_jump_pc,
   input         io_fcfe_flush,
+                io_fcfe_stall,
   output [63:0] io_fdio_pc,
   output        io_pc_valid,
   output [63:0] io_pc_bits,
@@ -100,20 +101,31 @@ module Fetch(	// <stdin>:8:10
 
   reg         started;	// Fetch.scala:25:26
   reg  [63:0] pc;	// Fetch.scala:28:21
+  reg  [63:0] old_pc;	// Fetch.scala:29:25
   wire        _next_pc_T_2 = io_fcfe_flush & io_fcfe_jump_flag;	// Fetch.scala:36:36
   wire [63:0] _next_pc_T_4 = io_fcfe_jump_pc + 64'h4;	// Fetch.scala:36:85
   wire [63:0] _next_pc_T_7 = pc + 64'h4;	// Fetch.scala:28:21, :36:85, :37:37
+  wire        _io_fdio_pc_T_2 = io_fcfe_flush & io_fcfe_jump_flag;	// Fetch.scala:51:36
   always @(posedge clock) begin
     if (reset) begin
-      started <= 1'h0;	// <stdin>:8:10, Fetch.scala:25:26
+      started <= 1'h0;	// Fetch.scala:25:26
       pc <= 64'h80000000;	// Fetch.scala:28:21
+      old_pc <= 64'h0;	// Fetch.scala:29:25
     end
     else begin
       started <= 1'h1;	// Fetch.scala:25:26, :26:13
-      if (_next_pc_T_2)	// Fetch.scala:36:36
-        pc <= _next_pc_T_4;	// Fetch.scala:28:21, :36:85
-      else if (started)	// Fetch.scala:25:26, :36:36
-        pc <= _next_pc_T_7;	// Fetch.scala:28:21, :37:37
+      if (io_fcfe_stall) begin
+      end
+      else begin
+        if (_next_pc_T_2)	// Fetch.scala:36:36
+          pc <= _next_pc_T_4;	// Fetch.scala:28:21, :36:85
+        else if (started)	// Fetch.scala:25:26, :36:36
+          pc <= _next_pc_T_7;	// Fetch.scala:28:21, :37:37
+        if (_io_fdio_pc_T_2)	// Fetch.scala:51:36
+          old_pc <= io_fcfe_jump_pc;	// Fetch.scala:29:25
+        else	// Fetch.scala:51:36
+          old_pc <= pc;	// Fetch.scala:28:21, :29:25
+      end
     end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:8:10
@@ -124,6 +136,8 @@ module Fetch(	// <stdin>:8:10
       automatic logic [31:0] _RANDOM_0;	// <stdin>:8:10
       automatic logic [31:0] _RANDOM_1;	// <stdin>:8:10
       automatic logic [31:0] _RANDOM_2;	// <stdin>:8:10
+      automatic logic [31:0] _RANDOM_3;	// <stdin>:8:10
+      automatic logic [31:0] _RANDOM_4;	// <stdin>:8:10
       `ifdef INIT_RANDOM_PROLOG_	// <stdin>:8:10
         `INIT_RANDOM_PROLOG_	// <stdin>:8:10
       `endif // INIT_RANDOM_PROLOG_
@@ -131,17 +145,20 @@ module Fetch(	// <stdin>:8:10
         _RANDOM_0 = `RANDOM;	// <stdin>:8:10
         _RANDOM_1 = `RANDOM;	// <stdin>:8:10
         _RANDOM_2 = `RANDOM;	// <stdin>:8:10
+        _RANDOM_3 = `RANDOM;	// <stdin>:8:10
+        _RANDOM_4 = `RANDOM;	// <stdin>:8:10
         started = _RANDOM_0[0];	// Fetch.scala:25:26
         pc = {_RANDOM_0[31:1], _RANDOM_1, _RANDOM_2[0]};	// Fetch.scala:25:26, :28:21
+        old_pc = {_RANDOM_2[31:1], _RANDOM_3, _RANDOM_4[0]};	// Fetch.scala:28:21, :29:25
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:8:10
       `FIRRTL_AFTER_INITIAL	// <stdin>:8:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
-  assign io_fdio_pc = io_fcfe_flush & io_fcfe_jump_flag ? io_fcfe_jump_pc : pc;	// <stdin>:8:10, Fetch.scala:28:21, :51:36, Mux.scala:101:16
-  assign io_pc_valid = started;	// <stdin>:8:10, Fetch.scala:25:26
-  assign io_pc_bits = io_fcfe_flush & io_fcfe_jump_flag ? io_fcfe_jump_pc : pc;	// <stdin>:8:10, Fetch.scala:28:21, :61:36, Mux.scala:101:16
+  assign io_fdio_pc = io_fcfe_stall ? old_pc : _io_fdio_pc_T_2 ? io_fcfe_jump_pc : pc;	// <stdin>:8:10, Fetch.scala:28:21, :29:25, :51:36, Mux.scala:101:16
+  assign io_pc_valid = ~io_fcfe_stall & started;	// <stdin>:8:10, Fetch.scala:25:26, :65:23
+  assign io_pc_bits = io_fcfe_stall ? old_pc : io_fcfe_flush & io_fcfe_jump_flag ? io_fcfe_jump_pc : pc;	// <stdin>:8:10, Fetch.scala:28:21, :29:25, :61:36, Mux.scala:101:16
   assign io_next_pc = _next_pc_T_2 ? _next_pc_T_4 : started ? _next_pc_T_7 : pc;	// <stdin>:8:10, Fetch.scala:25:26, :28:21, :36:{36,85}, :37:37, Mux.scala:101:16
 endmodule
 
@@ -668,11 +685,13 @@ module FlowControl(	// <stdin>:1440:10
   output        io_fcfe_jump_flag,
   output [63:0] io_fcfe_jump_pc,
   output        io_fcfe_flush,
+                io_fcfe_stall,
                 io_fcde_flush);
 
   assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag;	// <stdin>:1440:10, FlowControl.scala:101:44
   assign io_fcfe_jump_pc = io_fcex_jump_flag ? io_fcex_jump_pc : io_fcde_jump_flag ? io_fcde_jump_pc : 64'h80000000;	// <stdin>:1440:10, Mux.scala:101:16
   assign io_fcfe_flush = io_fcex_jump_flag | io_fcde_jump_flag;	// <stdin>:1440:10, Mux.scala:101:16
+  assign io_fcfe_stall = ~io_fcex_jump_flag & ~io_fcde_jump_flag & io_fcde_load_use;	// <stdin>:1440:10, Mux.scala:101:16
   assign io_fcde_flush = io_fcex_jump_flag | ~io_fcde_jump_flag & io_fcde_load_use;	// <stdin>:1440:10, Mux.scala:101:16
 endmodule
 
@@ -730,6 +749,7 @@ module Core(	// <stdin>:1572:10
   wire        _fc_io_fcfe_jump_flag;	// Core.scala:92:20
   wire [63:0] _fc_io_fcfe_jump_pc;	// Core.scala:92:20
   wire        _fc_io_fcfe_flush;	// Core.scala:92:20
+  wire        _fc_io_fcfe_stall;	// Core.scala:92:20
   wire        _fc_io_fcde_flush;	// Core.scala:92:20
   wire [63:0] _regfile_io_RfDe_reg1_rdata;	// Core.scala:89:25
   wire [63:0] _regfile_io_RfDe_reg2_rdata;	// Core.scala:89:25
@@ -934,6 +954,7 @@ module Core(	// <stdin>:1572:10
     .io_fcfe_jump_flag (_fc_io_fcfe_jump_flag),	// Core.scala:92:20
     .io_fcfe_jump_pc   (_fc_io_fcfe_jump_pc),	// Core.scala:92:20
     .io_fcfe_flush     (_fc_io_fcfe_flush),	// Core.scala:92:20
+    .io_fcfe_stall     (_fc_io_fcfe_stall),	// Core.scala:92:20
     .io_fdio_pc        (_fetch_io_fdio_pc),
     .io_pc_valid       (_fetch_io_pc_valid),
     .io_pc_bits        (_fetch_io_pc_bits),
@@ -1041,6 +1062,7 @@ module Core(	// <stdin>:1572:10
     .io_fcfe_jump_flag (_fc_io_fcfe_jump_flag),
     .io_fcfe_jump_pc   (_fc_io_fcfe_jump_pc),
     .io_fcfe_flush     (_fc_io_fcfe_flush),
+    .io_fcfe_stall     (_fc_io_fcfe_stall),
     .io_fcde_flush     (_fc_io_fcde_flush)
   );
   Forward fw (	// Core.scala:294:20

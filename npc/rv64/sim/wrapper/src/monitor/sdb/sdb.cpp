@@ -106,16 +106,9 @@ void update_debuginfo(
   };
 
 
- if((bool)load_use){
-    fetch_list.pop_front();
-    decode_list.pop_front();
 
-    fetch_list.push_front(fe_ins);
-    decode_list.push_front(de_ins);
-  }else {
-    fetch_list.push_back(fe_ins);
-    decode_list.push_back(de_ins);
-  }
+  fetch_list.push_back(fe_ins);
+  decode_list.push_back(de_ins);
 
 
   if(decode_list.size() == 5){ 
@@ -206,6 +199,7 @@ static int cmd_s(char *args){
 
   if(args == NULL){
   
+
     for(auto arg : fetch_list){
       printf("pc:0x%lx\n", arg.pc);
     }
@@ -214,20 +208,19 @@ static int cmd_s(char *args){
       printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
     }
 
-    if(decode_list.front().load_use){
+    if( decode_list.front().load_use){
+      printf("load_use\n");
       single_cycle();
 
       fetch_list.pop_front();
       decode_list.pop_front();
 
-      return 0;
     }else if(decode_list.front().branch){
+      printf("branch\n");
       single_cycle();
       
       fetch_list.pop_front();
       decode_list.pop_front();
-
-      return 0;
     }
 
 
@@ -293,6 +286,7 @@ static int cmd_s(char *args){
   else {
 
     uint64_t n = atoi(args);
+
     while(n > 0){
   
     for(auto arg : fetch_list){
@@ -303,22 +297,19 @@ static int cmd_s(char *args){
       printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
     }
 
-    if(decode_list.front().load_use){
+    if( decode_list.front().load_use){
       printf("load_use\n");
       single_cycle();
 
       fetch_list.pop_front();
       decode_list.pop_front();
 
-      return 0;
     }else if(decode_list.front().branch){
       printf("branch\n");
       single_cycle();
       
       fetch_list.pop_front();
       decode_list.pop_front();
-
-      return 0;
     }
 
 
@@ -379,10 +370,12 @@ static int cmd_s(char *args){
         break;
       }
       
-      if(decode_list.front().load_use != 1){
-        decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
-        fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
-      }
+      
+      decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
+      fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
+      
+      if(Verilated::gotFinish())
+        break;
 
       n --;
     }

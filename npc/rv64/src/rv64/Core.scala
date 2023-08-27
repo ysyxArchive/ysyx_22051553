@@ -30,7 +30,7 @@ class Core extends Module{
 
     //interact
     val interact = Module(new Interact)
-    interact.io.inst := io.inst;
+    interact.io.inst := Mux(fdreg.pc(2) === 1.U, io.inst(63,32), io.inst(31,0));
     interact.io.clk := clock   //可以直接显式使用clock
     interact.io.rst := reset
 
