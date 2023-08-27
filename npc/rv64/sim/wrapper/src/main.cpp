@@ -57,7 +57,7 @@ int main(int argc, char **argv) {
   dut.trace(vcd,0);
   vcd->open("wave.vcd");
   
-  batch = 1;
+  batch = 0;
 
   reset(2);        
   
