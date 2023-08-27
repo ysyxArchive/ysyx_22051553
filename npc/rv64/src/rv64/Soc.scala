@@ -15,6 +15,7 @@ class Soc extends Module{
     val tm = Module(new TempMem)
     
     tm.io.clk := clock
+    tm.io.load_use := core.io.load_use
     tm.io.pc := core.io.pc
     tm.io.valid := core.io.valid
     tm.io.raddr := core.io.raddr

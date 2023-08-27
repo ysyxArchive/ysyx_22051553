@@ -25,6 +25,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_stall;
         CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcde_flush;
         CData/*0:0*/ Soc__DOT__core__DOT___mem_io_fwmem_reg_we;
+        CData/*0:0*/ Soc__DOT__core__DOT___excute_io_jump_flag;
         CData/*5:0*/ Soc__DOT__core__DOT___decode_io_deio_alu_op;
         CData/*0:0*/ Soc__DOT__core__DOT___decode_io_jump_flag;
         CData/*4:0*/ Soc__DOT__core__DOT__dereg_rd;
@@ -57,12 +58,14 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h238a4b90__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hb0fa7988__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h3c60961a__0;
+        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h5984ecb1__0;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_ex_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_ex_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_mem_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_mem_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_wb_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_wb_hazard;
+        CData/*0:0*/ Soc__DOT__tm__DOT__load_use;
         CData/*0:0*/ __Vtrigrprev__TOP__clock;
         CData/*0:0*/ __VactContinue;
         SData/*9:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN;
@@ -80,11 +83,11 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ __VactIterCount;
         VL_OUT64(io_next_pc,63,0);
         QData/*63:0*/ Soc__DOT___tm_inst;
+    };
+    struct {
         QData/*63:0*/ Soc__DOT___tm_rdata;
         QData/*63:0*/ Soc__DOT___core_io_waddr;
         QData/*63:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
-    };
-    struct {
         QData/*63:0*/ Soc__DOT__core__DOT___mem_io_mwio_wb_data;
         QData/*63:0*/ Soc__DOT__core__DOT___fetch_io_fdio_pc;
         QData/*63:0*/ Soc__DOT__core__DOT__fdreg_pc;

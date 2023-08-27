@@ -15,6 +15,7 @@ class Core extends Module{
         val inst = Input(UInt(64.W))
         val pc   = Output(UInt(PC_LEN.W))
         val valid = Output(Bool())
+        val load_use = Output(Bool())
 
         val raddr = Output(UInt(X_LEN.W))
         val rdata = Input(UInt(X_LEN.W))
@@ -100,6 +101,7 @@ class Core extends Module{
     io.wdata := excute.io.wdata
     io.wmask := excute.io.wmask
 
+    io.load_use := decode.io.load_use
 
     //寄存器不是有单一方向的，不能用<>
     
