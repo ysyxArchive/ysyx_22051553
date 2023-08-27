@@ -32,7 +32,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*4:0*/ Soc__DOT__core__DOT__dereg_rd;
         CData/*0:0*/ Soc__DOT__core__DOT__dereg_branch_type;
         CData/*5:0*/ Soc__DOT__core__DOT__dereg_alu_op;
-        CData/*4:0*/ Soc__DOT__core__DOT__dereg_shamt;
+        CData/*5:0*/ Soc__DOT__core__DOT__dereg_shamt;
         CData/*1:0*/ Soc__DOT__core__DOT__dereg_wb_type;
         CData/*2:0*/ Soc__DOT__core__DOT__dereg_sd_type;
         CData/*2:0*/ Soc__DOT__core__DOT__dereg_ld_type;
@@ -71,7 +71,7 @@ class VSoc___024root final : public VerilatedModule {
         SData/*9:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN;
         IData/*31:0*/ Soc__DOT__core__DOT____Vcellinp__decode__io_inst_bits;
         IData/*16:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_0;
-        VlWide<3>/*94:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_80;
+        VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_80;
         VlWide<4>/*127:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___GEN_5;
         VlWide<4>/*127:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___GEN_6;
         VlWide<3>/*64:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_68;
@@ -118,7 +118,7 @@ class VSoc___024root final : public VerilatedModule {
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__mem__DOT___GEN_1;
         QData/*63:0*/ Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data;
         QData/*63:0*/ Soc__DOT__tm__DOT__old_inst;
-        QData/*63:0*/ __VdfgTmp_h0a6974a0__0;
+        QData/*63:0*/ __VdfgTmp_hfec920a8__0;
         VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
         VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
     };

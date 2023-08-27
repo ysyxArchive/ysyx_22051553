@@ -364,7 +364,7 @@ module Decode(	// <stdin>:809:10
   output        io_deio_branch_type,
   output [63:0] io_deio_branch_addr,
   output [5:0]  io_deio_alu_op,
-  output [4:0]  io_deio_shamt,
+                io_deio_shamt,
   output [1:0]  io_deio_wb_type,
   output [2:0]  io_deio_sd_type,
   output [63:0] io_deio_reg2_rdata,
@@ -438,7 +438,7 @@ module Decode(	// <stdin>:809:10
   assign io_deio_op_b = _GEN[_cu_io_opb_type];	// <stdin>:809:10, Decode.scala:49:20, :75:95, Mux.scala:81:{58,61}
   assign io_deio_rd = inst[11:7];	// <stdin>:809:10, Decode.scala:61:16, :63:15
   assign io_deio_branch_addr = io_fdio_pc + {{52{inst[31]}}, inst[7], inst[30:25], inst[11:8], 1'h0};	// <stdin>:809:10, Cat.scala:33:92, Decode.scala:61:16, :73:17, :104:{39,58,79,88,101}
-  assign io_deio_shamt = inst[24:20];	// <stdin>:809:10, Decode.scala:61:16, :64:11
+  assign io_deio_shamt = inst[25:20];	// <stdin>:809:10, Decode.scala:61:16, :64:18
   assign io_deio_reg2_rdata = _io_deio_reg2_rdata_T;	// <stdin>:809:10, Decode.scala:97:38
   assign io_deio_ld_type = _cu_io_ld_type;	// <stdin>:809:10, Decode.scala:49:20
   assign io_jump_flag = _io_jump_pc_T | _io_jump_pc_T_3;	// <stdin>:809:10, Decode.scala:113:{38,63,82}
@@ -454,7 +454,7 @@ module Alu(	// <stdin>:917:10
   input  [63:0] io_op_a,
                 io_op_b,
   input  [5:0]  io_alu_op,
-  input  [4:0]  io_shamt,
+                io_shamt,
   output [63:0] io_result);
 
   wire [64:0]  _GEN = {io_op_a[63], io_op_a};	// Alu.scala:76:13, :86:40
@@ -464,8 +464,8 @@ module Alu(	// <stdin>:917:10
   wire [63:0]  _GEN_3 = {58'h0, io_op_b[5:0]};	// Alu.scala:96:43, :97:33
   wire [63:0]  _res_T_34 = io_op_a >> _GEN_3;	// Alu.scala:97:33
   wire [63:0]  _res_T_38 = $signed($signed(io_op_a) >>> _GEN_3);	// Alu.scala:97:33, :98:40
-  wire [94:0]  _res_T_80 = {31'h0, io_op_a} << io_shamt;	// Alu.scala:99:34
-  wire [63:0]  _GEN_4 = {59'h0, io_shamt};	// Alu.scala:100:34
+  wire [126:0] _res_T_80 = _GEN_1 << io_shamt;	// Alu.scala:96:33, :99:34
+  wire [63:0]  _GEN_4 = {58'h0, io_shamt};	// Alu.scala:97:33, :100:34
   wire [63:0]  _res_T_83 = io_op_a >> _GEN_4;	// Alu.scala:100:34
   wire [63:0]  _res_T_44 = $signed($signed(io_op_a) >>> _GEN_4);	// Alu.scala:100:34, :101:41
   wire [63:0]  _res_T_47 = io_op_a & io_op_b;	// Alu.scala:102:33
@@ -495,10 +495,9 @@ module Alu(	// <stdin>:917:10
   wire [126:0] _res_T_168 = io_alu_op == 6'h12 ? {{63{_GEN_6[63]}}, _GEN_6[63:0]} : io_alu_op == 6'h11 ?
                 {{63{_res_T_49[63]}}, _res_T_49} : io_alu_op == 6'h10 ? {{63{_res_T_47[63]}}, _res_T_47} :
                 io_alu_op == 6'hF ? {{63{_res_T_44[63]}}, _res_T_44} : io_alu_op == 6'hE ?
-                {{63{_res_T_83[63]}}, _res_T_83} : io_alu_op == 6'hD ? {{32{_res_T_80[94]}}, _res_T_80} :
-                io_alu_op == 6'hC ? {{63{_res_T_38[63]}}, _res_T_38} : io_alu_op == 6'hB ?
-                {{63{_res_T_34[63]}}, _res_T_34} : io_alu_op == 6'hA ? _GEN_1 << _GEN_2 :
-                {{63{_res_T_150[63]}}, _res_T_150};	// Alu.scala:96:33, :97:33, :98:40, :99:34, :100:34, :101:41, :102:33, :103:25, :104:{34,44}, Mux.scala:81:{58,61}
+                {{63{_res_T_83[63]}}, _res_T_83} : io_alu_op == 6'hD ? _res_T_80 : io_alu_op == 6'hC ?
+                {{63{_res_T_38[63]}}, _res_T_38} : io_alu_op == 6'hB ? {{63{_res_T_34[63]}}, _res_T_34} :
+                io_alu_op == 6'hA ? _GEN_1 << _GEN_2 : {{63{_res_T_150[63]}}, _res_T_150};	// Alu.scala:96:33, :97:33, :98:40, :99:34, :100:34, :101:41, :102:33, :103:25, :104:{34,44}, Mux.scala:81:{58,61}
   wire [63:0]  _GEN_10 = {{32{_res_T_78[31]}}, _res_T_78};	// Alu.scala:112:36, Mux.scala:81:58
   assign io_result = (&io_alu_op) ? 64'h0 : io_alu_op == 6'h27 ? {{32{_res_T_127[31]}}, _res_T_127[31:0]} :
                 io_alu_op == 6'h26 ? {{32{_res_T_124[31]}}, _res_T_124[31:0]} : io_alu_op == 6'h25 ?
@@ -523,7 +522,7 @@ module Excute(	// <stdin>:1150:10
   input         io_deio_branch_type,
   input  [63:0] io_deio_branch_addr,
   input  [5:0]  io_deio_alu_op,
-  input  [4:0]  io_deio_shamt,
+                io_deio_shamt,
   input  [1:0]  io_deio_wb_type,
   input  [2:0]  io_deio_sd_type,
   input  [63:0] io_deio_reg2_rdata,
@@ -783,7 +782,7 @@ module Core(	// <stdin>:1572:10
   wire        _decode_io_deio_branch_type;	// Core.scala:37:24
   wire [63:0] _decode_io_deio_branch_addr;	// Core.scala:37:24
   wire [5:0]  _decode_io_deio_alu_op;	// Core.scala:37:24
-  wire [4:0]  _decode_io_deio_shamt;	// Core.scala:37:24
+  wire [5:0]  _decode_io_deio_shamt;	// Core.scala:37:24
   wire [1:0]  _decode_io_deio_wb_type;	// Core.scala:37:24
   wire [2:0]  _decode_io_deio_sd_type;	// Core.scala:37:24
   wire [63:0] _decode_io_deio_reg2_rdata;	// Core.scala:37:24
@@ -803,7 +802,7 @@ module Core(	// <stdin>:1572:10
   reg         dereg_branch_type;	// Core.scala:50:24
   reg  [63:0] dereg_branch_addr;	// Core.scala:50:24
   reg  [5:0]  dereg_alu_op;	// Core.scala:50:24
-  reg  [4:0]  dereg_shamt;	// Core.scala:50:24
+  reg  [5:0]  dereg_shamt;	// Core.scala:50:24
   reg  [1:0]  dereg_wb_type;	// Core.scala:50:24
   reg  [2:0]  dereg_sd_type;	// Core.scala:50:24
   reg  [63:0] dereg_reg2_rdata;	// Core.scala:50:24
@@ -821,33 +820,33 @@ module Core(	// <stdin>:1572:10
       fdreg_pc <= 64'h80000000;	// <stdin>:1594:20, Core.scala:45:24
       dereg_op_a <= 64'h0;	// <stdin>:1599:28, Core.scala:50:24
       dereg_op_b <= 64'h0;	// <stdin>:1599:28, Core.scala:50:24
-      dereg_rd <= 5'h0;	// <stdin>:1602:23, Core.scala:50:24
+      dereg_rd <= 5'h0;	// <stdin>:1606:20, Core.scala:50:24
       dereg_branch_type <= 1'h0;	// Core.scala:50:24, :297:19
       dereg_branch_addr <= 64'h0;	// <stdin>:1599:28, Core.scala:50:24
       dereg_alu_op <= 6'h3F;	// <stdin>:1603:27, Core.scala:50:24
-      dereg_shamt <= 5'h0;	// <stdin>:1602:23, Core.scala:50:24
+      dereg_shamt <= 6'h0;	// <stdin>:1602:23, Core.scala:50:24
       dereg_wb_type <= 2'h0;	// <stdin>:1601:25, Core.scala:50:24
       dereg_sd_type <= 3'h0;	// <stdin>:1598:25, Core.scala:50:24
       dereg_reg2_rdata <= 64'h0;	// <stdin>:1599:28, Core.scala:50:24
       dereg_ld_type <= 3'h0;	// <stdin>:1598:25, Core.scala:50:24
       emreg_alu_res <= 64'h0;	// <stdin>:1599:28, Core.scala:66:24
       emreg_wb_type <= 2'h0;	// <stdin>:1601:25, Core.scala:66:24
-      emreg_rd <= 5'h0;	// <stdin>:1602:23, Core.scala:66:24
+      emreg_rd <= 5'h0;	// <stdin>:1606:20, Core.scala:66:24
       emreg_ld_type <= 3'h0;	// <stdin>:1598:25, Core.scala:66:24
       emreg_ld_addr_lowbit <= 3'h0;	// <stdin>:1598:25, Core.scala:66:24
       mwreg_wb_type <= 2'h0;	// <stdin>:1601:25, Core.scala:76:24
       mwreg_wb_data <= 64'h0;	// <stdin>:1599:28, Core.scala:76:24
-      mwreg_rd <= 5'h0;	// <stdin>:1602:23, Core.scala:76:24
+      mwreg_rd <= 5'h0;	// <stdin>:1606:20, Core.scala:76:24
     end
     else begin
       fdreg_pc <= _fetch_io_fdio_pc;	// Core.scala:36:23, :45:24
       if (_fc_io_fcde_flush) begin	// Core.scala:88:20
         dereg_op_a <= 64'h0;	// <stdin>:1599:28, Core.scala:50:24
         dereg_op_b <= 64'h0;	// <stdin>:1599:28, Core.scala:50:24
-        dereg_rd <= 5'h0;	// <stdin>:1602:23, Core.scala:50:24
+        dereg_rd <= 5'h0;	// <stdin>:1606:20, Core.scala:50:24
         dereg_branch_addr <= 64'h0;	// <stdin>:1599:28, Core.scala:50:24
-        dereg_alu_op <= 6'h0;	// Core.scala:50:24, Mux.scala:101:16
-        dereg_shamt <= 5'h0;	// <stdin>:1602:23, Core.scala:50:24
+        dereg_alu_op <= 6'h0;	// <stdin>:1602:23, Core.scala:50:24
+        dereg_shamt <= 6'h0;	// <stdin>:1602:23, Core.scala:50:24
         dereg_wb_type <= 2'h0;	// <stdin>:1601:25, Core.scala:50:24
         dereg_sd_type <= 3'h0;	// <stdin>:1598:25, Core.scala:50:24
         dereg_reg2_rdata <= 64'h0;	// <stdin>:1599:28, Core.scala:50:24
@@ -924,19 +923,19 @@ module Core(	// <stdin>:1572:10
         dereg_branch_type = _RANDOM_6[5];	// Core.scala:50:24
         dereg_branch_addr = {_RANDOM_6[31:6], _RANDOM_7, _RANDOM_8[5:0]};	// Core.scala:50:24
         dereg_alu_op = _RANDOM_8[11:6];	// Core.scala:50:24
-        dereg_shamt = _RANDOM_8[16:12];	// Core.scala:50:24
-        dereg_wb_type = _RANDOM_8[18:17];	// Core.scala:50:24
-        dereg_sd_type = _RANDOM_8[21:19];	// Core.scala:50:24
-        dereg_reg2_rdata = {_RANDOM_8[31:22], _RANDOM_9, _RANDOM_10[21:0]};	// Core.scala:50:24
-        dereg_ld_type = _RANDOM_10[24:22];	// Core.scala:50:24
-        emreg_alu_res = {_RANDOM_10[31:25], _RANDOM_11, _RANDOM_12[24:0]};	// Core.scala:50:24, :66:24
-        emreg_wb_type = _RANDOM_12[26:25];	// Core.scala:66:24
-        emreg_rd = _RANDOM_12[31:27];	// Core.scala:66:24
-        emreg_ld_type = _RANDOM_13[2:0];	// Core.scala:66:24
-        emreg_ld_addr_lowbit = _RANDOM_13[5:3];	// Core.scala:66:24
-        mwreg_wb_type = _RANDOM_13[7:6];	// Core.scala:66:24, :76:24
-        mwreg_wb_data = {_RANDOM_13[31:8], _RANDOM_14, _RANDOM_15[7:0]};	// Core.scala:66:24, :76:24
-        mwreg_rd = _RANDOM_15[12:8];	// Core.scala:76:24
+        dereg_shamt = _RANDOM_8[17:12];	// Core.scala:50:24
+        dereg_wb_type = _RANDOM_8[19:18];	// Core.scala:50:24
+        dereg_sd_type = _RANDOM_8[22:20];	// Core.scala:50:24
+        dereg_reg2_rdata = {_RANDOM_8[31:23], _RANDOM_9, _RANDOM_10[22:0]};	// Core.scala:50:24
+        dereg_ld_type = _RANDOM_10[25:23];	// Core.scala:50:24
+        emreg_alu_res = {_RANDOM_10[31:26], _RANDOM_11, _RANDOM_12[25:0]};	// Core.scala:50:24, :66:24
+        emreg_wb_type = _RANDOM_12[27:26];	// Core.scala:66:24
+        emreg_rd = {_RANDOM_12[31:28], _RANDOM_13[0]};	// Core.scala:66:24
+        emreg_ld_type = _RANDOM_13[3:1];	// Core.scala:66:24
+        emreg_ld_addr_lowbit = _RANDOM_13[6:4];	// Core.scala:66:24
+        mwreg_wb_type = _RANDOM_13[8:7];	// Core.scala:66:24, :76:24
+        mwreg_wb_data = {_RANDOM_13[31:9], _RANDOM_14, _RANDOM_15[8:0]};	// Core.scala:66:24, :76:24
+        mwreg_rd = _RANDOM_15[13:9];	// Core.scala:76:24
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:1572:10
