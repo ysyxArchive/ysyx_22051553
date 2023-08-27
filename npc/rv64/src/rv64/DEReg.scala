@@ -14,7 +14,7 @@ class DERegIO extends Bundle {
     val branch_type = (UInt(1.W))
     val branch_addr = (UInt(X_LEN.W))
     val alu_op = (UInt(ALU_OP_LEN.W))
-    val shamt = UInt(5.W)
+    val shamt = UInt(6.W)
     val wb_type = (UInt(2.W))
 
     val sd_type = (UInt(3.W))

@@ -83,7 +83,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     } else if (vlSelf->Soc__DOT__core__DOT__interact__DOT__ebreak_flag) {
         __Vdly__Soc__DOT__core__DOT__interact__DOT__over_count 
             = (7U & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)));
-        if (VL_UNLIKELY((4U == (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)))) {
+        if (VL_UNLIKELY((2U == (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)))) {
             VL_WRITEF("ebreak!\n");
             VL_FINISH_MT("vsrc/Soc.v", 1226, "");
         }

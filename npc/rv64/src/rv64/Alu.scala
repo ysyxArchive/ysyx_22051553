@@ -52,7 +52,7 @@ class AluIO extends Bundle{
     val op_a = Input(UInt(X_LEN.W))
     val op_b = Input(UInt(X_LEN.W))
     val alu_op = Input(UInt(ALU_OP_LEN.W))
-    val shamt = Input(UInt(5.W))
+    val shamt = Input(UInt(6.W))
 
     val result = Output(UInt(X_LEN.W))
 
