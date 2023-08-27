@@ -10,8 +10,6 @@ class TempMem extends BlackBox with HasBlackBoxInline{
         
         val clk = Input(Clock())
 
-        val load_use = Input(Bool())
-
         val inst = Output(UInt(64.W))
         val pc   = Input(UInt(PC_LEN.W))
         val valid = Input(Bool())
