@@ -48,6 +48,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type;
         CData/*2:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_ld_type;
         CData/*4:0*/ Soc__DOT__core__DOT__decode__DOT__lu_rd;
+        CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT___load_use_T_12;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT___load_use_T_8;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_4;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_5;
@@ -82,9 +83,9 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_85;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_89;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_98;
-        VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_101;
     };
     struct {
+        VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_101;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_107;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_112;
         VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_172;
