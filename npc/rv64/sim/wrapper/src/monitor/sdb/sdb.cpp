@@ -401,7 +401,7 @@ static int cmd_s(char *args){
 
 
       if(execute_list.front().skip_ref_one_inst){
-        printf("skipping\n");
+        
         difftest_skip_ref();
       }
       else
