@@ -13,8 +13,13 @@
 #include "memory.hpp"
 #include <queue>
 #include <list>
+#include <npc.h>
+#include <chrono>
+#include <ctime>
 
 extern bool batch;
+
+bool skip_ref_one_inst = 0;
 
 typedef struct fetch{  //同步到单周期，即fetch、decode、excute对应的是一条指令
   unsigned long pc;
@@ -30,6 +35,7 @@ typedef struct decode{
 bool difftest_step();
 void single_cycle();
 extern void (*ref_difftest_regcpy)(void *dut, bool direction);
+extern void (*ref_difftest_skip_ref)() = NULL;
 
 uint64_t expr(char *e, bool *success);
 void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
@@ -130,6 +136,21 @@ void update_debuginfo(
 }
 
 long long pmem_read(const svLogicVecVal* raddr){
+  if( ((unsigned long)raddr[1].aval << 32 | raddr[0].aval) >= 0xa0000000){
+      printf("raddr is %lx\n", (unsigned long)raddr[1].aval << 32 | raddr[0].aval);
+      skip_ref_one_inst = 1;
+    }
+
+
+  if( ((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDR){
+    auto now = std::chrono::system_clock::now();
+    std::time_t time = std::chrono::system_clock::to_time_t(now);
+
+    printf("time is %ld\n", time);
+
+    return  (long long) time;
+  }
+
   uint64_t value =  pmem.mem_read(
     (unsigned long)raddr[1].aval << 32 | raddr[0].aval
   );
@@ -138,11 +159,23 @@ long long pmem_read(const svLogicVecVal* raddr){
 }
 
   void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask){
+    if( ((unsigned long)waddr[1].aval << 32 | waddr[0].aval) >= 0xa0000000){
+      printf("waddr is %lx\n", (unsigned long)waddr[1].aval << 32 | waddr[0].aval);
+      skip_ref_one_inst = 1;
+    }
+
+    if( ((unsigned long)waddr[1].aval << 32 | waddr[0].aval) == SERIAL_PORT){
+      printf("here\n");
+      putchar((unsigned long)wdata[1].aval << 32 | wdata[0].aval);
+      return ;
+    }
+
     pmem.mem_write(
         (unsigned long)waddr[1].aval << 32 | waddr[0].aval,
         (unsigned long)wdata[1].aval << 32 | wdata[0].aval,
         wmask
     );
+    return ;
   }
 
 
@@ -202,23 +235,23 @@ static int cmd_s(char *args){
   if(args == NULL){
   
 
-    for(auto arg : fetch_list){
-      printf("pc:0x%lx\n", arg.pc);
-    }
+    // for(auto arg : fetch_list){
+    //   printf("pc:0x%lx\n", arg.pc);
+    // }
 
-    for(auto arg : decode_list){
-      printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
-    }
+    // for(auto arg : decode_list){
+    //   printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
+    // }
 
     if( decode_list.front().load_use){
-      printf("load_use\n");
+      // printf("load_use\n");
       single_cycle();
 
       fetch_list.pop_front();
       decode_list.pop_front();
 
     }else if(decode_list.front().branch){
-      printf("branch\n");
+      // printf("branch\n");
       single_cycle();
       
       fetch_list.pop_front();
@@ -253,32 +286,37 @@ static int cmd_s(char *args){
     //-----------------
     single_cycle();   
 
+
+    if(skip_ref_one_inst){
+      ref_difftest_skip_ref();
+    }
     if(! difftest_step()){  //比较当前的通用寄存器状态和下一条指令的pc
-    //dut_regs
-    printf("-----------dut_regs--------------\n");
-    printf("pc\t\t0x%-16lx\t\t%-20ld\n", fetch_list.front().pc, fetch_list.front().pc);
-    cpu_ins.gpr_display();
-    //ref_regs
-    struct diff_context_t ref_r;
-    ref_difftest_regcpy(&ref_r, 0);
-    printf("-----------ref_regs---------------\n");
-    printf("dnpc\t\t0x%-16lx\t\t%-20ld\n", ref_r.pc, ref_r.pc);
-    for(int i = 0; i < 32; i ++){
-      printf("%s\t\t0x%-16lx\t\t%-20ld\n", cpu::regs[i], ref_r.gpr[i], ref_r.gpr[i]);
-    }    
+  
+          //dut_regs
+          printf("-----------dut_regs--------------\n");
+          printf("pc\t\t0x%-16lx\t\t%-20ld\n", fetch_list.front().pc, fetch_list.front().pc);
+          cpu_ins.gpr_display();
+          //ref_regs
+          struct diff_context_t ref_r;
+          ref_difftest_regcpy(&ref_r, 0);
+          printf("-----------ref_regs---------------\n");
+          printf("dnpc\t\t0x%-16lx\t\t%-20ld\n", ref_r.pc, ref_r.pc);
+          for(int i = 0; i < 32; i ++){
+            printf("%s\t\t0x%-16lx\t\t%-20ld\n", cpu::regs[i], ref_r.gpr[i], ref_r.gpr[i]);
+          }    
 
-    //-----itrace
-    printf("-----------itrace--------------\n");
-      for(int i = 0; i < 16; i ++){
-        if((i== 15 && irb_pos == 0) || (i == irb_pos - 1))
-          printf("  --> ");
-        else 
-          printf("      ");
+          //-----itrace
+          printf("-----------itrace--------------\n");
+            for(int i = 0; i < 16; i ++){
+              if((i== 15 && irb_pos == 0) || (i == irb_pos - 1))
+                printf("  --> ");
+              else 
+                printf("      ");
 
-        printf("%s\n", iringbuf[i]);
-      }
-    //---------------
-      Verilated::gotFinish(1);
+              printf("%s\n", iringbuf[i]);
+            }
+          //---------------
+            Verilated::gotFinish(1);
     }
     
     decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
@@ -300,14 +338,14 @@ static int cmd_s(char *args){
     // }
 
     if( decode_list.front().load_use){
-      printf("load_use\n");
+      // printf("load_use\n");
       single_cycle();
 
       fetch_list.pop_front();
       decode_list.pop_front();
 
     }else if(decode_list.front().branch){
-      printf("branch\n");
+      // printf("branch\n");
       single_cycle();
       
       fetch_list.pop_front();
@@ -331,7 +369,7 @@ static int cmd_s(char *args){
   disassemble(p, log_itrace + sizeof(log_itrace) - p, fetch_list.front().pc,
     (uint8_t *)(&decode_list.front().inst), ilen);
 
-    printf("%s\n", log_itrace);
+    // printf("%s\n", log_itrace);
 
     p = iringbuf[irb_pos];
     strcpy(p, "0x");
@@ -342,34 +380,39 @@ static int cmd_s(char *args){
       //-----------------
       single_cycle();
 
-      if(! difftest_step()){
-    //dut_regs
-    printf("-----------dut_regs--------------\n");
-    printf("pc\t\t0x%-16lx\t\t%-20ld\n", fetch_list.front().pc, fetch_list.front().pc);
-    cpu_ins.gpr_display();
-    //ref_regs
-    struct diff_context_t ref_r;
-    ref_difftest_regcpy(&ref_r, 0);
-    printf("-----------ref_regs---------------\n");
-    printf("dnpc\t\t0x%-16lx\t\t%-20ld\n", ref_r.pc, ref_r.pc);
-    for(int i = 0; i < 32; i ++){
-      printf("%s\t\t0x%-16lx\t\t%-20ld\n", cpu::regs[i], ref_r.gpr[i], ref_r.gpr[i]);
-    }    
 
-  
-    //-----itrace
-    printf("-----------itrace--------------\n");
-      for(int i = 0; i < 16; i ++){
-        if((i== 15 && irb_pos == 0) || (i == irb_pos - 1))
-          printf("  --> ");
-        else 
-          printf("      ");
-
-        printf("%s\n", iringbuf[i]);
+      if(skip_ref_one_inst){
+        ref_difftest_skip_ref();
       }
-    //---------------
-        Verilated::gotFinish(1);
-        break;
+      else
+      if(! difftest_step()){
+          //dut_regs
+          printf("-----------dut_regs--------------\n");
+          printf("pc\t\t0x%-16lx\t\t%-20ld\n", fetch_list.front().pc, fetch_list.front().pc);
+          cpu_ins.gpr_display();
+          //ref_regs
+          struct diff_context_t ref_r;
+          ref_difftest_regcpy(&ref_r, 0);
+          printf("-----------ref_regs---------------\n");
+          printf("dnpc\t\t0x%-16lx\t\t%-20ld\n", ref_r.pc, ref_r.pc);
+          for(int i = 0; i < 32; i ++){
+            printf("%s\t\t0x%-16lx\t\t%-20ld\n", cpu::regs[i], ref_r.gpr[i], ref_r.gpr[i]);
+          }    
+
+        
+          //-----itrace
+          printf("-----------itrace--------------\n");
+            for(int i = 0; i < 16; i ++){
+              if((i== 15 && irb_pos == 0) || (i == irb_pos - 1))
+                printf("  --> ");
+              else 
+                printf("      ");
+
+              printf("%s\n", iringbuf[i]);
+            }
+          //---------------
+              Verilated::gotFinish(1);
+              break;
       }
       
       

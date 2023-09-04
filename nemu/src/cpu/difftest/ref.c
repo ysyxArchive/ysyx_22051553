@@ -68,6 +68,10 @@ __EXPORT void difftest_exec(uint64_t n) {   //dut执行n步后执行
   cpu_exec(n);
 }
 
+__EXPORT void difftest_skip_ref() {   //跳过一条指令，顺序到下一条指令,且复制reg
+  cpu.pc += 4;
+}
+
 __EXPORT void difftest_raise_intr(word_t NO) {
   assert(0);
 }
