@@ -18,8 +18,6 @@
 
 extern bool batch;
 
-bool skip_ref_one_inst = 0;
-
 static uint64_t rtc_time = 0;
 
 typedef struct fetch{  //同步到单周期，即fetch、decode、excute对应的是一条指令
@@ -31,6 +29,10 @@ typedef struct decode{
   bool load_use; //该指令是load后的use指令，应该立即空过一个周期
   bool branch;   //该指令是branch成功的下一条指令，应该被冲刷
 }decode;
+
+typedef struct execute{
+  bool skip_ref_one_inst;
+}execute;
 
 
 bool difftest_step();
@@ -45,6 +47,7 @@ static bool sync_diff = 0;
 
 std::list<fetch> fetch_list;
 std::list<decode> decode_list;
+std::list<execute> execute_list;
 
 
 char log_itrace[128];
@@ -64,6 +67,8 @@ extern "C" {
     const svLogicVecVal* op_b,
     const svLogicVecVal* result,
     svLogic br_yes,
+    svLogic mem_access,
+    const svLogicVecVal* mem_addr,
     const svLogicVecVal* rd,
     const svLogicVecVal* reg_wdata,
     svLogic reg_wen);
@@ -83,6 +88,8 @@ void update_debuginfo(
   const svLogicVecVal* op_b,
   const svLogicVecVal* result,
   svLogic br_yes,
+  svLogic mem_access,
+  const svLogicVecVal* mem_addr,
   const svLogicVecVal* rd,
   const svLogicVecVal* reg_wdata,
   svLogic reg_wen)
@@ -111,17 +118,26 @@ void update_debuginfo(
   decode de_ins = {
     .inst = (unsigned int)inst[0].aval,
     .load_use = (bool)load_use,
-    .branch = (bool)br_yes
+    .branch = (bool)br_yes          //该指令被branch掉
   };
+
+  execute ex_ins = {
+    .skip_ref_one_inst = ((bool)mem_access) && (((unsigned long)mem_addr[1].aval << 32 | mem_addr[0].aval) >= 0xa0000000 )
+  }
 
 
 
   fetch_list.push_back(fe_ins);
   decode_list.push_back(de_ins);
+  execute_list.push_back(ex_ins);
 
 
   if(decode_list.size() == 5){ 
     sync_diff = true;
+    execute_list.pop_front();
+    execute_list.pop_front();
+    execute_list.pop_front();
+
     decode_list.pop_front();
     decode_list.pop_front();
 
@@ -137,10 +153,6 @@ void update_debuginfo(
 }
 
 long long pmem_read(const svLogicVecVal* raddr){
-  if( ((unsigned long)raddr[1].aval << 32 | raddr[0].aval) >= 0xa0000000){
-      skip_ref_one_inst = 1;
-    }
-
 
   if( ((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDRH || ((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDRL){
     if(((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDRH){
@@ -163,11 +175,7 @@ long long pmem_read(const svLogicVecVal* raddr){
 }
 
   void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask){
-    if( ((unsigned long)waddr[1].aval << 32 | waddr[0].aval) >= 0xa0000000){
-      // printf("waddr is %lx\n", (unsigned long)waddr[1].aval << 32 | waddr[0].aval);
 
-      skip_ref_one_inst = 1;
-    }
 
     if( ((unsigned long)waddr[1].aval << 32 | waddr[0].aval) == SERIAL_PORT){
       // printf("here\n");
@@ -254,6 +262,7 @@ static int cmd_s(char *args){
 
       fetch_list.pop_front();
       decode_list.pop_front();
+      execute_list.pop_front();
 
     }else if(decode_list.front().branch){
       // printf("branch\n");
@@ -261,6 +270,7 @@ static int cmd_s(char *args){
       
       fetch_list.pop_front();
       decode_list.pop_front();
+      execute_list.pop_front();
     }
 
 
@@ -292,7 +302,7 @@ static int cmd_s(char *args){
     single_cycle();   
 
 
-    if(skip_ref_one_inst){
+    if(execute_list.front().skip_ref_one_inst){
       printf("skiping\n");
       difftest_skip_ref();
     }
@@ -327,6 +337,7 @@ static int cmd_s(char *args){
     
     decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
     fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
+    execute_list.pop_front();
       
   }
   else {
@@ -349,6 +360,7 @@ static int cmd_s(char *args){
 
       fetch_list.pop_front();
       decode_list.pop_front();
+      execute_list.pop_front();
 
     }else if(decode_list.front().branch){
       // printf("branch\n");
@@ -356,6 +368,7 @@ static int cmd_s(char *args){
       
       fetch_list.pop_front();
       decode_list.pop_front();
+      execute_list.pop_front();
     }
 
 
@@ -387,7 +400,7 @@ static int cmd_s(char *args){
       single_cycle();
 
 
-      if(skip_ref_one_inst){
+      if(execute_list.front().skip_ref_one_inst){
         printf("skipping\n");
         difftest_skip_ref();
       }
@@ -425,6 +438,7 @@ static int cmd_s(char *args){
       
       decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
       fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
+      execute_list.pop_front();
       
       if(Verilated::gotFinish())
         break;
