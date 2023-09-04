@@ -293,6 +293,7 @@ static int cmd_s(char *args){
 
 
     if(skip_ref_one_inst){
+      printf("skiping\n");
       difftest_skip_ref();
     }
     if(! difftest_step()){  //比较当前的通用寄存器状态和下一条指令的pc
@@ -387,6 +388,7 @@ static int cmd_s(char *args){
 
 
       if(skip_ref_one_inst){
+        printf("skipping\n");
         difftest_skip_ref();
       }
       else
