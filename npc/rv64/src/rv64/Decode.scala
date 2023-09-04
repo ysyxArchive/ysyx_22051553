@@ -70,11 +70,15 @@ class Decode extends Module {
     val load_use = Wire(Bool())
 
     lu_rd := Mux(io.branch, 0.U, 
+             Mux(load_use, 0.U,                //避免load_load死循环
              Mux(cu.io.ld_type.orR, rd,
-             0.U))
+             0.U)))
     load_use := ((cu.io.opa_type === ControlUnit.A_REG1 && rs1 === lu_rd) || ((cu.io.opb_type === ControlUnit.B_REG2 && rs2 === lu_rd)) ||
     (cu.io.sd_type.orR && (rs2 === lu_rd)) ||  (cu.io.jump_type === ControlUnit.JUMP_JALR && (rs1 === lu_rd))      //这是load_jalr类型
     ) && (lu_rd =/= 0.U)                              //注意存储指令，其需要使用rs2但是opb_type不是B_REG2  即load_store类型
+    //若为load_use,则再给一条use
+
+
 
     //驱动端口 -输出
     //顶层
