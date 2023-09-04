@@ -31,7 +31,7 @@ static void set_regs(void* diff_context){  //设置ref中的寄存器
   for(int i = 0; i < 32; i++){
     cpu.gpr[i] = ctx->gpr[i];
   }
-  cpu.pc = ctx->pc;
+  
 }
 
 static void get_regs(void* diff_context){  //设置npc的寄存器

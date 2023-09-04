@@ -14,12 +14,13 @@
 #include <queue>
 #include <list>
 #include <npc.h>
-#include <chrono>
-#include <ctime>
+#include <sys/time.h>
 
 extern bool batch;
 
 bool skip_ref_one_inst = 0;
+
+static uint64_t rtc_time = 0;
 
 typedef struct fetch{  //同步到单周期，即fetch、decode、excute对应的是一条指令
   unsigned long pc;
@@ -35,7 +36,7 @@ typedef struct decode{
 bool difftest_step();
 void single_cycle();
 extern void (*ref_difftest_regcpy)(void *dut, bool direction);
-extern void (*ref_difftest_skip_ref)() = NULL;
+void difftest_skip_ref();
 
 uint64_t expr(char *e, bool *success);
 void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
@@ -129,7 +130,7 @@ void update_debuginfo(
 
 
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
-    cpu_ins.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);
+    cpu_ins.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);      //update里没有改写pc
   }
 
 
@@ -137,18 +138,21 @@ void update_debuginfo(
 
 long long pmem_read(const svLogicVecVal* raddr){
   if( ((unsigned long)raddr[1].aval << 32 | raddr[0].aval) >= 0xa0000000){
-      printf("raddr is %lx\n", (unsigned long)raddr[1].aval << 32 | raddr[0].aval);
       skip_ref_one_inst = 1;
     }
 
 
-  if( ((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDR){
-    auto now = std::chrono::system_clock::now();
-    std::time_t time = std::chrono::system_clock::to_time_t(now);
+  if( ((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDRH || ((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDRL){
+    if(((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDRH){
+        struct timespec now;
+        clock_gettime(CLOCK_MONOTONIC_COARSE, &now);
+        rtc_time = now.tv_sec * 1000000 + now.tv_nsec / 1000;
 
-    printf("time is %ld\n", time);
+        return  (long long) (rtc_time >> 32);
+    }
+    else
+      return (long long) (rtc_time & 0xffffffff);
 
-    return  (long long) time;
   }
 
   uint64_t value =  pmem.mem_read(
@@ -160,12 +164,13 @@ long long pmem_read(const svLogicVecVal* raddr){
 
   void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask){
     if( ((unsigned long)waddr[1].aval << 32 | waddr[0].aval) >= 0xa0000000){
-      printf("waddr is %lx\n", (unsigned long)waddr[1].aval << 32 | waddr[0].aval);
+      // printf("waddr is %lx\n", (unsigned long)waddr[1].aval << 32 | waddr[0].aval);
+
       skip_ref_one_inst = 1;
     }
 
     if( ((unsigned long)waddr[1].aval << 32 | waddr[0].aval) == SERIAL_PORT){
-      printf("here\n");
+      // printf("here\n");
       putchar((unsigned long)wdata[1].aval << 32 | wdata[0].aval);
       return ;
     }
@@ -288,7 +293,7 @@ static int cmd_s(char *args){
 
 
     if(skip_ref_one_inst){
-      ref_difftest_skip_ref();
+      difftest_skip_ref();
     }
     if(! difftest_step()){  //比较当前的通用寄存器状态和下一条指令的pc
   
@@ -329,13 +334,13 @@ static int cmd_s(char *args){
 
     while(n > 0){
   
-    // for(auto arg : fetch_list){
-    //   printf("pc:0x%lx\n", arg.pc);
-    // }
+    for(auto arg : fetch_list){
+      printf("pc:0x%lx\n", arg.pc);
+    }
 
-    // for(auto arg : decode_list){
-    //   printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
-    // }
+    for(auto arg : decode_list){
+      printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
+    }
 
     if( decode_list.front().load_use){
       // printf("load_use\n");
@@ -382,7 +387,7 @@ static int cmd_s(char *args){
 
 
       if(skip_ref_one_inst){
-        ref_difftest_skip_ref();
+        difftest_skip_ref();
       }
       else
       if(! difftest_step()){

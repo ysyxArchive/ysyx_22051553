@@ -7,7 +7,8 @@
 
 #define SERIAL_PORT     (DEVICE_BASE + 0x00003f8)
 #define KBD_ADDR        (DEVICE_BASE + 0x0000060)
-#define RTC_ADDR        (DEVICE_BASE + 0x0000048)
+#define RTC_ADDRH        (DEVICE_BASE + 0x000004C)
+#define RTC_ADDRL        (DEVICE_BASE + 0x0000048)
 #define VGACTL_ADDR     (DEVICE_BASE + 0x0000100)
 #define AUDIO_ADDR      (DEVICE_BASE + 0x0000200)
 #define DISK_ADDR       (DEVICE_BASE + 0x0000300)
