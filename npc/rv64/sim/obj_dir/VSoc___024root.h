@@ -28,7 +28,6 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT___excute_io_jump_flag;
         CData/*5:0*/ Soc__DOT__core__DOT___decode_io_deio_alu_op;
         CData/*0:0*/ Soc__DOT__core__DOT___decode_io_jump_flag;
-        CData/*0:0*/ Soc__DOT__core__DOT___decode_io_load_use;
         CData/*4:0*/ Soc__DOT__core__DOT__dereg_rd;
         CData/*0:0*/ Soc__DOT__core__DOT__dereg_branch_type;
         CData/*5:0*/ Soc__DOT__core__DOT__dereg_alu_op;
@@ -43,6 +42,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*1:0*/ Soc__DOT__core__DOT__mwreg_wb_type;
         CData/*4:0*/ Soc__DOT__core__DOT__mwreg_rd;
         CData/*0:0*/ Soc__DOT__core__DOT__fetch__DOT__started;
+        CData/*0:0*/ Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2;
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type;
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type;
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type;
@@ -59,7 +59,6 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h238a4b90__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hb0fa7988__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h3c60961a__0;
-        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h5984ecb1__0;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_ex_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_ex_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_mem_hazard;
@@ -83,9 +82,9 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_85;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_89;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_98;
+        VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_101;
     };
     struct {
-        VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_101;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_107;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_112;
         VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_172;

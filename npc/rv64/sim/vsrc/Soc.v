@@ -692,11 +692,11 @@ module FlowControl(	// <stdin>:1446:10
                 io_fcfe_stall,
                 io_fcde_flush);
 
-  assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag;	// <stdin>:1446:10, FlowControl.scala:101:44
+  assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag;	// <stdin>:1446:10, FlowControl.scala:102:44
   assign io_fcfe_jump_pc = io_fcex_jump_flag ? io_fcex_jump_pc : io_fcde_jump_flag ? io_fcde_jump_pc : 64'h80000000;	// <stdin>:1446:10, Mux.scala:101:16
-  assign io_fcfe_flush = io_fcex_jump_flag | io_fcde_jump_flag;	// <stdin>:1446:10, Mux.scala:101:16
-  assign io_fcfe_stall = ~io_fcex_jump_flag & ~io_fcde_jump_flag & io_fcde_load_use;	// <stdin>:1446:10, Mux.scala:101:16
-  assign io_fcde_flush = io_fcex_jump_flag | ~io_fcde_jump_flag & io_fcde_load_use;	// <stdin>:1446:10, Mux.scala:101:16
+  assign io_fcfe_flush = ~io_fcde_load_use & (io_fcex_jump_flag | io_fcde_jump_flag);	// <stdin>:1446:10, Mux.scala:101:16
+  assign io_fcfe_stall = io_fcde_load_use;	// <stdin>:1446:10
+  assign io_fcde_flush = io_fcde_load_use | io_fcex_jump_flag;	// <stdin>:1446:10, Mux.scala:101:16
 endmodule
 
 module Forward(	// <stdin>:1517:10
@@ -1292,4 +1292,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 

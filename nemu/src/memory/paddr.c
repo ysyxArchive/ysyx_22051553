@@ -43,7 +43,7 @@ static word_t pmem_read(paddr_t addr, int len) {
     
   #endif
   word_t ret = host_read(guest_to_host(addr), len);  //实际是读pmem[n]
-  printf("ret data is 0x%lx\n", ret);
+  // printf("ret data is 0x%lx\n", ret);
   return ret;
 }
 
@@ -51,7 +51,7 @@ static void pmem_write(paddr_t addr, int len, word_t data) {
 
   #ifdef CONFIG_MTRACE
     Log("write mem at " FMT_PADDR " for %d bytes",addr, len);
-    printf("write data is 0x%lx\n", data);
+    // printf("write data is 0x%lx\n", data);
   #endif
   host_write(guest_to_host(addr), len, data);   //写pmem[n]
 }

@@ -27,7 +27,7 @@ void single_cycle() {  //clock总是为1
   vcd->dump(sim_time);
   sim_time ++;
   dut.clock = 1; dut.eval();
-  vcd->dump(sim_time);
+  vcd->dump(sim_time);              //将发生的变化记录到sim_time节点
   sim_time ++;
 }
 
