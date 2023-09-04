@@ -79,6 +79,4 @@ void difftest_skip_ref() {
 
   ref_difftest_regcpy(cpu, 1);
   ref_difftest_skip_ref();
-
-  skip_ref_one_inst = 0;
 }

@@ -123,7 +123,7 @@ void update_debuginfo(
 
   execute ex_ins = {
     .skip_ref_one_inst = ((bool)mem_access) && (((unsigned long)mem_addr[1].aval << 32 | mem_addr[0].aval) >= 0xa0000000 )
-  }
+  };
 
 
 
@@ -346,13 +346,13 @@ static int cmd_s(char *args){
 
     while(n > 0){
   
-    for(auto arg : fetch_list){
-      printf("pc:0x%lx\n", arg.pc);
-    }
+    // for(auto arg : fetch_list){
+    //   printf("pc:0x%lx\n", arg.pc);
+    // }
 
-    for(auto arg : decode_list){
-      printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
-    }
+    // for(auto arg : decode_list){
+    //   printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
+    // }
 
     if( decode_list.front().load_use){
       // printf("load_use\n");
