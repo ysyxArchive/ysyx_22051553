@@ -18,6 +18,40 @@ void cpu::set_value(int num, unsigned long value){
     regs_state.gpr[num] = value;
 }
 
+void cpu::set_value(int addr, unsigned long value){
+  switch (addr)
+  {
+    case 0x305:
+      csr[0] = value;
+      break;
+    case 0x342:
+      csr[1] = value;
+      break;
+    case 0x341:
+      csr[2] = value;
+      break;
+    case 0x304:
+      csr[3] = value;
+      break;
+    case 0x300:
+      csr[4] = value;
+      break;
+    case 0x340:
+      csr[5] = value;
+      break;
+    
+    default: assert(0);
+      break;
+  }
+}
+
+void cpu::csr_display(){
+    for(int i = 0; i < 6; i ++){
+      printf("%s\t\t0x%-16lx\t\t%-20ld\n", csrs[i], csr[i], csr[i]);
+    }  
+}
+
+
 unsigned long cpu::isa_reg_str2val(const char *s, bool *success){
   
   *success = true;
@@ -49,6 +83,11 @@ const char *cpu::regs[] = {
   "s0", "s1", "a0", "a1", "a2", "a3", "a4", "a5",
   "a6", "a7", "s2", "s3", "s4", "s5", "s6", "s7",
   "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"
+};
+
+const char *cpu::csrs[] = {
+  "mtvec", "mcause", "mepc", "mie", "mstatus", "mscratch"
+  
 };
 
 

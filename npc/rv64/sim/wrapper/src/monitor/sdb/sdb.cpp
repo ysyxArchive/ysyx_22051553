@@ -77,7 +77,10 @@ extern "C" {
     const svLogicVecVal* mem_addr,
     const svLogicVecVal* rd,
     const svLogicVecVal* reg_wdata,
-    svLogic reg_wen);
+    svLogic reg_wen,
+    svLogic csr_wen,
+    const svLogicVecVal* csr_wdata,
+    const svLogicVecVal* csr_waddr);
 
   long long pmem_read(const svLogicVecVal* raddr);
 
@@ -98,7 +101,11 @@ void update_debuginfo(
   const svLogicVecVal* mem_addr,
   const svLogicVecVal* rd,
   const svLogicVecVal* reg_wdata,
-  svLogic reg_wen)
+  svLogic reg_wen,
+  svLogic csr_wen,
+  const svLogicVecVal* csr_wdata,
+  const svLogicVecVal* csr_waddr,
+  )
 {
   
 
@@ -154,6 +161,11 @@ void update_debuginfo(
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
     cpu_ins.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);      //update里没有改写pc
   }
+
+  if((bool)csr_wen){
+    cpu_ins.set_csr((unsigned int)csr_waddr[0].aval,(unsigned long)csr_wdata[1].aval << 32 | csr_wdata[0].aval);      //update里没有改写pc
+  }
+
   #endif
 
 }
@@ -235,7 +247,10 @@ static int cmd_q(char *args) {
 static int cmd_i(char *args) {
   
   if(strcmp(args, "r") == 0){
+    printf("--------gpr----------\n");
     cpu_ins.gpr_display();
+    printf("--------csr----------\n");
+    cpu_ins.csr_display();
   }
   else if(strcmp(args, "w") == 0){
     return 0;
@@ -399,7 +414,7 @@ static int cmd_s(char *args){
     disassemble(p, log_itrace + sizeof(log_itrace) - p, fetch_list.front().pc,
     (uint8_t *)(&decode_list.front().inst), ilen);
 
-    // printf("%s\n", log_itrace);
+    printf("%s\n", log_itrace);
 
     p = iringbuf[irb_pos];
     strcpy(p, "0x");

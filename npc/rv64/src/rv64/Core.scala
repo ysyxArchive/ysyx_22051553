@@ -403,6 +403,9 @@ class Core extends Module{
     DI.io.rd := wb.io.rfio.rd
     DI.io.reg_wen := wb.io.rfio.reg_wen
     DI.io.reg_wdata := wb.io.rfio.reg_wdata
+    DI.io.csr_waddr := wb.io.csrs.rd
+    DI.io.csr_wdata := wb.io.csrs.csr_wdata
+    DI.io.csr_wen := wb.io.csrs.csr_wen
 
     //interact
     val interact = Module(new Interact)
