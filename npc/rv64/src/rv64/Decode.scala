@@ -29,6 +29,9 @@ class DecodeIO extends Bundle{
 
     //Forward
     val fwde    = Flipped(new FwDeIO)
+
+    //CSRs
+    val csrs    = Flipped(new CSRDeIO)
 }
 
 class Decode extends Module {
@@ -37,27 +40,23 @@ class Decode extends Module {
     
     val inst = Wire(UInt(INST_LEN.W))
 
+    val csr_num = Wire(UInt(CSR_ADDR_LEN.W))
     val rs1 = Wire(UInt(REG_ADDR_LEN.W))
     val rs2 = Wire(UInt(REG_ADDR_LEN.W))
     val rd = Wire(UInt(REG_ADDR_LEN.W))
  
     val shamt = Wire(UInt(6.W))
 
-    
-    
 
     val cu = Module(new ControlUnit)
     val eximm = Module(new Eximm)
-
-    //Forward
-    io.fwde.reg1_raddr := rs1
-    io.fwde.reg2_raddr := rs2
 
 
     //内部逻辑
 
     dontTouch(inst)
     inst := Mux(io.inst.valid, io.inst.bits, NOP)
+    csr_num := inst(31,20)
     rs1 := inst(19,15)
     rs2 := inst(24,20)
     rd := inst(11,7)
@@ -82,9 +81,12 @@ class Decode extends Module {
 
     //驱动端口 -输出
     //顶层
+    //rfio
     io.rfio.reg1_raddr := rs1
     io.rfio.reg2_raddr := rs2
 
+
+    //deio
     io.deio.op_a := MuxLookup(
         cu.io.opa_type,
         0.U,
@@ -101,11 +103,12 @@ class Decode extends Module {
             ControlUnit.B_ZERO -> 0.U,
             ControlUnit.B_IMM -> eximm.io.eximm,
             ControlUnit.B_REG2 -> Mux(io.fwde.fw_sel2, io.fwde.fw_data2, io.rfio.reg2_rdata),
-            ControlUnit.B_CONS4 -> 4.U
+            ControlUnit.B_CONS4 -> 4.U,
+            ControlUnit.B_CSR -> Mux(io.fwde.csr_fw_sel, io.fwde.csr_fw_data, io.csrs.csr_rdata)
         )
     )
 
-    io.deio.rd := rd
+    io.deio.reg_waddr := rd
     io.deio.branch_type := cu.io.branch_type
     io.deio.branch_addr := io.fdio.pc + Cat(Fill(51, inst(31)), inst(31), inst(7), inst(30,25), inst(11,8), 0.U(1.W))
     io.deio.alu_op := cu.io.alu_op
@@ -114,8 +117,13 @@ class Decode extends Module {
     io.deio.sd_type := cu.io.sd_type
     io.deio.reg2_rdata := Mux(io.fwde.fw_sel2, io.fwde.fw_data2, io.rfio.reg2_rdata)
     io.deio.ld_type := cu.io.ld_type
+    io.deio.csr_t := Mux(io.fwde.csr_fw_sel, io.fwde.csr_fw_data, io.csrs.csr_rdata)
+    io.deio.csr_waddr := csr_num
+    io.deio.csr_wen := cu.io.csr_type.orR
 
 
+
+    //to fc
     io.jump_flag := (cu.io.jump_type === ControlUnit.JUMP_JAL || cu.io.jump_type === ControlUnit.JUMP_JALR)
     io.jump_pc := MuxCase(
         "h80000000".U,
@@ -126,11 +134,24 @@ class Decode extends Module {
     )
     io.load_use := load_use
 
+
+    //fw
+    io.fwde.reg1_raddr := rs1
+    io.fwde.reg2_raddr := rs2
+
+    io.fwde.csr_raddr := csr_num
+
+
+    //csrs
+    io.csrs.csr_raddr := csr_num
+
+
     //CU
     cu.io.inst := inst
     //Eximm
     eximm.io.inst := inst
     eximm.io.imm_type := cu.io.imm_type
 
+    
 
 }

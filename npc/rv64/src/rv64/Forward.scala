@@ -8,6 +8,10 @@ class FwPipeIO extends Bundle{
     val reg_waddr = Input(UInt(REG_ADDR_LEN.W))
     val reg_wdata = Input(UInt(X_LEN.W))
     val reg_we    = Input(Bool())
+
+    val csr_wdata = Input(UInt(X_LEN.W))
+    val csr_wen = Input(Bool())
+    val csr_waddr = Input(UInt(CSR_ADDR_LEN.W))
 }
 
 class FwDeIO extends Bundle{
@@ -18,6 +22,10 @@ class FwDeIO extends Bundle{
     val fw_sel2    = Output(Bool())
     val fw_data1   = Output(UInt(X_LEN.W))
     val fw_data2   = Output(UInt(X_LEN.W))
+
+    val csr_raddr = Input(UInt(CSR_ADDR_LEN.W))
+    val csr_fw_sel = Output(Bool())
+    val csr_fw_data = Output(UInt(X_LEN.W))
 }
 
 
@@ -59,6 +67,21 @@ class Forward extends Module{
             (reg2_ex_hazard) -> io.fwex.reg_wdata,
             (reg2_mem_hazard) -> io.fwmem.reg_wdata,
             (reg2_wb_hazard) -> io.fwwb.reg_wdata,
+        )
+    )
+
+
+    val csr_ex_harzard = io.fwex.csr_wen && (io.fwex.csr_waddr === io.fwde.csr_raddr)
+    val csr_mem_harzard = io.fwmem.csr_wen && (io.fwmem.csr_waddr === io.fwde.csr_raddr)
+    val csr_wb_harzard = io.fwwb.csr_wen && (io.fwwb.csr_waddr === io.fwde.csr_raddr)
+
+    io.fwde.csr_fw_sel := csr_ex_harzard | csr_mem_harzard | csr_wb_harzard
+
+    io.fwde.csr_fw_data := MuxCase(0.U,
+        Seq(
+            (csr_ex_harzard) -> io.fwex.csr_wdata,
+            (csr_mem_harzard) -> io.fwmem.csr_wdata,
+            (csr_wb_harzard) -> io.fwwb.csr_wdata,
         )
     )
 

@@ -36,18 +36,24 @@ class Excute extends Module{
 
     //驱动端口
     //顶层
-    io.emio.alu_res := alu.io.result
+    //emio
+    io.emio.reg_wdata := Mux(io.emio.csr_wen, io.deio.csr_t, alu.io.result)
     io.emio.wb_type := io.deio.wb_type
-    io.emio.rd := io.deio.rd
+    io.emio.reg_waddr := io.deio.reg_waddr
 
     io.emio.ld_type := io.deio.ld_type
     io.emio.ld_addr_lowbit := io.raddr(2,0)  //是3位!!
 
+    io.emio.csr_wdata := alu.io.result
+    io.emio.csr_wen := io.deio.csr_wen
+    io.emio.csr_waddr := io.deio.csr_waddr
+
+    //to fc
     // io.jump_flag := (io.deio.branch_type).asBool && (alu.io.result).asBool
     io.jump_flag := (io.deio.branch_type).asBool && (alu.io.result).orR
     io.jump_pc := io.deio.branch_addr
 
-
+    //to TM
     io.raddr := Mux(io.deio.ld_type =/= 0.U, alu.io.result, 0.U)
     
     io.waddr := Mux(io.deio.sd_type =/= 0.U, alu.io.result, 0.U)
@@ -61,17 +67,24 @@ class Excute extends Module{
         )
     )
 
-    io.fwex.reg_waddr := io.deio.rd
-    io.fwex.reg_we := (io.deio.wb_type === WB_ALU)
-    io.fwex.reg_wdata := alu.io.result
+    //fw
+    io.fwex.reg_waddr := io.deio.reg_waddr
+    io.fwex.reg_we := (io.deio.wb_type === WB_ALU || io.deio.wb_type === WB_CSR)
+    io.fwex.reg_wdata := MuxCase(0.U,
+        Seq(
+            (io.deio.wb_type === WB_ALU) -> alu.io.result,
+            (io.deio.wb_type === WB_CSR) -> io.deio.csr_t
+        )
+    )
+
+    io.fwex.csr_wdata := alu.io.result
+    io.fwex.csr_wen := io.emio.csr_wen
+    io.fwex.csr_waddr := io.emio.csr_waddr
 
     //alu
     alu.io.op_a := io.deio.op_a
     alu.io.op_b := io.deio.op_b
     alu.io.alu_op := io.deio.alu_op
     alu.io.shamt := io.deio.shamt
-    
-    
-
 
 }

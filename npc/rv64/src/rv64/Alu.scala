@@ -45,6 +45,8 @@ object Alu {
     val ALU_DIVUW = 37.U(6.W)
     val ALU_REMW = 38.U(6.W)
     val ALU_REMUW = 39.U(6.W)
+
+    val ALU_CLEAR = 40.U(6.W)
     val ALU_NO_OP = 63.U(6.W)
 }
 
@@ -123,6 +125,8 @@ class Alu extends Module {
             ALU_DIVUW -> ((io.op_a / io.op_b)(31,0)).asSInt,
             ALU_REMW -> ((io.op_a.asSInt % io.op_b.asSInt)(31,0)).asSInt,
             ALU_REMUW -> ((io.op_a % io.op_b)(31,0)).asSInt,
+
+            ALU_CLEAR -> (~io.op_a & io.op_b).asSInt,
             ALU_NO_OP -> (0.U).asSInt
         )
     )

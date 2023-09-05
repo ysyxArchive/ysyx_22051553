@@ -15,11 +15,13 @@
 #include <list>
 #include <npc.h>
 #include <sys/time.h>
+#include <define.h>
 
-extern bool batch;
 
 static uint64_t rtc_time = 0;
 
+
+#ifdef DIFFTEST
 typedef struct fetch{  //同步到单周期，即fetch、decode、excute对应的是一条指令
   unsigned long pc;
 }fetch;
@@ -34,25 +36,29 @@ typedef struct execute{
   bool skip_ref_one_inst;
 }execute;
 
-
-bool difftest_step();
-void single_cycle();
-extern void (*ref_difftest_regcpy)(void *dut, bool direction);
-void difftest_skip_ref();
-
-uint64_t expr(char *e, bool *success);
-void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
-
-static bool sync_diff = 0;
-
 std::list<fetch> fetch_list;
 std::list<decode> decode_list;
 std::list<execute> execute_list;
 
 
+bool difftest_step();
+extern void (*ref_difftest_regcpy)(void *dut, bool direction);
+void difftest_skip_ref();
+
+static bool sync_diff = 0;
+#endif
+
+#ifdef ITRACE
 char log_itrace[128];
 char iringbuf [16][64];  //32会导致溢出，所以调整到64
 uint8_t irb_pos = 0;
+
+void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+#endif
+
+void single_cycle();
+uint64_t expr(char *e, bool *success);
+
 
 
 
@@ -111,6 +117,7 @@ void update_debuginfo(
     (bool)reg_wen);
 
 
+  #ifdef DIFFTEST
   fetch fe_ins = {
     .pc = (unsigned long)pc[1].aval << 32 | pc[0].aval
   };
@@ -124,7 +131,6 @@ void update_debuginfo(
   execute ex_ins = {
     .skip_ref_one_inst = ((bool)mem_access) && (((unsigned long)mem_addr[1].aval << 32 | mem_addr[0].aval) >= 0xa0000000 )
   };
-
 
 
   fetch_list.push_back(fe_ins);
@@ -148,7 +154,7 @@ void update_debuginfo(
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
     cpu_ins.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);      //update里没有改写pc
   }
-
+  #endif
 
 }
 
@@ -247,35 +253,35 @@ static int cmd_s(char *args){
 
   if(args == NULL){
   
+    #ifdef SHOW_LIST
+    for(auto arg : fetch_list){
+      printf("pc:0x%lx\n", arg.pc);
+    }
 
-    // for(auto arg : fetch_list){
-    //   printf("pc:0x%lx\n", arg.pc);
-    // }
+    for(auto arg : decode_list){
+      printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
+    }
+    #endif
 
-    // for(auto arg : decode_list){
-    //   printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
-    // }
-
+    #ifdef DIFFTEST
     if( decode_list.front().load_use){
-      // printf("load_use\n");
       single_cycle();
 
-      fetch_list.pop_front();
+      fetch_list.pop_front();       //三个pop对应的是同一条指令
       decode_list.pop_front();
       execute_list.pop_front();
 
     }else if(decode_list.front().branch){
-      // printf("branch\n");
       single_cycle();
       
       fetch_list.pop_front();
       decode_list.pop_front();
       execute_list.pop_front();
     }
+    #endif
 
-
-  //-----disasmble     --对当前wb中的pc
-
+    //-----disasmble     --对当前wb中的pc
+    #ifdef ITRACE
     char* p = log_itrace;
     p += snprintf(p, sizeof(log_itrace), "0x%016lx" ":", fetch_list.front().pc);
     int ilen = 4;
@@ -286,7 +292,7 @@ static int cmd_s(char *args){
 
     p += snprintf(p, 4, " ");
 
-  disassemble(p, log_itrace + sizeof(log_itrace) - p, fetch_list.front().pc,
+    disassemble(p, log_itrace + sizeof(log_itrace) - p, fetch_list.front().pc,
     (uint8_t *)(&decode_list.front().inst), ilen);
 
     printf("%s\n", log_itrace);
@@ -296,14 +302,14 @@ static int cmd_s(char *args){
     p += 2;
     strcpy(p, log_itrace + 10);
     irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
-
+    #endif
 
     //-----------------
     single_cycle();   
 
 
+    #ifdef DIFFTEST
     if(execute_list.front().skip_ref_one_inst){
-      printf("skiping\n");
       difftest_skip_ref();
     }
     if(! difftest_step()){  //比较当前的通用寄存器状态和下一条指令的pc
@@ -322,6 +328,7 @@ static int cmd_s(char *args){
           }    
 
           //-----itrace
+          #ifdef ITRACE
           printf("-----------itrace--------------\n");
             for(int i = 0; i < 16; i ++){
               if((i== 15 && irb_pos == 0) || (i == irb_pos - 1))
@@ -331,6 +338,7 @@ static int cmd_s(char *args){
 
               printf("%s\n", iringbuf[i]);
             }
+          #endif
           //---------------
             Verilated::gotFinish(1);
     }
@@ -338,6 +346,7 @@ static int cmd_s(char *args){
     decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
     fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
     execute_list.pop_front();
+    #endif
       
   }
   else {
@@ -345,7 +354,8 @@ static int cmd_s(char *args){
     uint64_t n = atoi(args);
 
     while(n > 0){
-  
+      
+    #ifdef SHOW_LIST
     for(auto arg : fetch_list){
       printf("pc:0x%lx\n", arg.pc);
     }
@@ -353,9 +363,10 @@ static int cmd_s(char *args){
     for(auto arg : decode_list){
       printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
     }
+    #endif
 
+    #ifdef DIFFTEST
     if( decode_list.front().load_use){
-      // printf("load_use\n");
       single_cycle();
 
       fetch_list.pop_front();
@@ -363,18 +374,18 @@ static int cmd_s(char *args){
       execute_list.pop_front();
 
     }else if(decode_list.front().branch){
-      // printf("branch\n");
       single_cycle();
       
       fetch_list.pop_front();
       decode_list.pop_front();
       execute_list.pop_front();
     }
+    #endif
 
 
   //-----disasmble
 
-      
+    #ifdef ITRACE
     char* p = log_itrace;
     p += snprintf(p, sizeof(log_itrace), "0x%016lx" ":", fetch_list.front().pc);
     int ilen = 4;
@@ -385,7 +396,7 @@ static int cmd_s(char *args){
 
     p += snprintf(p, 4, " ");
 
-  disassemble(p, log_itrace + sizeof(log_itrace) - p, fetch_list.front().pc,
+    disassemble(p, log_itrace + sizeof(log_itrace) - p, fetch_list.front().pc,
     (uint8_t *)(&decode_list.front().inst), ilen);
 
     // printf("%s\n", log_itrace);
@@ -395,13 +406,13 @@ static int cmd_s(char *args){
     p += 2;
     strcpy(p, log_itrace + 10);
     irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
+    #endif
 
       //-----------------
       single_cycle();
 
-
+      #ifdef DIFFTEST
       if(execute_list.front().skip_ref_one_inst){
-        
         difftest_skip_ref();
       }
       else
@@ -421,6 +432,7 @@ static int cmd_s(char *args){
 
         
           //-----itrace
+          #ifdef ITRACE
           printf("-----------itrace--------------\n");
             for(int i = 0; i < 16; i ++){
               if((i== 15 && irb_pos == 0) || (i == irb_pos - 1))
@@ -430,6 +442,7 @@ static int cmd_s(char *args){
 
               printf("%s\n", iringbuf[i]);
             }
+          #endif
           //---------------
               Verilated::gotFinish(1);
               break;
@@ -439,7 +452,8 @@ static int cmd_s(char *args){
       decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
       fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
       execute_list.pop_front();
-      
+      #endif
+
       if(Verilated::gotFinish())
         break;
 
@@ -481,7 +495,7 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si", "Execute N insts, default 1 inst", cmd_s },
-  { "info", "print state, including regs and watchpoints", cmd_i },
+  { "info", "print state, inc#define BATCH_MODEluding regs and watchpoints", cmd_i },
   { "x", "print mem", cmd_x },
   // { "p", "print expr", cmd_p },
   // { "w", "set a watchpoint", cmd_w },
@@ -495,12 +509,12 @@ static struct {
 
 void sdb_mainloop(){
 
-  if(batch){
+  #ifdef BATCH_MODE
     char str[10] = "any";
     cmd_c(str);
     if(exam_exit() == 1)
       return ;
-  }
+  #endif
 
   for (char *str; (str = rl_gets()) != NULL; ) {
     char *str_end = str + strlen(str);    // 指向\0

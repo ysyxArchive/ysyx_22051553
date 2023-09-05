@@ -332,9 +332,9 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullQData(oldp+1,(vlSelf->Soc__DOT___tm_inst),64);
     bufp->fullQData(oldp+3,(vlSelf->Soc__DOT___tm_rdata),64);
     bufp->fullQData(oldp+5,(vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc),64);
-    bufp->fullBit(oldp+7,(((~ (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall)) 
+    bufp->fullBit(oldp+7,(((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
                            & (IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started))));
-    bufp->fullBit(oldp+8,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall));
+    bufp->fullBit(oldp+8,(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16));
     bufp->fullQData(oldp+9,(vlSelf->Soc__DOT__core__DOT__excute__DOT___io_raddr_T_1),64);
     bufp->fullQData(oldp+11,(vlSelf->Soc__DOT__core__DOT___excute_io_waddr),64);
     bufp->fullQData(oldp+13,(vlSelf->Soc__DOT__core__DOT__dereg_reg2_rdata),64);
@@ -656,7 +656,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullBit(oldp+87,((1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_wb_type))));
     bufp->fullBit(oldp+88,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_flag));
     bufp->fullQData(oldp+89,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc),64);
-    bufp->fullBit(oldp+91,(((~ (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall)) 
+    bufp->fullBit(oldp+91,(((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
                             & (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_flag))));
     bufp->fullBit(oldp+92,(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush));
     bufp->fullBit(oldp+93,(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started));

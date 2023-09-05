@@ -82,23 +82,33 @@ class Mem extends Module{
     )
 
     //端口驱动
+    //mwio
     io.mwio.wb_type := io.emio.wb_type
-    io.mwio.rd := io.emio.rd
-    io.mwio.wb_data := MuxCase(0.U,
+    io.mwio.reg_waddr := io.emio.reg_waddr
+    io.mwio.reg_wdata := MuxCase(0.U,
         Seq(
-            (io.emio.wb_type === WB_ALU) -> io.emio.alu_res,
+            (io.emio.wb_type === WB_ALU || io.emio.wb_type === WB_CSR) -> io.emio.reg_wdata,
             (io.emio.wb_type === WB_MEM) -> rvalue,
         )
     )
 
+    io.mwio.csr_wdata := io.emio.csr_wdata
+    io.mwio.csr_wen := io.emio.csr_wen
+    io.mwio.csr_waddr := io.emio.csr_waddr
 
-    io.fwmem.reg_waddr := io.emio.rd
-    io.fwmem.reg_we := (io.emio.wb_type === WB_ALU || io.emio.wb_type === WB_MEM)
+
+    //fw
+    io.fwmem.reg_waddr := io.emio.reg_waddr
+    io.fwmem.reg_we := io.emio.wb_type.orR
     io.fwmem.reg_wdata := MuxCase(0.U,
         Seq(
-            (io.emio.wb_type === WB_ALU) -> io.emio.alu_res,
+            (io.emio.wb_type === WB_ALU || io.emio.wb_type === WB_CSR) -> io.emio.reg_wdata,
             (io.emio.wb_type === WB_MEM) -> rvalue
         )                    
     )
+
+    io.fwmem.csr_wdata := io.emio.csr_wdata
+    io.fwmem.csr_wen := io.emio.csr_wen
+    io.fwmem.csr_waddr := io.emio.csr_waddr
 
 }

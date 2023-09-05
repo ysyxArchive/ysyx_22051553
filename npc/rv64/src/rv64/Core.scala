@@ -41,6 +41,7 @@ class Core extends Module{
     val wb = Module(new Wb)
 
     io.next_pc := fetch.io.next_pc
+
     //纯粹的流水线寄存器
     val fdreg = RegInit(
         (new FDRegIO).Lit(
@@ -51,7 +52,7 @@ class Core extends Module{
         (new DERegIO).Lit(
             _.op_a -> 0.U,
             _.op_b -> 0.U,
-            _.rd -> 0.U,
+            _.reg_waddr -> 0.U,
             _.branch_type -> ControlUnit.NO_BR,
             _.branch_addr -> 0.U,
             _.alu_op -> Alu.ALU_NO_OP,
@@ -59,25 +60,35 @@ class Core extends Module{
             _.wb_type -> ControlUnit.WB_NO,
             _.sd_type -> ControlUnit.SD_NO,
             _.reg2_rdata -> 0.U,
-            _.ld_type -> ControlUnit.LD_NO
-
+            _.ld_type -> ControlUnit.LD_NO,
+            _.csr_t -> 0.U,
+            _.csr_waddr -> 0.U,
+            _.csr_wen -> 0.B
         )
     )
     val emreg = RegInit(
         (new EMRegIO).Lit(
-            _.alu_res -> 0.U,
+            _.reg_wdata -> 0.U,
+            _.reg_waddr -> 0.U,
             _.wb_type -> ControlUnit.WB_NO,
-            _.rd -> 0.U,
-            _.ld_type -> ControlUnit.LD_NO,
-            _.ld_addr_lowbit -> 0.U
 
+            _.ld_type -> ControlUnit.LD_NO,
+            _.ld_addr_lowbit -> 0.U,
+
+            _.csr_wdata -> 0.U,
+            _.csr_wen -> 0.B,
+            _.csr_waddr -> 0.U
         )
     )
     val mwreg = RegInit(
         (new MWRegIO).Lit(
+            _.reg_wdata -> 0.U,
+            _.reg_waddr -> 0.U,
             _.wb_type -> ControlUnit.WB_NO,
-            _.rd -> 0.U,
-            _.wb_data -> 0.U
+
+            _.csr_wdata -> 0.U,
+            _.csr_wen -> 0.B,
+            _.csr_waddr -> 0.U
         )
     )
 
@@ -87,8 +98,12 @@ class Core extends Module{
     //FlowControl
     val fc = Module(new FlowControl)
 
+    //CSRs
+    val csrs = Module(new CSRs)
+
+    csrs.io.CSRTr <> DontCare
     
-    //互联 -- 以被驱动方为标准
+    //互联 -- 基本以被驱动方为标准
     //顶层
     io.pc := fetch.io.pc.bits
     io.valid := fetch.io.pc.valid
@@ -111,10 +126,11 @@ class Core extends Module{
     decode.io.rfio <> regfile.io.RfDe
     decode.io.branch := fc.io.fcex.jump_flag
 
+    decode.io.csrs <> csrs.io.CSRDe
     //excute
     excute.io.deio.op_a := dereg.op_a
     excute.io.deio.op_b := dereg.op_b
-    excute.io.deio.rd := dereg.rd
+    excute.io.deio.reg_waddr := dereg.reg_waddr
     excute.io.deio.branch_type := dereg.branch_type
     excute.io.deio.branch_addr := dereg.branch_addr
     excute.io.deio.alu_op := dereg.alu_op
@@ -123,21 +139,34 @@ class Core extends Module{
     excute.io.deio.sd_type := dereg.sd_type
     excute.io.deio.reg2_rdata := dereg.reg2_rdata
     excute.io.deio.ld_type := dereg.ld_type
+    excute.io.deio.csr_t := dereg.csr_t
+    excute.io.deio.csr_waddr := dereg.csr_waddr
+    excute.io.deio.csr_wen := dereg.csr_wen
 
     //mem
-    mem.io.emio.alu_res := emreg.alu_res
+    mem.io.emio.reg_wdata := emreg.reg_wdata
     mem.io.emio.wb_type := emreg.wb_type
-    mem.io.emio.rd := emreg.rd
+    mem.io.emio.reg_waddr := emreg.reg_waddr
+
     mem.io.emio.ld_type := emreg.ld_type
     mem.io.emio.ld_addr_lowbit := emreg.ld_addr_lowbit
-    mem.io.rdata := io.rdata
 
+    mem.io.emio.csr_wdata := emreg.csr_wdata
+    mem.io.emio.csr_wen := emreg.csr_wen
+    mem.io.emio.csr_waddr := emreg.csr_waddr
+
+    mem.io.rdata := io.rdata
     //wb
     wb.io.mwio.wb_type := mwreg.wb_type
-    wb.io.mwio.rd := mwreg.rd
-    wb.io.mwio.wb_data := mwreg.wb_data
+    wb.io.mwio.reg_waddr := mwreg.reg_waddr
+    wb.io.mwio.reg_wdata := mwreg.reg_wdata
+    wb.io.mwio.csr_wdata := mwreg.csr_wdata
+    wb.io.mwio.csr_wen := mwreg.csr_wen
+    wb.io.mwio.csr_waddr := mwreg.csr_waddr
+
     wb.io.rfio <> regfile.io.RfWb
 
+    wb.io.csrs <> csrs.io.CSRWb
     //FlowControl
     fc.io.fcde.jump_flag := decode.io.jump_flag
     fc.io.fcde.jump_pc := decode.io.jump_pc
@@ -164,10 +193,10 @@ class Core extends Module{
             (fc.io.fcde.flush) -> 0.U,
         )
     )
-    dereg.rd := MuxCase(
-        decode.io.deio.rd,
+    dereg.reg_waddr := MuxCase(
+        decode.io.deio.reg_waddr,
         Seq(
-            (fc.io.fcde.stall) -> dereg.rd,
+            (fc.io.fcde.stall) -> dereg.reg_waddr,
             (fc.io.fcde.flush) -> 0.U,
         )
     )
@@ -227,11 +256,32 @@ class Core extends Module{
             (fc.io.fcde.flush) -> 0.U,
         )
     )
-    //emreg
-    emreg.alu_res := MuxCase(
-        excute.io.emio.alu_res,
+    dereg.csr_t := MuxCase(
+        decode.io.deio.csr_t,
         Seq(
-            (fc.io.fcex.stall) -> emreg.alu_res,
+            (fc.io.fcde.stall) -> dereg.csr_t,
+            (fc.io.fcde.flush) -> 0.U,
+        )
+    )
+    dereg.csr_waddr := MuxCase(
+        decode.io.deio.csr_waddr,
+        Seq(
+            (fc.io.fcde.stall) -> dereg.csr_waddr,
+            (fc.io.fcde.flush) -> 0.U,
+        )
+    )
+    dereg.csr_wen := MuxCase(
+        decode.io.deio.csr_wen,
+        Seq(
+            (fc.io.fcde.stall) -> dereg.csr_wen,
+            (fc.io.fcde.flush) -> 0.U,
+        )
+    )
+    //emreg
+    emreg.reg_wdata := MuxCase(
+        excute.io.emio.reg_wdata,
+        Seq(
+            (fc.io.fcex.stall) -> emreg.reg_wdata,
             (fc.io.fcex.flush) -> 0.U,
         )
     )
@@ -242,10 +292,10 @@ class Core extends Module{
             (fc.io.fcex.flush) -> 0.U,
         )
     )
-    emreg.rd := MuxCase(
-        excute.io.emio.rd,
+    emreg.reg_waddr := MuxCase(
+        excute.io.emio.reg_waddr,
         Seq(
-            (fc.io.fcex.stall) -> emreg.rd,
+            (fc.io.fcex.stall) -> emreg.reg_waddr,
             (fc.io.fcex.flush) -> 0.U,
         )
     )
@@ -263,6 +313,27 @@ class Core extends Module{
             (fc.io.fcex.flush) -> 0.U,
         )
     )
+    emreg.csr_wdata := MuxCase(
+        excute.io.emio.csr_wdata,
+        Seq(
+            (fc.io.fcex.stall) -> emreg.csr_wdata,
+            (fc.io.fcex.flush) -> 0.U,
+        )
+    )
+    emreg.csr_wen := MuxCase(
+        excute.io.emio.csr_wen,
+        Seq(
+            (fc.io.fcex.stall) -> emreg.csr_wen,
+            (fc.io.fcex.flush) -> 0.U,
+        )
+    )
+    emreg.csr_waddr := MuxCase(
+        excute.io.emio.csr_waddr,
+        Seq(
+            (fc.io.fcex.stall) -> emreg.csr_waddr,
+            (fc.io.fcex.flush) -> 0.U,
+        )
+    )
     //mwreg
     mwreg.wb_type := MuxCase(
         mem.io.mwio.wb_type,
@@ -271,17 +342,38 @@ class Core extends Module{
             (fc.io.fcmem.flush) -> 0.U,
         )
     )
-    mwreg.rd := MuxCase(
-        mem.io.mwio.rd,
+    mwreg.reg_waddr := MuxCase(
+        mem.io.mwio.reg_waddr,
         Seq(
-            (fc.io.fcmem.stall) -> mwreg.rd,
+            (fc.io.fcmem.stall) -> mwreg.reg_waddr,
             (fc.io.fcmem.flush) -> 0.U,
         )
     )
-    mwreg.wb_data := MuxCase(
-        mem.io.mwio.wb_data,
+    mwreg.reg_wdata := MuxCase(
+        mem.io.mwio.reg_wdata,
         Seq(
-            (fc.io.fcmem.stall) -> mwreg.wb_data,
+            (fc.io.fcmem.stall) -> mwreg.reg_wdata,
+            (fc.io.fcmem.flush) -> 0.U,
+        )
+    )
+    mwreg.csr_wdata := MuxCase(
+        mem.io.mwio.csr_wdata,
+        Seq(
+            (fc.io.fcmem.stall) -> mwreg.csr_wdata,
+            (fc.io.fcmem.flush) -> 0.U,
+        )
+    )
+    mwreg.csr_wen := MuxCase(
+        mem.io.mwio.csr_wen,
+        Seq(
+            (fc.io.fcmem.stall) -> mwreg.csr_wen,
+            (fc.io.fcmem.flush) -> 0.U,
+        )
+    )
+    mwreg.csr_waddr := MuxCase(
+        mem.io.mwio.csr_waddr,
+        Seq(
+            (fc.io.fcmem.stall) -> mwreg.csr_waddr,
             (fc.io.fcmem.flush) -> 0.U,
         )
     )
@@ -304,7 +396,7 @@ class Core extends Module{
     DI.io.load_use := decode.io.load_use
     DI.io.op_a  := dereg.op_a
     DI.io.op_b  := dereg.op_b
-    DI.io.result := excute.io.emio.alu_res
+    DI.io.result := excute.io.emio.reg_wdata
     DI.io.br_yes := excute.io.jump_flag
     DI.io.mem_access := excute.io.deio.ld_type.orR | excute.io.deio.sd_type.orR
     DI.io.mem_addr := excute.io.raddr | excute.io.waddr

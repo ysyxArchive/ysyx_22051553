@@ -11,6 +11,8 @@ class WbIO extends Bundle{
     val rfio = Flipped(new RfWbIO)
 
     val fwwb = Flipped(new FwPipeIO)
+
+    val csrs = Flipped(new CSRWbIO)
 }
 
 class Wb extends Module{
@@ -20,11 +22,23 @@ class Wb extends Module{
     //内部逻辑
    
     //端口驱动
-    io.rfio.rd := io.mwio.rd
+    //rfio
+    io.rfio.rd := io.mwio.reg_waddr
     io.rfio.reg_wen := io.mwio.wb_type.orR  //记录
-    io.rfio.reg_wdata := io.mwio.wb_data
+    io.rfio.reg_wdata := io.mwio.reg_wdata
 
-    io.fwwb.reg_waddr := io.mwio.rd
+
+    //fw
+    io.fwwb.reg_waddr := io.mwio.reg_waddr
     io.fwwb.reg_we := io.mwio.wb_type.orR
-    io.fwwb.reg_wdata := io.mwio.wb_data
+    io.fwwb.reg_wdata := io.mwio.reg_wdata
+
+    io.fwwb.csr_wdata := io.mwio.csr_wdata
+    io.fwwb.csr_wen := io.mwio.csr_wen
+    io.fwwb.csr_waddr := io.mwio.csr_waddr
+
+    //csrs
+    io.csrs.rd := io.mwio.csr_waddr
+    io.csrs.csr_wen := io.mwio.csr_wen
+    io.csrs.csr_wdata := io.mwio.csr_wdata
 }
