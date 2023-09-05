@@ -78,7 +78,7 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     |                   //wb
     |                   input [4:0] rd,
     |                   input [63:0] reg_wdata,
-    |                   input        reg_wen
+    |                   input        reg_wen,
     |
     |                   input       csr_wen,
     |                   input [63:0] csr_wdata,
