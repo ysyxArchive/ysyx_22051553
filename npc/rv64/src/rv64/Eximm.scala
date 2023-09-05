@@ -31,7 +31,8 @@ class Eximm extends Module{
             IMM_U -> Cat(Fill(32, io.inst(31)), io.inst(31,12), Fill(12, 0.U(1.W))),
             IMM_J -> Cat(Fill(44, io.inst(31)), io.inst(19,12), io.inst(20), io.inst(30,21), 0.U(1.W)),
             IMM_S -> Cat(Fill(52, io.inst(31)), io.inst(31,25), io.inst(11,7)),
-            IMM_B -> Cat(Fill(51, io.inst(31)), io.inst(31), io.inst(7), io.inst(30,25), io.inst(11,8), 0.U(1.W))
+            IMM_B -> Cat(Fill(51, io.inst(31)), io.inst(31), io.inst(7), io.inst(30,25), io.inst(11,8), 0.U(1.W)),
+            IMM_C -> io.inst(19, 15)        //zext只对SInt使用，因为UInt默认零扩展
         )
     )
     

@@ -93,7 +93,8 @@ class Decode extends Module {
         Seq(
             ControlUnit.A_ZERO -> 0.U,
             ControlUnit.A_PC -> io.fdio.pc,
-            ControlUnit.A_REG1 -> Mux(io.fwde.fw_sel1, io.fwde.fw_data1, io.rfio.reg1_rdata)
+            ControlUnit.A_REG1 -> Mux(io.fwde.fw_sel1, io.fwde.fw_data1, io.rfio.reg1_rdata),
+            ControlUnit.A_IMM -> eximm.io.eximm
         )
     )
     io.deio.op_b := MuxLookup(

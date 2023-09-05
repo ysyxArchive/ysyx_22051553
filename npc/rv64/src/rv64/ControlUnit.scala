@@ -36,6 +36,7 @@ object ControlUnit {    //译码特征, 类型、需要做哪些任务
     val IMM_J       = 2.U          //JAL
     val IMM_S       = 3.U
     val IMM_B       = 4.U
+    val IMM_C       = 5.U
 
     //wb_type   --用什么结果写回
     val WB_NO   = 0.U   //不写回
@@ -152,7 +153,9 @@ object ControlUnit {    //译码特征, 类型、需要做哪些任务
         CSRRW -> List(NO_JUMP, NO_BR, A_REG1, B_ZERO, IMM_DEFAULT, ALU_ADD, WB_CSR, SD_NO, LD_NO, CSR_RW),
         CSRRS -> List(NO_JUMP, NO_BR, A_REG1, B_CSR, IMM_DEFAULT, ALU_OR, WB_CSR, SD_NO, LD_NO, CSR_RS),
         CSRRC -> List(NO_JUMP, NO_BR, A_REG1, B_CSR, IMM_DEFAULT, ALU_CLEAR, WB_CSR, SD_NO, LD_NO, CSR_RC),
-
+        CSRRWI -> List(NO_JUMP, NO_BR, A_IMM, B_ZERO, IMM_C, ALU_ADD, WB_CSR, SD_NO, LD_NO, CSR_RW),
+        CSRRSI -> List(NO_JUMP, NO_BR, A_IMM, B_CSR, IMM_C, ALU_OR, WB_CSR, SD_NO, LD_NO, CSR_RS),
+        CSRRCI -> List(NO_JUMP, NO_BR, A_IMM, B_CSR, IMM_C, ALU_CLEAR, WB_CSR, SD_NO, LD_NO, CSR_RC),
     )
 }
 
