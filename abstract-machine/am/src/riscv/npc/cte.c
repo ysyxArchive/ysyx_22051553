@@ -8,7 +8,6 @@ Context* __am_irq_handle(Context *c) {
   
   if (user_handler) {
     Event ev = {0};
-    printf("cause is %d\n", c->mcause);
     switch (c->mcause) {
       case 11: ev.event = EVENT_YIELD; break;
       default: ev.event = EVENT_ERROR; break;
@@ -38,6 +37,7 @@ Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
 }
 
 void yield() {
+  
   asm volatile("li a7, -1; ecall");
 }
 

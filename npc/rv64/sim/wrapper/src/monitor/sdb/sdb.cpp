@@ -21,7 +21,7 @@
 static uint64_t rtc_time = 0;
 
 
-#ifdef DIFFTEST
+#ifdef ITRACE
 typedef struct fetch{  //同步到单周期，即fetch、decode、excute对应的是一条指令
   unsigned long pc;
 }fetch;
@@ -40,12 +40,16 @@ std::list<fetch> fetch_list;
 std::list<decode> decode_list;
 std::list<execute> execute_list;
 
+static bool sync_diff = 0;
+#endif
+
+#ifdef DIFFTEST
 
 bool difftest_step();
 extern void (*ref_difftest_regcpy)(void *dut, bool direction);
 void difftest_skip_ref();
 
-static bool sync_diff = 0;
+
 #endif
 
 #ifdef ITRACE
@@ -124,7 +128,7 @@ void update_debuginfo(
     (bool)reg_wen);
 
 
-  #ifdef DIFFTEST
+  #ifdef ITRACE
   fetch fe_ins = {
     .pc = (unsigned long)pc[1].aval << 32 | pc[0].aval
   };
@@ -278,7 +282,7 @@ static int cmd_s(char *args){
     }
     #endif
 
-    #ifdef DIFFTEST
+    #ifdef ITRACE
     if( decode_list.front().load_use){
       single_cycle();
 
@@ -357,7 +361,9 @@ static int cmd_s(char *args){
           //---------------
             Verilated::gotFinish(1);
     }
+    #endif
     
+    #ifdef ITRACE
     decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
     fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
     execute_list.pop_front();
@@ -380,7 +386,7 @@ static int cmd_s(char *args){
     }
     #endif
 
-    #ifdef DIFFTEST
+    #ifdef ITRACE
     if( decode_list.front().load_use){
       single_cycle();
 
@@ -462,12 +468,15 @@ static int cmd_s(char *args){
               Verilated::gotFinish(1);
               break;
       }
-      
+      #endif
+
+      #ifdef ITRACE
       
       decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
       fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
       execute_list.pop_front();
-      #endif
+
+      #endif      
 
       if(Verilated::gotFinish())
         break;
