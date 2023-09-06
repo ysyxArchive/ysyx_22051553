@@ -24,7 +24,7 @@ class TrIO extends Bundle{
     val wb_hasinst = Input(Bool())
 
     //from csrs
-    val csrtr = new CSRTrapIO
+    val csrtr = Flipped(new CSRTrapIO)
 
     //from de
     val inst = Input(UInt(INST_LEN.W))   //判断ecall指令
