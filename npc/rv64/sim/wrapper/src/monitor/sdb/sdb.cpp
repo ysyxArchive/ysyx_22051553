@@ -104,7 +104,7 @@ void update_debuginfo(
   svLogic reg_wen,
   svLogic csr_wen,
   const svLogicVecVal* csr_wdata,
-  const svLogicVecVal* csr_waddr,
+  const svLogicVecVal* csr_waddr
   )
 {
   

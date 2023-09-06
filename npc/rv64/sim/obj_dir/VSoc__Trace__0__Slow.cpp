@@ -77,6 +77,9 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+47,"rd", false,-1, 4,0);
     tracep->declQuad(c+45,"reg_wdata", false,-1, 63,0);
     tracep->declBit(c+60,"reg_wen", false,-1);
+    tracep->declBit(c+51,"csr_wen", false,-1);
+    tracep->declQuad(c+49,"csr_wdata", false,-1, 63,0);
+    tracep->declBus(c+52,"csr_waddr", false,-1, 11,0);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("csrs ");
     tracep->declBit(c+226,"clock", false,-1);

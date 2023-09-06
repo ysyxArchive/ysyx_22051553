@@ -18,7 +18,7 @@ void cpu::set_value(int num, unsigned long value){
     regs_state.gpr[num] = value;
 }
 
-void cpu::set_value(int addr, unsigned long value){
+void cpu::set_csr(int addr, unsigned long value){
   switch (addr)
   {
     case 0x305:

@@ -101,6 +101,9 @@ class Core extends Module{
     //CSRs
     val csrs = Module(new CSRs)
 
+    //Trap
+    val trap = Module(new Trap)
+
     csrs.io.CSRTr <> DontCare
     
     //互联 -- 基本以被驱动方为标准
@@ -384,6 +387,19 @@ class Core extends Module{
     fw.io.fwex <> excute.io.fwex
     fw.io.fwmem <> mem.io.fwmem
     fw.io.fwwb <> wb.io.fwwb
+
+    //Trap
+    trap.io.ex_hasinst := excute.io.deio.has_inst
+    trap.io.mem_hasinst := mem.io.emio.has_inst
+    trap.io.wb_hasinst := wb.io.mwio.has_inst
+
+    trap.io.csrtr <> csrs.io.CSRTr
+
+    trap.io.inst := decode.io.inst.bits
+
+    trap.io.pc := fetch.io.pc.bits
+
+    trap.io.fctr <> fc.io.fctr
 
     //---debug
     val DI= Module(new DebugInterface)

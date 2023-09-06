@@ -96,7 +96,7 @@ class Mem extends Module{
     io.mwio.csr_wen := io.emio.csr_wen
     io.mwio.csr_waddr := io.emio.csr_waddr
 
-
+    io.mwio.has_inst := io.emio.has_inst
     //fw
     io.fwmem.reg_waddr := io.emio.reg_waddr
     io.fwmem.reg_we := io.emio.wb_type.orR

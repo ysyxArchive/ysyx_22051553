@@ -25,5 +25,5 @@ class DERegIO extends Bundle {
     val csr_waddr = UInt(CSR_ADDR_LEN.W)
     val csr_wen = Bool()
 
-    // val is_inst = Bool() //存在正常指令 --在异常跳转时，需要前面的正常指令执行完
+    val has_inst = Bool() //存在正常指令 --在异常跳转时，需要前面的正常指令执行完
 }

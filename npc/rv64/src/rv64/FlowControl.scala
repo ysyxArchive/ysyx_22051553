@@ -6,6 +6,7 @@ import chisel3.util._
 import Define._
 import firrtl.Flow
 
+
 object FlowControl{
 
     val StallY = 1.B
@@ -29,6 +30,11 @@ object FlowControl{
     val LoadUse_SFBundle = 
         VecInit(StallY, StallN, StallN, StallN, StallN,     //fetch再一次申请相同指令
             FlushN, FlushY, FlushN, FlushN, FlushN)        //load_use的use指令应该flush掉，否则如果是要写寄存器，该指令仍然会写
+    
+    val TrapWait_SFBundle = 
+        VecInit(StallY, StallN, StallN, StallN, StallN,     
+            FlushN, FlushY, FlushN, FlushN, FlushN)      
+  
 
 }
 
@@ -67,12 +73,16 @@ class FcWbIO extends Bundle{
     val stall     = Output(Bool())
 }
 
+
+
 class FCIO extends Bundle{
     val fcfe = new FcFeIO
     val fcde = new FcDeIO //FcDeIO已经有方向了
     val fcex = new FcExIO
     val fcmem = new FcMemIO
     val fcwb = new FcWbIO
+
+    val fctr = Flipped(new FcTrIO)
     
 }
 
@@ -82,9 +92,11 @@ class FlowControl extends Module{
     val SFBundle = MuxCase(FlowControl.default,
         Seq(
             (io.fcde.load_use === 1.B) -> FlowControl.LoadUse_SFBundle,
+            (io.fctr.pop_NOP === 1.B || io.fctr.trap_state === TrIO.s_WAIT || io.fctr.trap_state === TrIO.s_MRET_WAIT)
+                -> FlowControl.TrapWait_SFBundle,
+            (io.fctr.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
             (io.fcex.jump_flag === 1.B) -> FlowControl.BRANCH_SFBundle,
             (io.fcde.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
-            
         )
     )
 
@@ -95,11 +107,12 @@ class FlowControl extends Module{
     io.fcfe.jump_pc := MuxCase(
         "h80000000".U,
         Seq(
-            io.fcex.jump_flag -> io.fcex.jump_pc,  //ex优先
+            io.fctr.jump_flag -> io.fctr.jump_pc,
+            io.fcex.jump_flag -> io.fcex.jump_pc,  //ex优先于de
             io.fcde.jump_flag -> io.fcde.jump_pc
         )
     )
-    io.fcfe.jump_flag := io.fcde.jump_flag || io.fcex.jump_flag
+    io.fcfe.jump_flag := io.fcde.jump_flag || io.fcex.jump_flag || io.fctr.jump_flag
 
     io.fcde.stall := SFBundle(1)
     io.fcde.flush := SFBundle(6)

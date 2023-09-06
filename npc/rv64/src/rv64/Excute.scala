@@ -48,6 +48,8 @@ class Excute extends Module{
     io.emio.csr_wen := io.deio.csr_wen
     io.emio.csr_waddr := io.deio.csr_waddr
 
+    io.emio.has_inst := io.deio.has_inst
+
     //to fc
     // io.jump_flag := (io.deio.branch_type).asBool && (alu.io.result).asBool
     io.jump_flag := (io.deio.branch_type).asBool && (alu.io.result).orR
