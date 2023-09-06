@@ -101,6 +101,7 @@ void do_syscall(Context *c) {
   #endif
 
   switch (a[0]) {
+    case 0xffffffffffffffff: printf("yield!\n"); break;
     case SYS_gettimeofday: sys_gettimeofday(c); break;
     case SYS_brk: sys_brk(c); break;
     case SYS_yield: sys_yield(c); break;

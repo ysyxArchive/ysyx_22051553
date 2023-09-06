@@ -20,6 +20,7 @@ Context* __am_irq_handle(Context *c) {  //根据系统调用号，得到事件�
       case SYS_write:
       case SYS_exit:
       case SYS_yield: ev.event = EVENT_SYSCALL; break;
+      case 11 : ev.event = EVENT_SYSCALL; break;
       default: ev.event = EVENT_ERROR; break;
     }
 
