@@ -41,8 +41,8 @@ import TrIO._
 class Trap extends Module{
     val io = IO(new TrIO)
 
-    val cause = RegInit(UInt(X_LEN.W))
-    val pc = RegInit(UInt(PC_LEN.W))
+    val cause = RegInit(0.U(X_LEN.W))
+    val pc = RegInit(0.U(PC_LEN.W))
     
     
     val state = RegInit(s_IDLE)
