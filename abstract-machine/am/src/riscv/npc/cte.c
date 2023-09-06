@@ -4,7 +4,6 @@
 static Context* (*user_handler)(Event, Context*) = NULL;
 
 Context* __am_irq_handle(Context *c) {
-  printf("here\n");
 
   if (user_handler) {
     Event ev = {0};
