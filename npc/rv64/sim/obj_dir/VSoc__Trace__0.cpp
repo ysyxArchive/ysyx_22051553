@@ -607,12 +607,13 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgQData(oldp+229,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[29]),64);
         bufp->chgQData(oldp+231,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[30]),64);
         bufp->chgQData(oldp+233,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[31]),64);
-        bufp->chgCData(oldp+235,(vlSelf->Soc__DOT__core__DOT__trap__DOT__state),3);
-        bufp->chgQData(oldp+236,(vlSelf->Soc__DOT__tm__DOT__old_inst),64);
+        bufp->chgQData(oldp+235,(vlSelf->Soc__DOT__core__DOT__trap__DOT__pc),64);
+        bufp->chgCData(oldp+237,(vlSelf->Soc__DOT__core__DOT__trap__DOT__state),3);
+        bufp->chgQData(oldp+238,(vlSelf->Soc__DOT__tm__DOT__old_inst),64);
     }
-    bufp->chgBit(oldp+238,(vlSelf->clock));
-    bufp->chgBit(oldp+239,(vlSelf->reset));
-    bufp->chgQData(oldp+240,(vlSelf->io_next_pc),64);
+    bufp->chgBit(oldp+240,(vlSelf->clock));
+    bufp->chgBit(oldp+241,(vlSelf->reset));
+    bufp->chgQData(oldp+242,(vlSelf->io_next_pc),64);
 }
 
 void VSoc___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {

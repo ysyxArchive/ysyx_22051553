@@ -53,6 +53,9 @@ class Trap extends Module{
     //写csr寄存器、控制流水线冲刷
     io.csrtr.csr_wdata := 0.U
     io.csrtr.csr_wen := 0.B
+    dontTouch(io.csrtr.csr_wdata)
+    dontTouch(io.csrtr.csr_wen)
+
     io.csrtr.rd := 0.U
     io.fctr.pop_NOP := 0.B
     

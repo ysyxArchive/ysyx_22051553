@@ -169,6 +169,7 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MIE;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSTATUS;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSCRATCH;
+        QData/*63:0*/ Soc__DOT__core__DOT__trap__DOT__pc;
         QData/*63:0*/ Soc__DOT__tm__DOT__old_inst;
         QData/*63:0*/ __VdfgTmp_h6a80e86b__0;
         VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;

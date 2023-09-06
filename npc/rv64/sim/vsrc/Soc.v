@@ -961,24 +961,31 @@ module Trap(	// <stdin>:1805:10
   input  [63:0] io_csrtr_MTVEC,
                 io_csrtr_MEPC,
   input  [31:0] io_inst,
+  input  [63:0] io_pc,
   output [11:0] io_csrtr_rd,
   output        io_fctr_pop_NOP,
   output [1:0]  io_fctr_trap_state,
   output        io_fctr_jump_flag,
   output [63:0] io_fctr_jump_pc);
 
+  reg  [63:0]      pc;	// Trap.scala:45:21
   reg  [2:0]       state;	// Trap.scala:48:24
+  wire             _T = state == 3'h0;	// Trap.scala:48:24, :59:18
   wire             _T_1 = io_inst == 32'h73;	// Trap.scala:66:26
   wire             _T_2 = io_inst == 32'h30200073;	// Trap.scala:74:32
   wire [7:0][11:0] _GEN = {{12'h0}, {12'h0}, {12'h0}, {12'h300}, {12'h342}, {12'h341}, {12'h0}, {12'h0}};	// Trap.scala:56:17, :59:18, :64:25, :89:25, :96:25, :104:25
   wire             _T_19 = state == 3'h4;	// Trap.scala:48:24, :98:19, :121:18
   wire             _T_20 = state == 3'h6;	// Trap.scala:48:24, :110:23, :121:18
   always @(posedge clock) begin
-    if (reset)
+    if (reset) begin
+      pc <= 64'h0;	// Trap.scala:44:24, :45:21
       state <= 3'h0;	// Trap.scala:48:24
+    end
     else begin
       automatic logic            _GEN_0 = io_ex_hasinst | io_mem_hasinst | io_wb_hasinst;	// Trap.scala:48:24, :82:70, :83:23
       automatic logic [7:0][2:0] _GEN_1;	// Trap.scala:48:24, :59:18, :66:57, :82:70, :91:19, :98:19, :106:19, :109:70, :114:19
+      if (_T & _T_1)	// Trap.scala:45:21, :59:18, :66:{26,57}
+        pc <= io_pc;	// Trap.scala:45:21
       _GEN_1 = {{state}, {3'h0}, {_GEN_0 ? state : 3'h6}, {3'h0}, {3'h4}, {3'h3}, {_GEN_0 ? state : 3'h2},
                                                 {_T_1 ? 3'h1 : _T_2 ? 3'h5 : state}};	// Trap.scala:48:24, :59:18, :66:{26,57}, :73:23, :74:{32,62}, :77:23, :82:70, :83:23, :91:19, :98:19, :106:19, :109:70, :110:23, :114:19
       state <= _GEN_1[state];	// Trap.scala:48:24, :59:18, :66:57, :82:70, :91:19, :98:19, :106:19, :109:70, :114:19
@@ -1003,6 +1010,7 @@ module Trap(	// <stdin>:1805:10
         _RANDOM_2 = `RANDOM;	// <stdin>:1805:10
         _RANDOM_3 = `RANDOM;	// <stdin>:1805:10
         _RANDOM_4 = `RANDOM;	// <stdin>:1805:10
+        pc = {_RANDOM_2, _RANDOM_3};	// Trap.scala:45:21
         state = _RANDOM_4[2:0];	// Trap.scala:48:24
       `endif // RANDOMIZE_REG_INIT
     end // initial
@@ -1011,7 +1019,7 @@ module Trap(	// <stdin>:1805:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   assign io_csrtr_rd = _GEN[state];	// <stdin>:1805:10, Trap.scala:48:24, :56:17, :59:18, :64:25, :89:25, :96:25, :104:25
-  assign io_fctr_pop_NOP = state == 3'h0 & (_T_1 | _T_2);	// <stdin>:1805:10, Trap.scala:48:24, :57:21, :59:18, :66:{26,57}, :72:33, :74:{32,62}
+  assign io_fctr_pop_NOP = _T & (_T_1 | _T_2);	// <stdin>:1805:10, Trap.scala:57:21, :59:18, :66:{26,57}, :72:33, :74:{32,62}
   assign io_fctr_trap_state = state[1:0];	// <stdin>:1805:10, Trap.scala:48:24, :51:24
   assign io_fctr_jump_flag = _T_19 | _T_20;	// <stdin>:1805:10, Trap.scala:121:18, :123:31
   assign io_fctr_jump_pc = _T_19 ? io_csrtr_MTVEC : _T_20 ? io_csrtr_MEPC : 64'h0;	// <stdin>:1805:10, Trap.scala:44:24, :120:21, :121:18, :124:29, :128:29
@@ -1568,6 +1576,7 @@ module Core(	// <stdin>:1987:10
     .io_csrtr_MTVEC     (_csrs_io_CSRTr_MTVEC),	// Core.scala:102:22
     .io_csrtr_MEPC      (_csrs_io_CSRTr_MEPC),	// Core.scala:102:22
     .io_inst            (_decode_io_inst_bits_T_4),	// Core.scala:127:31
+    .io_pc              (_fetch_io_pc_bits),	// Core.scala:36:23
     .io_csrtr_rd        (_trap_io_csrtr_rd),
     .io_fctr_pop_NOP    (_trap_io_fctr_pop_NOP),
     .io_fctr_trap_state (_trap_io_fctr_trap_state),
