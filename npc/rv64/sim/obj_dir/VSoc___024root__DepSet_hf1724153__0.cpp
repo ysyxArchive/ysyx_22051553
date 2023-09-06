@@ -190,7 +190,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
              & (0x73U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst))) {
             vlSelf->Soc__DOT__core__DOT__trap__DOT__cause = 0xbULL;
             vlSelf->Soc__DOT__core__DOT__trap__DOT__pc 
-                = vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc;
+                = (4ULL + vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc);
         }
         vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd 
             = ((((IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag) 

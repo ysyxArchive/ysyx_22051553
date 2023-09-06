@@ -23,6 +23,10 @@ uint64_t memory::mem_read(uint64_t raddr){ //用于rtl
 
     uint64_t addr = (uint64_t)(pmem.mem + raddr - CONFIG_MBASE) & ~0x7ull; 
 
+    #ifdef MTRACE
+    printf(ANSI_FMT("read value is 0x%lx\n", ANSI_FG_YELLOW),*(uint64_t*)addr);
+    #endif
+
     return *(uint64_t*)addr;
 }
 
