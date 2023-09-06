@@ -43,7 +43,7 @@ class Trap extends Module{
 
     val cause = RegInit(0.U(X_LEN.W))
     val pc = RegInit(0.U(PC_LEN.W))
-    
+    dontTouch(pc)
     
     val state = RegInit(s_IDLE)
 

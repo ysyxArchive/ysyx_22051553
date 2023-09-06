@@ -51,7 +51,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 1634, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 1641, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -1110,10 +1110,11 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
         = ((IData)(vlSelf->Soc__DOT__core__DOT__mwreg_csr_wen) 
            & ((vlSelf->Soc__DOT__core__DOT__decode__DOT__inst 
                >> 0x14U) == (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_csr_waddr)));
-    vlSelf->Soc__DOT__core__DOT___trap_io_fctr_pop_NOP 
-        = ((0U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
-           & ((0x73U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst) 
-              | (0x30200073U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst)));
+    vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3 
+        = (((0U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
+            & ((0x73U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst) 
+               | (0x30200073U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst))) 
+           | (1U == (3U & (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state))));
     vlSelf->Soc__DOT__core__DOT__fw__DOT__reg1_ex_hazard 
         = ((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT__decode__DOT__inst 
                             >> 0xfU))) & ((IData)(vlSelf->Soc__DOT__core__DOT___excute_io_fwex_reg_we) 
@@ -3034,10 +3035,10 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                       : 0ULL));
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16) 
-           | (IData)(vlSelf->Soc__DOT__core__DOT___trap_io_fctr_pop_NOP));
+           | (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3));
     vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2 
         = (((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
-            & ((~ (IData)(vlSelf->Soc__DOT__core__DOT___trap_io_fctr_pop_NOP)) 
+            & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3)) 
                & ((IData)(vlSelf->Soc__DOT__core__DOT___trap_io_fctr_jump_flag) 
                   | ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
                      | (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag))))) 
@@ -3131,7 +3132,6 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->io_next_pc = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT___tm_inst = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT___tm_rdata = VL_RAND_RESET_Q(64);
-    vlSelf->Soc__DOT__core__DOT___trap_io_fctr_pop_NOP = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___trap_io_fctr_jump_flag = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall = VL_RAND_RESET_I(1);
@@ -3245,6 +3245,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     for (int __Vi0 = 0; __Vi0 < 32; ++__Vi0) {
         vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[__Vi0] = VL_RAND_RESET_Q(64);
     }
+    vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__csrs__DOT__MTVEC = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__csrs__DOT__MCAUSE = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__csrs__DOT__MEPC = VL_RAND_RESET_Q(64);

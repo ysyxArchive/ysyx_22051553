@@ -809,7 +809,8 @@ module FlowControl(	// <stdin>:1642:10
                 io_fcex_jump_flag,
   input  [63:0] io_fcex_jump_pc,
   input         io_fctr_pop_NOP,
-                io_fctr_jump_flag,
+  input  [1:0]  io_fctr_trap_state,
+  input         io_fctr_jump_flag,
   input  [63:0] io_fctr_jump_pc,
   output        io_fcfe_jump_flag,
   output [63:0] io_fcfe_jump_pc,
@@ -817,13 +818,14 @@ module FlowControl(	// <stdin>:1642:10
                 io_fcfe_stall,
                 io_fcde_flush);
 
+  wire _SFBundle_T_3 = io_fctr_pop_NOP | io_fctr_trap_state == 2'h1;	// FlowControl.scala:95:{38,60}
   assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag | io_fctr_jump_flag;	// <stdin>:1642:10, FlowControl.scala:115:65
   assign io_fcfe_jump_pc = io_fctr_jump_flag ? io_fctr_jump_pc : io_fcex_jump_flag ? io_fcex_jump_pc :
                 io_fcde_jump_flag ? io_fcde_jump_pc : 64'h80000000;	// <stdin>:1642:10, Mux.scala:101:16
-  assign io_fcfe_flush = ~io_fcde_load_use & ~io_fctr_pop_NOP & (io_fctr_jump_flag | io_fcex_jump_flag |
-                io_fcde_jump_flag);	// <stdin>:1642:10, Mux.scala:101:16
-  assign io_fcfe_stall = io_fcde_load_use | io_fctr_pop_NOP;	// <stdin>:1642:10, Mux.scala:101:16
-  assign io_fcde_flush = io_fcde_load_use | io_fctr_pop_NOP | ~io_fctr_jump_flag & io_fcex_jump_flag;	// <stdin>:1642:10, Mux.scala:101:16
+  assign io_fcfe_flush = ~io_fcde_load_use & ~_SFBundle_T_3 & (io_fctr_jump_flag | io_fcex_jump_flag |
+                io_fcde_jump_flag);	// <stdin>:1642:10, FlowControl.scala:95:38, Mux.scala:101:16
+  assign io_fcfe_stall = io_fcde_load_use | _SFBundle_T_3;	// <stdin>:1642:10, FlowControl.scala:95:38, Mux.scala:101:16
+  assign io_fcde_flush = io_fcde_load_use | _SFBundle_T_3 | ~io_fctr_jump_flag & io_fcex_jump_flag;	// <stdin>:1642:10, FlowControl.scala:95:38, Mux.scala:101:16
 endmodule
 
 module CSRs(	// <stdin>:1734:10
@@ -961,24 +963,25 @@ module Trap(	// <stdin>:1805:10
   input  [31:0] io_inst,
   output [11:0] io_csrtr_rd,
   output        io_fctr_pop_NOP,
-                io_fctr_jump_flag,
+  output [1:0]  io_fctr_trap_state,
+  output        io_fctr_jump_flag,
   output [63:0] io_fctr_jump_pc);
 
   reg  [2:0]       state;	// Trap.scala:48:24
-  wire             _T_1 = io_inst == 32'h73;	// Trap.scala:65:26
-  wire             _T_2 = io_inst == 32'h30200073;	// Trap.scala:73:32
-  wire [7:0][11:0] _GEN = {{12'h0}, {12'h0}, {12'h0}, {12'h300}, {12'h342}, {12'h341}, {12'h0}, {12'h0}};	// Trap.scala:54:17, :58:18, :63:25, :88:25, :95:25, :103:25
-  wire             _T_19 = state == 3'h4;	// Trap.scala:48:24, :97:19, :120:18
-  wire             _T_20 = state == 3'h6;	// Trap.scala:48:24, :109:23, :120:18
+  wire             _T_1 = io_inst == 32'h73;	// Trap.scala:66:26
+  wire             _T_2 = io_inst == 32'h30200073;	// Trap.scala:74:32
+  wire [7:0][11:0] _GEN = {{12'h0}, {12'h0}, {12'h0}, {12'h300}, {12'h342}, {12'h341}, {12'h0}, {12'h0}};	// Trap.scala:56:17, :59:18, :64:25, :89:25, :96:25, :104:25
+  wire             _T_19 = state == 3'h4;	// Trap.scala:48:24, :98:19, :121:18
+  wire             _T_20 = state == 3'h6;	// Trap.scala:48:24, :110:23, :121:18
   always @(posedge clock) begin
     if (reset)
       state <= 3'h0;	// Trap.scala:48:24
     else begin
-      automatic logic            _GEN_0 = io_ex_hasinst | io_mem_hasinst | io_wb_hasinst;	// Trap.scala:48:24, :81:70, :82:23
-      automatic logic [7:0][2:0] _GEN_1;	// Trap.scala:48:24, :58:18, :65:57, :81:70, :90:19, :97:19, :105:19, :108:70, :113:19
+      automatic logic            _GEN_0 = io_ex_hasinst | io_mem_hasinst | io_wb_hasinst;	// Trap.scala:48:24, :82:70, :83:23
+      automatic logic [7:0][2:0] _GEN_1;	// Trap.scala:48:24, :59:18, :66:57, :82:70, :91:19, :98:19, :106:19, :109:70, :114:19
       _GEN_1 = {{state}, {3'h0}, {_GEN_0 ? state : 3'h6}, {3'h0}, {3'h4}, {3'h3}, {_GEN_0 ? state : 3'h2},
-                                                {_T_1 ? 3'h1 : _T_2 ? 3'h5 : state}};	// Trap.scala:48:24, :58:18, :65:{26,57}, :72:23, :73:{32,62}, :76:23, :81:70, :82:23, :90:19, :97:19, :105:19, :108:70, :109:23, :113:19
-      state <= _GEN_1[state];	// Trap.scala:48:24, :58:18, :65:57, :81:70, :90:19, :97:19, :105:19, :108:70, :113:19
+                                                {_T_1 ? 3'h1 : _T_2 ? 3'h5 : state}};	// Trap.scala:48:24, :59:18, :66:{26,57}, :73:23, :74:{32,62}, :77:23, :82:70, :83:23, :91:19, :98:19, :106:19, :109:70, :110:23, :114:19
+      state <= _GEN_1[state];	// Trap.scala:48:24, :59:18, :66:57, :82:70, :91:19, :98:19, :106:19, :109:70, :114:19
     end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:1805:10
@@ -1007,10 +1010,11 @@ module Trap(	// <stdin>:1805:10
       `FIRRTL_AFTER_INITIAL	// <stdin>:1805:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
-  assign io_csrtr_rd = _GEN[state];	// <stdin>:1805:10, Trap.scala:48:24, :54:17, :58:18, :63:25, :88:25, :95:25, :103:25
-  assign io_fctr_pop_NOP = state == 3'h0 & (_T_1 | _T_2);	// <stdin>:1805:10, Trap.scala:48:24, :55:21, :58:18, :65:{26,57}, :71:33, :73:{32,62}
-  assign io_fctr_jump_flag = _T_19 | _T_20;	// <stdin>:1805:10, Trap.scala:120:18, :122:31
-  assign io_fctr_jump_pc = _T_19 ? io_csrtr_MTVEC : _T_20 ? io_csrtr_MEPC : 64'h0;	// <stdin>:1805:10, Trap.scala:44:24, :119:21, :120:18, :123:29, :127:29
+  assign io_csrtr_rd = _GEN[state];	// <stdin>:1805:10, Trap.scala:48:24, :56:17, :59:18, :64:25, :89:25, :96:25, :104:25
+  assign io_fctr_pop_NOP = state == 3'h0 & (_T_1 | _T_2);	// <stdin>:1805:10, Trap.scala:48:24, :57:21, :59:18, :66:{26,57}, :72:33, :74:{32,62}
+  assign io_fctr_trap_state = state[1:0];	// <stdin>:1805:10, Trap.scala:48:24, :51:24
+  assign io_fctr_jump_flag = _T_19 | _T_20;	// <stdin>:1805:10, Trap.scala:121:18, :123:31
+  assign io_fctr_jump_pc = _T_19 ? io_csrtr_MTVEC : _T_20 ? io_csrtr_MEPC : 64'h0;	// <stdin>:1805:10, Trap.scala:44:24, :120:21, :121:18, :124:29, :128:29
 endmodule
 
 module Forward(	// <stdin>:1902:10
@@ -1088,6 +1092,7 @@ module Core(	// <stdin>:1987:10
   wire [63:0] _fw_io_fwde_csr_fw_data;	// Core.scala:411:20
   wire [11:0] _trap_io_csrtr_rd;	// Core.scala:105:22
   wire        _trap_io_fctr_pop_NOP;	// Core.scala:105:22
+  wire [1:0]  _trap_io_fctr_trap_state;	// Core.scala:105:22
   wire        _trap_io_fctr_jump_flag;	// Core.scala:105:22
   wire [63:0] _trap_io_fctr_jump_pc;	// Core.scala:105:22
   wire [63:0] _csrs_io_CSRDe_csr_rdata;	// Core.scala:102:22
@@ -1214,7 +1219,7 @@ module Core(	// <stdin>:1987:10
       dereg_branch_addr <= 64'h0;	// <stdin>:2016:23, Core.scala:51:24
       dereg_alu_op <= 6'h3F;	// <stdin>:2022:27, Core.scala:51:24
       dereg_shamt <= 6'h0;	// <stdin>:2021:23, Core.scala:51:24
-      dereg_wb_type <= 2'h0;	// Core.scala:51:24, :105:22
+      dereg_wb_type <= 2'h0;	// <stdin>:2020:25, Core.scala:51:24
       dereg_sd_type <= 3'h0;	// <stdin>:2017:25, Core.scala:51:24
       dereg_reg2_rdata <= 64'h0;	// <stdin>:2016:23, Core.scala:51:24
       dereg_ld_type <= 3'h0;	// <stdin>:2017:25, Core.scala:51:24
@@ -1223,7 +1228,7 @@ module Core(	// <stdin>:1987:10
       dereg_csr_wen <= 1'h0;	// Core.scala:51:24, :431:19
       emreg_reg_wdata <= 64'h0;	// <stdin>:2016:23, Core.scala:69:24
       emreg_reg_waddr <= 5'h0;	// <stdin>:2025:27, Core.scala:69:24
-      emreg_wb_type <= 2'h0;	// Core.scala:69:24, :105:22
+      emreg_wb_type <= 2'h0;	// <stdin>:2020:25, Core.scala:69:24
       emreg_ld_type <= 3'h0;	// <stdin>:2017:25, Core.scala:69:24
       emreg_ld_addr_lowbit <= 3'h0;	// <stdin>:2017:25, Core.scala:69:24
       emreg_csr_wdata <= 64'h0;	// <stdin>:2016:23, Core.scala:69:24
@@ -1231,7 +1236,7 @@ module Core(	// <stdin>:1987:10
       emreg_csr_waddr <= 12'h0;	// <stdin>:2015:27, Core.scala:69:24
       mwreg_reg_wdata <= 64'h0;	// <stdin>:2016:23, Core.scala:83:24
       mwreg_reg_waddr <= 5'h0;	// <stdin>:2025:27, Core.scala:83:24
-      mwreg_wb_type <= 2'h0;	// Core.scala:83:24, :105:22
+      mwreg_wb_type <= 2'h0;	// <stdin>:2020:25, Core.scala:83:24
       mwreg_csr_wdata <= 64'h0;	// <stdin>:2016:23, Core.scala:83:24
       mwreg_csr_wen <= 1'h0;	// Core.scala:83:24, :431:19
       mwreg_csr_waddr <= 12'h0;	// <stdin>:2015:27, Core.scala:83:24
@@ -1245,7 +1250,7 @@ module Core(	// <stdin>:1987:10
         dereg_branch_addr <= 64'h0;	// <stdin>:2016:23, Core.scala:51:24
         dereg_alu_op <= 6'h0;	// <stdin>:2021:23, Core.scala:51:24
         dereg_shamt <= 6'h0;	// <stdin>:2021:23, Core.scala:51:24
-        dereg_wb_type <= 2'h0;	// Core.scala:51:24, :105:22
+        dereg_wb_type <= 2'h0;	// <stdin>:2020:25, Core.scala:51:24
         dereg_sd_type <= 3'h0;	// <stdin>:2017:25, Core.scala:51:24
         dereg_reg2_rdata <= 64'h0;	// <stdin>:2016:23, Core.scala:51:24
         dereg_ld_type <= 3'h0;	// <stdin>:2017:25, Core.scala:51:24
@@ -1527,19 +1532,20 @@ module Core(	// <stdin>:1987:10
     .io_RfDe_reg2_rdata (_regfile_io_RfDe_reg2_rdata)
   );
   FlowControl fc (	// Core.scala:99:20
-    .io_fcde_jump_flag (_decode_io_jump_flag),	// Core.scala:37:24
-    .io_fcde_jump_pc   (_decode_io_jump_pc),	// Core.scala:37:24
-    .io_fcde_load_use  (_decode_io_load_use),	// Core.scala:37:24
-    .io_fcex_jump_flag (_excute_io_jump_flag),	// Core.scala:38:24
-    .io_fcex_jump_pc   (_excute_io_jump_pc),	// Core.scala:38:24
-    .io_fctr_pop_NOP   (_trap_io_fctr_pop_NOP),	// Core.scala:105:22
-    .io_fctr_jump_flag (_trap_io_fctr_jump_flag),	// Core.scala:105:22
-    .io_fctr_jump_pc   (_trap_io_fctr_jump_pc),	// Core.scala:105:22
-    .io_fcfe_jump_flag (_fc_io_fcfe_jump_flag),
-    .io_fcfe_jump_pc   (_fc_io_fcfe_jump_pc),
-    .io_fcfe_flush     (_fc_io_fcfe_flush),
-    .io_fcfe_stall     (_fc_io_fcfe_stall),
-    .io_fcde_flush     (_fc_io_fcde_flush)
+    .io_fcde_jump_flag  (_decode_io_jump_flag),	// Core.scala:37:24
+    .io_fcde_jump_pc    (_decode_io_jump_pc),	// Core.scala:37:24
+    .io_fcde_load_use   (_decode_io_load_use),	// Core.scala:37:24
+    .io_fcex_jump_flag  (_excute_io_jump_flag),	// Core.scala:38:24
+    .io_fcex_jump_pc    (_excute_io_jump_pc),	// Core.scala:38:24
+    .io_fctr_pop_NOP    (_trap_io_fctr_pop_NOP),	// Core.scala:105:22
+    .io_fctr_trap_state (_trap_io_fctr_trap_state),	// Core.scala:105:22
+    .io_fctr_jump_flag  (_trap_io_fctr_jump_flag),	// Core.scala:105:22
+    .io_fctr_jump_pc    (_trap_io_fctr_jump_pc),	// Core.scala:105:22
+    .io_fcfe_jump_flag  (_fc_io_fcfe_jump_flag),
+    .io_fcfe_jump_pc    (_fc_io_fcfe_jump_pc),
+    .io_fcfe_flush      (_fc_io_fcfe_flush),
+    .io_fcfe_stall      (_fc_io_fcfe_stall),
+    .io_fcde_flush      (_fc_io_fcde_flush)
   );
   CSRs csrs (	// Core.scala:102:22
     .clock              (clock),
@@ -1554,18 +1560,19 @@ module Core(	// <stdin>:1987:10
     .io_CSRTr_MEPC      (_csrs_io_CSRTr_MEPC)
   );
   Trap trap (	// Core.scala:105:22
-    .clock             (clock),
-    .reset             (reset),
-    .io_ex_hasinst     (dereg_has_inst),	// Core.scala:51:24
-    .io_mem_hasinst    (emreg_has_inst),	// Core.scala:69:24
-    .io_wb_hasinst     (mwreg_has_inst),	// Core.scala:83:24
-    .io_csrtr_MTVEC    (_csrs_io_CSRTr_MTVEC),	// Core.scala:102:22
-    .io_csrtr_MEPC     (_csrs_io_CSRTr_MEPC),	// Core.scala:102:22
-    .io_inst           (_decode_io_inst_bits_T_4),	// Core.scala:127:31
-    .io_csrtr_rd       (_trap_io_csrtr_rd),
-    .io_fctr_pop_NOP   (_trap_io_fctr_pop_NOP),
-    .io_fctr_jump_flag (_trap_io_fctr_jump_flag),
-    .io_fctr_jump_pc   (_trap_io_fctr_jump_pc)
+    .clock              (clock),
+    .reset              (reset),
+    .io_ex_hasinst      (dereg_has_inst),	// Core.scala:51:24
+    .io_mem_hasinst     (emreg_has_inst),	// Core.scala:69:24
+    .io_wb_hasinst      (mwreg_has_inst),	// Core.scala:83:24
+    .io_csrtr_MTVEC     (_csrs_io_CSRTr_MTVEC),	// Core.scala:102:22
+    .io_csrtr_MEPC      (_csrs_io_CSRTr_MEPC),	// Core.scala:102:22
+    .io_inst            (_decode_io_inst_bits_T_4),	// Core.scala:127:31
+    .io_csrtr_rd        (_trap_io_csrtr_rd),
+    .io_fctr_pop_NOP    (_trap_io_fctr_pop_NOP),
+    .io_fctr_trap_state (_trap_io_fctr_trap_state),
+    .io_fctr_jump_flag  (_trap_io_fctr_jump_flag),
+    .io_fctr_jump_pc    (_trap_io_fctr_jump_pc)
   );
   Forward fw (	// Core.scala:411:20
     .io_fwde_reg1_raddr  (_decode_io_fwde_reg1_raddr),	// Core.scala:37:24
