@@ -52,6 +52,9 @@ class Trap extends Module{
     io.csrtr.csr_wdata := 0.U
     io.csrtr.csr_wen := 0.B
     io.csrtr.rd := 0.U
+    io.fctr.pop_NOP := 0.B
+    io.fctr.trap_state := s_IDLE
+
     switch(state){
         is(s_IDLE){
 
