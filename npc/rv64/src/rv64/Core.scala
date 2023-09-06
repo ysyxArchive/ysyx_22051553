@@ -145,6 +145,7 @@ class Core extends Module{
     excute.io.deio.csr_t := dereg.csr_t
     excute.io.deio.csr_waddr := dereg.csr_waddr
     excute.io.deio.csr_wen := dereg.csr_wen
+    excute.io.deio.has_inst := dereg.has_inst
 
     //mem
     mem.io.emio.reg_wdata := emreg.reg_wdata
@@ -158,6 +159,8 @@ class Core extends Module{
     mem.io.emio.csr_wen := emreg.csr_wen
     mem.io.emio.csr_waddr := emreg.csr_waddr
 
+    mem.io.emio.has_inst := emreg.has_inst
+
     mem.io.rdata := io.rdata
     //wb
     wb.io.mwio.wb_type := mwreg.wb_type
@@ -166,6 +169,8 @@ class Core extends Module{
     wb.io.mwio.csr_wdata := mwreg.csr_wdata
     wb.io.mwio.csr_wen := mwreg.csr_wen
     wb.io.mwio.csr_waddr := mwreg.csr_waddr
+
+    wb.io.mwio.has_inst := mwreg.has_inst
 
     wb.io.rfio <> regfile.io.RfWb
 
@@ -280,6 +285,13 @@ class Core extends Module{
             (fc.io.fcde.flush) -> 0.U,
         )
     )
+    dereg.has_inst := MuxCase(
+        decode.io.deio.has_inst,
+        Seq(
+            (fc.io.fcde.stall) -> dereg.has_inst,
+            (fc.io.fcde.flush) -> 0.U,
+        )
+    )
     //emreg
     emreg.reg_wdata := MuxCase(
         excute.io.emio.reg_wdata,
@@ -337,6 +349,13 @@ class Core extends Module{
             (fc.io.fcex.flush) -> 0.U,
         )
     )
+    emreg.has_inst := MuxCase(
+        excute.io.emio.has_inst,
+        Seq(
+            (fc.io.fcex.stall) -> emreg.has_inst,
+            (fc.io.fcex.flush) -> 0.U,
+        )
+    )
     //mwreg
     mwreg.wb_type := MuxCase(
         mem.io.mwio.wb_type,
@@ -377,6 +396,13 @@ class Core extends Module{
         mem.io.mwio.csr_waddr,
         Seq(
             (fc.io.fcmem.stall) -> mwreg.csr_waddr,
+            (fc.io.fcmem.flush) -> 0.U,
+        )
+    )
+    mwreg.has_inst := MuxCase(
+        mem.io.mwio.has_inst,
+        Seq(
+            (fc.io.fcmem.stall) -> mwreg.has_inst,
             (fc.io.fcmem.flush) -> 0.U,
         )
     )
