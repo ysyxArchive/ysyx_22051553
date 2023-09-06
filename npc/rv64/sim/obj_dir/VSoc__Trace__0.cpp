@@ -24,6 +24,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
     uint32_t* const oldp VL_ATTR_UNUSED = bufp->oldp(vlSymsp->__Vm_baseCode + 1);
     VlWide<3>/*95:0*/ __Vtemp_hcd8b8aff__0;
     VlWide<8>/*255:0*/ __Vtemp_hc41d1282__0;
+    VlWide<16>/*511:0*/ __Vtemp_h6ab249de__0;
     // Body
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[1U])) {
         bufp->chgQData(oldp+0,(vlSelf->Soc__DOT___tm_inst),64);
@@ -151,9 +152,9 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                                    : 0ULL))))))),64);
         bufp->chgQData(oldp+67,(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MTVEC),64);
         bufp->chgQData(oldp+69,(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MEPC),64);
-        bufp->chgQData(oldp+71,(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MCAUSE),64);
-        bufp->chgQData(oldp+73,(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MIE),64);
-        bufp->chgQData(oldp+75,(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS),64);
+        bufp->chgQData(oldp+71,(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS),64);
+        bufp->chgQData(oldp+73,(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MCAUSE),64);
+        bufp->chgQData(oldp+75,(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MIE),64);
         bufp->chgQData(oldp+77,(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSCRATCH),64);
         bufp->chgQData(oldp+79,(((0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT__decode__DOT__inst 
                                                   >> 0xfU)))
@@ -607,13 +608,97 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgQData(oldp+229,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[29]),64);
         bufp->chgQData(oldp+231,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[30]),64);
         bufp->chgQData(oldp+233,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[31]),64);
-        bufp->chgQData(oldp+235,(vlSelf->Soc__DOT__core__DOT__trap__DOT__pc),64);
-        bufp->chgCData(oldp+237,(vlSelf->Soc__DOT__core__DOT__trap__DOT__state),3);
-        bufp->chgQData(oldp+238,(vlSelf->Soc__DOT__tm__DOT__old_inst),64);
+        bufp->chgBit(oldp+235,(((0U != (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
+                                & ((1U != (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
+                                   & ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
+                                      | ((3U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
+                                         | (4U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state))))))));
+        __Vtemp_h6ab249de__0[0U] = 0U;
+        __Vtemp_h6ab249de__0[1U] = 0U;
+        __Vtemp_h6ab249de__0[2U] = 0U;
+        __Vtemp_h6ab249de__0[3U] = 0U;
+        __Vtemp_h6ab249de__0[4U] = (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__pc);
+        __Vtemp_h6ab249de__0[5U] = (IData)((vlSelf->Soc__DOT__core__DOT__trap__DOT__pc 
+                                            >> 0x20U));
+        __Vtemp_h6ab249de__0[6U] = (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__cause);
+        __Vtemp_h6ab249de__0[7U] = (IData)((vlSelf->Soc__DOT__core__DOT__trap__DOT__cause 
+                                            >> 0x20U));
+        __Vtemp_h6ab249de__0[8U] = (((IData)((vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS 
+                                              >> 8U)) 
+                                     << 8U) | ((0x80U 
+                                                & ((IData)(
+                                                           (vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS 
+                                                            >> 3U)) 
+                                                   << 7U)) 
+                                               | ((0x70U 
+                                                   & ((IData)(
+                                                              (vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS 
+                                                               >> 4U)) 
+                                                      << 4U)) 
+                                                  | (7U 
+                                                     & (IData)(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS)))));
+        __Vtemp_h6ab249de__0[9U] = (((IData)((vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS 
+                                              >> 8U)) 
+                                     >> 0x18U) | ((IData)(
+                                                          ((vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS 
+                                                            >> 8U) 
+                                                           >> 0x20U)) 
+                                                  << 8U));
+        __Vtemp_h6ab249de__0[0xaU] = 0U;
+        __Vtemp_h6ab249de__0[0xbU] = 0U;
+        __Vtemp_h6ab249de__0[0xcU] = 0U;
+        __Vtemp_h6ab249de__0[0xdU] = 0U;
+        __Vtemp_h6ab249de__0[0xeU] = 0U;
+        __Vtemp_h6ab249de__0[0xfU] = 0U;
+        bufp->chgQData(oldp+236,((((QData)((IData)(
+                                                   __Vtemp_h6ab249de__0[
+                                                   (((IData)(0x3fU) 
+                                                     + 
+                                                     (0x1ffU 
+                                                      & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                                         << 6U))) 
+                                                    >> 5U)])) 
+                                   << ((0U == (0x1fU 
+                                               & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                                  << 6U)))
+                                        ? 0x20U : ((IData)(0x40U) 
+                                                   - 
+                                                   (0x1fU 
+                                                    & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                                       << 6U))))) 
+                                  | (((0U == (0x1fU 
+                                              & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                                 << 6U)))
+                                       ? 0ULL : ((QData)((IData)(
+                                                                 __Vtemp_h6ab249de__0[
+                                                                 (((IData)(0x1fU) 
+                                                                   + 
+                                                                   (0x1ffU 
+                                                                    & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                                                       << 6U))) 
+                                                                  >> 5U)])) 
+                                                 << 
+                                                 ((IData)(0x20U) 
+                                                  - 
+                                                  (0x1fU 
+                                                   & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                                      << 6U))))) 
+                                     | ((QData)((IData)(
+                                                        __Vtemp_h6ab249de__0[
+                                                        (0xeU 
+                                                         & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                                            << 1U))])) 
+                                        >> (0x1fU & 
+                                            ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                             << 6U)))))),64);
+        bufp->chgQData(oldp+238,(vlSelf->Soc__DOT__core__DOT__trap__DOT__cause),64);
+        bufp->chgQData(oldp+240,(vlSelf->Soc__DOT__core__DOT__trap__DOT__pc),64);
+        bufp->chgCData(oldp+242,(vlSelf->Soc__DOT__core__DOT__trap__DOT__state),3);
+        bufp->chgQData(oldp+243,(vlSelf->Soc__DOT__tm__DOT__old_inst),64);
     }
-    bufp->chgBit(oldp+240,(vlSelf->clock));
-    bufp->chgBit(oldp+241,(vlSelf->reset));
-    bufp->chgQData(oldp+242,(vlSelf->io_next_pc),64);
+    bufp->chgBit(oldp+245,(vlSelf->clock));
+    bufp->chgBit(oldp+246,(vlSelf->reset));
+    bufp->chgQData(oldp+247,(vlSelf->io_next_pc),64);
 }
 
 void VSoc___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {

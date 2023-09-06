@@ -85,8 +85,8 @@ class VSoc___024root final : public VerilatedModule {
         CData/*2:0*/ Soc__DOT__core__DOT__trap__DOT__state;
     };
     struct {
-        CData/*0:0*/ Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_0;
-        IData/*23:0*/ Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_1;
+        CData/*0:0*/ Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_1;
+        IData/*23:0*/ Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_2;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_ex_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_ex_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_mem_hazard;
@@ -169,6 +169,7 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MIE;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSTATUS;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSCRATCH;
+        QData/*63:0*/ Soc__DOT__core__DOT__trap__DOT__cause;
         QData/*63:0*/ Soc__DOT__core__DOT__trap__DOT__pc;
         QData/*63:0*/ Soc__DOT__tm__DOT__old_inst;
         QData/*63:0*/ __VdfgTmp_h6a80e86b__0;

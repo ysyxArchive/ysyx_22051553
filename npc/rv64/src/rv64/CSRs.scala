@@ -47,32 +47,32 @@ class CSRs extends Module{
     switch(io.CSRWb.rd | io.CSRTr.rd){
         is(MTVEC_ADDR.U){
             MTVEC := Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 
-                Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 0.U)
+                Mux(io.CSRTr.csr_wen, io.CSRTr.csr_wdata, 0.U)
                 )
         }
         is(MCAUSE_ADDR.U){
             MCAUSE := Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 
-                Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 0.U)
+                Mux(io.CSRTr.csr_wen, io.CSRTr.csr_wdata, 0.U)
                 )
         }
         is(MEPC_ADDR.U){
             MEPC := Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 
-                Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 0.U)
+                Mux(io.CSRTr.csr_wen, io.CSRTr.csr_wdata, 0.U)
                 )
         }
         is(MIE_ADDR.U){
             MIE := Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 
-                Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 0.U)
+                Mux(io.CSRTr.csr_wen, io.CSRTr.csr_wdata, 0.U)
                 )
         }
         is(MSTATUS_ADDR.U){
             MSTATUS := Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 
-                Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 0.U)
+                Mux(io.CSRTr.csr_wen, io.CSRTr.csr_wdata, 0.U)
                 )
         }
         is(MSCRATCH_ADDR.U){
             MSCRATCH := Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 
-                Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 0.U)
+                Mux(io.CSRTr.csr_wen, io.CSRTr.csr_wdata, 0.U)
                 )
         }
     }

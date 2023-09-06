@@ -98,7 +98,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
             = (7U & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)));
         if (VL_UNLIKELY((2U == (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)))) {
             VL_WRITEF("ebreak!\n");
-            VL_FINISH_MT("vsrc/Soc.v", 1780, "");
+            VL_FINISH_MT("vsrc/Soc.v", 1801, "");
         }
     }
     __Vdlyvval__Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory__v1 
@@ -134,6 +134,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
         vlSelf->Soc__DOT__core__DOT__fetch__DOT__old_pc = 0ULL;
         vlSelf->Soc__DOT__core__DOT__emreg_reg_wdata = 0ULL;
         vlSelf->Soc__DOT__core__DOT__emreg_ld_addr_lowbit = 0U;
+        vlSelf->Soc__DOT__core__DOT__trap__DOT__cause = 0ULL;
         vlSelf->Soc__DOT__core__DOT__trap__DOT__pc = 0ULL;
         vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd = 0U;
         vlSelf->Soc__DOT__core__DOT__csrs__DOT__MTVEC = 0ULL;
@@ -144,16 +145,16 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
         vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSCRATCH = 0ULL;
         vlSelf->Soc__DOT__core__DOT__dereg_shamt = 0U;
     } else {
-        vlSelf->Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_0 
+        vlSelf->Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_1 
             = (((IData)(vlSelf->Soc__DOT__core__DOT__dereg_has_inst) 
                 | (IData)(vlSelf->Soc__DOT__core__DOT__emreg_has_inst)) 
                | (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_has_inst));
-        vlSelf->Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_1 
+        vlSelf->Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_2 
             = (0x8c0U | (((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
-                          << 0x15U) | ((((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_0)
+                          << 0x15U) | ((((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_1)
                                           ? (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)
                                           : 6U) << 0xfU) 
-                                       | ((((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_0)
+                                       | ((((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_1)
                                              ? (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)
                                              : 2U) 
                                            << 3U) | 
@@ -164,7 +165,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
                                              ? 5U : (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)))))));
         __Vdly__Soc__DOT__core__DOT__trap__DOT__state 
             = ((0x17U >= (0x1fU & ((IData)(3U) * (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state))))
-                ? (7U & (vlSelf->Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_1 
+                ? (7U & (vlSelf->Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_2 
                          >> (0x1fU & ((IData)(3U) * (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)))))
                 : 0U);
         vlSelf->Soc__DOT__core__DOT__emreg_ld_type 
@@ -186,6 +187,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
                 : 0U);
         if (((0U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
              & (0x73U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst))) {
+            vlSelf->Soc__DOT__core__DOT__trap__DOT__cause = 0xbULL;
             vlSelf->Soc__DOT__core__DOT__trap__DOT__pc 
                 = vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc;
         }
