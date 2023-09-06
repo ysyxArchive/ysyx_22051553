@@ -49,6 +49,9 @@ class Trap extends Module{
 
 
     //写csr寄存器、控制流水线冲刷
+    io.csrtr.csr_wdata := 0.U
+    io.csrtr.csr_wen := 0.B
+    io.csrtr.rd := 0.U
     switch(state){
         is(s_IDLE){
 
