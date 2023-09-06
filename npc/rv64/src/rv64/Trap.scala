@@ -68,7 +68,7 @@ class Trap extends Module{
 
             when(io.inst === BitPat.bitPatToUInt(ECALL)){
                 //缓存下一pc以及cause
-                pc := io.pc
+                pc := io.pc + 4.U
                 cause := 11.U
                 
                 

@@ -836,6 +836,8 @@ module CSRs(	// <stdin>:1734:10
   input         io_CSRWb_csr_wen,
   input  [63:0] io_CSRWb_csr_wdata,
   input  [11:0] io_CSRTr_rd,
+  input         io_CSRTr_csr_wen,
+  input  [63:0] io_CSRTr_csr_wdata,
   output [63:0] io_CSRDe_csr_rdata,
                 io_CSRTr_MTVEC,
                 io_CSRTr_MEPC,
@@ -866,6 +868,8 @@ module CSRs(	// <stdin>:1734:10
       if (_T_1) begin	// CSRs.scala:47:38
         if (io_CSRWb_csr_wen)
           MTVEC <= io_CSRWb_csr_wdata;	// CSRs.scala:39:24
+        else if (io_CSRTr_csr_wen)
+          MTVEC <= io_CSRTr_csr_wdata;	// CSRs.scala:39:24
         else
           MTVEC <= 64'h0;	// CSRs.scala:39:24
       end
@@ -873,30 +877,40 @@ module CSRs(	// <stdin>:1734:10
       end
       else if (io_CSRWb_csr_wen)	// CSRs.scala:40:25, :47:38
         MCAUSE <= io_CSRWb_csr_wdata;	// CSRs.scala:40:25
+      else if (io_CSRTr_csr_wen)	// CSRs.scala:40:25, :47:38
+        MCAUSE <= io_CSRTr_csr_wdata;	// CSRs.scala:40:25
       else	// CSRs.scala:40:25, :47:38
         MCAUSE <= 64'h0;	// CSRs.scala:39:24, :40:25
       if (_T_1 | _T_2 | ~_T_3) begin	// CSRs.scala:41:23, :47:38
       end
       else if (io_CSRWb_csr_wen)	// CSRs.scala:41:23, :47:38
         MEPC <= io_CSRWb_csr_wdata;	// CSRs.scala:41:23
+      else if (io_CSRTr_csr_wen)	// CSRs.scala:41:23, :47:38
+        MEPC <= io_CSRTr_csr_wdata;	// CSRs.scala:41:23
       else	// CSRs.scala:41:23, :47:38
         MEPC <= 64'h0;	// CSRs.scala:39:24, :41:23
       if (_T_1 | _T_2 | _T_3 | ~_T_4) begin	// CSRs.scala:42:22, :47:38
       end
       else if (io_CSRWb_csr_wen)	// CSRs.scala:42:22, :47:38
         MIE <= io_CSRWb_csr_wdata;	// CSRs.scala:42:22
+      else if (io_CSRTr_csr_wen)	// CSRs.scala:42:22, :47:38
+        MIE <= io_CSRTr_csr_wdata;	// CSRs.scala:42:22
       else	// CSRs.scala:42:22, :47:38
         MIE <= 64'h0;	// CSRs.scala:39:24, :42:22
       if (_T_1 | _T_2 | _T_3 | _T_4 | ~_T_5) begin	// CSRs.scala:43:26, :47:38
       end
       else if (io_CSRWb_csr_wen)	// CSRs.scala:43:26, :47:38
         MSTATUS <= io_CSRWb_csr_wdata;	// CSRs.scala:43:26
+      else if (io_CSRTr_csr_wen)	// CSRs.scala:43:26, :47:38
+        MSTATUS <= io_CSRTr_csr_wdata;	// CSRs.scala:43:26
       else	// CSRs.scala:43:26, :47:38
         MSTATUS <= 64'h0;	// CSRs.scala:39:24, :43:26
       if (_T_1 | _T_2 | _T_3 | _T_4 | _T_5 | _T != 12'h340) begin	// CSRs.scala:44:27, :47:{24,38}
       end
       else if (io_CSRWb_csr_wen)	// CSRs.scala:44:27, :47:{24,38}
         MSCRATCH <= io_CSRWb_csr_wdata;	// CSRs.scala:44:27
+      else if (io_CSRTr_csr_wen)	// CSRs.scala:44:27, :47:{24,38}
+        MSCRATCH <= io_CSRTr_csr_wdata;	// CSRs.scala:44:27
       else	// CSRs.scala:44:27, :47:{24,38}
         MSCRATCH <= 64'h0;	// CSRs.scala:39:24, :44:27
     end
@@ -1580,6 +1594,8 @@ module Core(	// <stdin>:1987:10
     .io_CSRWb_csr_wen   (_wb_io_csrs_csr_wen),	// Core.scala:41:20
     .io_CSRWb_csr_wdata (_wb_io_csrs_csr_wdata),	// Core.scala:41:20
     .io_CSRTr_rd        (_trap_io_csrtr_rd),	// Core.scala:105:22
+    .io_CSRTr_csr_wen   (_trap_io_csrtr_csr_wen),	// Core.scala:105:22
+    .io_CSRTr_csr_wdata (_trap_io_csrtr_csr_wdata),	// Core.scala:105:22
     .io_CSRDe_csr_rdata (_csrs_io_CSRDe_csr_rdata),
     .io_CSRTr_MTVEC     (_csrs_io_CSRTr_MTVEC),
     .io_CSRTr_MEPC      (_csrs_io_CSRTr_MEPC),

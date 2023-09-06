@@ -21,6 +21,7 @@ class VSoc___024root final : public VerilatedModule {
     struct {
         VL_IN8(clock,0,0);
         VL_IN8(reset,0,0);
+        CData/*0:0*/ Soc__DOT__core__DOT___trap_io_csrtr_csr_wen;
         CData/*0:0*/ Soc__DOT__core__DOT___trap_io_fctr_jump_flag;
         CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_stall;
         CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcde_flush;
@@ -82,9 +83,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_3;
         CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_4;
         CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_5;
-        CData/*2:0*/ Soc__DOT__core__DOT__trap__DOT__state;
     };
     struct {
+        CData/*2:0*/ Soc__DOT__core__DOT__trap__DOT__state;
         CData/*0:0*/ Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_1;
         IData/*23:0*/ Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_2;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_ex_hazard;
@@ -125,6 +126,7 @@ class VSoc___024root final : public VerilatedModule {
         VL_OUT64(io_next_pc,63,0);
         QData/*63:0*/ Soc__DOT___tm_inst;
         QData/*63:0*/ Soc__DOT___tm_rdata;
+        QData/*63:0*/ Soc__DOT__core__DOT___trap_io_csrtr_csr_wdata;
         QData/*63:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
         QData/*63:0*/ Soc__DOT__core__DOT___mem_io_mwio_reg_wdata;
         QData/*63:0*/ Soc__DOT__core__DOT___excute_io_waddr;
@@ -147,10 +149,10 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___io_jump_pc_T_4;
         QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___io_deio_reg2_rdata_T;
         QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___io_deio_csr_t_T;
-        QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___io_raddr_T_1;
-        QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___alu_io_result;
     };
     struct {
+        QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___io_raddr_T_1;
+        QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___alu_io_result;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_34;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_38;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_41;

@@ -51,7 +51,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 1671, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 1687, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -80,6 +80,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___stl_sequent__TOP__0\n"); );
     // Init
+    VlWide<16>/*511:0*/ __Vtemp_h6ab249de__0;
     VlWide<12>/*383:0*/ __Vtemp_h75410eeb__0;
     VlWide<16>/*511:0*/ __Vtemp_h1742dff7__0;
     VlWide<14>/*447:0*/ __Vtemp_hd1c116ed__0;
@@ -104,9 +105,79 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     // Body
     vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_7 
         = (4ULL + vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc);
+    vlSelf->Soc__DOT__core__DOT___trap_io_csrtr_csr_wen 
+        = ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
+           & ((1U != (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
+              & ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
+                 | ((3U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
+                    | (4U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state))))));
     vlSelf->Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data 
         = vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
         [vlSelf->Soc__DOT__core__DOT__mwreg_reg_waddr];
+    __Vtemp_h6ab249de__0[0U] = 0U;
+    __Vtemp_h6ab249de__0[1U] = 0U;
+    __Vtemp_h6ab249de__0[2U] = 0U;
+    __Vtemp_h6ab249de__0[3U] = 0U;
+    __Vtemp_h6ab249de__0[4U] = (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__pc);
+    __Vtemp_h6ab249de__0[5U] = (IData)((vlSelf->Soc__DOT__core__DOT__trap__DOT__pc 
+                                        >> 0x20U));
+    __Vtemp_h6ab249de__0[6U] = (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__cause);
+    __Vtemp_h6ab249de__0[7U] = (IData)((vlSelf->Soc__DOT__core__DOT__trap__DOT__cause 
+                                        >> 0x20U));
+    __Vtemp_h6ab249de__0[8U] = (((IData)((vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS 
+                                          >> 8U)) << 8U) 
+                                | ((0x80U & ((IData)(
+                                                     (vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS 
+                                                      >> 3U)) 
+                                             << 7U)) 
+                                   | ((0x70U & ((IData)(
+                                                        (vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS 
+                                                         >> 4U)) 
+                                                << 4U)) 
+                                      | (7U & (IData)(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS)))));
+    __Vtemp_h6ab249de__0[9U] = (((IData)((vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS 
+                                          >> 8U)) >> 0x18U) 
+                                | ((IData)(((vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS 
+                                             >> 8U) 
+                                            >> 0x20U)) 
+                                   << 8U));
+    __Vtemp_h6ab249de__0[0xaU] = 0U;
+    __Vtemp_h6ab249de__0[0xbU] = 0U;
+    __Vtemp_h6ab249de__0[0xcU] = 0U;
+    __Vtemp_h6ab249de__0[0xdU] = 0U;
+    __Vtemp_h6ab249de__0[0xeU] = 0U;
+    __Vtemp_h6ab249de__0[0xfU] = 0U;
+    vlSelf->Soc__DOT__core__DOT___trap_io_csrtr_csr_wdata 
+        = (((QData)((IData)(__Vtemp_h6ab249de__0[(((IData)(0x3fU) 
+                                                   + 
+                                                   (0x1ffU 
+                                                    & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                                       << 6U))) 
+                                                  >> 5U)])) 
+            << ((0U == (0x1fU & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                 << 6U))) ? 0x20U : 
+                ((IData)(0x40U) - (0x1fU & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                            << 6U))))) 
+           | (((0U == (0x1fU & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                << 6U))) ? 0ULL : ((QData)((IData)(
+                                                                   __Vtemp_h6ab249de__0[
+                                                                   (((IData)(0x1fU) 
+                                                                     + 
+                                                                     (0x1ffU 
+                                                                      & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                                                         << 6U))) 
+                                                                    >> 5U)])) 
+                                                   << 
+                                                   ((IData)(0x20U) 
+                                                    - 
+                                                    (0x1fU 
+                                                     & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                                        << 6U))))) 
+              | ((QData)((IData)(__Vtemp_h6ab249de__0[
+                                 (0xeU & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                                          << 1U))])) 
+                 >> (0x1fU & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
+                              << 6U)))));
     vlSelf->Soc__DOT__core__DOT___trap_io_fctr_jump_flag 
         = ((4U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
            | (6U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)));
@@ -3132,6 +3203,8 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->io_next_pc = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT___tm_inst = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT___tm_rdata = VL_RAND_RESET_Q(64);
+    vlSelf->Soc__DOT__core__DOT___trap_io_csrtr_csr_wen = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT___trap_io_csrtr_csr_wdata = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___trap_io_fctr_jump_flag = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall = VL_RAND_RESET_I(1);
