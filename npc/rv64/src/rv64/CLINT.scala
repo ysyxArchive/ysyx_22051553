@@ -36,7 +36,7 @@ class CLINT extends Module{
 
     //ld指令下一周期才给Mem
     val rvalue_buf = RegInit(0.U(64.W))
-    val valid_buf = RegInit(Bool())
+    val valid_buf = RegInit(0.B)
 
 
 
