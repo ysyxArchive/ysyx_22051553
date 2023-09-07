@@ -50,7 +50,7 @@ class CLINT extends Module{
 
     when(io.clex.valid){ //ls指令是8字节对齐的
 
-        valid_buf_buf := 0.B
+        valid_buf := 0.B
         rvalue_buf := 0.U
 
         MSIP := MSIP
