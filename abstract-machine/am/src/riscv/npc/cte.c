@@ -5,12 +5,12 @@ static Context* (*user_handler)(Event, Context*) = NULL;
 
 Context* __am_irq_handle(Context *c) {
   printf("in handle\n");
-  
+  printf("cause is 0x%lx\n", c->mcause);
   if (user_handler) {
     Event ev = {0};
     switch (c->mcause) {
       case 11: ev.event = EVENT_YIELD; break;
-      case 0x80000007: ev.event = EVENT_IRQ_TIMER; break;
+      case 0x8000000000000007: ev.event = EVENT_IRQ_TIMER; break;
       default: ev.event = EVENT_ERROR; break;
     }
 
@@ -62,7 +62,7 @@ void iset(bool enable) {//打开全局中断、打开定时器中断、设置mti
         :
         : "a0", "a1" // clobber list
     );
-    printf("1 ok\n");
+    
     asm volatile (
         // 确保 a0 是 0
         "li a0, 0\n"

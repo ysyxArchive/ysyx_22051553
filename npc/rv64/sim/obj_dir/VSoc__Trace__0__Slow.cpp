@@ -948,7 +948,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                                   (0x3f3U 
                                                                    == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)))))))))))),2);
     bufp->fullQData(oldp+141,(vlSelf->Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm),64);
-    bufp->fullCData(oldp+143,(((IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hd1f1d996__0)
+    bufp->fullCData(oldp+143,(((IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hf0b5fb69__0)
                                 ? ((0x3fU == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op))
                                     ? 0U : (7U & (IData)(vlSelf->__VdfgTmp_h6a80e86b__0)))
                                 : 0U)),3);

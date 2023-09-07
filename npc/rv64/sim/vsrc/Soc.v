@@ -636,7 +636,8 @@ module Excute(	// <stdin>:1327:10
 
   wire [63:0] _io_raddr_T_3;	// Excute.scala:64:20
   wire [63:0] _alu_io_result;	// Excute.scala:35:21
-  wire        _CLINT_type_T_6 = (|io_deio_ld_type) & (|(_alu_io_result[63:25])) & _alu_io_result < 64'h200C000;	// Excute.scala:35:21, :40:36, :41:{24,42,60}
+  wire        _CLINT_type_T_6 = ((|io_deio_ld_type) | (|io_deio_sd_type)) & (|(_alu_io_result[63:25])) & _alu_io_result <
+                64'h200C000;	// Excute.scala:35:21, :40:{36,44,63}, :41:{24,42,60}
   assign _io_raddr_T_3 = (|io_deio_ld_type) & ~_CLINT_type_T_6 ? _alu_io_result : 64'h0;	// Excute.scala:35:21, :40:36, :41:42, :64:{20,48,63}
   wire        _io_clex_wmask_T_2 = io_deio_sd_type == 3'h2;	// Mux.scala:81:61
   wire [1:0]  _GEN = {1'h0, io_deio_sd_type == 3'h1};	// Mux.scala:81:{58,61}
@@ -662,7 +663,7 @@ module Excute(	// <stdin>:1327:10
   assign io_jump_flag = io_deio_branch_type & (|_alu_io_result);	// <stdin>:1327:10, Excute.scala:35:21, :60:{50,69}
   assign io_jump_pc = io_deio_branch_addr;	// <stdin>:1327:10
   assign io_raddr = _io_raddr_T_3;	// <stdin>:1327:10, Excute.scala:64:20
-  assign io_waddr = (|io_deio_sd_type) & ~_CLINT_type_T_6 ? _alu_io_result : 64'h0;	// <stdin>:1327:10, Excute.scala:35:21, :41:42, :64:{20,63}, :66:{20,38,47}
+  assign io_waddr = (|io_deio_sd_type) & ~_CLINT_type_T_6 ? _alu_io_result : 64'h0;	// <stdin>:1327:10, Excute.scala:35:21, :40:63, :41:42, :64:{20,63}, :66:{20,47}
   assign io_wdata = io_deio_reg2_rdata;	// <stdin>:1327:10
   assign io_wmask = _io_clex_wmask_T_6 ? 8'hFF : {4'h0, _io_clex_wmask_T_4 ? 4'hF : {2'h0, _io_clex_wmask_T_2 ?
                 2'h3 : _GEN}};	// <stdin>:1327:10, Mux.scala:81:{58,61}
@@ -2111,4 +2112,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 

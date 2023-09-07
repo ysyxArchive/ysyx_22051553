@@ -51,7 +51,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 1921, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 1922, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -3113,7 +3113,8 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                     ? vlSelf->Soc__DOT__core__DOT__csrs__DOT__MTVEC
                                                     : 0ULL)))))));
     vlSelf->Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6 
-        = ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type)) 
+        = (((0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type)) 
+            | (0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))) 
            & ((0U != ((0x3fU == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op))
                        ? 0ULL : (vlSelf->__VdfgTmp_h6a80e86b__0 
                                  >> 0x19U))) & (0x200c000ULL 
@@ -3158,7 +3159,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
           & (0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type)))
           ? vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result
           : 0ULL);
-    vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hd1f1d996__0 
+    vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hf0b5fb69__0 
         = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6)) 
            & (0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type)));
     vlSelf->Soc__DOT__core__DOT__decode__DOT___io_deio_reg2_rdata_T 
@@ -3208,7 +3209,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
               | ((IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag) 
                  | (IData)(vlSelf->Soc__DOT__core__DOT___trap_io_fctr_jump_flag))));
     vlSelf->Soc__DOT__core__DOT__excute__DOT___io_raddr_T_3 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hd1f1d996__0)
+        = ((IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hf0b5fb69__0)
             ? vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result
             : 0ULL);
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc 
@@ -3389,7 +3390,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__excute__DOT___io_raddr_T_3 = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6 = VL_RAND_RESET_I(1);
-    vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hd1f1d996__0 = 0;
+    vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hf0b5fb69__0 = 0;
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_34 = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_38 = VL_RAND_RESET_Q(64);
     VL_RAND_RESET_W(127, vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_80);
