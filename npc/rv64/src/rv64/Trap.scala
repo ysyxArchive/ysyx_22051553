@@ -34,6 +34,9 @@ class TrIO extends Bundle{
 
     //to fc
     val fctr = new FcTrIO
+
+    //from CLINT
+    val timer_int = Input(Bool())
 }
 
 import TrIO._
@@ -43,9 +46,12 @@ class Trap extends Module{
 
     val cause = RegInit(0.U(X_LEN.W))
     val pc = RegInit(0.U(PC_LEN.W))
-    dontTouch(pc)
     
     val state = RegInit(s_IDLE)
+
+    val MIE = Wire(Bool()) //MSTATUS的MIE字段
+    //内部
+    MIE := io.csrtr.MSTATUS(3)
 
     //顶层
     io.fctr.trap_state := state
@@ -53,8 +59,6 @@ class Trap extends Module{
     //写csr寄存器、控制流水线冲刷
     io.csrtr.csr_wdata := 0.U
     io.csrtr.csr_wen := 0.B
-    dontTouch(io.csrtr.csr_wdata)
-    dontTouch(io.csrtr.csr_wen)
 
     io.csrtr.rd := 0.U
     io.fctr.pop_NOP := 0.B
@@ -66,7 +70,7 @@ class Trap extends Module{
             io.csrtr.csr_wen := 0.B
             io.csrtr.rd := 0.U
 
-            when(io.inst === BitPat.bitPatToUInt(ECALL)){
+            when(io.inst === BitPat.bitPatToUInt(ECALL) && (MIE)){
                 //缓存下一pc以及cause
                 pc := io.pc + 4.U
                 cause := 11.U
@@ -79,7 +83,15 @@ class Trap extends Module{
                 io.fctr.pop_NOP := 1.B
                 state := s_MRET_WAIT
 
+            }.elsewhen(io.timer_int && (MIE)){
+                pc := io.pc + 4.U
+                cause := 0x80000007.U
+                
+                
+                io.fctr.pop_NOP := 1.B
+                state := s_WAIT
             }
+
         }
         is(s_WAIT){
             when(!io.ex_hasinst && !io.mem_hasinst && !io.wb_hasinst){ //等待前面有效指令执行完
@@ -114,6 +126,11 @@ class Trap extends Module{
             }
         }
         is(s_MRET){
+            //恢复全局中断
+            io.csrtr.csr_wdata := Cat(io.csrtr.MSTATUS(63,4), io.csrtr.MSTATUS(7), io.csrtr.MSTATUS(2,0))
+            io.csrtr.csr_wen := 1.B
+            io.csrtr.rd := MSTATUS_ADDR.U
+
             state := s_IDLE
         }
     }

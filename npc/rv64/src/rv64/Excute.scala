@@ -23,6 +23,9 @@ class ExcuteIO extends Bundle{
 
     //Forward
     val fwex = Flipped(new FwPipeIO)
+
+    //to CLINT
+    val clex = Flipped(new ClExIO)
 }
 
 class Excute extends Module{
@@ -32,8 +35,10 @@ class Excute extends Module{
     val alu = Module(new Alu)
 
     //内部逻辑
+    val CLINT_type = Wire(Bool())
 
-
+    CLINT_type := (io.deio.ld_type =/= 0.U || io.deio.ld_type =/= 0.U) && 
+        (alu.io.result >= "h02000000".U) && (alu.io.result <= "h0200bfff".U)
     //驱动端口
     //顶层
     //emio
@@ -56,9 +61,9 @@ class Excute extends Module{
     io.jump_pc := io.deio.branch_addr
 
     //to TM
-    io.raddr := Mux(io.deio.ld_type =/= 0.U, alu.io.result, 0.U)
+    io.raddr := Mux( (io.deio.ld_type =/= 0.U) && (CLINT_type === 0.B) , alu.io.result, 0.U)
     
-    io.waddr := Mux(io.deio.sd_type =/= 0.U, alu.io.result, 0.U)
+    io.waddr := Mux((io.deio.sd_type =/= 0.U) && (CLINT_type === 0.B) , alu.io.result, 0.U)
     io.wdata := io.deio.reg2_rdata
     io.wmask := MuxLookup(io.deio.sd_type, 0.U,
         Seq(
@@ -68,6 +73,23 @@ class Excute extends Module{
             SD_SD -> "b11111111".U
         )
     )
+
+    //clex
+    io.clex.valid := CLINT_type
+    io.clex.ld_type := io.deio.ld_type
+    io.clex.raddr := alu.io.result
+
+    io.clex.sd_type := io.deio.sd_type
+    io.clex.waddr := alu.io.result
+    io.clex.wmask := MuxLookup(io.deio.sd_type, 0.U,
+        Seq(
+            SD_SB -> "b00000001".U,
+            SD_SH -> "b00000011".U,
+            SD_SW -> "b00001111".U,
+            SD_SD -> "b11111111".U
+        )
+    )
+    io.clex.wdata := io.deio.reg2_rdata
 
     //fw
     io.fwex.reg_waddr := io.deio.reg_waddr

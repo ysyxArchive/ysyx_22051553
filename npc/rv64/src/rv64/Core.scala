@@ -4,6 +4,7 @@ import chisel3._
 import chisel3.util._
 import chisel3.experimental.BundleLiterals._
 import Define._
+import circt.stage.CLI
 
 
 // class CoreIO extends Bundle {
@@ -91,6 +92,11 @@ class Core extends Module{
             _.csr_waddr -> 0.U
         )
     )
+    //CLINT
+    val clint = Module(new CLINT)
+
+    //fw
+    val fw = Module(new Forward)
 
     //寄存器
     val regfile = Module(new Regfile)
@@ -103,8 +109,6 @@ class Core extends Module{
 
     //Trap
     val trap = Module(new Trap)
-
-    csrs.io.CSRTr <> DontCare
     
     //互联 -- 基本以被驱动方为标准
     //顶层
@@ -408,7 +412,7 @@ class Core extends Module{
     )
 
     //Forward
-    val fw = Module(new Forward)
+    
     fw.io.fwde <> decode.io.fwde
     fw.io.fwex <> excute.io.fwex
     fw.io.fwmem <> mem.io.fwmem
@@ -426,6 +430,11 @@ class Core extends Module{
     trap.io.pc := fetch.io.pc.bits
 
     trap.io.fctr <> fc.io.fctr
+
+    trap.io.timer_int := clint.io.timer_int
+    //CLINT
+    clint.io.clex <> excute.io.clex
+    clint.io.clmem <> mem.io.clmem
 
     //---debug
     val DI= Module(new DebugInterface)

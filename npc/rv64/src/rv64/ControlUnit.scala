@@ -67,6 +67,7 @@ object ControlUnit {    //译码特征, 类型、需要做哪些任务
     val CSR_RS = 2.U
     val CSR_RC = 3.U
 
+
     // 对照表
     val default = 
 

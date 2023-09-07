@@ -22,6 +22,10 @@ object Define {
     val MIE_ADDR = 0x304
     val MSTATUS_ADDR = 0x300
     val MSCRATCH_ADDR = 0x340
+    //CLINT
+    val MSIP_ADDR = 0x02000000
+    val MTIMECMP_ADDR = 0x02004000
+    val MTIME_ADDR = 0x0200BFF8
 
     //----------instructions
     // Loads
