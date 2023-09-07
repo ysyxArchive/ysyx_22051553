@@ -312,7 +312,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
                     = (4ULL + vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc);
             } else if ((1U & (~ ((0x30200073U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst) 
                                  | (~ (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT___T_7)))))) {
-                vlSelf->Soc__DOT__core__DOT__trap__DOT__cause = 0x8000000000000007ULL;
+                vlSelf->Soc__DOT__core__DOT__trap__DOT__cause = 7ULL;
                 vlSelf->Soc__DOT__core__DOT__trap__DOT__pc 
                     = (4ULL + vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc);
             }
