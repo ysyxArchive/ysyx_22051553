@@ -25,7 +25,7 @@ class CLINT extends Module{
         val clex = new ClExIO
         val clmem = new ClMemIO
 
-        //to Trap
+        //to CSRs
         val timer_int = Output(Bool())
     })
 
@@ -46,16 +46,12 @@ class CLINT extends Module{
 
     MSIP := MSIP
     MTIMECMP := MTIMECMP
-    MTIME := MTIME
+    MTIME := MTIME + 1.U   //从系统启动开始自增
 
     when(io.clex.valid){ //ls指令是8字节对齐的
 
         valid_buf := 0.B
         rvalue_buf := 0.U
-
-        MSIP := MSIP
-        MTIMECMP := MTIMECMP
-        MTIME := MTIME
 
         when(io.clex.ld_type.orR){
             
@@ -141,6 +137,6 @@ class CLINT extends Module{
     io.clmem.Clrvalue.bits := rvalue_buf
     io.clmem.Clrvalue.valid := valid_buf
 
-    io.timer_int := (MTIME >= MTIMECMP)
+    io.timer_int := (MTIME >= MTIMECMP)   //置定时器中断有效
 
 }

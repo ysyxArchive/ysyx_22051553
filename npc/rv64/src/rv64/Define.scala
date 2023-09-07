@@ -20,6 +20,7 @@ object Define {
     val MCAUSE_ADDR = 0x342
     val MEPC_ADDR = 0x341
     val MIE_ADDR = 0x304
+    val MIP_ADDR = 0x344
     val MSTATUS_ADDR = 0x300
     val MSCRATCH_ADDR = 0x340
     //CLINT

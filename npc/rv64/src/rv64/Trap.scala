@@ -5,7 +5,7 @@ import chisel3.util._
 import Define._
 
 object TrIO {
-    val s_IDLE :: s_WAIT :: s_MEPC :: s_MCAUSE :: s_MSTATUS :: s_MRET_WAIT :: s_MRET :: Nil = Enum(7)
+    val s_IDLE :: s_WAIT :: s_MEPC :: s_MCAUSE :: s_MSTATUS :: s_MRET_WAIT :: s_CLRMIP :: s_MRET :: Nil = Enum(8)
 }
 
 class FcTrIO extends Bundle{
@@ -35,8 +35,6 @@ class TrIO extends Bundle{
     //to fc
     val fctr = new FcTrIO
 
-    //from CLINT
-    val timer_int = Input(Bool())
 }
 
 import TrIO._
@@ -49,9 +47,9 @@ class Trap extends Module{
     
     val state = RegInit(s_IDLE)
 
-    val MIE = Wire(Bool()) //MSTATUS的MIE字段
+    val MSTATUS_MIE = Wire(Bool()) //MSTATUS的MIE字段
     //内部
-    MIE := io.csrtr.MSTATUS(3)
+    MSTATUS_MIE := io.csrtr.MSTATUS(3)
 
     //顶层
     io.fctr.trap_state := state
@@ -70,7 +68,7 @@ class Trap extends Module{
             io.csrtr.csr_wen := 0.B
             io.csrtr.rd := 0.U
 
-            when(io.inst === BitPat.bitPatToUInt(ECALL) && (MIE)){
+            when(io.inst === BitPat.bitPatToUInt(ECALL) && (MSTATUS_MIE)){
                 //缓存下一pc以及cause
                 pc := io.pc + 4.U
                 cause := 11.U
@@ -83,9 +81,9 @@ class Trap extends Module{
                 io.fctr.pop_NOP := 1.B
                 state := s_MRET_WAIT
 
-            }.elsewhen(io.timer_int && (MIE)){
+            }.elsewhen(io.csrtr.MIP(7) && (MSTATUS_MIE) && io.csrtr.MIE(7)){   //MIE(7)为M模式下时钟中断
                 pc := io.pc + 4.U
-                cause := Cat(0.U, 0.U(59.W), 7.U(4.W))
+                cause := Cat(1.U, 0.U(59.W), 7.U(4.W))
                 
                 
                 io.fctr.pop_NOP := 1.B
@@ -122,12 +120,23 @@ class Trap extends Module{
         }
         is(s_MRET_WAIT){
             when(!io.ex_hasinst && !io.mem_hasinst && !io.wb_hasinst){ //等待前面有效指令执行完
-                state := s_MRET
+                state := s_CLRMIP
             }
+        }
+        is(s_CLRMIP){
+            switch(io.csrtr.MCAUSE){
+                is("h80000007".U){
+                    io.csrtr.csr_wdata := Cat(io.csrtr.MIP(63,8), 0.U, io.csrtr.MIP(6,0))  //清除定时器中断等待处理
+                    io.csrtr.csr_wen := 1.B
+                    io.csrtr.rd := MIP_ADDR.U
+                }
+            }
+
+            state := s_MRET
         }
         is(s_MRET){
             //恢复全局中断
-            io.csrtr.csr_wdata := Cat(io.csrtr.MSTATUS(63,4), io.csrtr.MSTATUS(7), io.csrtr.MSTATUS(2,0))
+            io.csrtr.csr_wdata := Cat(io.csrtr.MSTATUS(63,4), io.csrtr.MSTATUS(7), io.csrtr.MSTATUS(2,0)) 
             io.csrtr.csr_wen := 1.B
             io.csrtr.rd := MSTATUS_ADDR.U
 

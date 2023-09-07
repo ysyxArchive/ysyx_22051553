@@ -431,10 +431,13 @@ class Core extends Module{
 
     trap.io.fctr <> fc.io.fctr
 
-    trap.io.timer_int := clint.io.timer_int
+    
     //CLINT
     clint.io.clex <> excute.io.clex
     clint.io.clmem <> mem.io.clmem
+
+    //csrs
+    csrs.io.timer_int := clint.io.timer_int
 
     //---debug
     val DI= Module(new DebugInterface)

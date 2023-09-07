@@ -18,6 +18,8 @@ class CSRTrapIO extends Bundle{
     val MTVEC = Output(UInt(X_LEN.W))
     val MCAUSE = Output(UInt(X_LEN.W))
     val MEPC = Output(UInt(X_LEN.W))
+    val MIE = Output(UInt(X_LEN.W))
+    val MIP = Output(UInt(X_LEN.W))
     val MSTATUS = Output(UInt(X_LEN.W))
 
     val rd = Input(UInt(CSR_ADDR_LEN.W))
@@ -29,6 +31,8 @@ class CSRIO extends Bundle{
     val CSRDe = new CSRDeIO
     val CSRWb = new CSRWbIO
     val CSRTr = new CSRTrapIO
+
+    val timer_int = Input(Bool())
 }
 
 class CSRs extends Module{
@@ -40,9 +44,14 @@ class CSRs extends Module{
     val MCAUSE = RegInit(0.U(X_LEN.W))
     val MEPC = RegInit(0.U(X_LEN.W))
     val MIE = RegInit(0.U(X_LEN.W))
+    val MIP = RegInit(0.U(X_LEN.W))
     val MSTATUS = RegInit(0.U(X_LEN.W))
     val MSCRATCH = RegInit(0.U(X_LEN.W))
 
+
+    when(io.timer_int){   //定时器中断等待处理
+        MIP := Cat(MIP(63,8), 1.U, MIP(6,0))
+    }
 
     switch(io.CSRWb.rd | io.CSRTr.rd){
         is(MTVEC_ADDR.U){
@@ -62,6 +71,11 @@ class CSRs extends Module{
         }
         is(MIE_ADDR.U){
             MIE := Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 
+                Mux(io.CSRTr.csr_wen, io.CSRTr.csr_wdata, 0.U)
+                )
+        }
+        is(MIP_ADDR.U){
+            MIP := Mux(io.CSRWb.csr_wen, io.CSRWb.csr_wdata, 
                 Mux(io.CSRTr.csr_wen, io.CSRTr.csr_wdata, 0.U)
                 )
         }
@@ -87,6 +101,7 @@ class CSRs extends Module{
             MCAUSE_ADDR.U -> MCAUSE,
             MEPC_ADDR.U -> MEPC,
             MIE_ADDR.U -> MIE,
+            MIP_ADDR.U -> MIE,
             MSTATUS_ADDR.U -> MSTATUS,
             MSCRATCH_ADDR.U -> MSCRATCH
         )
@@ -94,6 +109,8 @@ class CSRs extends Module{
 
     io.CSRTr.MCAUSE := MCAUSE
     io.CSRTr.MEPC := MEPC
+    io.CSRTr.MIE := MIE
+    io.CSRTr.MIP := MIP
     io.CSRTr.MSTATUS := MSTATUS
     io.CSRTr.MTVEC := MTVEC
 
