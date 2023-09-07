@@ -85,7 +85,7 @@ class Trap extends Module{
 
             }.elsewhen(io.timer_int && (MIE)){
                 pc := io.pc + 4.U
-                cause := 0x80000007.U
+                cause := Cat(0.U, 0.U(59.W), 7.U(4.W))
                 
                 
                 io.fctr.pop_NOP := 1.B
