@@ -1222,14 +1222,14 @@ module Trap(	// <stdin>:2042:10
   wire             _T_2 = io_inst == 32'h73 & io_csrtr_MSTATUS[3];	// Trap.scala:52:36, :71:{26,57}
   wire             _T_3 = io_inst == 32'h30200073;	// Trap.scala:79:32
   wire             _T_7 = io_csrtr_MIP[7] & io_csrtr_MSTATUS[3] & io_csrtr_MIE[7];	// Trap.scala:52:36, :84:{36,57,72}
-  wire             _T_24 = io_csrtr_MCAUSE == 64'h80000007;	// Trap.scala:127:36
+  wire             _T_24 = io_csrtr_MCAUSE == 64'h80000007;	// Trap.scala:128:36
   wire [7:0][63:0] _GEN = {{{io_csrtr_MSTATUS[63:4], io_csrtr_MSTATUS[7], io_csrtr_MSTATUS[2:0]}}, {_T_24 ?
                 {io_csrtr_MIP[63:8], 1'h0, io_csrtr_MIP[6:0]} : 64'h0}, {64'h0}, {{io_csrtr_MSTATUS[63:8],
                 io_csrtr_MSTATUS[3], io_csrtr_MSTATUS[6:4], 1'h0, io_csrtr_MSTATUS[2:0]}}, {cause}, {pc},
-                {64'h0}, {64'h0}};	// Cat.scala:33:92, Trap.scala:45:24, :46:21, :52:36, :58:24, :64:18, :67:32, :100:32, :107:32, :115:{32,55,100,133}, :127:36, :129:{40,59,84}, :139:{32,55,79,100}
+                {64'h0}, {64'h0}};	// Cat.scala:33:92, Trap.scala:45:24, :46:21, :52:36, :58:24, :64:18, :67:32, :101:32, :108:32, :116:{32,55,100,133}, :128:36, :130:{40,59,84}, :140:{32,55,79,100}
   wire [7:0][11:0] _GEN_0 = {{12'h300}, {_T_24 ? 12'h344 : 12'h0}, {12'h0}, {12'h300}, {12'h342}, {12'h341}, {12'h0},
-                {12'h0}};	// Trap.scala:61:17, :64:18, :69:25, :102:25, :109:25, :117:25, :127:36, :131:33, :141:25
-  wire             _T_26 = state == 3'h4;	// Trap.scala:48:24, :73:29, :150:18
+                {12'h0}};	// Trap.scala:61:17, :64:18, :69:25, :103:25, :110:25, :118:25, :128:36, :132:33, :142:25
+  wire             _T_26 = state == 3'h4;	// Trap.scala:48:24, :73:29, :151:18
   always @(posedge clock) begin
     if (reset) begin
       cause <= 64'h0;	// Trap.scala:45:24
@@ -1237,8 +1237,8 @@ module Trap(	// <stdin>:2042:10
       state <= 3'h0;	// Trap.scala:48:24
     end
     else begin
-      automatic logic            _GEN_1 = io_ex_hasinst | io_mem_hasinst | io_wb_hasinst;	// Trap.scala:48:24, :95:70, :96:23
-      automatic logic [7:0][2:0] _GEN_2;	// Trap.scala:48:24, :64:18, :71:74, :95:70, :104:19, :111:19, :119:19, :122:70, :135:19, :143:19
+      automatic logic            _GEN_1 = io_ex_hasinst | io_mem_hasinst | io_wb_hasinst;	// Trap.scala:48:24, :96:70, :97:23
+      automatic logic [7:0][2:0] _GEN_2;	// Trap.scala:48:24, :64:18, :71:74, :96:70, :105:19, :112:19, :120:19, :123:70, :136:19, :144:19
       if (_T) begin	// Trap.scala:64:18
         if (_T_2) begin	// Trap.scala:71:57
           cause <= 64'hB;	// Trap.scala:45:24, :74:23
@@ -1252,8 +1252,8 @@ module Trap(	// <stdin>:2042:10
         end
       end
       _GEN_2 = {{3'h0}, {3'h7}, {_GEN_1 ? state : 3'h6}, {3'h0}, {3'h4}, {3'h3}, {_GEN_1 ? state : 3'h2},
-                                                {_T_2 ? 3'h1 : _T_3 ? 3'h5 : _T_7 ? 3'h1 : state}};	// Trap.scala:48:24, :64:18, :71:{57,74}, :73:29, :78:23, :79:{32,62}, :82:23, :84:{57,76}, :90:23, :95:70, :96:23, :104:19, :111:19, :119:19, :122:70, :123:23, :135:19, :143:19
-      state <= _GEN_2[state];	// Trap.scala:48:24, :64:18, :71:74, :95:70, :104:19, :111:19, :119:19, :122:70, :135:19, :143:19
+                                                {_T_2 ? 3'h1 : _T_3 ? 3'h5 : _T_7 ? 3'h1 : state}};	// Trap.scala:48:24, :64:18, :71:{57,74}, :73:29, :78:23, :79:{32,62}, :82:23, :84:{57,76}, :91:23, :96:70, :97:23, :105:19, :112:19, :120:19, :123:70, :124:23, :136:19, :144:19
+      state <= _GEN_2[state];	// Trap.scala:48:24, :64:18, :71:74, :96:70, :105:19, :112:19, :120:19, :123:70, :136:19, :144:19
     end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:2042:10
@@ -1284,14 +1284,14 @@ module Trap(	// <stdin>:2042:10
       `FIRRTL_AFTER_INITIAL	// <stdin>:2042:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
-  assign io_csrtr_rd = _GEN_0[state];	// <stdin>:2042:10, Trap.scala:48:24, :61:17, :64:18, :69:25, :102:25, :109:25, :117:25, :127:36, :141:25
+  assign io_csrtr_rd = _GEN_0[state];	// <stdin>:2042:10, Trap.scala:48:24, :61:17, :64:18, :69:25, :103:25, :110:25, :118:25, :128:36, :142:25
   assign io_csrtr_csr_wen = ~_T & state != 3'h1 & (state == 3'h2 | state == 3'h3 | state == 3'h4 | state != 3'h5 &
-                (state == 3'h6 ? _T_24 : (&state)));	// <stdin>:2042:10, Trap.scala:48:24, :59:22, :64:18, :68:30, :73:29, :78:23, :82:23, :96:23, :101:30, :104:19, :123:23, :127:36
-  assign io_csrtr_csr_wdata = _GEN[state];	// <stdin>:2042:10, Trap.scala:48:24, :58:24, :64:18, :67:32, :100:32, :107:32, :115:32, :127:36, :139:32
+                (state == 3'h6 ? _T_24 : (&state)));	// <stdin>:2042:10, Trap.scala:48:24, :59:22, :64:18, :68:30, :73:29, :78:23, :82:23, :97:23, :102:30, :105:19, :124:23, :128:36
+  assign io_csrtr_csr_wdata = _GEN[state];	// <stdin>:2042:10, Trap.scala:48:24, :58:24, :64:18, :67:32, :101:32, :108:32, :116:32, :128:36, :140:32
   assign io_fctr_pop_NOP = _T & (_T_2 | _T_3 | _T_7);	// <stdin>:2042:10, Trap.scala:62:21, :64:18, :71:{57,74}, :77:33, :79:{32,62}, :84:57
   assign io_fctr_trap_state = state[1:0];	// <stdin>:2042:10, Trap.scala:48:24, :55:24
-  assign io_fctr_jump_flag = _T_26 | (&state);	// <stdin>:2042:10, Trap.scala:48:24, :150:18, :152:31
-  assign io_fctr_jump_pc = _T_26 ? io_csrtr_MTVEC : (&state) ? io_csrtr_MEPC : 64'h0;	// <stdin>:2042:10, Trap.scala:45:24, :48:24, :149:21, :150:18, :153:29, :157:29
+  assign io_fctr_jump_flag = _T_26 | (&state);	// <stdin>:2042:10, Trap.scala:48:24, :151:18, :153:31
+  assign io_fctr_jump_pc = _T_26 ? io_csrtr_MTVEC : (&state) ? io_csrtr_MEPC : 64'h0;	// <stdin>:2042:10, Trap.scala:45:24, :48:24, :150:21, :151:18, :154:29, :158:29
 endmodule
 
 // external module DebugInterface

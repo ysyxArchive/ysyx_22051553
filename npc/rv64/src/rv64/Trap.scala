@@ -126,7 +126,7 @@ class Trap extends Module{
         }
         is(s_CLRMIP){
             switch(io.csrtr.MCAUSE){
-                is("h80000007".U){
+                is("h8000000000000007".U){
                     io.csrtr.csr_wdata := Cat(io.csrtr.MIP(63,8), 0.U, io.csrtr.MIP(6,0))  //清除定时器中断等待处理
                     io.csrtr.csr_wen := 1.B
                     io.csrtr.rd := MIP_ADDR.U
