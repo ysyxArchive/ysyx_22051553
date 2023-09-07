@@ -491,7 +491,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root__trace_full_sub_0\n"); );
     // Init
     uint32_t* const oldp VL_ATTR_UNUSED = bufp->oldp(vlSymsp->__Vm_baseCode);
-    VlWide<3>/*95:0*/ __Vtemp_ha0258428__0;
+    VlWide<3>/*95:0*/ __Vtemp_h5ee83ed9__0;
     VlWide<8>/*255:0*/ __Vtemp_hc41d1282__0;
     // Body
     bufp->fullQData(oldp+1,(vlSelf->Soc__DOT___tm_inst),64);
@@ -556,9 +556,9 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullQData(oldp+74,(vlSelf->Soc__DOT__core__DOT__clint__DOT__MTIME),64);
     bufp->fullSData(oldp+76,((vlSelf->Soc__DOT__core__DOT__decode__DOT__inst 
                               >> 0x14U)),12);
-    __Vtemp_ha0258428__0[0U] = 0x41000000U;
-    __Vtemp_ha0258428__0[1U] = 0x3003423U;
-    __Vtemp_ha0258428__0[2U] = (0x30000000U | (((0x80000007ULL 
+    __Vtemp_h5ee83ed9__0[0U] = 0x41000000U;
+    __Vtemp_h5ee83ed9__0[1U] = 0x3003423U;
+    __Vtemp_h5ee83ed9__0[2U] = (0x30000000U | (((0x8000000000000007ULL 
                                                  == vlSelf->Soc__DOT__core__DOT__csrs__DOT__MCAUSE)
                                                  ? 0x344U
                                                  : 0U) 
@@ -570,7 +570,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                & ((IData)(0xcU) 
                                                   * (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state))))
                                               ? 0U : 
-                                             (__Vtemp_ha0258428__0[
+                                             (__Vtemp_h5ee83ed9__0[
                                               (((IData)(0xbU) 
                                                 + (0x7fU 
                                                    & ((IData)(0xcU) 
@@ -581,7 +581,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                   (0x1fU 
                                                    & ((IData)(0xcU) 
                                                       * (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)))))) 
-                                            | (__Vtemp_ha0258428__0[
+                                            | (__Vtemp_h5ee83ed9__0[
                                                (3U 
                                                 & (((IData)(0xcU) 
                                                     * (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 

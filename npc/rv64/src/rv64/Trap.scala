@@ -84,7 +84,7 @@ class Trap extends Module{
             }.elsewhen(io.csrtr.MIP(7) && (MSTATUS_MIE) && io.csrtr.MIE(7)){   //MIE(7)为M模式下时钟中断
                 pc := io.pc + 4.U
                 // cause := Cat(1.U, 0.U(59.W), 7.U(4.W))
-                cause := Cat(1.U(1.W), 0.U(59.W), 7.U(4.W))
+                cause := Cat(8.U(4.W), 0.U(58.W), 7.U(4.W))
                 
                 
                 io.fctr.pop_NOP := 1.B
