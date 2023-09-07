@@ -37,7 +37,7 @@ class Excute extends Module{
     //内部逻辑
     val CLINT_type = Wire(Bool())
 
-    CLINT_type := (io.deio.ld_type =/= 0.U || io.deio.ld_type =/= 0.U) && 
+    CLINT_type := (io.deio.ld_type =/= 0.U || io.deio.sd_type =/= 0.U) && 
         (alu.io.result >= "h02000000".U) && (alu.io.result <= "h0200bfff".U)
     //驱动端口
     //顶层

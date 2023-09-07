@@ -27,6 +27,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcde_flush;
         CData/*0:0*/ Soc__DOT__core__DOT___excute_io_jump_flag;
         CData/*0:0*/ Soc__DOT__core__DOT___excute_io_fwex_reg_we;
+        CData/*7:0*/ Soc__DOT__core__DOT___excute_io_clex_wmask;
         CData/*5:0*/ Soc__DOT__core__DOT___decode_io_deio_alu_op;
         CData/*0:0*/ Soc__DOT__core__DOT___decode_io_deio_csr_wen;
         CData/*0:0*/ Soc__DOT__core__DOT___decode_io_jump_flag;
@@ -77,17 +78,16 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h90ba5b66__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h3c60961a__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h156a9c0e__0;
-        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3;
-        CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_1;
-        CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_2;
-        CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_3;
-        CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_4;
-        CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_5;
+        CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6;
+        CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hd1f1d996__0;
+        CData/*0:0*/ Soc__DOT__core__DOT__clint__DOT__valid_buf;
+        CData/*0:0*/ Soc__DOT__core__DOT__clint__DOT__unnamedblk1__DOT___T_1;
+        CData/*0:0*/ Soc__DOT__core__DOT__clint__DOT__unnamedblk1__DOT___T_2;
     };
     struct {
-        CData/*2:0*/ Soc__DOT__core__DOT__trap__DOT__state;
-        CData/*0:0*/ Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_1;
-        IData/*23:0*/ Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_2;
+        CData/*0:0*/ Soc__DOT__core__DOT__clint__DOT__unnamedblk1__DOT___T_3;
+        CData/*0:0*/ Soc__DOT__core__DOT__clint__DOT__unnamedblk1__DOT___T_5;
+        CData/*0:0*/ Soc__DOT__core__DOT__clint__DOT__unnamedblk1__DOT___T_10;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_ex_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_ex_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_mem_hazard;
@@ -97,10 +97,23 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__csr_ex_harzard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__csr_mem_harzard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__csr_wb_harzard;
+        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3;
+        CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_1;
+        CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_2;
+        CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_3;
+        CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_4;
+        CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_5;
+        CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_6;
+        CData/*2:0*/ Soc__DOT__core__DOT__trap__DOT__state;
+        CData/*0:0*/ Soc__DOT__core__DOT__trap__DOT___T_2;
+        CData/*0:0*/ Soc__DOT__core__DOT__trap__DOT___T_7;
+        CData/*0:0*/ Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_1;
+        IData/*23:0*/ Soc__DOT__core__DOT__trap__DOT__unnamedblk1__DOT___GEN_2;
         CData/*0:0*/ Soc__DOT__core__DOT__interact__DOT__ebreak_flag;
         CData/*2:0*/ Soc__DOT__core__DOT__interact__DOT__over_count;
         CData/*0:0*/ __Vtrigrprev__TOP__clock;
         CData/*0:0*/ __VactContinue;
+        SData/*11:0*/ Soc__DOT__core__DOT___trap_io_csrtr_rd;
         SData/*11:0*/ Soc__DOT__core__DOT__dereg_csr_waddr;
         SData/*11:0*/ Soc__DOT__core__DOT__emreg_csr_waddr;
         SData/*11:0*/ Soc__DOT__core__DOT__mwreg_csr_waddr;
@@ -121,6 +134,7 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_107;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_112;
         VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_177;
+        IData/*31:0*/ Soc__DOT__core__DOT__clint__DOT__MSIP;
         IData/*31:0*/ __VstlIterCount;
         IData/*31:0*/ __VactIterCount;
         VL_OUT64(io_next_pc,63,0);
@@ -135,6 +149,8 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__fdreg_pc;
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_op_a;
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_op_b;
+    };
+    struct {
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_branch_addr;
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_reg2_rdata;
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_csr_t;
@@ -149,9 +165,7 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___io_jump_pc_T_4;
         QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___io_deio_reg2_rdata_T;
         QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___io_deio_csr_t_T;
-    };
-    struct {
-        QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___io_raddr_T_1;
+        QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___io_raddr_T_3;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___alu_io_result;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_34;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_38;
@@ -163,12 +177,17 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_128;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_157;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___GEN_12;
+        QData/*63:0*/ Soc__DOT__core__DOT__mem__DOT___get_value_T;
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__mem__DOT___GEN_1;
+        QData/*63:0*/ Soc__DOT__core__DOT__clint__DOT__MTIMECMP;
+        QData/*63:0*/ Soc__DOT__core__DOT__clint__DOT__MTIME;
+        QData/*63:0*/ Soc__DOT__core__DOT__clint__DOT__rvalue_buf;
         QData/*63:0*/ Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MTVEC;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MCAUSE;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MEPC;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MIE;
+        QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MIP;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSTATUS;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSCRATCH;
         QData/*63:0*/ Soc__DOT__core__DOT__trap__DOT__cause;
