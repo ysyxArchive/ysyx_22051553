@@ -1021,7 +1021,7 @@ module FlowControl(	// <stdin>:1861:10
   assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag | io_fctr_jump_flag;	// <stdin>:1861:10, FlowControl.scala:115:65
   assign io_fcfe_jump_pc = io_fctr_jump_flag ? io_fctr_jump_pc : io_fcex_jump_flag ? io_fcex_jump_pc :
                 io_fcde_jump_flag ? io_fcde_jump_pc : 64'h80000000;	// <stdin>:1861:10, Mux.scala:101:16
-  assign io_fcfe_flush = ~io_fcde_load_use & ~_SFBundle_T_10_0 & (io_fctr_jump_flag | io_fcex_jump_flag |
+  assign io_fcfe_flush = ~io_fcde_load_use & (_SFBundle_T_10_0 | io_fctr_jump_flag | io_fcex_jump_flag |
                 io_fcde_jump_flag);	// <stdin>:1861:10, FlowControl.scala:95:38, Mux.scala:101:16
   assign io_fcfe_stall = io_fcde_load_use | _SFBundle_T_10_0;	// <stdin>:1861:10, FlowControl.scala:95:38, Mux.scala:101:16
   assign io_fcde_flush = io_fcde_load_use | _SFBundle_T_10_0 | ~io_fctr_jump_flag & io_fcex_jump_flag;	// <stdin>:1861:10, FlowControl.scala:95:38, Mux.scala:101:16
@@ -2112,4 +2112,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 
