@@ -70,7 +70,8 @@ class Trap extends Module{
 
             when(io.inst === BitPat.bitPatToUInt(ECALL) && (MSTATUS_MIE)){
                 //缓存下一pc以及cause
-                pc := io.pc + 4.U
+                // pc := io.pc + 4.U
+                pc := io.pc  //保存当前PC而不是PC+4， 因为如果保存PC+4,会产生很多问题，例如PC可能是jal指令，让jal在中断返回后执行更方便
                 cause := 11.U
                 
                 
@@ -82,7 +83,9 @@ class Trap extends Module{
                 state := s_MRET_WAIT
 
             }.elsewhen(io.csrtr.MIP(7) && (MSTATUS_MIE) && io.csrtr.MIE(7)){   //MIE(7)为M模式下时钟中断
-                pc := io.pc + 4.U
+                // pc := io.pc + 4.U          
+                pc := io.pc 
+
                 cause := Cat(1.U, 0.U(59.W), 7.U(4.W))
                 // cause := Cat(1.U(1.W), 0.U(59.W), 7.U(4.W))
                 
