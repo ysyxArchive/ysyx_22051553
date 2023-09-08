@@ -33,7 +33,7 @@ object FlowControl{
     
     val TrapWait_SFBundle = 
         VecInit(StallY, StallN, StallN, StallN, StallN,     
-            FlushN, FlushY, FlushN, FlushN, FlushN)      
+            FlushY, FlushY, FlushN, FlushN, FlushN)      //fetch中FlushY为了最后中断跳转
   
 
 }

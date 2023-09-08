@@ -502,7 +502,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                    | ((0x30200073U 
                                        == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst) 
                                       | (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT___T_7))))));
-        bufp->chgCData(oldp+147,((3U & (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state))),2);
+        bufp->chgCData(oldp+147,(vlSelf->Soc__DOT__core__DOT__trap__DOT__state),3);
         bufp->chgBit(oldp+148,(vlSelf->Soc__DOT__core__DOT___trap_io_fctr_jump_flag));
         bufp->chgQData(oldp+149,(((4U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state))
                                    ? vlSelf->Soc__DOT__core__DOT__csrs__DOT__MTVEC
@@ -624,12 +624,11 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgQData(oldp+248,(vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory[31]),64);
         bufp->chgQData(oldp+250,(vlSelf->Soc__DOT__core__DOT__trap__DOT__cause),64);
         bufp->chgQData(oldp+252,(vlSelf->Soc__DOT__core__DOT__trap__DOT__pc),64);
-        bufp->chgCData(oldp+254,(vlSelf->Soc__DOT__core__DOT__trap__DOT__state),3);
-        bufp->chgQData(oldp+255,(vlSelf->Soc__DOT__tm__DOT__old_inst),64);
+        bufp->chgQData(oldp+254,(vlSelf->Soc__DOT__tm__DOT__old_inst),64);
     }
-    bufp->chgBit(oldp+257,(vlSelf->clock));
-    bufp->chgBit(oldp+258,(vlSelf->reset));
-    bufp->chgQData(oldp+259,(vlSelf->io_next_pc),64);
+    bufp->chgBit(oldp+256,(vlSelf->clock));
+    bufp->chgBit(oldp+257,(vlSelf->reset));
+    bufp->chgQData(oldp+258,(vlSelf->io_next_pc),64);
 }
 
 void VSoc___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {

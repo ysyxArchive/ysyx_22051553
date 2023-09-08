@@ -1008,7 +1008,7 @@ module FlowControl(	// <stdin>:1861:10
                 io_fcex_jump_flag,
   input  [63:0] io_fcex_jump_pc,
   input         io_fctr_pop_NOP,
-  input  [1:0]  io_fctr_trap_state,
+  input  [2:0]  io_fctr_trap_state,
   input         io_fctr_jump_flag,
   input  [63:0] io_fctr_jump_pc,
   output        io_fcfe_jump_flag,
@@ -1211,7 +1211,7 @@ module Trap(	// <stdin>:2040:10
   output        io_csrtr_csr_wen,
   output [63:0] io_csrtr_csr_wdata,
   output        io_fctr_pop_NOP,
-  output [1:0]  io_fctr_trap_state,
+  output [2:0]  io_fctr_trap_state,
   output        io_fctr_jump_flag,
   output [63:0] io_fctr_jump_pc);
 
@@ -1289,7 +1289,7 @@ module Trap(	// <stdin>:2040:10
                 (state == 3'h6 ? _T_24 : (&state)));	// <stdin>:2040:10, Trap.scala:48:24, :59:22, :64:18, :68:30, :73:29, :78:23, :82:23, :97:23, :102:30, :105:19, :124:23, :128:36
   assign io_csrtr_csr_wdata = _GEN[state];	// <stdin>:2040:10, Trap.scala:48:24, :58:24, :64:18, :67:32, :101:32, :108:32, :116:32, :128:36, :140:32
   assign io_fctr_pop_NOP = _T & (_T_2 | _T_3 | _T_7);	// <stdin>:2040:10, Trap.scala:62:21, :64:18, :71:{57,74}, :77:33, :79:{32,62}, :84:57
-  assign io_fctr_trap_state = state[1:0];	// <stdin>:2040:10, Trap.scala:48:24, :55:24
+  assign io_fctr_trap_state = state;	// <stdin>:2040:10, Trap.scala:48:24
   assign io_fctr_jump_flag = _T_26 | (&state);	// <stdin>:2040:10, Trap.scala:48:24, :151:18, :153:31
   assign io_fctr_jump_pc = _T_26 ? io_csrtr_MTVEC : (&state) ? io_csrtr_MEPC : 64'h0;	// <stdin>:2040:10, Trap.scala:45:24, :48:24, :150:21, :151:18, :154:29, :158:29
 endmodule
@@ -1316,7 +1316,7 @@ module Core(	// <stdin>:2206:10
   wire        _trap_io_csrtr_csr_wen;	// Core.scala:111:22
   wire [63:0] _trap_io_csrtr_csr_wdata;	// Core.scala:111:22
   wire        _trap_io_fctr_pop_NOP;	// Core.scala:111:22
-  wire [1:0]  _trap_io_fctr_trap_state;	// Core.scala:111:22
+  wire [2:0]  _trap_io_fctr_trap_state;	// Core.scala:111:22
   wire        _trap_io_fctr_jump_flag;	// Core.scala:111:22
   wire [63:0] _trap_io_fctr_jump_pc;	// Core.scala:111:22
   wire [63:0] _csrs_io_CSRDe_csr_rdata;	// Core.scala:108:22
@@ -2112,5 +2112,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 

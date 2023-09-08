@@ -2373,7 +2373,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
             & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT___T_2) 
                | ((0x30200073U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst) 
                   | (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT___T_7)))) 
-           | (0U != (3U & (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state))));
+           | (0U != (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)));
     vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h69b28aa1__0 
         = ((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst) 
            | (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_6));
