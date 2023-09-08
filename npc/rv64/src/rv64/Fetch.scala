@@ -47,9 +47,8 @@ class Fetch extends Module{
     io.fdio.pc := MuxCase(
         pc,
         Seq(
-            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc,
             (io.fcfe.stall) -> old_pc,
-            
+            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc    
         )
     )
 
@@ -58,9 +57,8 @@ class Fetch extends Module{
     io.pc.bits := MuxCase(
         pc,
         Seq(
-            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc,    //直接变寻址地址
             (io.fcfe.stall) -> old_pc,
-            
+            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc    //直接变寻址地址
         )
     )
     // io.pc.valid := Mux(io.fcfe.stall, 0.B, started)

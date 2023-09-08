@@ -51,7 +51,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 1922, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 1923, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -3235,17 +3235,19 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
         = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall) 
            | ((~ (IData)(vlSelf->Soc__DOT__core__DOT___trap_io_fctr_jump_flag)) 
               & (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag)));
-    vlSelf->io_next_pc = ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2)
-                           ? (4ULL + vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc)
-                           : ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started)
+    if (vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2) {
+        vlSelf->io_next_pc = (4ULL + vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc);
+        vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
+            = vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
+    } else {
+        vlSelf->io_next_pc = ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started)
                                ? (4ULL + vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc)
-                               : vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc));
-    vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall)
-            ? vlSelf->Soc__DOT__core__DOT__fetch__DOT__old_pc
-            : ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2)
-                ? vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc
-                : vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc));
+                               : vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc);
+        vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
+            = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall)
+                ? vlSelf->Soc__DOT__core__DOT__fetch__DOT__old_pc
+                : vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc);
+    }
 }
 
 VL_ATTR_COLD void VSoc___024root___eval_stl(VSoc___024root* vlSelf) {

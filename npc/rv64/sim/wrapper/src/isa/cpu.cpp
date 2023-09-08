@@ -33,11 +33,14 @@ void cpu::set_csr(int addr, unsigned long value){
     case 0x304:
       csr[3] = value;
       break;
-    case 0x300:
+    case 0x344:
       csr[4] = value;
       break;
-    case 0x340:
+    case 0x300:
       csr[5] = value;
+      break;
+    case 0x340:
+      csr[6] = value;
       break;
     
     default: assert(0);
@@ -86,8 +89,7 @@ const char *cpu::regs[] = {
 };
 
 const char *cpu::csrs[] = {
-  "mtvec", "mcause", "mepc", "mie", "mstatus", "mscratch"
-  
+  "mtvec", "mcause", "mepc", "mie", "mip", "mstatus", "mscratch"
 };
 
 
