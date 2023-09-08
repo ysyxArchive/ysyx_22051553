@@ -85,6 +85,7 @@ class FCIO extends Bundle{
     val fctr = Flipped(new FcTrIO)
     
 }
+import TrIO._
 
 class FlowControl extends Module{
     val io = IO(new FCIO)
