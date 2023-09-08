@@ -200,7 +200,7 @@ long long pmem_read(const svLogicVecVal* raddr){
 
 
     if( ((unsigned long)waddr[1].aval << 32 | waddr[0].aval) == SERIAL_PORT){
-      // printf("here\n");
+      
       putchar((unsigned long)wdata[1].aval << 32 | wdata[0].aval);
       return ;
     }

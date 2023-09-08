@@ -1247,7 +1247,7 @@ module Trap(	// <stdin>:2042:10
         else if (_T_3 | ~_T_7) begin	// Trap.scala:46:21, :71:57, :79:{32,62}, :84:{57,76}
         end
         else begin	// Trap.scala:46:21, :71:57, :79:{32,62}, :84:{57,76}
-          cause <= 64'h7;	// Trap.scala:45:24, :87:23
+          cause <= 64'h8000000000000007;	// Trap.scala:45:24, :128:36
           pc <= io_pc + 64'h4;	// Trap.scala:46:21, :73:29, :85:29
         end
       end

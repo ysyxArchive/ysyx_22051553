@@ -4,8 +4,7 @@
 static Context* (*user_handler)(Event, Context*) = NULL;
 
 Context* __am_irq_handle(Context *c) {
-  printf("in handle\n");
-  printf("cause is 0x%lx\n", c->mcause);
+
   if (user_handler) {
     Event ev = {0};
     switch (c->mcause) {
@@ -55,9 +54,11 @@ void iset(bool enable) {//打开全局中断、打开定时器中断、设置mti
         "ld %[mtime], 0(a0)\n"
         
         // 设置mtimecmp寄存器
-        "addi %[mtimecmp], %[mtime], 100\n"
+        "addi %[mtimecmp], %[mtime], 1000\n"
         "li a0, 0x2004000\n"
         "sd %[mtimecmp], 0(a0)\n"
+
+        "csrw mip, 0\n"
         : [mtime] "=r" (mtime), [mtimecmp] "=r" (mtimecmp)
         :
         : "a0", "a1" // clobber list
