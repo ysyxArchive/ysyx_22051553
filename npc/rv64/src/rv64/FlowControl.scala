@@ -92,7 +92,8 @@ class FlowControl extends Module{
     val SFBundle = MuxCase(FlowControl.default,
         Seq(
             (io.fcde.load_use === 1.B) -> FlowControl.LoadUse_SFBundle,
-            (io.fctr.pop_NOP === 1.B || io.fctr.trap_state.orR)
+            (io.fctr.pop_NOP === 1.B || io.fctr.trap_state === s_WAIT || io.fctr.trap_state === s_MEPC
+             || io.fctr.trap_state === s_MCAUSE || io.fctr.trap_state === s_MRET_WAIT || io.fctr.trap_state === s_CLRMIP)
                 -> FlowControl.TrapWait_SFBundle,
             (io.fctr.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
             (io.fcex.jump_flag === 1.B) -> FlowControl.BRANCH_SFBundle,
