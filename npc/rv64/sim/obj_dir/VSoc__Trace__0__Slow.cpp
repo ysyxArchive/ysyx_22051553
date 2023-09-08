@@ -970,7 +970,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                 | (IData)(vlSelf->Soc__DOT__core__DOT___trap_io_fctr_jump_flag)))));
     bufp->fullQData(oldp+153,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc),64);
     bufp->fullBit(oldp+155,(((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
-                             & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_10_0) 
+                             & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_18_0) 
                                 | ((IData)(vlSelf->Soc__DOT__core__DOT___trap_io_fctr_jump_flag) 
                                    | ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
                                       | (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag)))))));

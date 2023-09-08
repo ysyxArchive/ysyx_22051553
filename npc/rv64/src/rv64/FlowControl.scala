@@ -33,7 +33,11 @@ object FlowControl{
     
     val TrapWait_SFBundle = 
         VecInit(StallY, StallN, StallN, StallN, StallN,     
-            FlushY, FlushY, FlushN, FlushN, FlushN)      //fetch中FlushY为了最后中断跳转
+            FlushN, FlushY, FlushN, FlushN, FlushN)     
+
+    val TrapJump_SFBundle = 
+        VecInit(StallN, StallN, StallN, StallN, StallN,     
+            FlushY, FlushY, FlushN, FlushN, FlushN)   
   
 
 }
@@ -93,6 +97,7 @@ class FlowControl extends Module{
     val SFBundle = MuxCase(FlowControl.default,
         Seq(
             (io.fcde.load_use === 1.B) -> FlowControl.LoadUse_SFBundle,
+            (io.fctr.trap_state === s_MSTATUS || io.fctr.trap_state  === s_MRET) -> FlowControl.TrapJump_SFBundle,
             (io.fctr.pop_NOP === 1.B || io.fctr.trap_state === s_WAIT || io.fctr.trap_state === s_MEPC
              || io.fctr.trap_state === s_MCAUSE || io.fctr.trap_state === s_MRET_WAIT || io.fctr.trap_state === s_CLRMIP)
                 -> FlowControl.TrapWait_SFBundle,
