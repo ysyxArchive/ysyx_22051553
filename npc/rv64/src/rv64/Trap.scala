@@ -10,7 +10,7 @@ object TrIO {
 
 class FcTrIO extends Bundle{
     val pop_NOP = Output(Bool())   //在decode中为ecall指令时，decode向后pop出NOP无效指令，直到后级流水线都是NOP无效指令
-    val trap_state = Output(UInt(2.W))  //由于trap_state是时序逻辑，会延迟一个周期变化，所以需要trap_state和组合逻辑共同管理
+    val trap_state = Output(UInt(3.W))  //由于trap_state是时序逻辑，会延迟一个周期变化，所以需要trap_state和组合逻辑POP共同管理
 
     val jump_flag = Output(Bool())
     val jump_pc = Output(UInt(PC_LEN.W))
