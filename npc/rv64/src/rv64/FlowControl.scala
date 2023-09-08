@@ -37,7 +37,7 @@ object FlowControl{
 
     val TrapJump_SFBundle = 
         VecInit(StallN, StallN, StallN, StallN, StallN,     
-            FlushY, FlushY, FlushN, FlushN, FlushN)   
+            FlushY, FlushY, FlushN, FlushN, FlushN)    //需要清除decode中的指令,例如jal
   
 
 }

@@ -503,7 +503,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                        == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst) 
                                       | (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT___T_7))))));
         bufp->chgCData(oldp+147,(vlSelf->Soc__DOT__core__DOT__trap__DOT__state),3);
-        bufp->chgBit(oldp+148,(vlSelf->Soc__DOT__core__DOT___trap_io_fctr_jump_flag));
+        bufp->chgBit(oldp+148,(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3));
         bufp->chgQData(oldp+149,(((4U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state))
                                    ? vlSelf->Soc__DOT__core__DOT__csrs__DOT__MTVEC
                                    : ((7U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state))
@@ -511,13 +511,14 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                        : 0ULL))),64);
         bufp->chgBit(oldp+151,(((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
                                 | ((IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag) 
-                                   | (IData)(vlSelf->Soc__DOT__core__DOT___trap_io_fctr_jump_flag)))));
+                                   | (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3)))));
         bufp->chgQData(oldp+152,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc),64);
         bufp->chgBit(oldp+154,(((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
-                                & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_18_0) 
-                                   | ((IData)(vlSelf->Soc__DOT__core__DOT___trap_io_fctr_jump_flag) 
-                                      | ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
-                                         | (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag)))))));
+                                & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
+                                   | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_21_0)) 
+                                      & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
+                                         | ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
+                                            | (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag))))))));
         bufp->chgBit(oldp+155,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall));
         bufp->chgBit(oldp+156,(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush));
         bufp->chgBit(oldp+157,(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started));

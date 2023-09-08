@@ -110,7 +110,7 @@ uint64_t memory::mem_loader(const char* filename){
     file.read(reinterpret_cast<char *>(&elf_header), sizeof(Elf64_Ehdr));
 
     assert(*(uint32_t*)(elf_header.e_ident) == 0x464c457f);  //只读4个字节的方式，小端存储，结构体从[0]到[3]地址递增
-
+    
     Elf64_Phdr elf_ph[elf_header.e_phnum];
 
     for(int i = 0; i < elf_header.e_phnum; i ++){
@@ -119,10 +119,13 @@ uint64_t memory::mem_loader(const char* filename){
 
         if(elf_ph[i].p_type == PT_LOAD && (elf_ph[i].p_memsz != 0)) {   //例如bit（cputest中）的某个Segment虽然是LOAD但是长度为0
             file.seekg(elf_ph[i].p_offset, std::ios::beg);
+            
             file.read( (char *)(pmem.mem + elf_ph[i].p_vaddr - CONFIG_MBASE), (elf_ph[i].p_filesz));
+            
             memset((void *)(pmem.mem + elf_ph[i].p_vaddr + elf_ph[i].p_filesz - CONFIG_MBASE), 0, elf_ph[i].p_memsz - elf_ph[i].p_filesz);
             size = elf_ph[i].p_vaddr + elf_ph[i].p_memsz - CONFIG_MBASE; //最后一个Segment结束的地方，因为Segment之间会有对齐，占用空间
         }
+        
     }
     printf("size is %ld\n", size);
 
