@@ -85,7 +85,6 @@ size_t screeninfo_write(const void *buf, size_t offset, size_t len) { //不使�
 
   screen_w = atoi(sw);
   screen_h = atoi(sh);
-  printf("w is %d, h is %d\n", screen_w, screen_h);
 
 
   return 0;
@@ -97,7 +96,7 @@ size_t fb_write(const void *buf, size_t offset, size_t len) {
   int sys_w = ev_gpuconf.width;
 
 
-  io_write(AM_GPU_FBDRAW, offset%sys_w, offset/sys_w, (void *)buf, screen_w, screen_h, false);
+  io_write(AM_GPU_FBDRAW, offset%sys_w, offset/sys_w, (void *)buf, 128, 128, false);
 
   return 0;
 }
