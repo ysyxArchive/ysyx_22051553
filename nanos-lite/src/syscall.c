@@ -4,7 +4,7 @@
 #include <sys/time.h>
 
 static void sys_yield(Context *c){
-  yield();
+  printf("yield is a syscall\n");
   c->GPRx = 0;
 }
 
@@ -102,7 +102,6 @@ void do_syscall(Context *c) {
 
   c->mepc += 4;         //对于ecall触发的异常，由软件实现mepc+4
   switch (a[0]) {
-    case 0xffffffffffffffff: printf("yield is a syscall\n");break;
     case SYS_gettimeofday: sys_gettimeofday(c); break;
     case SYS_brk: sys_brk(c); break;
     case SYS_yield: sys_yield(c); break;

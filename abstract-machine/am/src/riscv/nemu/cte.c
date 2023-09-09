@@ -51,7 +51,7 @@ Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
 
 void yield() {
   // asm volatile("li a7, -1; ecall");
-  asm volatile("li a7, -1");
+  asm volatile("li a7, 1");   //yield系统调用号设置为1
   asm volatile("ecall");
 }
 
