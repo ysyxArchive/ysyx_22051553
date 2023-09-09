@@ -103,7 +103,7 @@ int NDL_Init(uint32_t flags) {
     evtdev = open("/dev/events", 0);
     printf("yes!\n");
   }
-
+  printf("no!\n");
 
   // fbdev = 5;
   fbdev = open("/dev/fb", 0);
