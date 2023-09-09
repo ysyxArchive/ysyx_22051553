@@ -9,6 +9,6 @@ void call_main(uintptr_t *args) {
   char *envp[] =  {"NWM_APP" };
   char **argv =  empty;
   environ = envp;
-  exit(main(0, argv, envp));
+  exit(main(0, empty, empty));
   assert(0);
 }
