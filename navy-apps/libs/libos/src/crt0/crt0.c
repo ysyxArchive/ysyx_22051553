@@ -6,7 +6,7 @@ int main(int argc, char *argv[], char *envp[]);
 extern char **environ;
 void call_main(uintptr_t *args){
   char *argv[] =  {NULL };
-  char *envp[] =  {NULL };
+  char *envp[] =  {"NWM_APP",  };
   environ = envp;
   exit(main(0, argv, envp));
   assert(0);
