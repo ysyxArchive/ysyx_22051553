@@ -10,21 +10,7 @@ Context* __am_irq_handle(Context *c) {  //根据系统调用号，得到事件�
   if (user_handler) {
     Event ev = {0};
     switch (c->mcause) {
-      case 0xffffffffffffffff: ev.event = EVENT_YIELD; break;
-      case SYS_gettimeofday:
-      case SYS_open:
-      case SYS_read:
-      case SYS_close:
-      case SYS_lseek:
-      case SYS_brk:
-      case SYS_write:
-      case SYS_exit:
-      case SYS_yield: ev.event = EVENT_SYSCALL; break;
-      case 11 : if(c->GPR1 == 0xffffffffffffffff) 
-                  ev.event = EVENT_YIELD;
-                else
-                  ev.event = EVENT_SYSCALL; 
-                
+      case 11 : ev.event = EVENT_SYSCALL; 
                 break;
       default: ev.event = EVENT_ERROR; break;
     }

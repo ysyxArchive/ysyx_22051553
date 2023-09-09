@@ -100,8 +100,9 @@ void do_syscall(Context *c) {
   syscall_name[a[0]], c->GPR2,  c->GPR3, c->GPR4, c->GPR1);
   #endif
 
+  c->mepc += 4;         //对于ecall触发的异常，由软件实现mepc+4
   switch (a[0]) {
-    case 0xffffffffffffffff: printf("yield!\n"); printf("yield is a syscall\n");break;
+    case 0xffffffffffffffff: printf("yield is a syscall\n");break;
     case SYS_gettimeofday: sys_gettimeofday(c); break;
     case SYS_brk: sys_brk(c); break;
     case SYS_yield: sys_yield(c); break;

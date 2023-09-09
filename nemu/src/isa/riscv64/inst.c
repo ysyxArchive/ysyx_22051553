@@ -210,7 +210,7 @@ static int decode_exec(Decode *s) {
 
 
   INSTPAT("0000000 00001 00000 000 00000 11100 11", "ebreak" , N, NEMUTRAP(s->pc, R(10))); 
-  INSTPAT("0000000 00000 00000 000 00000 11100 11", "ecall" , N, s->dnpc = isa_raise_intr(11, s->pc + 4)); 
+  INSTPAT("0000000 00000 00000 000 00000 11100 11", "ecall" , N, s->dnpc = isa_raise_intr(11, s->pc)); 
   INSTPAT("0011000 00010 00000 000 00000 1110011", "mret" , N, s->dnpc = SR(MEPC)); 
   
   INSTPAT("????????????? ????? 010 ????? 1110011", "csrrs" , C, R(rd) = SR(csrn); SR(csrn) = SR(csrn) & src1); 
