@@ -98,11 +98,11 @@ int NDL_Init(uint32_t flags) {
   // //replace为0时，设置该变量，若存在该变量，则不修改值
   // //replace为1时，若存在该变量，则修改值，若不存在该变量，则无效
 
-  if (getenv("NWM_APP")) {
+  // if (getenv("NWM_APP")) {
     // evtdev = 3;
     evtdev = open("/dev/events", 0);
     printf("yes!\n");
-  }
+  // }
   printf("no!\n");
 
   // fbdev = 5;
