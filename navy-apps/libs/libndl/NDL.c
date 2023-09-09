@@ -33,7 +33,7 @@ int NDL_PollEvent(char *buf, int len) {   //轮询？
   return read(fd, buf, len);
 }
 
-void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
+void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸        
 
   if (getenv("NWM_APP")) {
     // int fbctl = 4;               // 从ioe读取系统屏幕尺寸信息
