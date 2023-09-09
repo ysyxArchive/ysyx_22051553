@@ -96,7 +96,7 @@ size_t fb_write(const void *buf, size_t offset, size_t len) {
   int sys_w = ev_gpuconf.width;
 
 
-  io_write(AM_GPU_FBDRAW, offset%sys_w, offset/sys_w, (void *)buf, screen_w, screen_h, false);
+  io_write(AM_GPU_FBDRAW, offset%sys_w, offset/sys_w, (void *)buf, 400, 300, false);
 
   return 0;
 }

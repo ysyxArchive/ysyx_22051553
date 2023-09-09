@@ -10,7 +10,7 @@ int main() {
   int w, h;
   void *bmp = BMP_Load("/share/pictures/projectn.bmp", &w, &h);
   assert(bmp);
-  // NDL_OpenCanvas(&w, &h);   //128, 128
+  NDL_OpenCanvas(&w, &h);   //128, 128
   NDL_DrawRect(bmp, 0, 0, w, h);
   free(bmp);
   NDL_Quit();
