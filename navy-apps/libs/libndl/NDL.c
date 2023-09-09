@@ -94,9 +94,9 @@ int NDL_QueryAudio() {
 
 int NDL_Init(uint32_t flags) {
 
-  setenv("NWM_APP", "1", 0);
-  //replace为0时，设置该变量，若存在该变量，则不修改值
-  //replace为1时，若存在该变量，则修改值，若不存在该变量，则无效
+  // setenv("NWM_APP", "1", 0);
+  // //replace为0时，设置该变量，若存在该变量，则不修改值
+  // //replace为1时，若存在该变量，则修改值，若不存在该变量，则无效
 
   if (getenv("NWM_APP")) {
     // evtdev = 3;
