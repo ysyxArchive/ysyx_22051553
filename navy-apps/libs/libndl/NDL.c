@@ -35,7 +35,7 @@ int NDL_PollEvent(char *buf, int len) {   //轮询？
 
 void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
 
-  if (getenv("NWM_APP")) {
+  // if (getenv("NWM_APP")) {
     // int fbctl = 4;               // 从ioe读取系统屏幕尺寸信息
     int fbctl = open("/proc/dispinfo", 0);
 
@@ -67,7 +67,7 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
     }
   
     close(fbctl);
-  }
+  // }
 }
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) { //NDL_DrawRect(x, 0, 0, w, h);即在中间显示
@@ -98,11 +98,11 @@ int NDL_Init(uint32_t flags) {
   // //replace为0时，设置该变量，若存在该变量，则不修改值
   // //replace为1时，若存在该变量，则修改值，若不存在该变量，则无效
 
-  if (getenv("NWM_APP")) {
+  // if (getenv("NWM_APP")) {
     // evtdev = 3;
     evtdev = open("/dev/events", 0);
     printf("yes!\n");
-  }
+  // }
   printf("no!\n");
 
   // fbdev = 5;
