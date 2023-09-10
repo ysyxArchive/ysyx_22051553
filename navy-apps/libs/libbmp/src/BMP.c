@@ -31,7 +31,7 @@ void* BMP_Load(const char *filename, int *width, int *height) {
   if (hdr.compression != 0) return NULL;
   int w = hdr.width;
   int h = hdr.height;
-  printf("w is %d, h is %d, in BMP_Load\n", w, h);
+  // printf("w is %d, h is %d, in BMP_Load\n", w, h);
 
   uint32_t *pixels = malloc(w * h * sizeof(uint32_t));
 
@@ -46,7 +46,7 @@ void* BMP_Load(const char *filename, int *width, int *height) {
       uint8_t r = *(((uint8_t*)&pixels[w * i]) + 3 * j + 2);
       pixels[w * i + j] = (r << 16) | (g << 8) | b;
 
-      printf("read bmp %d is 0x%x\n",w*i+j,  pixels[w * i + j] );
+      // printf("read bmp %d is 0x%x\n",w*i+j,  pixels[w * i + j] );
     }
   }
 
