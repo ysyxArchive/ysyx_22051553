@@ -12,7 +12,7 @@
 //   gg - first page
 
 // number of slides
-const int N = 10;
+const int N = 4;
 // slides path pattern (starts from 0)
 const char *path = "/share/slides/slides-%d.bmp";
 
@@ -20,14 +20,18 @@ static SDL_Surface *slide = NULL;
 static int cur = 0;
 
 void render() {
+  
   if (slide) {
+    printf("slide is %s\n", "yes");
     SDL_FreeSurface(slide);
   }
   char fname[256];
   sprintf(fname, path, cur);
+  printf("file is %s\n", fname);
   slide = SDL_LoadBMP(fname);
   assert(slide);
-  SDL_UpdateRect(slide, 0, 0, 0, 0);
+  printf("slide[0] is 0x%x\n", *((uint32_t*)(slide->pixels) + 114000) );
+  SDL_UpdateRect(slide, 0, 0, slide->w, slide->h);  //修改 原来是SDL_UpdateRect(slide, 0, 0, 0, 0);
 }
 
 void prev(int rep) {

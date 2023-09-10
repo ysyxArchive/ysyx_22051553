@@ -72,10 +72,18 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) { //NDL_DrawRect(x, 0, 0, w, h);即在中间显示
 
-  lseek(fbdev, (disp_w-w)/2 + (disp_h-h)/2*disp_w , SEEK_SET);  //移动画布从左上角到中间
-  write(fbdev, pixels, w*h);
-  write(fbsync, 0, 0);
+  // lseek(fbdev, (disp_w-w)/2 + (disp_h-h)/2*disp_w , SEEK_SET);  //移动画布从左上角到中间
+  // write(fbdev, pixels, w*h);
+  // write(fbsync, 0, 0);
+  printf("w is %d, h is %d\n", w, h);
+  printf("fbdev is %d\n", fbdev);
+  lseek(fbdev,  ((disp_w-w)/2 + (disp_h-h)/2*disp_w)*(sizeof(uint32_t)) , SEEK_SET);  //移动画布从左上角到中间
 
+  for(int i = 0; i < h; i++){
+    write(fbdev, pixels + i*w, w*sizeof(uint32_t));  
+    lseek(fbdev, (disp_w - w)*sizeof(uint32_t), SEEK_CUR);
+  }
+  write(fbsync, 0, 0);
 }
 
 void NDL_OpenAudio(int freq, int channels, int samples) {
@@ -102,6 +110,7 @@ int NDL_Init(uint32_t flags) {
     // evtdev = 3;
     evtdev = open("/dev/events", 0);
   }
+  
 
   // fbdev = 5;
   fbdev = open("/dev/fb", 0);

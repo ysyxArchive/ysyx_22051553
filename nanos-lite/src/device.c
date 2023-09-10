@@ -90,13 +90,13 @@ size_t screeninfo_write(const void *buf, size_t offset, size_t len) { //不使�
   return 0;
 }
 
-size_t fb_write(const void *buf, size_t offset, size_t len) {
+size_t fb_write(const void *buf, size_t offset, size_t len) { //offset即文件偏移量
 
   AM_GPU_CONFIG_T ev_gpuconf = io_read(AM_GPU_CONFIG);
   int sys_w = ev_gpuconf.width;
 
 
-  io_write(AM_GPU_FBDRAW, offset%sys_w, offset/sys_w, (void *)buf, screen_w, screen_h, false);
+  io_write(AM_GPU_FBDRAW, offset%sys_w, offset/sys_w, (void *)buf, screen_w, 1, false);
 
   return 0;
 }

@@ -118,6 +118,11 @@ static void open_display() {
 #else
   SDL_CreateWindowAndRenderer(disp_w * 2, disp_h * 2, 0, &window, &renderer);
 #endif
+  int w, h;
+  SDL_GetWindowSize(window, &w, &h);
+  printf("w is %d, h is %d\n", w, h);
+
+
   SDL_SetWindowTitle(window, "Simulated Nanos Application");
   SDL_CreateThread(event_thread, "event thread", nullptr);
   SDL_AddTimer(1000 / FPS, timer_handler, NULL);
@@ -216,7 +221,11 @@ ssize_t read(int fd, void *buf, size_t count) {
 
       const char *name = NULL;
       _KEYS(COND);
-      if (name) return snprintf((char *)buf, count, "k%c %s\n", keydown ? 'd' : 'u', name);
+      if (name) {
+        int n = snprintf((char *)buf, count, "k%c %s", keydown ? 'd' : 'u', name); 
+        printf("%s", buf);
+        return n;
+      }
     }
 
     //---------自加
@@ -240,9 +249,6 @@ ssize_t read(int fd, void *buf, size_t count) {
 
 ssize_t write(int fd, const void *buf, size_t count) {
 
-
-
-
   if (fd == sbctl_fd) {
     // open audio
     const int *args = (const int *)buf;
@@ -262,17 +268,18 @@ ssize_t write(int fd, const void *buf, size_t count) {
   else if(fd == dispinfo_fd){
     mmap_flag = 1;
   }
-  else if(fd == fb_memfd){
-    memcpy(fb, buf, count);
-    
-    printf("test\n");
+  // else if(fd == fb_memfd){
+  //   printf("buf is 0x%x\n", *(uint32_t*)buf);
+  //   printf("fb is %p\n", fb);
+  //   printf("count is %d\n", count);
+  //   // memcpy(fb, buf, count);    //fb是一个固定的位置
+  //   glibc_write(fd, buf, count);
 
-    printf("buf is %x\nn is %d\n", fb[0], 1);
-    printf("over\n");
-    
-    return 0;
-  }
+  //   printf("fb[1] is 0x%08x\n", fb[1]);
+  //   return 0;
+  // }
   else if(fd == fbsync_memfd){
+    // printf("fb[0] is 0x%x\n", fb[0]);
     update_screen();
     return 0;
   }
@@ -317,10 +324,10 @@ struct Init {
     setenv("PATH", newpath, 1); // overwrite the current PATH
 
     SDL_Init(0);
-    // setenv("NWM_APP", "1", 0);
+
 
     if (!getenv("NWM_APP")) {
-      open_display();
+      open_display();      //需要打开
       open_event();
     }
     open_audio();
