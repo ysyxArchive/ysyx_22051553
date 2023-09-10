@@ -37,6 +37,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
       pixels[m+ n*(ctl->w)]);
     }
 
+
   if (ctl->sync) {
     outl(SYNC_ADDR, 1);
   }
