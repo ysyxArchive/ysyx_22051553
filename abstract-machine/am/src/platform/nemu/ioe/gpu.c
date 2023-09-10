@@ -31,7 +31,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
 
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   int screen_w = inl(VGACTL_ADDR) >> 16;
-
+  putch('a');
   for(int n = 0; n < ctl->h; n ++)
     for(int m = 0; m < ctl->w; m ++){   //行优先
       outl((uintptr_t)(fb + ctl->x + (ctl->y)*(screen_w) + m + n*screen_w),
