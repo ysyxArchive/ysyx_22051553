@@ -95,7 +95,7 @@ size_t fs_write(int fd, const void *buf, size_t len){
 
   if(file_table[fd].write != NULL){
     int n = file_table[fd].write(buf, file_table[fd].open_offset, len);
-    file_table[fd].open_offset += len;
+    file_table[fd].open_offset += len;   //同样需要修改偏移量
     return n;
   }
   else 

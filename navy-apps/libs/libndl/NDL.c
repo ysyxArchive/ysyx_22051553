@@ -79,12 +79,8 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) { //NDL_DrawRect
   printf("fbdev is %d\n", fbdev);
   lseek(fbdev,  ((disp_w-w)/2 + (disp_h-h)/2*disp_w)*(sizeof(uint32_t)) , SEEK_SET);  //移动画布从左上角到中间
 
-  // uint32_t pix = 0x000000ff;
-  // for(int i = 0; i < 1; i ++){
-  //   write(fbdev, &pix, 4);  
-  // }
 
-  for(int i = 0; i < h; i++){
+  for(int i = 0; i < h; i++){        //逐行写入，是因为对应glibc_write的普通文件操作，write(fbdev, pixels, w*h);并不能跳跃着写，写一个矩形
     write(fbdev, pixels + i*w, w*sizeof(uint32_t));  
     lseek(fbdev, (disp_w - w)*sizeof(uint32_t), SEEK_CUR);
   }

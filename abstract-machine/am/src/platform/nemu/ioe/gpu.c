@@ -34,7 +34,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   for(int n = 0; n < ctl->h; n ++)
     for(int m = 0; m < ctl->w; m ++){   //行优先
       outl((uintptr_t)(fb + ctl->x + (ctl->y)*(screen_w) + m + n*screen_w),
-      pixels[m+ n*(ctl->w)]);
+      pixels[m+ n*(ctl->w)]);    //其中ctl->x等的单位都是像素点
     }
 
 

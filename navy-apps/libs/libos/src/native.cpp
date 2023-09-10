@@ -138,7 +138,13 @@ static void open_display() {
   assert(ret == 0);
   fb = (uint32_t *)mmap(NULL, FB_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fb_memfd, 0);
   assert(fb != (void *)-1);
-  memset(fb, 0, FB_SIZE);
+  // memset(fb, 0, FB_SIZE);  //填充黑色
+  for(int i = 0; i < FB_SIZE / 4; i++){  //填充白色
+    // memset(fb + i*4, 0xff, 4);
+    // memset(fb + i*4 + 3, 0x00, 1); //注意类型
+    memset((uint8_t*)fb + i*4, 0xff, 4);
+    memset((uint8_t*)fb + i*4 + 3, 0x00, 1); //注意类型
+  }
   lseek(fb_memfd, 0, SEEK_SET);
 }
 
