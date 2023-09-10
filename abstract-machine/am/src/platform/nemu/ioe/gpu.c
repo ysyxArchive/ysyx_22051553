@@ -35,7 +35,6 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
     for(int m = 0; m < ctl->w; m ++){   //行优先
       outl((uintptr_t)(fb + ctl->x + (ctl->y)*(screen_w) + m + n*screen_w),
       pixels[m+ n*(ctl->w)]);
-      putch('a');
     }
 
   if (ctl->sync) {
