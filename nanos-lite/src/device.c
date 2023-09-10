@@ -95,7 +95,7 @@ size_t fb_write(const void *buf, size_t offset, size_t len) { //offset即文件�
   AM_GPU_CONFIG_T ev_gpuconf = io_read(AM_GPU_CONFIG);
   int sys_w = ev_gpuconf.width;
 
-  
+  printf("x is %d, y is %d, w is %d, h is %d\n", offset%sys_w, offset/sys_w, screen_w, 1);
   io_write(AM_GPU_FBDRAW, offset%sys_w, offset/sys_w, (void *)buf, screen_w, 1, false);
 
   return 0;
