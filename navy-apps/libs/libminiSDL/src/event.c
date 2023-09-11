@@ -18,7 +18,15 @@ int SDL_PollEvent(SDL_Event *ev) {
   int n = NDL_PollEvent(buf, 20);
 
   if(buf[0] == 'k'){    //键盘事件
-    printf("buf is %s\n", buf);
+
+    int n = 0;
+    while(buf[n] != '\n'){
+      n ++;
+    }
+    buf[n] = '\0';   //去掉事件中的\n
+
+    
+
     if(buf[1] == 'u'){
       ev->type = SDL_KEYUP;
       for(int i = 0; i < sizeof(keyname) / sizeof((keyname)[0]); i ++){
@@ -33,13 +41,8 @@ int SDL_PollEvent(SDL_Event *ev) {
     else if(buf[1] == 'd'){
       
       ev->type = SDL_KEYDOWN;
-      printf("size of arr is %d\n", sizeof(keyname) / sizeof((keyname)[0]));
-      
       
       for(int i = 0; i < sizeof(keyname) / sizeof((keyname)[0]); i ++){
-        if(i == 74){
-          printf("key73 is %s, buf is %s\n", keyname[74], &buf[3]);
-        }
         if(strcmp(keyname[i], &buf[3]) == 0){//字符数组，要加地址
           printf("i is %d\n", i);
           ev->key.keysym.sym = i;
