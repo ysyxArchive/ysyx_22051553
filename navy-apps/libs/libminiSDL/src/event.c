@@ -32,9 +32,10 @@ int SDL_PollEvent(SDL_Event *ev) {
       
       ev->type = SDL_KEYDOWN;
       printf("size of arr is %d\n", sizeof(keyname) / sizeof((keyname)[0]));
-      printf("buf[3] is %s\n", &buf[3]);   
+      
+      printf("key73 is %s, buf is %s\n", keyname[73], &buf[3]);
       for(int i = 0; i < sizeof(keyname) / sizeof((keyname)[0]); i ++){
-        
+
         if(strcmp(keyname[i], &buf[3]) == 0){//字符数组，要加地址
           printf("i is %d\n", i);
           ev->key.keysym.sym = i;
