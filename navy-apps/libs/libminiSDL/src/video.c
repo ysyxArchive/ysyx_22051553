@@ -14,7 +14,6 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
-  printf("slide[0] is 0x%x in UpdateRect\n", *((uint32_t*)(s->pixels) + 114000) );
   NDL_DrawRect((uint32_t *)(s->pixels), x, y, w, h);
   return ;
   assert(0);

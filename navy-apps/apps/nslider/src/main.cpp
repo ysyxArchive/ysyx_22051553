@@ -30,7 +30,6 @@ void render() {
   printf("file is %s\n", fname);
   slide = SDL_LoadBMP(fname);
   assert(slide);
-  printf("slide[0] is 0x%x\n", *((uint32_t*)(slide->pixels) + 114000) );
   SDL_UpdateRect(slide, 0, 0, slide->w, slide->h);  //修改 原来是SDL_UpdateRect(slide, 0, 0, 0, 0);
 }
 
