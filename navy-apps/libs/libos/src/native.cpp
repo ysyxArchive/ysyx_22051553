@@ -177,6 +177,7 @@ FILE *fopen(const char *path, const char *mode) {
     glibc_fopen = (FILE*(*)(const char*, const char*))dlsym(RTLD_NEXT, "fopen");
     assert(glibc_fopen != NULL);
   }
+  printf("path is %s\n", redirect_path(newpath, path));
   return glibc_fopen(redirect_path(newpath, path), mode);
 }
 
