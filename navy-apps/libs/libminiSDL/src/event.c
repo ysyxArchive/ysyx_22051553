@@ -36,6 +36,7 @@ int SDL_PollEvent(SDL_Event *ev) {
       for(int i = 0; i < sizeof(keyname) / sizeof((keyname)[0]); i ++){
         
         if(strcmp(keyname[i], &buf[3]) == 0){//字符数组，要加地址
+          printf("i is %d\n", i);
           ev->key.keysym.sym = i;
           break;
         }
