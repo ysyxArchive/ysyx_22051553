@@ -41,6 +41,7 @@ void prev(int rep) {
 }
 
 void next(int rep) {
+  printf("next\n");
   if (rep == 0) rep = 1;
   cur += rep;
   if (cur >= N) cur = N - 1;
