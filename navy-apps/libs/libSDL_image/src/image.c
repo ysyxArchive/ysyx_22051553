@@ -26,6 +26,7 @@ SDL_Surface* IMG_Load(const char *filename) {
 
   SDL_Surface* surface = STBIMG_LoadFromMemory(buf, size);
 
+  free(buf);
   fclose(file);
   return surface;
 }
