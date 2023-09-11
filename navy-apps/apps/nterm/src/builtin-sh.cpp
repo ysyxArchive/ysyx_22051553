@@ -29,6 +29,7 @@ void builtin_sh_run() {
   sh_banner();
   sh_prompt();
 
+  
   while (1) {
     SDL_Event ev;
     if (SDL_PollEvent(&ev)) {
@@ -39,6 +40,7 @@ void builtin_sh_run() {
           sh_prompt();
         }
       }
+      
     }
     refresh_terminal();
   }

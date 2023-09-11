@@ -282,6 +282,7 @@ ssize_t write(int fd, const void *buf, size_t count) {
   // }
   else if(fd == fbsync_memfd){
     // printf("fb[0] is 0x%x\n", fb[0]);
+    
     update_screen();
     return 0;
   }

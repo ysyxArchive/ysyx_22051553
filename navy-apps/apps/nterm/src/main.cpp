@@ -43,6 +43,8 @@ void refresh_terminal() {
         draw_ch(i * font->w, j * font->h, term->getch(i, j), term->foreground(i, j), term->background(i, j));
         needsync = 1;
       }
+
+      
   term->clear();
 
   static uint32_t last = 0;
@@ -58,6 +60,7 @@ void refresh_terminal() {
       last = now;
     }
   }
+  
 }
 
 #define ENTRY(KEYNAME, NOSHIFT, SHIFT) { SDLK_##KEYNAME, #KEYNAME, NOSHIFT, SHIFT }
