@@ -12,9 +12,15 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
   SDL_Rect valid_srcrect = srcrect ? *srcrect : (SDL_Rect){0, 0, src->w, src->h};
   SDL_Rect valid_dstrect = dstrect ? *dstrect : (SDL_Rect){0, 0, dst->w, dst->h};
 
-  //实际复制的宽和高
-  int copy_width = (valid_srcrect.w < valid_dstrect.w) ? valid_srcrect.w : valid_dstrect.w;
-  int copy_height = (valid_srcrect.h < valid_dstrect.h) ? valid_srcrect.h : valid_dstrect.h;
+  if(valid_dstrect.w == 0 && valid_dstrect.h == 0){
+    valid_dstrect.w = valid_srcrect.w;
+    valid_dstrect.h = valid_srcrect.h;
+  }
+
+
+  //实际复制的宽和高   --有待修改
+  int copy_width = valid_dstrect.w; 
+  int copy_height = valid_dstrect.h;
 
   //复制位块
   for (int i = 0; i < copy_height; ++i) {
@@ -30,15 +36,16 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其中，dstrect的x,y是基于Surface左上角的//Surface可以看成画布
   assert(dst);
+
   if(dstrect == NULL){
-    for(int i = 0; i < (dst->w * dst->h); i ++){
-      dst->pixels[i] = color;
+    for(int i = 0; i < (dst->w * dst->h); i ++){      //i以像素点为单位，但是piexl是uint_8*类型
+      *(((uint32_t *)(dst->pixels)) + i) = color;
     }
   }
   else{
     for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
       for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
-        dst->pixels[dst->w*i+j] = color;
+        *(((uint32_t *)(dst->pixels)) + dst->w * i + j) = color;
       }
     }
   }
@@ -48,7 +55,12 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其�
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
+  if(w == 0 && h == 0){
+    NDL_DrawRect((uint32_t *)(s->pixels), x, y, s->w, s->h);
+  }
+  
   NDL_DrawRect((uint32_t *)(s->pixels), x, y, w, h);
+
   return ;
   assert(0);
 }

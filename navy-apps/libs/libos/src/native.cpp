@@ -118,10 +118,6 @@ static void open_display() {
 #else
   SDL_CreateWindowAndRenderer(disp_w * 2, disp_h * 2, 0, &window, &renderer);
 #endif
-  int w, h;
-  SDL_GetWindowSize(window, &w, &h);
-  printf("w is %d, h is %d\n", w, h);
-
 
   SDL_SetWindowTitle(window, "Simulated Nanos Application");
   SDL_CreateThread(event_thread, "event thread", nullptr);
@@ -229,7 +225,7 @@ ssize_t read(int fd, void *buf, size_t count) {
       _KEYS(COND);
       if (name) {
         int n = snprintf((char *)buf, count, "k%c %s\n", keydown ? 'd' : 'u', name); 
-        printf("%s", buf);
+        // printf("%s", buf);
         return n;
       }
     }
@@ -274,7 +270,7 @@ ssize_t write(int fd, const void *buf, size_t count) {
   else if(fd == dispinfo_fd){
     mmap_flag = 1;
   }
-  // else if(fd == fb_memfd){
+  // else if(fd == fb_memfd){   //其可以使用glibc_write,行为一致
   //   printf("buf is 0x%x\n", *(uint32_t*)buf);
   //   printf("fb is %p\n", fb);
   //   printf("count is %d\n", count);
@@ -321,7 +317,6 @@ struct Init {
     dispinfo_fd = dummy_fd;
 
     char *navyhome = getenv("NAVY_HOME");
-    printf("n is %s\n", navyhome);
     assert(navyhome);
     sprintf(fsimg_path, "%s/fsimg", navyhome);
 

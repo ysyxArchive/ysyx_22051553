@@ -33,15 +33,19 @@ int NDL_PollEvent(char *buf, int len) {   //轮询？
   return read(fd, buf, len);
 }
 
-void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸        
-
+void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸（以字节为单位）        
+  
   if (getenv("NWM_APP")) {
     // int fbctl = 4;               // 从ioe读取系统屏幕尺寸信息
     int fbctl = open("/proc/dispinfo", 0);
 
     if(*w == 0 || *h == 0){
-      screen_h = disp_h;
+      screen_h = disp_h;        //以像素点为单位
       screen_w = disp_w;
+
+
+      *h = disp_h;
+      *w = disp_w;
     }  
     else{
       screen_w = *w; 
@@ -72,14 +76,14 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) { //NDL_DrawRect(x, 0, 0, w, h);即在中间显示
 
-  // lseek(fbdev, (disp_w-w)/2 + (disp_h-h)/2*disp_w , SEEK_SET);  //移动画布从左上角到中间
+  
   // write(fbdev, pixels, w*h);
   // write(fbsync, 0, 0);
-  lseek(fbdev,  ((disp_w-w)/2 + (disp_h-h)/2*disp_w)*(sizeof(uint32_t)) , SEEK_SET);  //移动画布从左上角到中间
+  lseek(fbdev, (disp_w-w)/2 + (disp_h-h)/2*disp_w , SEEK_SET);  //移动画布从左上角到中间
 
 
   for(int i = 0; i < h; i++){        //逐行写入，是因为对应glibc_write的普通文件操作，write(fbdev, pixels, w*h);并不能跳跃着写，写一个矩形
-    write(fbdev, pixels + i*w, w*sizeof(uint32_t));  
+    write(fbdev, pixels + i*w, w*sizeof(uint32_t));    //以字节为单位
     lseek(fbdev, (disp_w - w)*sizeof(uint32_t), SEEK_CUR);
   }
   write(fbsync, 0, 0);
@@ -101,7 +105,7 @@ int NDL_QueryAudio() {
 
 int NDL_Init(uint32_t flags) {
 
-  // setenv("NWM_APP", "1", 0);
+  setenv("NWM_APP", "1", 0);
   // //replace为0时，设置该变量，若存在该变量，则不修改值
   // //replace为1时，若存在该变量，则修改值，若不存在该变量，则无效
 
@@ -137,6 +141,8 @@ int NDL_Init(uint32_t flags) {
     token = strtok(NULL, " :\n");
   }
   //---------------------
+
+  printf("in NDL_Init, disp_w is %d, disp_h is %d\n", disp_w, disp_h);
 
   return 0;
 }

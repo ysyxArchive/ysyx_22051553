@@ -28,7 +28,8 @@ void render() {
   sprintf(fname, path, cur);
   slide = SDL_LoadBMP(fname);
   assert(slide);
-  SDL_UpdateRect(slide, 0, 0, slide->w, slide->h);  //修改 原来是SDL_UpdateRect(slide, 0, 0, 0, 0);
+  // SDL_UpdateRect(slide, 0, 0, slide->w, slide->h);  //修改 原来是SDL_UpdateRect(slide, 0, 0, 0, 0);
+  SDL_UpdateRect(slide, 0, 0, 0, 0);
 }
 
 void prev(int rep) {
