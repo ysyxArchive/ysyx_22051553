@@ -16,10 +16,10 @@ int SDL_PushEvent(SDL_Event *ev) {
 int SDL_PollEvent(SDL_Event *ev) {
   char buf[20] = {};
   int n = NDL_PollEvent(buf, 20);
-  printf("buf is %s\n", buf);
+  
 
   if(buf[0] == 'k'){    //键盘事件
-
+    printf("buf is %s\n", buf);
     if(buf[1] == 'u'){
       ev->type = SDL_KEYUP;
       for(int i = 0; i < sizeof(keyname) / sizeof((keyname)[0]); i ++){
