@@ -7,9 +7,43 @@
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
+
+  //有效大小
+  SDL_Rect valid_srcrect = srcrect ? *srcrect : (SDL_Rect){0, 0, src->w, src->h};
+  SDL_Rect valid_dstrect = dstrect ? *dstrect : (SDL_Rect){0, 0, dst->w, dst->h};
+
+  //实际复制的宽和高
+  int copy_width = (valid_srcrect.w < valid_dstrect.w) ? valid_srcrect.w : valid_dstrect.w;
+  int copy_height = (valid_srcrect.h < valid_dstrect.h) ? valid_srcrect.h : valid_dstrect.h;
+
+  //复制位块
+  for (int i = 0; i < copy_height; ++i) {
+    for (int j = 0; j < copy_width; ++j) {
+      int src_pixel_pos = (valid_srcrect.y + i) * src->w + (valid_srcrect.x + j);
+      int dst_pixel_pos = (valid_dstrect.y + i) * dst->w + (valid_dstrect.x + j);
+
+      ((uint32_t*)dst->pixels)[dst_pixel_pos] = ((uint32_t*)src->pixels)[src_pixel_pos];
+    }
+  }
+  return ;
 }
 
-void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
+void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其中，dstrect的x,y是基于Surface左上角的//Surface可以看成画布
+  assert(dst);
+  if(dstrect == NULL){
+    for(int i = 0; i < (dst->w * dst->h); i ++){
+      dst->pixels[i] = color;
+    }
+  }
+  else{
+    for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
+      for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
+        dst->pixels[dst->w*i+j] = color;
+      }
+    }
+  }
+
+  return ;
   assert(0);
 }
 

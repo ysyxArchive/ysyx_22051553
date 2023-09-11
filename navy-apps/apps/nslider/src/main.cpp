@@ -22,12 +22,10 @@ static int cur = 0;
 void render() {
   
   if (slide) {
-    printf("slide is %s\n", "yes");
     SDL_FreeSurface(slide);
   }
   char fname[256];
   sprintf(fname, path, cur);
-  printf("file is %s\n", fname);
   slide = SDL_LoadBMP(fname);
   assert(slide);
   SDL_UpdateRect(slide, 0, 0, slide->w, slide->h);  //修改 原来是SDL_UpdateRect(slide, 0, 0, 0, 0);
@@ -41,7 +39,6 @@ void prev(int rep) {
 }
 
 void next(int rep) {
-  printf("next\n");
   if (rep == 0) rep = 1;
   cur += rep;
   if (cur >= N) cur = N - 1;
