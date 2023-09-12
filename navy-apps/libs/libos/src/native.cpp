@@ -46,8 +46,6 @@ static int sbctl_fd = -1;
 static uint32_t *fb = NULL;
 static char fsimg_path[512] = "";
 
-static int mmap_flag = 0;
-
 
 static inline void get_fsimg_path(char *newpath, const char *path) {
   sprintf(newpath, "%s%s", fsimg_path, path);
@@ -177,7 +175,6 @@ FILE *fopen(const char *path, const char *mode) {
     glibc_fopen = (FILE*(*)(const char*, const char*))dlsym(RTLD_NEXT, "fopen");
     assert(glibc_fopen != NULL);
   }
-  printf("path is %s\n", redirect_path(newpath, path));
   return glibc_fopen(redirect_path(newpath, path), mode);
 }
 
@@ -211,7 +208,7 @@ ssize_t read(int fd, void *buf, size_t count) {
     SDL_Event ev = {};
     SDL_LockMutex(key_queue_lock);
     if (key_f != key_r) {
-      ev = key_queue[key_f];
+      ev = key_queue[key_f];  //出队
       key_f = (key_f + 1) % KEY_QUEUE_LEN;
       has_key = 1;
     }
@@ -226,18 +223,16 @@ ssize_t read(int fd, void *buf, size_t count) {
       _KEYS(COND);
       if (name) {
         int n = snprintf((char *)buf, count, "k%c %s\n", keydown ? 'd' : 'u', name); 
-        // printf("%s", buf);
         return n;
       }
     }
 
-    //---------自加
-    if(mmap_flag == 1){
-      mmap_flag = 0;
-      return snprintf((char *)buf, count, "%s", "mmap ok\n") - 1; //返回不包含\n的长度
-    }
+    // //---------自加
+    // if(mmap_flag == 1){
+    //   mmap_flag = 0;
+    //   return snprintf((char *)buf, count, "%s", "mmap ok\n") - 1; //返回不包含\n的长度
+    // }
     
-
     return 0;
   } else if (fd == sbctl_fd) {
     // return the free space of sb_fifo
@@ -269,7 +264,7 @@ ssize_t write(int fd, const void *buf, size_t count) {
   }
   //--添加
   else if(fd == dispinfo_fd){
-    mmap_flag = 1;
+    return 0;
   }
   // else if(fd == fb_memfd){   //其可以使用glibc_write,行为一致
   //   printf("buf is 0x%x\n", *(uint32_t*)buf);
@@ -283,8 +278,11 @@ ssize_t write(int fd, const void *buf, size_t count) {
   // }
   else if(fd == fbsync_memfd){
     // printf("fb[0] is 0x%x\n", fb[0]);
-    
-    update_screen();
+    // update_screen();  压入事件而不是直接update，避免冲突
+    // printf("here in sync\n");
+    // SDL_Event event;
+    // event.type = SDL_USEREVENT;
+    // SDL_PushEvent(&event);
     return 0;
   }
 

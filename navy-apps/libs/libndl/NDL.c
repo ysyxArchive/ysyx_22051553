@@ -28,21 +28,19 @@ uint32_t NDL_GetTicks() {  //1Tick->1ms
 
 int NDL_PollEvent(char *buf, int len) {   //轮询？
 
-  int fd = open("/dev/events", 0, 0);
+  int fd = open("/dev/events", 0, 0);   //对于native或者nanos,读取键盘的逻辑都是轮询
 
   return read(fd, buf, len);
 }
 
 void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸（以字节为单位）        
   
-  if (getenv("NWM_APP")) {
     // int fbctl = 4;               // 从ioe读取系统屏幕尺寸信息
     int fbctl = open("/proc/dispinfo", 0);
 
     if(*w == 0 || *h == 0){
       screen_h = disp_h;        //以像素点为单位
       screen_w = disp_w;
-
 
       *h = disp_h;
       *w = disp_w;
@@ -53,25 +51,25 @@ void NDL_OpenCanvas(int *w, int *h) {  // w、h为画布尺寸（以字节为单
     }
     
 
-    // assert(screen_w <= disp_w && screen_h <= disp_h);
-    //先不管后面的过程
+  if (getenv("NWM_APP")) {   //NWM_APP才需要做mmap等操作
+    fbctl = open("/proc/dispinfo", 0);;
+    fbdev = open("/dev/fb", 0);;
+    screen_w = *w; screen_h = *h;
     char buf[64];
     int len = sprintf(buf, "%d %d", screen_w, screen_h);
-  
     // let NWM resize the window and create the frame buffer
-    write(fbctl, buf, len);         //在文件系统中用缓存记录画布大小
-  
+    write(fbctl, buf, len);
     while (1) {
       // 3 = evtdev
-      // int nread = read(3, buf, sizeof(buf) - 1);
-      int nread = read(evtdev, buf, sizeof(buf) - 1);
+      int nread = read(3, buf, sizeof(buf) - 1);
       if (nread <= 0) continue;
       buf[nread] = '\0';
       if (strcmp(buf, "mmap ok") == 0) break;
     }
-  
     close(fbctl);
   }
+
+
 }
 
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) { //NDL_DrawRect(x, 0, 0, w, h);即在中间显示
@@ -106,9 +104,6 @@ int NDL_QueryAudio() {
 
 int NDL_Init(uint32_t flags) {
 
-  setenv("NWM_APP", "1", 0);
-  // //replace为0时，设置该变量，若存在该变量，则不修改值
-  // //replace为1时，若存在该变量，则修改值，若不存在该变量，则无效
 
   if (getenv("NWM_APP")) {
     // evtdev = 3;
