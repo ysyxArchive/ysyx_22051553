@@ -292,15 +292,15 @@ void SDL_SetPalette(SDL_Surface *s, int flags, SDL_Color *colors, int firstcolor
   s->format->palette->ncolors = ncolors;
   memcpy(s->format->palette->colors, colors, sizeof(SDL_Color) * ncolors);
 
-  // if(s->flags & SDL_HWSURFACE) {
-  //   assert(ncolors == 256);
-  //   for (int i = 0; i < ncolors; i ++) {
-  //     uint8_t r = colors[i].r;
-  //     uint8_t g = colors[i].g;
-  //     uint8_t b = colors[i].b;
-  //   }
-  //   SDL_UpdateRect(s, 0, 0, 0, 0);
-  // }
+  if(s->flags & SDL_HWSURFACE) {
+    assert(ncolors == 256);
+    for (int i = 0; i < ncolors; i ++) {
+      uint8_t r = colors[i].r;
+      uint8_t g = colors[i].g;
+      uint8_t b = colors[i].b;
+    }
+    SDL_UpdateRect(s, 0, 0, 0, 0);
+  }
 }
 
 static void ConvertPixelsARGB_ABGR(void *dst, void *src, int len) {

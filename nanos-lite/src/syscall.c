@@ -2,6 +2,9 @@
 #include "syscall.h"
 #include "fs.h"
 #include <sys/time.h>
+#include <proc.h>
+
+void naive_uload(PCB *pcb, const char *filename);
 
 static void sys_yield(Context *c){
   printf("yield is a syscall\n");
@@ -91,6 +94,13 @@ static void sys_exit(Context *c){
   halt(c->GPRx);
 }
 
+static void sys_execve(Context *c){
+  naive_uload(0, (const char *)(c->GPR2));
+
+  c->GPRx = 0;
+}
+
+
 void do_syscall(Context *c) {
   uintptr_t a[4];
   a[0] = c->GPR1;
@@ -111,6 +121,7 @@ void do_syscall(Context *c) {
     case SYS_open: sys_open(c); break;
     case SYS_lseek: sys_lseek(c); break;
     case SYS_close: sys_close(c); break;
+    case SYS_execve: sys_execve(c); break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 
