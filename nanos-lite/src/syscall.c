@@ -91,7 +91,7 @@ static void sys_exit(Context *c){
   syscall_name[c->GPR1], c->GPRx);
   #endif
 
-  halt(c->GPRx);
+  naive_uload(0, "/bin/menu");
 }
 
 static void sys_execve(Context *c){
