@@ -23,7 +23,14 @@ static void sh_prompt() {
 }
 
 static void sh_handle_cmd(const char *cmd) {
-  execve(cmd, 0, 0);
+  int n = 0;
+  char realcmd[20] = {};
+  while(cmd[n] != '\n'){
+    n ++;
+  }
+  strncpy(realcmd, cmd, n);
+
+  execve(realcmd, 0, 0);
   return ;
 }
 
