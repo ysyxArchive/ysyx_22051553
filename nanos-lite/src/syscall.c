@@ -84,7 +84,6 @@ static void sys_gettimeofday(Context *c){
 
 }
 
-
 static void sys_exit(Context *c){
   #ifdef CONFIG_STRACE
   printf("syscall: %s over\nreturn value is 0x%lx\n", 

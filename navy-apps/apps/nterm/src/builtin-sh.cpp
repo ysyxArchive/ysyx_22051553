@@ -30,7 +30,8 @@ static void sh_handle_cmd(const char *cmd) {
   }
   strncpy(realcmd, cmd, n);
 
-  execve(realcmd, 0, 0);
+  execvp(realcmd, NULL);
+  
   return ;
 }
 
