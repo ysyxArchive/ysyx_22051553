@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <SDL_bmp.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 
 #define W 400
@@ -79,6 +80,8 @@ int main() {
             prev(100000);
             rep = 0; g = 0;
           }
+          break;
+        case SDLK_Q: exit(0);
           break;
       }
     }
