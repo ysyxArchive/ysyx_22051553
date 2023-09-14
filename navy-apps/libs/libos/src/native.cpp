@@ -1,3 +1,4 @@
+
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif
@@ -12,6 +13,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <SDL2/SDL.h>
+//native 优先使用<SDL2/SDL.h>,如果找不到，再使用minisdl
 #include <sys/mman.h>
 #include <sys/ioctl.h>
 
@@ -51,6 +53,9 @@ static inline void get_fsimg_path(char *newpath, const char *path) {
   sprintf(newpath, "%s%s", fsimg_path, path);
 }
 
+
+
+//仙剑使用SDL_SCANCODE_UP等时，使用的是该值
 #define _KEYS(_) \
   _(ESCAPE) _(F1) _(F2) _(F3) _(F4) _(F5) _(F6) _(F7) _(F8) _(F9) _(F10) _(F11) _(F12) \
   _(GRAVE) _(1) _(2) _(3) _(4) _(5) _(6) _(7) _(8) _(9) _(0) _(MINUS) _(EQUALS) _(BACKSPACE) \
@@ -157,7 +162,7 @@ static void open_audio() {
 static const char* redirect_path(char *newpath, const char *path) {
   get_fsimg_path(newpath, path);
   if (0 == access(newpath, 0)) {
-    fprintf(stderr, "Redirecting file open: %s -> %s\n", path, newpath);
+    // fprintf(stderr, "Redirecting file open: %s -> %s\n", path, newpath);
     return newpath;
   }
   return path;

@@ -122,7 +122,7 @@ static const struct {
   ENTRY(Z,            'z',  'Z'),
 };
 
-char handle_key(const char *buf) {
+char handle_key(const char *buf) {   //将"LSHIFT"映射到SDL的键值中
   char key[32];
   static int shift = 0;
   sscanf(buf + 2, "%s", key);

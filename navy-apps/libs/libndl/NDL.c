@@ -17,13 +17,26 @@ static int screen_w = 0, screen_h = 0;
 static int disp_w = 0, disp_h = 0;
 
 
+static uint64_t boot_time = 0;
+
+static uint64_t get_time_internal() {
+  struct timeval now;
+  gettimeofday(&now, NULL);
+  uint64_t us = now.tv_sec * 1000000 + now.tv_usec;
+  return us;
+}
+
+uint64_t get_time() {
+  if (boot_time == 0) boot_time = get_time_internal();
+  uint64_t now = get_time_internal();
+  return now - boot_time;
+}
+
 uint32_t NDL_GetTicks() {  //1Tick->1ms
   
-  struct timeval tv;
-  gettimeofday(&tv, NULL);
-  
-  uint32_t ms = tv.tv_sec*1000 + tv.tv_usec/1000;
-  return ms;
+  uint64_t us = get_time();
+  return (uint32_t)(us/1000);
+
 }
 
 int NDL_PollEvent(char *buf, int len) {   //轮询？
@@ -78,7 +91,6 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) { //NDL_DrawRect
   // write(fbdev, pixels, w*h);
   // write(fbsync, 0, 0);
   lseek(fbdev, ((disp_w - w)/2 + (disp_h - h)/2 * disp_w)*sizeof(uint32_t) , SEEK_SET);  //移动画布从左上角到中间
-  printf("w is %d\n", w);
   for(int i = 0; i < h; i++){        //逐行写入，是因为对应glibc_write的普通文件操作，write(fbdev, pixels, w*h);并不能跳跃着写，写一个矩形
     
     write(fbdev, pixels + i*w, w*sizeof(uint32_t));    //以字节为单位

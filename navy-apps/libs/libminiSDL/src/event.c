@@ -2,19 +2,26 @@
 #include <SDL.h>
 #include <string.h>
 
+
+
+
 #define keyname(k) #k,
+
 
 static const char *keyname[] = {
   "NONE",
   _KEYS(keyname)
 };
 
+uint8_t keyState[255] = {0};
+
+
 int SDL_PushEvent(SDL_Event *ev) {
   return 0;
 }
 
 int SDL_PollEvent(SDL_Event *ev) {
-
+  
   char buf[20] = {};
   int n = NDL_PollEvent(buf, 20);
   
@@ -32,6 +39,7 @@ int SDL_PollEvent(SDL_Event *ev) {
         
         if(strcmp(keyname[i], &buf[3]) == 0){
           ev->key.keysym.sym = i;
+          keyState[i] = 0;
           break;
         }
       }
@@ -45,6 +53,7 @@ int SDL_PollEvent(SDL_Event *ev) {
         if(strcmp(keyname[i], &buf[3]) == 0){//字符数组，要加地址
           
           ev->key.keysym.sym = i;
+          keyState[i] = 1;
           break;
         }
       }
@@ -66,6 +75,7 @@ int SDL_PeepEvents(SDL_Event *ev, int numevents, int action, uint32_t mask) {
   return 0;
 }
 
-uint8_t* SDL_GetKeyState(int *numkeys) {
-  return NULL;
+uint8_t* SDL_GetKeyState(int *numkeys) {   //这是SDL2\SDL库中没有的,从SDL2开始，被移除了
+
+  return keyState;
 }
