@@ -7,27 +7,31 @@
 static void ConvertPixelsARGB_ABGR(void *dst, void *src, int len);
 
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) { //pal使用了该函数
+
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
+
 
   //有效大小
   SDL_Rect valid_srcrect = srcrect ? *srcrect : (SDL_Rect){0, 0, src->w, src->h};
   SDL_Rect valid_dstrect = dstrect ? *dstrect : (SDL_Rect){0, 0, dst->w, dst->h};
 
   if(valid_dstrect.w == 0 && valid_dstrect.h == 0){
-    valid_dstrect.w = dst->w;
-    valid_dstrect.h = dst->h;
+    valid_dstrect.w = src->w <= dst->w ? src->w : dst->w;
+    valid_dstrect.h = src->h <= dst->h ? src->h : dst->h;
   }
 
-  if(valid_srcrect.w == 0 && valid_srcrect.h == 0){
-    valid_srcrect.w = src->w;
-    valid_srcrect.h = src->h;
-  }
+  // if(valid_srcrect.w == 0 && valid_srcrect.h == 0){
+  //   valid_srcrect.w = src->w;
+  //   valid_srcrect.h = src->h;
+  // }
 
-
+  
   //实际复制的宽和高   --有待修改
   int copy_width = valid_dstrect.w; 
   int copy_height = valid_dstrect.h;
+
+  
 
   //复制位块
   if(dst->format->BitsPerPixel == 8){
@@ -41,6 +45,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
   }
   }
   else if(dst->format->BitsPerPixel == 32){
+      
       for (int i = 0; i < copy_height; ++i) {
         for (int j = 0; j < copy_width; ++j) {
           int src_pixel_pos = (valid_srcrect.y + i) * src->w + (valid_srcrect.x + j);
