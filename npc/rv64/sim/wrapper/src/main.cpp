@@ -7,7 +7,7 @@
 #include "memory.hpp"
 #include <list>
 #include <define.h>
-
+#include <display.hpp>
 
 
 static VSoc dut;
@@ -56,13 +56,14 @@ static void syn_diff(){
 
 int main(int argc, char **argv) {
   init_regex();
+  
+  display.init_screen();
 
   #ifdef ITRACE
   init_disasm("riscv64" "-pc-linux-gnu");
   #endif
 
   uint64_t size = pmem.mem_loader("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
-
   #ifdef VCD_ON
   Verilated::traceEverOn(true);
   dut.trace(vcd,0);

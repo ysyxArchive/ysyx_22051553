@@ -5,6 +5,8 @@
 
 #define MMIO_BASE 0xa0000000
 
+
+
 #define SERIAL_PORT     (DEVICE_BASE + 0x00003f8)
 #define KBD_ADDR        (DEVICE_BASE + 0x0000060)
 #define RTC_ADDRH        (DEVICE_BASE + 0x000004C)
@@ -15,5 +17,6 @@
 #define FB_ADDR         (MMIO_BASE   + 0x1000000)
 #define AUDIO_SBUF_ADDR (MMIO_BASE   + 0x1200000)
 
+#define SYNC_ADDR (VGACTL_ADDR + 4)
 
 #endif

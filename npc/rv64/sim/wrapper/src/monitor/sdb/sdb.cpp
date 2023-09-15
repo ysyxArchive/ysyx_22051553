@@ -16,6 +16,7 @@
 #include <npc.h>
 #include <sys/time.h>
 #include <define.h>
+#include <display.hpp>
 
 
 static uint64_t rtc_time = 0;
@@ -176,6 +177,13 @@ void update_debuginfo(
 
 long long pmem_read(const svLogicVecVal* raddr){
 
+    #ifdef MTRACE
+    printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),((unsigned long)raddr[1].aval << 32 | raddr[0].aval), 8);
+    #endif
+
+
+
+
   if( ((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDRH || ((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDRL){
     if(((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDRH){
         struct timespec now;
@@ -186,6 +194,10 @@ long long pmem_read(const svLogicVecVal* raddr){
     }
     else
       return (long long) (rtc_time & 0xffffffff);
+  }
+  else if(((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == VGACTL_ADDR){
+      uint32_t vga_ctrl_bundle = SCREEN_W << 16 | SCREEN_H;
+      return vga_ctrl_bundle;
 
   }
 
@@ -198,18 +210,43 @@ long long pmem_read(const svLogicVecVal* raddr){
 
   void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask){
 
+    #ifdef MTRACE
+    printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),((unsigned long)waddr[1].aval << 32 | waddr[0].aval), 
+    (wmask == 0xff) ? 8 : 
+    (wmask == 0x0f) ? 4 : 
+    (wmask == 0x03) ? 2 : 
+    (wmask == 0x01) ? 1 : 0
+    );
+
+    printf("write data is 0x%lx\n", wdata);
+    #endif
+
 
     if( ((unsigned long)waddr[1].aval << 32 | waddr[0].aval) == SERIAL_PORT){
       
       putchar((unsigned long)wdata[1].aval << 32 | wdata[0].aval);
       return ;
     }
-
-    pmem.mem_write(
+    else if( (FB_ADDR <= ((unsigned long)waddr[1].aval << 32 | waddr[0].aval)) 
+      && (((unsigned long)waddr[1].aval << 32 | waddr[0].aval) <= FB_ADDR + SCREEN_W*SCREEN_H*sizeof(uint32_t))){
+      display.vmem_write(
         (unsigned long)waddr[1].aval << 32 | waddr[0].aval,
         (unsigned long)wdata[1].aval << 32 | wdata[0].aval,
         wmask
-    );
+      );
+      return ;
+    }
+    else if(((unsigned long)waddr[1].aval << 32 | waddr[0].aval) == SYNC_ADDR){
+      display.update_screen();
+    }
+    else {
+      pmem.mem_write(
+        (unsigned long)waddr[1].aval << 32 | waddr[0].aval,
+        (unsigned long)wdata[1].aval << 32 | wdata[0].aval,
+        wmask
+      );
+    }
+    
     return ;
   }
 

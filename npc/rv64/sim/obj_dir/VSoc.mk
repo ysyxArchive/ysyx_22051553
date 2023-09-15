@@ -35,15 +35,16 @@ VM_PREFIX = VSoc
 VM_MODPREFIX = VSoc
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
-	-I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/monitor/debug/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/memory/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/isa/include  -fPIE \
+	-I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/display/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/monitor/debug/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/memory/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/isa/include  -fPIE \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
-	-lreadline -lpcre -lLLVM-14 \
+	-lreadline -lpcre -lLLVM-14 -lSDL2 \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
 	difftest \
+	display \
 	cpu \
 	main \
 	memory \
@@ -51,11 +52,13 @@ VM_USER_CLASSES = \
 	expr \
 	sdb \
 	disasm \
+	util \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
 	./wrapper/src \
 	./wrapper/src/difftest \
+	./wrapper/src/display \
 	./wrapper/src/isa \
 	./wrapper/src/memory \
 	./wrapper/src/monitor/debug \
@@ -74,6 +77,8 @@ VPATH += $(VM_USER_DIR)
 
 difftest.o: ./wrapper/src/difftest/difftest.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+display.o: ./wrapper/src/display/display.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 cpu.o: ./wrapper/src/isa/cpu.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 main.o: ./wrapper/src/main.cpp
@@ -87,6 +92,8 @@ expr.o: ./wrapper/src/monitor/sdb/expr.cpp
 sdb.o: ./wrapper/src/monitor/sdb/sdb.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 disasm.o: ./wrapper/src/utils/disasm.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+util.o: ./wrapper/src/utils/util.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
