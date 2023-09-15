@@ -27,12 +27,16 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 
   int fd = fs_open(filename, 0, 0);
   
+  
   Elf_Ehdr elf_header;
   assert(sizeof(Elf_Ehdr) ==  fs_read(fd, &elf_header, sizeof(Elf_Ehdr)));
+  
 
   assert(*(uint32_t*)(elf_header.e_ident) == 0x464c457f);  //只读4个字节的方式，小端存储，结构体从[0]到[3]地址递增
   assert(elf_header.e_machine == EXPECT_TYPE);
   
+  
+
   Elf_Phdr elf_ph[elf_header.e_phnum];
   fs_lseek(fd, elf_header.e_phoff, SEEK_SET);
 
@@ -51,7 +55,6 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     }
   }
   
-
   fs_close(fd);
 
 
