@@ -162,7 +162,7 @@ void update_debuginfo(
     fetch_list.pop_front();
   }
 
-
+  #endif
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
     cpu_ins.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);      //update里没有改写pc
   }
@@ -170,8 +170,6 @@ void update_debuginfo(
   if((bool)csr_wen){
     cpu_ins.set_csr((unsigned int)csr_waddr[0].aval,(unsigned long)csr_wdata[1].aval << 32 | csr_wdata[0].aval);      //update里没有改写pc
   }
-
-  #endif
 
 }
 
