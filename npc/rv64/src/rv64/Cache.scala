@@ -94,7 +94,17 @@ class Cache extends Module{
     // hit(0) := (TagArray(index * 2.U) === tag) && valid(index * 2.U)
     // hit(1) := (TagArray(index * 2.U + 1.U) === tag) && valid(index * 2.U + 1.U)
 
-    hit := Cat((TagArray(index * 2.U + 1.U) === tag) && valid(index * 2.U + 1.U), (TagArray(index * 2.U) === tag) && valid(index * 2.U))
+    // hit := hit.bitSet(0.U, (TagArray(index * 2.U) === tag) && valid(index * 2.U))
+    // hit := hit.bitSet(1.U, (TagArray(index * 2.U + 1.U) === tag) && valid(index * 2.U + 1.U))
+    // 只有后一个有效
+
+
+    //用于修改某两位  --应该如何修改，Wire也会占用资源，用Cat不会，但是写的很不清晰
+    val replace0 = Wire(UInt((2*setnum).W))
+    val replace1 = Wire(UInt((2*setnum).W))
+    //-----------------------------------------
+
+
 
     val replace_wire = Wire(Bool())
     val victim = Reg(Bool()) //未命中时，选择victim
@@ -134,12 +144,14 @@ class Cache extends Module{
 
                 when(hit(0)){   //读命中后改变replace
                     io.cpu.resp.bits.data := DataArray(index * 2.U)
-                    replace(index * 2.U) := 0.B
-                    replace(index * 2.U + 1.U) := 1.B
+                    replace0 := replace.bitSet(index * 2.U, 0.B)
+                    replace1 := replace.bitSet(index * 2.U + 1.U, 1.B)
+                    replace := replace0 | replace1
                 }.otherwise{
                     io.cpu.resp.bits.data := DataArray(index * 2.U + 1.U)
-                    replace(index * 2.U) := 1.B
-                    replace(index * 2.U + 1.U) := 0.B
+                    replace0 := replace.bitSet(index * 2.U, 1.B)
+                    replace1 := replace.bitSet(index * 2.U + 1.U, 0.B)
+                    replace := replace0 | replace1
                 }
                 io.cpu.resp.valid := 1.B
             }.otherwise{
@@ -184,22 +196,26 @@ class Cache extends Module{
 
                 //获得数据后，更新
                 when(victim){   //选择替换1
-                    valid(index * 2.U + 1.U) := 1.B
-                    dirty(index * 2.U + 1.U) := 0.B
-                    replace(index * 2.U) := 1.B
-                    replace(index * 2.U + 1.U) := 0.B
-                    
+                    valid := valid.bitSet(index * 2.U + 1.U, 1.B)
+                    dirty := dirty.bitSet(index * 2.U + 1.U, 0.B)
+                    replace0 := replace.bitSet(index * 2.U, 1.B)
+                    replace1 := replace.bitSet(index * 2.U + 1.U, 0.B)
+                    replace := replace0 | replace1
 
                     TagArray(index * 2.U + 1.U) := tag
                     DataArray(index * 2.U + 1.U) := io.axi.resp.bits.data
-
                 }.otherwise{  //选择替换0
                     valid(index * 2.U) := 1.B
                     dirty(index * 2.U) := 0.B
                     replace(index * 2.U) := 0.B
                     replace(index * 2.U + 1.U) := 1.B
-                    
 
+                    valid := valid.bitSet(index * 2.U, 1.B)
+                    dirty := dirty.bitSet(index * 2.U, 0.B)
+                    replace0 := replace.bitSet(index * 2.U, 0.B)
+                    replace1 := replace.bitSet(index * 2.U + 1.U, 1.B)
+                    replace := replace0 | replace1
+                    
                     TagArray(index * 2.U) := tag
                     DataArray(index * 2.U) := io.axi.resp.bits.data
                 }
@@ -215,15 +231,17 @@ class Cache extends Module{
                 when(hit(0)){   //写命中后改变replace，及dirty
                     DataArray(index * 2.U) := data
                     
-                    dirty(index * 2.U) := 1.B
-                    replace(index * 2.U) := 0.B
-                    replace(index * 2.U + 1.U) := 1.B
+                    dirty := dirty.bitSet(index * 2.U, 1.B)
+                    replace0 := replace.bitSet(index * 2.U, 0.B)
+                    replace1 := replace.bitSet(index * 2.U + 1.U, 1.B)
+                    replace := replace0 | replace1
                 }.otherwise{
                     DataArray(index * 2.U + 1.U) := data
 
-                    dirty(index * 2.U + 1.U) := 1.B
-                    replace(index * 2.U) := 1.B
-                    replace(index * 2.U + 1.U) := 0.B
+                    dirty := dirty.bitSet(index * 2.U + 1.U, 1.B)
+                    replace0 := replace.bitSet(index * 2.U, 1.B)
+                    replace1 := replace.bitSet(index * 2.U + 1.U, 0.B)
+                    replace := replace0 | replace1
                 }
             }.otherwise{
                 state := s_Write
@@ -265,10 +283,11 @@ class Cache extends Module{
                 io.axi.req.valid := 0.B
 
                 when(victim){
-                    valid(index * 2.U + 1.U) := 1.B
-                    dirty(index * 2.U + 1.U) := 1.B  //读出即写
-                    replace(index * 2.U) := 1.B
-                    replace(index * 2.U + 1.U) := 0.B
+                    valid := valid.bitSet(index * 2.U + 1.U, 1.B)
+                    dirty := dirty.bitSet(index * 2.U + 1.U, 1.B) //读出即写
+                    replace0 := replace.bitSet(index * 2.U, 1.B)
+                    replace1 := replace.bitSet(index * 2.U + 1.U, 0.B)
+                    replace := replace0 | replace1
 
                     TagArray(index * 2.U + 1.U) := tag
                     DataArray(index * 2.U + 1.U) := MuxCase(
@@ -281,10 +300,11 @@ class Cache extends Module{
                         )
                     )
                 }.otherwise{
-                    valid(index * 2.U) := 1.B
-                    dirty(index * 2.U) := 1.B  //读出即写
-                    replace(index * 2.U) := 0.B
-                    replace(index * 2.U + 1.U) := 1.B
+                    valid := valid.bitSet(index * 2.U, 1.B)
+                    dirty := dirty.bitSet(index * 2.U, 1.B) //读出即写
+                    replace0 := replace.bitSet(index * 2.U, 0.B)
+                    replace1 := replace.bitSet(index * 2.U + 1.U, 1.B)
+                    replace := replace0 | replace1
 
                     TagArray(index * 2.U) := tag
                     DataArray(index * 2.U) := MuxCase(
