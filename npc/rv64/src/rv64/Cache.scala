@@ -205,11 +205,6 @@ class Cache extends Module{
                     TagArray(index * 2.U + 1.U) := tag
                     DataArray(index * 2.U + 1.U) := io.axi.resp.bits.data
                 }.otherwise{  //选择替换0
-                    valid(index * 2.U) := 1.B
-                    dirty(index * 2.U) := 0.B
-                    replace(index * 2.U) := 0.B
-                    replace(index * 2.U + 1.U) := 1.B
-
                     valid := valid.bitSet(index * 2.U, 1.B)
                     dirty := dirty.bitSet(index * 2.U, 0.B)
                     replace0 := replace.bitSet(index * 2.U, 0.B)
