@@ -9,7 +9,6 @@ void call_main(uintptr_t *args){
   char *argv[] =  {NULL };
   char *envp[] =  {NULL };
   environ = envp;   //环境变量以NULL结尾
-  printf("main is %p\n", main);
   exit(main(0, argv, envp));
   assert(0);
 }

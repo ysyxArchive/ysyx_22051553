@@ -10,6 +10,8 @@ object Define {
     val X_LEN = 64
     val INST_LEN = 32
 
+    val ADDRWIDTH = 32
+
     val REG_ADDR_LEN = 5
     val ALU_OP_LEN = 6
 

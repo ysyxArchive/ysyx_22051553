@@ -88,7 +88,7 @@ class CLINT extends Module{
                             MSIP := Cat(MSIP(31,16), io.clex.wdata(15,0))
                         }
                         is(0x01.U){
-                            MSIP := Cat(MSIP(31,1), io.clex.wdata(0))
+                            MSIP := Cat(MSIP(31,8), io.clex.wdata(7,0))
                         }
                     }
                 }
@@ -106,7 +106,7 @@ class CLINT extends Module{
                             MTIMECMP := Cat(MTIMECMP(63,16), io.clex.wdata(15,0))
                         }
                         is(0x01.U){
-                            MTIMECMP := Cat(MTIMECMP(63,1), io.clex.wdata(0))
+                            MTIMECMP := Cat(MTIMECMP(63,8), io.clex.wdata(7,0))
                         }
                     }
                 }
@@ -124,7 +124,7 @@ class CLINT extends Module{
                             MTIME := Cat(MTIME(63,16), io.clex.wdata(15,0))
                         }
                         is(0x01.U){
-                            MTIME := Cat(MTIME(63,1), io.clex.wdata(0))
+                            MTIME := Cat(MTIME(63,8), io.clex.wdata(7,0))
                         }
                     }
                 }

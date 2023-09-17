@@ -53,6 +53,24 @@ void memory::mem_write(uint64_t waddr, uint64_t wdata, uint8_t wmask){
 
     printf("write data is 0x%lx\n", wdata);
     #endif
+    std::ofstream file;
+    file.open("/home/shikye/ysyx-workbench/npc/rv64/sim/log", std::ios::app);
+    assert(file.is_open());
+    if(waddr > 0x83000000){
+        char str1[100];
+        int n = sprintf(str1, "write mem at " "0x%016lx" " for %d bytes\n", waddr, 
+            (wmask == 0xff) ? 8 : 
+            (wmask == 0x0f) ? 4 : 
+            (wmask == 0x03) ? 2 : 
+            (wmask == 0x01) ? 1 : 0);
+        file.write(str1, n);
+
+        char str2[50];
+        n = sprintf(str2, "write data is 0x%lx\n", wdata);
+        file.write(str2, n);
+    }
+
+    file.close();
 
     assert(wmask == 0xff || wmask == 0x0f || wmask == 0x03 || wmask == 0x01);
 
@@ -127,6 +145,7 @@ uint64_t memory::mem_loader(const char* filename){
         }
         
     }
+    file.close();
     printf("size is %ld\n", size);
 
     return size;
