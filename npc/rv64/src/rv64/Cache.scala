@@ -186,9 +186,12 @@ class Cache extends Module{
         }
         is(s_rWriteBack){
             io.axi.req.valid := 1.U  //持续为1,直到axi通知写回成功
-            io.axi.req.bits.rw := io.axi.req.bits.rw
-            io.axi.req.bits.addr := io.axi.req.bits.addr
-            io.axi.req.bits.data := io.axi.req.bits.data
+            // io.axi.req.bits.rw := io.axi.req.bits.rw
+            // io.axi.req.bits.addr := io.axi.req.bits.addr
+            // io.axi.req.bits.data := io.axi.req.bits.data
+            io.axi.req.bits.addr := Cat(TagArray(index*2.U + victim), index, 0.U(3.W))
+            io.axi.req.bits.data := DataArray(index*2.U + victim)
+            io.axi.req.bits.rw := 0.B
 
 
             when(io.axi.resp.valid){  //写回成功
@@ -201,9 +204,9 @@ class Cache extends Module{
         }
         is(s_ReadAck){
             io.axi.req.valid := 1.U  //持续为1,直到axi通知读取成功
-            io.axi.req.bits.rw := io.axi.req.bits.rw
-            io.axi.req.bits.addr := io.axi.req.bits.addr
-            io.axi.req.bits.data := io.axi.req.bits.data
+            io.axi.req.bits.addr := Cat(TagArray(index*2.U + victim), index, 0.U(3.W))
+            io.axi.req.bits.data := DataArray(index*2.U + victim)
+            io.axi.req.bits.rw := 1.B
 
             when(io.axi.resp.valid){
                 state := s_Idle
@@ -282,9 +285,9 @@ class Cache extends Module{
         }
         is(s_wWriteBack){
             io.axi.req.valid := 1.U  //持续为1,直到axi通知写回成功
-            io.axi.req.bits.rw := io.axi.req.bits.rw
-            io.axi.req.bits.addr := io.axi.req.bits.addr
-            io.axi.req.bits.data := io.axi.req.bits.data
+            io.axi.req.bits.addr := Cat(TagArray(index*2.U + victim), index, 0.U(3.W))
+            io.axi.req.bits.data := DataArray(index*2.U + victim)
+            io.axi.req.bits.rw := 1.B
 
             when(io.axi.resp.valid){
                 state := s_WriteAllocate
@@ -296,9 +299,9 @@ class Cache extends Module{
         }
         is(s_WriteAllocate){ //写分配，并将cpu的data写入刚从ram读出的DataArray中
             io.axi.req.valid := 1.U  //持续为1,直到axi通知读取成功
-            io.axi.req.bits.rw := io.axi.req.bits.rw
-            io.axi.req.bits.addr := io.axi.req.bits.addr
-            io.axi.req.bits.data := io.axi.req.bits.data
+            io.axi.req.bits.addr := Cat(TagArray(index*2.U + victim), index, 0.U(3.W))
+            io.axi.req.bits.data := DataArray(index*2.U + victim)
+            io.axi.req.bits.rw := 1.B
 
             when(io.axi.resp.valid){
                 state := s_Idle
