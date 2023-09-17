@@ -118,14 +118,17 @@ class Cache extends Module{
     //FSM
     //firtool要求完整initialize
     io.cpu.resp.valid := 0.B    
+    io.cpu.resp.bits.data := 0.U
+    io.axi.req.valid := 0.U
+    io.axi.req.bits.rw := 0.U
+    io.axi.req.bits.addr := 0.U
+    io.axi.req.bits.data := 0.U
     
     
     switch(state){
         is(s_Idle){
             //重置
-            io.cpu.resp.bits.data := 0.U
             victim := 0.U
-            
             
             when(io.cpu.req.valid){
                 state := Mux(io.cpu.req.bits.mask.orR, s_WriteCache, s_ReadCache)
@@ -182,6 +185,12 @@ class Cache extends Module{
             }
         }
         is(s_rWriteBack){
+            io.axi.req.valid := 1.U  //持续为1,直到axi通知写回成功
+            io.axi.req.bits.rw := io.axi.req.bits.rw
+            io.axi.req.bits.addr := io.axi.req.bits.addr
+            io.axi.req.bits.data := io.axi.req.bits.data
+
+
             when(io.axi.resp.valid){  //写回成功
                 state := s_ReadAck
                 
@@ -191,6 +200,11 @@ class Cache extends Module{
             }
         }
         is(s_ReadAck){
+            io.axi.req.valid := 1.U  //持续为1,直到axi通知读取成功
+            io.axi.req.bits.rw := io.axi.req.bits.rw
+            io.axi.req.bits.addr := io.axi.req.bits.addr
+            io.axi.req.bits.data := io.axi.req.bits.data
+
             when(io.axi.resp.valid){
                 state := s_Idle
 
@@ -267,6 +281,11 @@ class Cache extends Module{
             }
         }
         is(s_wWriteBack){
+            io.axi.req.valid := 1.U  //持续为1,直到axi通知写回成功
+            io.axi.req.bits.rw := io.axi.req.bits.rw
+            io.axi.req.bits.addr := io.axi.req.bits.addr
+            io.axi.req.bits.data := io.axi.req.bits.data
+
             when(io.axi.resp.valid){
                 state := s_WriteAllocate
 
@@ -276,6 +295,11 @@ class Cache extends Module{
             }
         }
         is(s_WriteAllocate){ //写分配，并将cpu的data写入刚从ram读出的DataArray中
+            io.axi.req.valid := 1.U  //持续为1,直到axi通知读取成功
+            io.axi.req.bits.rw := io.axi.req.bits.rw
+            io.axi.req.bits.addr := io.axi.req.bits.addr
+            io.axi.req.bits.data := io.axi.req.bits.data
+
             when(io.axi.resp.valid){
                 state := s_Idle
 
