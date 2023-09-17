@@ -90,7 +90,7 @@ class Cache extends Module{
     //数据
     val DataArray = SyncReadMem(setnum*2, UInt(bytenum.W))
     //命中
-    val hit = WireInit(0.U(2.W))  //2路
+    val hit = WireInit(0.U(2.W))  //2路 ---需要使用WireInit设置初始值
     // hit(0) := (TagArray(index * 2.U) === tag) && valid(index * 2.U)
     // hit(1) := (TagArray(index * 2.U + 1.U) === tag) && valid(index * 2.U + 1.U)
 
@@ -100,8 +100,8 @@ class Cache extends Module{
 
 
     //用于修改某两位  --应该如何修改，Wire也会占用资源，用Cat不会，但是写的很不清晰
-    val replace0 = Wire(UInt((2*setnum).W))
-    val replace1 = Wire(UInt((2*setnum).W))
+    val replace0 = WireInit(0.U((2*setnum).W))
+    val replace1 = WireInit(0.U((2*setnum).W))
     //-----------------------------------------
 
 
