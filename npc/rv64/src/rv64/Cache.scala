@@ -90,7 +90,7 @@ class Cache extends Module{
     //数据
     val DataArray = SyncReadMem(setnum*2, UInt(bytenum.W))
     //命中
-    val hit = Wire(UInt(2.W))  //2路
+    val hit = WireInit(0.U(2.W))  //2路
     // hit(0) := (TagArray(index * 2.U) === tag) && valid(index * 2.U)
     // hit(1) := (TagArray(index * 2.U + 1.U) === tag) && valid(index * 2.U + 1.U)
 
