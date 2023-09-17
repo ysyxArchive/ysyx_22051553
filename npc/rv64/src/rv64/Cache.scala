@@ -106,7 +106,7 @@ class Cache extends Module{
 
 
 
-    val replace_wire = Wire(Bool())
+    val replace_wire = WireInit(0.B)
     val victim = Reg(Bool()) //未命中时，选择victim
  
     //缓存地址和数据
