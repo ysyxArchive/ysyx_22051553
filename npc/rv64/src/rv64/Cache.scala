@@ -139,6 +139,9 @@ class Cache extends Module{
             }
         }
         is(s_ReadCache){
+            //firtool要求完整initialize
+            io.cpu.resp.valid := 0.B
+
             when(hit.orR){
                 state := s_Idle
 
@@ -159,7 +162,10 @@ class Cache extends Module{
             }
         }
         is(s_Read){ //未命中读
-            
+            //firtool要求完整initialize
+            io.cpu.resp.valid := 0.B
+
+
             //选择替代，00选0,01选0,10选1   --根据replace选择，若选择的是dirty,则需要写回
             replace_wire := Mux(replace(index*2.U), 1.B, 0.B)
             victim := replace_wire
@@ -180,6 +186,9 @@ class Cache extends Module{
             }
         }
         is(s_rWriteBack){
+            //firtool要求完整initialize
+            io.cpu.resp.valid := 0.B
+
             when(io.axi.resp.valid){  //写回成功
                 state := s_ReadAck
                 
@@ -189,6 +198,9 @@ class Cache extends Module{
             }
         }
         is(s_ReadAck){
+            //firtool要求完整initialize
+            io.cpu.resp.valid := 0.B
+
             when(io.axi.resp.valid){
                 state := s_Idle
 
@@ -221,7 +233,13 @@ class Cache extends Module{
             }
         }
         is(s_WriteCache){
+            //firtool要求完整initialize
+            io.cpu.resp.valid := 0.B
+
+
             when(hit.orR){
+                io.cpu.resp.valid := 1.B
+
                 state := s_Idle
                 when(hit(0)){   //写命中后改变replace，及dirty
                     DataArray(index * 2.U) := data
@@ -243,6 +261,9 @@ class Cache extends Module{
             }
         }
         is(s_Write){
+            //firtool要求完整initialize
+            io.cpu.resp.valid := 0.B
+
             //选择替代，00选0,01选0,10选1   --根据replace选择，若选择的是dirty,则需要写回
             replace_wire := Mux(replace(index*2.U), 1.B, 0.B)
             victim := replace_wire
@@ -263,6 +284,9 @@ class Cache extends Module{
             }
         }
         is(s_wWriteBack){
+            //firtool要求完整initialize
+            io.cpu.resp.valid := 0.B
+
             when(io.axi.resp.valid){
                 state := s_WriteAllocate
 
@@ -272,8 +296,13 @@ class Cache extends Module{
             }
         }
         is(s_WriteAllocate){ //写分配，并将cpu的data写入刚从ram读出的DataArray中
+            //firtool要求完整initialize
+            io.cpu.resp.valid := 0.B
+
             when(io.axi.resp.valid){
                 state := s_Idle
+
+                io.cpu.resp.valid := 1.B
 
                 io.axi.req.valid := 0.B
 
