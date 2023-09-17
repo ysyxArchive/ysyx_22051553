@@ -91,9 +91,10 @@ class Cache extends Module{
     val DataArray = SyncReadMem(setnum*2, UInt(bytenum.W))
     //命中
     val hit = Wire(UInt(2.W))  //2路
-    hit(0) := (TagArray(index * 2.U) === tag) && valid(index * 2.U)
-    hit(1) := (TagArray(index * 2.U + 1.U) === tag) && valid(index * 2.U + 1.U)
+    // hit(0) := (TagArray(index * 2.U) === tag) && valid(index * 2.U)
+    // hit(1) := (TagArray(index * 2.U + 1.U) === tag) && valid(index * 2.U + 1.U)
 
+    hit := Cat((TagArray(index * 2.U + 1.U) === tag) && valid(index * 2.U + 1.U), (TagArray(index * 2.U) === tag) && valid(index * 2.U))
 
     val replace_wire = Wire(Bool())
     val victim = Reg(Bool()) //未命中时，选择victim
