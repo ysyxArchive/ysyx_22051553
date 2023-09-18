@@ -186,7 +186,7 @@ class Cache extends Module{
         }
         is(s_rWriteBack){
             io.axi.req.valid := 1.U  //持续为1,直到axi通知写回成功
-            // io.axi.req.bits.rw := io.axi.req.bits.rw
+            // io.axi.req.bits.rw := io.axi.req.bits.rw       //--会造成firtool,组合逻辑循环
             // io.axi.req.bits.addr := io.axi.req.bits.addr
             // io.axi.req.bits.data := io.axi.req.bits.data
             io.axi.req.bits.addr := Cat(TagArray(index*2.U + victim), index, 0.U(3.W))
