@@ -90,18 +90,28 @@ class Cache extends Module{
     //数据
     val DataArray = SyncReadMem(setnum*2, UInt(bytenum.W))
     //命中
-    val hit = WireInit(0.U(2.W))  //2路 ---需要使用WireInit设置初始值
-    // hit(0) := (TagArray(index * 2.U) === tag) && valid(index * 2.U)
+    // val hit = WireInit(0.U(2.W))  //2路 ---需要使用WireInit设置初始值
+    // hit(0) := (TagArray(index * 2.U) === tag) && valid(index * 2.U)   //无法这样写
     // hit(1) := (TagArray(index * 2.U + 1.U) === tag) && valid(index * 2.U + 1.U)
 
     // hit := hit.bitSet(0.U, (TagArray(index * 2.U) === tag) && valid(index * 2.U))
-    // hit := hit.bitSet(1.U, (TagArray(index * 2.U + 1.U) === tag) && valid(index * 2.U + 1.U))
+    // hit := hit.bitSet(1.U, (TagArray(index * 2.U + 1.U) === tag) && valid(index * 2.U + 1.U)) //这样写，只有最后一次赋值有效
     // 只有后一个有效
+    //由于以上原因：
+    val hit0 = WireInit(0.B)
+    val hit1 = WireInit(0.B)
+
+
+    hit0 := (TagArray(index * 2.U) === tag) && valid(index * 2.U)
+    hit1 := (TagArray(index * 2.U + 1.U) === tag) && valid(index * 2.U + 1.U)
+
 
 
     //用于修改某两位  --应该如何修改，Wire也会占用资源，用Cat不会，但是写的很不清晰
     val replace0 = WireInit(0.U((2*setnum).W))
     val replace1 = WireInit(0.U((2*setnum).W))
+
+
     //-----------------------------------------
 
 
@@ -145,10 +155,10 @@ class Cache extends Module{
         }
         is(s_ReadCache){
 
-            when(hit.orR){
+            when(hit0 | hit1){
                 state := s_Idle
 
-                when(hit(0)){   //读命中后改变replace
+                when(hit0){   //读命中后改变replace
                     io.cpu.resp.bits.data := DataArray(index * 2.U)
                     replace0 := replace.bitSet(index * 2.U, 0.B)
                     replace1 := replace.bitSet(index * 2.U + 1.U, 1.B)
@@ -240,11 +250,11 @@ class Cache extends Module{
             }
         }
         is(s_WriteCache){
-            when(hit.orR){
+            when(hit0 | hit1){
                 io.cpu.resp.valid := 1.B
 
                 state := s_Idle
-                when(hit(0)){   //写命中后改变replace，及dirty
+                when(hit0){   //写命中后改变replace，及dirty
                     DataArray(index * 2.U) := data
                     
                     dirty := dirty.bitSet(index * 2.U, 1.B)
