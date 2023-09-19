@@ -78,6 +78,22 @@ class AXIArbitor extends Module{
     io.master1.resp.valid := 0.B
     io.master1.resp.bits.data := 0.U
 
+    io.AXI_O.aw.valid := 0.B
+    io.AXI_O.aw.bits.addr := 0.U
+    io.AXI_O.aw.bits.prot := 0.U   //默认为0
+
+    io.AXI_O.w.valid := 0.B
+    io.AXI_O.w.bits.data := 0.U
+    io.AXI_O.w.bits.strb := 0.U
+
+    io.AXI_O.b.ready := 1.U //常为高
+
+    io.AXI_O.ar.valid := 0.B
+    io.AXI_O.ar.bits.addr := 0.U
+    io.AXI_O.ar.bits.prot := 0.U   //默认为0
+
+    io.AXI_O.r.ready := 0.U
+
 
 
     switch(state){ //并不符合状态机，状态机中，左边都是reg类型
