@@ -411,7 +411,7 @@ class Core extends Module{
 
     trap.io.csrtr <> csrs.io.CSRTr
 
-    trap.io.inst := decode.io.inst.bits
+    trap.io.inst := decode.io.inst.bits.data
 
     trap.io.pc := fetch.io.pc.bits
 
