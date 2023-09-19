@@ -62,5 +62,6 @@ class Fetch extends Module{
         )
     )
     // io.pc.valid := Mux(io.fcfe.stall, 0.B, started)
-    io.pc.valid := Mux(io.fcfe.stall, 0.B, started)
+    // io.pc.valid := Mux(io.fcfe.stall, 0.B, started)
+    io.pc.valid := 1.B //可以始终为1？
 }

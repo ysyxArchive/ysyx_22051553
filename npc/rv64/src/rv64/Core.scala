@@ -13,19 +13,7 @@ import circt.stage.CLI
 
 class Core extends Module{
     val io = IO(new Bundle {
-        val inst = Input(UInt(64.W))
-        val pc   = Output(UInt(PC_LEN.W))
-        val valid = Output(Bool())
-        val load_use = Output(Bool())
-
-        val raddr = Output(UInt(X_LEN.W))
-        val rdata = Input(UInt(X_LEN.W))
-
-        val waddr = Output(UInt(X_LEN.W))
-        val wdata = Output(UInt(X_LEN.W))
-        val wmask = Output(UInt(8.W))
-
-        val next_pc = Output(UInt(PC_LEN.W))
+        val AXI_Interface = new AXILiteMasterIf
     })
     
 
@@ -40,8 +28,6 @@ class Core extends Module{
     // val mem = new Mem              使用包名来避免冲突
     val mem = Module(new rv64.Mem)
     val wb = Module(new Wb)
-
-    io.next_pc := fetch.io.next_pc
 
     //纯粹的流水线寄存器
     val fdreg = RegInit(
@@ -109,17 +95,17 @@ class Core extends Module{
 
     //Trap
     val trap = Module(new Trap)
+
+    //AXIArbitor
+    val arbitor = Module(new AXIArbitor)
+
+    //Cache
+    val Icache = Module(new Cache)
+    val Dcache = Module(new Cache)
     
     //互联 -- 基本以被驱动方为标准
     //顶层
-    io.pc := fetch.io.pc.bits
-    io.valid := fetch.io.pc.valid
-    io.raddr := excute.io.raddr
-    io.waddr := excute.io.waddr
-    io.wdata := excute.io.wdata
-    io.wmask := excute.io.wmask
-
-    io.load_use := decode.io.load_use
+    io.AXI_Interface <> arbitor.io.AXI_O
 
     //寄存器不是有单一方向的，不能用<>
     
@@ -128,7 +114,7 @@ class Core extends Module{
 
     //decode
     decode.io.inst.valid := 1.B
-    decode.io.inst.bits := Mux(fdreg.pc(2) === 1.U, io.inst(63,32), io.inst(31,0))
+    decode.io.inst.bits := Mux(fdreg.pc(2) === 1.U, Dcache.io.cpu.resp.bits.data(63,32), Dcache.io.cpu.resp.bits.data(31,0)) //由于需要对齐
     decode.io.fdio.pc := fdreg.pc
     decode.io.rfio <> regfile.io.RfDe
     decode.io.branch := fc.io.fcex.jump_flag
@@ -165,7 +151,7 @@ class Core extends Module{
 
     mem.io.emio.has_inst := emreg.has_inst
 
-    mem.io.rdata := io.rdata
+    mem.io.rdata <> Dcache.io.cpu.resp
     //wb
     wb.io.mwio.wb_type := mwreg.wb_type
     wb.io.mwio.reg_waddr := mwreg.reg_waddr
@@ -439,13 +425,37 @@ class Core extends Module{
     //csrs
     csrs.io.timer_int := clint.io.timer_int
 
+    //Icache
+    Icache.io.cpu.req.valid := fetch.io.pc.valid
+    Icache.io.cpu.req.bits.addr := fetch.io.pc.bits
+    Icache.io.cpu.req.bits.data := DontCare
+    Icache.io.cpu.req.bits.mask := DontCare
+
+    Icache.io.cpu.resp <> decode.io.inst
+
+    //Dcache
+    Dcache.io.cpu.req.valid := dereg.ld_type.orR | dereg.sd_type.orR
+    Dcache.io.cpu.req.bits.addr := excute.io.waddr | excute.io.raddr
+    Dcache.io.cpu.req.bits.data := excute.io.wdata
+    Dcache.io.cpu.req.bits.mask := excute.io.wmask
+
+    Dcache.io.cpu.resp <> mem.io.rdata
+
+    //Arbitor
+    arbitor.io.master0 <> Icache.io.axi
+    arbitor.io.master1 <> Dcache.io.axi
+
+    
+
+    
+
     //---debug
     val DI= Module(new DebugInterface)
     DI.io.clk := clock
     DI.io.rst := reset
     DI.io.pc := fetch.io.pc.bits
     DI.io.pc_req := fetch.io.pc.valid
-    DI.io.inst := Mux(fdreg.pc(2) === 1.U, io.inst(63,32), io.inst(31,0))
+    DI.io.inst := Mux(fdreg.pc(2) === 1.U, Dcache.io.cpu.resp.bits.data(63,32), Dcache.io.cpu.resp.bits.data(31,0))
     DI.io.inst_valid := DontCare
     DI.io.load_use := decode.io.load_use
     DI.io.op_a  := dereg.op_a
@@ -463,9 +473,10 @@ class Core extends Module{
 
     //interact
     val interact = Module(new Interact)
-    interact.io.inst := Mux(fdreg.pc(2) === 1.U, io.inst(63,32), io.inst(31,0));
+    interact.io.inst := Mux(fdreg.pc(2) === 1.U, Dcache.io.cpu.resp.bits.data(63,32), Dcache.io.cpu.resp.bits.data(31,0));
     interact.io.clk := clock   //可以直接显式使用clock
     interact.io.rst := reset
+
 
 
 }
