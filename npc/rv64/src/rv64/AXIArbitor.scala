@@ -73,12 +73,15 @@ class AXIArbitor extends Module{
     val r_comp = RegInit(0.B)
 
 
+    io.master0.resp.valid := 0.B
+    io.master0.resp.bits.data := 0.U
+    io.master1.resp.valid := 0.B
+    io.master1.resp.bits.data := 0.U
+
+
 
     switch(state){ //并不符合状态机，状态机中，左边都是reg类型
         is(s_Idle){
-            io.master0.resp.valid := 0.B
-            io.master1.resp.valid := 0.B
-
 
             when(master_choose(1)){
                 when(rw){ //1-r
