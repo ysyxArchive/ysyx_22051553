@@ -22,7 +22,7 @@ class AXILiteReadData extends Bundle{
 class AXILiteMasterIf extends Bundle{
     val aw = DecoupledIO(new AXILiteAddr)
     val w = DecoupledIO(new AXILiteWriteData)
-    val b = DecoupledIO(UInt(2.W)) //Write Response
+    val b = Flipped(DecoupledIO(UInt(2.W))) //Write Response
     val ar = DecoupledIO(new AXILiteAddr)
     val r = Flipped(DecoupledIO(new AXILiteReadData))
 }
@@ -30,7 +30,7 @@ class AXILiteMasterIf extends Bundle{
 class AXILiteSlaveIF extends Bundle{
     val aw = Flipped(DecoupledIO(new AXILiteAddr))
     val w = Flipped(DecoupledIO(new AXILiteWriteData))
-    val b = Flipped(DecoupledIO(UInt(2.W))) //Write Response
+    val b = (DecoupledIO(UInt(2.W))) //Write Response
     val ar = Flipped(DecoupledIO(new AXILiteAddr))
     val r = DecoupledIO(new AXILiteReadData)
 }
