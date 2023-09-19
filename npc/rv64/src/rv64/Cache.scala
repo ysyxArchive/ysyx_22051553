@@ -12,8 +12,6 @@ package rv64
 import chisel3._
 import chisel3.util._
 import Define._
-import os.group
-import java.awt.BufferCapabilities.FlipContents
 
 
 object CacheState { //有的会产生没必要的延迟周期，但是状态机更清晰
@@ -37,7 +35,7 @@ class CacheReq extends Bundle{  //来自CPU
     val mask = UInt((X_LEN/8).W)
 }
 
-class CacheResp extends Bundle{ //来自总线
+class CacheResp extends Bundle{ //来自仲裁器
     val data = UInt(X_LEN.W)
 }
 
@@ -47,24 +45,9 @@ class CacheIO extends Bundle{
     val resp = ValidIO(new CacheResp)
 }
 
-class AxiCacheReq extends Bundle{
-    val rw = Bool()  //0w-1r
-    val addr = UInt(ADDRWIDTH.W)
-    val data = UInt(X_LEN.W)
-}
-
-class AxiCacheResp extends Bundle{
-    val data = UInt(X_LEN.W)
-}
-
-class AxiCacheIO extends Bundle{
-    val req = ValidIO(new AxiCacheReq)
-    val resp = Flipped(ValidIO(new AxiCacheResp))
-}
-
 class CacheModuleIO extends Bundle{
     val cpu = new CacheIO   //cpu侧
-    val axi = new AxiCacheIO    //总线接口侧
+    val axi = Flipped(new AXIMasterIO)    //仲裁器件侧
 }
 
 import Cache._
