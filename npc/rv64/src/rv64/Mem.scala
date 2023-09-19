@@ -10,7 +10,7 @@ class MemIO extends Bundle{  //需要在这里落实lbu等，为了前向传递
     val emio = Input(new EMRegIO)
     val mwio = Output(new MWRegIO)
 
-    val rdata = Flipped(ValidIO(UInt(X_LEN.W)))
+    val rdata = Flipped(ValidIO(new CacheResp))
 
     //Forward
     val fwmem = Flipped(new FwPipeIO)
@@ -26,7 +26,7 @@ class Mem extends Module{
     //内部逻辑
     val get_value = Wire(UInt(X_LEN.W))   //CLINT数据或者内存数据
     get_value := Mux(io.clmem.Clrvalue.valid, io.clmem.Clrvalue.bits,
-        Mux(io.rdata.valid, io.rdata.bits,
+        Mux(io.rdata.valid, io.rdata.bits.data,
         0.U))
 
 

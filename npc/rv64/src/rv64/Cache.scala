@@ -35,7 +35,7 @@ class CacheReq extends Bundle{  //来自CPU
     val mask = UInt((X_LEN/8).W)
 }
 
-class CacheResp extends Bundle{ //来自仲裁器
+class CacheResp extends Bundle{ 
     val data = UInt(X_LEN.W)
 }
 
