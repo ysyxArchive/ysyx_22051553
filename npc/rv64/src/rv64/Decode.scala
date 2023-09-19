@@ -55,7 +55,10 @@ class Decode extends Module {
     //内部逻辑
 
     dontTouch(inst)
-    inst := Mux(io.inst.valid, io.inst.bits, NOP)
+    inst := Mux(load_use, lu_inst, 
+        Mux(io.inst.valid, io.inst.bits, 
+        NOP))
+        
     csr_num := inst(31,20)
     rs1 := inst(19,15)
     rs2 := inst(24,20)
@@ -64,6 +67,7 @@ class Decode extends Module {
 
     
     //---load_use
+    val lu_inst = RegInit(0.U(INST_LEN.W))
 
     val lu_rd = RegInit(0.U(REG_ADDR_LEN.W))
     val load_use = Wire(Bool())
@@ -77,6 +81,7 @@ class Decode extends Module {
     ) && (lu_rd =/= 0.U)                              //注意存储指令，其需要使用rs2但是opb_type不是B_REG2  即load_store类型
     //若为load_use,则再给一条use
 
+    lu_inst := inst
 
 
     //驱动端口 -输出

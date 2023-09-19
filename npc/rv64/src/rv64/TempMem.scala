@@ -51,7 +51,7 @@ class TempMem extends BlackBox with HasBlackBoxInline{
     |
     |   reg [63:0]  old_inst;
     |
-    |   always@(posedge clk)begin
+    |   always@(posedge clk) 
     |
     |       old_inst <= inst;
     |
