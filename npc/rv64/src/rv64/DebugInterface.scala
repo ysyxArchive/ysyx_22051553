@@ -46,7 +46,7 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     setInline("DebugInterface.v",
     """
     |
-    |import "DPI-C" function void update_debuginfo(input reg[63:0] pc, input pc_req, input reg[31:0] inst, 
+    |import "DPI-C" function void update_debuginfo(input reg[31:0] pc, input pc_req, input reg[31:0] inst, 
     |  input inst_valid, input load_use, input reg[63:0] op_a, input reg[63:0] op_b, input reg[63:0] result, 
     |   input br_yes, input reg mem_access, input [63:0] mem_addr,
     |   input reg[4:0] rd, input reg[63:0] reg_wdata,
@@ -56,7 +56,7 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     |                   input        clk,
     |                   input        rst,            
     |                   //fetch
-    |                   input [63:0] pc,
+    |                   input [31:0] pc,
     |                   input        pc_req,
     |
     |                   input [31:0] inst,

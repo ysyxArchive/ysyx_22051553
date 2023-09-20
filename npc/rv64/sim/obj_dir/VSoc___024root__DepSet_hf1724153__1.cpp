@@ -8,8 +8,8 @@
 #include "VSoc__Syms.h"
 #include "VSoc___024root.h"
 
-void VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit(QData/*63:0*/ raddr, QData/*63:0*/ &pmem_read__Vfuncrtn);
-void VSoc___024unit____Vdpiimwrap_pmem_write_TOP____024unit(QData/*63:0*/ waddr, QData/*63:0*/ wdata, CData/*7:0*/ wmask);
+void VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit(IData/*31:0*/ raddr, QData/*63:0*/ &pmem_read__Vfuncrtn);
+void VSoc___024unit____Vdpiimwrap_pmem_write_TOP____024unit(IData/*31:0*/ waddr, QData/*63:0*/ wdata, CData/*7:0*/ wmask);
 
 VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -31,7 +31,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
     }
     if (vlSelf->reset) {
         if (vlSelf->Soc__DOT__sram__DOT__need_read) {
-            VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit((QData)((IData)(vlSelf->Soc__DOT__sram__DOT__araddr)), __Vfunc_pmem_read__2__Vfuncout);
+            VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->Soc__DOT__sram__DOT__araddr, __Vfunc_pmem_read__2__Vfuncout);
             vlSelf->Soc__DOT__sram__DOT__rvalid = 1U;
             vlSelf->Soc__DOT__sram__DOT__rdata = __Vfunc_pmem_read__2__Vfuncout;
             vlSelf->Soc__DOT__sram__DOT__rresp = 0U;
@@ -46,13 +46,13 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
     if (vlSelf->reset) {
         if (((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_1) 
              & (IData)(vlSelf->Soc__DOT__sram__DOT__wready))) {
-            VSoc___024unit____Vdpiimwrap_pmem_write_TOP____024unit((QData)((IData)(
-                                                                                (((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_1) 
-                                                                                & ((IData)(vlSelf->Soc__DOT__sram__DOT__wready) 
-                                                                                & ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN) 
-                                                                                & (IData)(vlSelf->Soc__DOT__sram__DOT__awready))))
-                                                                                 ? vlSelf->Soc__DOT___core_io_AXI_Interface_aw_bits_addr
-                                                                                 : vlSelf->Soc__DOT__sram__DOT__awaddr_buffer))), 
+            VSoc___024unit____Vdpiimwrap_pmem_write_TOP____024unit(
+                                                                   (((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_1) 
+                                                                     & ((IData)(vlSelf->Soc__DOT__sram__DOT__wready) 
+                                                                        & ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN) 
+                                                                           & (IData)(vlSelf->Soc__DOT__sram__DOT__awready))))
+                                                                     ? vlSelf->Soc__DOT___core_io_AXI_Interface_aw_bits_addr
+                                                                     : vlSelf->Soc__DOT__sram__DOT__awaddr_buffer), 
                                                                    ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_0)
                                                                      ? 0ULL
                                                                      : 
