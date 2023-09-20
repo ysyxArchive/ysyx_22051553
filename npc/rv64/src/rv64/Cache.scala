@@ -86,8 +86,8 @@ class Cache extends Module{
     val hit1 = WireInit(0.B)
     dontTouch(hit0)
     dontTouch(hit1)
-    hit0 := (TagArray(index * 2.U) === io.cpu.req.bits.addr(31, 11)) && valid(index * 2.U)   //在cpu初次访问时就直接比较
-    hit1 := (TagArray(index * 2.U + 1.U) === io.cpu.req.bits.addr(31, 11)) && valid(index * 2.U + 1.U)
+    hit0 := (TagArray(io.cpu.req.bits.addr(10, 3) * 2.U) === io.cpu.req.bits.addr(31, 11)) && valid(io.cpu.req.bits.addr(10, 3) * 2.U)   //在cpu初次访问时就直接比较
+    hit1 := (TagArray(io.cpu.req.bits.addr(10, 3) * 2.U + 1.U) === io.cpu.req.bits.addr(31, 11)) && valid(io.cpu.req.bits.addr(10, 3) * 2.U + 1.U)
 
 
 
@@ -192,8 +192,8 @@ class Cache extends Module{
 
                             // cpu_resp_bits_data := DataArray(index * 2.U)  
 
-                            replace0 := replace.bitSet(index * 2.U, 0.B)
-                            replace1 := replace.bitSet(index * 2.U + 1.U, 1.B)
+                            replace0 := replace.bitSet(io.cpu.req.bits.addr(10, 3) * 2.U, 0.B)
+                            replace1 := replace.bitSet(io.cpu.req.bits.addr(10, 3) * 2.U + 1.U, 1.B)
                             replace := replace0 | replace1
                         }.otherwise{
                             when(inst_type){  //如果为读取指令
@@ -207,8 +207,8 @@ class Cache extends Module{
                                 cpu_resp_bits_data := DataArray(io.cpu.req.bits.addr(10, 3) * 2.U + 1.U)//在下一周期读出
                             }
 
-                            replace0 := replace.bitSet(index * 2.U, 1.B)
-                            replace1 := replace.bitSet(index * 2.U + 1.U, 0.B)
+                            replace0 := replace.bitSet(io.cpu.req.bits.addr(10, 3) * 2.U, 1.B)
+                            replace1 := replace.bitSet(io.cpu.req.bits.addr(10, 3) * 2.U + 1.U, 0.B)
                             replace := replace0 | replace1
                         }
                         cpu_resp_valid := 1.B

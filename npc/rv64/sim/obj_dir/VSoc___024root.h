@@ -152,7 +152,7 @@ class VSoc___024root final : public VerilatedModule {
     };
     struct {
         CData/*2:0*/ Soc__DOT__core__DOT__Icache__DOT__offset;
-        CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT___hit0_T_7;
+        CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT__hit0;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT__victim;
         CData/*7:0*/ Soc__DOT__core__DOT__Icache__DOT__mask;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT__inst_type;
@@ -208,7 +208,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*2:0*/ Soc__DOT__core__DOT__Dcache__DOT__state;
         CData/*7:0*/ Soc__DOT__core__DOT__Dcache__DOT__index;
         CData/*2:0*/ Soc__DOT__core__DOT__Dcache__DOT__offset;
-        CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT___hit0_T_7;
+        CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__hit0;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__victim;
         CData/*7:0*/ Soc__DOT__core__DOT__Dcache__DOT__mask;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__inst_type;
