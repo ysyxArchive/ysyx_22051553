@@ -61,7 +61,7 @@ class Fetch extends Module{
             (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc    //直接变寻址地址
         )
     )
-    // io.pc.valid := Mux(io.fcfe.stall, 0.B, started)
-    // io.pc.valid := Mux(io.fcfe.stall, 0.B, started)
-    io.pc.valid := 1.B //可以始终为1？
+    
+    io.pc.valid := Mux(io.fcfe.stall, 0.B, started)
+    // io.pc.valid := 1.B //可以始终为1？
 }

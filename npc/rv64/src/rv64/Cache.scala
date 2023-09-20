@@ -50,6 +50,8 @@ class CacheIO extends Bundle{
 class CacheModuleIO extends Bundle{
     val cpu = new CacheIO   //cpu侧
     val axi = Flipped(new AXIMasterIO)    //仲裁器件侧
+
+    val fccache = Output(new FcCacheIO)
 }
 
 import Cache._
@@ -111,6 +113,12 @@ class Cache extends Module{
     val whitDataArray = RegInit(0.U(64.W))
     val whitNum = RegInit(0.B)
 
+
+    //顶层
+    io.fccache.hit := hit0 | hit1
+    io.fccache.mask := io.cpu.req.bits.mask
+    io.fccache.valid := io.cpu.resp.valid
+    io.fccache.req := io.cpu.req.valid
 
     //FSM
     //输出端口使用寄存器类型，防止combination logic

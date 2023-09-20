@@ -434,8 +434,10 @@ class Core extends Module{
 
     Icache.io.cpu.resp <> decode.io.inst
 
+    Icache.io.fccache <> fc.io.fcIcache
+
     //Dcache
-    Dcache.io.cpu.req.valid := dereg.ld_type.orR | dereg.sd_type.orR
+    Dcache.io.cpu.req.valid := Mux(fc.io.fcex.stall, 0.B, dereg.ld_type.orR | dereg.sd_type.orR)
     Dcache.io.cpu.req.bits.addr := excute.io.waddr | excute.io.raddr
     Dcache.io.cpu.req.bits.data := excute.io.wdata
     Dcache.io.cpu.req.bits.mask := excute.io.wmask
@@ -443,6 +445,7 @@ class Core extends Module{
 
     Dcache.io.cpu.resp <> mem.io.rdata
 
+    Dcache.io.fccache <> fc.io.fcDcache
     //Arbitor
     arbitor.io.master0 <> Icache.io.axi
     arbitor.io.master1 <> Dcache.io.axi

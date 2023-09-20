@@ -38,7 +38,14 @@ object FlowControl{
     val TrapJump_SFBundle = 
         VecInit(StallN, StallN, StallN, StallN, StallN,     
             FlushY, FlushY, FlushN, FlushN, FlushN)    //需要清除decode中的指令,例如jal
+    
+    val Icache_SFBundle = 
+        VecInit(StallY, StallY, StallY, StallY, StallY,     
+            FlushN, FlushY, FlushN, FlushN, FlushN)   
   
+    val Dcache_SFBundle = 
+        VecInit(StallY, StallY, StallY, StallY, StallY,     
+            FlushN, FlushY, FlushN, FlushN, FlushN) 
 
 }
 
@@ -77,6 +84,12 @@ class FcWbIO extends Bundle{
     val stall     = Output(Bool())
 }
 
+class FcCacheIO extends Bundle{
+    val req = Bool() //判断cpu是否提出申请
+    val mask = UInt((X_LEN/8).W) //判断是否为读
+    val hit = Bool()  //如果为读，且为hit,则无需阻塞
+    val valid = Bool() //当读出、写入，valid信号有效时，取消阻塞
+}
 
 
 class FCIO extends Bundle{
@@ -87,6 +100,9 @@ class FCIO extends Bundle{
     val fcwb = new FcWbIO
 
     val fctr = Flipped(new FcTrIO)
+
+    val fcIcache = Input(new FcCacheIO)
+    val fcDcache = Input(new FcCacheIO)
     
 }
 import TrIO._
@@ -94,9 +110,32 @@ import TrIO._
 class FlowControl extends Module{
     val io = IO(new FCIO)
 
+    val Icache_stall = RegInit(0.B)
+    val Dcache_stall = RegInit(0.B)
+
+
+    when(io.fcIcache.valid){ //恢复
+        Icache_stall := 0.B
+    }.elsewhen(io.fcIcache.mask.orR){ //写，一定需要stall
+        Icache_stall := 1.B
+    }.elsewhen(!io.fcIcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
+        Icache_stall := 1.B
+    }
+
+
+    when(io.fcDcache.valid){ //恢复
+        Dcache_stall := 0.B
+    }.elsewhen(io.fcDcache.mask.orR){ //写，一定需要stall
+        Dcache_stall := 1.B
+    }.elsewhen(!io.fcDcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
+        Dcache_stall := 1.B
+    }
+
     val SFBundle = MuxCase(FlowControl.default,
         Seq(
             (io.fcde.load_use === 1.B) -> FlowControl.LoadUse_SFBundle,
+            Icache_stall -> FlowControl.Icache_SFBundle,
+            Dcache_stall -> FlowControl.Dcache_SFBundle,
             (io.fctr.trap_state === s_MSTATUS || io.fctr.trap_state  === s_MRET) -> FlowControl.TrapJump_SFBundle,
             (io.fctr.pop_NOP === 1.B || io.fctr.trap_state === s_WAIT || io.fctr.trap_state === s_MEPC
              || io.fctr.trap_state === s_MCAUSE || io.fctr.trap_state === s_MRET_WAIT || io.fctr.trap_state === s_CLRMIP)
@@ -107,7 +146,7 @@ class FlowControl extends Module{
         )
     )
 
-
+    
 
     io.fcfe.stall := SFBundle(0)
     io.fcfe.flush := SFBundle(5)
