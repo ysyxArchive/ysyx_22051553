@@ -101,7 +101,7 @@ class AXIArbitor extends Module{
 
             when(master_choose(1)){
                 when(rw){ //1-r
-                    state := s_R
+                    state := s_AR
                 }.otherwise{ //0-w
                     state := s_W
                 }
