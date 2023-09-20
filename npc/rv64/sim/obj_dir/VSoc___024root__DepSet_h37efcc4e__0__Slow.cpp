@@ -19,7 +19,8 @@ VL_ATTR_COLD void VSoc___024root___eval_initial(VSoc___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___eval_initial\n"); );
     // Body
     vlSelf->__Vtrigrprev__TOP__clock = vlSelf->clock;
-    vlSelf->__Vtrigrprev__TOP__reset = vlSelf->reset;
+    vlSelf->__Vtrigrprev__TOP__Soc__DOT____Vcellinp__sram__ARESETn 
+        = vlSelf->Soc__DOT____Vcellinp__sram__ARESETn;
 }
 
 VL_ATTR_COLD void VSoc___024root___eval_final(VSoc___024root* vlSelf) {
@@ -165,6 +166,8 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     VlWide<16>/*511:0*/ __Vtemp_h0bcdac74__0;
     VlWide<128>/*4095:0*/ __Vtemp_hac8dde15__0;
     // Body
+    vlSelf->Soc__DOT____Vcellinp__sram__ARESETn = (1U 
+                                                   & (~ (IData)(vlSelf->reset)));
     vlSelf->Soc__DOT__core__DOT___excute_io_wmask = 
         ((4U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))
           ? 0xffU : ((3U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))

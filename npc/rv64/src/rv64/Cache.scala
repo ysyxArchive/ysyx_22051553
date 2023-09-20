@@ -135,6 +135,7 @@ class Cache extends Module{
         is(s_Idle){
             //重置
             victim := 0.U
+            cpu_resp_valid := 0.B
 
             when(io.cpu.req.valid){
 
@@ -142,16 +143,21 @@ class Cache extends Module{
                     when(hit0 | hit1){  //写命中
                         state := s_hitWrite
 
+                        //缓存
+                        tag := io.cpu.req.bits.addr(31, 11)
+                        index := io.cpu.req.bits.addr(10, 3)
+                        offset := io.cpu.req.bits.addr(2, 0)
+
                         data := io.cpu.req.bits.data
                         addr := io.cpu.req.bits.addr
                         mask := io.cpu.req.bits.mask
 
                         when(hit0){   
                             whitNum := 0.B
-                            whitDataArray := DataArray(index*2.U)
+                            whitDataArray := DataArray(io.cpu.req.bits.addr(10, 3)*2.U)
                         }.otherwise{
                             whitNum := 1.B
-                            whitDataArray := DataArray(index*2.U+1.U)
+                            whitDataArray := DataArray(io.cpu.req.bits.addr(10, 3)*2.U+1.U)
                         }
                     }.otherwise{ //写不命中
                         state := s_Write
@@ -170,13 +176,33 @@ class Cache extends Module{
                         state := s_Idle
 
                         when(hit0){   //读命中后改变replace
-                            cpu_resp_bits_data := DataArray(index * 2.U)  //在下一周期读出
+                            when(inst_type){  //如果为读取指令
+                                when(offset === 0.U){
+                                    cpu_resp_bits_data := Cat(0.U(32.W), DataArray(io.cpu.req.bits.addr(10, 3)* 2.U)(31,0))
+                                }.otherwise{
+                                    cpu_resp_bits_data := Cat(0.U(32.W), DataArray(io.cpu.req.bits.addr(10, 3)* 2.U)(63,32))
+                                }
+                                
+                            }.otherwise{
+                                cpu_resp_bits_data := DataArray(io.cpu.req.bits.addr(10, 3) * 2.U)//在下一周期读出
+                            }
+
+                            // cpu_resp_bits_data := DataArray(index * 2.U)  
 
                             replace0 := replace.bitSet(index * 2.U, 0.B)
                             replace1 := replace.bitSet(index * 2.U + 1.U, 1.B)
                             replace := replace0 | replace1
                         }.otherwise{
-                            cpu_resp_bits_data := DataArray(index * 2.U + 1.U)
+                            when(inst_type){  //如果为读取指令
+                                when(offset === 0.U){
+                                    cpu_resp_bits_data := Cat(0.U(32.W), DataArray(io.cpu.req.bits.addr(10, 3)* 2.U + 1.U)(31,0))
+                                }.otherwise{
+                                    cpu_resp_bits_data := Cat(0.U(32.W), DataArray(io.cpu.req.bits.addr(10, 3)* 2.U + 1.U)(63,32))
+                                }
+                                
+                            }.otherwise{
+                                cpu_resp_bits_data := DataArray(io.cpu.req.bits.addr(10, 3) * 2.U + 1.U)//在下一周期读出
+                            }
 
                             replace0 := replace.bitSet(index * 2.U, 1.B)
                             replace1 := replace.bitSet(index * 2.U + 1.U, 0.B)
@@ -312,8 +338,6 @@ class Cache extends Module{
                     )
                 )
 
-
-                            
                 dirty := dirty.bitSet(index * 2.U, 1.B)
                 replace0 := replace.bitSet(index * 2.U, 0.B)
                 replace1 := replace.bitSet(index * 2.U + 1.U, 1.B)
@@ -321,7 +345,7 @@ class Cache extends Module{
             }
 
 
-            io.cpu.resp.valid := 1.B            
+            cpu_resp_valid := 1.B            
         }
         is(s_Write){
             //选择替代，00选0,01选0,10选1   --根据replace选择，若选择的是dirty,则需要写回

@@ -25,6 +25,21 @@ VL_ATTR_COLD void VSoc___024root___eval_stl(VSoc___024root* vlSelf) {
 }
 
 #ifdef VL_DEBUG
+VL_ATTR_COLD void VSoc___024root___dump_triggers__ico(VSoc___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___dump_triggers__ico\n"); );
+    // Body
+    if ((1U & (~ (IData)(vlSelf->__VicoTriggered.any())))) {
+        VL_DBG_MSGF("         No triggers active\n");
+    }
+    if (vlSelf->__VicoTriggered.at(0U)) {
+        VL_DBG_MSGF("         'ico' region trigger index 0 is active: Internal 'ico' trigger - first iteration\n");
+    }
+}
+#endif  // VL_DEBUG
+
+#ifdef VL_DEBUG
 VL_ATTR_COLD void VSoc___024root___dump_triggers__act(VSoc___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
@@ -37,7 +52,7 @@ VL_ATTR_COLD void VSoc___024root___dump_triggers__act(VSoc___024root* vlSelf) {
         VL_DBG_MSGF("         'act' region trigger index 0 is active: @(posedge clock)\n");
     }
     if (vlSelf->__VactTriggered.at(1U)) {
-        VL_DBG_MSGF("         'act' region trigger index 1 is active: @(posedge clock or negedge reset)\n");
+        VL_DBG_MSGF("         'act' region trigger index 1 is active: @(negedge Soc.__Vcellinp__sram__ARESETn or posedge clock)\n");
     }
 }
 #endif  // VL_DEBUG
@@ -55,7 +70,7 @@ VL_ATTR_COLD void VSoc___024root___dump_triggers__nba(VSoc___024root* vlSelf) {
         VL_DBG_MSGF("         'nba' region trigger index 0 is active: @(posedge clock)\n");
     }
     if (vlSelf->__VnbaTriggered.at(1U)) {
-        VL_DBG_MSGF("         'nba' region trigger index 1 is active: @(posedge clock or negedge reset)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 1 is active: @(negedge Soc.__Vcellinp__sram__ARESETn or posedge clock)\n");
     }
 }
 #endif  // VL_DEBUG
@@ -69,6 +84,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->reset = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT___sram_S_AXI_BVALID = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT___core_io_AXI_Interface_aw_bits_addr = VL_RAND_RESET_I(32);
+    vlSelf->Soc__DOT____Vcellinp__sram__ARESETn = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___Icache_io_cpu_resp_valid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_valid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_bits_data = VL_RAND_RESET_Q(64);
@@ -500,7 +516,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->__Vdly__Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data = VL_RAND_RESET_Q(64);
     vlSelf->__Vdly__Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_data = VL_RAND_RESET_Q(64);
     vlSelf->__Vtrigrprev__TOP__clock = VL_RAND_RESET_I(1);
-    vlSelf->__Vtrigrprev__TOP__reset = VL_RAND_RESET_I(1);
+    vlSelf->__Vtrigrprev__TOP__Soc__DOT____Vcellinp__sram__ARESETn = VL_RAND_RESET_I(1);
     for (int __Vi0 = 0; __Vi0 < 5; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = 0;
     }

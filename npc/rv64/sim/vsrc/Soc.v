@@ -2929,7 +2929,7 @@ module Soc(	// <stdin>:4147:10
   );
   Sram sram (	// Soc.scala:12:22
     .ACLK          (clock),
-    .ARESETn       (reset),
+    .ARESETn       (~reset),	// Soc.scala:15:13
     .S_AXI_AWADDR  (_core_io_AXI_Interface_aw_bits_addr),	// Soc.scala:11:22
     .S_AXI_AWPROT  (3'h0),	// Soc.scala:12:22
     .S_AXI_AWVALID (_core_io_AXI_Interface_aw_valid),	// Soc.scala:11:22
@@ -3247,4 +3247,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 

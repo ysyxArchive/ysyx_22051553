@@ -7,6 +7,25 @@
 
 #include "VSoc___024root.h"
 
+VL_INLINE_OPT void VSoc___024root___ico_sequent__TOP__0(VSoc___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___ico_sequent__TOP__0\n"); );
+    // Body
+    vlSelf->Soc__DOT____Vcellinp__sram__ARESETn = (1U 
+                                                   & (~ (IData)(vlSelf->reset)));
+}
+
+void VSoc___024root___eval_ico(VSoc___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___eval_ico\n"); );
+    // Body
+    if (vlSelf->__VicoTriggered.at(0U)) {
+        VSoc___024root___ico_sequent__TOP__0(vlSelf);
+    }
+}
+
 void VSoc___024root___eval_act(VSoc___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
@@ -2179,6 +2198,10 @@ void VSoc___024root___eval_nba(VSoc___024root* vlSelf) {
     }
 }
 
+void VSoc___024root___eval_triggers__ico(VSoc___024root* vlSelf);
+#ifdef VL_DEBUG
+VL_ATTR_COLD void VSoc___024root___dump_triggers__ico(VSoc___024root* vlSelf);
+#endif  // VL_DEBUG
 void VSoc___024root___eval_triggers__act(VSoc___024root* vlSelf);
 #ifdef VL_DEBUG
 VL_ATTR_COLD void VSoc___024root___dump_triggers__act(VSoc___024root* vlSelf);
@@ -2192,10 +2215,29 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___eval\n"); );
     // Init
+    CData/*0:0*/ __VicoContinue;
     VlTriggerVec<2> __VpreTriggered;
     IData/*31:0*/ __VnbaIterCount;
     CData/*0:0*/ __VnbaContinue;
     // Body
+    vlSelf->__VicoIterCount = 0U;
+    __VicoContinue = 1U;
+    while (__VicoContinue) {
+        __VicoContinue = 0U;
+        VSoc___024root___eval_triggers__ico(vlSelf);
+        if (vlSelf->__VicoTriggered.any()) {
+            __VicoContinue = 1U;
+            if (VL_UNLIKELY((0x64U < vlSelf->__VicoIterCount))) {
+#ifdef VL_DEBUG
+                VSoc___024root___dump_triggers__ico(vlSelf);
+#endif
+                VL_FATAL_MT("vsrc/Soc.v", 2892, "", "Input combinational region did not converge.");
+            }
+            vlSelf->__VicoIterCount = ((IData)(1U) 
+                                       + vlSelf->__VicoIterCount);
+            VSoc___024root___eval_ico(vlSelf);
+        }
+    }
     __VnbaIterCount = 0U;
     __VnbaContinue = 1U;
     while (__VnbaContinue) {

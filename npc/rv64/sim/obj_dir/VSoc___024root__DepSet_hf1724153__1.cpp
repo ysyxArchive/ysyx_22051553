@@ -19,7 +19,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
     QData/*63:0*/ __Vfunc_pmem_read__2__Vfuncout;
     __Vfunc_pmem_read__2__Vfuncout = 0;
     // Body
-    if (vlSelf->reset) {
+    if (vlSelf->Soc__DOT____Vcellinp__sram__ARESETn) {
         if (vlSelf->Soc__DOT__sram__DOT__need_resp) {
             vlSelf->Soc__DOT__sram__DOT__bresp = 0U;
             vlSelf->Soc__DOT__sram__DOT__bvalid = 1U;
@@ -29,7 +29,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
     } else {
         vlSelf->Soc__DOT__sram__DOT__bvalid = 0U;
     }
-    if (vlSelf->reset) {
+    if (vlSelf->Soc__DOT____Vcellinp__sram__ARESETn) {
         if (vlSelf->Soc__DOT__sram__DOT__need_read) {
             VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->Soc__DOT__sram__DOT__araddr, __Vfunc_pmem_read__2__Vfuncout);
             vlSelf->Soc__DOT__sram__DOT__rvalid = 1U;
@@ -43,7 +43,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
         vlSelf->Soc__DOT__sram__DOT__rdata = 0ULL;
         vlSelf->Soc__DOT__sram__DOT__rresp = 0U;
     }
-    if (vlSelf->reset) {
+    if (vlSelf->Soc__DOT____Vcellinp__sram__ARESETn) {
         if (((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_1) 
              & (IData)(vlSelf->Soc__DOT__sram__DOT__wready))) {
             VSoc___024unit____Vdpiimwrap_pmem_write_TOP____024unit(
@@ -74,7 +74,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
     } else {
         vlSelf->Soc__DOT__sram__DOT__need_resp = 0U;
     }
-    if (vlSelf->reset) {
+    if (vlSelf->Soc__DOT____Vcellinp__sram__ARESETn) {
         if (((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_2) 
              & (IData)(vlSelf->Soc__DOT__sram__DOT__arready))) {
             vlSelf->Soc__DOT__sram__DOT__araddr = (
