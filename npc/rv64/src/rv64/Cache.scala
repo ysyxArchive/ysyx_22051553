@@ -15,7 +15,7 @@ import Define._
 
 
 object CacheState { //有的会产生没必要的延迟周期，但是状态机更清晰
-    val s_Idle :: s_ReadCache :: s_WriteCache :: s_Write :: s_wWriteBack :: s_WriteAllocate ::  s_Read ::   s_rWriteBack ::      s_ReadAck :: Nil = Enum(9)
+    val s_Idle :: s_hitWrite :: s_Write :: s_wWriteBack :: s_WriteAllocate ::  s_Read ::   s_rWriteBack ::      s_ReadAck :: Nil = Enum(9)
 //                  进行读操作      进行写操作      未命中写    若有需要，先写回        写分配          未命中读     若有需要，先写回，再读出  等待读出后，给cpu
 }
 
@@ -72,7 +72,7 @@ class Cache extends Module{
 
     val TagArray = Mem(2*setnum, UInt(taglen.W))  //不使用Ram存储，使用寄存器阵列
     //数据
-    val DataArray = SyncReadMem(setnum*2, UInt(bytenum.W))
+    val DataArray = SyncReadMem(setnum*2, UInt((bytenum*8).W))
     //命中
     // val hit = WireInit(0.U(2.W))  //2路 ---需要使用WireInit设置初始值
     // hit(0) := (TagArray(index * 2.U) === tag) && valid(index * 2.U)   //无法这样写
@@ -105,7 +105,10 @@ class Cache extends Module{
     val data = RegInit(0.U(X_LEN.W))
     val mask = RegInit(0.U((X_LEN/8).W))
 
-    val inst_type = Reg(Bool())
+    val inst_type = RegInit(0.B)
+
+    val whitDataArray = RegInit(0.U(64.W))
+    val whitNum = RegInit(0.B)
 
 
     //FSM
@@ -143,39 +146,19 @@ class Cache extends Module{
 
                 when(io.cpu.req.bits.mask.orR){ //写
                     when(hit0 | hit1){  //写命中
-                        state := s_Idle
-                        when(hit0){   //写命中后改变replace，及dirty
-                            DataArray(index * 2.U) := MuxCase(
-                                0.U,
-                                Seq( //如果编译器默认对齐
-                                    (io.cpu.req.bits.mask === "b00000001".U) -> Cat(DataArray(index * 2.U)(63,8), io.cpu.req.bits.data(7,0)),
-                                    (io.cpu.req.bits.mask === "b00000011".U) -> Cat(DataArray(index * 2.U)(63,16), io.cpu.req.bits.data(15,0)),
-                                    (io.cpu.req.bits.mask === "b00001111".U) -> Cat(DataArray(index * 2.U)(63,32), io.cpu.req.bits.data(31,0)),
-                                    (io.cpu.req.bits.mask === "b11111111".U) -> io.cpu.req.bits.data
-                                )
-                            )
-                            
-                            dirty := dirty.bitSet(index * 2.U, 1.B)
-                            replace0 := replace.bitSet(index * 2.U, 0.B)
-                            replace1 := replace.bitSet(index * 2.U + 1.U, 1.B)
-                            replace := replace0 | replace1
-                        }.otherwise{
-                            DataArray(index * 2.U + 1.U) := MuxCase(
-                                0.U,
-                                Seq( //如果编译器默认对齐
-                                    (io.cpu.req.bits.mask === "b00000001".U) -> Cat(DataArray(index * 2.U + 1.U)(63,8), io.cpu.req.bits.data(7,0)),
-                                    (io.cpu.req.bits.mask === "b00000011".U) -> Cat(DataArray(index * 2.U + 1.U)(63,16), io.cpu.req.bits.data(15,0)),
-                                    (io.cpu.req.bits.mask === "b00001111".U) -> Cat(DataArray(index * 2.U + 1.U)(63,32), io.cpu.req.bits.data(31,0)),
-                                    (io.cpu.req.bits.mask === "b11111111".U) -> io.cpu.req.bits.data
-                                )
-                            )
+                        state := s_hitWrite
 
-                            dirty := dirty.bitSet(index * 2.U + 1.U, 1.B)
-                            replace0 := replace.bitSet(index * 2.U, 1.B)
-                            replace1 := replace.bitSet(index * 2.U + 1.U, 0.B)
-                            replace := replace0 | replace1
+                        data := io.cpu.req.bits.data
+                        addr := io.cpu.req.bits.addr
+                        mask := io.cpu.req.bits.mask
+
+                        when(hit0){   
+                            whitNum := 0.B
+                            whitDataArray := DataArray(index*2.U)
+                        }.otherwise{
+                            whitNum := 1.B
+                            whitDataArray := DataArray(index*2.U+1.U)
                         }
-                        io.cpu.resp.valid := 1.B
                     }.otherwise{ //写不命中
                         state := s_Write
                     
@@ -305,6 +288,47 @@ class Cache extends Module{
                 
             }
         }
+        is(s_hitWrite){
+            state := s_Idle
+
+            when(whitNum){ //way1命中,改变replace，及dirty
+                DataArray(index * 2.U + 1.U) := MuxCase(
+                    0.U,
+                    Seq( //如果编译器默认对齐
+                        (mask === "b00000001".U) -> Cat(whitDataArray(63,8), data(7,0)),
+                        (mask === "b00000011".U) -> Cat(whitDataArray(63,16), data(15,0)),
+                        (mask === "b00001111".U) -> Cat(whitDataArray(63,32), data(31,0)),
+                        (mask === "b11111111".U) -> data
+                    )
+                )
+
+                dirty := dirty.bitSet(index * 2.U + 1.U, 1.B)
+                replace0 := replace.bitSet(index * 2.U, 1.B)
+                replace1 := replace.bitSet(index * 2.U + 1.U, 0.B)
+                replace := replace0 | replace1
+
+            }.otherwise{ //way0命中
+                DataArray(index * 2.U) := MuxCase(
+                    0.U,
+                    Seq( //如果编译器默认对齐
+                        (mask === "b00000001".U) -> Cat(whitDataArray(63,8), data(7,0)),
+                        (mask === "b00000011".U) -> Cat(whitDataArray(63,16), data(15,0)),
+                        (mask === "b00001111".U) -> Cat(whitDataArray(63,32), data(31,0)),
+                        (mask === "b11111111".U) -> data
+                    )
+                )
+
+
+                            
+                dirty := dirty.bitSet(index * 2.U, 1.B)
+                replace0 := replace.bitSet(index * 2.U, 0.B)
+                replace1 := replace.bitSet(index * 2.U + 1.U, 1.B)
+                replace := replace0 | replace1
+            }
+
+
+            io.cpu.resp.valid := 1.B            
+        }
         is(s_Write){
             //选择替代，00选0,01选0,10选1   --根据replace选择，若选择的是dirty,则需要写回
             replace_wire := Mux(replace(index*2.U), 1.B, 0.B)
@@ -340,7 +364,7 @@ class Cache extends Module{
             }
         }
         is(s_WriteAllocate){ //写分配，并将cpu的data写入刚从ram读出的DataArray中
-            
+
             axi_req_valid := 1.B //持续为1,直到axi通知读取成功
             axi_req_bits_addr := Cat(addr(31,3), 0.U(3.W)) //读出目标地址,8字节对齐
             axi_req_bits_rw := 1.B
