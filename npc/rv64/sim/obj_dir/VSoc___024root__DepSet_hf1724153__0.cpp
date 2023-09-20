@@ -695,14 +695,14 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
                                       << 2U) | ((2U 
                                                  & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___master_choose_T_1))
                                                  ? 
-                                                (1U 
-                                                 | (0xfffffffeU 
-                                                    & ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___master_choose_T_1) 
-                                                       & (((1U 
-                                                            & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___master_choose_T_1))
-                                                            ? (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_rw)
-                                                            : (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_rw)) 
-                                                          << 1U))))
+                                                ((((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___master_choose_T_1) 
+                                                   >> 1U) 
+                                                  & ((1U 
+                                                      & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___master_choose_T_1))
+                                                      ? (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_rw)
+                                                      : (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_rw)))
+                                                  ? 2U
+                                                  : 1U)
                                                  : (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)))));
         vlSelf->__Vdly__Soc__DOT__core__DOT__arbitor__DOT__state 
             = (3U & ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__unnamedblk1__DOT___GEN_6) 

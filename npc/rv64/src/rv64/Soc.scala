@@ -11,8 +11,11 @@ class Soc extends Module{
     val core = Module(new Core)
     val sram = Module(new Sram)
 
+    val rstn = Wire(Bool())
+    rstn := !reset.asBool
+
     sram.io.ACLK := clock
-    sram.io.ARESETn := reset
+    sram.io.ARESETn := rstn
     sram.io.S_AXI_AWADDR := core.io.AXI_Interface.aw.bits.addr
     sram.io.S_AXI_AWPROT := core.io.AXI_Interface.aw.bits.prot
     sram.io.S_AXI_AWVALID := core.io.AXI_Interface.aw.valid
