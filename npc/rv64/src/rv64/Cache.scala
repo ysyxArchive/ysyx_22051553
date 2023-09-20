@@ -120,8 +120,7 @@ class Cache extends Module{
     val axi_req_bits_addr = RegInit(0.U(ADDRWIDTH.W))
     val axi_req_bits_data = RegInit(0.U(X_LEN.W))
 
-    cpu_resp_valid := 0.U
-    axi_req_valid := 0.U //一般保持无效
+    
     //firtool要求完整initialize
     io.cpu.resp.valid := cpu_resp_valid
     io.cpu.resp.bits.data := cpu_resp_bits_data
@@ -129,6 +128,9 @@ class Cache extends Module{
     io.axi.req.bits.rw := axi_req_bits_rw
     io.axi.req.bits.addr := axi_req_bits_addr
     io.axi.req.bits.data := axi_req_bits_data
+
+    cpu_resp_valid := 0.U
+    axi_req_valid := 0.U //一般保持无效
     
 
     switch(state){
