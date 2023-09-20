@@ -115,7 +115,7 @@ void update_debuginfo(
   
 
   debug_ins.update(
-    (unsigned long)pc[1].aval << 32 | pc[0].aval,
+    (unsigned long)pc[0].aval,
     (bool)pc_req,
     (unsigned int)inst[0].aval,
     (bool)inst_valid,
@@ -182,8 +182,8 @@ long long pmem_read(const svLogicVecVal* raddr){
 
 
 
-  if( ((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDRH || ((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDRL){
-    if(((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == RTC_ADDRH){
+  if( ((unsigned long)raddr[0].aval) == RTC_ADDRH || ((unsigned long)raddr[0].aval) == RTC_ADDRL){
+    if(((unsigned long)raddr[0].aval) == RTC_ADDRH){
         struct timespec now;
         clock_gettime(CLOCK_MONOTONIC_COARSE, &now);
         rtc_time = now.tv_sec * 1000000 + now.tv_nsec / 1000;
@@ -193,14 +193,14 @@ long long pmem_read(const svLogicVecVal* raddr){
     else
       return (long long) (rtc_time & 0xffffffff);
   }
-  else if(((unsigned long)raddr[1].aval << 32 | raddr[0].aval) == VGACTL_ADDR){
+  else if(((unsigned long)addr[0].aval) == VGACTL_ADDR){
       uint32_t vga_ctrl_bundle = SCREEN_W << 16 | SCREEN_H;
       return vga_ctrl_bundle;
 
   }
 
   uint64_t value =  pmem.mem_read(
-    (unsigned long)raddr[1].aval << 32 | raddr[0].aval
+    (unsigned long)raddr[0].aval
   );
 
   return (long long) value;
@@ -220,26 +220,26 @@ long long pmem_read(const svLogicVecVal* raddr){
     #endif
 
 
-    if( ((unsigned long)waddr[1].aval << 32 | waddr[0].aval) == SERIAL_PORT){
+    if( ((unsigned long)waddr[0].aval) == SERIAL_PORT){
       
       putchar((unsigned long)wdata[1].aval << 32 | wdata[0].aval);
       return ;
     }
-    else if( (FB_ADDR <= ((unsigned long)waddr[1].aval << 32 | waddr[0].aval)) 
-      && (((unsigned long)waddr[1].aval << 32 | waddr[0].aval) <= FB_ADDR + SCREEN_W*SCREEN_H*sizeof(uint32_t))){
+    else if( (FB_ADDR <= ((unsigned long)waddr[0].aval)) 
+      && (((unsigned long)waddr[0].aval) <= FB_ADDR + SCREEN_W*SCREEN_H*sizeof(uint32_t))){
       display.vmem_write(
-        (unsigned long)waddr[1].aval << 32 | waddr[0].aval,
+        (unsigned long)waddr[0].aval,
         (unsigned long)wdata[1].aval << 32 | wdata[0].aval,
         wmask
       );
       return ;
     }
-    else if(((unsigned long)waddr[1].aval << 32 | waddr[0].aval) == SYNC_ADDR){
+    else if(((unsigned long)waddr[0].aval) == SYNC_ADDR){
       display.update_screen();
     }
     else {
       pmem.mem_write(
-        (unsigned long)waddr[1].aval << 32 | waddr[0].aval,
+        (unsigned long)waddr[0].aval,
         (unsigned long)wdata[1].aval << 32 | wdata[0].aval,
         wmask
       );

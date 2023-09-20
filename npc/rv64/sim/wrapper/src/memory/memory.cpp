@@ -14,14 +14,14 @@ uint8_t* memory::get_mem(){
     return mem;
 }
 
-uint64_t memory::mem_read(uint64_t raddr){ //用于rtl
+uint64_t memory::mem_read(uint32_t raddr){ //用于rtl
     // uint32_t addr = (pmem.mem + raddr - CONFIG_MBASE) & ~0x7ul; //错误
 
     #ifdef MTRACE
     printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr, 8);
     #endif
 
-    uint64_t addr = (uint64_t)(pmem.mem + raddr - CONFIG_MBASE) & ~0x7ull; 
+    uint32_t addr = (uint32_t)(pmem.mem + raddr - CONFIG_MBASE) & ~0x7ull; 
 
     #ifdef MTRACE
     printf(ANSI_FMT("read value is 0x%lx\n", ANSI_FG_YELLOW),*(uint64_t*)addr);
@@ -30,7 +30,7 @@ uint64_t memory::mem_read(uint64_t raddr){ //用于rtl
     return *(uint64_t*)addr;
 }
 
-uint64_t memory::mem_readbylen(uint64_t raddr, int len){ //用于仿真
+uint64_t memory::mem_readbylen(uint32_t raddr, int len){ //用于仿真
     // uint32_t addr = (pmem.mem + raddr - CONFIG_MBASE) & ~0x7ul; //错误
     switch (len) {
         case 1: return *(uint8_t  *)(pmem.mem + raddr - CONFIG_MBASE);
@@ -41,7 +41,7 @@ uint64_t memory::mem_readbylen(uint64_t raddr, int len){ //用于仿真
     return 0;
 }
 
-void memory::mem_write(uint64_t waddr, uint64_t wdata, uint8_t wmask){
+void memory::mem_write(uint32_t waddr, uint64_t wdata, uint8_t wmask){
 
     #ifdef MTRACE
     printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),waddr, 
@@ -92,7 +92,7 @@ void memory::mem_write(uint64_t waddr, uint64_t wdata, uint8_t wmask){
     }
 }
 
-void memory::mem_display(uint64_t addr, int len){  //1个单位打印4字节
+void memory::mem_display(uint32_t addr, int len){  //1个单位打印4字节
     int count_4 = 0;
 
     uint32_t* loc = (uint32_t *)(pmem.mem + addr - CONFIG_MBASE);
