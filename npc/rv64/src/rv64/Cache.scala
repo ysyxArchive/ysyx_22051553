@@ -15,7 +15,7 @@ import Define._
 
 
 object CacheState { //有的会产生没必要的延迟周期，但是状态机更清晰
-    val s_Idle :: s_hitWrite :: s_Write :: s_wWriteBack :: s_WriteAllocate ::  s_Read ::   s_rWriteBack ::      s_ReadAck :: Nil = Enum(9)
+    val s_Idle :: s_hitWrite :: s_Write :: s_wWriteBack :: s_WriteAllocate ::  s_Read ::   s_rWriteBack ::  s_ReadAck :: Nil = Enum(8)
 //                  进行读操作      进行写操作      未命中写    若有需要，先写回        写分配          未命中读     若有需要，先写回，再读出  等待读出后，给cpu
 }
 
