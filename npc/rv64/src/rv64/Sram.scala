@@ -37,10 +37,10 @@ class Sram extends BlackBox with HasBlackBoxInline{
     setInline("Sram.v",
     """
     |import "DPI-C" function longint pmem_read(
-    |   input reg[63:0] raddr);
+    |   input reg[31:0] raddr);
     |
     |import "DPI-C" function void pmem_write(
-    |   input reg[63:0] waddr, input reg[63:0] wdata, input byte wmask);
+    |   input reg[31:0] waddr, input reg[63:0] wdata, input byte wmask);
     |
     |
     |module Sram(

@@ -3230,10 +3230,11 @@ end
 
 //r channel
 always@(posedge ACLK or negedge ARESETn) begin
-   if(!ARESETn)
+   if(!ARESETn)begin
        rvalid <= 1'b0;
        rdata <= 64'd0;
        rresp <= 2'd0;
+    end
     else begin
         if(need_read) begin
             rvalid <= 1'b1;
