@@ -84,7 +84,8 @@ class Cache extends Module{
     //由于以上原因：
     val hit0 = WireInit(0.B)
     val hit1 = WireInit(0.B)
-
+    dontTouch(hit0)
+    dontTouch(hit1)
     hit0 := (TagArray(index * 2.U) === io.cpu.req.bits.addr(31, 11)) && valid(index * 2.U)   //在cpu初次访问时就直接比较
     hit1 := (TagArray(index * 2.U + 1.U) === io.cpu.req.bits.addr(31, 11)) && valid(index * 2.U + 1.U)
 
