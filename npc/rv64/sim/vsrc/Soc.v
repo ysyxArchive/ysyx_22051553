@@ -3134,7 +3134,7 @@ always@(posedge ACLK or negedge ARESETn) begin
     end 
 end
 
-reg [31:0] awaddr_buffer 
+reg [31:0] awaddr_buffer;
 
 always@(posedge ACLK or negedge ARESETn)begin
     if(!ARESETn)
@@ -3213,9 +3213,10 @@ reg [31:0] araddr;
 reg need_read;
 
 always@(posedge ACLK or negedge ARESETn)begin
-    if(!ARESETn)
+    if(!ARESETn)begin
         araddr <= 32'd0;
         need_read <= 1'b0;
+    end
     else begin
         if(S_AXI_ARVALID && S_AXI_ARREADY)begin
             araddr <= S_AXI_ARADDR;
@@ -3251,5 +3252,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 
