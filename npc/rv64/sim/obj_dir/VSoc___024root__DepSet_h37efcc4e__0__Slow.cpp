@@ -53,7 +53,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3079, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3089, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -4543,7 +4543,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h07501b90__0 
         = ((0U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
            & (IData)(vlSelf->Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid));
-    vlSelf->Soc__DOT__core__DOT___fetch_io_pc_valid 
+    vlSelf->Soc__DOT__core__DOT___Icache_io_fccache_req 
         = ((~ (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall)) 
            & (IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started));
     vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
@@ -5600,10 +5600,10 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
            & (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__inst_type));
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h6554e4e0__0 
         = (((0U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)) 
-            & (IData)(vlSelf->Soc__DOT__core__DOT___fetch_io_pc_valid)) 
+            & (IData)(vlSelf->Soc__DOT__core__DOT___Icache_io_fccache_req)) 
            & (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_3));
     vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN_3 
-        = (1U & ((~ (IData)(vlSelf->Soc__DOT__core__DOT___fetch_io_pc_valid)) 
+        = (1U & ((~ (IData)(vlSelf->Soc__DOT__core__DOT___Icache_io_fccache_req)) 
                  | (~ (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_3))));
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h0ae5a5ca__0 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h6554e4e0__0) 

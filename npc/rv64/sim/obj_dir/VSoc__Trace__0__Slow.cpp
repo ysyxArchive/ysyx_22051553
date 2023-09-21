@@ -102,6 +102,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBit(c+60,"io_axi_req_bits_rw", false,-1);
     tracep->declBus(c+61,"io_axi_req_bits_addr", false,-1, 31,0);
     tracep->declQuad(c+520,"io_axi_req_bits_data", false,-1, 63,0);
+    tracep->declBit(c+53,"io_fccache_req", false,-1);
     tracep->declBus(c+55,"io_fccache_mask", false,-1, 7,0);
     tracep->declBit(c+62,"io_fccache_hit", false,-1);
     tracep->declBit(c+56,"io_fccache_valid", false,-1);
@@ -264,6 +265,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBit(c+182,"io_axi_req_bits_rw", false,-1);
     tracep->declBus(c+183,"io_axi_req_bits_addr", false,-1, 31,0);
     tracep->declQuad(c+527,"io_axi_req_bits_data", false,-1, 63,0);
+    tracep->declBit(c+43,"io_fccache_req", false,-1);
     tracep->declBus(c+552,"io_fccache_mask", false,-1, 7,0);
     tracep->declBit(c+184,"io_fccache_hit", false,-1);
     tracep->declBit(c+178,"io_fccache_valid", false,-1);
@@ -624,8 +626,10 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+392,"io_fctr_trap_state", false,-1, 2,0);
     tracep->declBit(c+393,"io_fctr_jump_flag", false,-1);
     tracep->declBus(c+394,"io_fctr_jump_pc", false,-1, 31,0);
+    tracep->declBit(c+43,"io_fcIcache_req", false,-1);
     tracep->declBus(c+552,"io_fcIcache_mask", false,-1, 7,0);
     tracep->declBit(c+178,"io_fcIcache_valid", false,-1);
+    tracep->declBit(c+53,"io_fcDcache_req", false,-1);
     tracep->declBus(c+55,"io_fcDcache_mask", false,-1, 7,0);
     tracep->declBit(c+62,"io_fcDcache_hit", false,-1);
     tracep->declBit(c+56,"io_fcDcache_valid", false,-1);
@@ -929,7 +933,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullSData(oldp+40,(vlSelf->Soc__DOT__core__DOT__mwreg_csr_waddr),12);
     bufp->fullBit(oldp+41,(vlSelf->Soc__DOT__core__DOT__mwreg_has_inst));
     bufp->fullIData(oldp+42,(vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc),32);
-    bufp->fullBit(oldp+43,(vlSelf->Soc__DOT__core__DOT___fetch_io_pc_valid));
+    bufp->fullBit(oldp+43,(vlSelf->Soc__DOT__core__DOT___Icache_io_fccache_req));
     bufp->fullIData(oldp+44,(((4U & vlSelf->Soc__DOT__core__DOT__fdreg_pc)
                                ? (IData)((vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_bits_data 
                                           >> 0x20U))

@@ -86,6 +86,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT___core_io_AXI_Interface_aw_bits_addr = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT____Vcellinp__sram__ARESETn = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___Dcache_io_fccache_mask = VL_RAND_RESET_I(8);
+    vlSelf->Soc__DOT__core__DOT___Icache_io_fccache_req = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_valid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_bits_data = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___arbitor_io_master1_resp_valid = VL_RAND_RESET_I(1);
@@ -111,7 +112,6 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___decode_io_fwde_csr_raddr = VL_RAND_RESET_I(12);
     vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc = VL_RAND_RESET_I(32);
-    vlSelf->Soc__DOT__core__DOT___fetch_io_pc_valid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__fdreg_pc = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__core__DOT__dereg_op_a = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__dereg_op_b = VL_RAND_RESET_Q(64);

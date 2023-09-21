@@ -24,6 +24,7 @@ class VSoc___024root final : public VerilatedModule {
         VL_IN8(reset,0,0);
         CData/*0:0*/ Soc__DOT___sram_S_AXI_BVALID;
         CData/*7:0*/ Soc__DOT__core__DOT___Dcache_io_fccache_mask;
+        CData/*0:0*/ Soc__DOT__core__DOT___Icache_io_fccache_req;
         CData/*0:0*/ Soc__DOT__core__DOT___arbitor_io_master0_resp_valid;
         CData/*0:0*/ Soc__DOT__core__DOT___arbitor_io_master1_resp_valid;
         CData/*0:0*/ Soc__DOT__core__DOT___trap_io_csrtr_csr_wen;
@@ -40,7 +41,6 @@ class VSoc___024root final : public VerilatedModule {
         CData/*5:0*/ Soc__DOT__core__DOT___decode_io_deio_alu_op;
         CData/*0:0*/ Soc__DOT__core__DOT___decode_io_deio_csr_wen;
         CData/*0:0*/ Soc__DOT__core__DOT___decode_io_jump_flag;
-        CData/*0:0*/ Soc__DOT__core__DOT___fetch_io_pc_valid;
         CData/*4:0*/ Soc__DOT__core__DOT__dereg_reg_waddr;
         CData/*0:0*/ Soc__DOT__core__DOT__dereg_branch_type;
         CData/*5:0*/ Soc__DOT__core__DOT__dereg_alu_op;

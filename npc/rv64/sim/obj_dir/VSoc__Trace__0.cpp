@@ -60,7 +60,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgSData(oldp+39,(vlSelf->Soc__DOT__core__DOT__mwreg_csr_waddr),12);
         bufp->chgBit(oldp+40,(vlSelf->Soc__DOT__core__DOT__mwreg_has_inst));
         bufp->chgIData(oldp+41,(vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc),32);
-        bufp->chgBit(oldp+42,(vlSelf->Soc__DOT__core__DOT___fetch_io_pc_valid));
+        bufp->chgBit(oldp+42,(vlSelf->Soc__DOT__core__DOT___Icache_io_fccache_req));
         bufp->chgIData(oldp+43,(((4U & vlSelf->Soc__DOT__core__DOT__fdreg_pc)
                                   ? (IData)((vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_bits_data 
                                              >> 0x20U))
