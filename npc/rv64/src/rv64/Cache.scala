@@ -203,7 +203,9 @@ class Cache extends Module{
                             //     }
                                 
                             // }.otherwise{
-                                cpu_resp_bits_data := DataArray(io.cpu.req.bits.addr(10, 3) * 2.U)//在下一周期读出
+                                // cpu_resp_bits_data := DataArray(io.cpu.req.bits.addr(10, 3) * 2.U)//在下一周期读出
+                                val rport = DataArray(io.cpu.req.bits.addr(10, 3) * 2.U)
+                                cpu_resp_bits_data := rport//在下一周期读出
                             // }
 
                             // cpu_resp_bits_data := DataArray(index * 2.U)  
