@@ -57,17 +57,27 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
                                                                    ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_0)
                                                                      ? 0ULL
                                                                      : 
-                                                                    ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h02c05ceb__0)
-                                                                      ? vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data
-                                                                      : vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_data)), 
-                                                                   ((0U 
-                                                                     == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state))
+                                                                    ((IData)(vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_req_valid_T_5)
+                                                                      ? vlSelf->Soc__DOT__core__DOT__dereg_reg2_rdata
+                                                                      : 
+                                                                     ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h02c05ceb__0)
+                                                                       ? vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_data
+                                                                       : 
+                                                                      ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h8b66eaf6__0)
+                                                                        ? vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data
+                                                                        : 0ULL)))), 
+                                                                   ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_0)
                                                                      ? 0U
                                                                      : 
-                                                                    (0xffU 
-                                                                     & (- (IData)(
-                                                                                (1U 
-                                                                                == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)))))));
+                                                                    ((IData)(vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_req_valid_T_5)
+                                                                      ? (IData)(vlSelf->Soc__DOT__core__DOT___Dcache_io_fccache_mask)
+                                                                      : 
+                                                                     ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h02c05ceb__0)
+                                                                       ? (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_mask)
+                                                                       : 
+                                                                      ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h8b66eaf6__0)
+                                                                        ? (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_mask)
+                                                                        : 0U)))));
             vlSelf->Soc__DOT__sram__DOT__need_resp = 1U;
         } else {
             vlSelf->Soc__DOT__sram__DOT__need_resp = 0U;
@@ -85,11 +95,11 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
                                                        | ((~ 
                                                            ((2U 
                                                              == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
-                                                            & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h82421030__0))) 
+                                                            & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h8b4a72cf__0))) 
                                                           | (1U 
                                                              == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)))))
                                                     ? 0U
-                                                    : vlSelf->Soc__DOT__core__DOT__arbitor__DOT___addr_T_2);
+                                                    : vlSelf->Soc__DOT__core__DOT__arbitor__DOT___addr_T_6);
         }
         if (((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN) 
              & (IData)(vlSelf->Soc__DOT__sram__DOT__awready))) {

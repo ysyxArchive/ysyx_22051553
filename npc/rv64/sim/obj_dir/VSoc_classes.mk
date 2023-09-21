@@ -35,7 +35,6 @@ VM_CLASSES_SLOW += \
 	VSoc___024root__Slow \
 	VSoc___024root__DepSet_hf1724153__0__Slow \
 	VSoc___024root__DepSet_h37efcc4e__0__Slow \
-	VSoc___024root__DepSet_h37efcc4e__1__Slow \
 	VSoc___024unit__Slow \
 	VSoc___024unit__DepSet_hcac5f3b5__0__Slow \
 

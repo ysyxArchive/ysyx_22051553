@@ -144,7 +144,7 @@ class AXIArbitor extends Module{
     switch(state){ //并不符合状态机，状态机中，左边都是reg类型
         is(s_Idle){
 
-            when(master_choose(1)){
+            when(master_choose(3)){
                 when(rw){ //1-r
                     state := s_AR
                 }.otherwise{ //0-w
