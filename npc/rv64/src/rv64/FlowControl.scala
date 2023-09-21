@@ -130,10 +130,14 @@ class FlowControl extends Module{
 
     when(io.fcDcache.valid){ //恢复
         Dcache_stall := 0.B
-    }.elsewhen(io.fcDcache.req && io.fcDcache.mask.orR){ //写，一定需要stall
+    }.elsewhen(io.fcDcache.state =/= 0.U){
         Dcache_stall := 1.B
-    }.elsewhen(io.fcDcache.req && !io.fcDcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
+    }.elsewhen(io.fcDcache.state === 0.U && io.fcDcache.req && io.fcDcache.mask.orR){ //写，一定需要stall
         Dcache_stall := 1.B
+    }.elsewhen(io.fcDcache.state === 0.U && io.fcDcache.req && !io.fcDcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
+        Dcache_stall := 1.B
+    }.otherwise{
+        Dcache_stall := 0.B
     }
 
     val SFBundle = MuxCase(FlowControl.default,
