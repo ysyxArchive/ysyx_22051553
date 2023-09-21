@@ -112,7 +112,7 @@ class AXIArbitor extends Module{
     val aw_comp = RegInit(0.B)
     val w_comp = RegInit(0.B)
     // val b_comp = RegInit(0.B)
-    val b_comp = Wire(0.B)  //不耽误周期
+    val b_comp = WireInit(0.B)  //不耽误周期
 
     // val ar_comp = RegInit(0.B)
     // val r_comp = RegInit(0.B)
