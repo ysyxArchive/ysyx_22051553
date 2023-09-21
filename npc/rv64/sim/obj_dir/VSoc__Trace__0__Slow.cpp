@@ -514,9 +514,10 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+318,"io_fwde_reg2_raddr", false,-1, 4,0);
     tracep->declBus(c+283,"io_fwde_csr_raddr", false,-1, 11,0);
     tracep->declBus(c+283,"io_csrs_csr_raddr", false,-1, 11,0);
-    tracep->declBus(c+341,"lu_rd", false,-1, 4,0);
+    tracep->declBus(c+341,"inst", false,-1, 31,0);
+    tracep->declBus(c+342,"lu_rd", false,-1, 4,0);
     tracep->pushNamePrefix("cu ");
-    tracep->declBus(c+342,"io_inst", false,-1, 31,0);
+    tracep->declBus(c+341,"io_inst", false,-1, 31,0);
     tracep->declBus(c+343,"io_jump_type", false,-1, 1,0);
     tracep->declBit(c+324,"io_branch_type", false,-1);
     tracep->declBus(c+344,"io_opa_type", false,-1, 1,0);
@@ -529,7 +530,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+347,"io_csr_type", false,-1, 1,0);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("eximm ");
-    tracep->declBus(c+342,"io_inst", false,-1, 31,0);
+    tracep->declBus(c+341,"io_inst", false,-1, 31,0);
     tracep->declBus(c+346,"io_imm_type", false,-1, 2,0);
     tracep->declQuad(c+348,"io_eximm", false,-1, 63,0);
     tracep->popNamePrefix(1);
@@ -1262,7 +1263,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                         : 0ULL)))),64);
     bufp->fullCData(oldp+317,(vlSelf->Soc__DOT__core__DOT___decode_io_rfio_reg1_raddr),5);
     bufp->fullCData(oldp+318,(vlSelf->Soc__DOT__core__DOT___decode_io_rfio_reg2_raddr),5);
-    bufp->fullQData(oldp+319,((((0x13U != vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN) 
+    bufp->fullQData(oldp+319,((((0x13U != vlSelf->Soc__DOT__core__DOT__decode__DOT__inst) 
                                 & ((0x17U != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
                                    & ((0x37U != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
                                       & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_4)) 
@@ -1292,7 +1293,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                    ? vlSelf->Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm
                                                    : 0ULL))))),64);
     bufp->fullCData(oldp+323,(vlSelf->Soc__DOT__core__DOT___decode_io_deio_reg_waddr),5);
-    bufp->fullBit(oldp+324,(((0x13U != vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN) 
+    bufp->fullBit(oldp+324,(((0x13U != vlSelf->Soc__DOT__core__DOT__decode__DOT__inst) 
                              & ((0x17U != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
                                 & ((0x37U != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
                                    & ((0x6fU != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0)) 
@@ -1313,7 +1314,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                    (vlSelf->Soc__DOT__core__DOT___Icache_io_cpu_resp_bits_data 
                                                     >> 0x14U)))
                                 : 0U)),6);
-    bufp->fullCData(oldp+329,(((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN)
+    bufp->fullCData(oldp+329,(((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst)
                                 ? 0U : ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_10)
                                          ? 1U : ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_5)
                                                   ? 0U
@@ -1375,7 +1376,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                 ? (IData)(vlSelf->Soc__DOT__core__DOT___decode_io_fwde_csr_raddr)
                                 : 0U)),12);
     bufp->fullBit(oldp+337,(vlSelf->Soc__DOT__core__DOT___decode_io_deio_csr_wen));
-    bufp->fullBit(oldp+338,((0x13U != vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN)));
+    bufp->fullBit(oldp+338,((0x13U != vlSelf->Soc__DOT__core__DOT__decode__DOT__inst)));
     bufp->fullBit(oldp+339,(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag));
     bufp->fullIData(oldp+340,(((1U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type))
                                 ? (vlSelf->Soc__DOT__core__DOT__fdreg_pc 
@@ -1385,12 +1386,12 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                        & ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___io_jump_pc_T_4) 
                                           + (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___eximm_io_eximm)))
                                     : 0x80000000U))),32);
-    bufp->fullCData(oldp+341,(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd),5);
-    bufp->fullIData(oldp+342,(vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN),32);
+    bufp->fullIData(oldp+341,(vlSelf->Soc__DOT__core__DOT__decode__DOT__inst),32);
+    bufp->fullCData(oldp+342,(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd),5);
     bufp->fullCData(oldp+343,(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type),2);
     bufp->fullCData(oldp+344,(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type),2);
     bufp->fullCData(oldp+345,(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type),3);
-    bufp->fullCData(oldp+346,(((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN)
+    bufp->fullCData(oldp+346,(((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst)
                                 ? 0U : ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_6)
                                          ? 1U : ((0x6fU 
                                                   == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0))

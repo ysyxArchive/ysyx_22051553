@@ -156,7 +156,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type = VL_RAND_RESET_I(2);
     vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type = VL_RAND_RESET_I(3);
     vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_ld_type = VL_RAND_RESET_I(3);
-    vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN = VL_RAND_RESET_I(32);
+    vlSelf->Soc__DOT__core__DOT__decode__DOT__inst = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd = VL_RAND_RESET_I(5);
     vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_12 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_8 = VL_RAND_RESET_I(1);

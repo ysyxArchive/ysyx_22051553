@@ -53,7 +53,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3004, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3005, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -1902,7 +1902,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
         vlSelf->__VdfgTmp_h726b6097__0 = (0x7fU & (IData)(
                                                           (vlSelf->Soc__DOT__core__DOT___Icache_io_cpu_resp_bits_data 
                                                            >> 0x19U)));
-        vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN 
+        vlSelf->Soc__DOT__core__DOT__decode__DOT__inst 
             = (IData)(vlSelf->Soc__DOT__core__DOT___Icache_io_cpu_resp_bits_data);
         vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0 
             = (0x7fU & (IData)(vlSelf->Soc__DOT__core__DOT___Icache_io_cpu_resp_bits_data));
@@ -1921,7 +1921,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
         vlSelf->Soc__DOT__core__DOT___decode_io_rfio_reg2_raddr = 0U;
         vlSelf->Soc__DOT__core__DOT___decode_io_rfio_reg1_raddr = 0U;
         vlSelf->__VdfgTmp_h726b6097__0 = 0U;
-        vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN = 0x13U;
+        vlSelf->Soc__DOT__core__DOT__decode__DOT__inst = 0x13U;
         vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0 = 0x13U;
         vlSelf->Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0 = 0U;
         vlSelf->__VdfgTmp_h315738f9__0 = 0U;
@@ -3054,7 +3054,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
         = ((0x3fU == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op))
             ? 0ULL : vlSelf->__VdfgTmp_h6a80e86b__0);
     vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h69b28aa1__0 
-        = ((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN) 
+        = ((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst) 
            | (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_6));
     vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_9 
         = ((0x23U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)) 
@@ -3459,7 +3459,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                    + 
                                                    (0x1ffU 
                                                     & (((0x13U 
-                                                         == vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN)
+                                                         == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst)
                                                          ? 0U
                                                          : 
                                                         ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_6)
@@ -3547,7 +3547,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                               : 5U)))))) 
                                                        << 6U))) 
                                                   >> 5U)])) 
-            << ((0U == (0x1fU & (((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN)
+            << ((0U == (0x1fU & (((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst)
                                    ? 0U : ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_6)
                                             ? 1U : 
                                            ((0x6fU 
@@ -3629,7 +3629,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                    : 5U)))))) 
                                  << 6U))) ? 0x20U : 
                 ((IData)(0x40U) - (0x1fU & (((0x13U 
-                                              == vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN)
+                                              == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst)
                                               ? 0U : 
                                              ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_6)
                                                ? 1U
@@ -3714,7 +3714,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                       ? 0U
                                                       : 5U)))))) 
                                             << 6U))))) 
-           | (((0U == (0x1fU & (((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN)
+           | (((0U == (0x1fU & (((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst)
                                   ? 0U : ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_6)
                                            ? 1U : (
                                                    (0x6fU 
@@ -3803,7 +3803,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                                      + 
                                                                      (0x1ffU 
                                                                       & (((0x13U 
-                                                                           == vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN)
+                                                                           == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst)
                                                                            ? 0U
                                                                            : 
                                                                           ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_6)
@@ -3896,7 +3896,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                     - 
                                                     (0x1fU 
                                                      & (((0x13U 
-                                                          == vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN)
+                                                          == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst)
                                                           ? 0U
                                                           : 
                                                          ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_6)
@@ -3984,7 +3984,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                                : 5U)))))) 
                                                         << 6U))))) 
               | ((QData)((IData)(__Vtemp_h81b802f3__0[
-                                 (0xeU & (((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN)
+                                 (0xeU & (((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst)
                                             ? 0U : 
                                            ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_6)
                                              ? 1U : 
@@ -4067,7 +4067,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                     ? 0U
                                                     : 5U)))))) 
                                           << 1U))])) 
-                 >> (0x1fU & (((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN)
+                 >> (0x1fU & (((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst)
                                 ? 0U : ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_6)
                                          ? 1U : ((0x6fU 
                                                   == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0))
@@ -4199,7 +4199,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                                                 | (0x133U 
                                                                                 == vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_1))))))))))))))))))))))))) 
                                       | (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_3));
-    if ((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT___GEN)) {
+    if ((0x13U == vlSelf->Soc__DOT__core__DOT__decode__DOT__inst)) {
         vlSelf->Soc__DOT__core__DOT___decode_io_deio_alu_op = 0x3fU;
         vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type = 0U;
         vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type = 0U;

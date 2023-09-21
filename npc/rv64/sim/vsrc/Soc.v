@@ -680,12 +680,13 @@ module Decode(	// <stdin>:948:10
   wire [2:0]  _cu_io_sd_type;	// Decode.scala:51:20
   wire [2:0]  _cu_io_ld_type;	// Decode.scala:51:20
   wire [1:0]  _cu_io_csr_type;	// Decode.scala:51:20
-  wire [31:0] _GEN = io_inst_valid ? io_inst_bits_data[31:0] : 32'h13;	// Decode.scala:57:16
+  wire [31:0] inst;	// Decode.scala:41:20
+  assign inst = io_inst_valid ? io_inst_bits_data[31:0] : 32'h13;	// Decode.scala:57:{10,16}
   reg  [4:0]  lu_rd;	// Decode.scala:67:24
   wire        _io_deio_op_a_T_3 = _cu_io_opa_type == 2'h2;	// Decode.scala:51:20, :74:34
-  wire        _load_use_T_12 = _GEN[19:15] == lu_rd;	// Decode.scala:57:16, :59:16, :67:24, :74:64
+  wire        _load_use_T_12 = inst[19:15] == lu_rd;	// Decode.scala:58:20, :59:16, :67:24, :74:64
   wire        _io_deio_op_b_T_6 = _cu_io_opb_type == 3'h2;	// Decode.scala:51:20, :74:95
-  wire        _load_use_T_8 = _GEN[24:20] == lu_rd;	// Decode.scala:57:16, :60:16, :67:24, :74:125
+  wire        _load_use_T_8 = inst[24:20] == lu_rd;	// Decode.scala:58:20, :60:16, :67:24, :74:125
   wire        _io_jump_pc_T_3 = _cu_io_jump_type == 2'h2;	// Decode.scala:51:20, :74:34, :75:65
   wire        _load_use_T_16 = (_io_deio_op_a_T_3 & _load_use_T_12 | _io_deio_op_b_T_6 & _load_use_T_8 | (|_cu_io_sd_type)
                 & _load_use_T_8 | _io_jump_pc_T_3 & _load_use_T_12) & (|lu_rd);	// Decode.scala:51:20, :67:24, :74:{34,57,64,95,118,125}, :75:{20,24,44,65,91}, :76:{7,17}
@@ -693,14 +694,14 @@ module Decode(	// <stdin>:948:10
   wire [63:0] _io_deio_reg2_rdata_T = io_fwde_fw_sel2 ? io_fwde_fw_data2 : io_rfio_reg2_rdata;	// Decode.scala:105:38
   wire [63:0] _io_deio_csr_t_T = io_fwde_csr_fw_sel ? io_fwde_csr_fw_data : io_csrs_csr_rdata;	// Decode.scala:107:37
   wire        _io_jump_pc_T = _cu_io_jump_type == 2'h1;	// Decode.scala:51:20, :127:38, Mux.scala:81:61
-  wire [31:0] _GEN_0 = _io_jump_pc_T_4[31:0] + _eximm_io_eximm[31:0];	// Decode.scala:52:23, :95:38, :132:121
+  wire [31:0] _GEN = _io_jump_pc_T_4[31:0] + _eximm_io_eximm[31:0];	// Decode.scala:52:23, :95:38, :132:121
   always @(posedge clock) begin
     if (reset)
       lu_rd <= 5'h0;	// Decode.scala:67:24
     else if (io_branch | _load_use_T_16 | _cu_io_ld_type == 3'h0)	// Decode.scala:51:20, :70:17, :72:32, :76:7
       lu_rd <= 5'h0;	// Decode.scala:67:24
     else	// Decode.scala:51:20, :70:17, :72:32, :76:7
-      lu_rd <= _GEN[11:7];	// Decode.scala:57:16, :61:15, :67:24
+      lu_rd <= inst[11:7];	// Decode.scala:58:20, :61:15, :67:24
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:948:10
     `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:948:10
@@ -721,7 +722,7 @@ module Decode(	// <stdin>:948:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   ControlUnit cu (	// Decode.scala:51:20
-    .io_inst        (_GEN),	// Decode.scala:57:16
+    .io_inst        (inst),	// Decode.scala:58:20
     .io_jump_type   (_cu_io_jump_type),
     .io_branch_type (io_deio_branch_type),
     .io_opa_type    (_cu_io_opa_type),
@@ -734,35 +735,35 @@ module Decode(	// <stdin>:948:10
     .io_csr_type    (_cu_io_csr_type)
   );
   Eximm eximm (	// Decode.scala:52:23
-    .io_inst     (_GEN),	// Decode.scala:57:16
+    .io_inst     (inst),	// Decode.scala:58:20
     .io_imm_type (_cu_io_imm_type),	// Decode.scala:51:20
     .io_eximm    (_eximm_io_eximm)
   );
-  assign io_rfio_reg1_raddr = _GEN[19:15];	// <stdin>:948:10, Decode.scala:57:16, :59:16
-  assign io_rfio_reg2_raddr = _GEN[24:20];	// <stdin>:948:10, Decode.scala:57:16, :60:16
+  assign io_rfio_reg1_raddr = inst[19:15];	// <stdin>:948:10, Decode.scala:58:20, :59:16
+  assign io_rfio_reg2_raddr = inst[24:20];	// <stdin>:948:10, Decode.scala:58:20, :60:16
   assign io_deio_op_a = (&_cu_io_opa_type) ? _eximm_io_eximm : _io_deio_op_a_T_3 ? _io_jump_pc_T_4 : {32'h0,
                 _cu_io_opa_type == 2'h1 ? io_fdio_pc : 32'h0};	// <stdin>:948:10, Decode.scala:51:20, :52:23, :74:34, :95:38, Mux.scala:81:{58,61}
   assign io_deio_op_b = _cu_io_opb_type == 3'h4 ? _io_deio_csr_t_T : _cu_io_opb_type == 3'h3 ? 64'h4 :
                 _io_deio_op_b_T_6 ? _io_deio_reg2_rdata_T : _cu_io_opb_type == 3'h1 ? _eximm_io_eximm :
                 64'h0;	// <stdin>:948:10, Decode.scala:51:20, :52:23, :74:95, :105:38, :107:37, Mux.scala:81:{58,61}
-  assign io_deio_reg_waddr = _GEN[11:7];	// <stdin>:948:10, Decode.scala:57:16, :61:15
-  assign io_deio_branch_addr = {32'h0, io_fdio_pc} + {{52{_GEN[31]}}, _GEN[7], _GEN[30:25], _GEN[11:8], 1'h0};	// <stdin>:948:10, Cat.scala:33:92, Decode.scala:57:16, :72:17, :113:{39,58,79,88,101}, Mux.scala:81:58
-  assign io_deio_shamt = _GEN[25:20];	// <stdin>:948:10, Decode.scala:57:16, :62:18
+  assign io_deio_reg_waddr = inst[11:7];	// <stdin>:948:10, Decode.scala:58:20, :61:15
+  assign io_deio_branch_addr = {32'h0, io_fdio_pc} + {{52{inst[31]}}, inst[7], inst[30:25], inst[11:8], 1'h0};	// <stdin>:948:10, Cat.scala:33:92, Decode.scala:58:20, :72:17, :113:{39,58,79,88,101}, Mux.scala:81:58
+  assign io_deio_shamt = inst[25:20];	// <stdin>:948:10, Decode.scala:58:20, :62:18
   assign io_deio_sd_type = _cu_io_sd_type;	// <stdin>:948:10, Decode.scala:51:20
   assign io_deio_reg2_rdata = _io_deio_reg2_rdata_T;	// <stdin>:948:10, Decode.scala:105:38
   assign io_deio_ld_type = _cu_io_ld_type;	// <stdin>:948:10, Decode.scala:51:20
   assign io_deio_csr_t = _io_deio_csr_t_T;	// <stdin>:948:10, Decode.scala:107:37
-  assign io_deio_csr_waddr = (|_cu_io_csr_type) ? _GEN[31:20] : 12'h0;	// <stdin>:948:10, Decode.scala:51:20, :57:16, :58:20, :121:{29,45}
+  assign io_deio_csr_waddr = (|_cu_io_csr_type) ? inst[31:20] : 12'h0;	// <stdin>:948:10, Decode.scala:51:20, :58:20, :121:{29,45}
   assign io_deio_csr_wen = |_cu_io_csr_type;	// <stdin>:948:10, Decode.scala:51:20, :121:45
-  assign io_deio_has_inst = _GEN != 32'h13;	// <stdin>:948:10, Decode.scala:57:16, :124:35
+  assign io_deio_has_inst = inst != 32'h13;	// <stdin>:948:10, Decode.scala:57:16, :58:20, :124:35
   assign io_jump_flag = _io_jump_pc_T | _io_jump_pc_T_3;	// <stdin>:948:10, Decode.scala:75:65, :127:{38,63}
-  assign io_jump_pc = _io_jump_pc_T ? io_fdio_pc + _eximm_io_eximm[31:0] : _io_jump_pc_T_3 ? {_GEN_0[31:1], 1'h0}
-                : 32'h80000000;	// <stdin>:948:10, Decode.scala:52:23, :72:17, :75:65, :127:38, :131:71, :132:{121,139}, Mux.scala:101:16
+  assign io_jump_pc = _io_jump_pc_T ? io_fdio_pc + _eximm_io_eximm[31:0] : _io_jump_pc_T_3 ? {_GEN[31:1], 1'h0} :
+                32'h80000000;	// <stdin>:948:10, Decode.scala:52:23, :72:17, :75:65, :127:38, :131:71, :132:{121,139}, Mux.scala:101:16
   assign io_load_use = _load_use_T_16;	// <stdin>:948:10, Decode.scala:76:7
-  assign io_fwde_reg1_raddr = _GEN[19:15];	// <stdin>:948:10, Decode.scala:57:16, :59:16
-  assign io_fwde_reg2_raddr = _GEN[24:20];	// <stdin>:948:10, Decode.scala:57:16, :60:16
-  assign io_fwde_csr_raddr = _GEN[31:20];	// <stdin>:948:10, Decode.scala:57:16, :58:20
-  assign io_csrs_csr_raddr = _GEN[31:20];	// <stdin>:948:10, Decode.scala:57:16, :58:20
+  assign io_fwde_reg1_raddr = inst[19:15];	// <stdin>:948:10, Decode.scala:58:20, :59:16
+  assign io_fwde_reg2_raddr = inst[24:20];	// <stdin>:948:10, Decode.scala:58:20, :60:16
+  assign io_fwde_csr_raddr = inst[31:20];	// <stdin>:948:10, Decode.scala:58:20
+  assign io_csrs_csr_raddr = inst[31:20];	// <stdin>:948:10, Decode.scala:58:20
 endmodule
 
 module Alu(	// <stdin>:1085:10
