@@ -2994,7 +2994,8 @@ module Core(	// <stdin>:4009:10
     .csr_waddr  (_wb_io_csrs_rd)	// Core.scala:30:20
   );
   Interact interact (	// Core.scala:481:26
-    .inst (_Icache_io_cpu_resp_valid ? _Icache_io_cpu_resp_bits_data[31:0] : 32'h0),	// Core.scala:104:24, :464:47, :482:28
+    .inst (_Icache_io_cpu_resp_valid & ~_fc_io_fcde_flush ? _Icache_io_cpu_resp_bits_data[31:0] :
+                32'h0),	// Core.scala:92:20, :104:24, :464:47, :482:{28,54,74}
     .clk  (clock),
     .rst  (reset)
   );
@@ -3002,7 +3003,7 @@ endmodule
 
 // external module Sram
 
-module Soc(	// <stdin>:4393:10
+module Soc(	// <stdin>:4395:10
   input clock,
         reset);
 

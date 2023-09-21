@@ -462,7 +462,7 @@ class Core extends Module{
     DI.io.pc := fetch.io.pc.bits
     DI.io.pc_req := fetch.io.pc.valid
     DI.io.inst := Icache.io.cpu.resp.bits.data(31,0)
-    DI.io.inst_valid := Icache.io.cpu.resp.valid
+    DI.io.inst_valid := Icache.io.cpu.resp.valid && fc.io.fcde.flush =/= 1.B  ////不计入flush的指令
     DI.io.load_use := decode.io.load_use
     DI.io.op_a  := dereg.op_a
     DI.io.op_b  := dereg.op_b

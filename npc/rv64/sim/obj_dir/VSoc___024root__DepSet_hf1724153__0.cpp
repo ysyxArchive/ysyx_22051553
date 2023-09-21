@@ -883,7 +883,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
             = (7U & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)));
         if (VL_UNLIKELY((2U == (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)))) {
             VL_WRITEF("ebreak!\n");
-            VL_FINISH_MT("vsrc/Soc.v", 3156, "");
+            VL_FINISH_MT("vsrc/Soc.v", 3157, "");
         }
     }
     if (vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h07501b90__0) {
@@ -4833,7 +4833,8 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
             vlSelf->Soc__DOT__core__DOT__emreg_wb_type 
                 = vlSelf->Soc__DOT__core__DOT__dereg_wb_type;
         }
-        if ((0x100073U == ((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__cpu_resp_valid)
+        if ((0x100073U == (((~ (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush)) 
+                            & (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__cpu_resp_valid))
                             ? (IData)(vlSelf->Soc__DOT__core__DOT___Icache_io_cpu_resp_bits_data)
                             : 0U))) {
             vlSelf->Soc__DOT__core__DOT__interact__DOT__ebreak_flag = 1U;
