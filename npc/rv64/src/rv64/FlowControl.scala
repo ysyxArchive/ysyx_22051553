@@ -116,18 +116,18 @@ class FlowControl extends Module{
 
     when(io.fcIcache.valid){ //恢复
         Icache_stall := 0.B
-    }.elsewhen(io.fcIcache.mask.orR){ //写，一定需要stall
+    }.elsewhen(io.fcIcache.req && io.fcIcache.mask.orR){ //写，一定需要stall
         Icache_stall := 1.B
-    }.elsewhen(!io.fcIcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
+    }.elsewhen(io.fcIcache.req && !io.fcIcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
         Icache_stall := 1.B
     }
 
 
     when(io.fcDcache.valid){ //恢复
         Dcache_stall := 0.B
-    }.elsewhen(io.fcDcache.mask.orR){ //写，一定需要stall
+    }.elsewhen(io.fcDcache.req && io.fcDcache.mask.orR){ //写，一定需要stall
         Dcache_stall := 1.B
-    }.elsewhen(!io.fcDcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
+    }.elsewhen(io.fcDcache.req && !io.fcDcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
         Dcache_stall := 1.B
     }
 
