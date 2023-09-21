@@ -99,6 +99,8 @@ class Cache extends Module{
     DataOneArray := DataArray.read(DataOneArrayAddr, DataOneArrayRen)
     DataOneArrayRen := 0.B
     DataOneArrayAddr := 0.U
+
+    val inDataOneArray = RegInit(0.B)
     
 
 
@@ -143,8 +145,10 @@ class Cache extends Module{
     
     //firtool要求完整initialize
     io.cpu.resp.valid := cpu_resp_valid
-    io.cpu.resp.bits.data := Mux(inst_type, 
-        Mux(offset === 0.U, DataOneArray(31,0), DataOneArray(63,32))
+    io.cpu.resp.bits.data := Mux(inDataOneArray,
+        Mux(inst_type, Mux(offset === 0.U, DataOneArray(31,0), DataOneArray(63,32)),
+        DataOneArray
+        ) 
     ,cpu_resp_bits_data)
     io.axi.req.valid := axi_req_valid
     io.axi.req.bits.rw := axi_req_bits_rw
@@ -162,6 +166,7 @@ class Cache extends Module{
             cpu_resp_valid := 0.B
             inst_type := 0.B
             offset := 0.U
+            inDataOneArray := 0.B
 
             when(io.cpu.req.valid){
 
@@ -222,6 +227,7 @@ class Cache extends Module{
 
                             // cpu_resp_bits_data := DataArray(index * 2.U)  
                             inst_type := io.cpu.req.bits.inst_type
+                            inDataOneArray := 1.B
                             DataOneArrayAddr := io.cpu.req.bits.addr(10, 3) * 2.U
                             DataOneArrayRen := 1.B
 
