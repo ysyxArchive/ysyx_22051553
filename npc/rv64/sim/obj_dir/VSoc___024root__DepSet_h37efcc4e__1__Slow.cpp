@@ -313,6 +313,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_rw = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_addr = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data = VL_RAND_RESET_Q(64);
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN_3 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_6 = VL_RAND_RESET_I(1);
     VL_RAND_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10);
     vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN_9 = VL_RAND_RESET_I(1);
@@ -370,6 +371,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_hf391aef2__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h94cbbc53__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h4b92e988__0 = 0;
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h07501b90__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h6554e4e0__0 = 0;
     for (int __Vi0 = 0; __Vi0 < 512; ++__Vi0) {
         vlSelf->Soc__DOT__core__DOT__Icache__DOT__TagArray_ext__DOT__Memory[__Vi0] = VL_RAND_RESET_I(21);
