@@ -53,7 +53,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3014, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3028, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -178,6 +178,8 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     // Body
     vlSelf->Soc__DOT____Vcellinp__sram__ARESETn = (1U 
                                                    & (~ (IData)(vlSelf->reset)));
+    vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_7 
+        = ((IData)(4U) + vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc);
     vlSelf->Soc__DOT__core__DOT___Dcache_io_fccache_mask 
         = ((4U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))
             ? 0xffU : ((3U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))
@@ -821,6 +823,9 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h8854f984__0 
         = ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
            & (5U != (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)));
+    vlSelf->Soc__DOT__core__DOT__fetch__DOT___io_pc_bits_T 
+        = (vlSelf->Soc__DOT__core__DOT__fetch__DOT__old_pc 
+           == vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc);
     vlSelf->Soc__DOT__core__DOT___excute_io_fwex_reg_we 
         = ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_wb_type)) 
            | (3U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_wb_type)));
@@ -4463,10 +4468,6 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                          & (0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type)))
                          ? vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result
                          : 0ULL));
-    vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_flag 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
-           | ((IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag) 
-              | (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3)));
     vlSelf->Soc__DOT__core__DOT___decode_io_deio_csr_wen 
         = ((~ (((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h90ba5b66__0) 
                 | ((0x23U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN)) 
@@ -5573,21 +5574,21 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                               << 4U)))] 
               >> (0x1fU & ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state) 
                            << 9U))));
-    vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_flush 
-        = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall)) 
-           & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall)) 
-              & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
-                 & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
-                    | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_21_0)) 
-                       & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
-                          | ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
-                             | (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag))))))));
+    vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2 
+        = (((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall)) 
+            & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall)) 
+               & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
+                  & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
+                     | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_21_0)) 
+                        & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
+                           | ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
+                              | (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag)))))))) 
+           & ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
+              | ((IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag) 
+                 | (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3))));
     vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall) 
            | (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall));
-    vlSelf->Soc__DOT__core__DOT__fetch__DOT___io_fdio_pc_T_2 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_flush) 
-           & (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_flag));
     Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h2f8a70d0__0 
         = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall) 
            | (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16));
@@ -5604,9 +5605,15 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
         = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall)
             ? vlSelf->Soc__DOT__core__DOT__fetch__DOT__old_pc
-            : ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT___io_fdio_pc_T_2)
-                ? vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc
-                : vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc));
+            : ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT___io_pc_bits_T)
+                ? ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2)
+                    ? ((IData)(4U) + vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc)
+                    : ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started)
+                        ? ((IData)(4U) + vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc)
+                        : vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc))
+                : ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2)
+                    ? vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc
+                    : vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc)));
     VL_SHIFTR_WWI(512,512,9, __Vtemp_h90dffb35__0, vlSelf->Soc__DOT__core__DOT__Icache__DOT__valid, 
                   (0x1feU & (vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
                              >> 2U)));

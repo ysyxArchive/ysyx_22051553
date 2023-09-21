@@ -1231,21 +1231,21 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
     vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall) 
            | (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall));
-    vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_flush 
-        = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall)) 
-           & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall)) 
-              & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
-                 & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
-                    | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_21_0)) 
-                       & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
-                          | ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
-                             | (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag))))))));
+    vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2 
+        = (((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall)) 
+            & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall)) 
+               & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
+                  & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
+                     | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_21_0)) 
+                        & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
+                           | ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
+                              | (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag)))))))) 
+           & ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
+              | ((IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag) 
+                 | (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3))));
     Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h2f8a70d0__0 
         = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall) 
            | (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16));
-    vlSelf->Soc__DOT__core__DOT__fetch__DOT___io_fdio_pc_T_2 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_flush) 
-           & (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_flag));
     vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush 
         = ((IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h2f8a70d0__0) 
            | ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
@@ -1259,9 +1259,15 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
     vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
         = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall)
             ? vlSelf->Soc__DOT__core__DOT__fetch__DOT__old_pc
-            : ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT___io_fdio_pc_T_2)
-                ? vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc
-                : vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc));
+            : ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT___io_pc_bits_T)
+                ? ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2)
+                    ? ((IData)(4U) + vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc)
+                    : ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started)
+                        ? ((IData)(4U) + vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc)
+                        : vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc))
+                : ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2)
+                    ? vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc
+                    : vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc)));
     VL_SHIFTR_WWI(512,512,9, __Vtemp_h90dffb35__0, vlSelf->Soc__DOT__core__DOT__Icache__DOT__valid, 
                   (0x1feU & (vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
                              >> 2U)));
@@ -2493,7 +2499,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3014, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3028, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -2516,7 +2522,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VSoc___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("vsrc/Soc.v", 3014, "", "Active region did not converge.");
+                    VL_FATAL_MT("vsrc/Soc.v", 3028, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -2531,7 +2537,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3014, "", "NBA region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3028, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VSoc___024root___eval_nba(vlSelf);

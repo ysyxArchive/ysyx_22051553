@@ -27,8 +27,6 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT___Dcache_io_fccache_axi_valid;
         CData/*0:0*/ Soc__DOT__core__DOT___Icache_io_fccache_axi_valid;
         CData/*0:0*/ Soc__DOT__core__DOT___trap_io_csrtr_csr_wen;
-        CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_flag;
-        CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_flush;
         CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_stall;
         CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcde_flush;
         CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcde_stall;
@@ -61,7 +59,8 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__mwreg_has_inst;
         CData/*0:0*/ Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid;
         CData/*0:0*/ Soc__DOT__core__DOT__fetch__DOT__started;
-        CData/*0:0*/ Soc__DOT__core__DOT__fetch__DOT___io_fdio_pc_T_2;
+        CData/*0:0*/ Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2;
+        CData/*0:0*/ Soc__DOT__core__DOT__fetch__DOT___io_pc_bits_T;
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_jump_type;
         CData/*1:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_opa_type;
         CData/*2:0*/ Soc__DOT__core__DOT__decode__DOT___cu_io_opb_type;
@@ -83,9 +82,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_he9100215__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h567a98b8__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hdd103720__0;
+        CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h32d1be8b__0;
     };
     struct {
-        CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h32d1be8b__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hb0fa7988__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h90ba5b66__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h3c60961a__0;
@@ -149,9 +148,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*3:0*/ Soc__DOT__core__DOT__arbitor__DOT__unnamedblk1__DOT___GEN_7;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h02c05ceb__0;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_hc0e633fc__0;
+        CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h82421030__0;
     };
     struct {
-        CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h82421030__0;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_hfea5ad76__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT___GEN;
         CData/*2:0*/ Soc__DOT__core__DOT__Icache__DOT__state;
@@ -215,9 +214,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__inst_type;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__whitNum;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT___T_3;
+        CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_valid;
     };
     struct {
-        CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_valid;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__axi_req_valid;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_rw;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT___GEN_3;
@@ -281,9 +280,9 @@ class VSoc___024root final : public VerilatedModule {
         SData/*11:0*/ Soc__DOT__core__DOT___trap_io_csrtr_rd;
         SData/*11:0*/ Soc__DOT__core__DOT___decode_io_fwde_csr_raddr;
         SData/*11:0*/ Soc__DOT__core__DOT__dereg_csr_waddr;
+        SData/*11:0*/ Soc__DOT__core__DOT__emreg_csr_waddr;
     };
     struct {
-        SData/*11:0*/ Soc__DOT__core__DOT__emreg_csr_waddr;
         SData/*11:0*/ Soc__DOT__core__DOT__mwreg_csr_waddr;
         SData/*9:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN;
         SData/*15:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_0;
@@ -314,6 +313,7 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ Soc__DOT__core__DOT__fdreg_pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT__pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT__old_pc;
+        IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT___next_pc_T_7;
         IData/*31:0*/ Soc__DOT__core__DOT__decode__DOT__inst;
         IData/*16:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_1;
         VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_80;

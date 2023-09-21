@@ -123,8 +123,8 @@ class FlowControl extends Module{
         Icache_stall := 0.B
     }.elsewhen(io.fcIcache.state === CacheState.s_WriteAllocate && io.fcIcache.axi_valid){ //写分配提前释放
         Icache_stall := 0.B
-    }.elsewhen(io.fcIcache.state === CacheState.s_ReadAck && io.fcIcache.axi_valid){ //读提前释放
-        Icache_stall := 0.B
+    // }.elsewhen(io.fcIcache.state === CacheState.s_ReadAck && io.fcIcache.axi_valid){ //读提前释放
+    //     Icache_stall := 0.B
     }.elsewhen(io.fcIcache.state =/= 0.U){
         Icache_stall := 1.B
     }.elsewhen(io.fcIcache.state === 0.U && io.fcIcache.req && io.fcIcache.mask.orR){ //写，一定需要stall
