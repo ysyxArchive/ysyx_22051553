@@ -53,7 +53,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3082, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3064, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -201,29 +201,29 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
         = (1U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state));
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T_6 
         = (2U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state));
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_27 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_26 
         = (1U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state));
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_68 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_67 
         = (2U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state));
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_74 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_73 
         = (3U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state));
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_6 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_5 
         = (5U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state));
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_12 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_11 
         = (6U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state));
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_75 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_74 
         = (4U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state));
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_27 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_26 
         = (1U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state));
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_68 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_67 
         = (2U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state));
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_74 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_73 
         = (3U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state));
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_6 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_5 
         = (5U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state));
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_12 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_11 
         = (6U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state));
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_75 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_74 
         = (4U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state));
     vlSelf->Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data 
         = vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
@@ -1098,37 +1098,37 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     VL_SHIFTR_WWI(512,512,10, __Vtemp_h76852fef__0, vlSelf->Soc__DOT__core__DOT__Icache__DOT__dirty, 
                   (0x3ffU & (((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__index) 
                               << 1U) + (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN))));
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[0U] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[0U] 
         = __Vtemp_h76852fef__0[0U];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[1U] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[1U] 
         = __Vtemp_h76852fef__0[1U];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[2U] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[2U] 
         = __Vtemp_h76852fef__0[2U];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[3U] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[3U] 
         = __Vtemp_h76852fef__0[3U];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[4U] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[4U] 
         = __Vtemp_h76852fef__0[4U];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[5U] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[5U] 
         = __Vtemp_h76852fef__0[5U];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[6U] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[6U] 
         = __Vtemp_h76852fef__0[6U];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[7U] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[7U] 
         = __Vtemp_h76852fef__0[7U];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[8U] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[8U] 
         = __Vtemp_h76852fef__0[8U];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[9U] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[9U] 
         = __Vtemp_h76852fef__0[9U];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[0xaU] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[0xaU] 
         = __Vtemp_h76852fef__0[0xaU];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[0xbU] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[0xbU] 
         = __Vtemp_h76852fef__0[0xbU];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[0xcU] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[0xcU] 
         = __Vtemp_h76852fef__0[0xcU];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[0xdU] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[0xdU] 
         = __Vtemp_h76852fef__0[0xdU];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[0xeU] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[0xeU] 
         = __Vtemp_h76852fef__0[0xeU];
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[0xfU] 
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[0xfU] 
         = __Vtemp_h76852fef__0[0xfU];
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____Vcellinp__TagArray_ext__R0_addr 
         = (0x1ffU & (((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__index) 
@@ -1136,37 +1136,37 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     VL_SHIFTR_WWI(512,512,10, __Vtemp_h7fd42c1b__0, vlSelf->Soc__DOT__core__DOT__Dcache__DOT__dirty, 
                   (0x3ffU & (((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__index) 
                               << 1U) + (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN))));
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[0U] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[0U] 
         = __Vtemp_h7fd42c1b__0[0U];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[1U] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[1U] 
         = __Vtemp_h7fd42c1b__0[1U];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[2U] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[2U] 
         = __Vtemp_h7fd42c1b__0[2U];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[3U] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[3U] 
         = __Vtemp_h7fd42c1b__0[3U];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[4U] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[4U] 
         = __Vtemp_h7fd42c1b__0[4U];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[5U] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[5U] 
         = __Vtemp_h7fd42c1b__0[5U];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[6U] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[6U] 
         = __Vtemp_h7fd42c1b__0[6U];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[7U] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[7U] 
         = __Vtemp_h7fd42c1b__0[7U];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[8U] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[8U] 
         = __Vtemp_h7fd42c1b__0[8U];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[9U] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[9U] 
         = __Vtemp_h7fd42c1b__0[9U];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[0xaU] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[0xaU] 
         = __Vtemp_h7fd42c1b__0[0xaU];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[0xbU] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[0xbU] 
         = __Vtemp_h7fd42c1b__0[0xbU];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[0xcU] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[0xcU] 
         = __Vtemp_h7fd42c1b__0[0xcU];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[0xdU] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[0xdU] 
         = __Vtemp_h7fd42c1b__0[0xdU];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[0xeU] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[0xeU] 
         = __Vtemp_h7fd42c1b__0[0xeU];
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[0xfU] 
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[0xfU] 
         = __Vtemp_h7fd42c1b__0[0xfU];
     if (vlSelf->Soc__DOT__core__DOT__Icache__DOT__victim) {
         vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h73247aab__0[0U] 
@@ -2480,13 +2480,13 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN_9 
         = ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)) 
            & ((5U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)) 
-              & vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[0U]));
+              & vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[0U]));
     vlSelf->__VdfgTmp_h2fe899d6__0 = vlSelf->Soc__DOT__core__DOT__Dcache__DOT__TagArray_ext__DOT__Memory
         [vlSelf->Soc__DOT__core__DOT__Dcache__DOT____Vcellinp__TagArray_ext__R0_addr];
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_9 
         = ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
            & ((5U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
-              & vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[0U]));
+              & vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[0U]));
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h05ff0e1a__0 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h94cbbc53__0) 
            & (7U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)));
@@ -3198,14 +3198,14 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN_17 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h8ecd23a9__0) 
            & ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)) 
-              & vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_10[0U]));
+              & vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_9[0U]));
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h4ca93995__0 
         = ((2U != (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)) 
            & (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h8ecd23a9__0));
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_17 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h8ecd23a9__0) 
            & ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
-              & vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_10[0U]));
+              & vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9[0U]));
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h4ca93995__0 
         = ((2U != (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
            & (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h8ecd23a9__0));
@@ -5580,9 +5580,6 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h214d2be6__0 
         = ((IData)(Soc__DOT__core__DOT__fc__DOT___GEN) 
            | (IData)(Soc__DOT__core__DOT__fc__DOT___GEN_0));
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_hf083ccdf__0 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h0ae5a5ca__0) 
-           & (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__inst_type));
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h5f2f9edc__0 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h297c29be__0) 
            & (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__inst_type));
@@ -6641,9 +6638,6 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                               << 4U)))] 
               >> (0x1fU & ((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state) 
                            << 9U))));
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_hf083ccdf__0 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h0ae5a5ca__0) 
-           & (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__inst_type));
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h5f2f9edc__0 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h297c29be__0) 
            & (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__inst_type));

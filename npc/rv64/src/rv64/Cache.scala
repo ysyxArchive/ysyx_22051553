@@ -134,7 +134,9 @@ class Cache extends Module{
     
     //firtool要求完整initialize
     io.cpu.resp.valid := cpu_resp_valid
-    io.cpu.resp.bits.data := cpu_resp_bits_data
+    io.cpu.resp.bits.data := Mux(inst_type, 
+        Mux(offset === 0.U, cpu_resp_bits_data(31,0), cpu_resp_bits_data(63,32))
+    ,cpu_resp_bits_data)
     io.axi.req.valid := axi_req_valid
     io.axi.req.bits.rw := axi_req_bits_rw
     io.axi.req.bits.addr := axi_req_bits_addr
@@ -149,6 +151,8 @@ class Cache extends Module{
             //重置
             victim := 0.U
             cpu_resp_valid := 0.B
+            inst_type := 0.B
+            offset := 0.U
 
             when(io.cpu.req.valid){
 
@@ -188,17 +192,19 @@ class Cache extends Module{
                     when(hit0 | hit1){ //若读命中
                         state := s_Idle
 
+                        offset := io.cpu.req.bits.addr(2, 0)
+
                         when(hit0){   //读命中后改变replace
-                            when(inst_type){  //如果为读取指令
-                                // when(offset === 0.U){
-                                    cpu_resp_bits_data := Cat(0.U(32.W), DataArray(io.cpu.req.bits.addr(10, 3)* 2.U)(31,0))
-                                // }.otherwise{
-                                //     cpu_resp_bits_data := Cat(0.U(32.W), DataArray(io.cpu.req.bits.addr(10, 3)* 2.U)(63,32))
-                                // }
+                            // when(inst_type){  //如果为读取指令
+                            //     when(offset === 0.U){
+                            //         cpu_resp_bits_data := Cat(0.U(32.W), DataArray(io.cpu.req.bits.addr(10, 3)* 2.U)(31,0))
+                            //     }.otherwise{
+                            //         cpu_resp_bits_data := Cat(0.U(32.W), DataArray(io.cpu.req.bits.addr(10, 3)* 2.U)(63,32))
+                            //     }
                                 
-                            }.otherwise{
+                            // }.otherwise{
                                 cpu_resp_bits_data := DataArray(io.cpu.req.bits.addr(10, 3) * 2.U)//在下一周期读出
-                            }
+                            // }
 
                             // cpu_resp_bits_data := DataArray(index * 2.U)  
 
