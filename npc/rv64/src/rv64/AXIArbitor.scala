@@ -120,6 +120,8 @@ class AXIArbitor extends Module{
     io.master0.resp.bits.data := 0.U
     io.master1.resp.valid := 0.B
     io.master1.resp.bits.data := 0.U
+    io.master2.resp.valid := 0.B
+    io.master2.resp.bits.data := 0.U
 
     io.AXI_O.aw.valid := 0.B
     io.AXI_O.aw.bits.addr := 0.U
