@@ -97,6 +97,9 @@ class Cache extends Module{
     val DataOneArrayRen = Wire(Bool())
     val DataOneArrayAddr = Wire(UInt(ADDRWIDTH.W))
     DataOneArray := DataArray.read(DataOneArrayAddr, DataOneArrayRen)
+    DataOneArrayRen := 0.B
+    DataOneArrayAddr := DataOneArrayAddr
+    
 
 
     //用于修改某两位  --应该如何修改，Wire也会占用资源，用Cat不会，但是写的很不清晰
