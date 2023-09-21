@@ -479,7 +479,7 @@ class Core extends Module{
 
     //interact
     val interact = Module(new Interact)
-    interact.io.inst := Mux(fdreg.pc(2) === 1.U, Dcache.io.cpu.resp.bits.data(63,32), Dcache.io.cpu.resp.bits.data(31,0));
+    interact.io.inst := Mux(Icache.io.cpu.resp.valid, Icache.io.cpu.resp.bits.data(31,0), 0.U);
     interact.io.clk := clock   //可以直接显式使用clock
     interact.io.rst := reset
 
