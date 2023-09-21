@@ -175,10 +175,12 @@ class AXIArbitor extends Module{
                 w_comp := 0.B
                 b_comp := 0.B
 
-                when(master_choose(0)){ //选择的master1
+                when(master_choose(0)){ //选择的master0
+                    io.master0.resp.valid := 1.B
+                }.elsewhen(master_choose(1)){
                     io.master1.resp.valid := 1.B
                 }.otherwise{
-                    io.master0.resp.valid := 1.B
+                    io.master2.resp.valid := 1.B
                 }
             }
         }
@@ -201,12 +203,12 @@ class AXIArbitor extends Module{
                 state := s_Idle
                 r_comp := 0.B
 
-                when(master_choose(0)){ //选择的master1
-                    io.master1.resp.valid := 1.B
-                    io.master1.resp.bits.data := io.AXI_O.r.bits.data
-                }.otherwise{
+                when(master_choose(0)){ //选择的master0
                     io.master0.resp.valid := 1.B
-                    io.master0.resp.bits.data := io.AXI_O.r.bits.data
+                }.elsewhen(master_choose(1)){
+                    io.master1.resp.valid := 1.B
+                }.otherwise{
+                    io.master2.resp.valid := 1.B
                 }
             }
         }

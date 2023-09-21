@@ -1672,7 +1672,7 @@ module AXIArbitor(	// <stdin>:2326:10
       automatic logic [3:0][1:0] _GEN_6;	// AXIArbitor.scala:144:18, :147:35, :172:46, :192:26
       automatic logic [3:0]      _GEN_7;	// AXIArbitor.scala:116:25, :144:18
       _GEN_6 = {{(&state) & r_comp ? 2'h0 : state}, {ar_comp ? 2'h3 : state}, {_T_4 ? 2'h0 : state},
-                                                {_master_choose_T_2[1] ? (_master_choose_T_2[3] & (_master_choose_T_2[0] ?
+                                                {_master_choose_T_2[3] ? (_master_choose_T_2[3] & (_master_choose_T_2[0] ?
                                                 io_master0_req_bits_rw : _master_choose_T_2[1] ? io_master1_req_bits_rw :
                                                 _master_choose_T_2[2] & io_master2_req_bits_rw) ? 2'h2 : 2'h1) : state}};	// AXIArbitor.scala:64:{14,28}, :68:30, :69:30, :70:30, :109:24, :115:26, :116:25, :144:18, :147:35, :148:25, :149:27, :151:27, :172:{36,46}, :173:23, :192:26, :193:23, :200:25, Mux.scala:101:16
       state <= _GEN_6[state];	// AXIArbitor.scala:109:24, :144:18, :147:35, :172:46, :192:26

@@ -668,7 +668,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
                              ? 3U : (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
                            << 4U) | ((((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T_4)
                                         ? 0U : (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
-                                      << 2U) | ((2U 
+                                      << 2U) | ((8U 
                                                  & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___master_choose_T_2))
                                                  ? 
                                                 ((((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___master_choose_T_2) 
