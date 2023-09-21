@@ -62,8 +62,8 @@ class Fetch extends Module{
         pc,
         Seq(
             (io.fcfe.stall) -> old_pc,
+            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc,    //直接变寻址地址
             (pc === old_pc) -> next_pc,
-            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc    //直接变寻址地址
         )
     )
     

@@ -375,7 +375,9 @@ static int cmd_s(char *args){
     //-----------------
     single_cycle();   
 
-
+    #ifdef ITRACE
+      
+      
     #ifdef DIFFTEST
     if(execute_list.front().skip_ref_one_inst){
       difftest_skip_ref();
@@ -412,15 +414,15 @@ static int cmd_s(char *args){
             Verilated::gotFinish(1);
       }
 
-      #ifdef ITRACE
-      decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
-      fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
-      execute_list.pop_front();
-      #endif
+      
     }
     
     #endif
-    
+
+    decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
+    fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
+    execute_list.pop_front();
+    #endif
     
       
   }
