@@ -86,6 +86,7 @@ class FcWbIO extends Bundle{
 
 class FcCacheIO extends Bundle{
     val req = Bool() //判断cpu是否提出申请
+    val state = UInt(3.W)
     val mask = UInt((X_LEN/8).W) //判断是否为读
     val hit = Bool()  //如果为读，且为hit,则无需阻塞
     val valid = Bool() //当读出、写入，valid信号有效时，取消阻塞
@@ -110,16 +111,20 @@ import TrIO._
 class FlowControl extends Module{
     val io = IO(new FCIO)
 
-    val Icache_stall = RegInit(0.B)
-    val Dcache_stall = RegInit(0.B)
+    val Icache_stall = WireInit(0.B)
+    val Dcache_stall = WireInit(0.B)
 
 
     when(io.fcIcache.valid){ //恢复
         Icache_stall := 0.B
-    }.elsewhen(io.fcIcache.req && io.fcIcache.mask.orR){ //写，一定需要stall
+    }.elsewhen(io.fcIcache.state =/= 0.U){
         Icache_stall := 1.B
-    }.elsewhen(io.fcIcache.req && !io.fcIcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
+    }.elsewhen(io.fcIcache.state === 0.U && io.fcIcache.req && io.fcIcache.mask.orR){ //写，一定需要stall
         Icache_stall := 1.B
+    }.elsewhen(io.fcIcache.state === 0.U && io.fcIcache.req && !io.fcIcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
+        Icache_stall := 1.B
+    }.otherwise{
+        Icache_stall := 0.B
     }
 
 

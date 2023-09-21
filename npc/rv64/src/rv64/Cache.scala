@@ -119,6 +119,7 @@ class Cache extends Module{
     io.fccache.mask := io.cpu.req.bits.mask
     io.fccache.valid := io.cpu.resp.valid
     io.fccache.req := io.cpu.req.valid
+    io.fccache.state := state
 
     //FSM
     //输出端口使用寄存器类型，防止combination logic

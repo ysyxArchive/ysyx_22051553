@@ -35,6 +35,7 @@ class Core extends Module{
             _.pc -> PC_START
         )
     )
+
     val dereg = RegInit(
         (new DERegIO).Lit(
             _.op_a -> 0.U,
