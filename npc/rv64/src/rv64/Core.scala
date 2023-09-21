@@ -461,7 +461,7 @@ class Core extends Module{
     DI.io.rst := reset
     DI.io.pc := fetch.io.pc.bits
     DI.io.pc_req := fetch.io.pc.valid
-    DI.io.inst := Mux(fdreg.pc(2) === 1.U, Dcache.io.cpu.resp.bits.data(63,32), Dcache.io.cpu.resp.bits.data(31,0))
+    DI.io.inst := Icache.io.cpu.resp.bits.data(31,0)
     DI.io.inst_valid := DontCare
     DI.io.load_use := decode.io.load_use
     DI.io.op_a  := dereg.op_a

@@ -349,7 +349,7 @@ module Fetch(	// <stdin>:2:10
   reg         started;	// Fetch.scala:25:26
   reg  [31:0] pc;	// Fetch.scala:28:21
   reg  [31:0] old_pc;	// Fetch.scala:29:25
-  wire        _io_fdio_pc_T_2 = io_fcfe_flush & io_fcfe_jump_flag;	// Fetch.scala:51:36
+  wire        _io_fdio_pc_T_2 = io_fcfe_flush & io_fcfe_jump_flag;	// Fetch.scala:52:36
   always @(posedge clock) begin
     if (reset) begin
       started <= 1'h0;	// Fetch.scala:25:26
@@ -358,16 +358,16 @@ module Fetch(	// <stdin>:2:10
     end
     else begin
       started <= 1'h1;	// Fetch.scala:25:26, :26:13
-      if (io_fcfe_stall) begin
-      end
+      if (io_fcfe_stall)
+        pc <= old_pc;	// Fetch.scala:28:21, :29:25
       else begin
         if (io_fcfe_flush & io_fcfe_jump_flag)	// Fetch.scala:36:36
           pc <= io_fcfe_jump_pc + 32'h4;	// Fetch.scala:28:21, :36:85
         else if (started)	// Fetch.scala:25:26, :36:36
           pc <= pc + 32'h4;	// Fetch.scala:28:21, :36:85, :37:37
-        if (_io_fdio_pc_T_2)	// Fetch.scala:51:36
+        if (_io_fdio_pc_T_2)	// Fetch.scala:52:36
           old_pc <= io_fcfe_jump_pc;	// Fetch.scala:29:25
-        else	// Fetch.scala:51:36
+        else	// Fetch.scala:52:36
           old_pc <= pc;	// Fetch.scala:28:21, :29:25
       end
     end
@@ -396,9 +396,9 @@ module Fetch(	// <stdin>:2:10
       `FIRRTL_AFTER_INITIAL	// <stdin>:2:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
-  assign io_fdio_pc = io_fcfe_stall ? old_pc : _io_fdio_pc_T_2 ? io_fcfe_jump_pc : pc;	// <stdin>:2:10, Fetch.scala:28:21, :29:25, :51:36, Mux.scala:101:16
+  assign io_fdio_pc = io_fcfe_stall ? old_pc : _io_fdio_pc_T_2 ? io_fcfe_jump_pc : pc;	// <stdin>:2:10, Fetch.scala:28:21, :29:25, :52:36, Mux.scala:101:16
   assign io_pc_valid = started;	// <stdin>:2:10, Fetch.scala:25:26
-  assign io_pc_bits = io_fcfe_stall ? old_pc : io_fcfe_flush & io_fcfe_jump_flag ? io_fcfe_jump_pc : pc;	// <stdin>:2:10, Fetch.scala:28:21, :29:25, :61:36, Mux.scala:101:16
+  assign io_pc_bits = io_fcfe_stall ? old_pc : io_fcfe_flush & io_fcfe_jump_flag ? io_fcfe_jump_pc : pc;	// <stdin>:2:10, Fetch.scala:28:21, :29:25, :62:36, Mux.scala:101:16
 endmodule
 
 module ControlUnit(	// <stdin>:43:10
@@ -3360,5 +3360,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 
