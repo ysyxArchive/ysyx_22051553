@@ -41,11 +41,11 @@ object FlowControl{
     
     val Icache_SFBundle = 
         VecInit(StallY, StallY, StallY, StallY, StallY,     
-            FlushN, FlushY, FlushN, FlushN, FlushN)   
+            FlushN, FlushN, FlushN, FlushN, FlushN)   
   
     val Dcache_SFBundle = 
         VecInit(StallY, StallY, StallY, StallY, StallY,     
-            FlushN, FlushY, FlushN, FlushN, FlushN) 
+            FlushN, FlushN, FlushN, FlushN, FlushN) 
     
     val IOAXI_SFBundle = 
         VecInit(StallY, StallY, StallY, StallY, StallY,     
