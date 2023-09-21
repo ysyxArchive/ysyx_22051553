@@ -596,13 +596,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     __Vdlyvset__Soc__DOT__core__DOT__Icache__DOT__DataArray_ext__DOT__Memory__v4 = 0U;
     __Vdlyvset__Soc__DOT__core__DOT__Icache__DOT__DataArray_ext__DOT__Memory__v5 = 0U;
     if ((1U & (~ (IData)(vlSelf->reset)))) {
-        VSoc___024unit____Vdpiimwrap_update_debuginfo_TOP____024unit(vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc, (IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started), 
-                                                                     ((4U 
-                                                                       & vlSelf->Soc__DOT__core__DOT__fdreg_pc)
-                                                                       ? (IData)(
-                                                                                (vlSelf->Soc__DOT__core__DOT___Dcache_io_cpu_resp_bits_data 
-                                                                                >> 0x20U))
-                                                                       : (IData)(vlSelf->Soc__DOT__core__DOT___Dcache_io_cpu_resp_bits_data)), 0U, (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16), vlSelf->Soc__DOT__core__DOT__dereg_op_a, vlSelf->Soc__DOT__core__DOT__dereg_op_b, 
+        VSoc___024unit____Vdpiimwrap_update_debuginfo_TOP____024unit(vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc, (IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started), (IData)(vlSelf->Soc__DOT__core__DOT___Icache_io_cpu_resp_bits_data), vlSelf->Soc__DOT__core__DOT__Icache__DOT__cpu_resp_valid, (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16), vlSelf->Soc__DOT__core__DOT__dereg_op_a, vlSelf->Soc__DOT__core__DOT__dereg_op_b, 
                                                                      ((IData)(vlSelf->Soc__DOT__core__DOT__dereg_csr_wen)
                                                                        ? vlSelf->Soc__DOT__core__DOT__dereg_csr_t
                                                                        : vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result), (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag), vlSelf->Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid, vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T, (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_reg_waddr), vlSelf->Soc__DOT__core__DOT__mwreg_reg_wdata, 

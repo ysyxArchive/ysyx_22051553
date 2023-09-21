@@ -24,7 +24,7 @@ static uint64_t rtc_time = 0;
 
 #ifdef ITRACE
 typedef struct fetch{  //同步到单周期，即fetch、decode、excute对应的是一条指令
-  unsigned long pc;
+  unsigned int pc;
 }fetch;
 
 typedef struct decode{
@@ -131,7 +131,7 @@ void update_debuginfo(
 
   #ifdef ITRACE
   fetch fe_ins = {
-    .pc = (unsigned long)pc[1].aval << 32 | pc[0].aval
+    .pc = pc[0].aval
   };
 
   decode de_ins = {
