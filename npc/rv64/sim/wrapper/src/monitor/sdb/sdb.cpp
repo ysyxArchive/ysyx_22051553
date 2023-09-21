@@ -145,22 +145,27 @@ void update_debuginfo(
   };
 
 
-  fetch_list.push_back(fe_ins);
-  decode_list.push_back(de_ins);
-  execute_list.push_back(ex_ins);
+  // printf("fe pc:0x%x\nde inst:0x%x\n", fe_ins.pc, de_ins.inst);
 
-
-  if(decode_list.size() == 5){ 
-    sync_diff = true;
-    execute_list.pop_front();
-    execute_list.pop_front();
-    execute_list.pop_front();
-
-    decode_list.pop_front();
-    decode_list.pop_front();
-
-    fetch_list.pop_front();
+  if(de_ins.inst != 0x13 && (bool)inst_valid && de_ins.inst != 0){
+    fetch_list.push_back(fe_ins);
+    decode_list.push_back(de_ins);
+    execute_list.push_back(ex_ins);
   }
+  
+
+
+  // if(decode_list.size() == 5){ 
+  //   sync_diff = true;
+  //   execute_list.pop_front();
+  //   execute_list.pop_front();
+  //   execute_list.pop_front();
+
+  //   decode_list.pop_front();
+  //   decode_list.pop_front();
+
+  //   fetch_list.pop_front();
+  // }
 
   #endif
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
@@ -307,6 +312,10 @@ static int cmd_s(char *args){
 
   if(args == NULL){
   
+    while(decode_list.size() < 3){  //去除Cache的流水线stall周期指令
+      single_cycle();
+    }
+
     #ifdef SHOW_LIST
     for(auto arg : fetch_list){
       printf("pc:0x%lx\n", arg.pc);
@@ -337,7 +346,7 @@ static int cmd_s(char *args){
     //-----disasmble     --对当前wb中的pc
     #ifdef ITRACE
     char* p = log_itrace;
-    p += snprintf(p, sizeof(log_itrace), "0x%016lx" ":", fetch_list.front().pc);
+    p += snprintf(p, sizeof(log_itrace), "(dnpc)0x%016lx" ":", fetch_list.front().pc);
     int ilen = 4;
     uint8_t* inst = (uint8_t *)(&(decode_list.front().inst));
     for(int i = ilen - 1; i >= 0; i--){
@@ -410,6 +419,11 @@ static int cmd_s(char *args){
     uint64_t n = atoi(args);
 
     while(n > 0){
+
+    while(decode_list.size() < 3){
+      single_cycle();
+    }
+
       
     #ifdef SHOW_LIST
     for(auto arg : fetch_list){

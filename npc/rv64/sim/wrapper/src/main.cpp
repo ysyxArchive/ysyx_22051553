@@ -50,7 +50,7 @@ static void reset(int n) {
 }
 
 static void syn_diff(){
-  int n = 5;
+  int n = 12;
   while(n -- > 0) single_cycle();
 }
 
@@ -72,7 +72,7 @@ int main(int argc, char **argv) {
 
   reset(2);        
   
-  syn_diff();
+  // syn_diff();
   
   #ifdef DIFFTEST
   init_difftest("/home/shikye/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so", size, 0);

@@ -85,7 +85,6 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT___sram_S_AXI_BVALID = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT___core_io_AXI_Interface_aw_bits_addr = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT____Vcellinp__sram__ARESETn = VL_RAND_RESET_I(1);
-    vlSelf->Soc__DOT__core__DOT___Dcache_io_cpu_resp_bits_data = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___Dcache_io_fccache_mask = VL_RAND_RESET_I(8);
     vlSelf->Soc__DOT__core__DOT___Dcache_io_fccache_axi_valid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___Icache_io_cpu_resp_bits_data = VL_RAND_RESET_Q(64);
@@ -512,9 +511,9 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->__VdfgTmp_h722d7b58__0 = 0;
     vlSelf->__VdfgTmp_h6dbd61c0__0 = 0;
     vlSelf->__VdfgTmp_h6a80e86b__0 = 0;
-    vlSelf->__VdfgTmp_h02e5796b__0 = 0;
     vlSelf->__VdfgTmp_hc520a55b__0 = 0;
     vlSelf->__VdfgTmp_h726b6097__0 = 0;
+    vlSelf->__VdfgTmp_h02e5796b__0 = 0;
     vlSelf->__VdfgTmp_hb3a84c04__0 = 0;
     vlSelf->__VdfgTmp_heb865217__0 = 0;
     vlSelf->__VdfgTmp_h5f294843__0 = 0;

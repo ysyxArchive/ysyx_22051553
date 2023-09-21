@@ -2994,7 +2994,7 @@ module Core(	// <stdin>:4009:10
     .csr_waddr  (_wb_io_csrs_rd)	// Core.scala:30:20
   );
   Interact interact (	// Core.scala:481:26
-    .inst (fdreg_pc[2] ? _Dcache_io_cpu_resp_bits_data[63:32] : _Dcache_io_cpu_resp_bits_data[31:0]),	// Core.scala:33:24, :105:24, :118:{45,86,123}, :482:28
+    .inst (_Icache_io_cpu_resp_valid ? _Icache_io_cpu_resp_bits_data[31:0] : 32'h0),	// Core.scala:104:24, :464:47, :482:28
     .clk  (clock),
     .rst  (reset)
   );
@@ -3002,7 +3002,7 @@ endmodule
 
 // external module Sram
 
-module Soc(	// <stdin>:4396:10
+module Soc(	// <stdin>:4393:10
   input clock,
         reset);
 
@@ -3360,4 +3360,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 

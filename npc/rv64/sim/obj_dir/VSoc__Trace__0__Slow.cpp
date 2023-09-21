@@ -918,7 +918,24 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullIData(oldp+53,((IData)(vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T)),32);
     bufp->fullCData(oldp+54,(vlSelf->Soc__DOT__core__DOT___Dcache_io_fccache_mask),8);
     bufp->fullBit(oldp+55,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_valid));
-    bufp->fullQData(oldp+56,(vlSelf->Soc__DOT__core__DOT___Dcache_io_cpu_resp_bits_data),64);
+    bufp->fullQData(oldp+56,(((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__inDataOneArray)
+                               ? ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__inst_type)
+                                   ? (QData)((IData)(
+                                                     ((0U 
+                                                       == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__offset))
+                                                       ? 
+                                                      ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__DataArray_ext__DOT___GEN)
+                                                        ? (IData)(vlSelf->__VdfgTmp_h02e5796b__0)
+                                                        : 0U)
+                                                       : 
+                                                      ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__DataArray_ext__DOT___GEN)
+                                                        ? (IData)(
+                                                                  (vlSelf->__VdfgTmp_h02e5796b__0 
+                                                                   >> 0x20U))
+                                                        : 0U))))
+                                   : ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__DataArray_ext__DOT___GEN)
+                                       ? vlSelf->__VdfgTmp_h02e5796b__0
+                                       : 0ULL)) : vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_bits_data)),64);
     bufp->fullBit(oldp+58,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_valid));
     bufp->fullBit(oldp+59,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_rw));
     bufp->fullIData(oldp+60,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_addr),32);
@@ -1543,10 +1560,9 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullBit(oldp+376,(vlSelf->Soc__DOT__core__DOT__fw__DOT__csr_ex_harzard));
     bufp->fullBit(oldp+377,(vlSelf->Soc__DOT__core__DOT__fw__DOT__csr_mem_harzard));
     bufp->fullBit(oldp+378,(vlSelf->Soc__DOT__core__DOT__fw__DOT__csr_wb_harzard));
-    bufp->fullIData(oldp+379,(((4U & vlSelf->Soc__DOT__core__DOT__fdreg_pc)
-                                ? (IData)((vlSelf->Soc__DOT__core__DOT___Dcache_io_cpu_resp_bits_data 
-                                           >> 0x20U))
-                                : (IData)(vlSelf->Soc__DOT__core__DOT___Dcache_io_cpu_resp_bits_data))),32);
+    bufp->fullIData(oldp+379,(((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__cpu_resp_valid)
+                                ? (IData)(vlSelf->Soc__DOT__core__DOT___Icache_io_cpu_resp_bits_data)
+                                : 0U)),32);
     bufp->fullBit(oldp+380,(vlSelf->Soc__DOT__core__DOT__interact__DOT__ebreak_flag));
     bufp->fullCData(oldp+381,(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count),3);
     bufp->fullQData(oldp+382,((((QData)((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT___GEN_1[
