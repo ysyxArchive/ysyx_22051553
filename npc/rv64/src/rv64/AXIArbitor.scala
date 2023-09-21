@@ -55,6 +55,7 @@ class AXIArbitor extends Module{
             (io.master2.req.valid) -> "b1100".U,
         )
     )
+    val choose_buffer = RegInit(0.U(4.W))
 
     val rw = WireInit(0.B)
     val addr = WireInit(0.U(ADDRWIDTH.W))
@@ -143,8 +144,11 @@ class AXIArbitor extends Module{
 
     switch(state){ //并不符合状态机，状态机中，左边都是reg类型
         is(s_Idle){
+            choose_buffer := 0.U
 
             when(master_choose(3)){
+                choose_buffer := master_choose
+
                 when(rw){ //1-r
                     state := s_AR
                 }.otherwise{ //0-w
@@ -175,9 +179,9 @@ class AXIArbitor extends Module{
                 w_comp := 0.B
                 b_comp := 0.B
 
-                when(master_choose(0)){ //选择的master0
+                when(choose_buffer(0)){ //选择的master0
                     io.master0.resp.valid := 1.B
-                }.elsewhen(master_choose(1)){
+                }.elsewhen(choose_buffer(1)){
                     io.master1.resp.valid := 1.B
                 }.otherwise{
                     io.master2.resp.valid := 1.B
@@ -203,12 +207,15 @@ class AXIArbitor extends Module{
                 state := s_Idle
                 r_comp := 0.B
 
-                when(master_choose(0)){ //选择的master0
+                when(choose_buffer(0)){ //选择的master0
                     io.master0.resp.valid := 1.B
-                }.elsewhen(master_choose(1)){
+                    io.master0.resp.bits.data := io.AXI_O.r.bits.data
+                }.elsewhen(choose_buffer(1)){
                     io.master1.resp.valid := 1.B
+                    io.master1.resp.bits.data := io.AXI_O.r.bits.data
                 }.otherwise{
                     io.master2.resp.valid := 1.B
+                    io.master2.resp.bits.data := io.AXI_O.r.bits.data
                 }
             }
         }
