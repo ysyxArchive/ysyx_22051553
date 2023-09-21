@@ -141,6 +141,7 @@ class Cache extends Module{
     val axi_req_bits_rw = RegInit(0.B)
     val axi_req_bits_addr = RegInit(0.U(ADDRWIDTH.W))
     val axi_req_bits_data = RegInit(0.U(X_LEN.W))
+    val axi_req_bits_mask = RegInit(0.U((X_LEN/8).W))
 
     
     //firtool要求完整initialize
@@ -154,6 +155,7 @@ class Cache extends Module{
     io.axi.req.bits.rw := axi_req_bits_rw
     io.axi.req.bits.addr := axi_req_bits_addr
     io.axi.req.bits.data := axi_req_bits_data
+    io.axi.req.bits.mask := axi_req_bits_mask
 
     cpu_resp_valid := 0.U
     axi_req_valid := 0.U //一般保持无效
@@ -282,6 +284,7 @@ class Cache extends Module{
                 axi_req_bits_addr := Cat(TagArray(index*2.U + replace_wire), index, 0.U(3.W))  //将dirty写回
                 axi_req_bits_data := DataArray(index*2.U + replace_wire)
                 axi_req_bits_rw := 0.B
+                axi_req_bits_mask := "b11111111".U
             }.otherwise{ //如果选择的不是dirty,可以直接使用
                 state := s_ReadAck
             
@@ -295,6 +298,7 @@ class Cache extends Module{
             axi_req_bits_addr := Cat(TagArray(index*2.U + victim), index, 0.U(3.W))  //将dirty写回
             axi_req_bits_data := DataArray(index*2.U + victim)
             axi_req_bits_rw := 0.B
+            axi_req_bits_mask := "b11111111".U
 
 
             when(io.axi.resp.valid){  //写回成功,开始读
@@ -402,6 +406,7 @@ class Cache extends Module{
                 axi_req_bits_addr := Cat(TagArray(index*2.U + replace_wire), index, 0.U(3.W))  //写回dirty
                 axi_req_bits_data := DataArray(index*2.U + replace_wire)
                 axi_req_bits_rw := 0.B
+                axi_req_bits_mask := "b11111111".U
             }.otherwise{ //如果选择的不是dirty,可以直接使用
                 state := s_WriteAllocate
             
@@ -415,6 +420,7 @@ class Cache extends Module{
             axi_req_bits_addr := Cat(TagArray(index*2.U + victim), index, 0.U(3.W))
             axi_req_bits_data := DataArray(index*2.U + victim)
             axi_req_bits_rw := 0.B
+            axi_req_bits_mask := "b11111111".U
 
             when(io.axi.resp.valid){
                 state := s_WriteAllocate

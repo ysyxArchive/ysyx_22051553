@@ -12,6 +12,7 @@ class MemIO extends Bundle{  //需要在这里落实lbu等，为了前向传递
 
     val rdata = Flipped(ValidIO(new CacheResp))
 
+    val rdata_io = Flipped(ValidIO(new AXIMasterResp))
     //Forward
     val fwmem = Flipped(new FwPipeIO)
 
@@ -27,7 +28,8 @@ class Mem extends Module{
     val get_value = Wire(UInt(X_LEN.W))   //CLINT数据或者内存数据
     get_value := Mux(io.clmem.Clrvalue.valid, io.clmem.Clrvalue.bits,
         Mux(io.rdata.valid, io.rdata.bits.data,
-        0.U))
+        Mux(io.rdata_io.valid, io.rdata_io.bits.data,
+        0.U)))
 
 
     val rvalue = Wire(UInt(X_LEN.W))                   //根据1.位宽进行扩展2.基地址偏移进行选择（总线上只能8字节对齐）

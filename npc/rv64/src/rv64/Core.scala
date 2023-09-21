@@ -167,13 +167,7 @@ class Core extends Module{
     wb.io.rfio <> regfile.io.RfWb
 
     wb.io.csrs <> csrs.io.CSRWb
-    //FlowControl
-    fc.io.fcde.jump_flag := decode.io.jump_flag
-    fc.io.fcde.jump_pc := decode.io.jump_pc
-    fc.io.fcde.load_use := decode.io.load_use
 
-    fc.io.fcex.jump_flag := excute.io.jump_flag
-    fc.io.fcex.jump_pc := excute.io.jump_pc
 
     //流水线寄存器
     //fdreg
@@ -426,7 +420,18 @@ class Core extends Module{
 
     //csrs
     csrs.io.timer_int := clint.io.timer_int
+    
+    //FlowControl
+    fc.io.fcde.jump_flag := decode.io.jump_flag
+    fc.io.fcde.jump_pc := decode.io.jump_pc
+    fc.io.fcde.load_use := decode.io.load_use
 
+    fc.io.fcex.jump_flag := excute.io.jump_flag
+    fc.io.fcex.jump_pc := excute.io.jump_pc
+
+    fc.io.fcio.req := arbitor.io.master0.req.valid
+    fc.io.fcio.valid := arbitor.io.master0.resp.valid
+    
     //Icache
     Icache.io.cpu.req.valid := fetch.io.pc.valid
     Icache.io.cpu.req.bits.addr := fetch.io.pc.bits
@@ -439,7 +444,7 @@ class Core extends Module{
     Icache.io.fccache <> fc.io.fcIcache
 
     //Dcache
-    Dcache.io.cpu.req.valid := dereg.ld_type.orR | dereg.sd_type.orR
+    Dcache.io.cpu.req.valid := (dereg.ld_type.orR | dereg.sd_type.orR) && (!(excute.io.waddr | excute.io.raddr) >= "ha0000000".U)
     Dcache.io.cpu.req.bits.addr := excute.io.waddr | excute.io.raddr
     Dcache.io.cpu.req.bits.data := excute.io.wdata
     Dcache.io.cpu.req.bits.mask := excute.io.wmask
@@ -449,8 +454,18 @@ class Core extends Module{
 
     Dcache.io.fccache <> fc.io.fcDcache
     //Arbitor
-    arbitor.io.master0 <> Dcache.io.axi //先让在允许的指令获得运行数据
-    arbitor.io.master1 <> Icache.io.axi
+    //io
+    arbitor.io.master0.req.valid := (dereg.ld_type.orR | dereg.sd_type.orR) && ((excute.io.waddr | excute.io.raddr) >= "ha0000000".U)
+    arbitor.io.master0.req.bits.addr := excute.io.waddr | excute.io.raddr
+    arbitor.io.master0.req.bits.data := excute.io.wdata
+    arbitor.io.master0.req.bits.mask := excute.io.wmask
+    arbitor.io.master0.req.bits.rw := Mux(dereg.ld_type.orR, 1.B, 0.B)
+
+    arbitor.io.master0.resp <> mem.io.rdata_io
+
+
+    arbitor.io.master1 <> Dcache.io.axi //先让在允许的指令获得运行数据
+    arbitor.io.master2 <> Icache.io.axi
 
     
 

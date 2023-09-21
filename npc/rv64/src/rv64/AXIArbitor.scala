@@ -10,6 +10,7 @@ class AXIMasterReq extends Bundle{
     val rw = Bool()  //0w-1r
     val addr = UInt(ADDRWIDTH.W)
     val data = UInt(X_LEN.W)
+    val mask = UInt((X_LEN/8).W)
 }
 
 class AXIMasterResp extends Bundle{
@@ -25,6 +26,7 @@ class AXIMasterIO extends Bundle{
 class AXIArbIO extends Bundle{
     val master0 = new AXIMasterIO
     val master1 = new AXIMasterIO
+    val master2 = new AXIMasterIO
 
     val AXI_O = new AXILiteMasterIf
 }
@@ -39,28 +41,69 @@ class AXIArbitor extends Module{
     val io = IO(new AXIArbIO)
 
     //仲裁master  --组合逻辑
-    val master_choose = WireInit(0.U(2.W))  //两位，10代表master0申请访问，11代表master1申请访问，0?代表无访问
-    master_choose := Mux(
-        io.master0.req.valid, "b10".U,   //master0优先
-        Mux(io.master1.req.valid, "b11".U,
-        "b00".U)
+    //1??? 表示有申请
+    //1001 表示master0申请
+    //1010 表示master1申请
+    //1100 表示master2申请
+
+    val master_choose = WireInit(0.U(4.W))  //两位，10代表master0申请访问，11代表master1申请访问，0?代表无访问
+    master_choose := MuxCase(
+        "b0000".U,
+        Seq(
+            (io.master0.req.valid) -> "b1001".U,
+            (io.master1.req.valid) -> "b1010".U,
+            (io.master2.req.valid) -> "b1100".U,
+        )
     )
 
     val rw = WireInit(0.B)
     val addr = WireInit(0.U(ADDRWIDTH.W))
     val data = WireInit(0.U(X_LEN.W))
+    val mask = WireInit(0.U((X_LEN/8).W))
 
-    rw := Mux(master_choose(1), 
-    Mux(master_choose(0), io.master1.req.bits.rw, io.master0.req.bits.rw)
+    rw := Mux(master_choose(3), 
+        MuxCase(
+            0.B,
+            Seq(
+                master_choose(0) -> io.master0.req.bits.rw,
+                master_choose(1) -> io.master1.req.bits.rw,
+                master_choose(2) -> io.master2.req.bits.rw,
+            )
+        )
     ,0.B)
 
-    addr := Mux(master_choose(1), 
-    Mux(master_choose(0), io.master1.req.bits.addr, io.master0.req.bits.addr)
-    ,0.U)
+    addr := Mux(master_choose(3), 
+        MuxCase(
+            0.B,
+            Seq(
+                master_choose(0) -> io.master0.req.bits.addr,
+                master_choose(1) -> io.master1.req.bits.addr,
+                master_choose(2) -> io.master2.req.bits.addr,
+            )
+        )
+    ,0.B)
 
-    data := Mux(master_choose(1), 
-    Mux(master_choose(0), io.master1.req.bits.data, io.master0.req.bits.data)
-    ,0.U)
+    data := Mux(master_choose(3), 
+        MuxCase(
+            0.B,
+            Seq(
+                master_choose(0) -> io.master0.req.bits.data,
+                master_choose(1) -> io.master1.req.bits.data,
+                master_choose(2) -> io.master2.req.bits.data,
+            )
+        )
+    ,0.B)
+
+    mask := Mux(master_choose(3), 
+        MuxCase(
+            0.B,
+            Seq(
+                master_choose(0) -> io.master0.req.bits.mask,
+                master_choose(1) -> io.master1.req.bits.mask,
+                master_choose(2) -> io.master2.req.bits.mask,
+            )
+        )
+    ,0.B)
 
     //总线相关
     val state = RegInit(s_Idle)
@@ -117,7 +160,7 @@ class AXIArbitor extends Module{
             //w_channel
             io.AXI_O.w.valid := Mux(w_comp, 0.B, 1.B)
             io.AXI_O.w.bits.data := data
-            io.AXI_O.w.bits.strb := "b11111111".U //对于Cache而言，需要全写
+            io.AXI_O.w.bits.strb := mask //对于Cache而言，需要全写
             w_comp := Mux(io.AXI_O.w.valid && io.AXI_O.w.ready, 1.B, w_comp)
 
             //b_channel

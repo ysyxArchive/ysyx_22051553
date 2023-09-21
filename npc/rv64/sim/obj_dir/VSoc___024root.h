@@ -309,11 +309,12 @@ class VSoc___024root final : public VerilatedModule {
         SData/*8:0*/ Soc__DOT__core__DOT__Dcache__DOT__DataArray_ext__DOT___GEN_14;
         IData/*31:0*/ Soc__DOT___core_io_AXI_Interface_aw_bits_addr;
         IData/*31:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
-        IData/*31:0*/ Soc__DOT__core__DOT___fetch_io_fdio_pc;
+        IData/*31:0*/ Soc__DOT__core__DOT___fetch_io_pc_bits;
         IData/*31:0*/ Soc__DOT__core__DOT__fdreg_pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT__pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT__old_pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT___next_pc_T_7;
+        IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT__next_pc;
         IData/*31:0*/ Soc__DOT__core__DOT__decode__DOT__inst;
         IData/*16:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_1;
         VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_80;
@@ -346,9 +347,9 @@ class VSoc___024root final : public VerilatedModule {
         VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Icache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___valid_T_3;
         VlWide<128>/*4095:0*/ Soc__DOT__core__DOT__Icache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_29;
         VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Icache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_42;
-        VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Icache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_35;
     };
     struct {
+        VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Icache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_35;
         VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Icache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_26;
         VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Icache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_19;
         VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Icache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_10;
@@ -412,9 +413,9 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_reg2_rdata;
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_csr_t;
         QData/*63:0*/ Soc__DOT__core__DOT__emreg_reg_wdata;
-        QData/*63:0*/ Soc__DOT__core__DOT__emreg_csr_wdata;
     };
     struct {
+        QData/*63:0*/ Soc__DOT__core__DOT__emreg_csr_wdata;
         QData/*63:0*/ Soc__DOT__core__DOT__mwreg_reg_wdata;
         QData/*63:0*/ Soc__DOT__core__DOT__mwreg_csr_wdata;
         QData/*63:0*/ Soc__DOT__core__DOT___DI_io_mem_addr_T;

@@ -46,6 +46,10 @@ object FlowControl{
     val Dcache_SFBundle = 
         VecInit(StallY, StallY, StallY, StallY, StallY,     
             FlushN, FlushY, FlushN, FlushN, FlushN) 
+    
+    val IOAXI_SFBundle = 
+        VecInit(StallY, StallY, StallY, StallY, StallY,     
+            FlushN, FlushN, FlushN, FlushN, FlushN)   //不能Flush Decode段，因为需要一直申请AXI
 
 }
 
@@ -93,6 +97,11 @@ class FcCacheIO extends Bundle{
     val axi_valid = Bool() //用于提前释放
 }
 
+class FcioIO extends Bundle{
+    val req = Bool()
+    val valid = Bool()
+}
+
 
 class FCIO extends Bundle{
     val fcfe = new FcFeIO
@@ -105,6 +114,7 @@ class FCIO extends Bundle{
 
     val fcIcache = Input(new FcCacheIO)
     val fcDcache = Input(new FcCacheIO)
+    val fcio = Input(new FcioIO)
     
 }
 import TrIO._
@@ -114,8 +124,10 @@ class FlowControl extends Module{
 
     val Icache_stall = WireInit(0.B)
     val Dcache_stall = WireInit(0.B)
+    val IO_stall = WireInit(0.B)
     dontTouch(Icache_stall)
     dontTouch(Dcache_stall)
+    dontTouch(IO_stall)
 
     when(io.fcIcache.cpu_valid){ //恢复
         Icache_stall := 0.B
@@ -154,8 +166,17 @@ class FlowControl extends Module{
         Dcache_stall := 0.B
     }
 
+    when(io.fcio.valid){
+        IO_stall := 0.B
+    }.elsewhen(io.fcio.req){
+        IO_stall := 1.B
+    }.otherwise{
+        IO_stall := 0.B
+    }
+
     val SFBundle = MuxCase(FlowControl.default,
         Seq(
+            IO_stall -> FlowControl.IOAXI_SFBundle,
             Icache_stall -> FlowControl.Icache_SFBundle,
             Dcache_stall -> FlowControl.Dcache_SFBundle, //优先级高于load_use
             (io.fcde.load_use === 1.B) -> FlowControl.LoadUse_SFBundle,
