@@ -86,13 +86,13 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
     VlWide<16>/*511:0*/ __Vtemp_h1e7d2d53__0;
     VlWide<128>/*4095:0*/ __Vtemp_h2223c17a__0;
     // Body
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data 
-        = vlSelf->__Vdly__Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data;
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h02c05ceb__0 
         = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_valid)) 
            & (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_valid));
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_data 
         = vlSelf->__Vdly__Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_data;
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data 
+        = vlSelf->__Vdly__Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data;
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h82421030__0 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_valid) 
            | (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_valid));
@@ -2406,7 +2406,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3068, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3072, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -2429,7 +2429,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VSoc___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("vsrc/Soc.v", 3068, "", "Active region did not converge.");
+                    VL_FATAL_MT("vsrc/Soc.v", 3072, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -2444,7 +2444,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3068, "", "NBA region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3072, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VSoc___024root___eval_nba(vlSelf);

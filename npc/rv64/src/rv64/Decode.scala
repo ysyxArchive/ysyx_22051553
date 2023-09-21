@@ -38,8 +38,7 @@ class Decode extends Module {
 
     val io = IO(new DecodeIO)
     
-    // val inst = Wire(UInt(INST_LEN.W))
-    val inst = Reg(UInt(INST_LEN.W))
+    val inst = Wire(UInt(INST_LEN.W))
     
     val csr_num = Wire(UInt(CSR_ADDR_LEN.W))
     val rs1 = Wire(UInt(REG_ADDR_LEN.W))
