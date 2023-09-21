@@ -111,11 +111,17 @@ class AXIArbitor extends Module{
 
     val aw_comp = RegInit(0.B)
     val w_comp = RegInit(0.B)
-    val b_comp = RegInit(0.B)
+    // val b_comp = RegInit(0.B)
+    val b_comp = Wire(0.B)  //不耽误周期
 
-    val ar_comp = RegInit(0.B)
-    val r_comp = RegInit(0.B)
+    // val ar_comp = RegInit(0.B)
+    // val r_comp = RegInit(0.B)
+    val ar_comp = WireInit(0.B)
+    val r_comp = WireInit(0.B)
 
+    b_comp := 0.B
+    ar_comp := 0.B
+    r_comp := 0.B
 
     io.master0.resp.valid := 0.B
     io.master0.resp.bits.data := 0.U
@@ -171,13 +177,12 @@ class AXIArbitor extends Module{
 
             //b_channel
             io.AXI_O.b.ready := 1.B //常为高
-            b_comp := Mux(io.AXI_O.b.valid && io.AXI_O.b.ready, 1.B, b_comp)
+            b_comp := Mux(io.AXI_O.b.valid && io.AXI_O.b.ready, 1.B, 0.B)
 
             when(aw_comp && w_comp && b_comp){ //b应该在aw和w之后判断，但是b常为高，就没有必要
                 state := s_Idle
                 aw_comp := 0.B
                 w_comp := 0.B
-                b_comp := 0.B
 
                 when(choose_buffer(0)){ //选择的master0
                     io.master0.resp.valid := 1.B
@@ -193,19 +198,17 @@ class AXIArbitor extends Module{
             io.AXI_O.ar.valid := Mux(ar_comp, 0.B, 1.B)
             io.AXI_O.ar.bits.addr := addr
             io.AXI_O.ar.bits.prot := 0.U   //默认为0
-            ar_comp := Mux(io.AXI_O.ar.valid && io.AXI_O.ar.ready, 1.B, ar_comp)  //常态保持不变
+            ar_comp := Mux(io.AXI_O.ar.valid && io.AXI_O.ar.ready, 1.B, 0.B)  //常态保持不变
 
             when(ar_comp){
                 state := s_R
-                ar_comp := 0.B
             }
         }
         is(s_R){
             io.AXI_O.r.ready := Mux(r_comp, 0.B, 1.B)
-            r_comp := Mux(io.AXI_O.r.valid && io.AXI_O.r.ready, 1.B, r_comp)
+            r_comp := Mux(io.AXI_O.r.valid && io.AXI_O.r.ready, 1.B, 0.B)
             when(r_comp){
                 state := s_Idle
-                r_comp := 0.B
 
                 when(choose_buffer(0)){ //选择的master0
                     io.master0.resp.valid := 1.B

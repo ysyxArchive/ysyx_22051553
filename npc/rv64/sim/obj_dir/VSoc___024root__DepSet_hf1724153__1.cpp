@@ -86,7 +86,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
         vlSelf->Soc__DOT__sram__DOT__need_resp = 0U;
     }
     if (vlSelf->Soc__DOT____Vcellinp__sram__ARESETn) {
-        if (((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_4) 
+        if (((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_2) 
              & (IData)(vlSelf->Soc__DOT__sram__DOT__arready))) {
             vlSelf->Soc__DOT__sram__DOT__araddr = (
                                                    (1U 
@@ -106,10 +106,10 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
             vlSelf->Soc__DOT__sram__DOT__awaddr_buffer 
                 = vlSelf->Soc__DOT___core_io_AXI_Interface_aw_bits_addr;
         }
-        vlSelf->Soc__DOT__sram__DOT__need_read = ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_4) 
+        vlSelf->Soc__DOT__sram__DOT__need_read = ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_2) 
                                                   & (IData)(vlSelf->Soc__DOT__sram__DOT__arready));
         vlSelf->Soc__DOT__sram__DOT__wready = vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_1;
-        vlSelf->Soc__DOT__sram__DOT__arready = vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_4;
+        vlSelf->Soc__DOT__sram__DOT__arready = vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_2;
         vlSelf->Soc__DOT__sram__DOT__awready = vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN;
     } else {
         vlSelf->Soc__DOT__sram__DOT__araddr = 0U;
