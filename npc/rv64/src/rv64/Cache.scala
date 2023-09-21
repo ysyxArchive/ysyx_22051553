@@ -98,7 +98,7 @@ class Cache extends Module{
     val DataOneArrayAddr = Wire(UInt(ADDRWIDTH.W))
     DataOneArray := DataArray.read(DataOneArrayAddr, DataOneArrayRen)
     DataOneArrayRen := 0.B
-    DataOneArrayAddr := DataOneArrayAddr
+    DataOneArrayAddr := 0.U
     
 
 
