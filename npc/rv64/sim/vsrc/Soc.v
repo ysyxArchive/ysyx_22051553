@@ -3026,7 +3026,7 @@ module Core(	// <stdin>:4082:10
   Cache Dcache (	// Core.scala:105:24
     .clock                     (clock),
     .reset                     (reset),
-    .io_cpu_req_valid          (1'h0),	// Core.scala:105:24
+    .io_cpu_req_valid          ((|dereg_ld_type) | (|dereg_sd_type)),	// Core.scala:39:24, :447:{47,51,67}
     .io_cpu_req_bits_inst_type (1'h0),	// Core.scala:105:24
     .io_cpu_req_bits_addr      (_DI_io_mem_addr_T[31:0]),	// Core.scala:447:94, :448:33
     .io_cpu_req_bits_data      (_excute_io_wdata),	// Core.scala:27:24
@@ -3437,4 +3437,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 

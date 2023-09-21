@@ -145,6 +145,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__mwreg_has_inst = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_req_valid_T_5 = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__fetch__DOT__started = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__core__DOT__fetch__DOT__old_pc = VL_RAND_RESET_I(32);
@@ -399,6 +400,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     VL_RAND_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Dcache__DOT__valid);
     VL_RAND_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Dcache__DOT__dirty);
     VL_RAND_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Dcache__DOT__replace);
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT__hit0 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__inDataOneArray = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__victim = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__addr = VL_RAND_RESET_I(32);
@@ -406,6 +408,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__mask = VL_RAND_RESET_I(8);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__inst_type = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__whitNum = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_3 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_valid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_bits_data = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_valid = VL_RAND_RESET_I(1);
@@ -413,6 +416,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_addr = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_data = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_mask = VL_RAND_RESET_I(8);
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_3 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_5 = VL_RAND_RESET_I(1);
     VL_RAND_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_9);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_9 = VL_RAND_RESET_I(1);
@@ -453,6 +457,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     VL_RAND_RESET_W(256, vlSelf->Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_32);
     VL_RAND_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_33);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_34 = VL_RAND_RESET_Q(64);
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h02ae5b32__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h8854f984__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h05ff0e1a__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h8ecd23a9__0 = 0;
@@ -464,6 +469,9 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     VL_ZERO_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h461f8267__0);
     VL_ZERO_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h18bd6550__0);
     VL_ZERO_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h7cd24744__0);
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h07501b90__0 = 0;
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h300e9d2f__0 = 0;
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h46ce278a__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_hf391aef2__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h94cbbc53__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h4b92e988__0 = 0;
