@@ -1327,7 +1327,7 @@ module FlowControl(	// <stdin>:1868:10
                 ~_SFBundle_T_21_0 & (io_fctr_jump_flag | io_fcex_jump_flag | io_fcde_jump_flag));	// <stdin>:1868:10, FlowControl.scala:183:47, :185:87, Mux.scala:101:16
   assign io_fcfe_stall = IO_stall | Icache_stall | Dcache_stall | io_fcde_load_use | ~_SFBundle_T_3 &
                 _SFBundle_T_21_0;	// <stdin>:1868:10, FlowControl.scala:183:47, :185:87, Mux.scala:101:16
-  assign io_fcde_flush = ~IO_stall & (Icache_stall | Dcache_stall | io_fcde_load_use | _SFBundle_T_3 |
+  assign io_fcde_flush = ~IO_stall & ~Icache_stall & ~Dcache_stall & (io_fcde_load_use | _SFBundle_T_3 |
                 _SFBundle_T_21_0 | ~io_fctr_jump_flag & io_fcex_jump_flag);	// <stdin>:1868:10, FlowControl.scala:183:47, :185:87, Mux.scala:101:16
   assign io_fcde_stall = IO_stall | Icache_stall | Dcache_stall;	// <stdin>:1868:10, Mux.scala:101:16
   assign io_fcex_stall = IO_stall | Icache_stall | Dcache_stall;	// <stdin>:1868:10, Mux.scala:101:16
