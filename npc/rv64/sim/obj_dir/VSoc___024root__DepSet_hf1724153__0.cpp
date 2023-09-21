@@ -885,7 +885,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
             = (7U & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)));
         if (VL_UNLIKELY((2U == (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)))) {
             VL_WRITEF("ebreak!\n");
-            VL_FINISH_MT("vsrc/Soc.v", 3161, "");
+            VL_FINISH_MT("vsrc/Soc.v", 3165, "");
         }
     }
     if (vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h07501b90__0) {
@@ -1014,13 +1014,15 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
                     & (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_3)) 
                    & (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__hit0));
         }
-        vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd 
-            = ((((IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag) 
-                 | ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16) 
-                    & (~ (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall)))) 
-                | (0U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_ld_type)))
-                ? 0U : (0x1fU & (vlSelf->Soc__DOT__core__DOT__decode__DOT__inst 
-                                 >> 7U)));
+        if (vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag) {
+            vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd = 0U;
+        } else if ((1U & (~ (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall)))) {
+            vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd 
+                = (((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16) 
+                    | (0U == (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___cu_io_ld_type)))
+                    ? 0U : (0x1fU & (vlSelf->Soc__DOT__core__DOT__decode__DOT__inst 
+                                     >> 7U)));
+        }
         vlSelf->Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T 
             = ((IData)(vlSelf->Soc__DOT__core__DOT__mwreg_csr_waddr) 
                | (IData)(vlSelf->Soc__DOT__core__DOT___trap_io_csrtr_rd));
