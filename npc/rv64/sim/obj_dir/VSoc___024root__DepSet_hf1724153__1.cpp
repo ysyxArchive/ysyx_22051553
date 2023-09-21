@@ -43,6 +43,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
         vlSelf->Soc__DOT__sram__DOT__rdata = 0ULL;
         vlSelf->Soc__DOT__sram__DOT__rresp = 0U;
     }
+    vlSelf->Soc__DOT___sram_S_AXI_BVALID = vlSelf->Soc__DOT__sram__DOT__bvalid;
     if (vlSelf->Soc__DOT____Vcellinp__sram__ARESETn) {
         if (((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_1) 
              & (IData)(vlSelf->Soc__DOT__sram__DOT__wready))) {

@@ -92,13 +92,13 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
     VlWide<16>/*511:0*/ __Vtemp_h24d20986__0;
     VlWide<128>/*4095:0*/ __Vtemp_hea190ecd__0;
     // Body
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data 
+        = vlSelf->__Vdly__Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data;
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_data 
         = vlSelf->__Vdly__Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_data;
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h02c05ceb__0 
         = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_valid)) 
            & (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_valid));
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data 
-        = vlSelf->__Vdly__Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data;
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h82421030__0 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_valid) 
            | (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_valid));

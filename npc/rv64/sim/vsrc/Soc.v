@@ -3224,6 +3224,7 @@ reg             rvalid;
 assign S_AXI_AWREADY = awready;
 assign S_AXI_WREADY = wready;
 assign S_AXI_BRESP = bresp;
+assign S_AXI_BVALID = bvalid;
 assign S_AXI_ARREADY = arready;
 assign S_AXI_RDATA = rdata;
 assign S_AXI_RRESP = rresp;

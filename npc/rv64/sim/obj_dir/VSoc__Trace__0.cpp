@@ -860,12 +860,12 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[2U])) {
         bufp->chgBit(oldp+468,(vlSelf->Soc__DOT__sram__DOT__awready));
         bufp->chgBit(oldp+469,(vlSelf->Soc__DOT__sram__DOT__wready));
-        bufp->chgBit(oldp+470,(vlSelf->Soc__DOT__sram__DOT__arready));
-        bufp->chgBit(oldp+471,(vlSelf->Soc__DOT__sram__DOT__rvalid));
-        bufp->chgQData(oldp+472,(vlSelf->Soc__DOT__sram__DOT__rdata),64);
-        bufp->chgCData(oldp+474,(vlSelf->Soc__DOT__sram__DOT__bresp),2);
-        bufp->chgCData(oldp+475,(vlSelf->Soc__DOT__sram__DOT__rresp),2);
-        bufp->chgBit(oldp+476,(vlSelf->Soc__DOT__sram__DOT__bvalid));
+        bufp->chgBit(oldp+470,(vlSelf->Soc__DOT__sram__DOT__bvalid));
+        bufp->chgBit(oldp+471,(vlSelf->Soc__DOT__sram__DOT__arready));
+        bufp->chgBit(oldp+472,(vlSelf->Soc__DOT__sram__DOT__rvalid));
+        bufp->chgQData(oldp+473,(vlSelf->Soc__DOT__sram__DOT__rdata),64);
+        bufp->chgCData(oldp+475,(vlSelf->Soc__DOT__sram__DOT__bresp),2);
+        bufp->chgCData(oldp+476,(vlSelf->Soc__DOT__sram__DOT__rresp),2);
         bufp->chgIData(oldp+477,(vlSelf->Soc__DOT__sram__DOT__awaddr_buffer),32);
         bufp->chgBit(oldp+478,(vlSelf->Soc__DOT__sram__DOT__need_resp));
         bufp->chgIData(oldp+479,(vlSelf->Soc__DOT__sram__DOT__araddr),32);

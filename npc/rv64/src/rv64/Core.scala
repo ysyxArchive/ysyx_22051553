@@ -119,6 +119,7 @@ class Core extends Module{
     decode.io.fdio.pc := fdreg.pc
     decode.io.rfio <> regfile.io.RfDe
     decode.io.branch := fc.io.fcex.jump_flag
+    decode.io.stall  := fc.io.fcde.stall
 
     decode.io.csrs <> csrs.io.CSRDe
     //excute

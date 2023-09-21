@@ -350,8 +350,6 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     __Vdlyvset__Soc__DOT__core__DOT__Icache__DOT__TagArray_ext__DOT__Memory__v1 = 0U;
     __Vdlyvset__Soc__DOT__core__DOT__Icache__DOT__TagArray_ext__DOT__Memory__v2 = 0U;
     __Vdlyvset__Soc__DOT__core__DOT__Icache__DOT__TagArray_ext__DOT__Memory__v3 = 0U;
-    __Vdly__Soc__DOT__core__DOT__arbitor__DOT__b_comp 
-        = vlSelf->Soc__DOT__core__DOT__arbitor__DOT__b_comp;
     __Vdly__Soc__DOT__core__DOT__arbitor__DOT__w_comp 
         = vlSelf->Soc__DOT__core__DOT__arbitor__DOT__w_comp;
     __Vdly__Soc__DOT__core__DOT__arbitor__DOT__aw_comp 
@@ -363,6 +361,8 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     __Vdlyvset__Soc__DOT__core__DOT__Dcache__DOT__DataArray_ext__DOT__Memory__v3 = 0U;
     __Vdlyvset__Soc__DOT__core__DOT__Dcache__DOT__DataArray_ext__DOT__Memory__v4 = 0U;
     __Vdlyvset__Soc__DOT__core__DOT__Dcache__DOT__DataArray_ext__DOT__Memory__v5 = 0U;
+    __Vdly__Soc__DOT__core__DOT__arbitor__DOT__b_comp 
+        = vlSelf->Soc__DOT__core__DOT__arbitor__DOT__b_comp;
     __Vdly__Soc__DOT__core__DOT__arbitor__DOT__ar_comp 
         = vlSelf->Soc__DOT__core__DOT__arbitor__DOT__ar_comp;
     __Vdly__Soc__DOT__core__DOT__arbitor__DOT__r_comp 
@@ -763,9 +763,9 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     if (vlSelf->reset) {
         __Vdly__Soc__DOT__core__DOT__fetch__DOT__pc = 0x80000000U;
         __Vdly__Soc__DOT__core__DOT__fetch__DOT__old_pc = 0U;
-        __Vdly__Soc__DOT__core__DOT__arbitor__DOT__b_comp = 0U;
         __Vdly__Soc__DOT__core__DOT__arbitor__DOT__w_comp = 0U;
         __Vdly__Soc__DOT__core__DOT__arbitor__DOT__aw_comp = 0U;
+        __Vdly__Soc__DOT__core__DOT__arbitor__DOT__b_comp = 0U;
         vlSelf->__Vdly__Soc__DOT__core__DOT__arbitor__DOT__state = 0U;
         __Vdly__Soc__DOT__core__DOT__arbitor__DOT__ar_comp = 0U;
         __Vdly__Soc__DOT__core__DOT__arbitor__DOT__r_comp = 0U;
@@ -790,10 +790,6 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
         }
         if ((1U & (~ ((0U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
                       | (1U != (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)))))) {
-            __Vdly__Soc__DOT__core__DOT__arbitor__DOT__b_comp 
-                = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T_4)) 
-                   & ((IData)(vlSelf->Soc__DOT___sram_S_AXI_BVALID) 
-                      | (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__b_comp)));
             __Vdly__Soc__DOT__core__DOT__arbitor__DOT__w_comp 
                 = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T_4)) 
                    & (((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_1) 
@@ -804,6 +800,10 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
                    & (((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN) 
                        & (IData)(vlSelf->Soc__DOT__sram__DOT__awready)) 
                       | (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__aw_comp)));
+            __Vdly__Soc__DOT__core__DOT__arbitor__DOT__b_comp 
+                = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T_4)) 
+                   & ((IData)(vlSelf->Soc__DOT__sram__DOT__bvalid) 
+                      | (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__b_comp)));
         }
         vlSelf->Soc__DOT__core__DOT__arbitor__DOT__unnamedblk1__DOT___GEN_6 
             = (((((3U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
@@ -4070,12 +4070,12 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
         vlSelf->Soc__DOT__core__DOT__Icache__DOT__TagArray_ext__DOT__Memory[__Vdlyvdim0__Soc__DOT__core__DOT__Icache__DOT__TagArray_ext__DOT__Memory__v3] 
             = __Vdlyvval__Soc__DOT__core__DOT__Icache__DOT__TagArray_ext__DOT__Memory__v3;
     }
-    vlSelf->Soc__DOT__core__DOT__arbitor__DOT__b_comp 
-        = __Vdly__Soc__DOT__core__DOT__arbitor__DOT__b_comp;
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT__w_comp 
         = __Vdly__Soc__DOT__core__DOT__arbitor__DOT__w_comp;
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT__aw_comp 
         = __Vdly__Soc__DOT__core__DOT__arbitor__DOT__aw_comp;
+    vlSelf->Soc__DOT__core__DOT__arbitor__DOT__b_comp 
+        = __Vdly__Soc__DOT__core__DOT__arbitor__DOT__b_comp;
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT__ar_comp 
         = __Vdly__Soc__DOT__core__DOT__arbitor__DOT__ar_comp;
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT__r_comp 

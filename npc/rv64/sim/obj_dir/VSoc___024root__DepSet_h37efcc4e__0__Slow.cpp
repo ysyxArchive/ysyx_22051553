@@ -219,6 +219,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
         = (6U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state));
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_74 
         = (4U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state));
+    vlSelf->Soc__DOT___sram_S_AXI_BVALID = vlSelf->Soc__DOT__sram__DOT__bvalid;
     vlSelf->Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data 
         = vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
         [vlSelf->Soc__DOT__core__DOT__mwreg_reg_waddr];

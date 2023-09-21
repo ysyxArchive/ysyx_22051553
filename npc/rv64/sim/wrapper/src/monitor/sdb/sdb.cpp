@@ -314,10 +314,11 @@ static int cmd_s(char *args){
 
   if(args == NULL){
 
+    #ifdef ITRACE
     while(decode_list.size() < 1){
       single_cycle();
     }
-  
+    #endif
 
     #ifdef SHOW_LIST
     for(auto arg : fetch_list){
@@ -429,9 +430,11 @@ static int cmd_s(char *args){
 
     while(n > 0){
 
-    while(decode_list.size() < 3){
+    #ifdef ITRACE
+    while(decode_list.size() < 1){
       single_cycle();
     }
+    #endif
 
       
     #ifdef SHOW_LIST
