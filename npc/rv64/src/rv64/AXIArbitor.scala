@@ -195,7 +195,7 @@ class AXIArbitor extends Module{
         }
         is(s_AR){
             //ar_channel
-            io.AXI_O.ar.valid := Mux(ar_comp, 0.B, 1.B)
+            io.AXI_O.ar.valid := 1.B
             io.AXI_O.ar.bits.addr := addr
             io.AXI_O.ar.bits.prot := 0.U   //默认为0
             ar_comp := Mux(io.AXI_O.ar.valid && io.AXI_O.ar.ready, 1.B, 0.B)  //常态保持不变
@@ -205,7 +205,7 @@ class AXIArbitor extends Module{
             }
         }
         is(s_R){
-            io.AXI_O.r.ready := Mux(r_comp, 0.B, 1.B)
+            io.AXI_O.r.ready := 1.B
             r_comp := Mux(io.AXI_O.r.valid && io.AXI_O.r.ready, 1.B, 0.B)
             when(r_comp){
                 state := s_Idle
