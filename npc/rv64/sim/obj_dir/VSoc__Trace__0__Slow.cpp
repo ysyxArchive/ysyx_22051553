@@ -146,19 +146,19 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+132,"R4_addr", false,-1, 8,0);
     tracep->declBit(c+133,"R4_en", false,-1);
     tracep->declBit(c+531,"R4_clk", false,-1);
-    tracep->declBus(c+134,"R5_addr", false,-1, 8,0);
-    tracep->declBit(c+135,"R5_en", false,-1);
+    tracep->declBus(c+132,"R5_addr", false,-1, 8,0);
+    tracep->declBit(c+134,"R5_en", false,-1);
     tracep->declBit(c+531,"R5_clk", false,-1);
-    tracep->declBus(c+134,"R6_addr", false,-1, 8,0);
-    tracep->declBit(c+136,"R6_en", false,-1);
+    tracep->declBus(c+132,"R6_addr", false,-1, 8,0);
+    tracep->declBit(c+135,"R6_en", false,-1);
     tracep->declBit(c+531,"R6_clk", false,-1);
-    tracep->declBus(c+134,"R7_addr", false,-1, 8,0);
+    tracep->declBus(c+136,"R7_addr", false,-1, 8,0);
     tracep->declBit(c+137,"R7_en", false,-1);
     tracep->declBit(c+531,"R7_clk", false,-1);
-    tracep->declBus(c+132,"R8_addr", false,-1, 8,0);
+    tracep->declBus(c+136,"R8_addr", false,-1, 8,0);
     tracep->declBit(c+138,"R8_en", false,-1);
     tracep->declBit(c+531,"R8_clk", false,-1);
-    tracep->declBus(c+134,"R9_addr", false,-1, 8,0);
+    tracep->declBus(c+132,"R9_addr", false,-1, 8,0);
     tracep->declBit(c+139,"R9_en", false,-1);
     tracep->declBit(c+531,"R9_clk", false,-1);
     tracep->declBus(c+140,"W0_addr", false,-1, 8,0);
@@ -209,10 +209,10 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+128,"R3_addr", false,-1, 8,0);
     tracep->declBit(c+131,"R3_en", false,-1);
     tracep->declBit(c+531,"R3_clk", false,-1);
-    tracep->declBus(c+132,"R4_addr", false,-1, 8,0);
+    tracep->declBus(c+136,"R4_addr", false,-1, 8,0);
     tracep->declBit(c+537,"R4_en", false,-1);
     tracep->declBit(c+531,"R4_clk", false,-1);
-    tracep->declBus(c+134,"R5_addr", false,-1, 8,0);
+    tracep->declBus(c+132,"R5_addr", false,-1, 8,0);
     tracep->declBit(c+537,"R5_en", false,-1);
     tracep->declBit(c+531,"R5_clk", false,-1);
     tracep->declBus(c+140,"W0_addr", false,-1, 8,0);
@@ -303,19 +303,19 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+512,"R4_addr", false,-1, 8,0);
     tracep->declBit(c+472,"R4_en", false,-1);
     tracep->declBit(c+531,"R4_clk", false,-1);
-    tracep->declBus(c+513,"R5_addr", false,-1, 8,0);
+    tracep->declBus(c+512,"R5_addr", false,-1, 8,0);
     tracep->declBit(c+473,"R5_en", false,-1);
     tracep->declBit(c+531,"R5_clk", false,-1);
-    tracep->declBus(c+513,"R6_addr", false,-1, 8,0);
+    tracep->declBus(c+512,"R6_addr", false,-1, 8,0);
     tracep->declBit(c+474,"R6_en", false,-1);
     tracep->declBit(c+531,"R6_clk", false,-1);
     tracep->declBus(c+513,"R7_addr", false,-1, 8,0);
     tracep->declBit(c+475,"R7_en", false,-1);
     tracep->declBit(c+531,"R7_clk", false,-1);
-    tracep->declBus(c+512,"R8_addr", false,-1, 8,0);
+    tracep->declBus(c+513,"R8_addr", false,-1, 8,0);
     tracep->declBit(c+536,"R8_en", false,-1);
     tracep->declBit(c+531,"R8_clk", false,-1);
-    tracep->declBus(c+513,"R9_addr", false,-1, 8,0);
+    tracep->declBus(c+512,"R9_addr", false,-1, 8,0);
     tracep->declBit(c+536,"R9_en", false,-1);
     tracep->declBit(c+531,"R9_clk", false,-1);
     tracep->declBus(c+247,"W0_addr", false,-1, 8,0);
@@ -366,10 +366,10 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBus(c+243,"R3_addr", false,-1, 8,0);
     tracep->declBit(c+246,"R3_en", false,-1);
     tracep->declBit(c+531,"R3_clk", false,-1);
-    tracep->declBus(c+512,"R4_addr", false,-1, 8,0);
+    tracep->declBus(c+513,"R4_addr", false,-1, 8,0);
     tracep->declBit(c+537,"R4_en", false,-1);
     tracep->declBit(c+531,"R4_clk", false,-1);
-    tracep->declBus(c+513,"R5_addr", false,-1, 8,0);
+    tracep->declBus(c+512,"R5_addr", false,-1, 8,0);
     tracep->declBit(c+537,"R5_en", false,-1);
     tracep->declBit(c+531,"R5_clk", false,-1);
     tracep->declBus(c+247,"W0_addr", false,-1, 8,0);
@@ -979,23 +979,23 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullBit(oldp+129,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_12));
     bufp->fullBit(oldp+130,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_18));
     bufp->fullBit(oldp+131,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_19));
-    bufp->fullSData(oldp+132,((0x1feU & ((IData)((vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T 
-                                                  >> 3U)) 
-                                         << 1U))),9);
-    bufp->fullBit(oldp+133,(((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h8e8afd29__0) 
-                             & (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_2))));
-    bufp->fullSData(oldp+134,((0x1ffU & ((IData)(1U) 
+    bufp->fullSData(oldp+132,((0x1ffU & ((IData)(1U) 
                                          + (0x1feU 
                                             & ((IData)(
                                                        (vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T 
                                                         >> 3U)) 
                                                << 1U))))),9);
-    bufp->fullBit(oldp+135,(((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h77956ee5__0) 
+    bufp->fullBit(oldp+133,(((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h77956ee5__0) 
                              & (0U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__offset)))));
-    bufp->fullBit(oldp+136,(((0U != (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__offset)) 
+    bufp->fullBit(oldp+134,(((0U != (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__offset)) 
                              & (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h77956ee5__0))));
-    bufp->fullBit(oldp+137,(((~ (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__inst_type)) 
+    bufp->fullBit(oldp+135,(((~ (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__inst_type)) 
                              & (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h89243b2c__0))));
+    bufp->fullSData(oldp+136,((0x1feU & ((IData)((vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T 
+                                                  >> 3U)) 
+                                         << 1U))),9);
+    bufp->fullBit(oldp+137,(((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h8e8afd29__0) 
+                             & (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_2))));
     bufp->fullBit(oldp+138,(((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h4c75ec62__0) 
                              & (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_2))));
     bufp->fullBit(oldp+139,(((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h4c75ec62__0) 
@@ -1663,15 +1663,15 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                 >> 2U))))] 
                               == (vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
                                   >> 0xbU)) & __Vtemp_hc4bbf11d__0[0U])));
-    bufp->fullBit(oldp+472,(((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h8e8afd29__0) 
+    bufp->fullBit(oldp+472,(((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h77956ee5__0) 
+                             & (0U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__offset)))));
+    bufp->fullBit(oldp+473,(((0U != (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__offset)) 
+                             & (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h77956ee5__0))));
+    bufp->fullBit(oldp+474,(((~ (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__inst_type)) 
+                             & (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h89243b2c__0))));
+    bufp->fullBit(oldp+475,(((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h8e8afd29__0) 
                              & ((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_3) 
                                 & (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__hit0)))));
-    bufp->fullBit(oldp+473,(((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h77956ee5__0) 
-                             & (0U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__offset)))));
-    bufp->fullBit(oldp+474,(((0U != (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__offset)) 
-                             & (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h77956ee5__0))));
-    bufp->fullBit(oldp+475,(((~ (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__inst_type)) 
-                             & (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h89243b2c__0))));
     bufp->fullIData(oldp+476,(vlSelf->Soc__DOT__core__DOT__Icache__DOT__TagArray_ext__DOT__Memory
                               [(0x1feU & (vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
                                           >> 2U))]),21);
@@ -1720,12 +1720,12 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullQData(oldp+508,(vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data),64);
     bufp->fullBit(oldp+510,(vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_3));
     bufp->fullBit(oldp+511,(vlSelf->Soc__DOT__core__DOT__Icache__DOT__hit0));
-    bufp->fullSData(oldp+512,((0x1feU & (vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
-                                         >> 2U))),9);
-    bufp->fullSData(oldp+513,((0x1ffU & ((IData)(1U) 
+    bufp->fullSData(oldp+512,((0x1ffU & ((IData)(1U) 
                                          + (0x1feU 
                                             & (vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
                                                >> 2U))))),9);
+    bufp->fullSData(oldp+513,((0x1feU & (vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
+                                         >> 2U))),9);
     bufp->fullBit(oldp+514,(vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN_15));
     bufp->fullBit(oldp+515,(vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN_17));
     bufp->fullBit(oldp+516,(vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN_21));

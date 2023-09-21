@@ -92,6 +92,12 @@ class Cache extends Module{
     hit1 := (TagArray(io.cpu.req.bits.addr(10, 3) * 2.U + 1.U) === io.cpu.req.bits.addr(31, 11)) && valid(io.cpu.req.bits.addr(10, 3) * 2.U + 1.U)
 
 
+    //用于从SyncMem中读出
+    val DataOneArray = Wire(UInt((bytenum*8).W))
+    val DataOneArrayRen = Wire(Bool())
+    val DataOneArrayAddr = Wire(UInt(ADDRWIDTH.W))
+    DataOneArray := DataArray.read(DataOneArrayAddr, DataOneArrayRen)
+
 
     //用于修改某两位  --应该如何修改，Wire也会占用资源，用Cat不会，但是写的很不清晰
     val replace0 = WireInit(0.U((2*setnum).W))
@@ -135,7 +141,7 @@ class Cache extends Module{
     //firtool要求完整initialize
     io.cpu.resp.valid := cpu_resp_valid
     io.cpu.resp.bits.data := Mux(inst_type, 
-        Mux(offset === 0.U, cpu_resp_bits_data(31,0), cpu_resp_bits_data(63,32))
+        Mux(offset === 0.U, DataOneArray(31,0), DataOneArray(63,32))
     ,cpu_resp_bits_data)
     io.axi.req.valid := axi_req_valid
     io.axi.req.bits.rw := axi_req_bits_rw
@@ -171,10 +177,14 @@ class Cache extends Module{
 
                         when(hit0){   
                             whitNum := 0.B
-                            whitDataArray := DataArray(io.cpu.req.bits.addr(10, 3)*2.U)
+                            // whitDataArray := DataArray(io.cpu.req.bits.addr(10, 3)*2.U)
+                            DataOneArrayAddr := io.cpu.req.bits.addr(10, 3)*2.U
+                            DataOneArrayRen := 1.B
                         }.otherwise{
                             whitNum := 1.B
-                            whitDataArray := DataArray(io.cpu.req.bits.addr(10, 3)*2.U+1.U)
+                            // whitDataArray := DataArray(io.cpu.req.bits.addr(10, 3)*2.U+1.U)
+                            DataOneArrayAddr := io.cpu.req.bits.addr(10, 3)*2.U
+                            DataOneArrayRen := 1.B
                         }
                     }.otherwise{ //写不命中
                         state := s_Write
@@ -182,7 +192,7 @@ class Cache extends Module{
                         //缓存
                         tag := io.cpu.req.bits.addr(31, 11)
                         index := io.cpu.req.bits.addr(10, 3)
-                        offset := io.cpu.req.bits.addr(2, 0)
+                        offset := io.cpu.req.bits.addr(2, 0) 
 
                         data := io.cpu.req.bits.data
                         addr := io.cpu.req.bits.addr
@@ -204,11 +214,14 @@ class Cache extends Module{
                                 
                             // }.otherwise{
                                 // cpu_resp_bits_data := DataArray(io.cpu.req.bits.addr(10, 3) * 2.U)//在下一周期读出
-                                val rport = DataArray(io.cpu.req.bits.addr(10, 3) * 2.U)
-                                cpu_resp_bits_data := rport//在下一周期读出
+                                // cpu_resp_bits_data := DataArray.read(io.cpu.req.bits.addr(10, 3) * 2.U)//在下一周期读出
                             // }
 
                             // cpu_resp_bits_data := DataArray(index * 2.U)  
+                            inst_type := io.cpu.req.bits.inst_type
+                            DataOneArrayAddr := io.cpu.req.bits.addr(10, 3) * 2.U
+                            DataOneArrayRen := 1.B
+
 
                             replace0 := replace.bitSet(io.cpu.req.bits.addr(10, 3) * 2.U, 0.B)
                             replace1 := replace.bitSet(io.cpu.req.bits.addr(10, 3) * 2.U + 1.U, 1.B)

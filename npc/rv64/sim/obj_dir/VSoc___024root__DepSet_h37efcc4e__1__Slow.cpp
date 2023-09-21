@@ -362,9 +362,9 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     VL_ZERO_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h461f8267__0);
     VL_ZERO_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h18bd6550__0);
     VL_ZERO_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h7cd24744__0);
-    vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h8e8afd29__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h77956ee5__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h89243b2c__0 = 0;
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h8e8afd29__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_hf391aef2__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h94cbbc53__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h4b92e988__0 = 0;
@@ -470,9 +470,9 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     VL_ZERO_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h461f8267__0);
     VL_ZERO_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h18bd6550__0);
     VL_ZERO_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h7cd24744__0);
-    vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h8e8afd29__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h77956ee5__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h89243b2c__0 = 0;
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h8e8afd29__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h4c75ec62__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_hb08202f1__0 = 0;
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_hf391aef2__0 = 0;

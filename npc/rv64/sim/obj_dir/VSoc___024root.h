@@ -187,9 +187,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h8ecd23a9__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h4ca93995__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_hc4187582__0;
-        CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h8e8afd29__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h77956ee5__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h89243b2c__0;
+        CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h8e8afd29__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_hf391aef2__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h94cbbc53__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h4b92e988__0;
@@ -243,9 +243,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h8ecd23a9__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h4ca93995__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_hc4187582__0;
-        CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h8e8afd29__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h77956ee5__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h89243b2c__0;
+        CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h8e8afd29__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h4c75ec62__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_hb08202f1__0;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_hf391aef2__0;
