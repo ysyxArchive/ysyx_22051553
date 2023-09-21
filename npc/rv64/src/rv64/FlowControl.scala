@@ -114,7 +114,8 @@ class FlowControl extends Module{
 
     val Icache_stall = WireInit(0.B)
     val Dcache_stall = WireInit(0.B)
-
+    dontTouch(Icache_stall)
+    dontTouch(Dcache_stall)
 
     when(io.fcIcache.cpu_valid){ //恢复
         Icache_stall := 0.B

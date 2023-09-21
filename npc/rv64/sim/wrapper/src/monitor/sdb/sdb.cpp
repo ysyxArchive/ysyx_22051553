@@ -31,6 +31,7 @@ typedef struct decode{
   unsigned int inst;
   bool load_use; //该指令是load后的use指令，应该立即空过一个周期
   bool branch;   //该指令是branch成功的下一条指令，应该被冲刷
+  bool valid;
 }decode;
 
 typedef struct execute{
@@ -137,7 +138,8 @@ void update_debuginfo(
   decode de_ins = {
     .inst = (unsigned int)inst[0].aval,
     .load_use = (bool)load_use,
-    .branch = (bool)br_yes          //该指令被branch掉
+    .branch = (bool)br_yes,          //该指令被branch掉
+    .valid = (bool)inst_valid
   };
 
   execute ex_ins = {
@@ -311,10 +313,11 @@ static int cmd_s(char *args){
 
 
   if(args == NULL){
-  
-    while(decode_list.size() < 3){  //去除Cache的流水线stall周期指令
+
+    while(decode_list.size() < 1){
       single_cycle();
     }
+  
 
     #ifdef SHOW_LIST
     for(auto arg : fetch_list){
@@ -367,6 +370,7 @@ static int cmd_s(char *args){
     irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
     #endif
 
+
     //-----------------
     single_cycle();   
 
@@ -375,7 +379,8 @@ static int cmd_s(char *args){
     if(execute_list.front().skip_ref_one_inst){
       difftest_skip_ref();
     }
-    if(! difftest_step()){  //比较当前的通用寄存器状态和下一条指令的pc
+    else if(decode_list.front().valid){
+      if(! difftest_step()){  //比较当前的通用寄存器状态和下一条指令的pc
   
           //dut_regs
           printf("-----------dut_regs--------------\n");
@@ -404,14 +409,18 @@ static int cmd_s(char *args){
           #endif
           //---------------
             Verilated::gotFinish(1);
+      }
+
+      #ifdef ITRACE
+      decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
+      fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
+      execute_list.pop_front();
+      #endif
     }
+    
     #endif
     
-    #ifdef ITRACE
-    decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
-    fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
-    execute_list.pop_front();
-    #endif
+    
       
   }
   else {
