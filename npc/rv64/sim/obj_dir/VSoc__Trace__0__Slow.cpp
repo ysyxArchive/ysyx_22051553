@@ -387,24 +387,24 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->pushNamePrefix("arbitor ");
     tracep->declBit(c+524,"clock", false,-1);
     tracep->declBit(c+525,"reset", false,-1);
-    tracep->declBit(c+169,"io_master0_req_valid", false,-1);
-    tracep->declBit(c+170,"io_master0_req_bits_rw", false,-1);
-    tracep->declBus(c+171,"io_master0_req_bits_addr", false,-1, 31,0);
-    tracep->declQuad(c+499,"io_master0_req_bits_data", false,-1, 63,0);
-    tracep->declBit(c+57,"io_master1_req_valid", false,-1);
-    tracep->declBit(c+58,"io_master1_req_bits_rw", false,-1);
-    tracep->declBus(c+59,"io_master1_req_bits_addr", false,-1, 31,0);
-    tracep->declQuad(c+492,"io_master1_req_bits_data", false,-1, 63,0);
+    tracep->declBit(c+57,"io_master0_req_valid", false,-1);
+    tracep->declBit(c+58,"io_master0_req_bits_rw", false,-1);
+    tracep->declBus(c+59,"io_master0_req_bits_addr", false,-1, 31,0);
+    tracep->declQuad(c+492,"io_master0_req_bits_data", false,-1, 63,0);
+    tracep->declBit(c+169,"io_master1_req_valid", false,-1);
+    tracep->declBit(c+170,"io_master1_req_bits_rw", false,-1);
+    tracep->declBus(c+171,"io_master1_req_bits_addr", false,-1, 31,0);
+    tracep->declQuad(c+499,"io_master1_req_bits_data", false,-1, 63,0);
     tracep->declBit(c+469,"io_AXI_O_aw_ready", false,-1);
     tracep->declBit(c+470,"io_AXI_O_w_ready", false,-1);
     tracep->declBit(c+528,"io_AXI_O_b_valid", false,-1);
     tracep->declBit(c+471,"io_AXI_O_ar_ready", false,-1);
     tracep->declBit(c+472,"io_AXI_O_r_valid", false,-1);
     tracep->declQuad(c+473,"io_AXI_O_r_bits_data", false,-1, 63,0);
-    tracep->declBit(c+498,"io_master0_resp_valid", false,-1);
-    tracep->declQuad(c+520,"io_master0_resp_bits_data", false,-1, 63,0);
-    tracep->declBit(c+491,"io_master1_resp_valid", false,-1);
-    tracep->declQuad(c+516,"io_master1_resp_bits_data", false,-1, 63,0);
+    tracep->declBit(c+491,"io_master0_resp_valid", false,-1);
+    tracep->declQuad(c+516,"io_master0_resp_bits_data", false,-1, 63,0);
+    tracep->declBit(c+498,"io_master1_resp_valid", false,-1);
+    tracep->declQuad(c+520,"io_master1_resp_bits_data", false,-1, 63,0);
     tracep->declBit(c+482,"io_AXI_O_aw_valid", false,-1);
     tracep->declBus(c+483,"io_AXI_O_aw_bits_addr", false,-1, 31,0);
     tracep->declBit(c+484,"io_AXI_O_w_valid", false,-1);
@@ -1707,8 +1707,8 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullBit(oldp+484,(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_1));
     bufp->fullQData(oldp+485,(((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_0)
                                 ? 0ULL : ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h02c05ceb__0)
-                                           ? vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_data
-                                           : vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data))),64);
+                                           ? vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data
+                                           : vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_data))),64);
     bufp->fullCData(oldp+487,(((0U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state))
                                 ? 0U : (0xffU & (- (IData)(
                                                            (1U 
@@ -1747,9 +1747,9 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullBit(oldp+513,(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall));
     bufp->fullBit(oldp+514,(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall));
     bufp->fullBit(oldp+515,(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall));
-    bufp->fullQData(oldp+516,(vlSelf->Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data),64);
+    bufp->fullQData(oldp+516,(vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_bits_data),64);
     bufp->fullQData(oldp+518,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____Vcellinp__DataArray_ext__W4_data),64);
-    bufp->fullQData(oldp+520,(vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_bits_data),64);
+    bufp->fullQData(oldp+520,(vlSelf->Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data),64);
     bufp->fullQData(oldp+522,(vlSelf->Soc__DOT__core__DOT__Icache__DOT____Vcellinp__DataArray_ext__W4_data),64);
     bufp->fullBit(oldp+524,(vlSelf->clock));
     bufp->fullBit(oldp+525,(vlSelf->reset));

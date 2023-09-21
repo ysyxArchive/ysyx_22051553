@@ -2901,14 +2901,14 @@ module Core(	// <stdin>:4009:10
   AXIArbitor arbitor (	// Core.scala:101:25
     .clock                     (clock),
     .reset                     (reset),
-    .io_master0_req_valid      (_Icache_io_axi_req_valid),	// Core.scala:104:24
-    .io_master0_req_bits_rw    (_Icache_io_axi_req_bits_rw),	// Core.scala:104:24
-    .io_master0_req_bits_addr  (_Icache_io_axi_req_bits_addr),	// Core.scala:104:24
-    .io_master0_req_bits_data  (_Icache_io_axi_req_bits_data),	// Core.scala:104:24
-    .io_master1_req_valid      (_Dcache_io_axi_req_valid),	// Core.scala:105:24
-    .io_master1_req_bits_rw    (_Dcache_io_axi_req_bits_rw),	// Core.scala:105:24
-    .io_master1_req_bits_addr  (_Dcache_io_axi_req_bits_addr),	// Core.scala:105:24
-    .io_master1_req_bits_data  (_Dcache_io_axi_req_bits_data),	// Core.scala:105:24
+    .io_master0_req_valid      (_Dcache_io_axi_req_valid),	// Core.scala:105:24
+    .io_master0_req_bits_rw    (_Dcache_io_axi_req_bits_rw),	// Core.scala:105:24
+    .io_master0_req_bits_addr  (_Dcache_io_axi_req_bits_addr),	// Core.scala:105:24
+    .io_master0_req_bits_data  (_Dcache_io_axi_req_bits_data),	// Core.scala:105:24
+    .io_master1_req_valid      (_Icache_io_axi_req_valid),	// Core.scala:104:24
+    .io_master1_req_bits_rw    (_Icache_io_axi_req_bits_rw),	// Core.scala:104:24
+    .io_master1_req_bits_addr  (_Icache_io_axi_req_bits_addr),	// Core.scala:104:24
+    .io_master1_req_bits_data  (_Icache_io_axi_req_bits_data),	// Core.scala:104:24
     .io_AXI_O_aw_ready         (io_AXI_Interface_aw_ready),
     .io_AXI_O_w_ready          (io_AXI_Interface_w_ready),
     .io_AXI_O_b_valid          (io_AXI_Interface_b_valid),
@@ -2936,8 +2936,8 @@ module Core(	// <stdin>:4009:10
     .io_cpu_req_bits_addr      (_fetch_io_pc_bits),	// Core.scala:25:23
     .io_cpu_req_bits_data      (64'h0),	// Core.scala:432:33
     .io_cpu_req_bits_mask      (8'h0),	// Core.scala:433:33
-    .io_axi_resp_valid         (_arbitor_io_master0_resp_valid),	// Core.scala:101:25
-    .io_axi_resp_bits_data     (_arbitor_io_master0_resp_bits_data),	// Core.scala:101:25
+    .io_axi_resp_valid         (_arbitor_io_master1_resp_valid),	// Core.scala:101:25
+    .io_axi_resp_bits_data     (_arbitor_io_master1_resp_bits_data),	// Core.scala:101:25
     .io_cpu_resp_valid         (_Icache_io_cpu_resp_valid),
     .io_cpu_resp_bits_data     (_Icache_io_cpu_resp_bits_data),
     .io_axi_req_valid          (_Icache_io_axi_req_valid),
@@ -2959,8 +2959,8 @@ module Core(	// <stdin>:4009:10
     .io_cpu_req_bits_addr      (_DI_io_mem_addr_T[31:0]),	// Core.scala:442:{33,52}
     .io_cpu_req_bits_data      (_excute_io_wdata),	// Core.scala:27:24
     .io_cpu_req_bits_mask      (_excute_io_wmask),	// Core.scala:27:24
-    .io_axi_resp_valid         (_arbitor_io_master1_resp_valid),	// Core.scala:101:25
-    .io_axi_resp_bits_data     (_arbitor_io_master1_resp_bits_data),	// Core.scala:101:25
+    .io_axi_resp_valid         (_arbitor_io_master0_resp_valid),	// Core.scala:101:25
+    .io_axi_resp_bits_data     (_arbitor_io_master0_resp_bits_data),	// Core.scala:101:25
     .io_cpu_resp_valid         (_Dcache_io_cpu_resp_valid),
     .io_cpu_resp_bits_data     (_Dcache_io_cpu_resp_bits_data),
     .io_axi_req_valid          (_Dcache_io_axi_req_valid),
@@ -3363,4 +3363,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 
