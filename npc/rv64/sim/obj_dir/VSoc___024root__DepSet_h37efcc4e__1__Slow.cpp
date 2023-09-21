@@ -240,8 +240,8 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     }
     vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall = VL_RAND_RESET_I(1);
-    vlSelf->Soc__DOT__core__DOT__fc__DOT___T_10 = VL_RAND_RESET_I(1);
-    vlSelf->Soc__DOT__core__DOT__fc__DOT___T_27 = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__fc__DOT___T_8 = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__fc__DOT___T_25 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_21_0 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__csrs__DOT__MTVEC = VL_RAND_RESET_Q(64);

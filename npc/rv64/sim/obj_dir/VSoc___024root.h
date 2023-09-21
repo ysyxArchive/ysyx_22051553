@@ -112,8 +112,8 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT____VdfgTmp_h1d0645fa__0;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT__Icache_stall;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT__Dcache_stall;
-        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___T_10;
-        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___T_27;
+        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___T_8;
+        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___T_25;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___SFBundle_T_21_0;
         CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_1;

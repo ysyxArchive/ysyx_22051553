@@ -50,8 +50,9 @@ class Fetch extends Module{
         Seq(
             
             (io.fcfe.stall) -> old_pc,
+            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc, //优先级高于3    
             (pc === old_pc) -> next_pc,  //从stall恢复后，fdio.pc立即增长
-            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc    
+            
         )
     )
 
