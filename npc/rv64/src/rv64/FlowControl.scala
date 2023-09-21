@@ -137,7 +137,7 @@ class FlowControl extends Module{
 
     when(io.fcDcache.cpu_valid){ //恢复
         Dcache_stall := 0.B
-    }.elsewhen(io.fcDcache.state === CacheState.s_hitWrite){ //写命中提前释放
+    }.elsewhen(io.fcDcache.state === CacheState.s_hitWrite){ //写命中提前一周期释放
         Dcache_stall := 0.B
     }.elsewhen(io.fcDcache.state === CacheState.s_WriteAllocate && io.fcDcache.axi_valid){ //写分配提前释放
         Dcache_stall := 0.B
