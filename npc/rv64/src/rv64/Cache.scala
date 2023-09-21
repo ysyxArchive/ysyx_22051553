@@ -117,9 +117,10 @@ class Cache extends Module{
     //顶层
     io.fccache.hit := hit0 | hit1
     io.fccache.mask := io.cpu.req.bits.mask
-    io.fccache.valid := io.cpu.resp.valid
+    io.fccache.cpu_valid := io.cpu.resp.valid
     io.fccache.req := io.cpu.req.valid
     io.fccache.state := state
+    io.fccache.axi_valid := io.axi.resp.valid
 
     //FSM
     //输出端口使用寄存器类型，防止combination logic

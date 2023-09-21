@@ -89,7 +89,8 @@ class FcCacheIO extends Bundle{
     val state = UInt(3.W)
     val mask = UInt((X_LEN/8).W) //判断是否为读
     val hit = Bool()  //如果为读，且为hit,则无需阻塞
-    val valid = Bool() //当读出、写入，valid信号有效时，取消阻塞
+    val cpu_valid = Bool() //当读出、写入，valid信号有效时，取消阻塞
+    val axi_valid = Bool() //用于提前释放
 }
 
 
@@ -115,7 +116,13 @@ class FlowControl extends Module{
     val Dcache_stall = WireInit(0.B)
 
 
-    when(io.fcIcache.valid){ //恢复
+    when(io.fcIcache.cpu_valid){ //恢复
+        Icache_stall := 0.B
+    }.elsewhen(io.fcIcache.state === CacheState.s_hitWrite){ //写命中提前释放
+        Icache_stall := 0.B
+    }.elsewhen(io.fcIcache.state === CacheState.s_WriteAllocate && io.fcIcache.axi_valid){ //写分配提前释放
+        Icache_stall := 0.B
+    }.elsewhen(io.fcIcache.state === CacheState.s_ReadAck && io.fcIcache.axi_valid){ //读提前释放
         Icache_stall := 0.B
     }.elsewhen(io.fcIcache.state =/= 0.U){
         Icache_stall := 1.B
@@ -128,7 +135,13 @@ class FlowControl extends Module{
     }
 
 
-    when(io.fcDcache.valid){ //恢复
+    when(io.fcDcache.cpu_valid){ //恢复
+        Dcache_stall := 0.B
+    }.elsewhen(io.fcDcache.state === CacheState.s_hitWrite){ //写命中提前释放
+        Dcache_stall := 0.B
+    }.elsewhen(io.fcDcache.state === CacheState.s_WriteAllocate && io.fcDcache.axi_valid){ //写分配提前释放
+        Dcache_stall := 0.B
+    }.elsewhen(io.fcDcache.state === CacheState.s_ReadAck && io.fcDcache.axi_valid){ //读提前释放
         Dcache_stall := 0.B
     }.elsewhen(io.fcDcache.state =/= 0.U){
         Dcache_stall := 1.B
