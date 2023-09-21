@@ -1304,14 +1304,14 @@ module FlowControl(	// <stdin>:1863:10
   assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag | io_fctr_jump_flag;	// <stdin>:1863:10, FlowControl.scala:184:65
   assign io_fcfe_jump_pc = io_fctr_jump_flag ? io_fctr_jump_pc : io_fcex_jump_flag ? io_fcex_jump_pc :
                 io_fcde_jump_flag ? io_fcde_jump_pc : 32'h80000000;	// <stdin>:1863:10, Mux.scala:101:16
-  assign io_fcfe_flush = ~io_fcde_load_use & ~Icache_stall & ~Dcache_stall & (_SFBundle_T_3 | ~_SFBundle_T_21_0 &
+  assign io_fcfe_flush = ~Icache_stall & ~Dcache_stall & ~io_fcde_load_use & (_SFBundle_T_3 | ~_SFBundle_T_21_0 &
                 (io_fctr_jump_flag | io_fcex_jump_flag | io_fcde_jump_flag));	// <stdin>:1863:10, FlowControl.scala:162:47, :164:87, Mux.scala:101:16
-  assign io_fcfe_stall = io_fcde_load_use | Icache_stall | Dcache_stall | ~_SFBundle_T_3 & _SFBundle_T_21_0;	// <stdin>:1863:10, FlowControl.scala:162:47, :164:87, Mux.scala:101:16
-  assign io_fcde_flush = io_fcde_load_use | Icache_stall | Dcache_stall | _SFBundle_T_3 | _SFBundle_T_21_0 |
+  assign io_fcfe_stall = Icache_stall | Dcache_stall | io_fcde_load_use | ~_SFBundle_T_3 & _SFBundle_T_21_0;	// <stdin>:1863:10, FlowControl.scala:162:47, :164:87, Mux.scala:101:16
+  assign io_fcde_flush = Icache_stall | Dcache_stall | io_fcde_load_use | _SFBundle_T_3 | _SFBundle_T_21_0 |
                 ~io_fctr_jump_flag & io_fcex_jump_flag;	// <stdin>:1863:10, FlowControl.scala:162:47, :164:87, Mux.scala:101:16
-  assign io_fcde_stall = ~io_fcde_load_use & (Icache_stall | Dcache_stall);	// <stdin>:1863:10, Mux.scala:101:16
-  assign io_fcex_stall = ~io_fcde_load_use & (Icache_stall | Dcache_stall);	// <stdin>:1863:10, Mux.scala:101:16
-  assign io_fcmem_stall = ~io_fcde_load_use & (Icache_stall | Dcache_stall);	// <stdin>:1863:10, Mux.scala:101:16
+  assign io_fcde_stall = Icache_stall | Dcache_stall;	// <stdin>:1863:10, Mux.scala:101:16
+  assign io_fcex_stall = Icache_stall | Dcache_stall;	// <stdin>:1863:10, Mux.scala:101:16
+  assign io_fcmem_stall = Icache_stall | Dcache_stall;	// <stdin>:1863:10, Mux.scala:101:16
 endmodule
 
 module CSRs(	// <stdin>:2082:10
@@ -3370,5 +3370,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 

@@ -41,10 +41,8 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___nba_sequent__TOP__2\n"); );
     // Init
-    CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_he3b10ad1__0;
-    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_he3b10ad1__0 = 0;
-    CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h214d2be6__0;
-    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h214d2be6__0 = 0;
+    CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h2f8a70d0__0;
+    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h2f8a70d0__0 = 0;
     CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_hc4004284__0;
     Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_hc4004284__0 = 0;
     CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h4ab110e3__0;
@@ -1230,35 +1228,32 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
                                               << 4U)))] 
               >> (0x1fU & ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state) 
                            << 9U))));
-    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h214d2be6__0 
+    vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall) 
            | (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall));
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_flush 
-        = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
-           & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall)) 
-              & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall)) 
+        = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall)) 
+           & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall)) 
+              & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
                  & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
                     | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_21_0)) 
                        & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
                           | ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
                              | (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag))))))));
-    vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall 
-        = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
-           & (IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h214d2be6__0));
-    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_he3b10ad1__0 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16) 
-           | (IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h214d2be6__0));
+    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h2f8a70d0__0 
+        = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall) 
+           | (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16));
     vlSelf->Soc__DOT__core__DOT__fetch__DOT___io_fdio_pc_T_2 
         = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_flush) 
            & (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_flag));
     vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush 
-        = ((IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_he3b10ad1__0) 
+        = ((IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h2f8a70d0__0) 
            | ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
               | ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_21_0) 
                  | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3)) 
                     & (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag)))));
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall 
-        = ((IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_he3b10ad1__0) 
+        = ((IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h2f8a70d0__0) 
            | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3)) 
               & (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_21_0)));
     vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
