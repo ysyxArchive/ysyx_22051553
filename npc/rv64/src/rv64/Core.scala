@@ -448,8 +448,8 @@ class Core extends Module{
 
     Dcache.io.fccache <> fc.io.fcDcache
     //Arbitor
-    arbitor.io.master0 <> Icache.io.axi
-    arbitor.io.master1 <> Dcache.io.axi
+    arbitor.io.master0 <> Dcache.io.axi //先让在允许的指令获得运行数据
+    arbitor.io.master1 <> Icache.io.axi
 
     
 

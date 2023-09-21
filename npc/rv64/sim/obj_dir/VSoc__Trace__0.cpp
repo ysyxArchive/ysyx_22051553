@@ -917,17 +917,19 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgBit(oldp+510,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall));
         bufp->chgBit(oldp+511,(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush));
         bufp->chgBit(oldp+512,(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall));
+        bufp->chgBit(oldp+513,(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall));
+        bufp->chgBit(oldp+514,(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall));
     }
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[4U])) {
-        bufp->chgQData(oldp+513,(vlSelf->Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data),64);
-        bufp->chgQData(oldp+515,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____Vcellinp__DataArray_ext__W4_data),64);
-        bufp->chgQData(oldp+517,(vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_bits_data),64);
-        bufp->chgQData(oldp+519,(vlSelf->Soc__DOT__core__DOT__Icache__DOT____Vcellinp__DataArray_ext__W4_data),64);
+        bufp->chgQData(oldp+515,(vlSelf->Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data),64);
+        bufp->chgQData(oldp+517,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____Vcellinp__DataArray_ext__W4_data),64);
+        bufp->chgQData(oldp+519,(vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_bits_data),64);
+        bufp->chgQData(oldp+521,(vlSelf->Soc__DOT__core__DOT__Icache__DOT____Vcellinp__DataArray_ext__W4_data),64);
     }
-    bufp->chgBit(oldp+521,(vlSelf->clock));
-    bufp->chgBit(oldp+522,(vlSelf->reset));
-    bufp->chgBit(oldp+523,(vlSelf->Soc__DOT____Vcellinp__sram__ARESETn));
-    bufp->chgIData(oldp+524,((((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_1) 
+    bufp->chgBit(oldp+523,(vlSelf->clock));
+    bufp->chgBit(oldp+524,(vlSelf->reset));
+    bufp->chgBit(oldp+525,(vlSelf->Soc__DOT____Vcellinp__sram__ARESETn));
+    bufp->chgIData(oldp+526,((((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_1) 
                                & ((IData)(vlSelf->Soc__DOT__sram__DOT__wready) 
                                   & ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN) 
                                      & (IData)(vlSelf->Soc__DOT__sram__DOT__awready))))

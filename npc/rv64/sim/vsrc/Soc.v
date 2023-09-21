@@ -1281,30 +1281,32 @@ module FlowControl(	// <stdin>:1862:10
                 io_fcex_stall,
                 io_fcmem_stall);
 
-  wire _T_10 = io_fcIcache_state == 3'h0;	// FlowControl.scala:127:34, :129:34
-  wire _GEN = ~io_fcIcache_cpu_valid & io_fcIcache_state != 3'h1 & ~(io_fcIcache_state == 3'h4 &
+  wire Icache_stall;	// <stdin>:1867:5
+  wire Dcache_stall;	// <stdin>:1869:5
+  wire _T_10 = io_fcIcache_state == 3'h0;	// FlowControl.scala:128:34, :130:34
+  assign Icache_stall = ~io_fcIcache_cpu_valid & io_fcIcache_state != 3'h1 & ~(io_fcIcache_state == 3'h4 &
                 io_fcIcache_axi_valid) & ~((&io_fcIcache_state) & io_fcIcache_axi_valid) &
                 ((|io_fcIcache_state) | _T_10 & io_fcIcache_req & (|io_fcIcache_mask) | _T_10 &
-                io_fcIcache_req & ~(|io_fcIcache_mask) & ~io_fcDcache_hit);	// FlowControl.scala:119:32, :120:22, :121:{34,60}, :123:{34,65,90}, :124:22, :125:{34,59,84}, :126:22, :127:{34,42}, :128:22, :129:{34,61,81,85}, :131:{64,86,89}
-  wire _T_27 = io_fcDcache_state == 3'h0;	// FlowControl.scala:127:34, :148:34
-  wire _GEN_0 = ~io_fcDcache_cpu_valid & io_fcDcache_state != 3'h1 & ~(io_fcDcache_state == 3'h4 &
+                io_fcIcache_req & ~(|io_fcIcache_mask) & ~io_fcDcache_hit);	// FlowControl.scala:120:32, :121:22, :122:{34,60}, :124:{34,65,90}, :125:22, :126:{34,59,84}, :127:22, :128:{34,42}, :129:22, :130:{34,61,81,85}, :132:{64,86,89}
+  wire _T_27 = io_fcDcache_state == 3'h0;	// FlowControl.scala:128:34, :149:34
+  assign Dcache_stall = ~io_fcDcache_cpu_valid & io_fcDcache_state != 3'h1 & ~(io_fcDcache_state == 3'h4 &
                 io_fcDcache_axi_valid) & ~((&io_fcDcache_state) & io_fcDcache_axi_valid) &
                 ((|io_fcDcache_state) | _T_27 & io_fcDcache_req & (|io_fcDcache_mask) | _T_27 &
-                io_fcDcache_req & ~(|io_fcDcache_mask) & ~io_fcDcache_hit);	// FlowControl.scala:121:34, :123:34, :138:32, :139:22, :140:{34,60}, :142:{34,65,90}, :143:22, :144:{34,59,84}, :145:22, :146:{34,42}, :147:22, :148:{34,61,81,85}, :150:{64,86,89}
-  wire _SFBundle_T_3 = io_fctr_trap_state == 3'h4 | (&io_fctr_trap_state);	// FlowControl.scala:123:34, :161:{33,47,70}
+                io_fcDcache_req & ~(|io_fcDcache_mask) & ~io_fcDcache_hit);	// FlowControl.scala:122:34, :124:34, :139:32, :140:22, :141:{34,60}, :143:{34,65,90}, :144:22, :145:{34,59,84}, :146:22, :147:{34,42}, :148:22, :149:{34,61,81,85}, :151:{64,86,89}
+  wire _SFBundle_T_3 = io_fctr_trap_state == 3'h4 | (&io_fctr_trap_state);	// FlowControl.scala:124:34, :162:{33,47,70}
   wire _SFBundle_T_21_0 = io_fctr_pop_NOP | io_fctr_trap_state == 3'h1 | io_fctr_trap_state == 3'h2 |
-                io_fctr_trap_state == 3'h3 | io_fctr_trap_state == 3'h5 | io_fctr_trap_state == 3'h6;	// FlowControl.scala:121:34, :162:{60,93}, :163:{36,71,87,109}
-  assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag | io_fctr_jump_flag;	// <stdin>:1862:10, FlowControl.scala:183:65
+                io_fctr_trap_state == 3'h3 | io_fctr_trap_state == 3'h5 | io_fctr_trap_state == 3'h6;	// FlowControl.scala:122:34, :163:{60,93}, :164:{36,71,87,109}
+  assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag | io_fctr_jump_flag;	// <stdin>:1862:10, FlowControl.scala:184:65
   assign io_fcfe_jump_pc = io_fctr_jump_flag ? io_fctr_jump_pc : io_fcex_jump_flag ? io_fcex_jump_pc :
                 io_fcde_jump_flag ? io_fcde_jump_pc : 32'h80000000;	// <stdin>:1862:10, Mux.scala:101:16
-  assign io_fcfe_flush = ~io_fcde_load_use & ~_GEN & ~_GEN_0 & (_SFBundle_T_3 | ~_SFBundle_T_21_0 &
-                (io_fctr_jump_flag | io_fcex_jump_flag | io_fcde_jump_flag));	// <stdin>:1862:10, FlowControl.scala:119:32, :120:22, :121:60, :138:32, :139:22, :140:60, :161:47, :163:87, Mux.scala:101:16
-  assign io_fcfe_stall = io_fcde_load_use | _GEN | _GEN_0 | ~_SFBundle_T_3 & _SFBundle_T_21_0;	// <stdin>:1862:10, FlowControl.scala:119:32, :120:22, :121:60, :138:32, :139:22, :140:60, :161:47, :163:87, Mux.scala:101:16
-  assign io_fcde_flush = io_fcde_load_use | _GEN | _GEN_0 | _SFBundle_T_3 | _SFBundle_T_21_0 | ~io_fctr_jump_flag &
-                io_fcex_jump_flag;	// <stdin>:1862:10, FlowControl.scala:119:32, :120:22, :121:60, :138:32, :139:22, :140:60, :161:47, :163:87, Mux.scala:101:16
-  assign io_fcde_stall = ~io_fcde_load_use & (_GEN | _GEN_0);	// <stdin>:1862:10, FlowControl.scala:119:32, :120:22, :121:60, :138:32, :139:22, :140:60, Mux.scala:101:16
-  assign io_fcex_stall = ~io_fcde_load_use & (_GEN | _GEN_0);	// <stdin>:1862:10, FlowControl.scala:119:32, :120:22, :121:60, :138:32, :139:22, :140:60, Mux.scala:101:16
-  assign io_fcmem_stall = ~io_fcde_load_use & (_GEN | _GEN_0);	// <stdin>:1862:10, FlowControl.scala:119:32, :120:22, :121:60, :138:32, :139:22, :140:60, Mux.scala:101:16
+  assign io_fcfe_flush = ~io_fcde_load_use & ~Icache_stall & ~Dcache_stall & (_SFBundle_T_3 | ~_SFBundle_T_21_0 &
+                (io_fctr_jump_flag | io_fcex_jump_flag | io_fcde_jump_flag));	// <stdin>:1862:10, FlowControl.scala:162:47, :164:87, Mux.scala:101:16
+  assign io_fcfe_stall = io_fcde_load_use | Icache_stall | Dcache_stall | ~_SFBundle_T_3 & _SFBundle_T_21_0;	// <stdin>:1862:10, FlowControl.scala:162:47, :164:87, Mux.scala:101:16
+  assign io_fcde_flush = io_fcde_load_use | Icache_stall | Dcache_stall | _SFBundle_T_3 | _SFBundle_T_21_0 |
+                ~io_fctr_jump_flag & io_fcex_jump_flag;	// <stdin>:1862:10, FlowControl.scala:162:47, :164:87, Mux.scala:101:16
+  assign io_fcde_stall = ~io_fcde_load_use & (Icache_stall | Dcache_stall);	// <stdin>:1862:10, Mux.scala:101:16
+  assign io_fcex_stall = ~io_fcde_load_use & (Icache_stall | Dcache_stall);	// <stdin>:1862:10, Mux.scala:101:16
+  assign io_fcmem_stall = ~io_fcde_load_use & (Icache_stall | Dcache_stall);	// <stdin>:1862:10, Mux.scala:101:16
 endmodule
 
 module CSRs(	// <stdin>:2081:10

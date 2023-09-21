@@ -41,10 +41,6 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___nba_sequent__TOP__2\n"); );
     // Init
-    CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___GEN;
-    Soc__DOT__core__DOT__fc__DOT___GEN = 0;
-    CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___GEN_0;
-    Soc__DOT__core__DOT__fc__DOT___GEN_0 = 0;
     CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_he3b10ad1__0;
     Soc__DOT__core__DOT__fc__DOT____VdfgTmp_he3b10ad1__0 = 0;
     CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h214d2be6__0;
@@ -197,17 +193,15 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
         = (1U & ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)) 
                  | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN_19)) 
                     | (3U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)))));
-    Soc__DOT__core__DOT__fc__DOT___GEN = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__cpu_resp_valid)) 
-                                          & ((1U != (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)) 
-                                             & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN_19)) 
-                                                & ((~ 
-                                                    ((7U 
-                                                      == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)) 
-                                                     & (IData)(vlSelf->Soc__DOT__core__DOT___Icache_io_fccache_axi_valid))) 
-                                                   & ((0U 
-                                                       != (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)) 
-                                                      | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_3)) 
-                                                         & (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h07501b90__0)))))));
+    vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall 
+        = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__cpu_resp_valid)) 
+           & ((1U != (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)) 
+              & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN_19)) 
+                 & ((~ ((7U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)) 
+                        & (IData)(vlSelf->Soc__DOT__core__DOT___Icache_io_fccache_axi_valid))) 
+                    & ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state)) 
+                       | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_3)) 
+                          & (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h07501b90__0)))))));
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_14 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h05ff0e1a__0) 
            & (IData)(Soc__DOT__core__DOT__Dcache__DOT___GEN_13));
@@ -224,19 +218,16 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
         = (1U & ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
                  | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_19)) 
                     | (3U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)))));
-    Soc__DOT__core__DOT__fc__DOT___GEN_0 = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_valid)) 
-                                            & ((1U 
-                                                != (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
-                                               & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_19)) 
-                                                  & ((~ 
-                                                      ((7U 
-                                                        == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
-                                                       & (IData)(vlSelf->Soc__DOT__core__DOT___Dcache_io_fccache_axi_valid))) 
-                                                     & ((0U 
-                                                         != (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
-                                                        | ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h07501b90__0) 
-                                                           & ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h02ae5b32__0) 
-                                                              | (~ (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_3)))))))));
+    vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall 
+        = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_valid)) 
+           & ((1U != (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
+              & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_19)) 
+                 & ((~ ((7U == (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
+                        & (IData)(vlSelf->Soc__DOT__core__DOT___Dcache_io_fccache_axi_valid))) 
+                    & ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
+                       | ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h07501b90__0) 
+                          & ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h02ae5b32__0) 
+                             | (~ (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_3)))))))));
     if (vlSelf->Soc__DOT__core__DOT__Dcache__DOT___GEN_21) {
         __Vtemp_h81294755__0[0U] = VSoc__ConstPool__CONST_h93e1b771_0[0U];
         __Vtemp_h81294755__0[1U] = VSoc__ConstPool__CONST_h93e1b771_0[1U];
@@ -1240,12 +1231,12 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
               >> (0x1fU & ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state) 
                            << 9U))));
     Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h214d2be6__0 
-        = ((IData)(Soc__DOT__core__DOT__fc__DOT___GEN) 
-           | (IData)(Soc__DOT__core__DOT__fc__DOT___GEN_0));
+        = ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall) 
+           | (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall));
     vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_flush 
         = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
-           & ((~ (IData)(Soc__DOT__core__DOT__fc__DOT___GEN)) 
-              & ((~ (IData)(Soc__DOT__core__DOT__fc__DOT___GEN_0)) 
+           & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall)) 
+              & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall)) 
                  & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
                     | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_21_0)) 
                        & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
@@ -2507,7 +2498,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3006, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3008, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -2530,7 +2521,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VSoc___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("vsrc/Soc.v", 3006, "", "Active region did not converge.");
+                    VL_FATAL_MT("vsrc/Soc.v", 3008, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -2545,7 +2536,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3006, "", "NBA region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3008, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VSoc___024root___eval_nba(vlSelf);
