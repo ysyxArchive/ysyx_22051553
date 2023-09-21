@@ -483,6 +483,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declQuad(c+304,"io_rfio_reg1_rdata", false,-1, 63,0);
     tracep->declQuad(c+306,"io_rfio_reg2_rdata", false,-1, 63,0);
     tracep->declBit(c+47,"io_branch", false,-1);
+    tracep->declBit(c+510,"io_stall", false,-1);
     tracep->declBit(c+308,"io_fwde_fw_sel1", false,-1);
     tracep->declBit(c+309,"io_fwde_fw_sel2", false,-1);
     tracep->declQuad(c+310,"io_fwde_fw_data1", false,-1, 63,0);
@@ -610,12 +611,12 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBit(c+491,"io_fcDcache_axi_valid", false,-1);
     tracep->declBit(c+363,"io_fcfe_jump_flag", false,-1);
     tracep->declBus(c+364,"io_fcfe_jump_pc", false,-1, 31,0);
-    tracep->declBit(c+510,"io_fcfe_flush", false,-1);
-    tracep->declBit(c+511,"io_fcfe_stall", false,-1);
-    tracep->declBit(c+512,"io_fcde_flush", false,-1);
-    tracep->declBit(c+513,"io_fcde_stall", false,-1);
-    tracep->declBit(c+513,"io_fcex_stall", false,-1);
-    tracep->declBit(c+513,"io_fcmem_stall", false,-1);
+    tracep->declBit(c+511,"io_fcfe_flush", false,-1);
+    tracep->declBit(c+512,"io_fcfe_stall", false,-1);
+    tracep->declBit(c+513,"io_fcde_flush", false,-1);
+    tracep->declBit(c+510,"io_fcde_stall", false,-1);
+    tracep->declBit(c+510,"io_fcex_stall", false,-1);
+    tracep->declBit(c+510,"io_fcmem_stall", false,-1);
     tracep->declBit(c+514,"Icache_stall", false,-1);
     tracep->declBit(c+515,"Dcache_stall", false,-1);
     tracep->popNamePrefix(1);
@@ -624,8 +625,8 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBit(c+525,"reset", false,-1);
     tracep->declBit(c+363,"io_fcfe_jump_flag", false,-1);
     tracep->declBus(c+364,"io_fcfe_jump_pc", false,-1, 31,0);
-    tracep->declBit(c+510,"io_fcfe_flush", false,-1);
-    tracep->declBit(c+511,"io_fcfe_stall", false,-1);
+    tracep->declBit(c+511,"io_fcfe_flush", false,-1);
+    tracep->declBit(c+512,"io_fcfe_stall", false,-1);
     tracep->declBus(c+490,"io_fdio_pc", false,-1, 31,0);
     tracep->declBit(c+42,"io_pc_valid", false,-1);
     tracep->declBus(c+490,"io_pc_bits", false,-1, 31,0);
@@ -1741,10 +1742,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullSData(oldp+508,((0x1feU & (vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
                                          >> 2U))),9);
     bufp->fullCData(oldp+509,(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state),2);
-    bufp->fullBit(oldp+510,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_flush));
-    bufp->fullBit(oldp+511,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall));
-    bufp->fullBit(oldp+512,(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush));
-    bufp->fullBit(oldp+513,(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall));
+    bufp->fullBit(oldp+510,(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall));
+    bufp->fullBit(oldp+511,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_flush));
+    bufp->fullBit(oldp+512,(vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_stall));
+    bufp->fullBit(oldp+513,(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush));
     bufp->fullBit(oldp+514,(vlSelf->Soc__DOT__core__DOT__fc__DOT__Icache_stall));
     bufp->fullBit(oldp+515,(vlSelf->Soc__DOT__core__DOT__fc__DOT__Dcache_stall));
     bufp->fullQData(oldp+516,(vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_bits_data),64);
