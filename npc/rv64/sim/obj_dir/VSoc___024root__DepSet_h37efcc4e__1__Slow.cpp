@@ -297,6 +297,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     VL_RAND_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Icache__DOT__dirty);
     VL_RAND_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Icache__DOT__replace);
     vlSelf->Soc__DOT__core__DOT__Icache__DOT__hit0 = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__Icache__DOT__inDataOneArray = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Icache__DOT__victim = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Icache__DOT__addr = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__core__DOT__Icache__DOT__data = VL_RAND_RESET_Q(64);
@@ -398,6 +399,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     VL_RAND_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Dcache__DOT__dirty);
     VL_RAND_RESET_W(512, vlSelf->Soc__DOT__core__DOT__Dcache__DOT__replace);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__hit0 = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__Dcache__DOT__inDataOneArray = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__victim = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__addr = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__data = VL_RAND_RESET_Q(64);
@@ -505,14 +507,14 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__sram__DOT__need_resp = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__sram__DOT__araddr = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__sram__DOT__need_read = VL_RAND_RESET_I(1);
-    vlSelf->__VdfgTmp_hb6621c38__0 = 0;
-    vlSelf->__VdfgTmp_h152a4cb0__0 = 0;
-    vlSelf->__VdfgTmp_h57f10193__0 = 0;
-    vlSelf->__VdfgTmp_h51c09bcb__0 = 0;
+    vlSelf->__VdfgTmp_ha3b20136__0 = 0;
+    vlSelf->__VdfgTmp_h315738f9__0 = 0;
+    vlSelf->__VdfgTmp_h722d7b58__0 = 0;
+    vlSelf->__VdfgTmp_h6dbd61c0__0 = 0;
     vlSelf->__VdfgTmp_h6a80e86b__0 = 0;
     vlSelf->__VdfgTmp_h02e5796b__0 = 0;
     vlSelf->__VdfgTmp_hc520a55b__0 = 0;
-    vlSelf->__VdfgTmp_h5730c850__0 = 0;
+    vlSelf->__VdfgTmp_h726b6097__0 = 0;
     vlSelf->__VdfgTmp_hb3a84c04__0 = 0;
     vlSelf->__VdfgTmp_heb865217__0 = 0;
     vlSelf->__VdfgTmp_h5f294843__0 = 0;

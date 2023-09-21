@@ -1694,7 +1694,7 @@ module AXIArbitor(	// <stdin>:2304:10
   assign io_AXI_O_r_ready = _GEN_3;	// <stdin>:2304:10, AXIArbitor.scala:95:22, :99:18
 endmodule
 
-module Cache(	// <stdin>:2435:10, :3203:10
+module Cache(	// <stdin>:2435:10, :3208:10
   input         clock,
                 reset,
                 io_cpu_req_valid,
@@ -1717,7 +1717,7 @@ module Cache(	// <stdin>:2435:10, :3203:10
                 io_fccache_cpu_valid,
                 io_fccache_axi_valid);
 
-  wire              _GEN;	// <stdin>:2506:18, :3274:18, Cache.scala:158:18
+  wire              _GEN;	// <stdin>:2508:18, :3281:18, Cache.scala:162:18
   wire [63:0]       _DataArray_ext_R0_data;	// Cache.scala:77:32
   wire [63:0]       _DataArray_ext_R1_data;	// Cache.scala:77:32
   wire [63:0]       _DataArray_ext_R2_data;	// Cache.scala:77:32
@@ -1739,344 +1739,347 @@ module Cache(	// <stdin>:2435:10, :3203:10
   reg  [511:0]      valid;	// Cache.scala:71:24
   reg  [511:0]      dirty;	// Cache.scala:72:24
   reg  [511:0]      replace;	// Cache.scala:73:26
-  wire              hit0;	// <stdin>:2456:5, :3224:5
-  wire              hit1;	// <stdin>:2458:5, :3226:5
-  wire [511:0]      _hit0_T_7 = valid >> {503'h0, io_cpu_req_bits_addr[10:3], 1'h0};	// <stdin>:2435:10, :3203:10, Cache.scala:71:24, :91:{43,100}
+  wire              hit0;	// <stdin>:2456:5, :3229:5
+  wire              hit1;	// <stdin>:2458:5, :3231:5
+  wire [511:0]      _hit0_T_7 = valid >> {503'h0, io_cpu_req_bits_addr[10:3], 1'h0};	// <stdin>:2435:10, :3208:10, Cache.scala:71:24, :91:{43,100}
   assign hit0 = _TagArray_ext_R4_data == io_cpu_req_bits_addr[31:11] & _hit0_T_7[0];	// Cache.scala:75:23, :91:{10,58,82,92,100}
-  wire [8:0]        _GEN_0 = {io_cpu_req_bits_addr[10:3], 1'h0};	// <stdin>:2435:10, :3203:10, Cache.scala:91:43, :92:57
-  wire [9:0]        _GEN_1 = {1'h0, io_cpu_req_bits_addr[10:3], 1'h0};	// <stdin>:2435:10, :3203:10, Cache.scala:91:43, :92:141
+  wire [8:0]        _GEN_0 = {io_cpu_req_bits_addr[10:3], 1'h0};	// <stdin>:2435:10, :3208:10, Cache.scala:91:43, :92:57
+  wire [9:0]        _GEN_1 = {1'h0, io_cpu_req_bits_addr[10:3], 1'h0};	// <stdin>:2435:10, :3208:10, Cache.scala:91:43, :92:141
   wire [511:0]      _hit1_T_11 = valid >> _GEN_1 + 10'h1;	// Cache.scala:71:24, :92:{57,106,141}
   assign hit1 = _TagArray_ext_R5_data == io_cpu_req_bits_addr[31:11] & _hit1_T_11[0];	// Cache.scala:75:23, :91:82, :92:{10,64,98,106}
-  reg               victim;	// Cache.scala:113:21
-  reg  [31:0]       addr;	// Cache.scala:116:23
-  reg  [63:0]       data;	// Cache.scala:117:23
-  reg  [7:0]        mask;	// Cache.scala:118:23
-  reg               inst_type;	// Cache.scala:120:28
-  reg               whitNum;	// Cache.scala:123:26
-  wire              _T_3 = hit0 | hit1;	// Cache.scala:127:28
-  reg               cpu_resp_valid;	// Cache.scala:136:33
-  reg  [63:0]       cpu_resp_bits_data;	// Cache.scala:137:37
-  reg               axi_req_valid;	// Cache.scala:138:32
-  reg               axi_req_bits_rw;	// Cache.scala:139:34
-  reg  [31:0]       axi_req_bits_addr;	// Cache.scala:140:36
-  reg  [63:0]       axi_req_bits_data;	// Cache.scala:141:36
-  wire              _T_25 = offset == 3'h0;	// Cache.scala:64:24, :69:21, :147:20
-  wire              _T = state == 3'h0;	// Cache.scala:64:24, :158:18
-  wire [1023:0]     _GEN_2 = {1015'h0, io_cpu_req_bits_addr[10:3], 1'h0};	// <stdin>:2435:10, :3203:10, Cache.scala:91:43, :229:55
-  wire [1023:0]     _replace0_T_2 = 1024'h1 << _GEN_2;	// Cache.scala:229:55
-  wire [1023:0]     _replace1_T_4 = 1024'h1 << _GEN_1 + 10'h1;	// Cache.scala:92:{57,141}, :229:55, :230:{55,90}
-  wire [1023:0]     _replace0_T_10 = 1024'h1 << _GEN_2;	// Cache.scala:229:55, :244:55
-  wire              _GEN_3 = ~io_cpu_req_valid | (|io_cpu_req_bits_mask) | ~_T_3;	// <stdin>:2502:14, :3270:14, Cache.scala:127:28, :137:37, :166:35, :168:{43,47}, :205:38, :210:35
-  wire [1023:0]     _replace1_T_14 = 1024'h1 << _GEN_1 + 10'h1;	// Cache.scala:92:{57,141}, :229:55, :245:{55,90}
-  wire              _T_5 = state == 3'h5;	// Cache.scala:64:24, :158:18, :251:31
-  wire [511:0]      _GEN_4 = {503'h0, index, 1'h0};	// <stdin>:2435:10, :3203:10, Cache.scala:68:20, :91:100, :269:40
-  wire [511:0]      _replace_wire_T_1 = replace >> _GEN_4;	// Cache.scala:73:26, :269:40
-  wire [9:0]        _GEN_5 = {1'h0, index, 1'h0};	// <stdin>:2435:10, :3203:10, Cache.scala:68:20, :272:34
-  wire [9:0]        _GEN_6 = {9'h0, _GEN};	// <stdin>:2506:18, :3274:18, Cache.scala:158:18, :272:34, :373:70
-  wire [511:0]      _T_9 = dirty >> _GEN_5 + _GEN_6;	// Cache.scala:72:24, :272:{23,34}
-  wire [8:0]        _GEN_7 = {index, 1'h0};	// <stdin>:2435:10, :3203:10, Cache.scala:68:20, :272:34
-  wire [8:0]        _GEN_8 = {8'h0, _GEN};	// <stdin>:2506:18, :3274:18, Cache.scala:118:23, :158:18, :272:34
-  wire              _GEN_9 = ~_T & _T_5 & _T_9[0];	// Cache.scala:75:23, :158:18, :272:23
-  wire              _T_11 = state == 3'h6;	// Cache.scala:64:24, :158:18, :273:23
-  wire [8:0]        _GEN_10 = {8'h0, victim};	// Cache.scala:113:21, :118:23, :289:57
-  wire              _GEN_11 = ~_T & ~_T_5 & _T_11;	// Cache.scala:75:23, :158:18
-  wire [1023:0]     _GEN_12 = {1015'h0, index, 1'h0};	// <stdin>:2435:10, :3203:10, Cache.scala:68:20, :229:55, :315:47
-  wire [1023:0]     _replace0_T_17 = 1024'h1 << _GEN_12;	// Cache.scala:229:55, :315:47
-  wire [1023:0]     _replace1_T_23 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :229:55, :272:34, :316:{47,60}
-  wire              _GEN_13 = io_axi_resp_valid & victim;	// Cache.scala:75:23, :113:21, :307:36, :312:29
-  wire              _GEN_14 = ~_T & ~_T_5 & ~_T_11 & (&state) & _GEN_13;	// Cache.scala:64:24, :75:23, :158:18, :307:36, :312:29
-  wire [1023:0]     _replace0_T_24 = 1024'h1 << _GEN_12;	// Cache.scala:229:55, :315:47, :324:47
-  wire [1023:0]     _replace1_T_32 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :229:55, :272:34, :325:{47,60}
-  wire              _GEN_15 = io_axi_resp_valid & ~victim;	// Cache.scala:75:23, :113:21, :307:36, :312:29, :328:29
-  wire              _GEN_16 = ~_T & ~_T_5 & ~_T_11 & (&state) & _GEN_15;	// Cache.scala:64:24, :75:23, :158:18, :307:36, :312:29
-  wire              _T_26 = state == 3'h1;	// Cache.scala:64:24, :158:18, :170:31
-  wire [1023:0]     _replace0_T_31 = 1024'h1 << _GEN_12;	// Cache.scala:229:55, :315:47, :363:43
-  wire [1023:0]     _replace1_T_41 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :229:55, :272:34, :364:{43,56}
-  wire [1023:0]     _replace0_T_38 = 1024'h1 << _GEN_12;	// Cache.scala:229:55, :315:47, :379:43
-  wire [1023:0]     _replace1_T_50 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :229:55, :272:34, :380:{43,56}
-  wire              _T_67 = state == 3'h2;	// Cache.scala:64:24, :158:18, :193:31
-  wire [511:0]      _replace_wire_T_5 = replace >> _GEN_4;	// Cache.scala:73:26, :269:40, :389:40
+  reg               inDataOneArray;	// Cache.scala:103:33
+  reg               victim;	// Cache.scala:115:21
+  reg  [31:0]       addr;	// Cache.scala:118:23
+  reg  [63:0]       data;	// Cache.scala:119:23
+  reg  [7:0]        mask;	// Cache.scala:120:23
+  reg               inst_type;	// Cache.scala:122:28
+  reg               whitNum;	// Cache.scala:125:26
+  wire              _T_3 = hit0 | hit1;	// Cache.scala:129:28
+  reg               cpu_resp_valid;	// Cache.scala:138:33
+  reg  [63:0]       cpu_resp_bits_data;	// Cache.scala:139:37
+  reg               axi_req_valid;	// Cache.scala:140:32
+  reg               axi_req_bits_rw;	// Cache.scala:141:34
+  reg  [31:0]       axi_req_bits_addr;	// Cache.scala:142:36
+  reg  [63:0]       axi_req_bits_data;	// Cache.scala:143:36
+  wire              _T_25 = offset == 3'h0;	// Cache.scala:64:24, :69:21, :149:35
+  wire              _T = state == 3'h0;	// Cache.scala:64:24, :162:18
+  wire [1023:0]     _GEN_2 = {1015'h0, io_cpu_req_bits_addr[10:3], 1'h0};	// <stdin>:2435:10, :3208:10, Cache.scala:91:43, :235:55
+  wire [1023:0]     _replace0_T_2 = 1024'h1 << _GEN_2;	// Cache.scala:235:55
+  wire [1023:0]     _replace1_T_4 = 1024'h1 << _GEN_1 + 10'h1;	// Cache.scala:92:{57,141}, :235:55, :236:{55,90}
+  wire [1023:0]     _replace0_T_10 = 1024'h1 << _GEN_2;	// Cache.scala:235:55, :250:55
+  wire              _GEN_3 = ~io_cpu_req_valid | (|io_cpu_req_bits_mask) | ~_T_3;	// <stdin>:2504:14, :3277:14, Cache.scala:129:28, :139:37, :171:35, :173:{43,47}, :210:38, :215:35
+  wire [1023:0]     _replace1_T_14 = 1024'h1 << _GEN_1 + 10'h1;	// Cache.scala:92:{57,141}, :235:55, :251:{55,90}
+  wire              _T_5 = state == 3'h5;	// Cache.scala:64:24, :162:18, :257:31
+  wire [511:0]      _GEN_4 = {503'h0, index, 1'h0};	// <stdin>:2435:10, :3208:10, Cache.scala:68:20, :91:100, :275:40
+  wire [511:0]      _replace_wire_T_1 = replace >> _GEN_4;	// Cache.scala:73:26, :275:40
+  wire [9:0]        _GEN_5 = {1'h0, index, 1'h0};	// <stdin>:2435:10, :3208:10, Cache.scala:68:20, :278:34
+  wire [9:0]        _GEN_6 = {9'h0, _GEN};	// <stdin>:2508:18, :3281:18, Cache.scala:162:18, :278:34, :379:70
+  wire [511:0]      _T_9 = dirty >> _GEN_5 + _GEN_6;	// Cache.scala:72:24, :278:{23,34}
+  wire [8:0]        _GEN_7 = {index, 1'h0};	// <stdin>:2435:10, :3208:10, Cache.scala:68:20, :278:34
+  wire [8:0]        _GEN_8 = {8'h0, _GEN};	// <stdin>:2508:18, :3281:18, Cache.scala:120:23, :162:18, :278:34
+  wire              _GEN_9 = ~_T & _T_5 & _T_9[0];	// Cache.scala:75:23, :162:18, :278:23
+  wire              _T_11 = state == 3'h6;	// Cache.scala:64:24, :162:18, :279:23
+  wire [8:0]        _GEN_10 = {8'h0, victim};	// Cache.scala:115:21, :120:23, :295:57
+  wire              _GEN_11 = ~_T & ~_T_5 & _T_11;	// Cache.scala:75:23, :162:18
+  wire [1023:0]     _GEN_12 = {1015'h0, index, 1'h0};	// <stdin>:2435:10, :3208:10, Cache.scala:68:20, :235:55, :321:47
+  wire [1023:0]     _replace0_T_17 = 1024'h1 << _GEN_12;	// Cache.scala:235:55, :321:47
+  wire [1023:0]     _replace1_T_23 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :235:55, :278:34, :322:{47,60}
+  wire              _GEN_13 = io_axi_resp_valid & victim;	// Cache.scala:75:23, :115:21, :313:36, :318:29
+  wire              _GEN_14 = ~_T & ~_T_5 & ~_T_11 & (&state) & _GEN_13;	// Cache.scala:64:24, :75:23, :162:18, :313:36, :318:29
+  wire [1023:0]     _replace0_T_24 = 1024'h1 << _GEN_12;	// Cache.scala:235:55, :321:47, :330:47
+  wire [1023:0]     _replace1_T_32 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :235:55, :278:34, :331:{47,60}
+  wire              _GEN_15 = io_axi_resp_valid & ~victim;	// Cache.scala:75:23, :115:21, :313:36, :318:29, :334:29
+  wire              _GEN_16 = ~_T & ~_T_5 & ~_T_11 & (&state) & _GEN_15;	// Cache.scala:64:24, :75:23, :162:18, :313:36, :318:29
+  wire              _T_26 = state == 3'h1;	// Cache.scala:64:24, :162:18, :175:31
+  wire [1023:0]     _replace0_T_31 = 1024'h1 << _GEN_12;	// Cache.scala:235:55, :321:47, :369:43
+  wire [1023:0]     _replace1_T_41 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :235:55, :278:34, :370:{43,56}
+  wire [1023:0]     _replace0_T_38 = 1024'h1 << _GEN_12;	// Cache.scala:235:55, :321:47, :385:43
+  wire [1023:0]     _replace1_T_50 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :235:55, :278:34, :386:{43,56}
+  wire              _T_67 = state == 3'h2;	// Cache.scala:64:24, :162:18, :198:31
+  wire [511:0]      _replace_wire_T_5 = replace >> _GEN_4;	// Cache.scala:73:26, :275:40, :395:40
   assign _GEN = ~_T & (_T_5 ? _replace_wire_T_1[0] : ~_T_11 & ~(&state) & ~_T_26 & _T_67 &
-                _replace_wire_T_5[0]);	// <stdin>:2506:18, :3274:18, Cache.scala:64:24, :75:23, :77:32, :158:18, :269:{26,40}, :389:40
-  wire [511:0]      _T_71 = dirty >> _GEN_5 + _GEN_6;	// Cache.scala:72:24, :272:34, :392:{23,34}
-  wire              _GEN_17 = ~_T & ~_T_5 & ~_T_11 & ~(&state) & ~_T_26 & _T_67 & _T_71[0];	// <stdin>:2506:18, :3274:18, Cache.scala:64:24, :75:23, :77:32, :158:18, :392:23
-  wire              _T_73 = state == 3'h3;	// Cache.scala:64:24, :158:18, :393:23
-  wire              _GEN_18 = ~_T & ~_T_5 & ~_T_11 & ~(&state) & ~_T_26 & ~_T_67 & _T_73;	// <stdin>:2506:18, :3274:18, Cache.scala:64:24, :75:23, :77:32, :113:21, :158:18
-  wire              _T_74 = state == 3'h4;	// Cache.scala:64:24, :158:18, :400:23
-  wire              _GEN_19 = _T_74 & io_axi_resp_valid;	// Cache.scala:64:24, :158:18, :427:36
-  wire [1023:0]     _replace0_T_45 = 1024'h1 << _GEN_12;	// Cache.scala:229:55, :315:47, :436:47
-  wire [1023:0]     _replace1_T_59 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :229:55, :272:34, :437:{47,60}
-  wire              _GEN_20 = ~_T & ~_T_5 & ~_T_11 & ~(&state) & ~_T_26 & ~_T_67 & ~_T_73 & _T_74 & _GEN_13;	// <stdin>:2506:18, :3274:18, Cache.scala:64:24, :75:23, :77:32, :113:21, :158:18, :307:36, :312:29
-  wire              _GEN_21 = _T_67 | _T_73 | ~_GEN_19;	// Cache.scala:64:24, :71:24, :72:24, :158:18, :427:36
-  wire [1023:0]     _replace0_T_52 = 1024'h1 << _GEN_12;	// Cache.scala:229:55, :315:47, :453:47
+                _replace_wire_T_5[0]);	// <stdin>:2508:18, :3281:18, Cache.scala:64:24, :75:23, :77:32, :162:18, :275:{26,40}, :395:40
+  wire [511:0]      _T_71 = dirty >> _GEN_5 + _GEN_6;	// Cache.scala:72:24, :278:34, :398:{23,34}
+  wire              _GEN_17 = ~_T & ~_T_5 & ~_T_11 & ~(&state) & ~_T_26 & _T_67 & _T_71[0];	// <stdin>:2508:18, :3281:18, Cache.scala:64:24, :75:23, :77:32, :162:18, :398:23
+  wire              _T_73 = state == 3'h3;	// Cache.scala:64:24, :162:18, :399:23
+  wire              _GEN_18 = ~_T & ~_T_5 & ~_T_11 & ~(&state) & ~_T_26 & ~_T_67 & _T_73;	// <stdin>:2508:18, :3281:18, Cache.scala:64:24, :75:23, :77:32, :115:21, :162:18
+  wire              _T_74 = state == 3'h4;	// Cache.scala:64:24, :162:18, :406:23
+  wire              _GEN_19 = _T_74 & io_axi_resp_valid;	// Cache.scala:64:24, :162:18, :433:36
+  wire [1023:0]     _replace0_T_45 = 1024'h1 << _GEN_12;	// Cache.scala:235:55, :321:47, :442:47
+  wire [1023:0]     _replace1_T_59 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :235:55, :278:34, :443:{47,60}
+  wire              _GEN_20 = ~_T & ~_T_5 & ~_T_11 & ~(&state) & ~_T_26 & ~_T_67 & ~_T_73 & _T_74 & _GEN_13;	// <stdin>:2508:18, :3281:18, Cache.scala:64:24, :75:23, :77:32, :115:21, :162:18, :313:36, :318:29
+  wire              _GEN_21 = _T_67 | _T_73 | ~_GEN_19;	// Cache.scala:64:24, :71:24, :72:24, :162:18, :433:36
+  wire [1023:0]     _replace0_T_52 = 1024'h1 << _GEN_12;	// Cache.scala:235:55, :321:47, :459:47
   wire [7:0][511:0] _GEN_22 = {{io_axi_resp_valid ? (victim ? replace | _replace0_T_17[511:0] : ~(~replace |
                 _replace0_T_24[511:0])) : 512'h0}, {512'h0}, {512'h0}, {_GEN_21 ? 512'h0 : victim ? replace
                 | _replace0_T_45[511:0] : ~(~replace | _replace0_T_52[511:0])}, {512'h0}, {512'h0},
                 {whitNum ? replace | _replace0_T_31[511:0] : ~(~replace | _replace0_T_38[511:0])}, {_GEN_3
-                ? 512'h0 : hit0 ? ~(~replace | _replace0_T_2[511:0]) : replace | _replace0_T_10[511:0]}};	// <stdin>:2502:14, :3270:14, Cache.scala:71:24, :72:24, :73:26, :113:21, :123:26, :127:28, :158:18, :166:35, :168:47, :210:35, :229:{38,55}, :244:{38,55}, :307:36, :312:29, :315:{30,47}, :324:{30,47}, :351:26, :363:{26,43}, :379:{26,43}, :433:29, :436:{30,47}, :453:{30,47}
-  wire [511:0]      _GEN_23 = _GEN_22[state];	// <stdin>:2502:14, :3270:14, Cache.scala:64:24, :158:18, :166:35, :307:36, :351:26
-  wire [1023:0]     _replace1_T_68 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :229:55, :272:34, :454:{47,60}
+                ? 512'h0 : hit0 ? ~(~replace | _replace0_T_2[511:0]) : replace | _replace0_T_10[511:0]}};	// <stdin>:2504:14, :3277:14, Cache.scala:71:24, :72:24, :73:26, :115:21, :125:26, :129:28, :162:18, :171:35, :173:47, :215:35, :235:{38,55}, :250:{38,55}, :313:36, :318:29, :321:{30,47}, :330:{30,47}, :357:26, :369:{26,43}, :385:{26,43}, :439:29, :442:{30,47}, :459:{30,47}
+  wire [511:0]      _GEN_23 = _GEN_22[state];	// <stdin>:2504:14, :3277:14, Cache.scala:64:24, :162:18, :171:35, :313:36, :357:26
+  wire [1023:0]     _replace1_T_68 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :235:55, :278:34, :460:{47,60}
   wire [7:0][511:0] _GEN_24 = {{io_axi_resp_valid ? (victim ? ~(~replace | _replace1_T_23[511:0]) : replace |
                 _replace1_T_32[511:0]) : 512'h0}, {512'h0}, {512'h0}, {_GEN_21 ? 512'h0 : victim ?
                 ~(~replace | _replace1_T_59[511:0]) : replace | _replace1_T_68[511:0]}, {512'h0}, {512'h0},
                 {whitNum ? ~(~replace | _replace1_T_41[511:0]) : replace | _replace1_T_50[511:0]}, {_GEN_3
-                ? 512'h0 : hit0 ? replace | _replace1_T_4[511:0] : ~(~replace | _replace1_T_14[511:0])}};	// <stdin>:2502:14, :2504:14, :3270:14, :3272:14, Cache.scala:71:24, :72:24, :73:26, :113:21, :123:26, :127:28, :158:18, :166:35, :168:47, :210:35, :230:{38,55}, :244:55, :245:{38,55}, :307:36, :312:29, :315:47, :316:{30,47}, :325:{30,47}, :351:26, :363:43, :364:{26,43}, :380:{26,43}, :433:29, :436:47, :437:{30,47}, :454:{30,47}
-  wire [511:0]      _GEN_25 = _GEN_24[state];	// <stdin>:2504:14, :3272:14, Cache.scala:64:24, :158:18, :166:35, :307:36, :351:26
-  wire              _GEN_26 = ~_T & ~_T_5 & ~_T_11 & ~(&state) & ~_T_26 & ~_T_67 & ~_T_73 & _T_74 & _GEN_15;	// <stdin>:2506:18, :3274:18, Cache.scala:64:24, :75:23, :77:32, :113:21, :158:18, :307:36, :312:29
+                ? 512'h0 : hit0 ? replace | _replace1_T_4[511:0] : ~(~replace | _replace1_T_14[511:0])}};	// <stdin>:2504:14, :2506:14, :3277:14, :3279:14, Cache.scala:71:24, :72:24, :73:26, :115:21, :125:26, :129:28, :162:18, :171:35, :173:47, :215:35, :236:{38,55}, :250:55, :251:{38,55}, :313:36, :318:29, :321:47, :322:{30,47}, :331:{30,47}, :357:26, :369:43, :370:{26,43}, :386:{26,43}, :439:29, :442:47, :443:{30,47}, :460:{30,47}
+  wire [511:0]      _GEN_25 = _GEN_24[state];	// <stdin>:2506:14, :3279:14, Cache.scala:64:24, :162:18, :171:35, :313:36, :357:26
+  wire              _GEN_26 = ~_T & ~_T_5 & ~_T_11 & ~(&state) & ~_T_26 & ~_T_67 & ~_T_73 & _T_74 & _GEN_15;	// <stdin>:2508:18, :3281:18, Cache.scala:64:24, :75:23, :77:32, :115:21, :162:18, :313:36, :318:29
   always @(posedge clock) begin
-    automatic logic _GEN_27;	// Cache.scala:67:18, :158:18, :166:35
-    _GEN_27 = _T & io_cpu_req_valid & ((|io_cpu_req_bits_mask) | ~_T_3);	// Cache.scala:67:18, :127:28, :137:37, :158:18, :166:35, :168:{43,47}, :169:38, :205:38, :210:35
+    automatic logic _GEN_27;	// Cache.scala:67:18, :162:18, :171:35
+    _GEN_27 = _T & io_cpu_req_valid & ((|io_cpu_req_bits_mask) | ~_T_3);	// Cache.scala:67:18, :129:28, :139:37, :162:18, :171:35, :173:{43,47}, :174:38, :210:38, :215:35
     if (reset) begin
       state <= 3'h0;	// Cache.scala:64:24
       valid <= 512'h0;	// Cache.scala:71:24
       dirty <= 512'h0;	// Cache.scala:71:24, :72:24
       replace <= 512'h0;	// Cache.scala:71:24, :73:26
-      addr <= 32'h0;	// Cache.scala:116:23, :373:70
-      data <= 64'h0;	// Cache.scala:117:23
-      mask <= 8'h0;	// Cache.scala:118:23
-      inst_type <= 1'h0;	// <stdin>:2435:10, :3203:10, Cache.scala:120:28
-      whitNum <= 1'h0;	// <stdin>:2435:10, :3203:10, Cache.scala:123:26
-      cpu_resp_valid <= 1'h0;	// <stdin>:2435:10, :3203:10, Cache.scala:136:33
-      cpu_resp_bits_data <= 64'h0;	// Cache.scala:117:23, :137:37
-      axi_req_valid <= 1'h0;	// <stdin>:2435:10, :3203:10, Cache.scala:138:32
-      axi_req_bits_rw <= 1'h0;	// <stdin>:2435:10, :3203:10, Cache.scala:139:34
-      axi_req_bits_addr <= 32'h0;	// Cache.scala:140:36, :373:70
-      axi_req_bits_data <= 64'h0;	// Cache.scala:117:23, :141:36
+      inDataOneArray <= 1'h0;	// <stdin>:2435:10, :3208:10, Cache.scala:103:33
+      addr <= 32'h0;	// Cache.scala:118:23, :379:70
+      data <= 64'h0;	// Cache.scala:119:23
+      mask <= 8'h0;	// Cache.scala:120:23
+      inst_type <= 1'h0;	// <stdin>:2435:10, :3208:10, Cache.scala:122:28
+      whitNum <= 1'h0;	// <stdin>:2435:10, :3208:10, Cache.scala:125:26
+      cpu_resp_valid <= 1'h0;	// <stdin>:2435:10, :3208:10, Cache.scala:138:33
+      cpu_resp_bits_data <= 64'h0;	// Cache.scala:119:23, :139:37
+      axi_req_valid <= 1'h0;	// <stdin>:2435:10, :3208:10, Cache.scala:140:32
+      axi_req_bits_rw <= 1'h0;	// <stdin>:2435:10, :3208:10, Cache.scala:141:34
+      axi_req_bits_addr <= 32'h0;	// Cache.scala:142:36, :379:70
+      axi_req_bits_data <= 64'h0;	// Cache.scala:119:23, :143:36
     end
     else begin
-      automatic logic [7:0][2:0]   _GEN_28;	// Cache.scala:158:18, :166:35, :272:50, :294:36, :307:36, :349:19, :392:50, :413:36
-      automatic logic [1023:0]     _valid_T_26 = 1024'h1 << _GEN_12;	// Cache.scala:229:55, :315:47, :451:42
-      automatic logic [1023:0]     _valid_T_19 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :229:55, :272:34, :434:{42,55}
-      automatic logic [1023:0]     _valid_T_10 = 1024'h1 << _GEN_12;	// Cache.scala:229:55, :315:47, :322:42
-      automatic logic [1023:0]     _valid_T_3 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :229:55, :272:34, :313:{42,55}
-      automatic logic [7:0][511:0] _GEN_29;	// Cache.scala:71:24, :158:18, :307:36
-      automatic logic [1023:0]     _dirty_T_42 = 1024'h1 << _GEN_12;	// Cache.scala:229:55, :315:47, :452:42
-      automatic logic [1023:0]     _dirty_T_35 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :229:55, :272:34, :435:{42,55}
-      automatic logic [1023:0]     _dirty_T_26 = 1024'h1 << _GEN_12;	// Cache.scala:229:55, :315:47, :378:38
-      automatic logic [1023:0]     _dirty_T_19 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :229:55, :272:34, :362:{38,51}
-      automatic logic [1023:0]     _dirty_T_10 = 1024'h1 << _GEN_12;	// Cache.scala:229:55, :315:47, :323:42
-      automatic logic [1023:0]     _dirty_T_3 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :229:55, :272:34, :314:{42,55}
-      automatic logic [7:0][511:0] _GEN_30;	// Cache.scala:72:24, :158:18, :307:36, :351:26
-      automatic logic [7:0][511:0] _GEN_31;	// Cache.scala:73:26, :158:18, :166:35, :307:36, :351:26
-      automatic logic [7:0][31:0]  _GEN_32;	// Cache.scala:140:36, :158:18, :272:50, :294:36, :304:31, :392:50, :413:36, :424:31
-      automatic logic [7:0][63:0]  _GEN_33;	// Cache.scala:141:36, :158:18, :272:50, :290:31, :392:50, :410:31
+      automatic logic [7:0][2:0]   _GEN_28;	// Cache.scala:162:18, :171:35, :278:50, :300:36, :313:36, :355:19, :398:50, :419:36
+      automatic logic [1023:0]     _valid_T_26 = 1024'h1 << _GEN_12;	// Cache.scala:235:55, :321:47, :457:42
+      automatic logic [1023:0]     _valid_T_19 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :235:55, :278:34, :440:{42,55}
+      automatic logic [1023:0]     _valid_T_10 = 1024'h1 << _GEN_12;	// Cache.scala:235:55, :321:47, :328:42
+      automatic logic [1023:0]     _valid_T_3 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :235:55, :278:34, :319:{42,55}
+      automatic logic [7:0][511:0] _GEN_29;	// Cache.scala:71:24, :162:18, :313:36
+      automatic logic [1023:0]     _dirty_T_42 = 1024'h1 << _GEN_12;	// Cache.scala:235:55, :321:47, :458:42
+      automatic logic [1023:0]     _dirty_T_35 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :235:55, :278:34, :441:{42,55}
+      automatic logic [1023:0]     _dirty_T_26 = 1024'h1 << _GEN_12;	// Cache.scala:235:55, :321:47, :384:38
+      automatic logic [1023:0]     _dirty_T_19 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :235:55, :278:34, :368:{38,51}
+      automatic logic [1023:0]     _dirty_T_10 = 1024'h1 << _GEN_12;	// Cache.scala:235:55, :321:47, :329:42
+      automatic logic [1023:0]     _dirty_T_3 = 1024'h1 << _GEN_5 + 10'h1;	// Cache.scala:92:57, :235:55, :278:34, :320:{42,55}
+      automatic logic [7:0][511:0] _GEN_30;	// Cache.scala:72:24, :162:18, :313:36, :357:26
+      automatic logic [7:0][511:0] _GEN_31;	// Cache.scala:73:26, :162:18, :171:35, :313:36, :357:26
+      automatic logic [7:0][31:0]  _GEN_32;	// Cache.scala:142:36, :162:18, :278:50, :300:36, :310:31, :398:50, :419:36, :430:31
+      automatic logic [7:0][63:0]  _GEN_33;	// Cache.scala:143:36, :162:18, :278:50, :296:31, :398:50, :416:31
       _GEN_28 = {{io_axi_resp_valid ? 3'h0 : state}, {io_axi_resp_valid ? 3'h7 : state}, {{2'h3,
                                                 ~(_T_9[0])}}, {_GEN_19 ? 3'h0 : state}, {io_axi_resp_valid ? 3'h4 : state}, {_T_71[0] ?
                                                 3'h3 : 3'h4}, {3'h0}, {io_cpu_req_valid ? ((|io_cpu_req_bits_mask) ? (_T_3 ? 3'h1 : 3'h2) :
-                                                _T_3 ? 3'h0 : 3'h5) : state}};	// Cache.scala:64:24, :127:28, :158:18, :166:35, :168:{43,47}, :169:38, :170:31, :193:31, :205:38, :206:31, :251:31, :272:{23,50}, :273:23, :280:23, :294:36, :295:23, :307:36, :308:23, :349:19, :392:{23,50}, :393:23, :400:23, :413:36, :414:23, :427:36
-      state <= _GEN_28[state];	// Cache.scala:64:24, :158:18, :166:35, :272:50, :294:36, :307:36, :349:19, :392:50, :413:36
+                                                _T_3 ? 3'h0 : 3'h5) : state}};	// Cache.scala:64:24, :129:28, :162:18, :171:35, :173:{43,47}, :174:38, :175:31, :198:31, :210:38, :211:31, :257:31, :278:{23,50}, :279:23, :286:23, :300:36, :301:23, :313:36, :314:23, :355:19, :398:{23,50}, :399:23, :406:23, :419:36, :420:23, :433:36
+      state <= _GEN_28[state];	// Cache.scala:64:24, :162:18, :171:35, :278:50, :300:36, :313:36, :355:19, :398:50, :419:36
       _GEN_29 = {{io_axi_resp_valid ? (victim ? valid | _valid_T_3[511:0] : valid | _valid_T_10[511:0]) :
                                                 valid}, {valid}, {valid}, {_T_26 | _T_67 | _T_73 | ~_GEN_19 ? valid : victim ? valid |
-                                                _valid_T_19[511:0] : valid | _valid_T_26[511:0]}, {valid}, {valid}, {valid}, {valid}};	// Cache.scala:64:24, :71:24, :113:21, :158:18, :307:36, :312:29, :313:{27,42}, :322:{27,42}, :427:36, :433:29, :434:{27,42}, :451:{27,42}
-      valid <= _GEN_29[state];	// Cache.scala:64:24, :71:24, :158:18, :307:36
+                                                _valid_T_19[511:0] : valid | _valid_T_26[511:0]}, {valid}, {valid}, {valid}, {valid}};	// Cache.scala:64:24, :71:24, :115:21, :162:18, :313:36, :318:29, :319:{27,42}, :328:{27,42}, :433:36, :439:29, :440:{27,42}, :457:{27,42}
+      valid <= _GEN_29[state];	// Cache.scala:64:24, :71:24, :162:18, :313:36
       _GEN_30 = {{io_axi_resp_valid ? (victim ? ~(~dirty | _dirty_T_3[511:0]) : ~(~dirty |
                                                 _dirty_T_10[511:0])) : dirty}, {dirty}, {dirty}, {_GEN_21 ? dirty : victim ? dirty |
                                                 _dirty_T_35[511:0] : dirty | _dirty_T_42[511:0]}, {dirty}, {dirty}, {whitNum ? dirty |
-                                                _dirty_T_19[511:0] : dirty | _dirty_T_26[511:0]}, {dirty}};	// Cache.scala:72:24, :113:21, :123:26, :158:18, :307:36, :312:29, :314:{27,42}, :323:{27,42}, :351:26, :362:{23,38}, :378:{23,38}, :433:29, :435:{27,42}, :452:{27,42}
-      dirty <= _GEN_30[state];	// Cache.scala:64:24, :72:24, :158:18, :307:36, :351:26
+                                                _dirty_T_19[511:0] : dirty | _dirty_T_26[511:0]}, {dirty}};	// Cache.scala:72:24, :115:21, :125:26, :162:18, :313:36, :318:29, :320:{27,42}, :329:{27,42}, :357:26, :368:{23,38}, :384:{23,38}, :439:29, :441:{27,42}, :458:{27,42}
+      dirty <= _GEN_30[state];	// Cache.scala:64:24, :72:24, :162:18, :313:36, :357:26
       _GEN_31 = {{io_axi_resp_valid ? (victim ? _GEN_23 | _GEN_25 : _GEN_23 | _GEN_25) : replace},
                                                 {replace}, {replace}, {_GEN_21 ? replace : victim ? _GEN_23 | _GEN_25 : _GEN_23 | _GEN_25},
                                                 {replace}, {replace}, {whitNum ? _GEN_23 | _GEN_25 : _GEN_23 | _GEN_25}, {_GEN_3 ? replace
-                                                : hit0 ? _GEN_23 | _GEN_25 : _GEN_23 | _GEN_25}};	// <stdin>:2502:14, :3270:14, Cache.scala:72:24, :73:26, :113:21, :123:26, :127:28, :158:18, :166:35, :168:47, :210:35, :231:{37,49}, :246:{37,49}, :307:36, :312:29, :317:{29,41}, :326:{29,41}, :351:26, :365:{25,37}, :381:{25,37}, :433:29, :438:{29,41}, :455:{29,41}
-      replace <= _GEN_31[state];	// Cache.scala:64:24, :73:26, :158:18, :166:35, :307:36, :351:26
-      if (_GEN_27) begin	// Cache.scala:67:18, :158:18, :166:35
-        addr <= io_cpu_req_bits_addr;	// Cache.scala:116:23
-        data <= io_cpu_req_bits_data;	// Cache.scala:117:23
-        mask <= io_cpu_req_bits_mask;	// Cache.scala:118:23
-      end
-      if (_T) begin	// Cache.scala:158:18
-        inst_type <= io_cpu_req_valid & ~(|io_cpu_req_bits_mask) & (~_T_3 | hit0) & io_cpu_req_bits_inst_type;	// Cache.scala:77:32, :120:28, :127:28, :137:37, :163:23, :166:35, :168:{43,47}, :205:38, :210:35, :262:35
-        cpu_resp_valid <= io_cpu_req_valid & ~(|io_cpu_req_bits_mask) & _T_3;	// Cache.scala:77:32, :127:28, :136:33, :162:28, :166:35, :168:{43,47}, :205:38
-        if (~io_cpu_req_valid | (|io_cpu_req_bits_mask) | ~_T_3 | hit0) begin	// Cache.scala:127:28, :137:37, :166:35, :168:{43,47}, :205:38, :210:35
+                                                : hit0 ? _GEN_23 | _GEN_25 : _GEN_23 | _GEN_25}};	// <stdin>:2504:14, :3277:14, Cache.scala:72:24, :73:26, :115:21, :125:26, :129:28, :162:18, :171:35, :173:47, :215:35, :237:{37,49}, :252:{37,49}, :313:36, :318:29, :323:{29,41}, :332:{29,41}, :357:26, :371:{25,37}, :387:{25,37}, :439:29, :444:{29,41}, :461:{29,41}
+      replace <= _GEN_31[state];	// Cache.scala:64:24, :73:26, :162:18, :171:35, :313:36, :357:26
+      if (_T) begin	// Cache.scala:162:18
+        inDataOneArray <= io_cpu_req_valid & ~(|io_cpu_req_bits_mask) & _T_3 & hit0;	// Cache.scala:103:33, :129:28, :169:28, :171:35, :173:{43,47}, :210:38
+        inst_type <= io_cpu_req_valid & ~(|io_cpu_req_bits_mask) & (~_T_3 | hit0) & io_cpu_req_bits_inst_type;	// Cache.scala:122:28, :129:28, :139:37, :167:23, :169:28, :171:35, :173:{43,47}, :210:38, :215:35, :268:35
+        cpu_resp_valid <= io_cpu_req_valid & ~(|io_cpu_req_bits_mask) & _T_3;	// Cache.scala:129:28, :138:33, :166:28, :169:28, :171:35, :173:{43,47}, :210:38
+        if (~io_cpu_req_valid | (|io_cpu_req_bits_mask) | ~_T_3 | hit0) begin	// Cache.scala:129:28, :139:37, :171:35, :173:{43,47}, :210:38, :215:35
         end
-        else if (inst_type)	// Cache.scala:120:28, :127:28, :137:37, :166:35, :168:{43,47}, :205:38, :210:35
-          cpu_resp_bits_data <= {32'h0, _T_25 ? _DataArray_ext_R5_data[31:0] : _DataArray_ext_R6_data[63:32]};	// Cache.scala:77:32, :137:37, :147:20, :234:53, :235:{56,123}, :237:{56,123}, :373:70
-        else	// Cache.scala:120:28, :127:28, :137:37, :166:35, :168:{43,47}, :205:38, :210:35
-          cpu_resp_bits_data <= _DataArray_ext_R7_data;	// Cache.scala:77:32, :137:37
+        else if (inst_type)	// Cache.scala:122:28, :129:28, :139:37, :171:35, :173:{43,47}, :210:38, :215:35
+          cpu_resp_bits_data <= {32'h0, _T_25 ? _DataArray_ext_R5_data[31:0] : _DataArray_ext_R6_data[63:32]};	// Cache.scala:77:32, :139:37, :149:35, :240:53, :241:{56,123}, :243:{56,123}, :379:70
+        else	// Cache.scala:122:28, :129:28, :139:37, :171:35, :173:{43,47}, :210:38, :215:35
+          cpu_resp_bits_data <= _DataArray_ext_R7_data;	// Cache.scala:77:32, :139:37
       end
-      else begin	// Cache.scala:158:18
+      else begin	// Cache.scala:162:18
         cpu_resp_valid <= ~_T_5 & ~_T_11 & ((&state) ? io_axi_resp_valid : _T_26 | ~_T_67 & ~_T_73 & _T_74 &
-                                                                io_axi_resp_valid);	// Cache.scala:64:24, :75:23, :113:21, :136:33, :154:20, :158:18, :307:36, :385:28
-        if (_T_5 | _T_11 | ~((&state) & io_axi_resp_valid)) begin	// Cache.scala:64:24, :137:37, :158:18, :307:36
+                                                                io_axi_resp_valid);	// Cache.scala:64:24, :75:23, :115:21, :138:33, :158:20, :162:18, :313:36, :391:28
+        if (_T_5 | _T_11 | ~((&state) & io_axi_resp_valid)) begin	// Cache.scala:64:24, :139:37, :162:18, :313:36
         end
-        else if (inst_type)	// Cache.scala:64:24, :120:28, :137:37, :158:18, :307:36
-          cpu_resp_bits_data <= {32'h0, _T_25 ? io_axi_resp_bits_data[31:0] : io_axi_resp_bits_data[63:32]};	// Cache.scala:137:37, :147:20, :336:41, :337:{44,83}, :339:{44,83}, :373:70
-        else	// Cache.scala:64:24, :120:28, :137:37, :158:18, :307:36
-          cpu_resp_bits_data <= io_axi_resp_bits_data;	// Cache.scala:137:37
-        if (_T_5)	// Cache.scala:158:18
-          axi_req_bits_rw <= ~(_T_9[0]);	// Cache.scala:139:34, :272:{23,50}, :273:23, :280:23
-        else if (_T_11)	// Cache.scala:158:18
-          axi_req_bits_rw <= io_axi_resp_valid;	// Cache.scala:139:34
-        else	// Cache.scala:158:18
+        else if (inst_type)	// Cache.scala:64:24, :122:28, :139:37, :162:18, :313:36
+          cpu_resp_bits_data <= {32'h0, _T_25 ? io_axi_resp_bits_data[31:0] : io_axi_resp_bits_data[63:32]};	// Cache.scala:139:37, :149:35, :342:41, :343:{44,83}, :345:{44,83}, :379:70
+        else	// Cache.scala:64:24, :122:28, :139:37, :162:18, :313:36
+          cpu_resp_bits_data <= io_axi_resp_bits_data;	// Cache.scala:139:37
+        if (_T_5)	// Cache.scala:162:18
+          axi_req_bits_rw <= ~(_T_9[0]);	// Cache.scala:141:34, :278:{23,50}, :279:23, :286:23
+        else if (_T_11)	// Cache.scala:162:18
+          axi_req_bits_rw <= io_axi_resp_valid;	// Cache.scala:141:34
+        else	// Cache.scala:162:18
           axi_req_bits_rw <= (&state) | (_T_26 ? axi_req_bits_rw : _T_67 ? ~(_T_71[0]) : _T_73 ? io_axi_resp_valid :
-                                                                                _T_74 | axi_req_bits_rw);	// Cache.scala:64:24, :139:34, :158:18, :305:29, :392:{23,50}, :398:33, :404:33, :413:36, :425:29
+                                                                                _T_74 | axi_req_bits_rw);	// Cache.scala:64:24, :141:34, :162:18, :311:29, :398:{23,50}, :404:33, :410:33, :419:36, :431:29
       end
-      if (_T & io_cpu_req_valid & (|io_cpu_req_bits_mask) & _T_3)	// Cache.scala:123:26, :127:28, :158:18, :166:35, :168:43
-        whitNum <= ~hit0;	// Cache.scala:123:26, :127:28, :181:35, :182:37, :187:37
+      if (_GEN_27) begin	// Cache.scala:67:18, :162:18, :171:35
+        addr <= io_cpu_req_bits_addr;	// Cache.scala:118:23
+        data <= io_cpu_req_bits_data;	// Cache.scala:119:23
+        mask <= io_cpu_req_bits_mask;	// Cache.scala:120:23
+      end
+      if (_T & io_cpu_req_valid & (|io_cpu_req_bits_mask) & _T_3)	// Cache.scala:125:26, :129:28, :162:18, :171:35, :173:43
+        whitNum <= ~hit0;	// Cache.scala:125:26, :129:28, :186:35, :187:37, :192:37
       axi_req_valid <= ~_T & (_T_5 | _T_11 | ((&state) ? ~io_axi_resp_valid : ~_T_26 & (_T_67 | _T_73 | _T_74 &
-                                                ~io_axi_resp_valid)));	// <stdin>:2506:18, :3274:18, Cache.scala:64:24, :75:23, :138:32, :155:19, :158:18, :272:50, :303:27, :307:36, :310:31, :392:50, :427:36
+                                                ~io_axi_resp_valid)));	// <stdin>:2508:18, :3281:18, Cache.scala:64:24, :75:23, :140:32, :159:19, :162:18, :278:50, :309:27, :313:36, :316:31, :398:50, :433:36
       _GEN_32 = {{{addr[31:3], 3'h0}}, {{io_axi_resp_valid ? addr[31:3] : {_TagArray_ext_R1_data, index},
                                                 3'h0}}, {{_T_9[0] ? {_TagArray_ext_R0_data, index} : addr[31:3], 3'h0}}, {{addr[31:3],
                                                 3'h0}}, {{io_axi_resp_valid ? addr[31:3] : {_TagArray_ext_R3_data, index}, 3'h0}},
                                                 {{_T_71[0] ? {_TagArray_ext_R2_data, index} : addr[31:3], 3'h0}}, {axi_req_bits_addr},
-                                                {axi_req_bits_addr}};	// Cache.scala:64:24, :68:20, :75:23, :116:23, :140:36, :158:18, :272:{23,50}, :276:35, :283:{35,46}, :289:31, :294:36, :298:{35,46}, :304:{31,42}, :392:{23,50}, :396:35, :403:{35,46}, :409:31, :413:36, :417:{35,46}, :424:{31,42}, Cat.scala:33:92
-      axi_req_bits_addr <= _GEN_32[state];	// Cache.scala:64:24, :140:36, :158:18, :272:50, :294:36, :304:31, :392:50, :413:36, :424:31
+                                                {axi_req_bits_addr}};	// Cache.scala:64:24, :68:20, :75:23, :118:23, :142:36, :162:18, :278:{23,50}, :282:35, :289:{35,46}, :295:31, :300:36, :304:{35,46}, :310:{31,42}, :398:{23,50}, :402:35, :409:{35,46}, :415:31, :419:36, :423:{35,46}, :430:{31,42}, Cat.scala:33:92
+      axi_req_bits_addr <= _GEN_32[state];	// Cache.scala:64:24, :142:36, :162:18, :278:50, :300:36, :310:31, :398:50, :419:36, :430:31
       _GEN_33 = {{axi_req_bits_data}, {_DataArray_ext_R2_data}, {_T_9[0] ? _DataArray_ext_R1_data :
                                                 axi_req_bits_data}, {axi_req_bits_data}, {_DataArray_ext_R4_data}, {_T_71[0] ?
-                                                _DataArray_ext_R3_data : axi_req_bits_data}, {axi_req_bits_data}, {axi_req_bits_data}};	// Cache.scala:77:32, :141:36, :158:18, :272:{23,50}, :277:35, :290:31, :392:{23,50}, :397:35, :410:31
-      axi_req_bits_data <= _GEN_33[state];	// Cache.scala:64:24, :141:36, :158:18, :272:50, :290:31, :392:50, :410:31
+                                                _DataArray_ext_R3_data : axi_req_bits_data}, {axi_req_bits_data}, {axi_req_bits_data}};	// Cache.scala:77:32, :143:36, :162:18, :278:{23,50}, :283:35, :296:31, :398:{23,50}, :403:35, :416:31
+      axi_req_bits_data <= _GEN_33[state];	// Cache.scala:64:24, :143:36, :162:18, :278:50, :296:31, :398:50, :416:31
     end
-    if (_GEN_27) begin	// Cache.scala:67:18, :158:18, :166:35
+    if (_GEN_27) begin	// Cache.scala:67:18, :162:18, :171:35
       tag <= io_cpu_req_bits_addr[31:11];	// Cache.scala:67:18, :91:82
       index <= io_cpu_req_bits_addr[10:3];	// Cache.scala:68:20, :91:43
     end
-    if (_T) begin	// Cache.scala:158:18
+    if (_T) begin	// Cache.scala:162:18
       if (io_cpu_req_valid) begin
-        if (|io_cpu_req_bits_mask) begin	// Cache.scala:168:43
-          if (_T_3)	// Cache.scala:127:28
-            offset <= io_cpu_req_bits_addr[2:0];	// Cache.scala:69:21, :175:55
-          else	// Cache.scala:127:28
-            offset <= io_cpu_req_bits_addr[2:0];	// Cache.scala:69:21, :198:55
+        if (|io_cpu_req_bits_mask) begin	// Cache.scala:173:43
+          if (_T_3)	// Cache.scala:129:28
+            offset <= io_cpu_req_bits_addr[2:0];	// Cache.scala:69:21, :180:55
+          else	// Cache.scala:129:28
+            offset <= io_cpu_req_bits_addr[2:0];	// Cache.scala:69:21, :203:55
         end
-        else if (_T_3)	// Cache.scala:127:28, :168:43
-          offset <= io_cpu_req_bits_addr[2:0];	// Cache.scala:69:21, :208:55
-        else	// Cache.scala:127:28, :168:43
-          offset <= io_cpu_req_bits_addr[2:0];	// Cache.scala:69:21, :256:55
+        else if (_T_3)	// Cache.scala:129:28, :173:43
+          offset <= io_cpu_req_bits_addr[2:0];	// Cache.scala:69:21, :213:55
+        else	// Cache.scala:129:28, :173:43
+          offset <= io_cpu_req_bits_addr[2:0];	// Cache.scala:69:21, :262:55
       end
       else
         offset <= 3'h0;	// Cache.scala:64:24, :69:21
     end
-    victim <= ~_T & (_T_5 | ~(_T_11 | (&state) | _T_26 | ~_T_67) ? _GEN : victim);	// <stdin>:2506:18, :3274:18, Cache.scala:64:24, :75:23, :113:21, :158:18, :161:20, :270:20
+    victim <= ~_T & (_T_5 | ~(_T_11 | (&state) | _T_26 | ~_T_67) ? _GEN : victim);	// <stdin>:2508:18, :3281:18, Cache.scala:64:24, :75:23, :115:21, :162:18, :165:20, :276:20
   end // always @(posedge)
-  `ifndef SYNTHESIS	// <stdin>:2435:10, :3203:10
-    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:2435:10, :3203:10
-      `FIRRTL_BEFORE_INITIAL	// <stdin>:2435:10, :3203:10
+  `ifndef SYNTHESIS	// <stdin>:2435:10, :3208:10
+    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:2435:10, :3208:10
+      `FIRRTL_BEFORE_INITIAL	// <stdin>:2435:10, :3208:10
     `endif // FIRRTL_BEFORE_INITIAL
-    initial begin	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_0;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_1;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_2;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_3;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_4;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_5;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_6;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_7;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_8;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_9;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_10;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_11;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_12;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_13;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_14;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_15;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_16;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_17;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_18;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_19;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_20;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_21;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_22;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_23;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_24;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_25;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_26;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_27;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_28;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_29;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_30;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_31;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_32;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_33;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_34;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_35;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_36;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_37;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_38;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_39;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_40;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_41;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_42;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_43;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_44;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_45;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_46;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_47;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_48;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_49;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_50;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_51;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_52;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_53;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_54;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_55;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_56;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_57;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_58;	// <stdin>:2435:10, :3203:10
-      automatic logic [31:0] _RANDOM_59;	// <stdin>:2435:10, :3203:10
-      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:2435:10, :3203:10
-        `INIT_RANDOM_PROLOG_	// <stdin>:2435:10, :3203:10
+    initial begin	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_0;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_1;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_2;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_3;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_4;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_5;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_6;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_7;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_8;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_9;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_10;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_11;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_12;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_13;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_14;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_15;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_16;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_17;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_18;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_19;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_20;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_21;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_22;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_23;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_24;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_25;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_26;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_27;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_28;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_29;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_30;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_31;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_32;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_33;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_34;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_35;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_36;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_37;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_38;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_39;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_40;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_41;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_42;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_43;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_44;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_45;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_46;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_47;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_48;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_49;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_50;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_51;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_52;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_53;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_54;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_55;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_56;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_57;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_58;	// <stdin>:2435:10, :3208:10
+      automatic logic [31:0] _RANDOM_59;	// <stdin>:2435:10, :3208:10
+      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:2435:10, :3208:10
+        `INIT_RANDOM_PROLOG_	// <stdin>:2435:10, :3208:10
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// <stdin>:2435:10, :3203:10
-        _RANDOM_0 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_1 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_2 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_3 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_4 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_5 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_6 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_7 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_8 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_9 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_10 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_11 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_12 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_13 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_14 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_15 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_16 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_17 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_18 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_19 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_20 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_21 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_22 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_23 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_24 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_25 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_26 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_27 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_28 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_29 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_30 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_31 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_32 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_33 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_34 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_35 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_36 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_37 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_38 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_39 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_40 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_41 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_42 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_43 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_44 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_45 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_46 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_47 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_48 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_49 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_50 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_51 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_52 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_53 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_54 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_55 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_56 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_57 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_58 = `RANDOM;	// <stdin>:2435:10, :3203:10
-        _RANDOM_59 = `RANDOM;	// <stdin>:2435:10, :3203:10
+      `ifdef RANDOMIZE_REG_INIT	// <stdin>:2435:10, :3208:10
+        _RANDOM_0 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_1 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_2 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_3 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_4 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_5 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_6 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_7 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_8 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_9 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_10 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_11 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_12 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_13 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_14 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_15 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_16 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_17 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_18 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_19 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_20 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_21 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_22 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_23 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_24 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_25 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_26 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_27 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_28 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_29 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_30 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_31 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_32 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_33 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_34 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_35 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_36 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_37 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_38 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_39 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_40 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_41 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_42 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_43 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_44 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_45 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_46 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_47 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_48 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_49 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_50 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_51 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_52 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_53 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_54 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_55 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_56 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_57 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_58 = `RANDOM;	// <stdin>:2435:10, :3208:10
+        _RANDOM_59 = `RANDOM;	// <stdin>:2435:10, :3208:10
         state = _RANDOM_0[2:0];	// Cache.scala:64:24
         tag = _RANDOM_0[23:3];	// Cache.scala:64:24, :67:18
         index = _RANDOM_0[31:24];	// Cache.scala:64:24, :68:20
@@ -2090,57 +2093,58 @@ module Cache(	// <stdin>:2435:10, :3203:10
         replace = {_RANDOM_33[31:3], _RANDOM_34, _RANDOM_35, _RANDOM_36, _RANDOM_37, _RANDOM_38, _RANDOM_39,
                                                                 _RANDOM_40, _RANDOM_41, _RANDOM_42, _RANDOM_43, _RANDOM_44, _RANDOM_45, _RANDOM_46,
                                                                 _RANDOM_47, _RANDOM_48, _RANDOM_49[2:0]};	// Cache.scala:72:24, :73:26
-        victim = _RANDOM_49[3];	// Cache.scala:73:26, :113:21
-        addr = {_RANDOM_49[31:4], _RANDOM_50[3:0]};	// Cache.scala:73:26, :116:23
-        data = {_RANDOM_50[31:4], _RANDOM_51, _RANDOM_52[3:0]};	// Cache.scala:116:23, :117:23
-        mask = _RANDOM_52[11:4];	// Cache.scala:117:23, :118:23
-        inst_type = _RANDOM_52[12];	// Cache.scala:117:23, :120:28
-        whitNum = _RANDOM_54[13];	// Cache.scala:123:26
-        cpu_resp_valid = _RANDOM_54[14];	// Cache.scala:123:26, :136:33
-        cpu_resp_bits_data = {_RANDOM_54[31:15], _RANDOM_55, _RANDOM_56[14:0]};	// Cache.scala:123:26, :137:37
-        axi_req_valid = _RANDOM_56[15];	// Cache.scala:137:37, :138:32
-        axi_req_bits_rw = _RANDOM_56[16];	// Cache.scala:137:37, :139:34
-        axi_req_bits_addr = {_RANDOM_56[31:17], _RANDOM_57[16:0]};	// Cache.scala:137:37, :140:36
-        axi_req_bits_data = {_RANDOM_57[31:17], _RANDOM_58, _RANDOM_59[16:0]};	// Cache.scala:140:36, :141:36
+        inDataOneArray = _RANDOM_49[3];	// Cache.scala:73:26, :103:33
+        victim = _RANDOM_49[4];	// Cache.scala:73:26, :115:21
+        addr = {_RANDOM_49[31:5], _RANDOM_50[4:0]};	// Cache.scala:73:26, :118:23
+        data = {_RANDOM_50[31:5], _RANDOM_51, _RANDOM_52[4:0]};	// Cache.scala:118:23, :119:23
+        mask = _RANDOM_52[12:5];	// Cache.scala:119:23, :120:23
+        inst_type = _RANDOM_52[13];	// Cache.scala:119:23, :122:28
+        whitNum = _RANDOM_54[14];	// Cache.scala:125:26
+        cpu_resp_valid = _RANDOM_54[15];	// Cache.scala:125:26, :138:33
+        cpu_resp_bits_data = {_RANDOM_54[31:16], _RANDOM_55, _RANDOM_56[15:0]};	// Cache.scala:125:26, :139:37
+        axi_req_valid = _RANDOM_56[16];	// Cache.scala:139:37, :140:32
+        axi_req_bits_rw = _RANDOM_56[17];	// Cache.scala:139:37, :141:34
+        axi_req_bits_addr = {_RANDOM_56[31:18], _RANDOM_57[17:0]};	// Cache.scala:139:37, :142:36
+        axi_req_bits_data = {_RANDOM_57[31:18], _RANDOM_58, _RANDOM_59[17:0]};	// Cache.scala:142:36, :143:36
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:2435:10, :3203:10
-      `FIRRTL_AFTER_INITIAL	// <stdin>:2435:10, :3203:10
+    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:2435:10, :3208:10
+      `FIRRTL_AFTER_INITIAL	// <stdin>:2435:10, :3208:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   TagArray_combMem TagArray_ext (	// Cache.scala:75:23
-    .R0_addr (_GEN_7 + _GEN_8),	// Cache.scala:272:34, :276:61
-    .R0_en   (_GEN_9),	// Cache.scala:75:23, :158:18
+    .R0_addr (_GEN_7 + _GEN_8),	// Cache.scala:278:34, :282:61
+    .R0_en   (_GEN_9),	// Cache.scala:75:23, :162:18
     .R0_clk  (clock),
-    .R1_addr (_GEN_7 + _GEN_10),	// Cache.scala:272:34, :289:57
-    .R1_en   (_GEN_11),	// Cache.scala:75:23, :158:18
+    .R1_addr (_GEN_7 + _GEN_10),	// Cache.scala:278:34, :295:57
+    .R1_en   (_GEN_11),	// Cache.scala:75:23, :162:18
     .R1_clk  (clock),
-    .R2_addr (_GEN_7 + _GEN_8),	// Cache.scala:272:34, :396:61
-    .R2_en   (_GEN_17),	// Cache.scala:75:23, :158:18
+    .R2_addr (_GEN_7 + _GEN_8),	// Cache.scala:278:34, :402:61
+    .R2_en   (_GEN_17),	// Cache.scala:75:23, :162:18
     .R2_clk  (clock),
-    .R3_addr (_GEN_7 + _GEN_10),	// Cache.scala:272:34, :289:57, :409:57
-    .R3_en   (_GEN_18),	// Cache.scala:75:23, :158:18
+    .R3_addr (_GEN_7 + _GEN_10),	// Cache.scala:278:34, :295:57, :415:57
+    .R3_en   (_GEN_18),	// Cache.scala:75:23, :162:18
     .R3_clk  (clock),
-    .R4_addr ({io_cpu_req_bits_addr[10:3], 1'h0}),	// <stdin>:2435:10, :3203:10, Cache.scala:91:{22,43}
-    .R4_en   (1'h1),	// <stdin>:2435:10, :3203:10
+    .R4_addr ({io_cpu_req_bits_addr[10:3], 1'h0}),	// <stdin>:2435:10, :3208:10, Cache.scala:91:{22,43}
+    .R4_en   (1'h1),	// <stdin>:2435:10, :3208:10
     .R4_clk  (clock),
     .R5_addr (_GEN_0 + 9'h1),	// Cache.scala:92:57
-    .R5_en   (1'h1),	// <stdin>:2435:10, :3203:10
+    .R5_en   (1'h1),	// <stdin>:2435:10, :3208:10
     .R5_clk  (clock),
-    .W0_addr (_GEN_7 + 9'h1),	// Cache.scala:92:57, :272:34, :319:42
-    .W0_en   (_GEN_14),	// Cache.scala:75:23, :158:18
+    .W0_addr (_GEN_7 + 9'h1),	// Cache.scala:92:57, :278:34, :325:42
+    .W0_en   (_GEN_14),	// Cache.scala:75:23, :162:18
     .W0_clk  (clock),
     .W0_data (tag),	// Cache.scala:67:18
-    .W1_addr ({index, 1'h0}),	// <stdin>:2435:10, :3203:10, Cache.scala:68:20, :328:29
-    .W1_en   (_GEN_16),	// Cache.scala:75:23, :158:18
+    .W1_addr ({index, 1'h0}),	// <stdin>:2435:10, :3208:10, Cache.scala:68:20, :334:29
+    .W1_en   (_GEN_16),	// Cache.scala:75:23, :162:18
     .W1_clk  (clock),
     .W1_data (tag),	// Cache.scala:67:18
-    .W2_addr (_GEN_7 + 9'h1),	// Cache.scala:92:57, :272:34, :440:42
-    .W2_en   (_GEN_20),	// Cache.scala:75:23, :158:18
+    .W2_addr (_GEN_7 + 9'h1),	// Cache.scala:92:57, :278:34, :446:42
+    .W2_en   (_GEN_20),	// Cache.scala:75:23, :162:18
     .W2_clk  (clock),
     .W2_data (tag),	// Cache.scala:67:18
-    .W3_addr ({index, 1'h0}),	// <stdin>:2435:10, :3203:10, Cache.scala:68:20, :457:29
-    .W3_en   (_GEN_26),	// Cache.scala:75:23, :158:18
+    .W3_addr ({index, 1'h0}),	// <stdin>:2435:10, :3208:10, Cache.scala:68:20, :463:29
+    .W3_en   (_GEN_26),	// Cache.scala:75:23, :162:18
     .W3_clk  (clock),
     .W3_data (tag),	// Cache.scala:67:18
     .R0_data (_TagArray_ext_R0_data),
@@ -2152,60 +2156,60 @@ module Cache(	// <stdin>:2435:10, :3203:10
   );
   DataArray_combMem DataArray_ext (	// Cache.scala:77:32
     .R0_addr (_T & io_cpu_req_valid ? ((|io_cpu_req_bits_mask) ? (_T_3 ? _GEN_0 : 9'h0) : _T_3 & hit0 ?
-                _GEN_0 : 9'h0) : 9'h0),	// Cache.scala:92:57, :101:22, :127:28, :158:18, :166:35, :168:{43,47}, :169:38, :181:35, :205:38, :210:35, :373:70
-    .R0_en   (_T & io_cpu_req_valid & ((|io_cpu_req_bits_mask) | hit0) & _T_3),	// Cache.scala:100:21, :127:28, :158:18, :166:35, :168:{43,47}, :169:38, :205:38
+                _GEN_0 : 9'h0) : 9'h0),	// Cache.scala:92:57, :101:22, :129:28, :162:18, :171:35, :173:{43,47}, :174:38, :186:35, :210:38, :215:35, :379:70
+    .R0_en   (_T & io_cpu_req_valid & ((|io_cpu_req_bits_mask) | hit0) & _T_3),	// Cache.scala:100:21, :129:28, :162:18, :171:35, :173:{43,47}, :174:38, :210:38
     .R0_clk  (clock),
-    .R1_addr (_GEN_7 + _GEN_8),	// Cache.scala:272:34, :277:58
-    .R1_en   (_GEN_9),	// Cache.scala:75:23, :158:18
+    .R1_addr (_GEN_7 + _GEN_8),	// Cache.scala:278:34, :283:58
+    .R1_en   (_GEN_9),	// Cache.scala:75:23, :162:18
     .R1_clk  (clock),
-    .R2_addr (_GEN_7 + _GEN_10),	// Cache.scala:272:34, :289:57, :290:54
-    .R2_en   (_GEN_11),	// Cache.scala:75:23, :158:18
+    .R2_addr (_GEN_7 + _GEN_10),	// Cache.scala:278:34, :295:57, :296:54
+    .R2_en   (_GEN_11),	// Cache.scala:75:23, :162:18
     .R2_clk  (clock),
-    .R3_addr (_GEN_7 + _GEN_8),	// Cache.scala:272:34, :397:58
-    .R3_en   (_GEN_17),	// Cache.scala:75:23, :158:18
+    .R3_addr (_GEN_7 + _GEN_8),	// Cache.scala:278:34, :403:58
+    .R3_en   (_GEN_17),	// Cache.scala:75:23, :162:18
     .R3_clk  (clock),
-    .R4_addr (_GEN_7 + _GEN_10),	// Cache.scala:272:34, :289:57, :410:54
-    .R4_en   (_GEN_18),	// Cache.scala:75:23, :158:18
+    .R4_addr (_GEN_7 + _GEN_10),	// Cache.scala:278:34, :295:57, :416:54
+    .R4_en   (_GEN_18),	// Cache.scala:75:23, :162:18
     .R4_clk  (clock),
-    .R5_addr (_GEN_0 + 9'h1),	// Cache.scala:92:57, :235:117
-    .R5_en   (_T & io_cpu_req_valid & ~(|io_cpu_req_bits_mask) & _T_3 & ~hit0 & inst_type & _T_25),	// Cache.scala:77:32, :120:28, :127:28, :147:20, :158:18, :166:35, :168:{43,47}, :181:35, :182:37, :187:37, :205:38
+    .R5_addr (_GEN_0 + 9'h1),	// Cache.scala:92:57, :241:117
+    .R5_en   (_T & io_cpu_req_valid & ~(|io_cpu_req_bits_mask) & _T_3 & ~hit0 & inst_type & _T_25),	// Cache.scala:77:32, :122:28, :129:28, :149:35, :162:18, :169:28, :171:35, :173:{43,47}, :186:35, :187:37, :192:37, :210:38
     .R5_clk  (clock),
-    .R6_addr (_GEN_0 + 9'h1),	// Cache.scala:92:57, :237:117
-    .R6_en   (_T & io_cpu_req_valid & ~(|io_cpu_req_bits_mask) & _T_3 & ~hit0 & inst_type & ~_T_25),	// Cache.scala:77:32, :120:28, :127:28, :147:20, :158:18, :166:35, :168:{43,47}, :181:35, :182:37, :187:37, :205:38, :234:53, :237:83
+    .R6_addr (_GEN_0 + 9'h1),	// Cache.scala:92:57, :243:117
+    .R6_en   (_T & io_cpu_req_valid & ~(|io_cpu_req_bits_mask) & _T_3 & ~hit0 & inst_type & ~_T_25),	// Cache.scala:77:32, :122:28, :129:28, :149:35, :162:18, :169:28, :171:35, :173:{43,47}, :186:35, :187:37, :192:37, :210:38, :240:53, :243:83
     .R6_clk  (clock),
-    .R7_addr (_GEN_0 + 9'h1),	// Cache.scala:92:57, :241:99
-    .R7_en   (_T & io_cpu_req_valid & ~(|io_cpu_req_bits_mask) & _T_3 & ~hit0 & ~inst_type),	// Cache.scala:77:32, :120:28, :127:28, :158:18, :166:35, :168:{43,47}, :181:35, :182:37, :187:37, :205:38, :233:44, :241:64
+    .R7_addr (_GEN_0 + 9'h1),	// Cache.scala:92:57, :247:99
+    .R7_en   (_T & io_cpu_req_valid & ~(|io_cpu_req_bits_mask) & _T_3 & ~hit0 & ~inst_type),	// Cache.scala:77:32, :122:28, :129:28, :162:18, :169:28, :171:35, :173:{43,47}, :186:35, :187:37, :192:37, :210:38, :239:44, :247:64
     .R7_clk  (clock),
-    .W0_addr (_GEN_7 + 9'h1),	// Cache.scala:92:57, :272:34, :320:43
-    .W0_en   (_GEN_14),	// Cache.scala:75:23, :158:18
+    .W0_addr (_GEN_7 + 9'h1),	// Cache.scala:92:57, :278:34, :326:43
+    .W0_en   (_GEN_14),	// Cache.scala:75:23, :162:18
     .W0_clk  (clock),
     .W0_data (io_axi_resp_bits_data),
-    .W1_addr ({index, 1'h0}),	// <stdin>:2435:10, :3203:10, Cache.scala:68:20, :329:30
-    .W1_en   (_GEN_16),	// Cache.scala:75:23, :158:18
+    .W1_addr ({index, 1'h0}),	// <stdin>:2435:10, :3208:10, Cache.scala:68:20, :335:30
+    .W1_en   (_GEN_16),	// Cache.scala:75:23, :162:18
     .W1_clk  (clock),
     .W1_data (io_axi_resp_bits_data),
-    .W2_addr (_GEN_7 + 9'h1),	// Cache.scala:92:57, :272:34, :352:39
-    .W2_en   (~_T & ~_T_5 & ~_T_11 & ~(&state) & _T_26 & whitNum),	// Cache.scala:64:24, :75:23, :77:32, :123:26, :158:18
+    .W2_addr (_GEN_7 + 9'h1),	// Cache.scala:92:57, :278:34, :358:39
+    .W2_en   (~_T & ~_T_5 & ~_T_11 & ~(&state) & _T_26 & whitNum),	// Cache.scala:64:24, :75:23, :77:32, :125:26, :162:18
     .W2_clk  (clock),
     .W2_data (mask == 8'h1 ? {56'h0, data[7:0]} : mask == 8'h3 ? {48'h0, data[15:0]} : mask == 8'hF ?
-                {32'h0, data[31:0]} : (&mask) ? data : 64'h0),	// Cache.scala:117:23, :118:23, :355:{31,82}, :356:{31,83}, :357:{31,83}, :358:31, :371:70, :372:70, :373:70, Cat.scala:33:92, Mux.scala:101:16
-    .W3_addr ({index, 1'h0}),	// <stdin>:2435:10, :3203:10, Cache.scala:68:20, :368:26
-    .W3_en   (~_T & ~_T_5 & ~_T_11 & ~(&state) & _T_26 & ~whitNum),	// Cache.scala:64:24, :75:23, :77:32, :123:26, :158:18, :351:26, :368:26
+                {32'h0, data[31:0]} : (&mask) ? data : 64'h0),	// Cache.scala:119:23, :120:23, :361:{31,82}, :362:{31,83}, :363:{31,83}, :364:31, :377:70, :378:70, :379:70, Cat.scala:33:92, Mux.scala:101:16
+    .W3_addr ({index, 1'h0}),	// <stdin>:2435:10, :3208:10, Cache.scala:68:20, :374:26
+    .W3_en   (~_T & ~_T_5 & ~_T_11 & ~(&state) & _T_26 & ~whitNum),	// Cache.scala:64:24, :75:23, :77:32, :125:26, :162:18, :357:26, :374:26
     .W3_clk  (clock),
     .W3_data (mask == 8'h1 ? {56'h0, data[7:0]} : mask == 8'h3 ? {48'h0, data[15:0]} : mask == 8'hF ?
-                {32'h0, data[31:0]} : (&mask) ? data : 64'h0),	// Cache.scala:117:23, :118:23, :355:31, :356:31, :357:31, :371:{31,70,82}, :372:{31,70,83}, :373:{31,70,83}, :374:31, Cat.scala:33:92, Mux.scala:101:16
-    .W4_addr (_GEN_7 + 9'h1),	// Cache.scala:92:57, :272:34, :441:43
-    .W4_en   (_GEN_20),	// Cache.scala:75:23, :158:18
+                {32'h0, data[31:0]} : (&mask) ? data : 64'h0),	// Cache.scala:119:23, :120:23, :361:31, :362:31, :363:31, :377:{31,70,82}, :378:{31,70,83}, :379:{31,70,83}, :380:31, Cat.scala:33:92, Mux.scala:101:16
+    .W4_addr (_GEN_7 + 9'h1),	// Cache.scala:92:57, :278:34, :447:43
+    .W4_en   (_GEN_20),	// Cache.scala:75:23, :162:18
     .W4_clk  (clock),
     .W4_data (mask == 8'h1 ? {io_axi_resp_bits_data[63:8], data[7:0]} : mask == 8'h3 ?
                 {io_axi_resp_bits_data[63:16], data[15:0]} : mask == 8'hF ? {io_axi_resp_bits_data[63:32],
-                data[31:0]} : (&mask) ? io_axi_resp_bits_data : 64'h0),	// Cache.scala:117:23, :118:23, :355:31, :356:31, :357:31, :444:{35,82,94}, :445:{35,82,95}, :446:{35,82,95}, :447:35, Cat.scala:33:92, Mux.scala:101:16
-    .W5_addr ({index, 1'h0}),	// <stdin>:2435:10, :3203:10, Cache.scala:68:20, :458:30
-    .W5_en   (_GEN_26),	// Cache.scala:75:23, :158:18
+                data[31:0]} : (&mask) ? io_axi_resp_bits_data : 64'h0),	// Cache.scala:119:23, :120:23, :361:31, :362:31, :363:31, :450:{35,82,94}, :451:{35,82,95}, :452:{35,82,95}, :453:35, Cat.scala:33:92, Mux.scala:101:16
+    .W5_addr ({index, 1'h0}),	// <stdin>:2435:10, :3208:10, Cache.scala:68:20, :464:30
+    .W5_en   (_GEN_26),	// Cache.scala:75:23, :162:18
     .W5_clk  (clock),
     .W5_data (mask == 8'h1 ? {io_axi_resp_bits_data[63:8], data[7:0]} : mask == 8'h3 ?
                 {io_axi_resp_bits_data[63:16], data[15:0]} : mask == 8'hF ? {io_axi_resp_bits_data[63:32],
-                data[31:0]} : (&mask) ? io_axi_resp_bits_data : 64'h0),	// Cache.scala:117:23, :118:23, :355:31, :356:31, :357:31, :461:{35,82,94}, :462:{35,82,95}, :463:{35,82,95}, :464:35, Cat.scala:33:92, Mux.scala:101:16
+                data[31:0]} : (&mask) ? io_axi_resp_bits_data : 64'h0),	// Cache.scala:119:23, :120:23, :361:31, :362:31, :363:31, :467:{35,82,94}, :468:{35,82,95}, :469:{35,82,95}, :470:35, Cat.scala:33:92, Mux.scala:101:16
     .R0_data (_DataArray_ext_R0_data),
     .R1_data (_DataArray_ext_R1_data),
     .R2_data (_DataArray_ext_R2_data),
@@ -2215,26 +2219,26 @@ module Cache(	// <stdin>:2435:10, :3203:10
     .R6_data (_DataArray_ext_R6_data),
     .R7_data (_DataArray_ext_R7_data)
   );
-  assign io_cpu_resp_valid = cpu_resp_valid;	// <stdin>:2435:10, :3203:10, Cache.scala:136:33
-  assign io_cpu_resp_bits_data = inst_type ? {32'h0, _T_25 ? _DataArray_ext_R0_data[31:0] : _DataArray_ext_R0_data[63:32]} :
-                cpu_resp_bits_data;	// <stdin>:2435:10, :3203:10, Cache.scala:77:32, :120:28, :137:37, :146:33, :147:{12,20,41,61}, :373:70
-  assign io_axi_req_valid = axi_req_valid;	// <stdin>:2435:10, :3203:10, Cache.scala:138:32
-  assign io_axi_req_bits_rw = axi_req_bits_rw;	// <stdin>:2435:10, :3203:10, Cache.scala:139:34
-  assign io_axi_req_bits_addr = axi_req_bits_addr;	// <stdin>:2435:10, :3203:10, Cache.scala:140:36
-  assign io_axi_req_bits_data = axi_req_bits_data;	// <stdin>:2435:10, :3203:10, Cache.scala:141:36
-  assign io_fccache_req = io_cpu_req_valid;	// <stdin>:2435:10, :3203:10
-  assign io_fccache_state = state;	// <stdin>:2435:10, :3203:10, Cache.scala:64:24
-  assign io_fccache_mask = io_cpu_req_bits_mask;	// <stdin>:2435:10, :3203:10
-  assign io_fccache_hit = _T_3;	// <stdin>:2435:10, :3203:10, Cache.scala:127:28
-  assign io_fccache_cpu_valid = cpu_resp_valid;	// <stdin>:2435:10, :3203:10, Cache.scala:136:33
-  assign io_fccache_axi_valid = io_axi_resp_valid;	// <stdin>:2435:10, :3203:10
+  assign io_cpu_resp_valid = cpu_resp_valid;	// <stdin>:2435:10, :3208:10, Cache.scala:138:33
+  assign io_cpu_resp_bits_data = inDataOneArray ? (inst_type ? {32'h0, _T_25 ? _DataArray_ext_R0_data[31:0] :
+                _DataArray_ext_R0_data[63:32]} : _DataArray_ext_R0_data) : cpu_resp_bits_data;	// <stdin>:2435:10, :3208:10, Cache.scala:77:32, :103:33, :122:28, :139:37, :148:33, :149:{12,27,35,56,76}, :379:70
+  assign io_axi_req_valid = axi_req_valid;	// <stdin>:2435:10, :3208:10, Cache.scala:140:32
+  assign io_axi_req_bits_rw = axi_req_bits_rw;	// <stdin>:2435:10, :3208:10, Cache.scala:141:34
+  assign io_axi_req_bits_addr = axi_req_bits_addr;	// <stdin>:2435:10, :3208:10, Cache.scala:142:36
+  assign io_axi_req_bits_data = axi_req_bits_data;	// <stdin>:2435:10, :3208:10, Cache.scala:143:36
+  assign io_fccache_req = io_cpu_req_valid;	// <stdin>:2435:10, :3208:10
+  assign io_fccache_state = state;	// <stdin>:2435:10, :3208:10, Cache.scala:64:24
+  assign io_fccache_mask = io_cpu_req_bits_mask;	// <stdin>:2435:10, :3208:10
+  assign io_fccache_hit = _T_3;	// <stdin>:2435:10, :3208:10, Cache.scala:129:28
+  assign io_fccache_cpu_valid = cpu_resp_valid;	// <stdin>:2435:10, :3208:10, Cache.scala:138:33
+  assign io_fccache_axi_valid = io_axi_resp_valid;	// <stdin>:2435:10, :3208:10
 endmodule
 
 // external module DebugInterface
 
 // external module Interact
 
-module Core(	// <stdin>:3999:10
+module Core(	// <stdin>:4009:10
   input         clock,
                 reset,
                 io_AXI_Interface_aw_ready,
@@ -2428,35 +2432,35 @@ module Core(	// <stdin>:3999:10
   wire [63:0] _DI_io_mem_addr_T = _excute_io_waddr | _excute_io_raddr;	// Core.scala:27:24, :442:52
   always @(posedge clock) begin
     if (reset) begin
-      fdreg_pc <= 32'h80000000;	// <stdin>:4020:23, Core.scala:33:24
+      fdreg_pc <= 32'h80000000;	// <stdin>:4030:23, Core.scala:33:24
       dereg_op_a <= 64'h0;	// Core.scala:39:24, :432:33
       dereg_op_b <= 64'h0;	// Core.scala:39:24, :432:33
-      dereg_reg_waddr <= 5'h0;	// <stdin>:4036:27, Core.scala:39:24
+      dereg_reg_waddr <= 5'h0;	// <stdin>:4046:27, Core.scala:39:24
       dereg_branch_type <= 1'h0;	// Core.scala:39:24, :459:19
       dereg_branch_addr <= 64'h0;	// Core.scala:39:24, :432:33
-      dereg_alu_op <= 6'h3F;	// <stdin>:4033:27, Core.scala:39:24
-      dereg_shamt <= 6'h0;	// <stdin>:4032:23, Core.scala:39:24
-      dereg_wb_type <= 2'h0;	// <stdin>:4031:25, Core.scala:39:24
-      dereg_sd_type <= 3'h0;	// <stdin>:3999:10, Core.scala:39:24
+      dereg_alu_op <= 6'h3F;	// <stdin>:4043:27, Core.scala:39:24
+      dereg_shamt <= 6'h0;	// <stdin>:4042:23, Core.scala:39:24
+      dereg_wb_type <= 2'h0;	// <stdin>:4041:25, Core.scala:39:24
+      dereg_sd_type <= 3'h0;	// <stdin>:4009:10, Core.scala:39:24
       dereg_reg2_rdata <= 64'h0;	// Core.scala:39:24, :432:33
-      dereg_ld_type <= 3'h0;	// <stdin>:3999:10, Core.scala:39:24
+      dereg_ld_type <= 3'h0;	// <stdin>:4009:10, Core.scala:39:24
       dereg_csr_t <= 64'h0;	// Core.scala:39:24, :432:33
-      dereg_csr_waddr <= 12'h0;	// <stdin>:4026:27, Core.scala:39:24
+      dereg_csr_waddr <= 12'h0;	// <stdin>:4036:27, Core.scala:39:24
       dereg_csr_wen <= 1'h0;	// Core.scala:39:24, :459:19
       emreg_reg_wdata <= 64'h0;	// Core.scala:57:24, :432:33
-      emreg_reg_waddr <= 5'h0;	// <stdin>:4036:27, Core.scala:57:24
-      emreg_wb_type <= 2'h0;	// <stdin>:4031:25, Core.scala:57:24
-      emreg_ld_type <= 3'h0;	// <stdin>:3999:10, Core.scala:57:24
-      emreg_ld_addr_lowbit <= 3'h0;	// <stdin>:3999:10, Core.scala:57:24
+      emreg_reg_waddr <= 5'h0;	// <stdin>:4046:27, Core.scala:57:24
+      emreg_wb_type <= 2'h0;	// <stdin>:4041:25, Core.scala:57:24
+      emreg_ld_type <= 3'h0;	// <stdin>:4009:10, Core.scala:57:24
+      emreg_ld_addr_lowbit <= 3'h0;	// <stdin>:4009:10, Core.scala:57:24
       emreg_csr_wdata <= 64'h0;	// Core.scala:57:24, :432:33
       emreg_csr_wen <= 1'h0;	// Core.scala:57:24, :459:19
-      emreg_csr_waddr <= 12'h0;	// <stdin>:4026:27, Core.scala:57:24
+      emreg_csr_waddr <= 12'h0;	// <stdin>:4036:27, Core.scala:57:24
       mwreg_reg_wdata <= 64'h0;	// Core.scala:71:24, :432:33
-      mwreg_reg_waddr <= 5'h0;	// <stdin>:4036:27, Core.scala:71:24
-      mwreg_wb_type <= 2'h0;	// <stdin>:4031:25, Core.scala:71:24
+      mwreg_reg_waddr <= 5'h0;	// <stdin>:4046:27, Core.scala:71:24
+      mwreg_wb_type <= 2'h0;	// <stdin>:4041:25, Core.scala:71:24
       mwreg_csr_wdata <= 64'h0;	// Core.scala:71:24, :432:33
       mwreg_csr_wen <= 1'h0;	// Core.scala:71:24, :459:19
-      mwreg_csr_waddr <= 12'h0;	// <stdin>:4026:27, Core.scala:71:24
+      mwreg_csr_waddr <= 12'h0;	// <stdin>:4036:27, Core.scala:71:24
     end
     else begin
       fdreg_pc <= _fetch_io_fdio_pc;	// Core.scala:25:23, :33:24
@@ -2466,16 +2470,16 @@ module Core(	// <stdin>:3999:10
         if (_fc_io_fcde_flush) begin	// Core.scala:92:20
           dereg_op_a <= 64'h0;	// Core.scala:39:24, :432:33
           dereg_op_b <= 64'h0;	// Core.scala:39:24, :432:33
-          dereg_reg_waddr <= 5'h0;	// <stdin>:4036:27, Core.scala:39:24
+          dereg_reg_waddr <= 5'h0;	// <stdin>:4046:27, Core.scala:39:24
           dereg_branch_addr <= 64'h0;	// Core.scala:39:24, :432:33
-          dereg_alu_op <= 6'h0;	// <stdin>:4032:23, Core.scala:39:24
-          dereg_shamt <= 6'h0;	// <stdin>:4032:23, Core.scala:39:24
-          dereg_wb_type <= 2'h0;	// <stdin>:4031:25, Core.scala:39:24
-          dereg_sd_type <= 3'h0;	// <stdin>:3999:10, Core.scala:39:24
+          dereg_alu_op <= 6'h0;	// <stdin>:4042:23, Core.scala:39:24
+          dereg_shamt <= 6'h0;	// <stdin>:4042:23, Core.scala:39:24
+          dereg_wb_type <= 2'h0;	// <stdin>:4041:25, Core.scala:39:24
+          dereg_sd_type <= 3'h0;	// <stdin>:4009:10, Core.scala:39:24
           dereg_reg2_rdata <= 64'h0;	// Core.scala:39:24, :432:33
-          dereg_ld_type <= 3'h0;	// <stdin>:3999:10, Core.scala:39:24
+          dereg_ld_type <= 3'h0;	// <stdin>:4009:10, Core.scala:39:24
           dereg_csr_t <= 64'h0;	// Core.scala:39:24, :432:33
-          dereg_csr_waddr <= 12'h0;	// <stdin>:4026:27, Core.scala:39:24
+          dereg_csr_waddr <= 12'h0;	// <stdin>:4036:27, Core.scala:39:24
         end
         else begin	// Core.scala:92:20
           dereg_op_a <= _decode_io_deio_op_a;	// Core.scala:26:24, :39:24
@@ -2530,59 +2534,59 @@ module Core(	// <stdin>:3999:10
     else	// Core.scala:92:20
       mwreg_has_inst <= _mem_io_mwio_has_inst;	// Core.scala:29:21, :71:24
   end // always @(posedge)
-  `ifndef SYNTHESIS	// <stdin>:3999:10
-    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:3999:10
-      `FIRRTL_BEFORE_INITIAL	// <stdin>:3999:10
+  `ifndef SYNTHESIS	// <stdin>:4009:10
+    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:4009:10
+      `FIRRTL_BEFORE_INITIAL	// <stdin>:4009:10
     `endif // FIRRTL_BEFORE_INITIAL
-    initial begin	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_0;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_1;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_2;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_3;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_4;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_5;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_6;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_7;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_8;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_9;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_10;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_11;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_12;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_13;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_14;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_15;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_16;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_17;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_18;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_19;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_20;	// <stdin>:3999:10
-      automatic logic [31:0] _RANDOM_21;	// <stdin>:3999:10
-      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:3999:10
-        `INIT_RANDOM_PROLOG_	// <stdin>:3999:10
+    initial begin	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_0;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_1;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_2;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_3;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_4;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_5;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_6;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_7;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_8;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_9;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_10;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_11;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_12;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_13;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_14;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_15;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_16;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_17;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_18;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_19;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_20;	// <stdin>:4009:10
+      automatic logic [31:0] _RANDOM_21;	// <stdin>:4009:10
+      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:4009:10
+        `INIT_RANDOM_PROLOG_	// <stdin>:4009:10
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// <stdin>:3999:10
-        _RANDOM_0 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_1 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_2 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_3 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_4 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_5 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_6 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_7 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_8 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_9 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_10 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_11 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_12 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_13 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_14 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_15 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_16 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_17 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_18 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_19 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_20 = `RANDOM;	// <stdin>:3999:10
-        _RANDOM_21 = `RANDOM;	// <stdin>:3999:10
+      `ifdef RANDOMIZE_REG_INIT	// <stdin>:4009:10
+        _RANDOM_0 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_1 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_2 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_3 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_4 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_5 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_6 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_7 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_8 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_9 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_10 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_11 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_12 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_13 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_14 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_15 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_16 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_17 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_18 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_19 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_20 = `RANDOM;	// <stdin>:4009:10
+        _RANDOM_21 = `RANDOM;	// <stdin>:4009:10
         fdreg_pc = _RANDOM_0;	// Core.scala:33:24
         dereg_op_a = {_RANDOM_1, _RANDOM_2};	// Core.scala:39:24
         dereg_op_b = {_RANDOM_3, _RANDOM_4};	// Core.scala:39:24
@@ -2617,8 +2621,8 @@ module Core(	// <stdin>:3999:10
         mwreg_has_inst = _RANDOM_21[23];	// Core.scala:71:24
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:3999:10
-      `FIRRTL_AFTER_INITIAL	// <stdin>:3999:10
+    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:4009:10
+      `FIRRTL_AFTER_INITIAL	// <stdin>:4009:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   Fetch fetch (	// Core.scala:25:23
@@ -2925,7 +2929,7 @@ module Core(	// <stdin>:3999:10
     .clock                     (clock),
     .reset                     (reset),
     .io_cpu_req_valid          (_fetch_io_pc_valid),	// Core.scala:25:23
-    .io_cpu_req_bits_inst_type (1'h1),	// <stdin>:3999:10
+    .io_cpu_req_bits_inst_type (1'h1),	// <stdin>:4009:10
     .io_cpu_req_bits_addr      (_fetch_io_pc_bits),	// Core.scala:25:23
     .io_cpu_req_bits_data      (64'h0),	// Core.scala:432:33
     .io_cpu_req_bits_mask      (8'h0),	// Core.scala:433:33
@@ -2997,7 +3001,7 @@ endmodule
 
 // external module Sram
 
-module Soc(	// <stdin>:4390:10
+module Soc(	// <stdin>:4400:10
   input clock,
         reset);
 
