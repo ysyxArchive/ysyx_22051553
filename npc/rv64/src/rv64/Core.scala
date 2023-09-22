@@ -425,6 +425,9 @@ class Core extends Module{
     csrs.io.timer_int := clint.io.timer_int
     
     //FlowControl
+    val master0_resp_valid = RegInit(0.B)
+    val master0_resp_data = RegInit(0.U(X_LEN.W))
+
     fc.io.fcde.jump_flag := decode.io.jump_flag
     fc.io.fcde.jump_pc := decode.io.jump_pc
     fc.io.fcde.load_use := decode.io.load_use
@@ -468,8 +471,7 @@ class Core extends Module{
     mem.io.rdata_io.valid := arbitor.io.master0.resp.valid | master0_resp_valid       //防止io读取有效时，ICache或Dcache导致的stall,产生io申请死锁
     mem.io.rdata_io.bits.data := arbitor.io.master0.resp.bits.data | master0_resp_data
     
-    val master0_resp_valid = RegInit(0.B)
-    val master0_resp_data = RegInit(0.U(X_LEN.W))
+    
     when(arbitor.io.master0.resp.valid && fc.io.fcex.stall){
         master0_resp_valid := 1.B
         master0_resp_data := arbitor.io.master0.resp.bits.data
