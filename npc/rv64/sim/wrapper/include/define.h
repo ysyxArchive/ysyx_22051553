@@ -10,9 +10,9 @@
 //开启VCD跟踪
 #define VCD_ON
 //开启访存跟踪
-// #define MTRACE
+#define MTRACE
 //开启差分测试
-#define DIFFTEST
+// #define DIFFTEST
 
 
 #endif

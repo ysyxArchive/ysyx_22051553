@@ -210,6 +210,7 @@ long long pmem_read(const svLogicVecVal* raddr){
   }
   else if(((unsigned long)raddr[0].aval) == VGACTL_ADDR){
       uint32_t vga_ctrl_bundle = SCREEN_W << 16 | SCREEN_H;
+      printf("bundle is 0x%x\n", vga_ctrl_bundle);
       return vga_ctrl_bundle;
 
   }
@@ -323,7 +324,7 @@ static int cmd_s(char *args){
   if(args == NULL){
 
     #ifdef ITRACE
-    while(decode_list.size() < 4){  //对齐dut和ref
+    while(decode_list.size() < 3){  //对齐dut和ref
       single_cycle();
     }
     #endif
@@ -348,7 +349,7 @@ static int cmd_s(char *args){
       decode_list.pop_front();
       execute_list.pop_front();
 
-      while(decode_list.size() < 4){
+      while(decode_list.size() < 3){
         single_cycle();
       }
 
@@ -359,7 +360,7 @@ static int cmd_s(char *args){
       decode_list.pop_front();
       execute_list.pop_front();
 
-      while(decode_list.size() < 4){
+      while(decode_list.size() < 3){
         single_cycle();
       }
       
@@ -392,7 +393,7 @@ static int cmd_s(char *args){
 
 
     //-----------------
-    // single_cycle();   
+    single_cycle();   
 
     #ifdef ITRACE
       
@@ -453,7 +454,7 @@ static int cmd_s(char *args){
     while(n > 0){
 
     #ifdef ITRACE
-    while(decode_list.size() < 4){  //对齐dut和ref
+    while(decode_list.size() < 3){  //对齐dut和ref
       single_cycle();
     }
     #endif
@@ -479,7 +480,7 @@ static int cmd_s(char *args){
       decode_list.pop_front();
       execute_list.pop_front();
 
-      while(decode_list.size() < 4){
+      while(decode_list.size() < 3){
         single_cycle();
       }
 
@@ -490,7 +491,7 @@ static int cmd_s(char *args){
       decode_list.pop_front();
       execute_list.pop_front();
 
-      while(decode_list.size() < 4){
+      while(decode_list.size() < 3){
         single_cycle();
       }
       
@@ -524,7 +525,7 @@ static int cmd_s(char *args){
     #endif
 
       //-----------------
-      // single_cycle();
+      single_cycle();   //用于保证没有itrace也能走下去
       #ifdef ITRACE
 
       #ifdef DIFFTEST

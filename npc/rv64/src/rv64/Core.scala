@@ -433,7 +433,7 @@ class Core extends Module{
     fc.io.fcex.jump_pc := excute.io.jump_pc
 
     fc.io.fcio.req := arbitor.io.master0.req.valid
-    fc.io.fcio.valid := arbitor.io.master0.resp.valid
+    fc.io.fcio.valid := arbitor.io.master0.resp.valid | master0_resp_valid
     
     //Icache
     Icache.io.cpu.req.valid := fetch.io.pc.valid
@@ -464,7 +464,19 @@ class Core extends Module{
     arbitor.io.master0.req.bits.mask := excute.io.wmask
     arbitor.io.master0.req.bits.rw := Mux(dereg.ld_type.orR, 1.B, 0.B)
 
-    arbitor.io.master0.resp <> mem.io.rdata_io
+
+    mem.io.rdata_io.valid := arbitor.io.master0.resp.valid | master0_resp_valid       //防止io读取有效时，ICache或Dcache导致的stall,产生io申请死锁
+    mem.io.rdata_io.bits.data := arbitor.io.master0.resp.bits.data | master0_resp_data
+    
+    val master0_resp_valid = RegInit(0.B)
+    val master0_resp_data = RegInit(0.U(X_LEN.W))
+    when(arbitor.io.master0.resp.valid && fc.io.fcex.stall){
+        master0_resp_valid := 1.B
+        master0_resp_data := arbitor.io.master0.resp.bits.data
+    }.elsewhen(!fc.io.fcex.stall){
+        master0_resp_valid := 0.B
+        master0_resp_data := 0.U
+    }
 
 
     arbitor.io.master1 <> Dcache.io.axi //先让在允许的指令获得运行数据
