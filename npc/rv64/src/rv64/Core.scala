@@ -103,6 +103,9 @@ class Core extends Module{
     //Cache
     val Icache = Module(new Cache)
     val Dcache = Module(new Cache)
+
+    //IO
+    val ioformem = Module(new IoforMem)
     
     //互联 -- 基本以被驱动方为标准
     //顶层
@@ -459,28 +462,19 @@ class Core extends Module{
     Dcache.io.cpu.resp <> mem.io.rdata
 
     Dcache.io.fccache <> fc.io.fcDcache
-    //Arbitor
     //io
-    arbitor.io.master0.req.valid := (dereg.ld_type.orR | dereg.sd_type.orR) && ((excute.io.waddr | excute.io.raddr) >= "ha0000000".U)
-    arbitor.io.master0.req.bits.addr := excute.io.waddr | excute.io.raddr
-    arbitor.io.master0.req.bits.data := excute.io.wdata
-    arbitor.io.master0.req.bits.mask := excute.io.wmask
-    arbitor.io.master0.req.bits.rw := Mux(dereg.ld_type.orR, 1.B, 0.B)
+    ioformem.io.excute.waddr := excute.io.waddr
+    ioformem.io.excute.raddr := excute.io.raddr
+    ioformem.io.excute.wdata := excute.io.wdata
+    ioformem.io.excute.wmask := excute.io.wmask
+    ioformem.io.excute.load := excute.io.deio.ld_type.orR
+    ioformem.io.excute.store := excute.io.deio.sd_type.orR
 
+    ioformem.io.fc <> fc.io.fcio
+    ioformem.io.mem <> mem.io.rdata_io
 
-    mem.io.rdata_io.valid := arbitor.io.master0.resp.valid | master0_resp_valid       //防止io读取有效时，ICache或Dcache导致的stall,产生io申请死锁
-    mem.io.rdata_io.bits.data := arbitor.io.master0.resp.bits.data | master0_resp_data
-    
-    
-    when(arbitor.io.master0.resp.valid && fc.io.fcex.stall){
-        master0_resp_valid := 1.B
-        master0_resp_data := arbitor.io.master0.resp.bits.data
-    }.elsewhen(!fc.io.fcex.stall){
-        master0_resp_valid := 0.B
-        master0_resp_data := 0.U
-    }
-
-
+    //Arbitor
+    arbitor.io.master0 <> ioformem.io.axi
     arbitor.io.master1 <> Dcache.io.axi //先让在允许的指令获得运行数据
     arbitor.io.master2 <> Icache.io.axi
 

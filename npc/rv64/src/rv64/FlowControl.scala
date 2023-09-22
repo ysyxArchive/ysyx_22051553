@@ -97,10 +97,7 @@ class FcCacheIO extends Bundle{
     val axi_valid = Bool() //用于提前释放
 }
 
-class FcioIO extends Bundle{
-    val req = Bool()
-    val valid = Bool()
-}
+
 
 
 class FCIO extends Bundle{
@@ -114,7 +111,7 @@ class FCIO extends Bundle{
 
     val fcIcache = Input(new FcCacheIO)
     val fcDcache = Input(new FcCacheIO)
-    val fcio = Input(new FcioIO)
+    val fcio = Flipped(new IOfc)
 
     val sdb_stall = Output(Bool())
 }
@@ -169,10 +166,13 @@ class FlowControl extends Module{
         Dcache_stall := 0.B
     }
 
-    when(io.fcio.valid){
-        IO_stall := 0.B
-    }.elsewhen(io.fcio.req){
+    
+    when(io.fcio.req && io.fcio.state === IoforMem.s_Idle){
         IO_stall := 1.B
+    }.elsewhen(io.fcio.state === IoforMem.s_req){
+        IO_stall := 1.B
+    }.elsewhen(io.fcio.stall === IoforMem.s_wait){
+        IO_stall := 0.B
     }.otherwise{
         IO_stall := 0.B
     }
@@ -220,6 +220,8 @@ class FlowControl extends Module{
     io.fcwb.flush := SFBundle(9)
 
     io.sdb_stall := io.fcfe.stall & io.fcde.stall & io.fcex.stall & io.fcwb.stall
+
+    io.fcio.stall := io.fcex.stall
 
 
 

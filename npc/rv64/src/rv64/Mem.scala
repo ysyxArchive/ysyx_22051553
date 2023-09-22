@@ -12,7 +12,7 @@ class MemIO extends Bundle{  //需要在这里落实lbu等，为了前向传递
 
     val rdata = Flipped(ValidIO(new CacheResp))
 
-    val rdata_io = Flipped(ValidIO(new AXIMasterResp))
+    val rdata_io = Flipped(new IOmem)
     //Forward
     val fwmem = Flipped(new FwPipeIO)
 
@@ -48,9 +48,9 @@ class Mem extends Module{
         rdatavalid_buffer := 0.B
     }
 
-    when(io.rdata_io.valid && io.stall){
+    when(io.rdata_io.data.valid && io.stall){
         rdataiovalid_buffer := 1.B
-        rdataio_buffer := io.rdata_io.bits.data
+        rdataio_buffer := io.rdata_io.data.bits
     }.elsewhen(!io.stall && rdataiovalid_buffer){
         rdataiovalid_buffer := 0.B
     }

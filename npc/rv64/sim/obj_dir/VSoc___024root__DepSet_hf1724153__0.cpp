@@ -63,6 +63,8 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     Soc__DOT__core__DOT__Icache__DOT__unnamedblk1__DOT___GEN_30 = 0;
     CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT___GEN_30;
     Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT___GEN_30 = 0;
+    CData/*0:0*/ __Vdly__Soc__DOT__core__DOT__master0_resp_valid;
+    __Vdly__Soc__DOT__core__DOT__master0_resp_valid = 0;
     IData/*31:0*/ __Vdly__Soc__DOT__core__DOT__fetch__DOT__pc;
     __Vdly__Soc__DOT__core__DOT__fetch__DOT__pc = 0;
     IData/*31:0*/ __Vdly__Soc__DOT__core__DOT__fetch__DOT__old_pc;
@@ -343,6 +345,8 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     // Body
     __Vdly__Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer 
         = vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer;
+    __Vdly__Soc__DOT__core__DOT__master0_resp_valid 
+        = vlSelf->Soc__DOT__core__DOT__master0_resp_valid;
     __Vdly__Soc__DOT__core__DOT__fetch__DOT__old_pc 
         = vlSelf->Soc__DOT__core__DOT__fetch__DOT__old_pc;
     __Vdly__Soc__DOT__core__DOT__fetch__DOT__pc = vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc;
@@ -838,7 +842,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
             = (7U & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)));
         if (VL_UNLIKELY((2U == (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)))) {
             VL_WRITEF("ebreak!\n");
-            VL_FINISH_MT("vsrc/Soc.v", 3218, "");
+            VL_FINISH_MT("vsrc/Soc.v", 3237, "");
         }
     }
     if (vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN_28) {
@@ -908,6 +912,8 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
         __Vdly__Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer = 0U;
         vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataio_buffer = 0ULL;
         vlSelf->Soc__DOT__core__DOT__dereg_branch_addr = 0ULL;
+        __Vdly__Soc__DOT__core__DOT__master0_resp_valid = 0U;
+        vlSelf->Soc__DOT__core__DOT__master0_resp_data = 0ULL;
         vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd = 0U;
         vlSelf->Soc__DOT__core__DOT__emreg_reg_wdata = 0ULL;
         vlSelf->Soc__DOT__core__DOT__csrs__DOT__MTVEC = 0ULL;
@@ -995,7 +1001,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
         vlSelf->__Vdly__Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_mask = 0U;
     } else {
         vlSelf->Soc__DOT__core__DOT__mem__DOT__unnamedblk1__DOT___T_6 
-            = ((IData)(vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_valid) 
+            = ((IData)(vlSelf->Soc__DOT__core__DOT___mem_io_rdata_io_valid_T) 
                & (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1));
         __Vdly__Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer 
             = ((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__unnamedblk1__DOT___T_6) 
@@ -1004,7 +1010,20 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
                   & (IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer)));
         if (vlSelf->Soc__DOT__core__DOT__mem__DOT__unnamedblk1__DOT___T_6) {
             vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataio_buffer 
+                = vlSelf->Soc__DOT__core__DOT____Vcellinp__mem__io_rdata_io_bits_data;
+        }
+        vlSelf->Soc__DOT__core__DOT__unnamedblk1__DOT___T 
+            = ((IData)(vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_valid) 
+               & (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1));
+        __Vdly__Soc__DOT__core__DOT__master0_resp_valid 
+            = ((IData)(vlSelf->Soc__DOT__core__DOT__unnamedblk1__DOT___T) 
+               | ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1) 
+                  & (IData)(vlSelf->Soc__DOT__core__DOT__master0_resp_valid)));
+        if (vlSelf->Soc__DOT__core__DOT__unnamedblk1__DOT___T) {
+            vlSelf->Soc__DOT__core__DOT__master0_resp_data 
                 = vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_bits_data;
+        } else if ((1U & (~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1)))) {
+            vlSelf->Soc__DOT__core__DOT__master0_resp_data = 0ULL;
         }
         if (vlSelf->Soc__DOT__core__DOT___excute_io_jump_flag) {
             vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd = 0U;
@@ -4319,6 +4338,8 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     }
     vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer 
         = __Vdly__Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer;
+    vlSelf->Soc__DOT__core__DOT__master0_resp_valid 
+        = __Vdly__Soc__DOT__core__DOT__master0_resp_valid;
     vlSelf->Soc__DOT__core__DOT__csrs__DOT__MIP = __Vdly__Soc__DOT__core__DOT__csrs__DOT__MIP;
     vlSelf->Soc__DOT__core__DOT__mem__DOT__rdatavalid_buffer 
         = __Vdly__Soc__DOT__core__DOT__mem__DOT__rdatavalid_buffer;
