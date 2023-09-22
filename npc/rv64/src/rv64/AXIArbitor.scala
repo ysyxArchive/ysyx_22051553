@@ -62,46 +62,46 @@ class AXIArbitor extends Module{
     val data = WireInit(0.U(X_LEN.W))
     val mask = WireInit(0.U((X_LEN/8).W))
 
-    rw := Mux(master_choose(3), 
+    rw := Mux(choose_buffer(3), 
         MuxCase(
             0.B,
             Seq(
-                master_choose(0) -> io.master0.req.bits.rw,
-                master_choose(1) -> io.master1.req.bits.rw,
-                master_choose(2) -> io.master2.req.bits.rw,
+                choose_buffer(0) -> io.master0.req.bits.rw,
+                choose_buffer(1) -> io.master1.req.bits.rw,
+                choose_buffer(2) -> io.master2.req.bits.rw,
             )
         )
     ,0.B)
 
-    addr := Mux(master_choose(3), 
+    addr := Mux(choose_buffer(3), 
         MuxCase(
             0.B,
             Seq(
-                master_choose(0) -> io.master0.req.bits.addr,
-                master_choose(1) -> io.master1.req.bits.addr,
-                master_choose(2) -> io.master2.req.bits.addr,
+                choose_buffer(0) -> io.master0.req.bits.addr,
+                choose_buffer(1) -> io.master1.req.bits.addr,
+                choose_buffer(2) -> io.master2.req.bits.addr,
             )
         )
     ,0.B)
 
-    data := Mux(master_choose(3), 
+    data := Mux(choose_buffer(3), 
         MuxCase(
             0.B,
             Seq(
-                master_choose(0) -> io.master0.req.bits.data,
-                master_choose(1) -> io.master1.req.bits.data,
-                master_choose(2) -> io.master2.req.bits.data,
+                choose_buffer(0) -> io.master0.req.bits.data,
+                choose_buffer(1) -> io.master1.req.bits.data,
+                choose_buffer(2) -> io.master2.req.bits.data,
             )
         )
     ,0.B)
 
-    mask := Mux(master_choose(3), 
+    mask := Mux(choose_buffer(3),                 //需要使用choose_buffer而不是master_choose
         MuxCase(
             0.B,
             Seq(
-                master_choose(0) -> io.master0.req.bits.mask,
-                master_choose(1) -> io.master1.req.bits.mask,
-                master_choose(2) -> io.master2.req.bits.mask,
+                choose_buffer(0) -> io.master0.req.bits.mask,
+                choose_buffer(1) -> io.master1.req.bits.mask,
+                choose_buffer(2) -> io.master2.req.bits.mask,
             )
         )
     ,0.B)

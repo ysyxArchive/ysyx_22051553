@@ -55,6 +55,9 @@ class Decode extends Module {
 
 
     //内部逻辑
+    // val inst_buffer = RegInit(0.U(INST_LEN.W))
+    // inst_buffer := Mux(io.inst.valid, io.inst.bits.data, NOP)
+
 
     inst := Mux(io.inst.valid, io.inst.bits.data, NOP)
     csr_num := inst(31,20)
