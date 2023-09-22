@@ -55,17 +55,29 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
             ? 0xffU : ((3U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))
                         ? 0xfU : ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))
                                    ? 3U : (1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type)))));
-    vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer 
-        = vlSelf->__Vdly__Soc__DOT__core__DOT__arbitor__DOT__choose_buffer;
-    vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state 
-        = vlSelf->__Vdly__Soc__DOT__core__DOT__arbitor__DOT__state;
     if (vlSelf->reset) {
         vlSelf->Soc__DOT__core__DOT__dereg_reg2_rdata = 0ULL;
-    } else if ((1U & (~ (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall)))) {
-        vlSelf->Soc__DOT__core__DOT__dereg_reg2_rdata 
-            = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush)
-                ? 0ULL : vlSelf->Soc__DOT__core__DOT__decode__DOT___io_deio_reg2_rdata_T);
+        vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer = 0U;
+    } else {
+        if ((1U & (~ (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_stall)))) {
+            vlSelf->Soc__DOT__core__DOT__dereg_reg2_rdata 
+                = ((IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush)
+                    ? 0ULL : vlSelf->Soc__DOT__core__DOT__decode__DOT___io_deio_reg2_rdata_T);
+        }
+        if ((0U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state))) {
+            vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer 
+                = ((8U & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__master_choose))
+                    ? (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__master_choose)
+                    : 0U);
+        }
     }
+    vlSelf->Soc__DOT__core__DOT__arbitor__DOT__master_choose 
+        = ((IData)(vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_req_valid_T_5)
+            ? 9U : ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_valid)
+                     ? 0xaU : ((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_valid)
+                                ? 0xcU : 0U)));
+    vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state 
+        = vlSelf->__Vdly__Soc__DOT__core__DOT__arbitor__DOT__state;
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_3 
         = (IData)((0U == (3U & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))));
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_2 
@@ -100,11 +112,11 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
     vlSelf->Soc__DOT___core_io_AXI_Interface_aw_bits_addr 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_0)
             ? 0U : vlSelf->Soc__DOT__core__DOT__arbitor__DOT___addr_T_6);
-    vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_1 
-        = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__w_comp)) 
-           & (IData)(Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h4ab110e3__0));
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN 
         = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__aw_comp)) 
+           & (IData)(Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h4ab110e3__0));
+    vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_1 
+        = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__w_comp)) 
            & (IData)(Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h4ab110e3__0));
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_4 
         = ((IData)(Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_hc0e633fc__0) 
@@ -3440,7 +3452,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3080, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3073, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -3463,7 +3475,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VSoc___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("vsrc/Soc.v", 3080, "", "Active region did not converge.");
+                    VL_FATAL_MT("vsrc/Soc.v", 3073, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -3478,7 +3490,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3080, "", "NBA region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3073, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VSoc___024root___eval_nba(vlSelf);

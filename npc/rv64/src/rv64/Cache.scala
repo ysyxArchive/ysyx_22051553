@@ -146,15 +146,21 @@ class Cache extends Module{
     
     //firtool要求完整initialize
     io.cpu.resp.valid := cpu_resp_valid
-    io.cpu.resp.bits.data := Mux(inDataOneArray,
+    io.cpu.resp.bits.data := Mux(inDataOneArray,  //读命中
         Mux(inst_type, Mux(offset === 0.U, DataOneArray(31,0), DataOneArray(63,32)),
         DataOneArray
         ) 
-    ,cpu_resp_bits_data)
+    ,cpu_resp_bits_data)  //从axi读出
+
     io.axi.req.valid := axi_req_valid
     io.axi.req.bits.rw := axi_req_bits_rw
     io.axi.req.bits.addr := axi_req_bits_addr
-    io.axi.req.bits.data := axi_req_bits_data
+
+    io.axi.req.bits.data := Mux(inDataOneArray,  //读命中
+        DataOneArray
+    ,axi_req_bits_data)  //从axi读出
+        
+
     io.axi.req.bits.mask := axi_req_bits_mask
 
     cpu_resp_valid := 0.U
@@ -212,8 +218,6 @@ class Cache extends Module{
                     when(hit0 | hit1){ //若读命中
                         state := s_Idle
 
-                        offset := io.cpu.req.bits.addr(2, 0)
-
                         when(hit0){   //读命中后改变replace
                             // when(inst_type){  //如果为读取指令
                             //     when(offset === 0.U){
@@ -238,16 +242,20 @@ class Cache extends Module{
                             replace1 := replace.bitSet(io.cpu.req.bits.addr(10, 3) * 2.U + 1.U, 1.B)
                             replace := replace0 | replace1
                         }.otherwise{
-                            when(inst_type){  //如果为读取指令
-                                when(offset === 0.U){
-                                    cpu_resp_bits_data := Cat(0.U(32.W), DataArray(io.cpu.req.bits.addr(10, 3)* 2.U + 1.U)(31,0))
-                                }.otherwise{
-                                    cpu_resp_bits_data := Cat(0.U(32.W), DataArray(io.cpu.req.bits.addr(10, 3)* 2.U + 1.U)(63,32))
-                                }
+                            // when(inst_type){  //如果为读取指令
+                            //     when(offset === 0.U){
+                            //         cpu_resp_bits_data := Cat(0.U(32.W), DataArray(io.cpu.req.bits.addr(10, 3)* 2.U + 1.U)(31,0))
+                            //     }.otherwise{
+                            //         cpu_resp_bits_data := Cat(0.U(32.W), DataArray(io.cpu.req.bits.addr(10, 3)* 2.U + 1.U)(63,32))
+                            //     }
                                 
-                            }.otherwise{
-                                cpu_resp_bits_data := DataArray(io.cpu.req.bits.addr(10, 3) * 2.U + 1.U)//在下一周期读出
-                            }
+                            // }.otherwise{
+                            //     cpu_resp_bits_data := DataArray(io.cpu.req.bits.addr(10, 3) * 2.U + 1.U)//在下一周期读出
+                            // }
+                            inst_type := io.cpu.req.bits.inst_type
+                            inDataOneArray := 1.B
+                            DataOneArrayAddr := io.cpu.req.bits.addr(10, 3) * 2.U + 1.U
+                            DataOneArrayRen := 1.B
 
                             replace0 := replace.bitSet(io.cpu.req.bits.addr(10, 3) * 2.U, 1.B)
                             replace1 := replace.bitSet(io.cpu.req.bits.addr(10, 3) * 2.U + 1.U, 0.B)
@@ -282,7 +290,12 @@ class Cache extends Module{
 
                 axi_req_valid := 1.B
                 axi_req_bits_addr := Cat(TagArray(index*2.U + replace_wire), index, 0.U(3.W))  //将dirty写回
-                axi_req_bits_data := DataArray(index*2.U + replace_wire)
+
+                // axi_req_bits_data := DataArray(index*2.U + replace_wire)
+                inDataOneArray := 1.B
+                DataOneArrayRen := 1.B
+                DataOneArrayAddr := index*2.U + replace_wire
+                
                 axi_req_bits_rw := 0.B
                 axi_req_bits_mask := "b11111111".U
             }.otherwise{ //如果选择的不是dirty,可以直接使用
@@ -296,7 +309,13 @@ class Cache extends Module{
         is(s_rWriteBack){
             axi_req_valid := 1.B //持续为1,直到axi通知写回成功
             axi_req_bits_addr := Cat(TagArray(index*2.U + victim), index, 0.U(3.W))  //将dirty写回
-            axi_req_bits_data := DataArray(index*2.U + victim)
+
+
+            // axi_req_bits_data := DataArray(index*2.U + victim)
+            inDataOneArray := 1.B
+            DataOneArrayRen := 1.B
+            DataOneArrayAddr := index*2.U + victim
+
             axi_req_bits_rw := 0.B
             axi_req_bits_mask := "b11111111".U
 
@@ -304,6 +323,8 @@ class Cache extends Module{
             when(io.axi.resp.valid){  //写回成功,开始读
                 state := s_ReadAck
                 
+                inDataOneArray := 0.B
+
                 axi_req_valid := 1.B
                 axi_req_bits_addr := Cat(addr(31,3), 0.U(3.W)) //读出目标地址,8字节对齐
                 axi_req_bits_rw := 1.B
@@ -362,9 +383,9 @@ class Cache extends Module{
                 DataArray(index * 2.U + 1.U) := MuxCase(
                     0.U,
                     Seq( //如果编译器默认对齐
-                        (mask === "b00000001".U) -> Cat(whitDataArray(63,8), data(7,0)),
-                        (mask === "b00000011".U) -> Cat(whitDataArray(63,16), data(15,0)),
-                        (mask === "b00001111".U) -> Cat(whitDataArray(63,32), data(31,0)),
+                        (mask === "b00000001".U) -> Cat(DataOneArray(63,8), data(7,0)),
+                        (mask === "b00000011".U) -> Cat(DataOneArray(63,16), data(15,0)),
+                        (mask === "b00001111".U) -> Cat(DataOneArray(63,32), data(31,0)),
                         (mask === "b11111111".U) -> data
                     )
                 )
@@ -378,9 +399,9 @@ class Cache extends Module{
                 DataArray(index * 2.U) := MuxCase(
                     0.U,
                     Seq( //如果编译器默认对齐
-                        (mask === "b00000001".U) -> Cat(whitDataArray(63,8), data(7,0)),
-                        (mask === "b00000011".U) -> Cat(whitDataArray(63,16), data(15,0)),
-                        (mask === "b00001111".U) -> Cat(whitDataArray(63,32), data(31,0)),
+                        (mask === "b00000001".U) -> Cat(DataOneArray(63,8), data(7,0)),
+                        (mask === "b00000011".U) -> Cat(DataOneArray(63,16), data(15,0)),
+                        (mask === "b00001111".U) -> Cat(DataOneArray(63,32), data(31,0)),
                         (mask === "b11111111".U) -> data
                     )
                 )
@@ -404,7 +425,11 @@ class Cache extends Module{
 
                 axi_req_valid := 1.B
                 axi_req_bits_addr := Cat(TagArray(index*2.U + replace_wire), index, 0.U(3.W))  //写回dirty
-                axi_req_bits_data := DataArray(index*2.U + replace_wire)
+                // axi_req_bits_data := DataArray(index*2.U + replace_wire)
+                inDataOneArray := 1.B
+                DataOneArrayRen := 1.B
+                DataOneArrayAddr := index*2.U + replace_wire
+
                 axi_req_bits_rw := 0.B
                 axi_req_bits_mask := "b11111111".U
             }.otherwise{ //如果选择的不是dirty,可以直接使用
@@ -418,12 +443,18 @@ class Cache extends Module{
         is(s_wWriteBack){
             axi_req_valid := 1.B //持续为1,直到axi通知写回成功
             axi_req_bits_addr := Cat(TagArray(index*2.U + victim), index, 0.U(3.W))
-            axi_req_bits_data := DataArray(index*2.U + victim)
+            // axi_req_bits_data := DataArray(index*2.U + victim)
+            inDataOneArray := 1.B
+            DataOneArrayRen := 1.B
+            DataOneArrayAddr := index*2.U + victim
+
             axi_req_bits_rw := 0.B
             axi_req_bits_mask := "b11111111".U
 
             when(io.axi.resp.valid){
                 state := s_WriteAllocate
+
+                inDataOneArray := 0.B
 
                 axi_req_valid := 1.B
                 axi_req_bits_addr := Cat(addr(31,3), 0.U(3.W)) //读出目标地址,8字节对齐
