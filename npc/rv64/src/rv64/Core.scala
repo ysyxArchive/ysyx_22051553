@@ -118,6 +118,7 @@ class Core extends Module{
     decode.io.rfio <> regfile.io.RfDe
     decode.io.branch := fc.io.fcex.jump_flag
     decode.io.stall  := fc.io.fcde.stall
+    decode.io.flush := fc.io.fcde.flush
 
     decode.io.csrs <> csrs.io.CSRDe
     //excute
@@ -490,6 +491,7 @@ class Core extends Module{
     DI.io.csr_waddr := wb.io.csrs.rd
     DI.io.csr_wdata := wb.io.csrs.csr_wdata
     DI.io.csr_wen := wb.io.csrs.csr_wen
+    DI.io.sdb_stall := fc.io.sdb_stall
 
     //interact
     val interact = Module(new Interact)

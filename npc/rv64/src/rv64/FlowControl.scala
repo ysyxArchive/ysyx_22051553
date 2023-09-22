@@ -115,7 +115,8 @@ class FCIO extends Bundle{
     val fcIcache = Input(new FcCacheIO)
     val fcDcache = Input(new FcCacheIO)
     val fcio = Input(new FcioIO)
-    
+
+    val sdb_stall = Output(Bool())
 }
 import TrIO._
 
@@ -215,4 +216,9 @@ class FlowControl extends Module{
 
     io.fcwb.stall := SFBundle(4)
     io.fcwb.flush := SFBundle(9)
+
+    io.sdb_stall := io.fcfe.stall & io.fcde.stall & io.fcex.stall & io.fcwb.stall
+
+
+
 }

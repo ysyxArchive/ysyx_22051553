@@ -424,11 +424,13 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__Icache__DOT__cpu_resp_bits_data;
         QData/*63:0*/ Soc__DOT__core__DOT__Icache__DOT____Vcellinp__DataArray_ext__W4_data;
         QData/*63:0*/ Soc__DOT__core__DOT__Icache__DOT____Vcellinp__DataArray_ext__W2_data;
+        QData/*63:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h27deda75__0;
         QData/*63:0*/ Soc__DOT__core__DOT__Dcache__DOT___DataArray_ext_R0_data;
         QData/*63:0*/ Soc__DOT__core__DOT__Dcache__DOT__data;
         QData/*63:0*/ Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_bits_data;
         QData/*63:0*/ Soc__DOT__core__DOT__Dcache__DOT____Vcellinp__DataArray_ext__W4_data;
         QData/*63:0*/ Soc__DOT__core__DOT__Dcache__DOT____Vcellinp__DataArray_ext__W2_data;
+        QData/*63:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h27deda75__0;
         QData/*63:0*/ Soc__DOT__sram__DOT__rdata;
         QData/*63:0*/ __VdfgTmp_h6a80e86b__0;
         QData/*63:0*/ __VdfgTmp_hc520a55b__0;

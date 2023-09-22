@@ -27,6 +27,7 @@ class DecodeIO extends Bundle{
     //from fc 
     val branch = Input(Bool())    //load_use需要。如果branch后接着load指令，随后跳转到use指令，不能作为load_use
     val stall = Input(Bool())
+    val flush = Input(Bool())
 
     //Forward
     val fwde    = Flipped(new FwDeIO)
@@ -127,7 +128,7 @@ class Decode extends Module {
     io.deio.csr_waddr := Mux(cu.io.csr_type.orR, csr_num, 0.U)  //不是csr指令，csr_rd就设为0
     io.deio.csr_wen := cu.io.csr_type.orR
 
-    io.deio.has_inst := Mux((inst === NOP), 0.B, 1.B)
+    io.deio.has_inst := Mux((inst === NOP || io.flush), 0.B, 1.B)
 
     //to fc
     io.jump_flag := (cu.io.jump_type === ControlUnit.JUMP_JAL || cu.io.jump_type === ControlUnit.JUMP_JALR)

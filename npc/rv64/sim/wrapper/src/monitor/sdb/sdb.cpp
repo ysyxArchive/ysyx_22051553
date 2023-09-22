@@ -43,6 +43,8 @@ std::list<decode> decode_list;
 std::list<execute> execute_list;
 
 static bool sync_diff = 0;
+
+bool stall_flag = 0;
 #endif
 
 #ifdef DIFFTEST
@@ -110,7 +112,8 @@ void update_debuginfo(
   svLogic reg_wen,
   svLogic csr_wen,
   const svLogicVecVal* csr_wdata,
-  const svLogicVecVal* csr_waddr
+  const svLogicVecVal* csr_waddr,
+  svLogic sdb_stall
   )
 {
   
@@ -149,7 +152,7 @@ void update_debuginfo(
 
   // printf("fe pc:0x%x\nde inst:0x%x\n", fe_ins.pc, de_ins.inst);
 
-  if(de_ins.inst != 0x13 && (bool)inst_valid && de_ins.inst != 0){
+  if(de_ins.inst != 0x13 && (bool)inst_valid && de_ins.inst != 0 && !(bool)sdb_stall){
     fetch_list.push_back(fe_ins);
     decode_list.push_back(de_ins);
     execute_list.push_back(ex_ins);
@@ -494,6 +497,7 @@ static int cmd_s(char *args){
 
       //-----------------
       single_cycle();
+      #ifdef ITRACE
 
       #ifdef DIFFTEST
       if(execute_list.front().skip_ref_one_inst){
@@ -533,7 +537,7 @@ static int cmd_s(char *args){
       }
       #endif
 
-      #ifdef ITRACE
+      
       
       decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
       fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃

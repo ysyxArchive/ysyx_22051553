@@ -1749,19 +1749,19 @@ module Cache(	// <stdin>:2505:10, :3266:10
   wire [1023:0]     _replace1_T_59 = 1024'h1 << _GEN_6 + 10'h1;	// Cache.scala:92:57, :243:55, :290:34, :482:{47,60}
   wire              _GEN_19 = ~_T & ~_T_4 & ~_T_10 & ~(&state) & ~_T_25 & ~_T_66 & ~_T_72 & _T_73 & _GEN_13;	// <stdin>:2578:18, :3339:18, Cache.scala:64:24, :75:23, :77:32, :115:21, :170:18, :340:36, :345:29
   wire              _GEN_20 = _T_66 | _T_72 | ~_GEN_18;	// Cache.scala:64:24, :71:24, :72:24, :170:18, :472:36
-  wire [1023:0]     _replace0_T_52 = 1024'h1 << _GEN_12;	// Cache.scala:243:55, :348:47, :498:47
+  wire [1023:0]     _replace0_T_52 = 1024'h1 << _GEN_12;	// Cache.scala:243:55, :348:47, :499:47
   wire [7:0][511:0] _GEN_21 = {{io_axi_resp_valid ? (victim ? replace | _replace0_T_17[511:0] : ~(~replace |
                 _replace0_T_24[511:0])) : 512'h0}, {512'h0}, {512'h0}, {_GEN_20 ? 512'h0 : victim ? replace
                 | _replace0_T_45[511:0] : ~(~replace | _replace0_T_52[511:0])}, {512'h0}, {512'h0},
                 {whitNum ? replace | _replace0_T_31[511:0] : ~(~replace | _replace0_T_38[511:0])}, {_GEN_4
-                ? 512'h0 : hit0 ? ~(~replace | _replace0_T_2[511:0]) : replace | _replace0_T_10[511:0]}};	// <stdin>:2574:14, :3335:14, Cache.scala:71:24, :72:24, :73:26, :115:21, :125:26, :129:28, :170:18, :179:35, :181:47, :223:35, :243:{38,55}, :262:{38,55}, :340:36, :345:29, :348:{30,47}, :357:{30,47}, :384:26, :396:{26,43}, :412:{26,43}, :478:29, :481:{30,47}, :498:{30,47}
+                ? 512'h0 : hit0 ? ~(~replace | _replace0_T_2[511:0]) : replace | _replace0_T_10[511:0]}};	// <stdin>:2574:14, :3335:14, Cache.scala:71:24, :72:24, :73:26, :115:21, :125:26, :129:28, :170:18, :179:35, :181:47, :223:35, :243:{38,55}, :262:{38,55}, :340:36, :345:29, :348:{30,47}, :357:{30,47}, :384:26, :396:{26,43}, :412:{26,43}, :478:29, :481:{30,47}, :499:{30,47}
   wire [511:0]      _GEN_22 = _GEN_21[state];	// <stdin>:2574:14, :3335:14, Cache.scala:64:24, :170:18, :179:35, :340:36, :384:26
-  wire [1023:0]     _replace1_T_68 = 1024'h1 << _GEN_6 + 10'h1;	// Cache.scala:92:57, :243:55, :290:34, :499:{47,60}
+  wire [1023:0]     _replace1_T_68 = 1024'h1 << _GEN_6 + 10'h1;	// Cache.scala:92:57, :243:55, :290:34, :500:{47,60}
   wire [7:0][511:0] _GEN_23 = {{io_axi_resp_valid ? (victim ? ~(~replace | _replace1_T_23[511:0]) : replace |
                 _replace1_T_32[511:0]) : 512'h0}, {512'h0}, {512'h0}, {_GEN_20 ? 512'h0 : victim ?
                 ~(~replace | _replace1_T_59[511:0]) : replace | _replace1_T_68[511:0]}, {512'h0}, {512'h0},
                 {whitNum ? ~(~replace | _replace1_T_41[511:0]) : replace | _replace1_T_50[511:0]}, {_GEN_4
-                ? 512'h0 : hit0 ? replace | _replace1_T_4[511:0] : ~(~replace | _replace1_T_14[511:0])}};	// <stdin>:2574:14, :2576:14, :3335:14, :3337:14, Cache.scala:71:24, :72:24, :73:26, :115:21, :125:26, :129:28, :170:18, :179:35, :181:47, :223:35, :244:{38,55}, :262:55, :263:{38,55}, :340:36, :345:29, :348:47, :349:{30,47}, :358:{30,47}, :384:26, :396:43, :397:{26,43}, :413:{26,43}, :478:29, :481:47, :482:{30,47}, :499:{30,47}
+                ? 512'h0 : hit0 ? replace | _replace1_T_4[511:0] : ~(~replace | _replace1_T_14[511:0])}};	// <stdin>:2574:14, :2576:14, :3335:14, :3337:14, Cache.scala:71:24, :72:24, :73:26, :115:21, :125:26, :129:28, :170:18, :179:35, :181:47, :223:35, :244:{38,55}, :262:55, :263:{38,55}, :340:36, :345:29, :348:47, :349:{30,47}, :358:{30,47}, :384:26, :396:43, :397:{26,43}, :413:{26,43}, :478:29, :481:47, :482:{30,47}, :500:{30,47}
   wire [511:0]      _GEN_24 = _GEN_23[state];	// <stdin>:2576:14, :3337:14, Cache.scala:64:24, :170:18, :179:35, :340:36, :384:26
   wire              _GEN_25 = ~_T & ~_T_4 & ~_T_10 & ~(&state) & ~_T_25 & ~_T_66 & ~_T_72 & _T_73 & _GEN_15;	// <stdin>:2578:18, :3339:18, Cache.scala:64:24, :75:23, :77:32, :115:21, :170:18, :340:36, :345:29
   always @(posedge clock) begin
@@ -1788,12 +1788,12 @@ module Cache(	// <stdin>:2505:10, :3266:10
     else begin
       automatic logic              _GEN_27;	// Cache.scala:177:28, :179:35, :181:47
       automatic logic [7:0][2:0]   _GEN_28;	// Cache.scala:170:18, :179:35, :290:50, :325:36, :340:36, :382:19, :425:50, :456:36
-      automatic logic [1023:0]     _valid_T_26 = 1024'h1 << _GEN_12;	// Cache.scala:243:55, :348:47, :496:42
+      automatic logic [1023:0]     _valid_T_26 = 1024'h1 << _GEN_12;	// Cache.scala:243:55, :348:47, :497:42
       automatic logic [1023:0]     _valid_T_19 = 1024'h1 << _GEN_6 + 10'h1;	// Cache.scala:92:57, :243:55, :290:34, :479:{42,55}
       automatic logic [1023:0]     _valid_T_10 = 1024'h1 << _GEN_12;	// Cache.scala:243:55, :348:47, :355:42
       automatic logic [1023:0]     _valid_T_3 = 1024'h1 << _GEN_6 + 10'h1;	// Cache.scala:92:57, :243:55, :290:34, :346:{42,55}
       automatic logic [7:0][511:0] _GEN_29;	// Cache.scala:71:24, :170:18, :340:36
-      automatic logic [1023:0]     _dirty_T_42 = 1024'h1 << _GEN_12;	// Cache.scala:243:55, :348:47, :497:42
+      automatic logic [1023:0]     _dirty_T_42 = 1024'h1 << _GEN_12;	// Cache.scala:243:55, :348:47, :498:42
       automatic logic [1023:0]     _dirty_T_35 = 1024'h1 << _GEN_6 + 10'h1;	// Cache.scala:92:57, :243:55, :290:34, :480:{42,55}
       automatic logic [1023:0]     _dirty_T_26 = 1024'h1 << _GEN_12;	// Cache.scala:243:55, :348:47, :411:38
       automatic logic [1023:0]     _dirty_T_19 = 1024'h1 << _GEN_6 + 10'h1;	// Cache.scala:92:57, :243:55, :290:34, :395:{38,51}
@@ -1812,17 +1812,17 @@ module Cache(	// <stdin>:2505:10, :3266:10
       state <= _GEN_28[state];	// Cache.scala:64:24, :170:18, :179:35, :290:50, :325:36, :340:36, :382:19, :425:50, :456:36
       _GEN_29 = {{io_axi_resp_valid ? (victim ? valid | _valid_T_3[511:0] : valid | _valid_T_10[511:0]) :
                                                 valid}, {valid}, {valid}, {_T_25 | _T_66 | _T_72 | ~_GEN_18 ? valid : victim ? valid |
-                                                _valid_T_19[511:0] : valid | _valid_T_26[511:0]}, {valid}, {valid}, {valid}, {valid}};	// Cache.scala:64:24, :71:24, :115:21, :170:18, :340:36, :345:29, :346:{27,42}, :355:{27,42}, :472:36, :478:29, :479:{27,42}, :496:{27,42}
+                                                _valid_T_19[511:0] : valid | _valid_T_26[511:0]}, {valid}, {valid}, {valid}, {valid}};	// Cache.scala:64:24, :71:24, :115:21, :170:18, :340:36, :345:29, :346:{27,42}, :355:{27,42}, :472:36, :478:29, :479:{27,42}, :497:{27,42}
       valid <= _GEN_29[state];	// Cache.scala:64:24, :71:24, :170:18, :340:36
       _GEN_30 = {{io_axi_resp_valid ? (victim ? ~(~dirty | _dirty_T_3[511:0]) : ~(~dirty |
                                                 _dirty_T_10[511:0])) : dirty}, {dirty}, {dirty}, {_GEN_20 ? dirty : victim ? dirty |
                                                 _dirty_T_35[511:0] : dirty | _dirty_T_42[511:0]}, {dirty}, {dirty}, {whitNum ? dirty |
-                                                _dirty_T_19[511:0] : dirty | _dirty_T_26[511:0]}, {dirty}};	// Cache.scala:72:24, :115:21, :125:26, :170:18, :340:36, :345:29, :347:{27,42}, :356:{27,42}, :384:26, :395:{23,38}, :411:{23,38}, :478:29, :480:{27,42}, :497:{27,42}
+                                                _dirty_T_19[511:0] : dirty | _dirty_T_26[511:0]}, {dirty}};	// Cache.scala:72:24, :115:21, :125:26, :170:18, :340:36, :345:29, :347:{27,42}, :356:{27,42}, :384:26, :395:{23,38}, :411:{23,38}, :478:29, :480:{27,42}, :498:{27,42}
       dirty <= _GEN_30[state];	// Cache.scala:64:24, :72:24, :170:18, :340:36, :384:26
       _GEN_31 = {{io_axi_resp_valid ? (victim ? _GEN_22 | _GEN_24 : _GEN_22 | _GEN_24) : replace},
                                                 {replace}, {replace}, {_GEN_20 ? replace : victim ? _GEN_22 | _GEN_24 : _GEN_22 | _GEN_24},
                                                 {replace}, {replace}, {whitNum ? _GEN_22 | _GEN_24 : _GEN_22 | _GEN_24}, {_GEN_4 ? replace
-                                                : hit0 ? _GEN_22 | _GEN_24 : _GEN_22 | _GEN_24}};	// <stdin>:2574:14, :3335:14, Cache.scala:72:24, :73:26, :115:21, :125:26, :129:28, :170:18, :179:35, :181:47, :223:35, :245:{37,49}, :264:{37,49}, :340:36, :345:29, :350:{29,41}, :359:{29,41}, :384:26, :398:{25,37}, :414:{25,37}, :478:29, :483:{29,41}, :500:{29,41}
+                                                : hit0 ? _GEN_22 | _GEN_24 : _GEN_22 | _GEN_24}};	// <stdin>:2574:14, :3335:14, Cache.scala:72:24, :73:26, :115:21, :125:26, :129:28, :170:18, :179:35, :181:47, :223:35, :245:{37,49}, :264:{37,49}, :340:36, :345:29, :350:{29,41}, :359:{29,41}, :384:26, :398:{25,37}, :414:{25,37}, :478:29, :483:{29,41}, :501:{29,41}
       replace <= _GEN_31[state];	// Cache.scala:64:24, :73:26, :170:18, :179:35, :340:36, :384:26
       _GEN_32 = {{inDataOneArray}, {~io_axi_resp_valid}, {_T_8[0] | inDataOneArray}, {inDataOneArray},
                                                 {~io_axi_resp_valid}, {_T_70[0] | inDataOneArray}, {inDataOneArray}, {_GEN_27}};	// Cache.scala:103:33, :170:18, :177:28, :179:35, :181:47, :290:{23,50}, :297:32, :317:28, :325:36, :328:32, :425:{23,50}, :431:32, :456:36
@@ -2081,7 +2081,7 @@ module Cache(	// <stdin>:2505:10, :3266:10
     .W2_en   (_GEN_19),	// Cache.scala:75:23, :170:18
     .W2_clk  (clock),
     .W2_data (tag),	// Cache.scala:67:18
-    .W3_addr ({index, 1'h0}),	// <stdin>:2505:10, :3266:10, Cache.scala:68:20, :502:29
+    .W3_addr ({index, 1'h0}),	// <stdin>:2505:10, :3266:10, Cache.scala:68:20, :503:29
     .W3_en   (_GEN_25),	// Cache.scala:75:23, :170:18
     .W3_clk  (clock),
     .W3_data (tag),	// Cache.scala:67:18
@@ -2122,13 +2122,13 @@ module Cache(	// <stdin>:2505:10, :3266:10
     .W4_clk  (clock),
     .W4_data (mask == 8'h1 ? {io_axi_resp_bits_data[63:8], data[7:0]} : mask == 8'h3 ?
                 {io_axi_resp_bits_data[63:16], data[15:0]} : mask == 8'hF ? {io_axi_resp_bits_data[63:32],
-                data[31:0]} : (&mask) ? io_axi_resp_bits_data : 64'h0),	// Cache.scala:119:23, :120:23, :143:36, :388:31, :389:31, :390:31, :489:{35,82,94}, :490:{35,82,95}, :491:{35,82,95}, :492:35, Cat.scala:33:92, Mux.scala:101:16
-    .W5_addr ({index, 1'h0}),	// <stdin>:2505:10, :3266:10, Cache.scala:68:20, :503:30
+                data[31:0]} : (&mask) ? data : 64'h0),	// Cache.scala:119:23, :120:23, :143:36, :388:31, :389:31, :390:31, :489:{35,82,94}, :490:{35,82,95}, :491:{35,82,95}, :493:35, Cat.scala:33:92, Mux.scala:101:16
+    .W5_addr ({index, 1'h0}),	// <stdin>:2505:10, :3266:10, Cache.scala:68:20, :504:30
     .W5_en   (_GEN_25),	// Cache.scala:75:23, :170:18
     .W5_clk  (clock),
     .W5_data (mask == 8'h1 ? {io_axi_resp_bits_data[63:8], data[7:0]} : mask == 8'h3 ?
                 {io_axi_resp_bits_data[63:16], data[15:0]} : mask == 8'hF ? {io_axi_resp_bits_data[63:32],
-                data[31:0]} : (&mask) ? io_axi_resp_bits_data : 64'h0),	// Cache.scala:119:23, :120:23, :143:36, :388:31, :389:31, :390:31, :506:{35,82,94}, :507:{35,82,95}, :508:{35,82,95}, :509:35, Cat.scala:33:92, Mux.scala:101:16
+                data[31:0]} : (&mask) ? data : 64'h0),	// Cache.scala:119:23, :120:23, :143:36, :388:31, :389:31, :390:31, :507:{35,82,94}, :508:{35,82,95}, :509:{35,82,95}, :510:35, Cat.scala:33:92, Mux.scala:101:16
     .R0_data (_DataArray_ext_R0_data)
   );
   assign io_cpu_resp_valid = cpu_resp_valid;	// <stdin>:2505:10, :3266:10, Cache.scala:138:33
@@ -3295,5 +3295,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 
