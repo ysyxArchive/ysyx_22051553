@@ -114,8 +114,6 @@ class Core extends Module{
     fetch.io.fcfe <> fc.io.fcfe
 
     //decode
-    decode.io.inst.valid := 1.B
-    decode.io.inst.bits.data := Mux(fdreg.pc(2) === 1.U, Dcache.io.cpu.resp.bits.data(63,32), Dcache.io.cpu.resp.bits.data(31,0)) //由于需要对齐
     decode.io.fdio.pc := fdreg.pc
     decode.io.rfio <> regfile.io.RfDe
     decode.io.branch := fc.io.fcex.jump_flag
