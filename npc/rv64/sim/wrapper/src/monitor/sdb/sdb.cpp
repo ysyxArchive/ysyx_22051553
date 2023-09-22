@@ -210,7 +210,6 @@ long long pmem_read(const svLogicVecVal* raddr){
   }
   else if(((unsigned long)raddr[0].aval) == VGACTL_ADDR){
       uint32_t vga_ctrl_bundle = SCREEN_W << 16 | SCREEN_H;
-      printf("bundle is 0x%x\n", vga_ctrl_bundle);
       return vga_ctrl_bundle;
 
   }

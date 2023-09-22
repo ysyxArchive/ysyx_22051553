@@ -104,13 +104,12 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
                & (0x9fffffffU < vlSelf->Soc__DOT__core__DOT__ioformem__DOT___axi_req_bits_addr_T));
         if (vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T) {
             if (vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___T_4) {
-                vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN = 1U;
                 vlSelf->__Vdly__Soc__DOT__core__DOT__ioformem__DOT__state = 1U;
-            } else {
-                vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN = 0U;
             }
+            vlSelf->__Vdly__Soc__DOT__core__DOT__ioformem__DOT__axi_req_valid 
+                = ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___T_4) 
+                   | (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__axi_req_valid));
         } else {
-            vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN = 0U;
             if (vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_5) {
                 if (vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_valid) {
                     vlSelf->__Vdly__Soc__DOT__core__DOT__ioformem__DOT__state 
@@ -121,11 +120,14 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
                                  | (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1))))) {
                 vlSelf->__Vdly__Soc__DOT__core__DOT__ioformem__DOT__state = 0U;
             }
+            vlSelf->__Vdly__Soc__DOT__core__DOT__ioformem__DOT__axi_req_valid 
+                = ((((~ (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_5)) 
+                     | (~ (IData)(vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_valid))) 
+                    | (~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1))) 
+                   & (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__axi_req_valid));
         }
-        vlSelf->__Vdly__Soc__DOT__core__DOT__ioformem__DOT__axi_req_valid 
-            = ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN) 
-               | (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__axi_req_valid));
-        if (vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN) {
+        if (((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T) 
+             & (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___T_4))) {
             vlSelf->Soc__DOT__core__DOT__ioformem__DOT__axi_req_bits_rw 
                 = (0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type));
             vlSelf->Soc__DOT__core__DOT__ioformem__DOT__axi_req_bits_addr 
@@ -5521,7 +5523,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3222, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3223, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -5544,7 +5546,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VSoc___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("vsrc/Soc.v", 3222, "", "Active region did not converge.");
+                    VL_FATAL_MT("vsrc/Soc.v", 3223, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -5559,7 +5561,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 3222, "", "NBA region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 3223, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VSoc___024root___eval_nba(vlSelf);

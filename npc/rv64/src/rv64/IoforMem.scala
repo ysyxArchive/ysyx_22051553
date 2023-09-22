@@ -97,7 +97,7 @@ class IoforMem extends Module{
                 when(io.fc.stall){
                     state := s_wait
 
-                    axi_req_valid := 0.B
+                    axi_req_valid := 0.B  //停止申请总线，防止死锁
                 }.otherwise{
                     state := s_Idle
                 }
