@@ -153,13 +153,17 @@ void update_debuginfo(
 
   // printf("fe pc:0x%x\nde inst:0x%x\n", fe_ins.pc, de_ins.inst);
 
-  if(de_ins.inst != 0x13 && (bool)inst_valid && de_ins.inst != 0 && !(bool)sdb_stall){
-    fetch_list.push_back(fe_ins);
+  // if(de_ins.inst != 0x13 && (bool)inst_valid && de_ins.inst != 0 && !(bool)sdb_stall){
+  //   fetch_list.push_back(fe_ins);
+  //   decode_list.push_back(de_ins);
+  //   execute_list.push_back(ex_ins);
+  // }
+  
+  if(de_ins.inst != 0x13 && de_ins.inst != 0 && !(bool)sdb_stall){ //需要记录dut所有有效允许周期,因为load_use,branch只会flushdecdoe,不会暂停流水线
+    fetch_list.push_back(fe_ins);                                   //去除暂停流水线的周期
     decode_list.push_back(de_ins);
     execute_list.push_back(ex_ins);
   }
-  
-
 
   // if(decode_list.size() == 5){ 
   //   sync_diff = true;
@@ -319,7 +323,7 @@ static int cmd_s(char *args){
   if(args == NULL){
 
     #ifdef ITRACE
-    while(decode_list.size() < 4){
+    while(decode_list.size() < 4){  //对齐dut和ref
       single_cycle();
     }
     #endif
@@ -332,22 +336,33 @@ static int cmd_s(char *args){
     for(auto arg : decode_list){
       printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
     }
+
+    for(auto arg : execute_list){
+      printf("skip:%d\n", arg.skip_ref_one_inst);
+    }
     #endif
 
     #ifdef ITRACE
     if( decode_list.front().load_use){
-      single_cycle();
-
-      fetch_list.pop_front();       //三个pop对应的是同一条指令
+      fetch_list.pop_front();
       decode_list.pop_front();
       execute_list.pop_front();
 
+      while(decode_list.size() < 4){
+        single_cycle();
+      }
+
     }else if(decode_list.front().branch){
-      single_cycle();
+      
       
       fetch_list.pop_front();
       decode_list.pop_front();
       execute_list.pop_front();
+
+      while(decode_list.size() < 4){
+        single_cycle();
+      }
+      
     }
     #endif
 
@@ -377,15 +392,16 @@ static int cmd_s(char *args){
 
 
     //-----------------
-    single_cycle();   
+    // single_cycle();   
 
     #ifdef ITRACE
       
       
     #ifdef DIFFTEST
-    if(execute_list.front().skip_ref_one_inst){
-      difftest_skip_ref();
-    }
+    int skip = (*(execute_list.begin()++)).skip_ref_one_inst;
+      if(skip){
+        difftest_skip_ref();
+      }
     else if(decode_list.front().valid){
       if(! difftest_step()){  //比较当前的通用寄存器状态和下一条指令的pc
   
@@ -437,7 +453,7 @@ static int cmd_s(char *args){
     while(n > 0){
 
     #ifdef ITRACE
-    while(decode_list.size() < 1){
+    while(decode_list.size() < 4){  //对齐dut和ref
       single_cycle();
     }
     #endif
@@ -451,22 +467,33 @@ static int cmd_s(char *args){
     for(auto arg : decode_list){
       printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
     }
+
+    for(auto arg : execute_list){
+      printf("skip:%d\n", arg.skip_ref_one_inst);
+    }
     #endif
 
     #ifdef ITRACE
-    if( decode_list.front().load_use){
-      single_cycle();
-
+    if( decode_list.front().load_use){  //去掉第一条指令，然后再填充序列
       fetch_list.pop_front();
       decode_list.pop_front();
       execute_list.pop_front();
 
+      while(decode_list.size() < 4){
+        single_cycle();
+      }
+
     }else if(decode_list.front().branch){
-      single_cycle();
+      
       
       fetch_list.pop_front();
       decode_list.pop_front();
       execute_list.pop_front();
+
+      while(decode_list.size() < 4){
+        single_cycle();
+      }
+      
     }
     #endif
 
@@ -497,11 +524,13 @@ static int cmd_s(char *args){
     #endif
 
       //-----------------
-      single_cycle();
+      // single_cycle();
       #ifdef ITRACE
 
       #ifdef DIFFTEST
-      if(execute_list.front().skip_ref_one_inst){
+
+      int skip = (*(++execute_list.begin())).skip_ref_one_inst;
+      if(skip){
         difftest_skip_ref();
       }
       else

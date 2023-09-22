@@ -29,6 +29,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT___arbitor_io_master0_resp_valid;
         CData/*0:0*/ Soc__DOT__core__DOT___trap_io_csrtr_csr_wen;
         CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcde_flush;
+        CData/*0:0*/ Soc__DOT__core__DOT___wb_io_csrs_csr_wen;
         CData/*0:0*/ Soc__DOT__core__DOT___excute_io_jump_flag;
         CData/*0:0*/ Soc__DOT__core__DOT___excute_io_fwex_reg_we;
         CData/*4:0*/ Soc__DOT__core__DOT___decode_io_rfio_reg1_raddr;
@@ -82,9 +83,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*6:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h156a9c0e__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0;
-        CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6;
     };
     struct {
+        CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6;
         CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hf0b5fb69__0;
         CData/*0:0*/ Soc__DOT__core__DOT__clint__DOT__valid_buf;
         CData/*0:0*/ Soc__DOT__core__DOT__clint__DOT__unnamedblk1__DOT___T_1;
@@ -148,9 +149,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*2:0*/ Soc__DOT__core__DOT__Icache__DOT__offset;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT__hit0;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT__inDataOneArray;
-        CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT__victim;
     };
     struct {
+        CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT__victim;
         CData/*7:0*/ Soc__DOT__core__DOT__Icache__DOT__mask;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT__inst_type;
         CData/*0:0*/ Soc__DOT__core__DOT__Icache__DOT__whitNum;
@@ -214,9 +215,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT___GEN_20;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT___GEN_25;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_27;
-        IData/*23:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_28;
     };
     struct {
+        IData/*23:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_28;
         CData/*7:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_32;
         QData/*63:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_34;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h02ae5b32__0;
@@ -280,9 +281,9 @@ class VSoc___024root final : public VerilatedModule {
         VlWide<4>/*127:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___GEN_6;
         VlWide<3>/*64:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_68;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_78;
-        IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_85;
     };
     struct {
+        IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_85;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_89;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_98;
         VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_101;
@@ -346,9 +347,9 @@ class VSoc___024root final : public VerilatedModule {
         VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___valid_T_3;
         VlWide<128>/*4095:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_29;
         VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_42;
-        VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_35;
     };
     struct {
+        VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_35;
         VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_26;
         VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_19;
         VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_10;
@@ -412,9 +413,9 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MTVEC;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MCAUSE;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MEPC;
-        QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MIE;
     };
     struct {
+        QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MIE;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MIP;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSTATUS;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSCRATCH;

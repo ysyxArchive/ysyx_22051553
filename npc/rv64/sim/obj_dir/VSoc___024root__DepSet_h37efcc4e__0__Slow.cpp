@@ -53,7 +53,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 2949, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 2956, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -5703,6 +5703,9 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h836ed1e8__0 
         = (1U & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__IO_stall)) 
                  & (~ (IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h37e30a2f__0))));
+    vlSelf->Soc__DOT__core__DOT___wb_io_csrs_csr_wen 
+        = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1)) 
+           & (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_csr_wen));
     vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_0 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1) 
            | ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16) 

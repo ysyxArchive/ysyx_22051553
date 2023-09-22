@@ -3827,6 +3827,9 @@ VL_INLINE_OPT void VSoc___024root___nba_comb__TOP__0(VSoc___024root* vlSelf) {
                                       ? vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
                                      [vlSelf->Soc__DOT__core__DOT___decode_io_rfio_reg1_raddr]
                                       : 0ULL));
+    vlSelf->Soc__DOT__core__DOT___wb_io_csrs_csr_wen 
+        = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1)) 
+           & (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_csr_wen));
     vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_0 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1) 
            | ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16) 
@@ -4962,7 +4965,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 2949, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 2956, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -4985,7 +4988,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VSoc___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("vsrc/Soc.v", 2949, "", "Active region did not converge.");
+                    VL_FATAL_MT("vsrc/Soc.v", 2956, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -5000,7 +5003,7 @@ void VSoc___024root___eval(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 2949, "", "NBA region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 2956, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VSoc___024root___eval_nba(vlSelf);
