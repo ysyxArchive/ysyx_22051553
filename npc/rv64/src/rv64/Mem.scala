@@ -68,7 +68,7 @@ class Mem extends Module{
         Seq(
             io.clmem.Clrvalue.valid -> io.clmem.Clrvalue.bits,
             io.rdata.valid -> io.rdata.bits.data,
-            io.rdata_io.valid -> io.rdata_io.bits.data,
+            io.rdata_io.data.valid -> io.rdata_io.data.bits,
             clmemvalid_buffer -> clmem_buffer,
             rdatavalid_buffer -> rdata_buffer,
             rdataiovalid_buffer -> rdataio_buffer
