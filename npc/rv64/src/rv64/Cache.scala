@@ -489,7 +489,8 @@ class Cache extends Module{
                             (mask === "b00000001".U) -> Cat(io.axi.resp.bits.data(63,8), data(7,0)),
                             (mask === "b00000011".U) -> Cat(io.axi.resp.bits.data(63,16), data(15,0)),
                             (mask === "b00001111".U) -> Cat(io.axi.resp.bits.data(63,32), data(31,0)),
-                            (mask === "b11111111".U) -> io.axi.resp.bits.data
+                            // (mask === "b11111111".U) -> io.axi.resp.bits.data
+                            (mask === "b11111111".U) -> data
                         )
                     )
                 }.otherwise{
@@ -506,7 +507,7 @@ class Cache extends Module{
                             (mask === "b00000001".U) -> Cat(io.axi.resp.bits.data(63,8), data(7,0)),
                             (mask === "b00000011".U) -> Cat(io.axi.resp.bits.data(63,16), data(15,0)),
                             (mask === "b00001111".U) -> Cat(io.axi.resp.bits.data(63,32), data(31,0)),
-                            (mask === "b11111111".U) -> io.axi.resp.bits.data
+                            (mask === "b11111111".U) -> data
                         )
                     )
                 }

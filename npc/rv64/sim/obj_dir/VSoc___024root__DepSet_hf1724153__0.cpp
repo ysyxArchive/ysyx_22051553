@@ -3903,7 +3903,8 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
                               ? (IData)(vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T)
                               : (IData)(vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T))
                           : ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT___T_3)
-                              ? 0U : (IData)(vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T))))
+                              ? (IData)(vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T)
+                              : (IData)(vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T))))
                 : 0U);
     }
     __Vtemp_hb99da695__0[0U] = (IData)((QData)((IData)(
@@ -7712,8 +7713,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     if ((0U == (IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__state))) {
         vlSelf->Soc__DOT__core__DOT__Icache__DOT__offset 
             = ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started)
-                ? ((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT___T_3)
-                    ? 0U : (7U & vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc))
+                ? (7U & vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc)
                 : 0U);
     }
     vlSelf->Soc__DOT__core__DOT__Icache__DOT__victim 
