@@ -2488,8 +2488,8 @@ module Core(	// <stdin>:4082:10
   reg         mwreg_csr_wen;	// Core.scala:71:24
   reg  [11:0] mwreg_csr_waddr;	// Core.scala:71:24
   reg         mwreg_has_inst;	// Core.scala:71:24
-  wire [63:0] _DI_io_mem_addr_T = _excute_io_waddr | _excute_io_raddr;	// Core.scala:27:24, :447:94
-  wire        _arbitor_io_master0_req_valid_T_5 = ((|dereg_ld_type) | (|dereg_sd_type)) & _DI_io_mem_addr_T > 64'h9FFFFFFF;	// Core.scala:39:24, :447:{47,67,94}, :458:{56,77,117}
+  wire [63:0] _DI_io_mem_addr_T = _excute_io_waddr | _excute_io_raddr;	// Core.scala:27:24, :447:93
+  wire        _arbitor_io_master0_req_valid_T_5 = ((|dereg_ld_type) | (|dereg_sd_type)) & _DI_io_mem_addr_T > 64'h9FFFFFFF;	// Core.scala:39:24, :447:{47,67,93}, :458:{56,77,117}
   always @(posedge clock) begin
     if (reset) begin
       fdreg_pc <= 32'h80000000;	// <stdin>:4103:23, Core.scala:33:24
@@ -2965,7 +2965,7 @@ module Core(	// <stdin>:4082:10
     .reset                     (reset),
     .io_master0_req_valid      (_arbitor_io_master0_req_valid_T_5),	// Core.scala:458:77
     .io_master0_req_bits_rw    (|dereg_ld_type),	// Core.scala:39:24, :447:47
-    .io_master0_req_bits_addr  (_DI_io_mem_addr_T[31:0]),	// Core.scala:447:94, :448:33
+    .io_master0_req_bits_addr  (_DI_io_mem_addr_T[31:0]),	// Core.scala:447:93, :448:33
     .io_master0_req_bits_data  (_excute_io_wdata),	// Core.scala:27:24
     .io_master0_req_bits_mask  (_excute_io_wmask),	// Core.scala:27:24
     .io_master1_req_valid      (_Dcache_io_axi_req_valid),	// Core.scala:105:24
@@ -3026,9 +3026,9 @@ module Core(	// <stdin>:4082:10
   Cache Dcache (	// Core.scala:105:24
     .clock                     (clock),
     .reset                     (reset),
-    .io_cpu_req_valid          ((|dereg_ld_type) | (|dereg_sd_type)),	// Core.scala:39:24, :447:{47,51,67}
+    .io_cpu_req_valid          (((|dereg_ld_type) | (|dereg_sd_type)) & _DI_io_mem_addr_T < 64'hA0000000),	// Core.scala:39:24, :447:{47,51,67,72,93,112}
     .io_cpu_req_bits_inst_type (1'h0),	// Core.scala:105:24
-    .io_cpu_req_bits_addr      (_DI_io_mem_addr_T[31:0]),	// Core.scala:447:94, :448:33
+    .io_cpu_req_bits_addr      (_DI_io_mem_addr_T[31:0]),	// Core.scala:447:93, :448:33
     .io_cpu_req_bits_data      (_excute_io_wdata),	// Core.scala:27:24
     .io_cpu_req_bits_mask      (_excute_io_wmask),	// Core.scala:27:24
     .io_axi_resp_valid         (_arbitor_io_master1_resp_valid),	// Core.scala:101:25
@@ -3060,7 +3060,7 @@ module Core(	// <stdin>:4082:10
     .result     (_excute_io_emio_reg_wdata),	// Core.scala:27:24
     .br_yes     (_excute_io_jump_flag),	// Core.scala:27:24
     .mem_access ((|dereg_ld_type) | (|dereg_sd_type)),	// Core.scala:39:24, :487:{48,52,77}
-    .mem_addr   (_DI_io_mem_addr_T),	// Core.scala:447:94
+    .mem_addr   (_DI_io_mem_addr_T),	// Core.scala:447:93
     .rd         (_wb_io_rfio_rd),	// Core.scala:30:20
     .reg_wen    (_wb_io_rfio_reg_wen),	// Core.scala:30:20
     .reg_wdata  (_wb_io_rfio_reg_wdata),	// Core.scala:30:20
@@ -3078,7 +3078,7 @@ endmodule
 
 // external module Sram
 
-module Soc(	// <stdin>:4492:10
+module Soc(	// <stdin>:4491:10
   input clock,
         reset);
 
@@ -3437,5 +3437,3 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
-

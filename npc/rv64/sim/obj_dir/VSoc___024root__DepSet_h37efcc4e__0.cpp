@@ -47,7 +47,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
     vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_mask 
         = vlSelf->__Vdly__Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_mask;
     vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_req_valid_T_5 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid) 
+        = ((IData)(vlSelf->Soc__DOT__core__DOT____Vcellinp__DI__mem_access) 
            & (0x9fffffffULL < vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T));
     vlSelf->Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data 
         = vlSelf->__Vdly__Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_data;
