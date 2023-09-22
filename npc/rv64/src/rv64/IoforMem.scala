@@ -96,6 +96,8 @@ class IoforMem extends Module{
 
                 when(io.fc.stall){
                     state := s_wait
+
+                    axi_req_valid := 0.B
                 }.otherwise{
                     state := s_Idle
                 }
