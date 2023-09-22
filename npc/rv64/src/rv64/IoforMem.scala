@@ -33,7 +33,7 @@ class IOfc extends Bundle{
 }
 
 class IomemIO extends Bundle{  //io访存模块
-    val axi = new AXIMasterIO
+    val axi = Flipped(new AXIMasterIO)
     val excute = new IOex
     val mem = new IOmem
 
