@@ -153,6 +153,8 @@ class Core extends Module{
     mem.io.emio.has_inst := emreg.has_inst
 
     mem.io.rdata <> Dcache.io.cpu.resp
+
+    mem.io.stall := fc.io.fcmem.stall
     //wb
     wb.io.mwio.wb_type := mwreg.wb_type
     wb.io.mwio.reg_waddr := mwreg.reg_waddr
