@@ -18,18 +18,45 @@ class MemIO extends Bundle{  //需要在这里落实lbu等，为了前向传递
 
     //CLINT
     val clmem = Flipped(new ClMemIO)
+
+    //stall
+    val stall = Input(Bool())
 }
 
 class Mem extends Module{
     val io = IO(new MemIO)
 
+    
+    val clmemvalid_buffer = RegInit(Bool())
+    val rdatavalid_buffer = RegInit(Bool())
+    val rdataiovalid_buffer = RegInit(Bool())
+
+    when(io.clmem.Clrvalue.valid && io.stall){
+        clmemvalid_buffer := 1.B
+    }.elsewhen(!io.stall && clmemvalid_buffer){
+        clmemvalid_buffer := 0.B
+    }
+
+    when(io.rdata.valid && io.stall){
+        rdatavalid_buffer := 1.B
+    }.elsewhen(!io.stall && rdatavalid_buffer){
+        rdatavalid_buffer := 0.B
+    }
+
+    when(io.rdata_io.valid && io.stall){
+        rdataiovalid_buffer := 1.B
+    }.elsewhen(!io.stall && rdataiovalid_buffer){
+        rdataiovalid_buffer := 0.B
+    }
 
     //内部逻辑
     val get_value = Wire(UInt(X_LEN.W))   //CLINT数据或者内存数据
-    get_value := Mux(io.clmem.Clrvalue.valid, io.clmem.Clrvalue.bits,
-        Mux(io.rdata.valid, io.rdata.bits.data,
-        Mux(io.rdata_io.valid, io.rdata_io.bits.data,
+    get_value := Mux(io.clmem.Clrvalue.valid || clmemvalid_buffer, io.clmem.Clrvalue.bits,
+        Mux(io.rdata.valid || rdatavalid_buffer, io.rdata.bits.data,
+        Mux(io.rdata_io.valid || rdataiovalid_buffer, io.rdata_io.bits.data,
         0.U)))
+    
+    
 
 
     val rvalue = Wire(UInt(X_LEN.W))                   //根据1.位宽进行扩展2.基地址偏移进行选择（总线上只能8字节对齐）

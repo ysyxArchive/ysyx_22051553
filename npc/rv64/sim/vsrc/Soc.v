@@ -1198,7 +1198,6 @@ module FlowControl(	// <stdin>:1871:10
   input  [2:0]  io_fcDcache_state,
   input  [7:0]  io_fcDcache_mask,
   input         io_fcDcache_hit,
-                io_fcDcache_cpu_valid,
                 io_fcDcache_axi_valid,
                 io_fcio_req,
                 io_fcio_valid,
@@ -1220,33 +1219,33 @@ module FlowControl(	// <stdin>:1871:10
   assign Icache_stall = ~io_fcIcache_cpu_valid & io_fcIcache_state != 3'h1 & ~(io_fcIcache_state == 3'h4 &
                 io_fcIcache_axi_valid) & ((|io_fcIcache_state) | _T_8 & io_fcIcache_req &
                 (|io_fcIcache_mask) | _T_8 & io_fcIcache_req & ~(|io_fcIcache_mask) & ~io_fcDcache_hit);	// FlowControl.scala:133:32, :134:22, :135:{34,60}, :137:{34,65,90}, :138:22, :141:{34,42}, :142:22, :143:{34,61,81,85}, :145:{64,86,89}
-  wire _T_25 = io_fcDcache_state == 3'h0;	// FlowControl.scala:141:34, :162:34
-  assign Dcache_stall = ~io_fcDcache_cpu_valid & io_fcDcache_state != 3'h1 & ~(io_fcDcache_state == 3'h4 &
-                io_fcDcache_axi_valid) & ~((&io_fcDcache_state) & io_fcDcache_axi_valid) &
-                ((|io_fcDcache_state) | _T_25 & io_fcDcache_req & (|io_fcDcache_mask) | _T_25 &
-                io_fcDcache_req & ~(|io_fcDcache_mask) & ~io_fcDcache_hit);	// FlowControl.scala:135:34, :137:34, :152:32, :153:22, :154:{34,60}, :156:{34,65,90}, :157:22, :158:{34,59,84}, :159:22, :160:{34,42}, :161:22, :162:{34,61,81,85}, :164:{64,86,89}
-  assign IO_stall = ~io_fcio_valid & io_fcio_req;	// FlowControl.scala:170:24, :171:18, :172:28
-  wire _SFBundle_T_3 = io_fctr_trap_state == 3'h4 | (&io_fctr_trap_state);	// FlowControl.scala:137:34, :184:{33,47,70}
+  wire _T_25 = io_fcDcache_state == 3'h0;	// FlowControl.scala:141:34, :161:34
+  assign Dcache_stall = io_fcDcache_state != 3'h1 & ~(io_fcDcache_state == 3'h4 & io_fcDcache_axi_valid) &
+                ~((&io_fcDcache_state) & io_fcDcache_axi_valid) & ((|io_fcDcache_state) | _T_25 &
+                io_fcDcache_req & (|io_fcDcache_mask) | _T_25 & io_fcDcache_req & ~(|io_fcDcache_mask) &
+                ~io_fcDcache_hit);	// FlowControl.scala:135:34, :137:34, :153:{28,54}, :154:22, :155:{34,65,90}, :156:22, :157:{34,59,84}, :158:22, :159:{34,42}, :160:22, :161:{34,61,81,85}, :163:{64,86,89}
+  assign IO_stall = ~io_fcio_valid & io_fcio_req;	// FlowControl.scala:172:24, :173:18, :174:28
+  wire _SFBundle_T_3 = io_fctr_trap_state == 3'h4 | (&io_fctr_trap_state);	// FlowControl.scala:137:34, :186:{33,47,70}
   wire _SFBundle_T_21_0 = io_fctr_pop_NOP | io_fctr_trap_state == 3'h1 | io_fctr_trap_state == 3'h2 |
-                io_fctr_trap_state == 3'h3 | io_fctr_trap_state == 3'h5 | io_fctr_trap_state == 3'h6;	// FlowControl.scala:135:34, :185:{60,93}, :186:{36,71,87,109}
+                io_fctr_trap_state == 3'h3 | io_fctr_trap_state == 3'h5 | io_fctr_trap_state == 3'h6;	// FlowControl.scala:135:34, :187:{60,93}, :188:{36,71,87,109}
   wire SFBundle_0 = IO_stall | Icache_stall | Dcache_stall | io_fcde_load_use | ~_SFBundle_T_3 &
-                _SFBundle_T_21_0;	// FlowControl.scala:184:47, :186:87, Mux.scala:101:16
+                _SFBundle_T_21_0;	// FlowControl.scala:186:47, :188:87, Mux.scala:101:16
   wire SFBundle_1 = IO_stall | Icache_stall | Dcache_stall;	// Mux.scala:101:16
   wire SFBundle_2 = IO_stall | Icache_stall | Dcache_stall;	// Mux.scala:101:16
   wire SFBundle_4 = IO_stall | Icache_stall | Dcache_stall;	// Mux.scala:101:16
-  assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag | io_fctr_jump_flag;	// <stdin>:1871:10, FlowControl.scala:206:65
+  assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag | io_fctr_jump_flag;	// <stdin>:1871:10, FlowControl.scala:208:65
   assign io_fcfe_jump_pc = io_fctr_jump_flag ? io_fctr_jump_pc : io_fcex_jump_flag ? io_fcex_jump_pc :
                 io_fcde_jump_flag ? io_fcde_jump_pc : 32'h80000000;	// <stdin>:1871:10, Mux.scala:101:16
   assign io_fcfe_flush = ~IO_stall & ~Icache_stall & ~Dcache_stall & ~io_fcde_load_use & (_SFBundle_T_3 |
-                ~_SFBundle_T_21_0 & (io_fctr_jump_flag | io_fcex_jump_flag | io_fcde_jump_flag));	// <stdin>:1871:10, FlowControl.scala:184:47, :186:87, Mux.scala:101:16
+                ~_SFBundle_T_21_0 & (io_fctr_jump_flag | io_fcex_jump_flag | io_fcde_jump_flag));	// <stdin>:1871:10, FlowControl.scala:186:47, :188:87, Mux.scala:101:16
   assign io_fcfe_stall = SFBundle_0;	// <stdin>:1871:10, Mux.scala:101:16
   assign io_fcde_flush = ~IO_stall & ~Icache_stall & ~Dcache_stall & (io_fcde_load_use | _SFBundle_T_3 |
-                _SFBundle_T_21_0 | ~io_fctr_jump_flag & io_fcex_jump_flag);	// <stdin>:1871:10, FlowControl.scala:184:47, :186:87, Mux.scala:101:16
+                _SFBundle_T_21_0 | ~io_fctr_jump_flag & io_fcex_jump_flag);	// <stdin>:1871:10, FlowControl.scala:186:47, :188:87, Mux.scala:101:16
   assign io_fcde_stall = SFBundle_1;	// <stdin>:1871:10, Mux.scala:101:16
   assign io_fcex_stall = SFBundle_2;	// <stdin>:1871:10, Mux.scala:101:16
   assign io_fcmem_stall = IO_stall | Icache_stall | Dcache_stall;	// <stdin>:1871:10, Mux.scala:101:16
   assign io_fcwb_stall = SFBundle_4;	// <stdin>:1871:10, Mux.scala:101:16
-  assign io_sdb_stall = SFBundle_0 & SFBundle_1 & SFBundle_2 & SFBundle_4;	// <stdin>:1871:10, FlowControl.scala:220:67, Mux.scala:101:16
+  assign io_sdb_stall = SFBundle_0 & SFBundle_1 & SFBundle_2 & SFBundle_4;	// <stdin>:1871:10, FlowControl.scala:222:67, Mux.scala:101:16
 endmodule
 
 module CSRs(	// <stdin>:2110:10
@@ -2778,7 +2777,6 @@ module Core(	// <stdin>:4063:10
     .io_fcDcache_state     (_Dcache_io_fccache_state),	// Core.scala:105:24
     .io_fcDcache_mask      (_Dcache_io_fccache_mask),	// Core.scala:105:24
     .io_fcDcache_hit       (_Dcache_io_fccache_hit),	// Core.scala:105:24
-    .io_fcDcache_cpu_valid (_Dcache_io_fccache_cpu_valid),	// Core.scala:105:24
     .io_fcDcache_axi_valid (_Dcache_io_fccache_axi_valid),	// Core.scala:105:24
     .io_fcio_req           (_arbitor_io_master0_req_valid_T_5),	// Core.scala:459:77
     .io_fcio_valid         (_arbitor_io_master0_resp_valid),	// Core.scala:101:25
@@ -3314,4 +3312,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 
