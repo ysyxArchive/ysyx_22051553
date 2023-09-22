@@ -27,9 +27,9 @@ class Mem extends Module{
     val io = IO(new MemIO)
 
     
-    val clmemvalid_buffer = RegInit(Bool())
-    val rdatavalid_buffer = RegInit(Bool())
-    val rdataiovalid_buffer = RegInit(Bool())
+    val clmemvalid_buffer = RegInit(0.B)
+    val rdatavalid_buffer = RegInit(0.B)
+    val rdataiovalid_buffer = RegInit(0.B)
 
     when(io.clmem.Clrvalue.valid && io.stall){
         clmemvalid_buffer := 1.B
