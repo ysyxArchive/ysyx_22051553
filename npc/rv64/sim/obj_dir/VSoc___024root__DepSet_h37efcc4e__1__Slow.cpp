@@ -85,11 +85,13 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT___sram_S_AXI_BVALID = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT___core_io_AXI_Interface_aw_bits_addr = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT____Vcellinp__sram__ARESETn = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT___Dcache_io_cpu_resp_bits_data = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___Dcache_io_fccache_mask = VL_RAND_RESET_I(8);
     vlSelf->Soc__DOT__core__DOT___Dcache_io_fccache_axi_valid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___Icache_io_cpu_resp_bits_data = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___Icache_io_fccache_axi_valid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_valid = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_bits_data = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___trap_io_csrtr_rd = VL_RAND_RESET_I(12);
@@ -208,7 +210,14 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__mem__DOT__clmemvalid_buffer = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__mem__DOT__rdatavalid_buffer = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__mem__DOT__clmem_buffer = VL_RAND_RESET_Q(64);
+    vlSelf->Soc__DOT__core__DOT__mem__DOT__rdata_buffer = VL_RAND_RESET_Q(64);
+    vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataio_buffer = VL_RAND_RESET_Q(64);
+    vlSelf->Soc__DOT__core__DOT__mem__DOT__get_value = VL_RAND_RESET_Q(64);
     VL_RAND_RESET_W(512, vlSelf->Soc__DOT__core__DOT__mem__DOT___GEN_1);
+    vlSelf->Soc__DOT__core__DOT__mem__DOT__unnamedblk1__DOT___T = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__mem__DOT__unnamedblk1__DOT___T_3 = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__mem__DOT__unnamedblk1__DOT___T_6 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__clint__DOT__MSIP = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__core__DOT__clint__DOT__MTIMECMP = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__clint__DOT__MTIME = VL_RAND_RESET_Q(64);

@@ -384,10 +384,42 @@ class Cache extends Module{
             when(whitNum){ //way1命中,改变replace，及dirty
                 DataArray(index * 2.U + 1.U) := MuxCase(
                     0.U,
-                    Seq( //如果编译器默认对齐
-                        (mask === "b00000001".U) -> Cat(DataOneArray(63,8), data(7,0)),
-                        (mask === "b00000011".U) -> Cat(DataOneArray(63,16), data(15,0)),
-                        (mask === "b00001111".U) -> Cat(DataOneArray(63,32), data(31,0)),
+                    Seq( //编译器不会默认8字节对齐
+                        (mask === "b00000001".U) -> 
+                        MuxLookup(
+                            offset,
+                            0.U,
+                            Seq(
+                                0.U -> Cat(DataOneArray(63,8), data(7,0)),
+                                1.U -> Cat(DataOneArray(63,16), data(7,0), DataOneArray(7,0)),
+                                2.U -> Cat(DataOneArray(63,24), data(7,0), DataOneArray(15,0)),
+                                3.U -> Cat(DataOneArray(63,32), data(7,0), DataOneArray(23,0)),
+                                4.U -> Cat(DataOneArray(63,40), data(7,0), DataOneArray(31,0)),
+                                5.U -> Cat(DataOneArray(63,48), data(7,0), DataOneArray(39,0)),
+                                6.U -> Cat(DataOneArray(63,56), data(7,0), DataOneArray(47,0)),
+                                7.U -> Cat(data(7,0), DataOneArray(55,0)),
+                            )
+                        ),
+                        (mask === "b00000011".U) -> 
+                        MuxLookup(
+                            offset,
+                            0.U,
+                            Seq(
+                                0.U -> Cat(DataOneArray(63,16), data(15,0)),
+                                2.U -> Cat(DataOneArray(63,32), data(15,0), DataOneArray(15,0)),
+                                4.U -> Cat(DataOneArray(63,48), data(15,0), DataOneArray(31,0)),
+                                6.U -> Cat(data(15,0), DataOneArray(47,0)),
+                            )
+                        ),
+                        (mask === "b00001111".U) -> 
+                        MuxLookup(
+                            offset,
+                            0.U,
+                            Seq(
+                                0.U -> Cat(DataOneArray(63,32), data(31,0)),
+                                4.U -> Cat(data(31,0), DataOneArray(31,0)),
+                            )
+                        ),
                         (mask === "b11111111".U) -> data
                     )
                 )
@@ -400,10 +432,42 @@ class Cache extends Module{
             }.otherwise{ //way0命中
                 DataArray(index * 2.U) := MuxCase(
                     0.U,
-                    Seq( //如果编译器默认对齐
-                        (mask === "b00000001".U) -> Cat(DataOneArray(63,8), data(7,0)),
-                        (mask === "b00000011".U) -> Cat(DataOneArray(63,16), data(15,0)),
-                        (mask === "b00001111".U) -> Cat(DataOneArray(63,32), data(31,0)),
+                    Seq( //编译器不会默认8字节对齐
+                        (mask === "b00000001".U) -> 
+                        MuxLookup(
+                            offset,
+                            0.U,
+                            Seq(
+                                0.U -> Cat(DataOneArray(63,8), data(7,0)),
+                                1.U -> Cat(DataOneArray(63,16), data(7,0), DataOneArray(7,0)),
+                                2.U -> Cat(DataOneArray(63,24), data(7,0), DataOneArray(15,0)),
+                                3.U -> Cat(DataOneArray(63,32), data(7,0), DataOneArray(23,0)),
+                                4.U -> Cat(DataOneArray(63,40), data(7,0), DataOneArray(31,0)),
+                                5.U -> Cat(DataOneArray(63,48), data(7,0), DataOneArray(39,0)),
+                                6.U -> Cat(DataOneArray(63,56), data(7,0), DataOneArray(47,0)),
+                                7.U -> Cat(data(7,0), DataOneArray(55,0)),
+                            )
+                        ),
+                        (mask === "b00000011".U) -> 
+                        MuxLookup(
+                            offset,
+                            0.U,
+                            Seq(
+                                0.U -> Cat(DataOneArray(63,16), data(15,0)),
+                                2.U -> Cat(DataOneArray(63,32), data(15,0), DataOneArray(15,0)),
+                                4.U -> Cat(DataOneArray(63,48), data(15,0), DataOneArray(31,0)),
+                                6.U -> Cat(data(15,0), DataOneArray(47,0)),
+                            )
+                        ),
+                        (mask === "b00001111".U) -> 
+                        MuxLookup(
+                            offset,
+                            0.U,
+                            Seq(
+                                0.U -> Cat(DataOneArray(63,32), data(31,0)),
+                                4.U -> Cat(data(31,0), DataOneArray(31,0)),
+                            )
+                        ),
                         (mask === "b11111111".U) -> data
                     )
                 )
@@ -483,16 +547,49 @@ class Cache extends Module{
                     replace := replace0 | replace1
 
                     TagArray(index * 2.U + 1.U) := tag
+
                     DataArray(index * 2.U + 1.U) := MuxCase(
-                        0.U,
-                        Seq( //如果编译器默认对齐
-                            (mask === "b00000001".U) -> Cat(io.axi.resp.bits.data(63,8), data(7,0)),
-                            (mask === "b00000011".U) -> Cat(io.axi.resp.bits.data(63,16), data(15,0)),
-                            (mask === "b00001111".U) -> Cat(io.axi.resp.bits.data(63,32), data(31,0)),
-                            // (mask === "b11111111".U) -> io.axi.resp.bits.data
-                            (mask === "b11111111".U) -> data
-                        )
+                    0.U,
+                    Seq( //编译器不会默认8字节对齐
+                        (mask === "b00000001".U) -> 
+                        MuxLookup(
+                            offset,
+                            0.U,
+                            Seq(
+                                0.U -> Cat(io.axi.resp.bits.data(63,8), data(7,0)),
+                                1.U -> Cat(io.axi.resp.bits.data(63,16), data(7,0), io.axi.resp.bits.data(7,0)),
+                                2.U -> Cat(io.axi.resp.bits.data(63,24), data(7,0), io.axi.resp.bits.data(15,0)),
+                                3.U -> Cat(io.axi.resp.bits.data(63,32), data(7,0), io.axi.resp.bits.data(23,0)),
+                                4.U -> Cat(io.axi.resp.bits.data(63,40), data(7,0), io.axi.resp.bits.data(31,0)),
+                                5.U -> Cat(io.axi.resp.bits.data(63,48), data(7,0), io.axi.resp.bits.data(39,0)),
+                                6.U -> Cat(io.axi.resp.bits.data(63,56), data(7,0), io.axi.resp.bits.data(47,0)),
+                                7.U -> Cat(data(7,0), io.axi.resp.bits.data(55,0)),
+                            )
+                        ),
+                        (mask === "b00000011".U) -> 
+                        MuxLookup(
+                            offset,
+                            0.U,
+                            Seq(
+                                0.U -> Cat(io.axi.resp.bits.data(63,16), data(15,0)),
+                                2.U -> Cat(io.axi.resp.bits.data(63,32), data(15,0), io.axi.resp.bits.data(15,0)),
+                                4.U -> Cat(io.axi.resp.bits.data(63,48), data(15,0), io.axi.resp.bits.data(31,0)),
+                                6.U -> Cat(data(15,0), io.axi.resp.bits.data(47,0)),
+                            )
+                        ),
+                        (mask === "b00001111".U) -> 
+                        MuxLookup(
+                            offset,
+                            0.U,
+                            Seq(
+                                0.U -> Cat(io.axi.resp.bits.data(63,32), data(31,0)),
+                                4.U -> Cat(data(31,0), io.axi.resp.bits.data(31,0)),
+                            )
+                        ),
+                        (mask === "b11111111".U) -> data
                     )
+                    )
+
                 }.otherwise{
                     valid := valid.bitSet(index * 2.U, 1.B)
                     dirty := dirty.bitSet(index * 2.U, 1.B) //读出即写
@@ -502,13 +599,45 @@ class Cache extends Module{
 
                     TagArray(index * 2.U) := tag
                     DataArray(index * 2.U) := MuxCase(
-                        0.U,
-                        Seq( //如果编译器默认对齐
-                            (mask === "b00000001".U) -> Cat(io.axi.resp.bits.data(63,8), data(7,0)),
-                            (mask === "b00000011".U) -> Cat(io.axi.resp.bits.data(63,16), data(15,0)),
-                            (mask === "b00001111".U) -> Cat(io.axi.resp.bits.data(63,32), data(31,0)),
-                            (mask === "b11111111".U) -> data
-                        )
+                    0.U,
+                    Seq( //编译器不会默认8字节对齐
+                        (mask === "b00000001".U) -> 
+                        MuxLookup(
+                            offset,
+                            0.U,
+                            Seq(
+                                0.U -> Cat(io.axi.resp.bits.data(63,8), data(7,0)),
+                                1.U -> Cat(io.axi.resp.bits.data(63,16), data(7,0), io.axi.resp.bits.data(7,0)),
+                                2.U -> Cat(io.axi.resp.bits.data(63,24), data(7,0), io.axi.resp.bits.data(15,0)),
+                                3.U -> Cat(io.axi.resp.bits.data(63,32), data(7,0), io.axi.resp.bits.data(23,0)),
+                                4.U -> Cat(io.axi.resp.bits.data(63,40), data(7,0), io.axi.resp.bits.data(31,0)),
+                                5.U -> Cat(io.axi.resp.bits.data(63,48), data(7,0), io.axi.resp.bits.data(39,0)),
+                                6.U -> Cat(io.axi.resp.bits.data(63,56), data(7,0), io.axi.resp.bits.data(47,0)),
+                                7.U -> Cat(data(7,0), io.axi.resp.bits.data(55,0)),
+                            )
+                        ),
+                        (mask === "b00000011".U) -> 
+                        MuxLookup(
+                            offset,
+                            0.U,
+                            Seq(
+                                0.U -> Cat(io.axi.resp.bits.data(63,16), data(15,0)),
+                                2.U -> Cat(io.axi.resp.bits.data(63,32), data(15,0), io.axi.resp.bits.data(15,0)),
+                                4.U -> Cat(io.axi.resp.bits.data(63,48), data(15,0), io.axi.resp.bits.data(31,0)),
+                                6.U -> Cat(data(15,0), io.axi.resp.bits.data(47,0)),
+                            )
+                        ),
+                        (mask === "b00001111".U) -> 
+                        MuxLookup(
+                            offset,
+                            0.U,
+                            Seq(
+                                0.U -> Cat(io.axi.resp.bits.data(63,32), data(31,0)),
+                                4.U -> Cat(data(31,0), io.axi.resp.bits.data(31,0)),
+                            )
+                        ),
+                        (mask === "b11111111".U) -> data
+                    )
                     )
                 }
                 cpu_resp_valid := 1.B
