@@ -218,6 +218,8 @@ class Cache extends Module{
                     when(hit0 | hit1){ //若读命中
                         state := s_Idle
 
+                        offset := io.cpu.req.bits.addr(2, 0) 
+
                         when(hit0){   //读命中后改变replace
                             // when(inst_type){  //如果为读取指令
                             //     when(offset === 0.U){
