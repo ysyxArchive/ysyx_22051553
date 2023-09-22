@@ -47,6 +47,7 @@ class AXIArbitor extends Module{
     //1100 表示master2申请
 
     val master_choose = WireInit(0.U(4.W))  //两位，10代表master0申请访问，11代表master1申请访问，0?代表无访问
+    dontTouch(master_choose)
     master_choose := MuxCase(
         "b0000".U,
         Seq(
@@ -169,7 +170,7 @@ class AXIArbitor extends Module{
             when(master_choose(3)){
                 choose_buffer := master_choose
 
-                when(rw){ //1-r
+                when(rw_idle){ //1-r
                     state := s_AR
                 }.otherwise{ //0-w
                     state := s_W
