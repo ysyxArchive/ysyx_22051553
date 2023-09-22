@@ -30,31 +30,50 @@ class Mem extends Module{
     val clmemvalid_buffer = RegInit(0.B)
     val rdatavalid_buffer = RegInit(0.B)
     val rdataiovalid_buffer = RegInit(0.B)
+    val clmem_buffer = RegInit(0.U(X_LEN.W))
+    val rdata_buffer = RegInit(0.U(X_LEN.W))
+    val rdataio_buffer = RegInit(0.U(X_LEN.W))
 
     when(io.clmem.Clrvalue.valid && io.stall){
         clmemvalid_buffer := 1.B
+        clmem_buffer := io.clmem.Clrvalue.bits
     }.elsewhen(!io.stall && clmemvalid_buffer){
         clmemvalid_buffer := 0.B
     }
 
     when(io.rdata.valid && io.stall){
         rdatavalid_buffer := 1.B
+        rdata_buffer := io.rdata.bits.data
     }.elsewhen(!io.stall && rdatavalid_buffer){
         rdatavalid_buffer := 0.B
     }
 
     when(io.rdata_io.valid && io.stall){
         rdataiovalid_buffer := 1.B
+        rdataio_buffer := io.rdata_io.bits.data
     }.elsewhen(!io.stall && rdataiovalid_buffer){
         rdataiovalid_buffer := 0.B
     }
 
     //内部逻辑
     val get_value = Wire(UInt(X_LEN.W))   //CLINT数据或者内存数据
-    get_value := Mux(io.clmem.Clrvalue.valid || clmemvalid_buffer, io.clmem.Clrvalue.bits,
-        Mux(io.rdata.valid || rdatavalid_buffer, io.rdata.bits.data,
-        Mux(io.rdata_io.valid || rdataiovalid_buffer, io.rdata_io.bits.data,
-        0.U)))
+    dontTouch(get_value)
+    // get_value := Mux(io.clmem.Clrvalue.valid || clmemvalid_buffer, io.clmem.Clrvalue.bits,
+    //     Mux(io.rdata.valid || rdatavalid_buffer, io.rdata.bits.data,
+    //     Mux(io.rdata_io.valid || rdataiovalid_buffer, io.rdata_io.bits.data,
+    //     0.U)))
+    
+    get_value := MuxCase(
+        0.U,
+        Seq(
+            io.clmem.Clrvalue.valid -> io.clmem.Clrvalue.bits,
+            io.rdata.valid -> io.rdata.bits.data,
+            io.rdata_io.valid -> io.rdata_io.bits.data,
+            clmemvalid_buffer -> clmem_buffer,
+            rdatavalid_buffer -> rdata_buffer,
+            rdataiovalid_buffer -> rdataio_buffer
+        )
+    )
     
     
 

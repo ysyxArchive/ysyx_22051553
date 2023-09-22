@@ -205,6 +205,9 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_157 = VL_RAND_RESET_Q(64);
     VL_RAND_RESET_W(127, vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_177);
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___GEN_12 = VL_RAND_RESET_Q(64);
+    vlSelf->Soc__DOT__core__DOT__mem__DOT__clmemvalid_buffer = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__mem__DOT__rdatavalid_buffer = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer = VL_RAND_RESET_I(1);
     VL_RAND_RESET_W(512, vlSelf->Soc__DOT__core__DOT__mem__DOT___GEN_1);
     vlSelf->Soc__DOT__core__DOT__clint__DOT__MSIP = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__core__DOT__clint__DOT__MTIMECMP = VL_RAND_RESET_Q(64);
