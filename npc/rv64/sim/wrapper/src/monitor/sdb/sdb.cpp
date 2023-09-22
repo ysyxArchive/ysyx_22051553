@@ -88,7 +88,8 @@ extern "C" {
     svLogic reg_wen,
     svLogic csr_wen,
     const svLogicVecVal* csr_wdata,
-    const svLogicVecVal* csr_waddr);
+    const svLogicVecVal* csr_waddr,
+    svLogic sdb_stall);
 
   long long pmem_read(const svLogicVecVal* raddr);
 
@@ -318,7 +319,7 @@ static int cmd_s(char *args){
   if(args == NULL){
 
     #ifdef ITRACE
-    while(decode_list.size() < 1){
+    while(decode_list.size() < 4){
       single_cycle();
     }
     #endif

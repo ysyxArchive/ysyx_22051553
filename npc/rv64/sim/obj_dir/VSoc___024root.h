@@ -28,9 +28,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT___Icache_io_fccache_axi_valid;
         CData/*0:0*/ Soc__DOT__core__DOT___arbitor_io_master0_resp_valid;
         CData/*0:0*/ Soc__DOT__core__DOT___trap_io_csrtr_csr_wen;
-        CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcfe_stall;
         CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcde_flush;
-        CData/*0:0*/ Soc__DOT__core__DOT___fc_io_fcde_stall;
         CData/*0:0*/ Soc__DOT__core__DOT___excute_io_jump_flag;
         CData/*0:0*/ Soc__DOT__core__DOT___excute_io_fwex_reg_we;
         CData/*4:0*/ Soc__DOT__core__DOT___decode_io_rfio_reg1_raddr;
@@ -83,10 +81,10 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h90ba5b66__0;
         CData/*6:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h156a9c0e__0;
-    };
-    struct {
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0;
         CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6;
+    };
+    struct {
         CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hf0b5fb69__0;
         CData/*0:0*/ Soc__DOT__core__DOT__clint__DOT__valid_buf;
         CData/*0:0*/ Soc__DOT__core__DOT__clint__DOT__unnamedblk1__DOT___T_1;
@@ -110,6 +108,8 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___T_25;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___SFBundle_T_21_0;
+        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT__SFBundle_0;
+        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT__SFBundle_1;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h836ed1e8__0;
         CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_1;
         CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_2;

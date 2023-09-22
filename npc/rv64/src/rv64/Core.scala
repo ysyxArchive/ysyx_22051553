@@ -167,6 +167,8 @@ class Core extends Module{
 
     wb.io.csrs <> csrs.io.CSRWb
 
+    wb.io.stall := fc.io.fcwb.stall
+
 
     //流水线寄存器
     //fdreg

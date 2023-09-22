@@ -28,3 +28,4 @@ run: build compile exe
 
 clean:
 	rm -rf obj_dir/*
+

@@ -13,6 +13,8 @@ class WbIO extends Bundle{
     val fwwb = Flipped(new FwPipeIO)
 
     val csrs = Flipped(new CSRWbIO)
+
+    val stall = Input(Bool()) //为了difftest,wb在stall时，不写寄存器
 }
 
 class Wb extends Module{
@@ -27,7 +29,7 @@ class Wb extends Module{
     //端口驱动
     //rfio
     io.rfio.rd := io.mwio.reg_waddr
-    io.rfio.reg_wen := io.mwio.wb_type.orR  //记录
+    io.rfio.reg_wen := Mux(io.stall, 0.B, io.mwio.wb_type.orR)  //记录
     io.rfio.reg_wdata := io.mwio.reg_wdata
 
 
@@ -42,6 +44,6 @@ class Wb extends Module{
 
     //csrs
     io.csrs.rd := io.mwio.csr_waddr
-    io.csrs.csr_wen := io.mwio.csr_wen
+    io.csrs.csr_wen := Mux(io.stall, 0.B, io.mwio.csr_wen)
     io.csrs.csr_wdata := io.mwio.csr_wdata
 }
