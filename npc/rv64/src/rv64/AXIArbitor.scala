@@ -58,9 +58,23 @@ class AXIArbitor extends Module{
     val choose_buffer = RegInit(0.U(4.W))
 
     val rw = WireInit(0.B)
+    val rw_idle = WireInit(0.B)
     val addr = WireInit(0.U(ADDRWIDTH.W))
     val data = WireInit(0.U(X_LEN.W))
     val mask = WireInit(0.U((X_LEN/8).W))
+
+
+    rw_idle := Mux(master_choose(3), 
+        MuxCase(
+            0.B,
+            Seq(
+                master_choose(0) -> io.master0.req.bits.rw,
+                master_choose(1) -> io.master1.req.bits.rw,
+                master_choose(2) -> io.master2.req.bits.rw,
+            )
+        )
+    ,0.B)
+
 
     rw := Mux(choose_buffer(3), 
         MuxCase(
