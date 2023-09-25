@@ -205,7 +205,7 @@ int printf(const char *fmt, ...) {
               }
             }
             else{
-              while(len > 1){
+              while(len > 0){
                 maxvalue *= 10;
                 len --;
               }
@@ -240,7 +240,7 @@ int printf(const char *fmt, ...) {
               }
             }
             else{
-              while(len > 1){
+              while(len > 0){
                 maxvalue *= 16;
                 len --;
               }
@@ -274,7 +274,7 @@ int printf(const char *fmt, ...) {
               }
             }
             else{
-              while(len > 1){
+              while(len > 0){
                 maxvalue *= 10;
                 len --;
               }
@@ -313,7 +313,7 @@ int printf(const char *fmt, ...) {
               }
             }
             else{
-              while(len > 1){
+              while(len > 0){
                 maxvalue *= 10;
                 len --;
               }
