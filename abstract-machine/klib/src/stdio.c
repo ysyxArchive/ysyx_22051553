@@ -161,6 +161,11 @@ int printf(const char *fmt, ...) {
       total ++;
     }
     else{
+      ctrl_off = 0;
+      for(int i = 0; i < 10; i ++){
+        control[i] = '\0';
+      }
+
       char str[1500];
       
       while(in[fmt_off+1] != 's' && in[fmt_off+1] != 'd' && in[fmt_off+1] != 'u' 
