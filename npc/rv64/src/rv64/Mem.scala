@@ -34,21 +34,21 @@ class Mem extends Module{
     val rdata_buffer = RegInit(0.U(X_LEN.W))
     val rdataio_buffer = RegInit(0.U(X_LEN.W))
 
-    when(io.clmem.Clrvalue.valid && io.stall){
+    when(io.clmem.Clrvalue.valid && io.stall && !clmemvalid_buffer){  //避免stall前两周期，decode获取的指令都为ld指令的情况
         clmemvalid_buffer := 1.B
         clmem_buffer := io.clmem.Clrvalue.bits
     }.elsewhen(!io.stall && clmemvalid_buffer){
         clmemvalid_buffer := 0.B
     }
 
-    when(io.rdata.valid && io.stall){
+    when(io.rdata.valid && io.stall && !rdatavalid_buffer){
         rdatavalid_buffer := 1.B
         rdata_buffer := io.rdata.bits.data
     }.elsewhen(!io.stall && rdatavalid_buffer){
         rdatavalid_buffer := 0.B
     }
 
-    when(io.rdata_io.data.valid && io.stall){
+    when(io.rdata_io.data.valid && io.stall && !rdataiovalid_buffer){
         rdataiovalid_buffer := 1.B
         rdataio_buffer := io.rdata_io.data.bits
     }.elsewhen(!io.stall && rdataiovalid_buffer){

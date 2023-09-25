@@ -65,14 +65,14 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
                                                                        & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
                                                                        ? 
                                                                       ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__inDataOneArray)
-                                                                        ? vlSelf->Soc__DOT__core__DOT__Dcache__DOT___DataArray_ext_R0_data
+                                                                        ? vlSelf->Soc__DOT__core__DOT__Dcache__DOT__DataOneArray
                                                                         : 0ULL)
                                                                        : 
                                                                       ((4U 
                                                                         & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
                                                                         ? 
                                                                        ((IData)(vlSelf->Soc__DOT__core__DOT__Icache__DOT__inDataOneArray)
-                                                                         ? vlSelf->Soc__DOT__core__DOT__Icache__DOT___DataArray_ext_R0_data
+                                                                         ? vlSelf->Soc__DOT__core__DOT__Icache__DOT__DataOneArray
                                                                          : 0ULL)
                                                                         : 0ULL)))), 
                                                                    ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_0)
