@@ -66,12 +66,14 @@ class Mem extends Module{
     get_value := MuxCase(
         0.U,
         Seq(
+            clmemvalid_buffer -> clmem_buffer,
+            rdatavalid_buffer -> rdata_buffer,
+            rdataiovalid_buffer -> rdataio_buffer, //buffer优先，buffer表明在stall阶段，有需要处理的数据还未处理
+
             io.clmem.Clrvalue.valid -> io.clmem.Clrvalue.bits,
             io.rdata.valid -> io.rdata.bits.data,
             io.rdata_io.data.valid -> io.rdata_io.data.bits,
-            clmemvalid_buffer -> clmem_buffer,
-            rdatavalid_buffer -> rdata_buffer,
-            rdataiovalid_buffer -> rdataio_buffer
+            
         )
     )
     

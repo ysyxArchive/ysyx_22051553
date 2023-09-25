@@ -88,9 +88,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__mem__DOT__clmemvalid_buffer;
         CData/*0:0*/ Soc__DOT__core__DOT__mem__DOT__rdatavalid_buffer;
         CData/*0:0*/ Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer;
-        CData/*0:0*/ Soc__DOT__core__DOT__mem__DOT__unnamedblk1__DOT___T;
-        CData/*0:0*/ Soc__DOT__core__DOT__mem__DOT__unnamedblk1__DOT___T_3;
-        CData/*0:0*/ Soc__DOT__core__DOT__mem__DOT__unnamedblk1__DOT___T_6;
+        CData/*0:0*/ Soc__DOT__core__DOT__mem__DOT__unnamedblk1__DOT___T_2;
+        CData/*0:0*/ Soc__DOT__core__DOT__mem__DOT__unnamedblk1__DOT___T_7;
+        CData/*0:0*/ Soc__DOT__core__DOT__mem__DOT__unnamedblk1__DOT___T_12;
         CData/*0:0*/ Soc__DOT__core__DOT__clint__DOT__valid_buf;
         CData/*0:0*/ Soc__DOT__core__DOT__clint__DOT__unnamedblk1__DOT___T_1;
         CData/*0:0*/ Soc__DOT__core__DOT__clint__DOT__unnamedblk1__DOT___T_2;
