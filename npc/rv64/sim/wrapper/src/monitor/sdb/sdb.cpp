@@ -323,7 +323,7 @@ static int cmd_s(char *args){
   if(args == NULL){
 
     #ifdef ITRACE
-    while(decode_list.size() < 3){  //对齐dut和ref
+    while(decode_list.size() < 3){  //对齐dut和ref decode_list.size()为3表示，ex、mem、wb三个流水线都有指令
       single_cycle();
     }
     #endif
@@ -392,7 +392,8 @@ static int cmd_s(char *args){
 
 
     //-----------------
-    single_cycle();   
+    while(decode_list.size() < 4)  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成
+      single_cycle();   
 
     #ifdef ITRACE
       
@@ -524,7 +525,10 @@ static int cmd_s(char *args){
     #endif
 
       //-----------------
-      single_cycle();   //用于保证没有itrace也能走下去
+      while(decode_list.size() < 4)  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成
+        single_cycle();   
+
+        
       #ifdef ITRACE
 
       #ifdef DIFFTEST

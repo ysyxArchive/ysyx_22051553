@@ -100,6 +100,10 @@ class Cache extends Module{
     DataOneArrayRen := 0.B
     DataOneArrayAddr := 0.U
 
+    dontTouch(DataOneArray)
+    dontTouch(DataOneArrayRen)
+    dontTouch(DataOneArrayAddr)
+
     val inDataOneArray = RegInit(0.B)
     
 
