@@ -392,8 +392,13 @@ static int cmd_s(char *args){
 
 
     //-----------------
-    while(decode_list.size() < 4)  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成
-      single_cycle();   
+    
+    #ifdef ITRACE
+      while(decode_list.size() < 4)  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成
+        single_cycle();   
+    #else
+        single_cycle();   
+    #endif
 
     #ifdef ITRACE
       
@@ -525,9 +530,13 @@ static int cmd_s(char *args){
     #endif
 
       //-----------------
+
+    #ifdef ITRACE
       while(decode_list.size() < 4)  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成
         single_cycle();   
-
+    #else
+        single_cycle();   
+    #endif
         
       #ifdef ITRACE
 

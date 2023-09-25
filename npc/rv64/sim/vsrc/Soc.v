@@ -893,20 +893,20 @@ module Mem(	// <stdin>:1419:10
   reg  [63:0]      rdata_buffer;	// Mem.scala:34:31
   reg  [63:0]      rdataio_buffer;	// Mem.scala:35:33
   wire [63:0]      get_value;	// Mem.scala:59:25
-  assign get_value = io_clmem_Clrvalue_valid ? io_clmem_Clrvalue_bits : io_rdata_valid ? io_rdata_bits_data :
-                io_rdata_io_data_valid ? io_rdata_io_data_bits : clmemvalid_buffer ? clmem_buffer :
-                rdatavalid_buffer ? rdata_buffer : rdataiovalid_buffer ? rdataio_buffer : 64'h0;	// Mem.scala:30:36, :31:36, :32:38, :33:31, :34:31, :35:33, :66:15, Mux.scala:101:16
-  wire [63:0]      rvalue;	// Mem.scala:81:22
+  assign get_value = clmemvalid_buffer ? clmem_buffer : rdatavalid_buffer ? rdata_buffer : rdataiovalid_buffer ?
+                rdataio_buffer : io_clmem_Clrvalue_valid ? io_clmem_Clrvalue_bits : io_rdata_valid ?
+                io_rdata_bits_data : io_rdata_io_data_valid ? io_rdata_io_data_bits : 64'h0;	// Mem.scala:30:36, :31:36, :32:38, :33:31, :34:31, :35:33, :66:15, Mux.scala:101:16
+  wire [63:0]      rvalue;	// Mem.scala:83:22
   wire             _rvalue_T_148 = io_emio_ld_addr_lowbit == 3'h2;	// Mux.scala:81:61
   wire             _rvalue_T_162 = io_emio_ld_addr_lowbit == 3'h4;	// Mux.scala:81:61
   wire             _rvalue_T_152 = io_emio_ld_addr_lowbit == 3'h6;	// Mux.scala:81:61
   wire [7:0][63:0] _GEN = {{{{56{get_value[63]}}, get_value[63:56]}}, {{{56{get_value[55]}}, get_value[55:48]}},
                 {{{56{get_value[47]}}, get_value[47:40]}}, {{{56{get_value[39]}}, get_value[39:32]}},
                 {{{56{get_value[31]}}, get_value[31:24]}}, {{{56{get_value[23]}}, get_value[23:16]}},
-                {{{56{get_value[15]}}, get_value[15:8]}}, {{{56{get_value[7]}}, get_value[7:0]}}};	// Bitwise.scala:77:12, Cat.scala:33:92, Mem.scala:87:{50,65}, :88:{50,66}, :89:{50,66}, :90:{50,66}, :91:{50,66}, :92:{50,66}, :93:{50,66}, :94:{50,66}, Mux.scala:81:{58,61}
+                {{{56{get_value[15]}}, get_value[15:8]}}, {{{56{get_value[7]}}, get_value[7:0]}}};	// Bitwise.scala:77:12, Cat.scala:33:92, Mem.scala:89:{50,65}, :90:{50,66}, :91:{50,66}, :92:{50,66}, :93:{50,66}, :94:{50,66}, :95:{50,66}, :96:{50,66}, Mux.scala:81:{58,61}
   wire             _rvalue_T_160 = io_emio_ld_addr_lowbit == 3'h0;	// Mux.scala:81:61
   wire [7:0][7:0]  _GEN_0 = {{get_value[7:0]}, {get_value[7:0]}, {get_value[47:40]}, {get_value[39:32]},
-                {get_value[31:24]}, {get_value[23:16]}, {get_value[15:8]}, {get_value[7:0]}};	// Mem.scala:87:{50,65}, :88:66, :89:66, :90:66, :91:66, :92:66, Mux.scala:81:{58,61}
+                {get_value[31:24]}, {get_value[23:16]}, {get_value[15:8]}, {get_value[7:0]}};	// Mem.scala:89:{50,65}, :90:66, :91:66, :92:66, :93:66, :94:66, Mux.scala:81:{58,61}
   wire [7:0][63:0] _GEN_1 = {{_rvalue_T_162 ? {32'h0, get_value[63:32]} : _rvalue_T_160 ? {32'h0, get_value[31:0]} :
                 64'h0}, {_rvalue_T_152 ? {48'h0, get_value[63:48]} : _rvalue_T_162 ? {48'h0,
                 get_value[47:32]} : _rvalue_T_148 ? {48'h0, get_value[31:16]} : _rvalue_T_160 ? {48'h0,
@@ -916,10 +916,10 @@ module Mem(	// <stdin>:1419:10
                 {{32{get_value[31]}}, get_value[31:0]} : 64'h0}, {_rvalue_T_152 ? {{48{get_value[63]}},
                 get_value[63:48]} : _rvalue_T_162 ? {{48{get_value[47]}}, get_value[47:32]} : _rvalue_T_148
                 ? {{48{get_value[31]}}, get_value[31:16]} : _rvalue_T_160 ? {{48{get_value[15]}},
-                get_value[15:0]} : 64'h0}, {_GEN[io_emio_ld_addr_lowbit]}, {64'h0}};	// Bitwise.scala:77:12, Cat.scala:33:92, Mem.scala:33:31, :87:50, :88:50, :90:50, :92:50, :93:66, :94:{50,66}, :99:66, :100:66, :101:66, :102:66, :107:66, :108:66, Mux.scala:81:{58,61}
-  assign rvalue = _GEN_1[io_emio_ld_type];	// Mem.scala:83:12, Mux.scala:81:{58,61}
-  wire             _io_fwmem_reg_wdata_T = io_emio_wb_type == 2'h1;	// Mem.scala:147:30
-  wire             _io_fwmem_reg_wdata_T_3 = io_emio_wb_type == 2'h2;	// Mem.scala:148:30, Mux.scala:81:61
+                get_value[15:0]} : 64'h0}, {_GEN[io_emio_ld_addr_lowbit]}, {64'h0}};	// Bitwise.scala:77:12, Cat.scala:33:92, Mem.scala:33:31, :89:50, :90:50, :92:50, :94:50, :95:66, :96:{50,66}, :101:66, :102:66, :103:66, :104:66, :109:66, :110:66, Mux.scala:81:{58,61}
+  assign rvalue = _GEN_1[io_emio_ld_type];	// Mem.scala:85:12, Mux.scala:81:{58,61}
+  wire             _io_fwmem_reg_wdata_T = io_emio_wb_type == 2'h1;	// Mem.scala:149:30
+  wire             _io_fwmem_reg_wdata_T_3 = io_emio_wb_type == 2'h2;	// Mem.scala:150:30, Mux.scala:81:61
   always @(posedge clock) begin
     if (reset) begin
       clmemvalid_buffer <= 1'h0;	// Mem.scala:30:36
@@ -983,7 +983,7 @@ module Mem(	// <stdin>:1419:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   assign io_mwio_reg_wdata = _io_fwmem_reg_wdata_T | (&io_emio_wb_type) ? io_emio_reg_wdata : _io_fwmem_reg_wdata_T_3 ?
-                rvalue : 64'h0;	// <stdin>:1419:10, Mem.scala:33:31, :147:{30,41,60}, :148:30, Mux.scala:101:16
+                rvalue : 64'h0;	// <stdin>:1419:10, Mem.scala:33:31, :149:{30,41,60}, :150:30, Mux.scala:101:16
   assign io_mwio_reg_waddr = io_emio_reg_waddr;	// <stdin>:1419:10
   assign io_mwio_wb_type = io_emio_wb_type;	// <stdin>:1419:10
   assign io_mwio_csr_wdata = io_emio_csr_wdata;	// <stdin>:1419:10
@@ -992,8 +992,8 @@ module Mem(	// <stdin>:1419:10
   assign io_mwio_has_inst = io_emio_has_inst;	// <stdin>:1419:10
   assign io_fwmem_reg_waddr = io_emio_reg_waddr;	// <stdin>:1419:10
   assign io_fwmem_reg_wdata = _io_fwmem_reg_wdata_T | (&io_emio_wb_type) ? io_emio_reg_wdata : _io_fwmem_reg_wdata_T_3 ?
-                rvalue : 64'h0;	// <stdin>:1419:10, Mem.scala:33:31, :147:{30,60}, :148:30, :162:41, Mux.scala:101:16
-  assign io_fwmem_reg_we = |io_emio_wb_type;	// <stdin>:1419:10, Mem.scala:159:40
+                rvalue : 64'h0;	// <stdin>:1419:10, Mem.scala:33:31, :149:{30,60}, :150:30, :164:41, Mux.scala:101:16
+  assign io_fwmem_reg_we = |io_emio_wb_type;	// <stdin>:1419:10, Mem.scala:161:40
   assign io_fwmem_csr_wdata = io_emio_csr_wdata;	// <stdin>:1419:10
   assign io_fwmem_csr_wen = io_emio_csr_wen;	// <stdin>:1419:10
   assign io_fwmem_csr_waddr = io_emio_csr_waddr;	// <stdin>:1419:10
@@ -3582,4 +3582,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 

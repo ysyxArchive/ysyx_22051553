@@ -2158,18 +2158,18 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
         = ((1U != (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__state)) 
            & (IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h4b92e988__0));
     vlSelf->Soc__DOT__core__DOT__mem__DOT__get_value 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT__clint__DOT__valid_buf)
-            ? vlSelf->Soc__DOT__core__DOT__clint__DOT__rvalue_buf
-            : ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_valid)
-                ? vlSelf->Soc__DOT__core__DOT___Dcache_io_cpu_resp_bits_data
-                : ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid)
-                    ? vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits
-                    : ((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__clmemvalid_buffer)
-                        ? vlSelf->Soc__DOT__core__DOT__mem__DOT__clmem_buffer
-                        : ((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__rdatavalid_buffer)
-                            ? vlSelf->Soc__DOT__core__DOT__mem__DOT__rdata_buffer
-                            : ((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer)
-                                ? vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataio_buffer
+        = ((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__clmemvalid_buffer)
+            ? vlSelf->Soc__DOT__core__DOT__mem__DOT__clmem_buffer
+            : ((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__rdatavalid_buffer)
+                ? vlSelf->Soc__DOT__core__DOT__mem__DOT__rdata_buffer
+                : ((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer)
+                    ? vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataio_buffer
+                    : ((IData)(vlSelf->Soc__DOT__core__DOT__clint__DOT__valid_buf)
+                        ? vlSelf->Soc__DOT__core__DOT__clint__DOT__rvalue_buf
+                        : ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_valid)
+                            ? vlSelf->Soc__DOT__core__DOT___Dcache_io_cpu_resp_bits_data
+                            : ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid)
+                                ? vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits
                                 : 0ULL))))));
     Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h67a1ffee__0 
         = (1U & ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_hfea5ad76__0) 

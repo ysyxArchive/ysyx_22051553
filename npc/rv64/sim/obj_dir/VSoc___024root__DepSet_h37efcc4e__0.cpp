@@ -164,18 +164,18 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__2(VSoc___024root* vlSelf) 
                 : vlSelf->Soc__DOT__core__DOT__Icache__DOT__DataOneArray)
             : vlSelf->Soc__DOT__core__DOT__Icache__DOT__cpu_resp_bits_data);
     vlSelf->Soc__DOT__core__DOT__mem__DOT__get_value 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT__clint__DOT__valid_buf)
-            ? vlSelf->Soc__DOT__core__DOT__clint__DOT__rvalue_buf
-            : ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_valid)
-                ? vlSelf->Soc__DOT__core__DOT___Dcache_io_cpu_resp_bits_data
-                : ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid)
-                    ? vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits
-                    : ((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__clmemvalid_buffer)
-                        ? vlSelf->Soc__DOT__core__DOT__mem__DOT__clmem_buffer
-                        : ((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__rdatavalid_buffer)
-                            ? vlSelf->Soc__DOT__core__DOT__mem__DOT__rdata_buffer
-                            : ((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer)
-                                ? vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataio_buffer
+        = ((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__clmemvalid_buffer)
+            ? vlSelf->Soc__DOT__core__DOT__mem__DOT__clmem_buffer
+            : ((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__rdatavalid_buffer)
+                ? vlSelf->Soc__DOT__core__DOT__mem__DOT__rdata_buffer
+                : ((IData)(vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer)
+                    ? vlSelf->Soc__DOT__core__DOT__mem__DOT__rdataio_buffer
+                    : ((IData)(vlSelf->Soc__DOT__core__DOT__clint__DOT__valid_buf)
+                        ? vlSelf->Soc__DOT__core__DOT__clint__DOT__rvalue_buf
+                        : ((IData)(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_valid)
+                            ? vlSelf->Soc__DOT__core__DOT___Dcache_io_cpu_resp_bits_data
+                            : ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid)
+                                ? vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits
                                 : 0ULL))))));
     vlSelf->Soc__DOT__core__DOT___Dcache_io_fccache_mask 
         = ((4U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))
