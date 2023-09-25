@@ -530,6 +530,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declQuad(c+360,"io_waddr", false,-1, 63,0);
     tracep->declQuad(c+404,"io_wdata", false,-1, 63,0);
     tracep->declBus(c+413,"io_wmask", false,-1, 7,0);
+    tracep->declBit(c+441,"io_cl_type", false,-1);
     tracep->declBus(c+6,"io_fwex_reg_waddr", false,-1, 4,0);
     tracep->declQuad(c+238,"io_fwex_reg_wdata", false,-1, 63,0);
     tracep->declBit(c+240,"io_fwex_reg_we", false,-1);

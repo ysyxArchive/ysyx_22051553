@@ -147,7 +147,7 @@ void update_debuginfo(
   };
 
   execute ex_ins = {
-    .skip_ref_one_inst = ((bool)mem_access) && (((unsigned long)mem_addr[1].aval << 32 | mem_addr[0].aval) >= 0xa0000000 )
+    .skip_ref_one_inst = ((bool)mem_access) && ((((unsigned long)mem_addr[1].aval << 32 | mem_addr[0].aval) >= 0xa0000000 ) || (((unsigned long)mem_addr[1].aval << 32 | mem_addr[0].aval) <= 0x0200bfff))
   };
 
 
