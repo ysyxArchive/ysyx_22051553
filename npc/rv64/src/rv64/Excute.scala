@@ -21,6 +21,8 @@ class ExcuteIO extends Bundle{
     val wdata = Output(UInt(X_LEN.W))
     val wmask = Output(UInt(8.W))
 
+    val cl_type = Output(Bool())
+
     //Forward
     val fwex = Flipped(new FwPipeIO)
 
@@ -73,6 +75,8 @@ class Excute extends Module{
             SD_SD -> "b11111111".U
         )
     )
+
+    io.cl_type := CLINT_type
 
     //clex
     io.clex.valid := CLINT_type
