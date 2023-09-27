@@ -40,7 +40,7 @@ class BoothMul extends Module{
     //内部
 
 
-    val multiplierReg = RegInit(0.U(67.W))  //有符号数扩展两位符号位,无符号数扩展0 2 + 64 + 1(补充0)
+    val multiplierReg = RegInit(0.U(67.W))  //无符号数扩展两位0 2 + 64 + 1(补充0)
     val multiplicandReg = RegInit(0.U(132.W))
     val resultReg = RegInit(0.U(132.W))
 
@@ -67,13 +67,13 @@ class BoothMul extends Module{
                 total := MuxLookup(choose, 0.U,
                     Seq(
                         //64位
-                        "b000".U -> 32.U, //无符号乘数
-                        "b010".U -> 32.U, //无符号乘数
-                        "b011".U -> 31.U, //有符号乘数
+                        "b000".U -> 33.U, //无符号乘数
+                        "b010".U -> 33.U, //无符号乘数
+                        "b011".U -> 32.U, //有符号乘数
                         //32位
-                        "b100".U -> 16.U, //无符号乘数
-                        "b110".U -> 16.U, //无符号乘数
-                        "b111".U -> 15.U, //有符号乘数
+                        "b100".U -> 17.U, //无符号乘数
+                        "b110".U -> 17.U, //无符号乘数
+                        "b111".U -> 16.U, //有符号乘数
                     )
                 )
 
