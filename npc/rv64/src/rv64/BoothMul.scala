@@ -50,6 +50,7 @@ class BoothMul extends Module{
     choose := Cat(io.mulw, io.mul_signed)
 
     val shiftCounter = RegInit(0.U(6.W))
+    val total = RegInit(0.U(6.W))
 
     switch(state){
         is(s_Idle){
@@ -57,9 +58,24 @@ class BoothMul extends Module{
             result_hi := 0.U
             result_lo := 0.U
             mul_ready := 1.B
+            shiftCounter := 0.U
+            total := 0.U
 
             when(io.mul_valid){
                 state := s_mul
+
+                total := MuxLookup(choose, 0.U,
+                    Seq(
+                        //64位
+                        "b000".U -> 32.U, //无符号乘数
+                        "b010".U -> 32.U, //无符号乘数
+                        "b011".U -> 31.U, //有符号乘数
+                        //32位
+                        "b100".U -> 16.U, //无符号乘数
+                        "b110".U -> 16.U, //无符号乘数
+                        "b111".U -> 15.U, //有符号乘数
+                    )
+                )
 
                 multiplierReg := MuxLookup(choose, 0.U,
                     Seq(
@@ -95,7 +111,7 @@ class BoothMul extends Module{
         }
         is(s_mul){
 
-            when(multiplierReg === 0.U){
+            when(shiftCounter === total){
                 state := s_Idle
                 out_valid := 1.B
                 result_hi := resultReg(127, 64)
@@ -117,6 +133,8 @@ class BoothMul extends Module{
 
                 multiplicandReg := multiplicandReg << 2.U
                 multiplierReg := multiplierReg >> 2.U
+
+                shiftCounter := shiftCounter + 1.U
             }
         }
     }
