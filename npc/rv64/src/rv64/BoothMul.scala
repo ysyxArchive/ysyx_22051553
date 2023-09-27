@@ -59,6 +59,7 @@ class BoothMul extends Module{
             mul_ready := 1.B
 
             when(io.mul_valid){
+                state := s_mul
 
                 multiplierReg := MuxLookup(choose, 0.U,
                     Seq(
