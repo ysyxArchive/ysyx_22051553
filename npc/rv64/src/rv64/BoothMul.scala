@@ -46,7 +46,7 @@ class BoothMul extends Module{
 
     val state = RegInit(s_Idle)
 
-    val choose = WireInit(UInt(3.W))
+    val choose = WireInit(0.U(3.W))
     choose := Cat(io.mulw, io.mul_signed)
 
     val shiftCounter = RegInit(0.U(6.W))
