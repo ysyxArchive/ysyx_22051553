@@ -95,10 +95,11 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__state;
         CData/*5:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__shiftCounter;
         CData/*5:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__total;
-        CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__unnamedblk1__DOT___T_2;
+        CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__unnamedblk1__DOT___T_4;
         CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__unnamedblk1__DOT___GEN;
         CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_0;
         CData/*2:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__unnamedblk1__DOT__unnamedblk4__DOT___choose_T;
+        CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__unnamedblk1__DOT__unnamedblk4__DOT___T_2;
         CData/*0:0*/ Soc__DOT__core__DOT__mem__DOT__clmemvalid_buffer;
         CData/*0:0*/ Soc__DOT__core__DOT__mem__DOT__rdatavalid_buffer;
         CData/*0:0*/ Soc__DOT__core__DOT__mem__DOT__rdataiovalid_buffer;
@@ -148,9 +149,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*1:0*/ Soc__DOT__core__DOT__arbitor__DOT__state;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT__aw_comp;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT__w_comp;
-        CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___T;
     };
     struct {
+        CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___T;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___T_2;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___GEN;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___GEN_0;
@@ -214,9 +215,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__victim;
         CData/*7:0*/ Soc__DOT__core__DOT__Dcache__DOT__mask;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__inst_type;
-        CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__whitNum;
     };
     struct {
+        CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__whitNum;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT___T_3;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_valid;
         CData/*0:0*/ Soc__DOT__core__DOT__Dcache__DOT__axi_req_valid;
@@ -280,9 +281,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*7:0*/ __Vdly__Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_mask;
         CData/*0:0*/ __Vdly__Soc__DOT__core__DOT__Dcache__DOT__inDataOneArray;
         CData/*7:0*/ __Vdly__Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_mask;
-        CData/*1:0*/ __Vdly__Soc__DOT__core__DOT__ioformem__DOT__state;
     };
     struct {
+        CData/*1:0*/ __Vdly__Soc__DOT__core__DOT__ioformem__DOT__state;
         CData/*0:0*/ __Vdly__Soc__DOT__core__DOT__ioformem__DOT__axi_req_valid;
         CData/*0:0*/ __Vtrigrprev__TOP__clock;
         CData/*0:0*/ __Vtrigrprev__TOP__Soc__DOT____Vcellinp__sram__ARESETn;
@@ -346,9 +347,9 @@ class VSoc___024root final : public VerilatedModule {
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__Icache__DOT__valid;
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__Icache__DOT__dirty;
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__Icache__DOT__replace;
-        IData/*31:0*/ Soc__DOT__core__DOT__Icache__DOT__addr;
     };
     struct {
+        IData/*31:0*/ Soc__DOT__core__DOT__Icache__DOT__addr;
         IData/*31:0*/ Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_addr;
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__Icache__DOT___T_8;
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__Icache__DOT___GEN_24;
@@ -412,9 +413,9 @@ class VSoc___024root final : public VerilatedModule {
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h7cd24744__0;
         IData/*31:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h216ac087__0;
         IData/*31:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h21e4b031__0;
-        IData/*31:0*/ Soc__DOT__core__DOT__ioformem__DOT__axi_req_bits_addr;
     };
     struct {
+        IData/*31:0*/ Soc__DOT__core__DOT__ioformem__DOT__axi_req_bits_addr;
         IData/*31:0*/ Soc__DOT__core__DOT__ioformem__DOT___axi_req_bits_addr_T;
         IData/*31:0*/ Soc__DOT__sram__DOT__awaddr_buffer;
         IData/*31:0*/ Soc__DOT__sram__DOT__araddr;
@@ -478,9 +479,9 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MIE;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MIP;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSTATUS;
-        QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSCRATCH;
     };
     struct {
+        QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSCRATCH;
         QData/*63:0*/ Soc__DOT__core__DOT__trap__DOT__cause;
         QData/*63:0*/ Soc__DOT__core__DOT__Icache__DOT__DataOneArray;
         QData/*63:0*/ Soc__DOT__core__DOT__Icache__DOT__data;
