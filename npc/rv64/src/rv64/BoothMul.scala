@@ -61,7 +61,7 @@ class BoothMul extends Module{
             shiftCounter := 0.U
             total := 0.U
 
-            when(io.mul_valid){
+            when(io.mul_valid && !out_valid){  //防止一直进入
                 state := s_mul
 
                 total := MuxLookup(choose, 0.U,
