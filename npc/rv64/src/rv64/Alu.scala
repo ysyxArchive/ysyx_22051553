@@ -92,6 +92,14 @@ class Alu extends Module {
     val res = Wire(SInt(X_LEN.W))
 
 
+    BM.io.mul_valid := 0.B
+    BM.io.flush := 0.B
+    BM.io.mulw := 0.B
+    BM.io.mul_signed := 0.U 
+    BM.io.multiplicand := 0.U
+    BM.io.multiplier := 0.U
+
+
     when(io.alu_op === (ALU_MUL)||io.alu_op === (ALU_MULH)||io.alu_op === (ALU_MULHSU)||
         io.alu_op === (ALU_MULHU)||io.alu_op === (ALU_MULW)){
             BM.io.mul_valid := 1.B
