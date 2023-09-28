@@ -435,8 +435,8 @@ class Core extends Module{
     fc.io.fcde.jump_pc := decode.io.jump_pc
     fc.io.fcde.load_use := decode.io.load_use
 
-    fc.io.fcex.jump_flag := excute.io.jump_flag
-    fc.io.fcex.jump_pc := excute.io.jump_pc
+    fc.io.fcex.jump_flag := excute.io.fcex.jump_flag
+    fc.io.fcex.jump_pc := excute.io.fcex.jump_pc
 
     fc.io.fcio.req := arbitor.io.master0.req.valid
     fc.io.fcio.valid := arbitor.io.master0.resp.valid | master0_resp_valid
@@ -494,7 +494,7 @@ class Core extends Module{
     DI.io.op_a  := dereg.op_a
     DI.io.op_b  := dereg.op_b
     DI.io.result := excute.io.emio.reg_wdata
-    DI.io.br_yes := excute.io.jump_flag
+    DI.io.br_yes := excute.io.fcex.jump_flag
     DI.io.mem_access := excute.io.deio.ld_type.orR | excute.io.deio.sd_type.orR
     DI.io.mem_addr := excute.io.raddr | excute.io.waddr
     DI.io.rd := wb.io.rfio.rd

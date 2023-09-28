@@ -5,6 +5,7 @@ import chisel3.util._
 
 import Define._
 import firrtl.Flow
+import firrtl.PrimOps
 
 
 object FlowControl{
@@ -51,6 +52,9 @@ object FlowControl{
         VecInit(StallY, StallY, StallY, StallY, StallY,     
             FlushN, FlushN, FlushN, FlushN, FlushN)   //不能Flush Decode段，因为需要一直申请AXI
 
+    val MULDIV_SFBundle = 
+        VecInit(StallY, StallY, StallY, StallY, StallY,     
+            FlushN, FlushN, FlushN, FlushN, FlushN) 
 }
 
 class FcFeIO extends Bundle{
@@ -73,6 +77,9 @@ class FcDeIO extends Bundle{
 class FcExIO extends Bundle{
     val jump_flag = Input(Bool())
     val jump_pc   = Input(UInt(PC_LEN.W))
+    
+    val mul_div = Input(Bool())
+    val mul_div_valid = Input(Bool()) 
 
     val flush     = Output(Bool())
     val stall     = Output(Bool())
@@ -123,9 +130,12 @@ class FlowControl extends Module{
     val Icache_stall = WireInit(0.B)
     val Dcache_stall = WireInit(0.B)
     val IO_stall = WireInit(0.B)
+
+    val MULDIV_stall = WireInit(0.B)
     dontTouch(Icache_stall)
     dontTouch(Dcache_stall)
     dontTouch(IO_stall)
+    dontTouch(MULDIV_stall)
 
     when(io.fcIcache.cpu_valid){ //恢复
         Icache_stall := 0.B
@@ -177,6 +187,14 @@ class FlowControl extends Module{
         IO_stall := 0.B
     }
 
+    when(io.fcex.mul_div_valid){
+        MULDIV_stall := 0.B
+    }.elsewhen(io.fcex.mul_div){
+        MULDIV_stall := 1.B
+    }.otherwise{
+        MULDIV_stall := 0.B
+    }
+
     val SFBundle = MuxCase(FlowControl.default,
         Seq(
             IO_stall -> FlowControl.IOAXI_SFBundle,
@@ -190,6 +208,7 @@ class FlowControl extends Module{
             (io.fctr.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
             (io.fcex.jump_flag === 1.B) -> FlowControl.BRANCH_SFBundle,
             (io.fcde.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
+            MULDIV_stall -> FlowControl.MULDIV_SFBundle
         )
     )
 

@@ -58,7 +58,9 @@ class AluIO extends Bundle{
 
     val result = Output(UInt(X_LEN.W))
 
-   
+    val mul_div_flush = Input(Bool())
+    val mul_div_outvalid = Output(Bool())
+    val mul_div_ready = Output(UInt(2.W))
 }
 
 import Alu._
@@ -79,57 +81,101 @@ class Alu extends Module {
     long_bs := io.op_b.asSInt
     
     
+    val BM = Module(new BoothMul)
+    io.mul_div_outvalid := BM.io.out_valid
+    io.mul_div_ready := BM.io.mul_ready
+
+
+    val bm_ready = WireInit(0.B)
+    val bm_value = WireInit(0.S(64.W))
+
     val res = Wire(SInt(X_LEN.W))
 
-    res := MuxLookup(
-        io.alu_op,
-        0.S,
-        Seq(
-            ALU_ADD -> (io.op_a.asSInt + io.op_b.asSInt),            //补码也是直接加法
-            ALU_SUB -> (io.op_a.asSInt - io.op_b.asSInt),
-            ALU_EQU -> (io.op_a === io.op_b).zext,
-            ALU_NEQ -> (io.op_a =/= io.op_b).zext,
-            ALU_SLT -> (io.op_a.asSInt < io.op_b.asSInt).zext,
-            ALU_SGE -> (io.op_a.asSInt >= io.op_b.asSInt).zext,
-            ALU_SLTU -> (io.op_a < io.op_b).zext,
-            ALU_SGEU -> (io.op_a >= io.op_b).zext,
-            ALU_XOR -> (io.op_a ^ io.op_b).asSInt,
-            ALU_OR -> (io.op_a | io.op_b).asSInt,
-            ALU_SLL -> (io.op_a << io.op_b(5,0)).asSInt,
-            ALU_SRL -> (io.op_a >> io.op_b(5,0)).asSInt,
-            ALU_SRA -> (io.op_a.asSInt >> io.op_b(5,0)),
-            ALU_SLLI -> (io.op_a << io.shamt).asSInt,
-            ALU_SRLI -> (io.op_a >> io.shamt).asSInt,
-            ALU_SRAI -> (io.op_a.asSInt >>  io.shamt),
-            ALU_AND -> (io.op_a & io.op_b).asSInt,
-            ALU_NAND -> ~(io.op_a & io.op_b).asSInt,
-            ALU_MUL -> ((long_as * long_bs)(63,0)).asSInt,  //()返回UInt
-            ALU_MULH -> ((long_as * long_bs)(127,64)).asSInt,
-            ALU_MULHSU -> ((long_as * long_bu)(127,64)).asSInt,
-            ALU_MULHU -> ((long_au * long_bu)(127,64)).asSInt,
-            ALU_DIV -> (io.op_a.asSInt / io.op_b.asSInt),
-            ALU_DIVU -> (io.op_a / io.op_b).asSInt,
-            ALU_REM -> (io.op_a.asSInt % io.op_b.asSInt),
-            ALU_REMU -> (io.op_a % io.op_b).asSInt,
-            ALU_ADDIW -> ((io.op_a + io.op_b)(31,0)).asSInt,   //这样可以直接做符号扩展吗
-            ALU_SLLIW -> ((io.op_a << io.shamt)(31,0)).asSInt,   //io.op_a左移时能扩充位宽吗
-            ALU_SRLIW -> ((io.op_a(31,0) >> io.shamt)(31,0)).asSInt,
-            ALU_SRAIW -> ((io.op_a(31,0).asSInt >> io.shamt)(31,0)).asSInt,
-            ALU_ADDW -> ((io.op_a + io.op_b)(31,0)).asSInt,
-            ALU_SUBW -> ((io.op_a - io.op_b)(31,0)).asSInt,
-            ALU_SLLW -> ((io.op_a << io.op_b(5,0))(31,0)).asSInt,
-            ALU_SRLW -> ((io.op_a(31,0) >> io.op_b(5,0))(31,0)).asSInt,
-            ALU_SRAW -> ((io.op_a(31,0).asSInt >> io.op_b(5,0))(31,0)).asSInt,
-            ALU_MULW -> ((long_as * long_bs)(31,0)).asSInt,
-            ALU_DIVW -> ((io.op_a.asSInt / io.op_b.asSInt)(31,0)).asSInt,
-            ALU_DIVUW -> ((io.op_a / io.op_b)(31,0)).asSInt,
-            ALU_REMW -> ((io.op_a.asSInt % io.op_b.asSInt)(31,0)).asSInt,
-            ALU_REMUW -> ((io.op_a % io.op_b)(31,0)).asSInt,
 
-            ALU_CLEAR -> (~io.op_a & io.op_b).asSInt,
-            ALU_NO_OP -> (0.U).asSInt
+    when(io.alu_op === (ALU_MUL)||io.alu_op === (ALU_MULH)||io.alu_op === (ALU_MULHSU)||
+        io.alu_op === (ALU_MULHU)||io.alu_op === (ALU_MULW)){
+            BM.io.mul_valid := 1.B
+            BM.io.flush := io.mul_div_flush
+            BM.io.mulw := Mux(io.alu_op === (ALU_MULW), 1.B, 0.B)
+            BM.io.mul_signed := MuxCase(0.B,
+                Seq(
+                    (io.alu_op === (ALU_MUL) || io.alu_op === (ALU_MULH)
+                    || io.alu_op === (ALU_MULW)) -> "b11".U,
+                    (io.alu_op === (ALU_MULHSU)) -> "b10".U,
+                    (io.alu_op === (ALU_MULHU)) -> "b00".U,
+                )
+            )
+            BM.io.multiplicand := io.op_a
+            BM.io.multiplier := io.op_b
+        }
+
+    bm_value := Mux(BM.io.out_valid, 
+        MuxCase(0.U,
+            Seq(
+                (io.alu_op === (ALU_MUL) || io.alu_op === (ALU_MULW)) -> BM.io.result_lo,
+                (io.alu_op === (ALU_MULH) || io.alu_op === (ALU_MULHSU) ||
+                    io.alu_op === (ALU_MULHU)) -> BM.io.result_hi
+            )
+        ),
+    0.U)
+
+
+    res := Mux(BM.io.out_valid, bm_value, 
+        MuxLookup(
+            io.alu_op,
+            0.S,
+            Seq(
+                ALU_ADD -> (io.op_a.asSInt + io.op_b.asSInt),            //补码也是直接加法
+                ALU_SUB -> (io.op_a.asSInt - io.op_b.asSInt),
+                ALU_EQU -> (io.op_a === io.op_b).zext,
+                ALU_NEQ -> (io.op_a =/= io.op_b).zext,
+                ALU_SLT -> (io.op_a.asSInt < io.op_b.asSInt).zext,
+                ALU_SGE -> (io.op_a.asSInt >= io.op_b.asSInt).zext,
+                ALU_SLTU -> (io.op_a < io.op_b).zext,
+                ALU_SGEU -> (io.op_a >= io.op_b).zext,
+                ALU_XOR -> (io.op_a ^ io.op_b).asSInt,
+                ALU_OR -> (io.op_a | io.op_b).asSInt,
+                ALU_SLL -> (io.op_a << io.op_b(5,0)).asSInt,
+                ALU_SRL -> (io.op_a >> io.op_b(5,0)).asSInt,
+                ALU_SRA -> (io.op_a.asSInt >> io.op_b(5,0)),
+                ALU_SLLI -> (io.op_a << io.shamt).asSInt,
+                ALU_SRLI -> (io.op_a >> io.shamt).asSInt,
+                ALU_SRAI -> (io.op_a.asSInt >>  io.shamt),
+                ALU_AND -> (io.op_a & io.op_b).asSInt,
+                ALU_NAND -> ~(io.op_a & io.op_b).asSInt,
+                ALU_MUL -> ((long_as * long_bs)(63,0)).asSInt,  //()返回UInt
+                ALU_MULH -> ((long_as * long_bs)(127,64)).asSInt,
+                ALU_MULHSU -> ((long_as * long_bu)(127,64)).asSInt,
+                ALU_MULHU -> ((long_au * long_bu)(127,64)).asSInt,
+                ALU_DIV -> (io.op_a.asSInt / io.op_b.asSInt),
+                ALU_DIVU -> (io.op_a / io.op_b).asSInt,
+                ALU_REM -> (io.op_a.asSInt % io.op_b.asSInt),
+                ALU_REMU -> (io.op_a % io.op_b).asSInt,
+                ALU_ADDIW -> ((io.op_a + io.op_b)(31,0)).asSInt,   //这样可以直接做符号扩展吗
+                ALU_SLLIW -> ((io.op_a << io.shamt)(31,0)).asSInt,   //io.op_a左移时能扩充位宽吗
+                ALU_SRLIW -> ((io.op_a(31,0) >> io.shamt)(31,0)).asSInt,
+                ALU_SRAIW -> ((io.op_a(31,0).asSInt >> io.shamt)(31,0)).asSInt,
+                ALU_ADDW -> ((io.op_a + io.op_b)(31,0)).asSInt,
+                ALU_SUBW -> ((io.op_a - io.op_b)(31,0)).asSInt,
+                ALU_SLLW -> ((io.op_a << io.op_b(5,0))(31,0)).asSInt,
+                ALU_SRLW -> ((io.op_a(31,0) >> io.op_b(5,0))(31,0)).asSInt,
+                ALU_SRAW -> ((io.op_a(31,0).asSInt >> io.op_b(5,0))(31,0)).asSInt,
+                ALU_MULW -> ((long_as * long_bs)(31,0)).asSInt,
+                ALU_DIVW -> ((io.op_a.asSInt / io.op_b.asSInt)(31,0)).asSInt,
+                ALU_DIVUW -> ((io.op_a / io.op_b)(31,0)).asSInt,
+                ALU_REMW -> ((io.op_a.asSInt % io.op_b.asSInt)(31,0)).asSInt,
+                ALU_REMUW -> ((io.op_a % io.op_b)(31,0)).asSInt,
+
+                ALU_CLEAR -> (~io.op_a & io.op_b).asSInt,
+                ALU_NO_OP -> (0.U).asSInt
+            )
         )
+    
     )
+        
+        
+        
+        
 
     io.result := res.asUInt
 }
