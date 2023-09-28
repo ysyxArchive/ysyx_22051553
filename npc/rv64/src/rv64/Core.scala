@@ -435,8 +435,7 @@ class Core extends Module{
     fc.io.fcde.jump_pc := decode.io.jump_pc
     fc.io.fcde.load_use := decode.io.load_use
 
-    fc.io.fcex.jump_flag := excute.io.fcex.jump_flag
-    fc.io.fcex.jump_pc := excute.io.fcex.jump_pc
+    fc.io.fcex <> excute.io.fcex
 
     fc.io.fcio.req := arbitor.io.master0.req.valid
     fc.io.fcio.valid := arbitor.io.master0.resp.valid | master0_resp_valid
