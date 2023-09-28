@@ -95,6 +95,9 @@ class Excute extends Module{
     io.fcex.jump_flag := (io.deio.branch_type).asBool && (alu.io.result).orR
     io.fcex.jump_pc := io.deio.branch_addr
 
+    io.fcex.mul_div := mul_div_type
+    io.fcex.mul_div_valid := alu.io.mul_div_outvalid
+
     //to TM
     io.raddr := Mux( (io.deio.ld_type =/= 0.U) && (CLINT_type === 0.B) , alu.io.result, 0.U)   //load/store不涉及乘除相关操作
     
@@ -151,5 +154,7 @@ class Excute extends Module{
     alu.io.op_b := io.deio.op_b
     alu.io.alu_op := io.deio.alu_op
     alu.io.shamt := io.deio.shamt
+
+    alu.io.mul_div_flush := io.fcex.flush
 
 }
