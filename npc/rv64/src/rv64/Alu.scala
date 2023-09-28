@@ -110,14 +110,14 @@ class Alu extends Module {
         }
 
     bm_value := Mux(BM.io.out_valid, 
-        MuxCase(0.U,
+        MuxCase(0.S,
             Seq(
                 (io.alu_op === (ALU_MUL) || io.alu_op === (ALU_MULW)) -> BM.io.result_lo.asSInt,
                 (io.alu_op === (ALU_MULH) || io.alu_op === (ALU_MULHSU) ||
                     io.alu_op === (ALU_MULHU)) -> BM.io.result_hi.asSInt
             )
         ),
-    0.U)
+    0.S)
 
 
     res := Mux(BM.io.out_valid, bm_value, 
