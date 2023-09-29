@@ -135,7 +135,7 @@ class Alu extends Module {
             DIV.io.divisor := io.op_b
         }
 
-    div_value := Mux(DIV.io.out_valid, DIV.io.quotient, 0.S)
+    div_value := Mux(DIV.io.out_valid, DIV.io.quotient.asSInt, 0.S)
 
 
 
