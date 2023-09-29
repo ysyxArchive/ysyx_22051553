@@ -64,8 +64,8 @@ class Divider extends Module{
     switch(state){
         is(s_Idle){
             out_valid := 0.B
-            quotient := 0.U
-            remainder := 0.U
+            quotient := 0.S
+            remainder := 0.S
             div_ready := 1.B
             shiftCounter := 0.U
     
