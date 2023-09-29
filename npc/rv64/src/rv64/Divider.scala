@@ -182,7 +182,7 @@ class Divider extends Module{
         is(s_div64){
 
             when(shiftCounter === 64.U){
-                remainder := partial_remainder(127, 64)
+                remainder := partial_remainder(127, 64).asSInt
 
                 when(!sign_quo && !sign_rem){
                     state := s_Idle
@@ -195,10 +195,10 @@ class Divider extends Module{
                 temp_66 := Cat(0.U(1.W), partial_remainder(127, 63)) + Cat(0.U(2.W), sub64)
                 when(temp_66(65)){ //为正
                     partial_remainder := Cat(temp_66(63,0), partial_remainder(62,0), 0.U(1.W)) //获取结果并左移一位
-                    quotient := Cat(quotient(62,0), 1.U(1.W)) //获取结果并左移一位
+                    quotient := Cat(quotient(62,0), 1.U(1.W)).asSInt //获取结果并左移一位
                 }.otherwise{ //为负
                     partial_remainder := Cat(partial_remainder(126,0), 0.U(1.W)) //不变并左移一位
-                    quotient := Cat(quotient(62,0), 0.U(1.W)) //获取结果并左移一位
+                    quotient := Cat(quotient(62,0), 0.U(1.W)).asSInt //获取结果并左移一位
                 }
 
                 shiftCounter := shiftCounter + 1.U
