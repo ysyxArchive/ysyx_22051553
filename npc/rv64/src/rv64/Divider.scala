@@ -89,7 +89,7 @@ class Divider extends Module{
 
                 partial_remainder := Mux(io.divw,
                     Cat(0.U(32.W), dividend(31,0), 0.U(64.W)),//使用高64位
-                    Cat(0.U(64.W), dividend(31,0))  //使用128位
+                    Cat(0.U(64.W), dividend)  //使用128位
                 )
 
                 divisor := MuxLookup(choose, 0.U,   //取绝对值
