@@ -36,8 +36,8 @@ class Divider extends Module{
 
     io.div_ready := div_ready
     io.out_valid := out_valid
-    io.quotient := quotient
-    io.remainder := remainder
+    io.quotient := quotient.asUInt
+    io.remainder := remainder.asUInt
 
     //内部 --根据cpu设计实战实现
     val partial_remainder = RegInit(0.U((2*X_LEN).W))
