@@ -59,7 +59,8 @@ class Excute extends Module{
     alu_value := Mux(aluvalid_buffer, alu_buffer, alu.io.result)
 
     mul_div_type := (io.deio.alu_op === Alu.ALU_MUL) || (io.deio.alu_op === Alu.ALU_MULH) ||(io.deio.alu_op === Alu.ALU_MULHSU) ||
-        (io.deio.alu_op === Alu.ALU_MULHU) ||(io.deio.alu_op === Alu.ALU_MULW)
+        (io.deio.alu_op === Alu.ALU_MULHU) ||(io.deio.alu_op === Alu.ALU_MULW) ||(io.deio.alu_op === Alu.ALU_DIV) ||(io.deio.alu_op === Alu.ALU_DIVU) ||
+        (io.deio.alu_op === Alu.ALU_DIVW) ||(io.deio.alu_op === Alu.ALU_DIVUW)
 
 
     //内部逻辑
