@@ -155,8 +155,8 @@ class Divider extends Module{
         }
         is(s_div32){
             when(shiftCounter === 32.U){
-                remainder := partial_remainder(127, 96)
-                quotient := quotient(31,0)  //符号位扩展
+                remainder := partial_remainder(127, 96).asSInt
+                quotient := quotient(31,0).asSInt  //符号位扩展
 
 
                 when(!sign_quo && !sign_rem){
