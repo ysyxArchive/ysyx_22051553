@@ -61,6 +61,10 @@ class Divider extends Module{
     val temp_34 = WireInit(0.U(34.W))  //多一位,看是否进位
     val temp_66 = WireInit(0.U(66.W))
 
+    dontTouch(temp_34)
+    dontTouch(temp_66)
+    
+
     switch(state){
         is(s_Idle){
             out_valid := 0.B
