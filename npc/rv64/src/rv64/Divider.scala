@@ -6,7 +6,7 @@ import Define._
 import os.temp
 
 object DVState{
-    val s_Idle :: s_div32 :: s_div64 :: s_sign :: Nil = Enum(3)
+    val s_Idle :: s_div32 :: s_div64 :: s_sign :: Nil = Enum(4)
 }
 
 class DVIO extends Bundle{
