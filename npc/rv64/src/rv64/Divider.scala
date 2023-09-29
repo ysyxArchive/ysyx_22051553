@@ -41,8 +41,8 @@ class Divider extends Module{
 
     //内部 --根据cpu设计实战实现
     val partial_remainder = RegInit(0.U((2*X_LEN).W))
-    val sub64 = RegInit(0.U(64.W))
-    val sub32 = RegInit(0.U(32.W))
+    val sub65 = RegInit(0.U(65.W))
+    val sub33 = RegInit(0.U(33.W)) //扩一位
     val dividend = WireInit(0.U(X_LEN.W))
     val divisor = WireInit(0.U(X_LEN.W))
 
@@ -109,8 +109,8 @@ class Divider extends Module{
                     )
                 )
 
-                sub32 := ~divisor(31,0) + 1.U
-                sub64 := ~divisor + 1.U
+                sub33 := ~Cat(0.U(1.W), divisor(31,0)) + 1.U
+                sub65 := ~Cat(0.U(1.W), divisor) + 1.U
 
                 sign_quo := Mux(io.div_signed, 
                     Mux(io.divw, 
@@ -171,7 +171,7 @@ class Divider extends Module{
                 }
 
             }.otherwise{
-                temp_34 := Cat(0.U(1.W), partial_remainder(127, 95)) + Cat(0.U(2.W), sub32)
+                temp_34 := Cat(0.U(1.W), partial_remainder(127, 95)) + Cat(0.U(1.W), sub33)
                 when(temp_34(33)){ //为正
                     partial_remainder := Cat(temp_34(31,0), partial_remainder(94,0), 0.U(1.W)) //获取结果并左移一位
                     quotient := Cat(quotient(62,0), 1.U(1.W)).asSInt //获取结果并左移一位
@@ -196,7 +196,7 @@ class Divider extends Module{
                 }
 
             }.otherwise{
-                temp_66 := Cat(0.U(1.W), partial_remainder(127, 63)) + Cat(0.U(2.W), sub64)
+                temp_66 := Cat(0.U(1.W), partial_remainder(127, 63)) + Cat(0.U(1.W), sub65)
                 when(temp_66(65)){ //为正
                     partial_remainder := Cat(temp_66(63,0), partial_remainder(62,0), 0.U(1.W)) //获取结果并左移一位
                     quotient := Cat(quotient(62,0), 1.U(1.W)).asSInt //获取结果并左移一位
