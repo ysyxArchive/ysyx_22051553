@@ -82,7 +82,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h156a9c0e__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0;
         CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT__aluvalid_buffer;
-        CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT___mul_div_type_T_4;
+        CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT___mul_div_type_T_8;
     };
     struct {
         CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6;
@@ -276,13 +276,14 @@ class VSoc___024root final : public VerilatedModule {
         CData/*5:0*/ __VdfgTmp_h722d7b58__0;
         CData/*3:0*/ __VdfgTmp_h6dbd61c0__0;
         CData/*0:0*/ __VdfgTmp_h565791da__0;
+        CData/*0:0*/ __VdfgTmp_hd9853fd5__0;
         CData/*1:0*/ __Vdly__Soc__DOT__core__DOT__arbitor__DOT__state;
         CData/*0:0*/ __Vdly__Soc__DOT__core__DOT__Icache__DOT__inDataOneArray;
         CData/*7:0*/ __Vdly__Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_mask;
         CData/*0:0*/ __Vdly__Soc__DOT__core__DOT__Dcache__DOT__inDataOneArray;
-        CData/*7:0*/ __Vdly__Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_mask;
     };
     struct {
+        CData/*7:0*/ __Vdly__Soc__DOT__core__DOT__Dcache__DOT__axi_req_bits_mask;
         CData/*1:0*/ __Vdly__Soc__DOT__core__DOT__ioformem__DOT__state;
         CData/*0:0*/ __Vdly__Soc__DOT__core__DOT__ioformem__DOT__axi_req_valid;
         CData/*0:0*/ __Vtrigrprev__TOP__clock;
@@ -346,9 +347,9 @@ class VSoc___024root final : public VerilatedModule {
         IData/*20:0*/ Soc__DOT__core__DOT__Icache__DOT__tag;
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__Icache__DOT__valid;
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__Icache__DOT__dirty;
-        VlWide<16>/*511:0*/ Soc__DOT__core__DOT__Icache__DOT__replace;
     };
     struct {
+        VlWide<16>/*511:0*/ Soc__DOT__core__DOT__Icache__DOT__replace;
         IData/*31:0*/ Soc__DOT__core__DOT__Icache__DOT__addr;
         IData/*31:0*/ Soc__DOT__core__DOT__Icache__DOT__axi_req_bits_addr;
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__Icache__DOT___T_8;
@@ -412,9 +413,9 @@ class VSoc___024root final : public VerilatedModule {
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h18bd6550__0;
         VlWide<16>/*511:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h7cd24744__0;
         IData/*31:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h216ac087__0;
-        IData/*31:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h21e4b031__0;
     };
     struct {
+        IData/*31:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h21e4b031__0;
         IData/*31:0*/ Soc__DOT__core__DOT__ioformem__DOT__axi_req_bits_addr;
         IData/*31:0*/ Soc__DOT__core__DOT__ioformem__DOT___axi_req_bits_addr_T;
         IData/*31:0*/ Soc__DOT__sram__DOT__awaddr_buffer;
@@ -449,7 +450,7 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___io_deio_csr_t_T;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___alu_io_result;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu_buffer;
-        QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT____VdfgTmp_h2e8cd7a4__0;
+        QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT____VdfgTmp_h0d619160__0;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_34;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_38;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_41;
@@ -478,9 +479,9 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MEPC;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MIE;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MIP;
-        QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSTATUS;
     };
     struct {
+        QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSTATUS;
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSCRATCH;
         QData/*63:0*/ Soc__DOT__core__DOT__trap__DOT__cause;
         QData/*63:0*/ Soc__DOT__core__DOT__Icache__DOT__DataOneArray;

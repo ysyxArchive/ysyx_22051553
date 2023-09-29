@@ -65,7 +65,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgBit(oldp+38,(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started));
         bufp->chgQData(oldp+39,(((IData)(vlSelf->Soc__DOT__core__DOT__dereg_csr_wen)
                                   ? vlSelf->Soc__DOT__core__DOT__dereg_csr_t
-                                  : vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_h2e8cd7a4__0)),64);
+                                  : vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_h0d619160__0)),64);
         bufp->chgBit(oldp+41,(vlSelf->Soc__DOT__core__DOT___excute_io_fcex_jump_flag));
         bufp->chgBit(oldp+42,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_valid));
         bufp->chgBit(oldp+43,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_valid));
@@ -253,7 +253,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgQData(oldp+233,(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSCRATCH),64);
         bufp->chgCData(oldp+235,(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd),5);
         bufp->chgIData(oldp+236,((IData)(vlSelf->Soc__DOT__core__DOT__dereg_branch_addr)),32);
-        bufp->chgBit(oldp+237,(vlSelf->Soc__DOT__core__DOT__excute__DOT___mul_div_type_T_4));
+        bufp->chgBit(oldp+237,(vlSelf->Soc__DOT__core__DOT__excute__DOT___mul_div_type_T_8));
         bufp->chgBit(oldp+238,(vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__out_valid));
         bufp->chgQData(oldp+239,(vlSelf->Soc__DOT__core__DOT___excute_io_fwex_reg_wdata),64);
         bufp->chgBit(oldp+241,(vlSelf->Soc__DOT__core__DOT___excute_io_fwex_reg_we));
@@ -287,7 +287,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                        ? (IData)(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MEPC)
                                        : 0U))),32);
         bufp->chgBit(oldp+275,(((~ (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__out_valid)) 
-                                & (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___mul_div_type_T_4))));
+                                & (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___mul_div_type_T_8))));
         bufp->chgIData(oldp+276,(vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc),32);
         bufp->chgIData(oldp+277,(vlSelf->Soc__DOT__core__DOT__fetch__DOT__old_pc),32);
         bufp->chgBit(oldp+278,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__emreg_wb_type))));

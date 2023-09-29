@@ -982,7 +982,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullBit(oldp+39,(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started));
     bufp->fullQData(oldp+40,(((IData)(vlSelf->Soc__DOT__core__DOT__dereg_csr_wen)
                                ? vlSelf->Soc__DOT__core__DOT__dereg_csr_t
-                               : vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_h2e8cd7a4__0)),64);
+                               : vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_h0d619160__0)),64);
     bufp->fullBit(oldp+42,(vlSelf->Soc__DOT__core__DOT___excute_io_fcex_jump_flag));
     bufp->fullBit(oldp+43,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__cpu_resp_valid));
     bufp->fullBit(oldp+44,(vlSelf->Soc__DOT__core__DOT__Dcache__DOT__axi_req_valid));
@@ -1162,7 +1162,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullQData(oldp+234,(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSCRATCH),64);
     bufp->fullCData(oldp+236,(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd),5);
     bufp->fullIData(oldp+237,((IData)(vlSelf->Soc__DOT__core__DOT__dereg_branch_addr)),32);
-    bufp->fullBit(oldp+238,(vlSelf->Soc__DOT__core__DOT__excute__DOT___mul_div_type_T_4));
+    bufp->fullBit(oldp+238,(vlSelf->Soc__DOT__core__DOT__excute__DOT___mul_div_type_T_8));
     bufp->fullBit(oldp+239,(vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__out_valid));
     bufp->fullQData(oldp+240,(vlSelf->Soc__DOT__core__DOT___excute_io_fwex_reg_wdata),64);
     bufp->fullBit(oldp+242,(vlSelf->Soc__DOT__core__DOT___excute_io_fwex_reg_we));
@@ -1196,7 +1196,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                     ? (IData)(vlSelf->Soc__DOT__core__DOT__csrs__DOT__MEPC)
                                     : 0U))),32);
     bufp->fullBit(oldp+276,(((~ (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__out_valid)) 
-                             & (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___mul_div_type_T_4))));
+                             & (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___mul_div_type_T_8))));
     bufp->fullIData(oldp+277,(vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc),32);
     bufp->fullIData(oldp+278,(vlSelf->Soc__DOT__core__DOT__fetch__DOT__old_pc),32);
     bufp->fullBit(oldp+279,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__emreg_wb_type))));

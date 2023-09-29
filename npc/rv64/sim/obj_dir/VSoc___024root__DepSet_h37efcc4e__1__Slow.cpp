@@ -182,11 +182,11 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__excute__DOT__aluvalid_buffer = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu_buffer = VL_RAND_RESET_Q(64);
-    vlSelf->Soc__DOT__core__DOT__excute__DOT___mul_div_type_T_4 = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__excute__DOT___mul_div_type_T_8 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__excute__DOT__unnamedblk1__DOT___T_2 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__excute__DOT__unnamedblk1__DOT___T_4 = VL_RAND_RESET_I(1);
-    vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_h2e8cd7a4__0 = 0;
+    vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_h0d619160__0 = 0;
     vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hf0b5fb69__0 = 0;
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___T_8 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_34 = VL_RAND_RESET_Q(64);
@@ -549,6 +549,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->__VdfgTmp_h722d7b58__0 = 0;
     vlSelf->__VdfgTmp_h6dbd61c0__0 = 0;
     vlSelf->__VdfgTmp_h565791da__0 = 0;
+    vlSelf->__VdfgTmp_hd9853fd5__0 = 0;
     vlSelf->__VdfgTmp_hb3a84c04__0 = 0;
     vlSelf->__VdfgTmp_heb865217__0 = 0;
     vlSelf->__VdfgTmp_hc520a55b__0 = 0;
