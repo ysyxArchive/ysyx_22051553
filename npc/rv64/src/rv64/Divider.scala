@@ -170,10 +170,10 @@ class Divider extends Module{
                 temp_34 := Cat(0.U(1.W), partial_remainder(127, 95)) + Cat(0.U(2.W), sub32)
                 when(temp_34(33)){ //为正
                     partial_remainder := Cat(temp_34(31,0), partial_remainder(94,0), 0.U(1.W)) //获取结果并左移一位
-                    quotient := Cat(quotient(62,0), 1.U(1.W)) //获取结果并左移一位
+                    quotient := Cat(quotient(62,0), 1.U(1.W)).asSInt //获取结果并左移一位
                 }.otherwise{ //为负
                     partial_remainder := Cat(partial_remainder(126,0), 0.U(1.W)) //不变并左移一位
-                    quotient := Cat(quotient(62,0), 0.U(1.W)) //获取结果并左移一位
+                    quotient := Cat(quotient(62,0), 0.U(1.W)).asSInt //获取结果并左移一位
                 }
 
                 shiftCounter := shiftCounter + 1.U
