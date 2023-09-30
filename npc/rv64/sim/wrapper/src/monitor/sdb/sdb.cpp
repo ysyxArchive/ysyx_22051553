@@ -289,6 +289,7 @@ long long pmem_read(const svLogicVecVal* raddr){
       return ;
     }
     else if(((unsigned long)waddr[0].aval) == SYNC_ADDR){
+      printf("update screen\n");
       display.update_screen();
     }
     else {
