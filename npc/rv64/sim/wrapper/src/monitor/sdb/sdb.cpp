@@ -17,6 +17,45 @@
 #include <sys/time.h>
 #include <define.h>
 #include <display.hpp>
+#include <SDL2/SDL.h>
+
+
+
+uint64_t get_time();
+void send_key(uint8_t scancode, bool is_keydown);
+uint32_t key_dequeue();
+uint8_t k;
+bool is_keydown;
+
+void event_update(){
+  static uint64_t last = 0;
+  uint64_t now = get_time();
+  if (now - last < 1000000 / 60) {
+    return;
+  }
+  last = now;
+
+  SDL_Event event;
+  while(SDL_PollEvent(&event)){
+    switch (event.type)
+    {
+      case SDL_QUIT:
+        Verilated::gotFinish(1);
+        break;
+      case SDL_KEYDOWN:
+      case SDL_KEYUP:
+        printf("here\n");
+        k = event.key.keysym.scancode;
+        is_keydown = (event.key.type == SDL_KEYDOWN);
+        send_key(k, is_keydown);
+        break;
+
+      default:break;
+    }
+  }
+}
+
+
 
 
 static uint64_t rtc_time = 0;
@@ -194,9 +233,6 @@ long long pmem_read(const svLogicVecVal* raddr){
     printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr[0].aval, 8);
     #endif
 
-
-
-
   if( ((unsigned long)raddr[0].aval) == RTC_ADDRH || ((unsigned long)raddr[0].aval) == RTC_ADDRL){
     if(((unsigned long)raddr[0].aval) == RTC_ADDRH){
         struct timespec now;
@@ -211,7 +247,10 @@ long long pmem_read(const svLogicVecVal* raddr){
   else if(((unsigned long)raddr[0].aval) == VGACTL_ADDR){
       uint32_t vga_ctrl_bundle = SCREEN_W << 16 | SCREEN_H;
       return vga_ctrl_bundle;
-
+  }
+  else if(((unsigned long)raddr[0].aval) == KBD_ADDR){
+      uint32_t key = key_dequeue();
+      return key;
   }
 
   uint64_t value =  pmem.mem_read(
@@ -450,6 +489,7 @@ static int cmd_s(char *args){
     execute_list.pop_front();
     #endif
     
+    event_update();
       
   }
   else {
@@ -591,6 +631,7 @@ static int cmd_s(char *args){
       if(Verilated::gotFinish())
         break;
 
+      event_update();
       n --;
     }
   }

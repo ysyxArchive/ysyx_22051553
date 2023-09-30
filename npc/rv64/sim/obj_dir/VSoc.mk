@@ -46,11 +46,13 @@ VM_USER_CLASSES = \
 	difftest \
 	display \
 	cpu \
+	key \
 	main \
 	memory \
 	debug \
 	expr \
 	sdb \
+	time \
 	disasm \
 	util \
 
@@ -60,6 +62,7 @@ VM_USER_DIR = \
 	./wrapper/src/difftest \
 	./wrapper/src/display \
 	./wrapper/src/isa \
+	./wrapper/src/key \
 	./wrapper/src/memory \
 	./wrapper/src/monitor/debug \
 	./wrapper/src/monitor/sdb \
@@ -81,6 +84,8 @@ display.o: ./wrapper/src/display/display.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 cpu.o: ./wrapper/src/isa/cpu.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+key.o: ./wrapper/src/key/key.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 main.o: ./wrapper/src/main.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 memory.o: ./wrapper/src/memory/memory.cpp
@@ -90,6 +95,8 @@ debug.o: ./wrapper/src/monitor/debug/debug.cpp
 expr.o: ./wrapper/src/monitor/sdb/expr.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sdb.o: ./wrapper/src/monitor/sdb/sdb.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+time.o: ./wrapper/src/monitor/sdb/time.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 disasm.o: ./wrapper/src/utils/disasm.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<

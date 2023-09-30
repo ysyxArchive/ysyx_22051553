@@ -22,6 +22,8 @@ void init_regex();
 void init_difftest(const char *ref_so_file, long img_size, int port);
 void init_disasm(const char *triple);
 
+void init_keymap();
+
 
 
 
@@ -58,6 +60,7 @@ int main(int argc, char **argv) {
   init_regex();
   
   display.init_screen();
+  init_keymap();
 
   #ifdef ITRACE
   init_disasm("riscv64" "-pc-linux-gnu");
