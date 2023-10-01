@@ -208,7 +208,7 @@ void update_debuginfo(
   //   execute_list.push_back(ex_ins);
   // }
   
-  if(trap_state == 4) //到mstatus
+  if((unsigned int)trap_state[0].aval == 4) //到mstatus
   {
     delay_onecycle = 1;
   }
