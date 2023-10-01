@@ -290,7 +290,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___T_4;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN;
         CData/*0:0*/ Soc__DOT__core__DOT__interact__DOT__ebreak_flag;
-        CData/*2:0*/ Soc__DOT__core__DOT__interact__DOT__over_count;
+        CData/*5:0*/ Soc__DOT__core__DOT__interact__DOT__over_count;
         CData/*0:0*/ Soc__DOT__sram__DOT__awready;
         CData/*0:0*/ Soc__DOT__sram__DOT__wready;
         CData/*1:0*/ Soc__DOT__sram__DOT__bresp;

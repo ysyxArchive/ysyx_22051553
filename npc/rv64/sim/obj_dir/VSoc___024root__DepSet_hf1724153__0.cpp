@@ -268,7 +268,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
     __Vdlyvset__Soc__DOT__core__DOT__Dcache__DOT__DataArray_ext__DOT__Memory__v5 = 0;
     CData/*0:0*/ __Vdly__Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid;
     __Vdly__Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid = 0;
-    CData/*2:0*/ __Vdly__Soc__DOT__core__DOT__interact__DOT__over_count;
+    CData/*5:0*/ __Vdly__Soc__DOT__core__DOT__interact__DOT__over_count;
     __Vdly__Soc__DOT__core__DOT__interact__DOT__over_count = 0;
     VlWide<8>/*255:0*/ __Vtemp_hb99da695__0;
     VlWide<4>/*127:0*/ __Vtemp_h75017c4d__0;
@@ -949,8 +949,8 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__0(VSoc___024root* vlSelf) 
         __Vdly__Soc__DOT__core__DOT__interact__DOT__over_count = 0U;
     } else if (vlSelf->Soc__DOT__core__DOT__interact__DOT__ebreak_flag) {
         __Vdly__Soc__DOT__core__DOT__interact__DOT__over_count 
-            = (7U & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)));
-        if (VL_UNLIKELY((2U == (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)))) {
+            = (0x3fU & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)));
+        if (VL_UNLIKELY((0x1eU == (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)))) {
             VL_WRITEF("ebreak!\n");
             VL_FINISH_MT("vsrc/Soc.v", 3808, "");
         }

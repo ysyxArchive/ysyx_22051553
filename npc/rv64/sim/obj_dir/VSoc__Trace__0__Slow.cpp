@@ -726,7 +726,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBit(c+582,"clk", false,-1);
     tracep->declBit(c+583,"rst", false,-1);
     tracep->declBit(c+310,"ebreak_flag", false,-1);
-    tracep->declBus(c+311,"over_count", false,-1, 2,0);
+    tracep->declBus(c+311,"over_count", false,-1, 5,0);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("ioformem ");
     tracep->declBit(c+582,"clock", false,-1);
@@ -1247,7 +1247,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullBit(oldp+308,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__emreg_wb_type))));
     bufp->fullBit(oldp+309,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type))));
     bufp->fullBit(oldp+310,(vlSelf->Soc__DOT__core__DOT__interact__DOT__ebreak_flag));
-    bufp->fullCData(oldp+311,(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count),3);
+    bufp->fullCData(oldp+311,(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count),6);
     bufp->fullBit(oldp+312,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))));
     bufp->fullBit(oldp+313,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid));
     bufp->fullQData(oldp+314,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits),64);

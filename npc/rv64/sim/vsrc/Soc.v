@@ -3786,7 +3786,7 @@ module Interact(input [31:0] inst,
 );
    
    reg ebreak_flag;
-   reg [2:0] over_count;
+   reg [5:0] over_count;
 
    always@(posedge clk)begin
        if(rst)
@@ -3803,7 +3803,7 @@ module Interact(input [31:0] inst,
        else begin
            if(ebreak_flag)begin
                over_count <= over_count + 1'b1;
-               if(over_count == 3'd2)begin          
+               if(over_count == 6'd30)begin          
                    $display("ebreak!");
                    $finish;
                end
@@ -4013,5 +4013,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 

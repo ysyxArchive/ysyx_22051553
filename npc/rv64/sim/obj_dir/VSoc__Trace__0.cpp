@@ -310,7 +310,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgBit(oldp+307,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__emreg_wb_type))));
         bufp->chgBit(oldp+308,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type))));
         bufp->chgBit(oldp+309,(vlSelf->Soc__DOT__core__DOT__interact__DOT__ebreak_flag));
-        bufp->chgCData(oldp+310,(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count),3);
+        bufp->chgCData(oldp+310,(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count),6);
         bufp->chgBit(oldp+311,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))));
         bufp->chgBit(oldp+312,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid));
         bufp->chgQData(oldp+313,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits),64);
