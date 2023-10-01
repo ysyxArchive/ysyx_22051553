@@ -252,10 +252,11 @@ long long pmem_read(const svLogicVecVal* raddr){
       uint32_t vga_ctrl_bundle = SCREEN_W << 16 | SCREEN_H;
       return vga_ctrl_bundle;
   }
-  // else if(((unsigned long)raddr[0].aval) == KBD_ADDR){
-  //     uint32_t key = key_dequeue();
-  //     return key;
-  // }
+  else if(((unsigned long)raddr[0].aval) == KBD_ADDR){
+      printf("here in read key\n");
+      uint32_t key = key_dequeue();
+      return key;
+  }
 
   uint64_t value =  pmem.mem_read(
     (unsigned long)raddr[0].aval
@@ -285,6 +286,9 @@ long long pmem_read(const svLogicVecVal* raddr){
     }
     else if( (FB_ADDR <= ((unsigned long)waddr[0].aval)) 
       && (((unsigned long)waddr[0].aval) <= FB_ADDR + SCREEN_W*SCREEN_H*sizeof(uint32_t))){
+
+        // printf("write at 0x%x\n", (unsigned long)waddr[0].aval);
+
       display.vmem_write(
         (unsigned long)waddr[0].aval,
         (unsigned long)wdata[1].aval << 32 | wdata[0].aval,
