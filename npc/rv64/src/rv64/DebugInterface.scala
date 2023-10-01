@@ -44,6 +44,9 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
         //flowcontrol
         val sdb_stall = Input(Bool())
 
+        //trap
+        val trap_state = Input(UInt(3.W))
+
     })
 
     setInline("DebugInterface.v",
@@ -87,7 +90,9 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     |                   input [63:0] csr_wdata,
     |                   input [11:0]    csr_waddr,
     |
-    |                   input   sdb_stall
+    |                   input   sdb_stall,
+    |
+    |                   input [2:0]  trap_state
     |);
     |
     |
@@ -96,7 +101,7 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     |always@(posedge clk)begin
     |   if(rst != 'd1)
     |       update_debuginfo(pc,pc_req,inst,inst_valid,load_use,op_a,op_b,result,br_yes, mem_access, mem_addr, rd,reg_wdata,reg_wen,
-    |       csr_wen,csr_wdata,csr_waddr,sdb_stall);
+    |       csr_wen,csr_wdata,csr_waddr,sdb_stall,trap_state);
     |end
     |
     |

@@ -503,6 +503,7 @@ class Core extends Module{
     DI.io.csr_wdata := wb.io.csrs.csr_wdata
     DI.io.csr_wen := wb.io.csrs.csr_wen
     DI.io.sdb_stall := fc.io.sdb_stall
+    DI.io.trap_state := trap.io.fctr.trap_state
 
     //interact
     val interact = Module(new Interact)

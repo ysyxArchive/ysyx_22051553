@@ -21,6 +21,9 @@
 
 int video_flag = 0;
 
+int ecall = 0;
+int delay_onecycle = 0;
+
 uint64_t get_time();
 void send_key(uint8_t scancode, bool is_keydown);
 uint32_t key_dequeue();
@@ -132,7 +135,9 @@ extern "C" {
     svLogic csr_wen,
     const svLogicVecVal* csr_wdata,
     const svLogicVecVal* csr_waddr,
-    svLogic sdb_stall);
+    svLogic sdb_stall,
+    const svLogicVecVal* trap_state,
+    );
 
   long long pmem_read(const svLogicVecVal* raddr);
 
@@ -157,7 +162,8 @@ void update_debuginfo(
   svLogic csr_wen,
   const svLogicVecVal* csr_wdata,
   const svLogicVecVal* csr_waddr,
-  svLogic sdb_stall
+  svLogic sdb_stall,
+  const svLogicVecVal* trap_state,
   )
 {
   
@@ -202,7 +208,17 @@ void update_debuginfo(
   //   execute_list.push_back(ex_ins);
   // }
   
-  if(de_ins.inst != 0x13 && de_ins.inst != 0 && !(bool)sdb_stall){ //需要记录dut所有有效允许周期,因为load_use,branch只会flushdecdoe,不会暂停流水线
+  if(trap_state == 4) //到mstatus
+  {
+    delay_onecycle = 1;
+  }
+
+  if(delay_onecycle == 1){
+    ecall = 0;
+    delay_onecycle = 0;
+  }
+
+  if(de_ins.inst != 0x13 && de_ins.inst != 0 && !(bool)sdb_stall && !ecall){ //需要记录dut所有有效允许周期,因为load_use,branch只会flushdecdoe,不会暂停流水线
     fetch_list.push_back(fe_ins);                                   //去除暂停流水线的周期
     decode_list.push_back(de_ins);
     execute_list.push_back(ex_ins);
@@ -510,6 +526,37 @@ static int cmd_s(char *args){
     while(n > 0){
 
     #ifdef ITRACE
+
+    #ifdef DIFFTEST
+    if(decode_list.back().inst == 0x73){ //ecall指令
+      ecall = 1;
+
+      while(ecall == 1){
+        single_cycle();
+      }
+
+      printf("ecall-------------------\n");
+      for(auto arg : fetch_list){
+      printf("pc:0x%lx\n", arg.pc);
+    }
+
+    for(auto arg : decode_list){
+      printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
+    }
+
+    for(auto arg : execute_list){
+      printf("skip:%d\n", arg.skip_ref_one_inst);
+    }
+
+    } 
+
+
+    #endif
+
+
+
+
+
     while(decode_list.size() < 3){  //对齐dut和ref
       single_cycle();
     }
