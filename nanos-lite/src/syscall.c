@@ -59,7 +59,7 @@ static void sys_close(Context *c){
 
 
 static void sys_brk(Context *c){
-  printf("in brk\n");
+  // printf("in brk\n");
   c->GPRx = 0;
 }
 
