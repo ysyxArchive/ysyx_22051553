@@ -22,7 +22,6 @@
 
 struct diff_context_t {   //c和c++之间传结构体指针，模仿spike的ref
   unsigned long gpr[32];
-  unsigned long csr[7]; //mtvec, mcause, mepc, mie, mstatus, mscratch, mip
   unsigned long pc;
 };
 
@@ -32,12 +31,6 @@ static void set_regs(void* diff_context){  //设置ref中的寄存器
   for(int i = 0; i < 32; i++){
     cpu.gpr[i] = ctx->gpr[i];
   }
-  for(int i = 0; i < 7; i++){
-    cpu.csr[i] = ctx->csr[i];
-  }
-  printf("pc is 0x%lx\n", ctx->pc);
-  cpu.pc = ctx->pc;
-
   
 }
 
