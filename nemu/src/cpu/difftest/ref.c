@@ -76,6 +76,11 @@ __EXPORT void difftest_raise_intr(word_t NO) {
     cpu.pc = isa_raise_intr(NO, cpu.pc-4);
 }
 
+__EXPORT void difftest_mret() { 
+  cpu.pc = cpu.csr[mepc];
+}
+
+
 __EXPORT void difftest_init(int port, struct diff_context_t* regs_state) {
   void init_mem();
   init_mem();

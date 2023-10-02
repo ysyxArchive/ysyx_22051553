@@ -9,6 +9,7 @@ void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
 void (*ref_difftest_exec)(uint64_t n) = NULL;
 void (*ref_difftest_raise_intr)(uint64_t NO) = NULL;
 void (*ref_difftest_skip_ref)() = NULL;
+void (*ref_difftest_mret)() = NULL;
 
 
 extern bool skip_ref_one_inst;
@@ -39,6 +40,10 @@ void init_difftest(const char *ref_so_file, long img_size, int port){
 
     ref_difftest_raise_intr = (void(*)(uint64_t))dlsym(handle, "difftest_raise_intr");
     assert(ref_difftest_raise_intr);
+
+    ref_difftest_mret = (void(*)())dlsym(handle, "difftest_mret");
+    assert(ref_difftest_mret);
+
 
     Log("Differential testing: %s", ANSI_FMT("ON", ANSI_FG_GREEN));
     Log("The result of every instruction will be compared with %s. "

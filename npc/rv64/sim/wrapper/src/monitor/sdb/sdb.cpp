@@ -104,6 +104,7 @@ bool stall_flag = 0;
 bool difftest_step();
 extern void (*ref_difftest_regcpy)(void *dut, bool direction);
 extern void (*ref_difftest_raise_intr)(uint64_t NO);
+extern void (*ref_difftest_mret)();
 void difftest_skip_ref();
 
 
@@ -670,7 +671,9 @@ static int cmd_s(char *args){
           ref_difftest_raise_intr(11);
         }
 
-        
+        if(after_mret){
+          ref_difftest_mret();
+        }
         
 
         ref_difftest_regcpy(&cpu_ins.regs_state,1);
