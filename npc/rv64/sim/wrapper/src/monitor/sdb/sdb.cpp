@@ -666,7 +666,12 @@ static int cmd_s(char *args){
 
       #ifdef DIFFTEST
       if(after_ecall || after_mret){
-        ref_difftest_raise_intr(11);
+        if(after_ecall){
+          ref_difftest_raise_intr(11);
+        }
+
+        
+        
 
         ref_difftest_regcpy(&cpu_ins.regs_state,1);
 
