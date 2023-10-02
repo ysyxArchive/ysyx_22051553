@@ -22,25 +22,25 @@ void cpu::set_csr(int addr, unsigned long value){
   switch (addr)
   {
     case 0x305:  //mtvec
-      regs_state.csr[0] = value;
+      csr[0] = value;
       break;
     case 0x342: //mcause
-      regs_state.csr[1] = value;
+      csr[1] = value;
       break;
     case 0x341: //mepc
-      regs_state.csr[2] = value;
+      csr[2] = value;
       break;
     case 0x304: //mie
-      regs_state.csr[3] = value;
+      csr[3] = value;
       break;
     case 0x344: //mip
-      regs_state.csr[4] = value;
+      csr[4] = value;
       break;
     case 0x300: //mstatus
-      regs_state.csr[5] = value;
+      csr[5] = value;
       break;
     case 0x340: //mscratch
-      regs_state.csr[6] = value;
+      csr[6] = value;
       break;
     
     default: assert(0);
@@ -50,7 +50,7 @@ void cpu::set_csr(int addr, unsigned long value){
 
 void cpu::csr_display(){
     for(int i = 0; i < 6; i ++){
-      printf("%s\t\t0x%-16lx\t\t%-20ld\n", csrs[i], regs_state.csr[i], regs_state.csr[i]);
+      printf("%s\t\t0x%-16lx\t\t%-20ld\n", csrs[i], csr[i], csr[i]);
     }  
 }
 

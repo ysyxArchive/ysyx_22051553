@@ -215,7 +215,7 @@ void update_debuginfo(
     clear_cnt = 2; //需要继续比较ecall前面的两条指令
   }
 
-  if((unsigned int)trap_state[0].aval == 2) //mepc段
+  if((unsigned int)trap_state[0].aval == 1 && clear_cnt == 0) //mepc段
   {
     in_ecall = 1;
   }
@@ -226,6 +226,7 @@ void update_debuginfo(
     after_ecall = 0;
   }
 
+  
 
 
   if(de_ins.inst != 0x13 && de_ins.inst != 0 && !(bool)sdb_stall && //需要记录dut所有有效允许周期,因为load_use,branch只会flushdecdoe,不会暂停流水线
@@ -545,10 +546,13 @@ static int cmd_s(char *args){
     #ifdef ITRACE
 
     if(clear_cnt > 0 || in_ecall || after_ecall){
-
+    
     }else{
       while(decode_list.size() < 3){  //对齐dut和ref
         single_cycle();
+        if(clear_cnt > 0 || in_ecall || after_ecall){
+          break;
+        }
       }
     }
     #endif
@@ -624,9 +628,13 @@ static int cmd_s(char *args){
       if(clear_cnt > 0 || in_ecall){
         single_cycle();
       }
-      else{
-        while(decode_list.size() < 4)  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成
+      else if(!after_ecall){
+        while(decode_list.size() < 4){
           single_cycle();   
+          if(clear_cnt > 0|| in_ecall || after_ecall){
+            break;
+          }
+        }  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成
       }
     #else
         single_cycle();   
@@ -636,9 +644,12 @@ static int cmd_s(char *args){
 
       #ifdef DIFFTEST
       if(after_ecall){
+        ref_difftest_raise_intr(11);
+
         ref_difftest_regcpy(&cpu_ins.regs_state,1);
 
         while(decode_list.size() < 3){  //对齐dut和ref
+          
           single_cycle();
         }
       }
@@ -682,11 +693,20 @@ static int cmd_s(char *args){
       }
       #endif
 
-      
-      
-      decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
-      fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
-      execute_list.pop_front();
+      if(clear_cnt > 0){
+        clear_cnt --;
+      }
+      printf("clear_cnat is %d\n", clear_cnt);
+
+      if(!decode_list.empty()){
+        decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
+      }
+      if(!fetch_list.empty()){
+        fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
+      }
+      if(!execute_list.empty()){
+        execute_list.pop_front();
+      }
 
       #endif      
 

@@ -10,6 +10,7 @@ void (*ref_difftest_exec)(uint64_t n) = NULL;
 void (*ref_difftest_raise_intr)(uint64_t NO) = NULL;
 void (*ref_difftest_skip_ref)() = NULL;
 
+
 extern bool skip_ref_one_inst;
 
 void init_difftest(const char *ref_so_file, long img_size, int port){
@@ -35,6 +36,9 @@ void init_difftest(const char *ref_so_file, long img_size, int port){
 
     void (*ref_difftest_init)(int, struct diff_context_t*) = (void (*)(int, struct diff_context_t*))dlsym(handle, "difftest_init");
     assert(ref_difftest_init);
+
+    ref_difftest_raise_intr = (void(*)(uint64_t))dlsym(handle, "difftest_raise_intr");
+    assert(ref_difftest_raise_intr);
 
     Log("Differential testing: %s", ANSI_FMT("ON", ANSI_FG_GREEN));
     Log("The result of every instruction will be compared with %s. "
