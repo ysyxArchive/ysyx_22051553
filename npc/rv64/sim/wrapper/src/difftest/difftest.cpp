@@ -67,7 +67,6 @@ bool difftest_checkregs(struct diff_context_t* ref_r){
 
 bool difftest_step() {
   struct diff_context_t ref_r;
-
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, 0);
 
