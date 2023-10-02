@@ -24,6 +24,9 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
    */
   cpu.csr[mepc] = epc;
   cpu.csr[mcause] = NO;
+  uint64_t mstatus_buf = cpu.csr[mstatus];
+  cpu.csr[mstatus] = BITS(mstatus_buf, 63,8) << 8 | BITS(mstatus_buf, 3,3) << 7 | BITS(mstatus_buf, 6,4) << 4 | 
+    0 << 3 | BITS(mstatus_buf, 2,0);
 
   return cpu.csr[mtvec];
 }

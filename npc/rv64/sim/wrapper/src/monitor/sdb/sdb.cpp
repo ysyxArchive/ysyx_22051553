@@ -99,6 +99,7 @@ bool stall_flag = 0;
 
 bool difftest_step();
 extern void (*ref_difftest_regcpy)(void *dut, bool direction);
+extern void (*ref_difftest_raise_intr)(uint64_t NO);
 void difftest_skip_ref();
 
 
@@ -648,7 +649,7 @@ static int cmd_s(char *args){
 
         ref_difftest_regcpy(&cpu_ins.regs_state,1);
 
-        while(decode_list.size() < 3){  //对齐dut和ref
+        while(decode_list.size() < 4){  //对齐dut和ref,并让dut执行一条指令,即mtvec的第一条指令
           
           single_cycle();
         }
