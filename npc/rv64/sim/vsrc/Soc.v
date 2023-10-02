@@ -3725,7 +3725,7 @@ import "DPI-C" function void update_debuginfo(input reg[31:0] pc, input pc_req, 
   input inst_valid, input load_use, input reg[63:0] op_a, input reg[63:0] op_b, input reg[63:0] result, 
    input br_yes, input reg mem_access, input [63:0] mem_addr,
    input reg[4:0] rd, input reg[63:0] reg_wdata,
-  input reg_wen, input csr_wen, input [63:0] csr_wdata, input [11:0] csr_waddr, input sdb_stall);
+  input reg_wen, input csr_wen, input [63:0] csr_wdata, input [11:0] csr_waddr, input sdb_stall, input reg[2:0] trap_state);
 
 module DebugInterface(
                    input        clk,

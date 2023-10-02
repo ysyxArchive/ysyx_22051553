@@ -8,9 +8,9 @@
 #include "VSoc__Syms.h"
 #include "VSoc___024unit.h"
 
-extern "C" void update_debuginfo(const svLogicVecVal* pc, svLogic pc_req, const svLogicVecVal* inst, svLogic inst_valid, svLogic load_use, const svLogicVecVal* op_a, const svLogicVecVal* op_b, const svLogicVecVal* result, svLogic br_yes, svLogic mem_access, const svLogicVecVal* mem_addr, const svLogicVecVal* rd, const svLogicVecVal* reg_wdata, svLogic reg_wen, svLogic csr_wen, const svLogicVecVal* csr_wdata, const svLogicVecVal* csr_waddr, svLogic sdb_stall);
+extern "C" void update_debuginfo(const svLogicVecVal* pc, svLogic pc_req, const svLogicVecVal* inst, svLogic inst_valid, svLogic load_use, const svLogicVecVal* op_a, const svLogicVecVal* op_b, const svLogicVecVal* result, svLogic br_yes, svLogic mem_access, const svLogicVecVal* mem_addr, const svLogicVecVal* rd, const svLogicVecVal* reg_wdata, svLogic reg_wen, svLogic csr_wen, const svLogicVecVal* csr_wdata, const svLogicVecVal* csr_waddr, svLogic sdb_stall, const svLogicVecVal* trap_state);
 
-VL_INLINE_OPT void VSoc___024unit____Vdpiimwrap_update_debuginfo_TOP____024unit(IData/*31:0*/ pc, CData/*0:0*/ pc_req, IData/*31:0*/ inst, CData/*0:0*/ inst_valid, CData/*0:0*/ load_use, QData/*63:0*/ op_a, QData/*63:0*/ op_b, QData/*63:0*/ result, CData/*0:0*/ br_yes, CData/*0:0*/ mem_access, QData/*63:0*/ mem_addr, CData/*4:0*/ rd, QData/*63:0*/ reg_wdata, CData/*0:0*/ reg_wen, CData/*0:0*/ csr_wen, QData/*63:0*/ csr_wdata, SData/*11:0*/ csr_waddr, CData/*0:0*/ sdb_stall) {
+VL_INLINE_OPT void VSoc___024unit____Vdpiimwrap_update_debuginfo_TOP____024unit(IData/*31:0*/ pc, CData/*0:0*/ pc_req, IData/*31:0*/ inst, CData/*0:0*/ inst_valid, CData/*0:0*/ load_use, QData/*63:0*/ op_a, QData/*63:0*/ op_b, QData/*63:0*/ result, CData/*0:0*/ br_yes, CData/*0:0*/ mem_access, QData/*63:0*/ mem_addr, CData/*4:0*/ rd, QData/*63:0*/ reg_wdata, CData/*0:0*/ reg_wen, CData/*0:0*/ csr_wen, QData/*63:0*/ csr_wdata, SData/*11:0*/ csr_waddr, CData/*0:0*/ sdb_stall, CData/*2:0*/ trap_state) {
     VL_DEBUG_IF(VL_DBG_MSGF("+        VSoc___024unit____Vdpiimwrap_update_debuginfo_TOP____024unit\n"); );
     // Body
     svLogicVecVal pc__Vcvt[1];
@@ -49,7 +49,9 @@ VL_INLINE_OPT void VSoc___024unit____Vdpiimwrap_update_debuginfo_TOP____024unit(
     for (size_t csr_waddr__Vidx = 0; csr_waddr__Vidx < 1; ++csr_waddr__Vidx) VL_SET_SVLV_I(12, csr_waddr__Vcvt + 1 * csr_waddr__Vidx, csr_waddr);
     svLogic sdb_stall__Vcvt;
     for (size_t sdb_stall__Vidx = 0; sdb_stall__Vidx < 1; ++sdb_stall__Vidx) sdb_stall__Vcvt = sdb_stall;
-    update_debuginfo(pc__Vcvt, pc_req__Vcvt, inst__Vcvt, inst_valid__Vcvt, load_use__Vcvt, op_a__Vcvt, op_b__Vcvt, result__Vcvt, br_yes__Vcvt, mem_access__Vcvt, mem_addr__Vcvt, rd__Vcvt, reg_wdata__Vcvt, reg_wen__Vcvt, csr_wen__Vcvt, csr_wdata__Vcvt, csr_waddr__Vcvt, sdb_stall__Vcvt);
+    svLogicVecVal trap_state__Vcvt[1];
+    for (size_t trap_state__Vidx = 0; trap_state__Vidx < 1; ++trap_state__Vidx) VL_SET_SVLV_I(3, trap_state__Vcvt + 1 * trap_state__Vidx, trap_state);
+    update_debuginfo(pc__Vcvt, pc_req__Vcvt, inst__Vcvt, inst_valid__Vcvt, load_use__Vcvt, op_a__Vcvt, op_b__Vcvt, result__Vcvt, br_yes__Vcvt, mem_access__Vcvt, mem_addr__Vcvt, rd__Vcvt, reg_wdata__Vcvt, reg_wen__Vcvt, csr_wen__Vcvt, csr_wdata__Vcvt, csr_waddr__Vcvt, sdb_stall__Vcvt, trap_state__Vcvt);
 }
 
 extern "C" long long pmem_read(const svLogicVecVal* raddr);

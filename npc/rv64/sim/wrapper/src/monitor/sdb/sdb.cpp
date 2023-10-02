@@ -21,8 +21,10 @@
 
 int video_flag = 0;
 
-int ecall = 0;
-int delay_onecycle = 0;
+int clear_cnt = 0; 
+int in_ecall = 0;
+int after_ecall = 0;
+
 
 uint64_t get_time();
 void send_key(uint8_t scancode, bool is_keydown);
@@ -136,7 +138,7 @@ extern "C" {
     const svLogicVecVal* csr_wdata,
     const svLogicVecVal* csr_waddr,
     svLogic sdb_stall,
-    const svLogicVecVal* trap_state,
+    const svLogicVecVal* trap_state
     );
 
   long long pmem_read(const svLogicVecVal* raddr);
@@ -163,7 +165,7 @@ void update_debuginfo(
   const svLogicVecVal* csr_wdata,
   const svLogicVecVal* csr_waddr,
   svLogic sdb_stall,
-  const svLogicVecVal* trap_state,
+  const svLogicVecVal* trap_state
   )
 {
   
@@ -208,21 +210,36 @@ void update_debuginfo(
   //   execute_list.push_back(ex_ins);
   // }
   
-  if((unsigned int)trap_state[0].aval == 4) //到mstatus
+
+  if(de_ins.inst == 0x73 && (unsigned int)trap_state[0].aval == 0){ //第一条ecall指令
+    clear_cnt = 2; //需要继续比较ecall前面的两条指令
+  }
+
+  if((unsigned int)trap_state[0].aval == 2) //mepc段
   {
-    delay_onecycle = 1;
+    in_ecall = 1;
   }
 
-  if(delay_onecycle == 1){
-    ecall = 0;
-    delay_onecycle = 0;
+  if((unsigned int)trap_state[0].aval == 4){  //mstatus,此时,npc中,fetch段有正常值
+    after_ecall = 1;
+  }else{
+    after_ecall = 0;
   }
 
-  if(de_ins.inst != 0x13 && de_ins.inst != 0 && !(bool)sdb_stall && !ecall){ //需要记录dut所有有效允许周期,因为load_use,branch只会flushdecdoe,不会暂停流水线
+
+
+  if(de_ins.inst != 0x13 && de_ins.inst != 0 && !(bool)sdb_stall && //需要记录dut所有有效允许周期,因为load_use,branch只会flushdecdoe,不会暂停流水线
+    (clear_cnt == 0) && (!in_ecall)
+  ){ 
     fetch_list.push_back(fe_ins);                                   //去除暂停流水线的周期
     decode_list.push_back(de_ins);
     execute_list.push_back(ex_ins);
   }
+
+  if((unsigned int)trap_state[0].aval == 4){
+    in_ecall = 0;
+  }
+
 
   // if(decode_list.size() == 5){ 
   //   sync_diff = true;
@@ -527,38 +544,12 @@ static int cmd_s(char *args){
 
     #ifdef ITRACE
 
-    #ifdef DIFFTEST
-    if(decode_list.back().inst == 0x73){ //ecall指令
-      ecall = 1;
+    if(clear_cnt > 0 || in_ecall || after_ecall){
 
-      while(ecall == 1){
+    }else{
+      while(decode_list.size() < 3){  //对齐dut和ref
         single_cycle();
       }
-
-      printf("ecall-------------------\n");
-      for(auto arg : fetch_list){
-      printf("pc:0x%lx\n", arg.pc);
-    }
-
-    for(auto arg : decode_list){
-      printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
-    }
-
-    for(auto arg : execute_list){
-      printf("skip:%d\n", arg.skip_ref_one_inst);
-    }
-
-    } 
-
-
-    #endif
-
-
-
-
-
-    while(decode_list.size() < 3){  //对齐dut和ref
-      single_cycle();
     }
     #endif
 
@@ -630,8 +621,13 @@ static int cmd_s(char *args){
       //-----------------
 
     #ifdef ITRACE
-      while(decode_list.size() < 4)  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成
-        single_cycle();   
+      if(clear_cnt > 0 || in_ecall){
+        single_cycle();
+      }
+      else{
+        while(decode_list.size() < 4)  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成
+          single_cycle();   
+      }
     #else
         single_cycle();   
     #endif
@@ -639,8 +635,16 @@ static int cmd_s(char *args){
       #ifdef ITRACE
 
       #ifdef DIFFTEST
+      if(after_ecall){
+        ref_difftest_regcpy(&cpu_ins.regs_state,1)
 
-      int skip = (*(++execute_list.begin())).skip_ref_one_inst;
+        while(decode_list.size() < 3){  //对齐dut和ref
+          single_cycle();
+        }
+      }
+
+
+      int skip = (*(++execute_list.begin())).skip_ref_one_inst || in_ecall;
       if(skip){
         difftest_skip_ref();
       }

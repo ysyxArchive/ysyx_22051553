@@ -30,10 +30,13 @@ static inline int check_reg_idx(int idx) {
 static inline int get_csr_idx(int idx){
   switch (idx)
   {
-    case MEPC: return mepc;
-    case MCAUSE: return mcause;
     case MTVEC: return mtvec;
+    case MCAUSE: return mcause;
+    case MEPC: return mepc;
+    case MIE: return mie;
+    case MIP: return mip;
     case MSTATUS: return mstatus;
+    case MSCRATCH: return mscratch;
     default: 
       printf("%lx\n", cpu.pc);
       printf("%x\n", idx);
