@@ -636,7 +636,7 @@ static int cmd_s(char *args){
 
       #ifdef DIFFTEST
       if(after_ecall){
-        ref_difftest_regcpy(&cpu_ins.regs_state,1)
+        ref_difftest_regcpy(&cpu_ins.regs_state,1);
 
         while(decode_list.size() < 3){  //对齐dut和ref
           single_cycle();
