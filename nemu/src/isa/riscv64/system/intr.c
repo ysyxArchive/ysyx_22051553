@@ -32,6 +32,16 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
   return cpu.csr[mtvec];
 }
 
+word_t isa_mret() {
+
+  uint64_t mstatus_buf = cpu.csr[mstatus];
+  cpu.csr[mstatus] = BITS(mstatus_buf, 63,4) << 4 | BITS(mstatus_buf, 7,7) << 3 | BITS(mstatus_buf, 2,0);
+
+  return cpu.csr[mepc];
+}
+
+
+
 word_t isa_query_intr() {
   return INTR_EMPTY;
 }

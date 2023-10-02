@@ -77,7 +77,7 @@ __EXPORT void difftest_raise_intr(word_t NO) {
 }
 
 __EXPORT void difftest_mret() { 
-  cpu.pc = cpu.csr[mepc];
+  cpu.pc = isa_mret();
 }
 
 
