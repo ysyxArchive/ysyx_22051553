@@ -78,6 +78,7 @@ __EXPORT void difftest_raise_intr(word_t NO) {
 
 __EXPORT void difftest_mret() { 
   cpu.pc = cpu.csr[mepc] + 4;
+  printf("pc is 0x%lx\n", cpu.pc);
 }
 
 
