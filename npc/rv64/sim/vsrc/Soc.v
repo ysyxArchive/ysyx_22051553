@@ -3024,6 +3024,7 @@ module Core(	// <stdin>:5344:10
   reg         mwreg_csr_wen;	// Core.scala:71:24
   reg  [11:0] mwreg_csr_waddr;	// Core.scala:71:24
   reg         mwreg_has_inst;	// Core.scala:71:24
+  wire [31:0] _GEN = _Icache_io_cpu_resp_valid ? _Icache_io_cpu_resp_bits_data[31:0] : 32'h13;	// Core.scala:104:24, :416:24
   wire [63:0] _DI_io_mem_addr_T = _excute_io_waddr | _excute_io_raddr;	// Core.scala:27:24, :455:93
   always @(posedge clock) begin
     if (reset) begin
@@ -3500,7 +3501,7 @@ module Core(	// <stdin>:5344:10
     .io_csrtr_MIE       (_csrs_io_CSRTr_MIE),	// Core.scala:95:22
     .io_csrtr_MIP       (_csrs_io_CSRTr_MIP),	// Core.scala:95:22
     .io_csrtr_MSTATUS   (_csrs_io_CSRTr_MSTATUS),	// Core.scala:95:22
-    .io_inst            (_Icache_io_cpu_resp_bits_data[31:0]),	// Core.scala:104:24, :416:18
+    .io_inst            (_GEN),	// Core.scala:416:24
     .io_pc              (_fetch_io_pc_bits),	// Core.scala:25:23
     .io_csrtr_rd        (_trap_io_csrtr_rd),
     .io_csrtr_csr_wen   (_trap_io_csrtr_csr_wen),
@@ -3625,7 +3626,7 @@ module Core(	// <stdin>:5344:10
     .rst        (reset),
     .pc         (_fetch_io_pc_bits),	// Core.scala:25:23
     .pc_req     (_fetch_io_pc_valid),	// Core.scala:25:23
-    .inst       (_Icache_io_cpu_resp_bits_data[31:0]),	// Core.scala:104:24, :490:47
+    .inst       (_GEN),	// Core.scala:416:24
     .inst_valid (_Icache_io_cpu_resp_valid & ~_fc_io_fcde_flush),	// Core.scala:92:20, :104:24, :491:{50,70}
     .load_use   (_decode_io_load_use),	// Core.scala:26:24
     .op_a       (dereg_op_a),	// Core.scala:39:24
@@ -3645,7 +3646,7 @@ module Core(	// <stdin>:5344:10
   );
   Interact interact (	// Core.scala:509:26
     .inst (_Icache_io_cpu_resp_valid & ~_fc_io_fcde_flush ? _Icache_io_cpu_resp_bits_data[31:0] :
-                32'h0),	// Core.scala:92:20, :104:24, :490:47, :491:70, :510:{28,54}
+                32'h0),	// Core.scala:92:20, :104:24, :491:70, :510:{28,54,111}
     .clk  (clock),
     .rst  (reset)
   );
@@ -3653,7 +3654,7 @@ endmodule
 
 // external module Sram
 
-module Soc(	// <stdin>:5758:10
+module Soc(	// <stdin>:5759:10
   input clock,
         reset);
 
@@ -4016,4 +4017,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 
