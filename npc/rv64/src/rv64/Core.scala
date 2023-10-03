@@ -413,7 +413,7 @@ class Core extends Module{
 
     trap.io.csrtr <> csrs.io.CSRTr
 
-    trap.io.inst := decode.io.inst.bits.data
+    trap.io.inst := Mux(Icache.io.cpu.resp.valid, Icache.io.cpu.resp.bits.data, NOP)
 
     trap.io.pc := fetch.io.pc.bits
 
@@ -487,7 +487,7 @@ class Core extends Module{
     DI.io.rst := reset
     DI.io.pc := fetch.io.pc.bits
     DI.io.pc_req := fetch.io.pc.valid
-    DI.io.inst := Icache.io.cpu.resp.bits.data(31,0)
+    DI.io.inst := Mux(Icache.io.cpu.resp.valid, Icache.io.cpu.resp.bits.data, NOP)
     DI.io.inst_valid := Icache.io.cpu.resp.valid && fc.io.fcde.flush =/= 1.B  ////不计入flush的指令
     DI.io.load_use := decode.io.load_use
     DI.io.op_a  := dereg.op_a

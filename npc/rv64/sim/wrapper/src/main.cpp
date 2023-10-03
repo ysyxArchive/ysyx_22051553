@@ -59,8 +59,8 @@ static void syn_diff(){
 int main(int argc, char **argv) {
   init_regex();
   
-  // display.init_screen();
-  // init_keymap();
+  display.init_screen();
+  init_keymap();
 
   #ifdef ITRACE
   init_disasm("riscv64" "-pc-linux-gnu");
