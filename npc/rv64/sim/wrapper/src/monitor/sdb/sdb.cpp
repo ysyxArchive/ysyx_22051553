@@ -339,6 +339,7 @@ long long pmem_read(const svLogicVecVal* raddr){
       && (((unsigned long)waddr[0].aval) <= FB_ADDR + SCREEN_W*SCREEN_H*sizeof(uint32_t))){
 
         // printf("write at 0x%x\n", (unsigned long)waddr[0].aval);
+        // printf("write data is 0x%lx\n", (unsigned long)wdata[1].aval << 32 | wdata[0].aval);
 
       display.vmem_write(
         (unsigned long)waddr[0].aval,
@@ -348,6 +349,7 @@ long long pmem_read(const svLogicVecVal* raddr){
       return ;
     }
     else if(((unsigned long)waddr[0].aval) == SYNC_ADDR){
+      printf("update screen\n");
       display.update_screen();
     }
     else {
@@ -736,7 +738,7 @@ static int cmd_s(char *args){
 
 
       event_update();
-      printf("time is %ld\n", get_time());
+      // printf("time is %ld\n", get_time());
 
       n --;
     }

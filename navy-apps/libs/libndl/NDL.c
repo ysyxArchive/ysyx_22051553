@@ -96,7 +96,7 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) { //NDL_DrawRect
     
     write(fbdev, pixels + i*w, w*sizeof(uint32_t));    //以字节为单位
     int off = lseek(fbdev, (disp_w - w)*sizeof(uint32_t), SEEK_CUR);
-    // printf("off is %d\n", off);
+    printf("off is %d\n", off);
     
   }
   write(fbsync, 0, 0);
