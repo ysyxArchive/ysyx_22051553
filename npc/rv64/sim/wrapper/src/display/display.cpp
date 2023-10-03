@@ -31,7 +31,7 @@ void Display::update_screen(){
 }
 
 void Display::vmem_write(uint64_t waddr, uint64_t wdata, uint8_t wmask){
-    // #ifdef MTRACE
+    #ifdef MTRACE
     printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),waddr, 
     (wmask == 0xff) ? 8 : 
     (wmask == 0x0f) ? 4 : 
@@ -40,7 +40,7 @@ void Display::vmem_write(uint64_t waddr, uint64_t wdata, uint8_t wmask){
     );
 
     printf("write data is 0x%lx\n", wdata);
-    // #endif
+    #endif
 
     switch (wmask)
     {
