@@ -582,17 +582,17 @@ static int cmd_s(char *args){
 
       
     #ifdef SHOW_LIST
-    for(auto arg : fetch_list){
-      printf("pc:0x%lx\n", arg.pc);
-    }
+    // for(auto arg : fetch_list){
+    //   printf("pc:0x%lx\n", arg.pc);
+    // }
 
-    for(auto arg : decode_list){
-      printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
-    }
+    // for(auto arg : decode_list){
+    //   printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
+    // }
 
-    for(auto arg : execute_list){
-      printf("skip:%d\n", arg.skip_ref_one_inst);
-    }
+    // for(auto arg : execute_list){
+    //   printf("skip:%d\n", arg.skip_ref_one_inst);
+    // }
     #endif
 
     #ifdef ITRACE
@@ -636,7 +636,7 @@ static int cmd_s(char *args){
     disassemble(p, log_itrace + sizeof(log_itrace) - p, fetch_list.front().pc,
     (uint8_t *)(&decode_list.front().inst), ilen);
 
-    printf("%s\n", log_itrace);
+    // printf("%s\n", log_itrace);
 
     p = iringbuf[irb_pos];
     strcpy(p, "0x");
@@ -726,7 +726,7 @@ static int cmd_s(char *args){
       if(clear_cnt > 0){
         clear_cnt --;
       }
-      printf("clear_cnat is %d\n", clear_cnt);
+      
 
       if(!decode_list.empty()){
         decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
