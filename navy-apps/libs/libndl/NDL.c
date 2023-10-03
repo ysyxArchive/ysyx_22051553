@@ -90,13 +90,13 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) { //NDL_DrawRect
   
   // write(fbdev, pixels, w*h);
   // write(fbsync, 0, 0);
-  printf("w is %d, h is %d\n", w, h);
+  // printf("w is %d, h is %d\n", w, h);
   lseek(fbdev, ((disp_w - w)/2 + (disp_h - h)/2 * disp_w)*sizeof(uint32_t) , SEEK_SET);  //移动画布从左上角到中间
   for(int i = 0; i < h; i++){        //逐行写入，是因为对应glibc_write的普通文件操作，write(fbdev, pixels, w*h);并不能跳跃着写，写一个矩形
     
     write(fbdev, pixels + i*w, w*sizeof(uint32_t));    //以字节为单位
     int off = lseek(fbdev, (disp_w - w)*sizeof(uint32_t), SEEK_CUR);
-    printf("off is %d\n", off);
+    // printf("off is %d\n", off);
     
   }
   write(fbsync, 0, 0);

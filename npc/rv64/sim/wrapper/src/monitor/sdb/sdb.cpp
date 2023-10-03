@@ -19,7 +19,6 @@
 #include <display.hpp>
 #include <SDL2/SDL.h>
 
-int video_flag = 0;
 
 int clear_cnt = 0; 
 
@@ -43,10 +42,6 @@ void event_update(){
     return;
   }
   last = now;
-
-  if(video_flag){
-    return;
-  }
 
   SDL_Event event;
   while(SDL_PollEvent(&event)){
@@ -310,7 +305,6 @@ long long pmem_read(const svLogicVecVal* raddr){
       return vga_ctrl_bundle;
   }
   else if(((unsigned long)raddr[0].aval) == KBD_ADDR){
-      printf("here in read key\n");
       uint32_t key = key_dequeue();
       return key;
   }
@@ -354,10 +348,7 @@ long long pmem_read(const svLogicVecVal* raddr){
       return ;
     }
     else if(((unsigned long)waddr[0].aval) == SYNC_ADDR){
-      printf("update screen\n");
-      video_flag = 1;
       display.update_screen();
-      video_flag = 0;
     }
     else {
       pmem.mem_write(
@@ -582,17 +573,17 @@ static int cmd_s(char *args){
 
       
     #ifdef SHOW_LIST
-    // for(auto arg : fetch_list){
-    //   printf("pc:0x%lx\n", arg.pc);
-    // }
+    for(auto arg : fetch_list){
+      printf("pc:0x%lx\n", arg.pc);
+    }
 
-    // for(auto arg : decode_list){
-    //   printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
-    // }
+    for(auto arg : decode_list){
+      printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
+    }
 
-    // for(auto arg : execute_list){
-    //   printf("skip:%d\n", arg.skip_ref_one_inst);
-    // }
+    for(auto arg : execute_list){
+      printf("skip:%d\n", arg.skip_ref_one_inst);
+    }
     #endif
 
     #ifdef ITRACE
@@ -636,7 +627,7 @@ static int cmd_s(char *args){
     disassemble(p, log_itrace + sizeof(log_itrace) - p, fetch_list.front().pc,
     (uint8_t *)(&decode_list.front().inst), ilen);
 
-    // printf("%s\n", log_itrace);
+    printf("%s\n", log_itrace);
 
     p = iringbuf[irb_pos];
     strcpy(p, "0x");
@@ -742,6 +733,7 @@ static int cmd_s(char *args){
 
       if(Verilated::gotFinish())
         break;
+
 
       event_update();
       n --;
