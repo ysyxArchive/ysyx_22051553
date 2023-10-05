@@ -27,6 +27,7 @@ VM_CLASSES_FAST += \
 	VSoc___024root__DepSet_hf1724153__0 \
 	VSoc___024root__DepSet_hf1724153__1 \
 	VSoc___024root__DepSet_h37efcc4e__0 \
+	VSoc___024root__DepSet_h37efcc4e__1 \
 	VSoc___024unit__DepSet_h02486a38__0 \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization

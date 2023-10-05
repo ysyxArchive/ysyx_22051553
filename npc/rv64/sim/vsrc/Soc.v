@@ -5013,9 +5013,9 @@ always@(posedge ACLK or negedge ARESETn) begin
             rdata <= (S_AXI_ARVALID && S_AXI_ARREADY) ? pmem_read(S_AXI_ARADDR) : pmem_read(araddr+8*r_count);
             rresp <= 2'b00;
             r_count <= r_count + 1'd1;
-            r_last <= (r_count == 'd14) ? 1'd1 : 1'd0;
+            rlast <= (r_count == 'd14) ? 1'd1 : 1'd0;
         end
-        else if(r_last)begin
+        else if(rlast)begin
             rvalid <= 1'b0;
         end
     end 
