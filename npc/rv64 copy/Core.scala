@@ -13,7 +13,7 @@ import circt.stage.CLI
 
 class Core extends Module{
     val io = IO(new Bundle {
-        val AXI_Interface = new AXIMasterIf
+        val AXI_Interface = new AXILiteMasterIf
     })
     
 
