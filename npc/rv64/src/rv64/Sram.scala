@@ -229,8 +229,8 @@ class Sram extends BlackBox with HasBlackBoxInline{
     |            else
     |               rdata <= pmem_read(araddr+8*r_count);
     |            rresp <= 2'b00;
-    |            r_count <= r_count + 1'd1;
-    |            rlast <= (r_count == 'd14) ? 1'd1 : 1'd0;
+    |            r_count <= r_count + 1'd1;  //传出第一个数据时,r_count为1
+    |            rlast <= (r_count == 'd15) ? 1'd1 : 1'd0;
     |        end
     |        else if(rlast)begin
     |            rvalid <= 1'b0;
