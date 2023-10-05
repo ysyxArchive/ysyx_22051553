@@ -145,6 +145,7 @@ class AXIArbitor extends Module{
 
     val ar_comp = WireInit(0.B)
     val r_comp = WireInit(0.B)
+    val r_count = RegInit(0.U(4.W))
     val r_buffer = RegInit(0.U((16*X_LEN).W))
 
     b_comp := 0.B
@@ -260,23 +261,36 @@ class AXIArbitor extends Module{
         }
         is(s_R){
             io.AXI_O.r.ready := 1.B
-            when(io.AXI_O.r.valid && io.AXI_O.r.ready){
-                r_buffer := Cat(r_buffer(959,0), io.AXI_O.r.bits.data)
+            when(io.AXI_O.r.valid && io.AXI_O.r.ready){ //先读的是低位数据
+                // r_buffer := Cat(r_buffer(959,0), io.AXI_O.r.bits.data)
+                r_buffer := MuxLookup(r_count, 0.U,
+                    (0.U -> Cat(r_buffer(1023,64), io.AXI_O.r.bits.data))
+                    +:
+                    (for(i <- 1 until 15)yield{
+                        val r = 64+64*i
+                        val l = 64*i-1
+                        i.U -> Cat(r_buffer(1023,r), io.AXI_O.r.bits.data, r_buffer(l,0))
+                    })
+                    :+
+                    15.U -> Cat(io.AXI_O.r.bits.data, r_buffer(959,0))
+                )
+                r_count := r_count + 1.U
             }
             
             r_comp := Mux(io.AXI_O.r.valid && io.AXI_O.r.ready && io.AXI_O.r.bits.last, 1.B, 0.B)
             when(r_comp){
                 state := s_Idle
+                r_buffer := 0.U
 
                 when(choose_buffer(0)){ //选择的master0
                     io.master0.resp.valid := 1.B
-                    io.master0.resp.bits.data := Cat(r_buffer(959,0), io.AXI_O.r.bits.data)
+                    io.master0.resp.bits.data := Cat(io.AXI_O.r.bits.data, r_buffer(959,0))
                 }.elsewhen(choose_buffer(1)){
                     io.master1.resp.valid := 1.B
-                    io.master1.resp.bits.data := Cat(r_buffer(959,0), io.AXI_O.r.bits.data)
+                    io.master1.resp.bits.data := Cat(io.AXI_O.r.bits.data, r_buffer(959,0))
                 }.otherwise{
                     io.master2.resp.valid := 1.B
-                    io.master2.resp.bits.data := Cat(r_buffer(959,0), io.AXI_O.r.bits.data)
+                    io.master2.resp.bits.data := Cat(io.AXI_O.r.bits.data, r_buffer(959,0))
                 }
             }
         }

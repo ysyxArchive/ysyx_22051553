@@ -3421,53 +3421,57 @@ module Cache(	// <stdin>:3218:10, :10870:10
       if (_T | _T_4 | _T_10 | ~((&state) & io_axi_resp_valid)) begin	// Cache.scala:64:24, :143:37, :223:18, :392:36
       end
       else if (inst_type)	// Cache.scala:64:24, :126:28, :143:37, :223:18, :392:36
-        cpu_resp_bits_data <= {32'h0, _T_5702 ? DataOneArray[1023:992] : _T_5797 ? DataOneArray[991:960] : _T_5698 ?
-                                                                DataOneArray[959:928] : _T_5795 ? DataOneArray[927:896] : _T_5694 ? DataOneArray[895:864] :
-                                                                _T_5793 ? DataOneArray[863:832] : _T_5690 ? DataOneArray[831:800] : _T_5791 ?
-                                                                DataOneArray[799:768] : _T_5686 ? DataOneArray[767:736] : _T_5789 ? DataOneArray[735:704] :
-                                                                _T_5682 ? DataOneArray[703:672] : _T_5787 ? DataOneArray[671:640] : _T_5678 ?
-                                                                DataOneArray[639:608] : _T_5785 ? DataOneArray[607:576] : _T_5674 ? DataOneArray[575:544] :
-                                                                _T_5783 ? DataOneArray[543:512] : _T_5670 ? DataOneArray[511:480] : _T_5781 ?
-                                                                DataOneArray[479:448] : _T_5666 ? DataOneArray[447:416] : _T_5779 ? DataOneArray[415:384] :
-                                                                _T_5662 ? DataOneArray[383:352] : _T_5777 ? DataOneArray[351:320] : _T_5658 ?
-                                                                DataOneArray[319:288] : _T_5775 ? DataOneArray[287:256] : _T_5654 ? DataOneArray[255:224] :
-                                                                _T_5773 ? DataOneArray[223:192] : _T_5650 ? DataOneArray[191:160] : _T_5771 ?
-                                                                DataOneArray[159:128] : _T_5646 ? DataOneArray[127:96] : _T_5769 ? DataOneArray[95:64] :
-                                                                _T_5642 ? DataOneArray[63:32] : _T_5767 ? DataOneArray[31:0] : 32'h0};	// Cache.scala:71:24, :143:37, :194:40, :419:42, Mux.scala:81:{58,61}
+        cpu_resp_bits_data <= {32'h0, _T_5702 ? io_axi_resp_bits_data[1023:992] : _T_5797 ?
+                                                                io_axi_resp_bits_data[991:960] : _T_5698 ? io_axi_resp_bits_data[959:928] : _T_5795 ?
+                                                                io_axi_resp_bits_data[927:896] : _T_5694 ? io_axi_resp_bits_data[895:864] : _T_5793 ?
+                                                                io_axi_resp_bits_data[863:832] : _T_5690 ? io_axi_resp_bits_data[831:800] : _T_5791 ?
+                                                                io_axi_resp_bits_data[799:768] : _T_5686 ? io_axi_resp_bits_data[767:736] : _T_5789 ?
+                                                                io_axi_resp_bits_data[735:704] : _T_5682 ? io_axi_resp_bits_data[703:672] : _T_5787 ?
+                                                                io_axi_resp_bits_data[671:640] : _T_5678 ? io_axi_resp_bits_data[639:608] : _T_5785 ?
+                                                                io_axi_resp_bits_data[607:576] : _T_5674 ? io_axi_resp_bits_data[575:544] : _T_5783 ?
+                                                                io_axi_resp_bits_data[543:512] : _T_5670 ? io_axi_resp_bits_data[511:480] : _T_5781 ?
+                                                                io_axi_resp_bits_data[479:448] : _T_5666 ? io_axi_resp_bits_data[447:416] : _T_5779 ?
+                                                                io_axi_resp_bits_data[415:384] : _T_5662 ? io_axi_resp_bits_data[383:352] : _T_5777 ?
+                                                                io_axi_resp_bits_data[351:320] : _T_5658 ? io_axi_resp_bits_data[319:288] : _T_5775 ?
+                                                                io_axi_resp_bits_data[287:256] : _T_5654 ? io_axi_resp_bits_data[255:224] : _T_5773 ?
+                                                                io_axi_resp_bits_data[223:192] : _T_5650 ? io_axi_resp_bits_data[191:160] : _T_5771 ?
+                                                                io_axi_resp_bits_data[159:128] : _T_5646 ? io_axi_resp_bits_data[127:96] : _T_5769 ?
+                                                                io_axi_resp_bits_data[95:64] : _T_5642 ? io_axi_resp_bits_data[63:32] : _T_5767 ?
+                                                                io_axi_resp_bits_data[31:0] : 32'h0};	// Cache.scala:71:24, :143:37, :419:42, :424:57, Mux.scala:81:{58,61}
       else if (offset[6:2] == 5'hF)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[1023:960];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[1023:960];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'hE)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[959:896];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[959:896];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'hD)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[895:832];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[895:832];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'hC)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[831:768];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[831:768];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'hB)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[767:704];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[767:704];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'hA)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[703:640];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[703:640];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'h9)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[639:576];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[639:576];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'h8)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[575:512];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[575:512];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'h7)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[511:448];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[511:448];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'h6)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[447:384];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[447:384];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'h5)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[383:320];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[383:320];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'h4)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[319:256];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[319:256];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'h3)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[255:192];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[255:192];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'h2)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[191:128];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[191:128];	// Cache.scala:143:37, :431:57
       else if (offset[6:2] == 5'h1)	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[127:64];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[127:64];	// Cache.scala:143:37, :431:57
       else if (|(offset[6:2]))	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
         cpu_resp_bits_data <= 64'h0;	// Cache.scala:123:23, :143:37
       else	// Cache.scala:64:24, :69:21, :126:28, :143:37, :197:29, :223:18, :392:36, Mux.scala:81:61
-        cpu_resp_bits_data <= DataOneArray[63:0];	// Cache.scala:143:37, :194:40, :201:44
+        cpu_resp_bits_data <= io_axi_resp_bits_data[63:0];	// Cache.scala:143:37, :431:57
       axi_req_valid <= ~_T & (_T_4 | _T_10 | ((&state) ? ~io_axi_resp_valid : ~_T_24 & (_T_2907 | _T_2913 |
                                                 _T_2914 & ~io_axi_resp_valid)));	// <stdin>:3291:18, :10943:18, Cache.scala:64:24, :75:23, :144:32, :220:19, :223:18, :343:50, :369:28, :377:36, :380:32, :392:36, :578:50, :625:36
       _GEN_35 = {{{addr[31:7], 7'h0}}, {{io_axi_resp_valid ? addr[31:7] : {_TagArray_ext_R1_data, index},
