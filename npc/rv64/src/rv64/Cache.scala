@@ -145,7 +145,7 @@ class Cache extends Module{
     val axi_req_bits_rw = RegInit(0.B)
     val axi_req_bits_addr = RegInit(0.U(ADDRWIDTH.W))
     // val axi_req_bits_data = RegInit(0.U(X_LEN.W))
-    // val axi_req_bits_mask = RegInit(0.U((X_LEN/8).W))
+    val axi_req_bits_mask = RegInit(0.U((X_LEN/8).W))
 
     
     //firtool要求完整initialize
@@ -209,7 +209,7 @@ class Cache extends Module{
     io.axi.req.valid := axi_req_valid
     io.axi.req.bits.rw := axi_req_bits_rw
     io.axi.req.bits.addr := axi_req_bits_addr
-
+    io.axi.req.bits.mask := axi_req_bits_mask                    
     io.axi.req.bits.data := Mux(inDataOneArray,  
         DataOneArray
     ,0.U)  
@@ -371,6 +371,7 @@ class Cache extends Module{
             DataOneArrayAddr := index*2.U + victim
 
             axi_req_bits_rw := 0.B
+            axi_req_bits_mask := mask
 
 
             when(io.axi.resp.valid){  //写回成功,开始读
@@ -585,6 +586,7 @@ class Cache extends Module{
                 DataOneArrayAddr := index*2.U + replace_wire
 
                 axi_req_bits_rw := 0.B
+                axi_req_bits_mask := mask
             }.otherwise{ //如果选择的不是dirty,可以直接使用
                 state := s_WriteAllocate
             
@@ -602,6 +604,7 @@ class Cache extends Module{
             DataOneArrayAddr := index*2.U + victim
 
             axi_req_bits_rw := 0.B
+            axi_req_bits_mask := mask
 
             when(io.axi.resp.valid){
                 state := s_WriteAllocate

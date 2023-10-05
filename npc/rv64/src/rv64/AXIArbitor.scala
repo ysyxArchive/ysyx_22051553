@@ -10,6 +10,7 @@ class AXIMasterReq extends Bundle{
     val rw = Bool()  //0w-1r
     val addr = UInt(ADDRWIDTH.W)
     val data = UInt((16*X_LEN).W)
+    val mask = RegInit(0.U((X_LEN/8).W)) //主要针对IO操作
 }
 
 class AXIMasterResp extends Bundle{
@@ -61,6 +62,7 @@ class AXIArbitor extends Module{
     val rw_idle = WireInit(0.B)
     val addr = WireInit(0.U(ADDRWIDTH.W))
     val data = WireInit(0.U((16*X_LEN).W))
+    val mask = RegInit(0.U((X_LEN/8).W))
     val burst_len = WireInit(0.U(4.W))
 
 
@@ -105,6 +107,17 @@ class AXIArbitor extends Module{
                 choose_buffer(0) -> io.master0.req.bits.data,
                 choose_buffer(1) -> io.master1.req.bits.data,
                 choose_buffer(2) -> io.master2.req.bits.data,
+            )
+        )
+    ,0.B)
+
+    mask := Mux(choose_buffer(3), 
+        MuxCase(
+            0.B,
+            Seq(
+                choose_buffer(0) -> io.master0.req.bits.mask,
+                choose_buffer(1) -> io.master1.req.bits.mask,
+                choose_buffer(2) -> io.master2.req.bits.mask,
             )
         )
     ,0.B)
@@ -159,7 +172,7 @@ class AXIArbitor extends Module{
     
     //----------w
     io.AXI_O.w.bits.data := 0.U
-    io.AXI_O.w.bits.strb := "b11111111".U //固定
+    io.AXI_O.w.bits.strb := 0.U //固定
     io.AXI_O.w.bits.last := 0.B
 
     io.AXI_O.w.valid := 0.B
@@ -208,6 +221,7 @@ class AXIArbitor extends Module{
             //w_channel
             (0 until 16).map(i => dataVec(i) := data(64*i+63, 64*i))  //可行吗
             io.AXI_O.w.bits.data := dataVec(w_count)
+            io.AXI_O.w.bits.strb := mask
             io.AXI_O.w.bits.last := Mux(burst_len === w_count, 1.B, 0.B)  
             io.AXI_O.w.valid := Mux(w_comp, 0.B, 1.B)
             w_comp := Mux(io.AXI_O.w.valid && io.AXI_O.w.ready && io.AXI_O.w.bits.last, 1.B, w_comp)
