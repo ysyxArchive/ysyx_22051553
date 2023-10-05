@@ -41,7 +41,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__3(VSoc___024root* vlSelf) 
             vlSelf->__Vdly__Soc__DOT__sram__DOT__r_count 
                 = (0xfU & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__sram__DOT__r_count)));
             vlSelf->__Vdly__Soc__DOT__sram__DOT__rlast 
-                = (0xeU == (IData)(vlSelf->Soc__DOT__sram__DOT__r_count));
+                = (0xfU == (IData)(vlSelf->Soc__DOT__sram__DOT__r_count));
         } else if (vlSelf->Soc__DOT__sram__DOT__rlast) {
             vlSelf->Soc__DOT__sram__DOT__rvalid = 0U;
         }

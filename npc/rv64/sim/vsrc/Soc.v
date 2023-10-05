@@ -5042,8 +5042,8 @@ always@(posedge ACLK or negedge ARESETn) begin
             else
                rdata <= pmem_read(araddr+8*r_count);
             rresp <= 2'b00;
-            r_count <= r_count + 1'd1;
-            rlast <= (r_count == 'd14) ? 1'd1 : 1'd0;
+            r_count <= r_count + 1'd1;  //传出第一个数据时,r_count为1
+            rlast <= (r_count == 'd15) ? 1'd1 : 1'd0;
         end
         else if(rlast)begin
             rvalid <= 1'b0;
@@ -5057,5 +5057,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 
