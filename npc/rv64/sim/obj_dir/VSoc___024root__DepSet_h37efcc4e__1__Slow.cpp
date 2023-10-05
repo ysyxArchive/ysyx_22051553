@@ -3021,6 +3021,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT__aw_comp = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT__w_comp = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT__w_count = VL_RAND_RESET_I(4);
+    vlSelf->Soc__DOT__core__DOT__arbitor__DOT__r_count = VL_RAND_RESET_I(4);
     VL_RAND_RESET_W(1024, vlSelf->Soc__DOT__core__DOT__arbitor__DOT__r_buffer);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T_2 = VL_RAND_RESET_I(1);
@@ -3036,12 +3037,14 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_8 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_9 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT__unnamedblk1__DOT___GEN_13 = VL_RAND_RESET_I(8);
-    VL_RAND_RESET_W(4096, vlSelf->Soc__DOT__core__DOT__arbitor__DOT__unnamedblk1__DOT___GEN_14);
+    vlSelf->Soc__DOT__core__DOT__arbitor__DOT__unnamedblk1__DOT___GEN_14 = VL_RAND_RESET_I(16);
+    VL_RAND_RESET_W(16384, vlSelf->Soc__DOT__core__DOT__arbitor__DOT__unnamedblk1__DOT___GEN_15);
+    VL_RAND_RESET_W(4096, vlSelf->Soc__DOT__core__DOT__arbitor__DOT__unnamedblk1__DOT___GEN_16);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h4ab110e3__0 = 0;
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_hc0e633fc__0 = 0;
     VL_ZERO_RESET_W(1024, vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h3afa7b4b__0);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_hfea5ad76__0 = 0;
-    VL_ZERO_RESET_W(1024, vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h43f699b6__0);
+    VL_ZERO_RESET_W(1024, vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h14978eae__0);
     vlSelf->Soc__DOT__core__DOT__Icache__DOT___GEN = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__Icache__DOT___TagArray_ext_R0_data = VL_RAND_RESET_I(21);
     vlSelf->Soc__DOT__core__DOT__Icache__DOT___TagArray_ext_R1_data = VL_RAND_RESET_I(21);

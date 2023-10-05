@@ -281,6 +281,7 @@ class AXIArbitor extends Module{
             when(r_comp){
                 state := s_Idle
                 r_buffer := 0.U
+                r_count := 0.U
 
                 when(choose_buffer(0)){ //选择的master0
                     io.master0.resp.valid := 1.B
