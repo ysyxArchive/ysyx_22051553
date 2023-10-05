@@ -4883,7 +4883,7 @@ module Sram(
    input        S_AXI_ARVALID,
    output       S_AXI_ARREADY,
 
-   Output       S_AXI_RID,
+   output       S_AXI_RID,
    output [63:0]S_AXI_RDATA,
    output       S_AXI_RLAST,
    output [1:0] S_AXI_RRESP,
@@ -5027,4 +5027,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 
