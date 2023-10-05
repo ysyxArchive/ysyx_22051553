@@ -5010,7 +5010,11 @@ always@(posedge ACLK or negedge ARESETn) begin
     else begin
         if(need_read || (S_AXI_ARVALID && S_AXI_ARREADY)) begin //严格最少延迟
             rvalid <= 1'b1;
-            rdata <= (S_AXI_ARVALID && S_AXI_ARREADY) ? pmem_read(S_AXI_ARADDR) : pmem_read(araddr+8*r_count);
+            //rdata <= (S_AXI_ARVALID && S_AXI_ARREADY) ? pmem_read(S_AXI_ARADDR) : pmem_read(araddr+8*r_count);
+            if(S_AXI_ARVALID && S_AXI_ARREADY)
+               rdata <= pmem_read(S_AXI_ARADDR);
+            else
+               rdata <= pmem_read(araddr+8*r_count);
             rresp <= 2'b00;
             r_count <= r_count + 1'd1;
             rlast <= (r_count == 'd14) ? 1'd1 : 1'd0;

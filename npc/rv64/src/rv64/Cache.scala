@@ -421,14 +421,14 @@ class Cache extends Module{
                         for(i <- 0 until 128 by 4)yield{
                             val high = i*8 + 31
                             val low = i*8
-                            i.U -> DataOneArray(high, low)
+                            i.U -> io.axi.resp.bits.data(high, low)
                         }
                     ),
                     MuxLookup(offset(6,2), 0.U,        //用于对齐,取8字节数据
                         for(i <- 0 until 16)yield{
                             val high = i*64+63
                             val low = i*64
-                            i.U -> DataOneArray(high, low)
+                            i.U -> io.axi.resp.bits.data(high, low)
                         }
                     )
                 )
