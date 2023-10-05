@@ -10,7 +10,7 @@ class AXIMasterReq extends Bundle{
     val rw = Bool()  //0w-1r
     val addr = UInt(ADDRWIDTH.W)
     val data = UInt((16*X_LEN).W)
-    val mask = RegInit(0.U((X_LEN/8).W)) //主要针对IO操作
+    val mask = UInt((X_LEN/8).W) //主要针对IO操作
 }
 
 class AXIMasterResp extends Bundle{
