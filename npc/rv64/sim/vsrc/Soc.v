@@ -4872,7 +4872,7 @@ module Sram(
    output       S_AXI_BVALID,
    input        S_AXI_BREADY,
 
-   input        S_AXI_ARID
+   input        S_AXI_ARID,
    input [31:0] S_AXI_ARADDR,
    input [7:0]  S_AXI_ARLEN,
    input [2:0]  S_AXI_ARSIZE,
