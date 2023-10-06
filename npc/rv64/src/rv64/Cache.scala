@@ -201,12 +201,12 @@ class Cache extends Module{
             //             i.U -> DataOneArray(high, low)
             //         }
             // )
-            MuxLookup(offset, 0.U,
-                for(i <- 0 until 128 by 8)yield{
-                    val high = i*8 + 63
-                    val low = i*8 
-                    i.U -> DataOneArray(high, low)
-                }
+            MuxLookup(offset(6,3), 0.U,        //用于对齐,取8字节数据
+                    for(i <- 0 until 16)yield{
+                        val high = i*64+63
+                        val low = i*64
+                        i.U -> DataOneArray(high, low)
+                    }
             )
         ),
         cpu_resp_bits_data)  //从axi读出,未命中
@@ -431,10 +431,10 @@ class Cache extends Module{
                             i.U -> io.axi.resp.bits.data(high, low)
                         }
                     ),
-                    MuxLookup(offset, 0.U,
-                        for(i <- 0 until 128 by 8)yield{
-                            val high = i*8 + 63
-                            val low = i*8 
+                    MuxLookup(offset(6,3), 0.U,        //用于对齐,取8字节数据
+                        for(i <- 0 until 16)yield{
+                            val high = i*64+63
+                            val low = i*64
                             i.U -> DataOneArray(high, low)
                         }
                     )
