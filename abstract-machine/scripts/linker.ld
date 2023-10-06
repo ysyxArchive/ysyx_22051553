@@ -13,7 +13,8 @@ SECTIONS {
   .rodata : {
     *(.rodata*)
   }
-  .data : {
+
+  .data ALIGN(0x80): {
     *(.data)
   } : data
   edata = .;

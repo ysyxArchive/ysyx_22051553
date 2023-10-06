@@ -194,12 +194,19 @@ class Cache extends Module{
                     i.U -> DataOneArray(high, low)
                 }
             ),
-            MuxLookup(offset(6,2), 0.U,        //用于对齐,取8字节数据
-                    for(i <- 0 until 16)yield{
-                        val high = i*64+63
-                        val low = i*64
-                        i.U -> DataOneArray(high, low)
-                    }
+            // MuxLookup(offset(6,2), 0.U,        //用于对齐,取8字节数据
+            //         for(i <- 0 until 16)yield{
+            //             val high = i*64+63
+            //             val low = i*64
+            //             i.U -> DataOneArray(high, low)
+            //         }
+            // )
+            MuxLookup(offset, 0.U,
+                for(i <- 0 until 128 by 8)yield{
+                    val high = i*8 + 63
+                    val low = i*8 
+                    i.U -> DataOneArray(high, low)
+                }
             )
         ),
         cpu_resp_bits_data)  //从axi读出,未命中
@@ -424,11 +431,11 @@ class Cache extends Module{
                             i.U -> io.axi.resp.bits.data(high, low)
                         }
                     ),
-                    MuxLookup(offset(6,2), 0.U,        //用于对齐,取8字节数据
-                        for(i <- 0 until 16)yield{
-                            val high = i*64+63
-                            val low = i*64
-                            i.U -> io.axi.resp.bits.data(high, low)
+                    MuxLookup(offset, 0.U,
+                        for(i <- 0 until 128 by 8)yield{
+                            val high = i*8 + 63
+                            val low = i*8 
+                            i.U -> DataOneArray(high, low)
                         }
                     )
                 )
@@ -475,7 +482,7 @@ class Cache extends Module{
                             (for(i <- 4 until 124 by 4)yield{
                                 val r = 8*i + 32
                                 val l = 8*i - 1
-                                i.U -> Cat(DataOneArray(1023,r), data(15,0), DataOneArray(l,0))
+                                i.U -> Cat(DataOneArray(1023,r), data(31,0), DataOneArray(l,0))
                             })
                             :+
                             (124.U -> Cat(data(31,0), DataOneArray(991,0)))
@@ -488,7 +495,7 @@ class Cache extends Module{
                             (for(i <- 8 until 120 by 8)yield{
                                 val r = 8*i + 64
                                 val l = 8*i - 1
-                                i.U -> Cat(DataOneArray(1023,r), data(31,0), DataOneArray(l,0))
+                                i.U -> Cat(DataOneArray(1023,r), data(63,0), DataOneArray(l,0))
                             })
                             :+
                             (120.U -> Cat(data(63,0), DataOneArray(959,0)))
@@ -539,7 +546,7 @@ class Cache extends Module{
                             (for(i <- 4 until 124 by 4)yield{
                                 val r = 8*i + 32
                                 val l = 8*i - 1
-                                i.U -> Cat(DataOneArray(1023,r), data(15,0), DataOneArray(l,0))
+                                i.U -> Cat(DataOneArray(1023,r), data(31,0), DataOneArray(l,0))
                             })
                             :+
                             (124.U -> Cat(data(31,0), DataOneArray(991,0)))
@@ -552,7 +559,7 @@ class Cache extends Module{
                             (for(i <- 8 until 120 by 8)yield{
                                 val r = 8*i + 64
                                 val l = 8*i - 1
-                                i.U -> Cat(DataOneArray(1023,r), data(31,0), DataOneArray(l,0))
+                                i.U -> Cat(DataOneArray(1023,r), data(63,0), DataOneArray(l,0))
                             })
                             :+
                             (120.U -> Cat(data(63,0), DataOneArray(959,0)))
@@ -674,7 +681,7 @@ class Cache extends Module{
                                 (for(i <- 4 until 124 by 4)yield{
                                     val r = 8*i + 32
                                     val l = 8*i - 1
-                                    i.U -> Cat(io.axi.resp.bits.data(1023,r), data(15,0), io.axi.resp.bits.data(l,0))
+                                    i.U -> Cat(io.axi.resp.bits.data(1023,r), data(31,0), io.axi.resp.bits.data(l,0))
                                 })
                                 :+
                                 (124.U -> Cat(data(31,0), io.axi.resp.bits.data(991,0)))
@@ -687,7 +694,7 @@ class Cache extends Module{
                                 (for(i <- 8 until 120 by 8)yield{
                                     val r = 8*i + 64
                                     val l = 8*i - 1
-                                    i.U -> Cat(io.axi.resp.bits.data(1023,r), data(31,0), io.axi.resp.bits.data(l,0))
+                                    i.U -> Cat(io.axi.resp.bits.data(1023,r), data(63,0), io.axi.resp.bits.data(l,0))
                                 })
                                 :+
                                 (120.U -> Cat(data(63,0), io.axi.resp.bits.data(959,0)))
@@ -741,7 +748,7 @@ class Cache extends Module{
                                 (for(i <- 4 until 124 by 4)yield{
                                     val r = 8*i + 32
                                     val l = 8*i - 1
-                                    i.U -> Cat(io.axi.resp.bits.data(1023,r), data(15,0), io.axi.resp.bits.data(l,0))
+                                    i.U -> Cat(io.axi.resp.bits.data(1023,r), data(31,0), io.axi.resp.bits.data(l,0))
                                 })
                                 :+
                                 (124.U -> Cat(data(31,0), io.axi.resp.bits.data(991,0)))
@@ -754,7 +761,7 @@ class Cache extends Module{
                                 (for(i <- 8 until 120 by 8)yield{
                                     val r = 8*i + 64
                                     val l = 8*i - 1
-                                    i.U -> Cat(io.axi.resp.bits.data(1023,r), data(31,0), io.axi.resp.bits.data(l,0))
+                                    i.U -> Cat(io.axi.resp.bits.data(1023,r), data(63,0), io.axi.resp.bits.data(l,0))
                                 })
                                 :+
                                 (120.U -> Cat(data(63,0), io.axi.resp.bits.data(959,0)))
@@ -765,17 +772,5 @@ class Cache extends Module{
                 cpu_resp_valid := 1.B
             }
         }
-    }
-
-
-
-
-
-    
-
-
-
-
-
-  
+    }  
 }
