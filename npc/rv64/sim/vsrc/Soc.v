@@ -2047,7 +2047,6 @@ module AXIArbitor(	// <stdin>:2943:10
   assign master_choose = io_master0_req_valid ? 4'h9 : io_master1_req_valid ? 4'hA : io_master2_req_valid ? 4'hC :
                 4'h0;	// <stdin>:2949:22, AXIArbitor.scala:51:19, Mux.scala:101:16
   reg  [3:0]         choose_buffer;	// AXIArbitor.scala:59:32
-  reg  [7:0]         mask;	// AXIArbitor.scala:65:23
   wire [31:0]        _addr_T_6 = choose_buffer[0] ? io_master0_req_bits_addr : choose_buffer[1] ? io_master1_req_bits_addr :
                 choose_buffer[2] ? io_master2_req_bits_addr : 32'h0;	// AXIArbitor.scala:59:32, :85:30, :86:30, :87:30, Mux.scala:101:16
   wire [1023:0]      _data_T_7 = choose_buffer[3] ? (choose_buffer[0] ? io_master0_req_bits_data : choose_buffer[1] ?
@@ -2062,38 +2061,38 @@ module AXIArbitor(	// <stdin>:2943:10
   reg  [1023:0]      r_buffer;	// AXIArbitor.scala:149:27
   wire               _T = state == 2'h0;	// AXIArbitor.scala:137:24, :201:18
   wire               _T_2 = state == 2'h1;	// AXIArbitor.scala:137:24, :201:18, :211:27
-  wire [7:0]         _GEN = {4'h0, _burst_len_T_7};	// <stdin>:2949:22, AXIArbitor.scala:125:21, :218:34
-  wire               _GEN_0 = _T | ~_T_2;	// AXIArbitor.scala:165:26, :201:18
-  wire               _GEN_1 = ~_T & _T_2 & ~aw_comp;	// AXIArbitor.scala:140:26, :172:23, :201:18, :219:37
-  wire [15:0][63:0]  _GEN_2 = {{_GEN_0 ? 64'h0 : _data_T_7[1023:960]}, {_GEN_0 ? 64'h0 : _data_T_7[959:896]}, {_GEN_0 ?
-                64'h0 : _data_T_7[895:832]}, {_GEN_0 ? 64'h0 : _data_T_7[831:768]}, {_GEN_0 ? 64'h0 :
-                _data_T_7[767:704]}, {_GEN_0 ? 64'h0 : _data_T_7[703:640]}, {_GEN_0 ? 64'h0 :
-                _data_T_7[639:576]}, {_GEN_0 ? 64'h0 : _data_T_7[575:512]}, {_GEN_0 ? 64'h0 :
-                _data_T_7[511:448]}, {_GEN_0 ? 64'h0 : _data_T_7[447:384]}, {_GEN_0 ? 64'h0 :
-                _data_T_7[383:320]}, {_GEN_0 ? 64'h0 : _data_T_7[319:256]}, {_GEN_0 ? 64'h0 :
-                _data_T_7[255:192]}, {_GEN_0 ? 64'h0 : _data_T_7[191:128]}, {_GEN_0 ? 64'h0 :
-                _data_T_7[127:64]}, {_GEN_0 ? 64'h0 : _data_T_7[63:0]}};	// AXIArbitor.scala:103:16, :144:26, :165:26, :201:18, :223:53, :224:34
-  wire [63:0]        _GEN_3;	// AXIArbitor.scala:224:34
+  wire               _GEN = _T | ~(_T_2 & choose_buffer[3]);	// AXIArbitor.scala:59:32, :81:28, :164:27, :201:18, :217:35
+  wire [7:0]         _GEN_0 = {4'h0, _burst_len_T_7};	// <stdin>:2949:22, AXIArbitor.scala:125:21, :218:34
+  wire               _GEN_1 = _T | ~_T_2;	// AXIArbitor.scala:165:26, :201:18
+  wire               _GEN_2 = ~_T & _T_2 & ~aw_comp;	// AXIArbitor.scala:140:26, :172:23, :201:18, :219:37
+  wire [15:0][63:0]  _GEN_3 = {{_GEN_1 ? 64'h0 : _data_T_7[1023:960]}, {_GEN_1 ? 64'h0 : _data_T_7[959:896]}, {_GEN_1 ?
+                64'h0 : _data_T_7[895:832]}, {_GEN_1 ? 64'h0 : _data_T_7[831:768]}, {_GEN_1 ? 64'h0 :
+                _data_T_7[767:704]}, {_GEN_1 ? 64'h0 : _data_T_7[703:640]}, {_GEN_1 ? 64'h0 :
+                _data_T_7[639:576]}, {_GEN_1 ? 64'h0 : _data_T_7[575:512]}, {_GEN_1 ? 64'h0 :
+                _data_T_7[511:448]}, {_GEN_1 ? 64'h0 : _data_T_7[447:384]}, {_GEN_1 ? 64'h0 :
+                _data_T_7[383:320]}, {_GEN_1 ? 64'h0 : _data_T_7[319:256]}, {_GEN_1 ? 64'h0 :
+                _data_T_7[255:192]}, {_GEN_1 ? 64'h0 : _data_T_7[191:128]}, {_GEN_1 ? 64'h0 :
+                _data_T_7[127:64]}, {_GEN_1 ? 64'h0 : _data_T_7[63:0]}};	// AXIArbitor.scala:103:16, :144:26, :165:26, :201:18, :223:53, :224:34
+  wire [63:0]        _GEN_4;	// AXIArbitor.scala:224:34
   /* synopsys infer_mux_override */
-  assign _GEN_3 = _GEN_2[w_count] /* cadence map_to_mux */;	// AXIArbitor.scala:143:26, :224:34
-  wire               _GEN_4 = ~_T & _T_2 & _burst_len_T_7 == w_count;	// AXIArbitor.scala:125:21, :143:26, :172:23, :177:26, :201:18, :226:51
-  wire               _GEN_5 = ~_T & _T_2 & ~w_comp;	// AXIArbitor.scala:141:25, :172:23, :179:22, :201:18, :227:36
+  assign _GEN_4 = _GEN_3[w_count] /* cadence map_to_mux */;	// AXIArbitor.scala:143:26, :224:34
+  wire               _GEN_5 = ~_T & _T_2 & _burst_len_T_7 == w_count;	// AXIArbitor.scala:125:21, :143:26, :172:23, :177:26, :201:18, :226:51
+  wire               _GEN_6 = ~_T & _T_2 & ~w_comp;	// AXIArbitor.scala:141:25, :172:23, :179:22, :201:18, :227:36
   wire               _T_4 = aw_comp & w_comp & ~_T & _T_2 & io_AXI_O_b_valid;	// AXIArbitor.scala:140:26, :141:25, :172:23, :201:18, :235:36
-  wire               _GEN_6 = ~(choose_buffer[0]) & choose_buffer[1];	// AXIArbitor.scala:59:32, :85:30, :86:30, :157:27, :241:39, :243:45
-  wire               _GEN_7 = ~(choose_buffer[0]) & ~(choose_buffer[1]);	// AXIArbitor.scala:59:32, :85:30, :86:30, :157:27, :159:27, :241:39, :243:45, :246:43
+  wire               _GEN_7 = ~(choose_buffer[0]) & choose_buffer[1];	// AXIArbitor.scala:59:32, :85:30, :86:30, :157:27, :241:39, :243:45
+  wire               _GEN_8 = ~(choose_buffer[0]) & ~(choose_buffer[1]);	// AXIArbitor.scala:59:32, :85:30, :86:30, :157:27, :159:27, :241:39, :243:45, :246:43
   wire               _T_7 = state == 2'h2;	// AXIArbitor.scala:137:24, :169:28, :201:18
-  wire               _GEN_8 = ~_T & ~_T_2 & _T_7;	// AXIArbitor.scala:165:26, :172:23, :194:23, :201:18
-  wire               _GEN_9 = ~_T & ~_T_2 & ~_T_7 & (&state) & io_AXI_O_r_valid & io_AXI_O_r_bits_last;	// AXIArbitor.scala:137:24, :153:12, :165:26, :172:23, :187:26, :201:18
-  wire [3:0][1023:0] _GEN_10 = {{_T_2 | _T_7 | ~((&state) & _GEN_9 & choose_buffer[0]) ? 1024'h0 : {io_AXI_O_r_bits_data,
+  wire               _GEN_9 = ~_T & ~_T_2 & _T_7;	// AXIArbitor.scala:165:26, :172:23, :194:23, :201:18
+  wire               _GEN_10 = ~_T & ~_T_2 & ~_T_7 & (&state) & io_AXI_O_r_valid & io_AXI_O_r_bits_last;	// AXIArbitor.scala:137:24, :153:12, :165:26, :172:23, :187:26, :201:18
+  wire [3:0][1023:0] _GEN_11 = {{_T_2 | _T_7 | ~((&state) & _GEN_10 & choose_buffer[0]) ? 1024'h0 : {io_AXI_O_r_bits_data,
                 r_buffer[959:0]}}, {1024'h0}, {1024'h0}, {1024'h0}};	// <stdin>:2963:13, AXIArbitor.scala:59:32, :85:30, :137:24, :149:27, :153:12, :156:31, :201:18, :281:25, :288:84, Cat.scala:33:92
-  wire [3:0][1023:0] _GEN_11 = {{_T_2 | _T_7 | ~(&state) | ~_GEN_9 | choose_buffer[0] | ~(choose_buffer[1]) ? 1024'h0 :
+  wire [3:0][1023:0] _GEN_12 = {{_T_2 | _T_7 | ~(&state) | ~_GEN_10 | choose_buffer[0] | ~(choose_buffer[1]) ? 1024'h0 :
                 {io_AXI_O_r_bits_data, r_buffer[959:0]}}, {1024'h0}, {1024'h0}, {1024'h0}};	// <stdin>:2963:13, AXIArbitor.scala:59:32, :85:30, :86:30, :137:24, :149:27, :153:12, :158:31, :159:27, :201:18, :243:45, :246:43, :281:25, :286:39, :291:84, Cat.scala:33:92
-  wire [3:0][1023:0] _GEN_12 = {{_T_2 | _T_7 | ~(&state) | ~_GEN_9 | choose_buffer[0] | choose_buffer[1] ? 1024'h0 :
+  wire [3:0][1023:0] _GEN_13 = {{_T_2 | _T_7 | ~(&state) | ~_GEN_10 | choose_buffer[0] | choose_buffer[1] ? 1024'h0 :
                 {io_AXI_O_r_bits_data, r_buffer[959:0]}}, {1024'h0}, {1024'h0}, {1024'h0}};	// <stdin>:2963:13, AXIArbitor.scala:59:32, :85:30, :86:30, :137:24, :149:27, :153:12, :158:31, :160:31, :201:18, :281:25, :286:39, :294:84, Cat.scala:33:92
   always @(posedge clock) begin
     if (reset) begin
       choose_buffer <= 4'h0;	// <stdin>:2949:22, AXIArbitor.scala:59:32
-      mask <= 8'h0;	// AXIArbitor.scala:65:23
       state <= 2'h0;	// AXIArbitor.scala:137:24
       aw_comp <= 1'h0;	// AXIArbitor.scala:140:26, Mux.scala:101:16
       w_comp <= 1'h0;	// AXIArbitor.scala:141:25, Mux.scala:101:16
@@ -2102,49 +2101,37 @@ module AXIArbitor(	// <stdin>:2943:10
       r_buffer <= 1024'h0;	// <stdin>:2963:13, AXIArbitor.scala:149:27
     end
     else begin
-      automatic logic                _GEN_13;	// AXIArbitor.scala:149:27, :201:18
-      automatic logic [3:0][1:0]     _GEN_14;	// AXIArbitor.scala:201:18, :205:35, :235:46, :258:26
-      automatic logic [3:0][3:0]     _GEN_15;	// AXIArbitor.scala:148:26, :201:18
-      automatic logic [15:0][1023:0] _GEN_16;	// Mux.scala:81:{58,61}
-      automatic logic [3:0][1023:0]  _GEN_17;	// AXIArbitor.scala:149:27, :201:18
-      _GEN_13 = _T_2 | _T_7 | ~(&state);	// AXIArbitor.scala:137:24, :149:27, :201:18
+      automatic logic                _GEN_14;	// AXIArbitor.scala:149:27, :201:18
+      automatic logic [3:0][1:0]     _GEN_15;	// AXIArbitor.scala:201:18, :205:35, :235:46, :258:26
+      automatic logic [3:0][3:0]     _GEN_16;	// AXIArbitor.scala:148:26, :201:18
+      automatic logic [15:0][1023:0] _GEN_17;	// Mux.scala:81:{58,61}
+      automatic logic [3:0][1023:0]  _GEN_18;	// AXIArbitor.scala:149:27, :201:18
+      _GEN_14 = _T_2 | _T_7 | ~(&state);	// AXIArbitor.scala:137:24, :149:27, :201:18
       if (_T) begin	// AXIArbitor.scala:201:18
         if (master_choose[3])	// AXIArbitor.scala:69:33
           choose_buffer <= master_choose;	// AXIArbitor.scala:59:32, :69:33
         else	// AXIArbitor.scala:69:33
           choose_buffer <= 4'h0;	// <stdin>:2949:22, AXIArbitor.scala:59:32
       end
-      if (choose_buffer[3]) begin	// AXIArbitor.scala:59:32, :81:28
-        if (choose_buffer[0])	// AXIArbitor.scala:59:32, :85:30
-          mask <= io_master0_req_bits_mask;	// AXIArbitor.scala:65:23
-        else if (choose_buffer[1])	// AXIArbitor.scala:59:32, :85:30, :86:30
-          mask <= io_master1_req_bits_mask;	// AXIArbitor.scala:65:23
-        else if (choose_buffer[2])	// AXIArbitor.scala:59:32, :85:30, :86:30, :87:30
-          mask <= io_master2_req_bits_mask;	// AXIArbitor.scala:65:23
-        else	// AXIArbitor.scala:59:32, :85:30, :86:30, :87:30
-          mask <= 8'h0;	// AXIArbitor.scala:65:23
-      end
-      else	// AXIArbitor.scala:59:32, :81:28
-        mask <= 8'h0;	// AXIArbitor.scala:65:23
-      _GEN_14 = {{(&state) & _GEN_9 ? 2'h0 : state}, {~_T & ~_T_2 & _T_7 & _GEN_8 & io_AXI_O_ar_ready ?
+      _GEN_15 = {{(&state) & _GEN_10 ? 2'h0 : state}, {~_T & ~_T_2 & _T_7 & _GEN_9 & io_AXI_O_ar_ready ?
                                                 2'h3 : state}, {_T_4 ? 2'h0 : state}, {master_choose[3] ? (master_choose[3] &
                                                 (master_choose[0] ? io_master0_req_bits_rw : master_choose[1] ? io_master1_req_bits_rw :
                                                 master_choose[2] & io_master2_req_bits_rw) ? 2'h2 : 2'h1) : state}};	// AXIArbitor.scala:69:{19,33}, :73:30, :74:30, :75:30, :137:24, :152:13, :153:12, :165:26, :166:27, :169:28, :172:23, :194:23, :201:18, :205:35, :208:30, :209:27, :211:27, :235:{36,46}, :236:23, :258:26, :259:23, :281:25, Mux.scala:101:16
-      state <= _GEN_14[state];	// AXIArbitor.scala:137:24, :201:18, :205:35, :235:46, :258:26
-      if (_GEN_0) begin	// AXIArbitor.scala:165:26, :201:18
+      state <= _GEN_15[state];	// AXIArbitor.scala:137:24, :201:18, :205:35, :235:46, :258:26
+      if (_GEN_1) begin	// AXIArbitor.scala:165:26, :201:18
       end
       else begin	// AXIArbitor.scala:165:26, :201:18
-        aw_comp <= ~_T_4 & (_GEN_1 & io_AXI_O_aw_ready | aw_comp);	// AXIArbitor.scala:140:26, :172:23, :201:18, :220:{21,27,46}, :235:{36,46}, :237:25
-        w_comp <= ~_T_4 & (_GEN_5 & io_AXI_O_w_ready & _GEN_4 | w_comp);	// AXIArbitor.scala:141:25, :177:26, :179:22, :201:18, :220:21, :228:{20,26,64}, :235:{36,46}, :237:25, :238:24
+        aw_comp <= ~_T_4 & (_GEN_2 & io_AXI_O_aw_ready | aw_comp);	// AXIArbitor.scala:140:26, :172:23, :201:18, :220:{21,27,46}, :235:{36,46}, :237:25
+        w_comp <= ~_T_4 & (_GEN_6 & io_AXI_O_w_ready & _GEN_5 | w_comp);	// AXIArbitor.scala:141:25, :177:26, :179:22, :201:18, :220:21, :228:{20,26,64}, :235:{36,46}, :237:25, :238:24
         if (_T_4)	// AXIArbitor.scala:235:36
           w_count <= 4'h0;	// <stdin>:2949:22, AXIArbitor.scala:143:26
         else	// AXIArbitor.scala:235:36
           w_count <= w_count + 4'h1;	// AXIArbitor.scala:143:26, :230:32, Mux.scala:81:61
       end
-      _GEN_15 = {{_GEN_13 ? r_count : _GEN_9 ? 4'h0 : io_AXI_O_r_valid ? r_count + 4'h1 : r_count},
+      _GEN_16 = {{_GEN_14 ? r_count : _GEN_10 ? 4'h0 : io_AXI_O_r_valid ? r_count + 4'h1 : r_count},
                                                 {r_count}, {r_count}, {r_count}};	// <stdin>:2949:22, AXIArbitor.scala:148:26, :149:27, :153:12, :201:18, :264:55, :277:{25,36}, :281:25, :284:25, Mux.scala:81:61
-      r_count <= _GEN_15[state];	// AXIArbitor.scala:137:24, :148:26, :201:18
-      _GEN_16 = {{{io_AXI_O_r_bits_data, r_buffer[959:0]}}, {{r_buffer[1023:960], io_AXI_O_r_bits_data,
+      r_count <= _GEN_16[state];	// AXIArbitor.scala:137:24, :148:26, :201:18
+      _GEN_17 = {{{io_AXI_O_r_bits_data, r_buffer[959:0]}}, {{r_buffer[1023:960], io_AXI_O_r_bits_data,
                                                 r_buffer[895:0]}}, {{r_buffer[1023:896], io_AXI_O_r_bits_data, r_buffer[831:0]}},
                                                 {{r_buffer[1023:832], io_AXI_O_r_bits_data, r_buffer[767:0]}}, {{r_buffer[1023:768],
                                                 io_AXI_O_r_bits_data, r_buffer[703:0]}}, {{r_buffer[1023:704], io_AXI_O_r_bits_data,
@@ -2156,9 +2143,9 @@ module AXIArbitor(	// <stdin>:2943:10
                                                 io_AXI_O_r_bits_data, r_buffer[191:0]}}, {{r_buffer[1023:192], io_AXI_O_r_bits_data,
                                                 r_buffer[127:0]}}, {{r_buffer[1023:128], io_AXI_O_r_bits_data, r_buffer[63:0]}},
                                                 {{r_buffer[1023:64], io_AXI_O_r_bits_data}}};	// AXIArbitor.scala:149:27, :267:41, :272:{44,84}, :275:63, Cat.scala:33:92, Mux.scala:81:{58,61}
-      _GEN_17 = {{_GEN_13 ? r_buffer : _GEN_9 ? 1024'h0 : io_AXI_O_r_valid ? _GEN_16[r_count] : r_buffer},
+      _GEN_18 = {{_GEN_14 ? r_buffer : _GEN_10 ? 1024'h0 : io_AXI_O_r_valid ? _GEN_17[r_count] : r_buffer},
                                                 {r_buffer}, {r_buffer}, {r_buffer}};	// <stdin>:2963:13, AXIArbitor.scala:148:26, :149:27, :153:12, :201:18, :264:55, :266:26, :281:25, :283:26, Mux.scala:81:{58,61}
-      r_buffer <= _GEN_17[state];	// AXIArbitor.scala:137:24, :149:27, :201:18
+      r_buffer <= _GEN_18[state];	// AXIArbitor.scala:137:24, :149:27, :201:18
     end
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:2943:10
@@ -2237,39 +2224,39 @@ module AXIArbitor(	// <stdin>:2943:10
         _RANDOM_31 = `RANDOM;	// <stdin>:2943:10
         _RANDOM_32 = `RANDOM;	// <stdin>:2943:10
         choose_buffer = _RANDOM_0[3:0];	// AXIArbitor.scala:59:32
-        mask = _RANDOM_0[11:4];	// AXIArbitor.scala:59:32, :65:23
-        state = _RANDOM_0[13:12];	// AXIArbitor.scala:59:32, :137:24
-        aw_comp = _RANDOM_0[14];	// AXIArbitor.scala:59:32, :140:26
-        w_comp = _RANDOM_0[15];	// AXIArbitor.scala:59:32, :141:25
-        w_count = _RANDOM_0[19:16];	// AXIArbitor.scala:59:32, :143:26
-        r_count = _RANDOM_0[23:20];	// AXIArbitor.scala:59:32, :148:26
-        r_buffer = {_RANDOM_0[31:24], _RANDOM_1, _RANDOM_2, _RANDOM_3, _RANDOM_4, _RANDOM_5, _RANDOM_6,
+        state = _RANDOM_0[5:4];	// AXIArbitor.scala:59:32, :137:24
+        aw_comp = _RANDOM_0[6];	// AXIArbitor.scala:59:32, :140:26
+        w_comp = _RANDOM_0[7];	// AXIArbitor.scala:59:32, :141:25
+        w_count = _RANDOM_0[11:8];	// AXIArbitor.scala:59:32, :143:26
+        r_count = _RANDOM_0[15:12];	// AXIArbitor.scala:59:32, :148:26
+        r_buffer = {_RANDOM_0[31:16], _RANDOM_1, _RANDOM_2, _RANDOM_3, _RANDOM_4, _RANDOM_5, _RANDOM_6,
                                                                 _RANDOM_7, _RANDOM_8, _RANDOM_9, _RANDOM_10, _RANDOM_11, _RANDOM_12, _RANDOM_13,
                                                                 _RANDOM_14, _RANDOM_15, _RANDOM_16, _RANDOM_17, _RANDOM_18, _RANDOM_19, _RANDOM_20,
                                                                 _RANDOM_21, _RANDOM_22, _RANDOM_23, _RANDOM_24, _RANDOM_25, _RANDOM_26, _RANDOM_27,
-                                                                _RANDOM_28, _RANDOM_29, _RANDOM_30, _RANDOM_31, _RANDOM_32[23:0]};	// AXIArbitor.scala:59:32, :149:27
+                                                                _RANDOM_28, _RANDOM_29, _RANDOM_30, _RANDOM_31, _RANDOM_32[15:0]};	// AXIArbitor.scala:59:32, :149:27
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:2943:10
       `FIRRTL_AFTER_INITIAL	// <stdin>:2943:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
-  assign io_master0_resp_valid = ~_T & (_T_2 ? _T_4 & choose_buffer[0] : ~_T_7 & (&state) & _GEN_9 & choose_buffer[0]);	// <stdin>:2943:10, AXIArbitor.scala:59:32, :85:30, :137:24, :153:12, :155:27, :172:23, :187:26, :201:18, :235:{36,46}, :241:39
-  assign io_master0_resp_bits_data = _GEN_10[state];	// <stdin>:2943:10, AXIArbitor.scala:137:24, :156:31, :201:18
-  assign io_master1_resp_valid = ~_T & (_T_2 ? _T_4 & _GEN_6 : ~_T_7 & (&state) & _GEN_9 & _GEN_6);	// <stdin>:2943:10, AXIArbitor.scala:137:24, :153:12, :157:27, :172:23, :187:26, :201:18, :235:{36,46}, :241:39, :243:45
-  assign io_master1_resp_bits_data = _GEN_11[state];	// <stdin>:2943:10, AXIArbitor.scala:137:24, :158:31, :201:18
-  assign io_master2_resp_valid = ~_T & (_T_2 ? _T_4 & _GEN_7 : ~_T_7 & (&state) & _GEN_9 & _GEN_7);	// <stdin>:2943:10, AXIArbitor.scala:137:24, :153:12, :159:27, :172:23, :187:26, :201:18, :235:{36,46}, :241:39, :243:45
-  assign io_master2_resp_bits_data = _GEN_12[state];	// <stdin>:2943:10, AXIArbitor.scala:137:24, :160:31, :201:18
-  assign io_AXI_O_aw_valid = _GEN_1;	// <stdin>:2943:10, AXIArbitor.scala:172:23, :201:18
-  assign io_AXI_O_aw_bits_addr = _T | ~(_T_2 & choose_buffer[3]) ? 32'h0 : _addr_T_6;	// <stdin>:2943:10, AXIArbitor.scala:59:32, :81:28, :164:27, :201:18, :217:35, Mux.scala:101:16
-  assign io_AXI_O_aw_bits_len = _GEN_0 ? 8'h0 : _GEN;	// <stdin>:2943:10, AXIArbitor.scala:65:23, :165:26, :201:18, :218:34
-  assign io_AXI_O_w_valid = _GEN_5;	// <stdin>:2943:10, AXIArbitor.scala:179:22, :201:18
-  assign io_AXI_O_w_bits_data = _GEN_0 ? 64'h0 : _GEN_3;	// <stdin>:2943:10, AXIArbitor.scala:144:26, :165:26, :175:26, :201:18, :224:34
-  assign io_AXI_O_w_bits_strb = _GEN_0 ? 8'h0 : mask;	// <stdin>:2943:10, AXIArbitor.scala:65:23, :165:26, :176:26, :201:18
-  assign io_AXI_O_w_bits_last = _GEN_4;	// <stdin>:2943:10, AXIArbitor.scala:177:26, :201:18
-  assign io_AXI_O_ar_valid = _GEN_8;	// <stdin>:2943:10, AXIArbitor.scala:194:23, :201:18
+  assign io_master0_resp_valid = ~_T & (_T_2 ? _T_4 & choose_buffer[0] : ~_T_7 & (&state) & _GEN_10 & choose_buffer[0]);	// <stdin>:2943:10, AXIArbitor.scala:59:32, :85:30, :137:24, :153:12, :155:27, :172:23, :187:26, :201:18, :235:{36,46}, :241:39
+  assign io_master0_resp_bits_data = _GEN_11[state];	// <stdin>:2943:10, AXIArbitor.scala:137:24, :156:31, :201:18
+  assign io_master1_resp_valid = ~_T & (_T_2 ? _T_4 & _GEN_7 : ~_T_7 & (&state) & _GEN_10 & _GEN_7);	// <stdin>:2943:10, AXIArbitor.scala:137:24, :153:12, :157:27, :172:23, :187:26, :201:18, :235:{36,46}, :241:39, :243:45
+  assign io_master1_resp_bits_data = _GEN_12[state];	// <stdin>:2943:10, AXIArbitor.scala:137:24, :158:31, :201:18
+  assign io_master2_resp_valid = ~_T & (_T_2 ? _T_4 & _GEN_8 : ~_T_7 & (&state) & _GEN_10 & _GEN_8);	// <stdin>:2943:10, AXIArbitor.scala:137:24, :153:12, :159:27, :172:23, :187:26, :201:18, :235:{36,46}, :241:39, :243:45
+  assign io_master2_resp_bits_data = _GEN_13[state];	// <stdin>:2943:10, AXIArbitor.scala:137:24, :160:31, :201:18
+  assign io_AXI_O_aw_valid = _GEN_2;	// <stdin>:2943:10, AXIArbitor.scala:172:23, :201:18
+  assign io_AXI_O_aw_bits_addr = _GEN ? 32'h0 : _addr_T_6;	// <stdin>:2943:10, AXIArbitor.scala:164:27, :201:18, Mux.scala:101:16
+  assign io_AXI_O_aw_bits_len = _GEN_1 ? 8'h0 : _GEN_0;	// <stdin>:2943:10, AXIArbitor.scala:165:26, :201:18, :218:34, Mux.scala:101:16
+  assign io_AXI_O_w_valid = _GEN_6;	// <stdin>:2943:10, AXIArbitor.scala:179:22, :201:18
+  assign io_AXI_O_w_bits_data = _GEN_1 ? 64'h0 : _GEN_4;	// <stdin>:2943:10, AXIArbitor.scala:144:26, :165:26, :175:26, :201:18, :224:34
+  assign io_AXI_O_w_bits_strb = _GEN ? 8'h0 : choose_buffer[0] ? io_master0_req_bits_mask : choose_buffer[1] ?
+                io_master1_req_bits_mask : choose_buffer[2] ? io_master2_req_bits_mask : 8'h0;	// <stdin>:2943:10, AXIArbitor.scala:59:32, :85:30, :86:30, :87:30, :164:27, :176:26, :201:18, Mux.scala:101:16
+  assign io_AXI_O_w_bits_last = _GEN_5;	// <stdin>:2943:10, AXIArbitor.scala:177:26, :201:18
+  assign io_AXI_O_ar_valid = _GEN_9;	// <stdin>:2943:10, AXIArbitor.scala:194:23, :201:18
   assign io_AXI_O_ar_bits_addr = _T | _T_2 | ~(_T_7 & choose_buffer[3]) ? 32'h0 : _addr_T_6;	// <stdin>:2943:10, AXIArbitor.scala:59:32, :81:28, :186:27, :201:18, :254:35, Mux.scala:101:16
-  assign io_AXI_O_ar_bits_len = _T | _T_2 | ~_T_7 ? 8'h0 : _GEN;	// <stdin>:2943:10, AXIArbitor.scala:65:23, :187:26, :201:18, :218:34
+  assign io_AXI_O_ar_bits_len = _T | _T_2 | ~_T_7 ? 8'h0 : _GEN_0;	// <stdin>:2943:10, AXIArbitor.scala:187:26, :201:18, :218:34, Mux.scala:101:16
 endmodule
 
 module Cache(	// <stdin>:3313:10, :10961:10
@@ -5001,4 +4988,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 

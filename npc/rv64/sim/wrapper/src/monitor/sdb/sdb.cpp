@@ -319,7 +319,7 @@ long long pmem_read(const svLogicVecVal* raddr){
   void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask){
 
     #ifdef MTRACE
-    printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),((unsigned long)waddr[1].aval << 32 | waddr[0].aval), 
+    printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),(waddr[0].aval), 
     (wmask == 0xff) ? 8 : 
     (wmask == 0x0f) ? 4 : 
     (wmask == 0x03) ? 2 : 
