@@ -326,7 +326,7 @@ long long pmem_read(const svLogicVecVal* raddr){
     (wmask == 0x01) ? 1 : 0
     );
 
-    printf("write data is 0x%lx\n", wdata);
+    printf("write data is 0x%lx\n", (unsigned long)wdata[1].aval << 32 | wdata[0].aval);
     #endif
 
 
