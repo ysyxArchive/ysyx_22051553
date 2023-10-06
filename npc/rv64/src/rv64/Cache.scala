@@ -435,7 +435,7 @@ class Cache extends Module{
                         for(i <- 0 until 16)yield{
                             val high = i*64+63
                             val low = i*64
-                            i.U -> DataOneArray(high, low)
+                            i.U -> io.axi.resp.bits.data(high, low)
                         }
                     )
                 )
