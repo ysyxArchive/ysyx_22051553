@@ -3232,8 +3232,17 @@ module Cache(	// <stdin>:3313:10, :10961:10
                                                                 io_axi_resp_bits_data[159:128] : _T_5646 ? io_axi_resp_bits_data[127:96] : _T_5769 ?
                                                                 io_axi_resp_bits_data[95:64] : _T_5642 ? io_axi_resp_bits_data[63:32] : _T_5767 ?
                                                                 io_axi_resp_bits_data[31:0] : 32'h0};	// Cache.scala:71:24, :143:37, :426:42, :431:57, Mux.scala:81:{58,61}
-      else	// Cache.scala:64:24, :126:28, :143:37, :230:18, :399:36
-        cpu_resp_bits_data <= _GEN_2[offset[6:3]];	// Cache.scala:69:21, :143:37, :204:29, Mux.scala:81:{58,61}
+      else begin	// Cache.scala:64:24, :126:28, :143:37, :230:18, :399:36
+        automatic logic [15:0][63:0] _GEN_38 = {{io_axi_resp_bits_data[1023:960]}, {io_axi_resp_bits_data[959:896]},
+                                                                {io_axi_resp_bits_data[895:832]}, {io_axi_resp_bits_data[831:768]},
+                                                                {io_axi_resp_bits_data[767:704]}, {io_axi_resp_bits_data[703:640]},
+                                                                {io_axi_resp_bits_data[639:576]}, {io_axi_resp_bits_data[575:512]},
+                                                                {io_axi_resp_bits_data[511:448]}, {io_axi_resp_bits_data[447:384]},
+                                                                {io_axi_resp_bits_data[383:320]}, {io_axi_resp_bits_data[319:256]},
+                                                                {io_axi_resp_bits_data[255:192]}, {io_axi_resp_bits_data[191:128]},
+                                                                {io_axi_resp_bits_data[127:64]}, {io_axi_resp_bits_data[63:0]}};	// Cache.scala:438:57, Mux.scala:81:{58,61}
+        cpu_resp_bits_data <= _GEN_38[offset[6:3]];	// Cache.scala:69:21, :143:37, :204:29, Mux.scala:81:{58,61}
+      end
       axi_req_valid <= ~_T & (_T_4 | _T_10 | ((&state) ? ~io_axi_resp_valid : ~_T_24 & (_T_2907 | _T_2913 |
                                                 _T_2914 & ~io_axi_resp_valid)));	// <stdin>:3386:18, :11034:18, Cache.scala:64:24, :75:23, :144:32, :227:19, :230:18, :350:50, :376:28, :384:36, :387:32, :399:36, :585:50, :632:36
       _GEN_36 = {{{addr[31:7], 7'h0}}, {{io_axi_resp_valid ? addr[31:7] : {_TagArray_ext_R1_data, index},

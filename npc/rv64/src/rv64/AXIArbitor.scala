@@ -62,7 +62,7 @@ class AXIArbitor extends Module{
     val rw_idle = WireInit(0.B)
     val addr = WireInit(0.U(ADDRWIDTH.W))
     val data = WireInit(0.U((16*X_LEN).W))
-    val mask = RegInit(0.U((X_LEN/8).W))
+    val mask = WireInit(0.U((X_LEN/8).W))
     val burst_len = WireInit(0.U(4.W))
 
 

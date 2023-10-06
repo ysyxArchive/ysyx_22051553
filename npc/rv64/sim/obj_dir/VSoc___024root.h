@@ -785,6 +785,7 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__Icache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_19;
         QData/*63:0*/ Soc__DOT__core__DOT__Icache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_10;
         QData/*63:0*/ Soc__DOT__core__DOT__Icache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_3;
+        VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Icache__DOT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk3__DOT___GEN_38;
         QData/*47:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h33cb9e17__0;
         QData/*63:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_hcc3b3ad4__0;
         QData/*63:0*/ Soc__DOT__core__DOT__Icache__DOT____VdfgTmp_h216ae91f__0;
@@ -801,16 +802,17 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_19;
         QData/*63:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_10;
         QData/*63:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT___dirty_T_3;
+        VlWide<32>/*1023:0*/ Soc__DOT__core__DOT__Dcache__DOT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk3__DOT___GEN_38;
         QData/*47:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h33cb9e17__0;
         QData/*63:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_hcc3b3ad4__0;
         QData/*63:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h216ae91f__0;
         QData/*47:0*/ Soc__DOT__core__DOT__Dcache__DOT____VdfgTmp_h216ac48b__0;
         QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__axi_req_bits_data;
         QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits;
-        QData/*63:0*/ Soc__DOT__sram__DOT__rdata;
-        VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
     };
     struct {
+        QData/*63:0*/ Soc__DOT__sram__DOT__rdata;
+        VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
         VlUnpacked<IData/*20:0*/, 32> Soc__DOT__core__DOT__Icache__DOT__TagArray_ext__DOT__Memory;
         VlUnpacked<VlWide<32>/*1023:0*/, 32> Soc__DOT__core__DOT__Icache__DOT__DataArray_ext__DOT__Memory;
         VlUnpacked<IData/*20:0*/, 32> Soc__DOT__core__DOT__Dcache__DOT__TagArray_ext__DOT__Memory;

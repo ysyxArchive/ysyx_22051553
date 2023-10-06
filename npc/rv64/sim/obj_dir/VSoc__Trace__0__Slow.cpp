@@ -219,8 +219,9 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("unnamedblk1 ");
     tracep->pushNamePrefix("unnamedblk2 ");
-    tracep->popNamePrefix(2);
     tracep->pushNamePrefix("unnamedblk3 ");
+    tracep->popNamePrefix(3);
+    tracep->pushNamePrefix("unnamedblk4 ");
     tracep->popNamePrefix(2);
     tracep->pushNamePrefix("Icache ");
     tracep->declBit(c+3010,"clock", false,-1);
@@ -350,8 +351,9 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("unnamedblk1 ");
     tracep->pushNamePrefix("unnamedblk2 ");
-    tracep->popNamePrefix(2);
     tracep->pushNamePrefix("unnamedblk3 ");
+    tracep->popNamePrefix(3);
+    tracep->pushNamePrefix("unnamedblk4 ");
     tracep->popNamePrefix(2);
     tracep->pushNamePrefix("arbitor ");
     tracep->declBit(c+3010,"clock", false,-1);
