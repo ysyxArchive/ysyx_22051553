@@ -25,8 +25,22 @@ VM_TRACE_FST = 0
 VM_CLASSES_FAST += \
 	VSoc \
 	VSoc___024root__DepSet_hf1724153__0 \
-	VSoc___024root__DepSet_hf1724153__1 \
 	VSoc___024root__DepSet_h37efcc4e__0 \
+	VSoc___024root__DepSet_h37efcc4e__1 \
+	VSoc___024root__DepSet_h37efcc4e__2 \
+	VSoc___024root__DepSet_h37efcc4e__3 \
+	VSoc___024root__DepSet_h37efcc4e__4 \
+	VSoc___024root__DepSet_h37efcc4e__5 \
+	VSoc___024root__DepSet_h37efcc4e__6 \
+	VSoc___024root__DepSet_h37efcc4e__7 \
+	VSoc___024root__DepSet_h37efcc4e__8 \
+	VSoc___024root__DepSet_h37efcc4e__9 \
+	VSoc___024root__DepSet_h37efcc4e__10 \
+	VSoc___024root__DepSet_h37efcc4e__11 \
+	VSoc___024root__DepSet_h37efcc4e__12 \
+	VSoc___024root__DepSet_h37efcc4e__13 \
+	VSoc___024root__DepSet_h37efcc4e__14 \
+	VSoc___024root__DepSet_h37efcc4e__15 \
 	VSoc___024unit__DepSet_h02486a38__0 \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
@@ -35,7 +49,6 @@ VM_CLASSES_SLOW += \
 	VSoc___024root__Slow \
 	VSoc___024root__DepSet_hf1724153__0__Slow \
 	VSoc___024root__DepSet_h37efcc4e__0__Slow \
-	VSoc___024root__DepSet_h37efcc4e__1__Slow \
 	VSoc___024unit__Slow \
 	VSoc___024unit__DepSet_hcac5f3b5__0__Slow \
 

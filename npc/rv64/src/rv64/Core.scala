@@ -445,7 +445,6 @@ class Core extends Module{
     Icache.io.cpu.req.bits.addr := fetch.io.pc.bits
     Icache.io.cpu.req.bits.data := DontCare
     Icache.io.cpu.req.bits.mask := DontCare
-    Icache.io.cpu.req.bits.inst_type := 1.B
 
     Icache.io.cpu.resp <> decode.io.inst
 
@@ -456,7 +455,6 @@ class Core extends Module{
     Dcache.io.cpu.req.bits.addr := excute.io.waddr | excute.io.raddr
     Dcache.io.cpu.req.bits.data := excute.io.wdata
     Dcache.io.cpu.req.bits.mask := excute.io.wmask
-    Dcache.io.cpu.req.bits.inst_type := 0.B
 
     Dcache.io.cpu.resp <> mem.io.rdata
 
