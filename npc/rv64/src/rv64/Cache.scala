@@ -86,9 +86,6 @@ class Cache extends Module{
 
 
     //控制信号
-    val way0 = nWays.U*idx_reg      //idx_reg是缓存过的
-    val way1 = nWays.U*idx_reg + 1.U
-
     val hit0 = Wire(Bool())
     val hit1 = Wire(Bool())
     dontTouch(hit0)
@@ -112,6 +109,8 @@ class Cache extends Module{
     val off_reg = addr_reg(blen-1, byteOffsetBits) //选择某个XLEN,某个8Byte对齐的数据
 
 
+    val way0 = nWays.U*idx_reg      //idx_reg是缓存过的
+    val way1 = nWays.U*idx_reg + 1.U
     
     
     val rtag0 = TagArray.read(way0,ren)
