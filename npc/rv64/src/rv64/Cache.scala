@@ -144,7 +144,7 @@ class Cache extends Module{
     wtag := tag_reg
 
     
-    val wmask = Mux(!is_alloc, (cpu_mask << Cat(off_reg, 0.U(byteOffsetBits.W).zext)), (-1).S)  //off_reg用于选择Cacheline中某个对齐的8Byte
+    val wmask = Mux(!is_alloc, (cpu_mask << Cat(off_reg, 0.U(byteOffsetBits.W))).zext, (-1).S)  //off_reg用于选择Cacheline中某个对齐的8Byte
     val wdata = Mux(
         !is_alloc, //is_alloc为0->写命中, is_alloc为1->写分配
         Fill(nWords, cpu_data),
