@@ -250,7 +250,12 @@ class Cache extends Module{
         }
         is(s_ReadCache){
             when(hit0 | hit1){ //命中即读出
-                state := s_Idle
+                when(io.cpu.req.valid){  //应对连续申请
+                    state := s_ReadCache
+                }
+                .otherwise{
+                    state := s_Idle
+                }
             }.otherwise{ //未命中
                 io.axi.req.valid := 1.B
                 
