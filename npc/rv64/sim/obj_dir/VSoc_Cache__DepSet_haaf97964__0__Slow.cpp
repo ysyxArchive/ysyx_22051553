@@ -30,6 +30,7 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->io_fccache_state = VL_RAND_RESET_I(3);
     vlSelf->io_fccache_mask = VL_RAND_RESET_I(8);
     vlSelf->io_fccache_hit = VL_RAND_RESET_I(1);
+    vlSelf->io_fccache_axi_valid = VL_RAND_RESET_I(1);
     vlSelf->__PVT___GEN_0 = VL_RAND_RESET_I(1);
     vlSelf->__PVT___TagArray_ext_R0_data = VL_RAND_RESET_I(22);
     vlSelf->__PVT___TagArray_ext_R1_data = VL_RAND_RESET_I(22);
