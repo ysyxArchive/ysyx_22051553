@@ -13,14 +13,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+          VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0\n"); );
     // Init
-    CData/*0:0*/ __PVT__unnamedblk1__DOT___T_363;
-    __PVT__unnamedblk1__DOT___T_363 = 0;
-    QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_9;
-    __PVT__unnamedblk1__DOT___GEN_9 = 0;
-    QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_10;
-    __PVT__unnamedblk1__DOT___GEN_10 = 0;
-    QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_11;
-    __PVT__unnamedblk1__DOT___GEN_11 = 0;
     QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_12;
     __PVT__unnamedblk1__DOT___GEN_12 = 0;
     QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_13;
@@ -47,12 +39,12 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_23 = 0;
     QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_24;
     __PVT__unnamedblk1__DOT___GEN_24 = 0;
-    VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_25;
-    VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_25);
-    VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_26;
-    VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_26);
-    VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_27;
-    VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_27);
+    QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_25;
+    __PVT__unnamedblk1__DOT___GEN_25 = 0;
+    QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_26;
+    __PVT__unnamedblk1__DOT___GEN_26 = 0;
+    QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_27;
+    __PVT__unnamedblk1__DOT___GEN_27 = 0;
     VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_28;
     VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_28);
     VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_29;
@@ -79,6 +71,14 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_39);
     VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_40;
     VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_40);
+    VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_41;
+    VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_41);
+    VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_42;
+    VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_42);
+    VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_43;
+    VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_43);
+    CData/*3:0*/ __Vdly__w_count;
+    __Vdly__w_count = 0;
     CData/*3:0*/ __Vdly__r_count;
     __Vdly__r_count = 0;
     CData/*2:0*/ __Vdly__state;
@@ -87,8 +87,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __Vdly__valid = 0;
     SData/*15:0*/ __Vdly__dirty;
     __Vdly__dirty = 0;
-    CData/*3:0*/ __Vdly__w_count;
-    __Vdly__w_count = 0;
     CData/*3:0*/ __Vdlyvdim0__TagArray_ext__DOT__Memory__v0;
     __Vdlyvdim0__TagArray_ext__DOT__Memory__v0 = 0;
     IData/*21:0*/ __Vdlyvval__TagArray_ext__DOT__Memory__v0;
@@ -2208,513 +2206,248 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
         __Vdlyvdim0__TagArray_ext__DOT__Memory__v0 
             = (0xeU & (vlSelf->__PVT__addr_reg >> 6U));
     }
-    __PVT__unnamedblk1__DOT___T_363 = (4U == (IData)(vlSelf->__PVT__state));
-    if (vlSymsp->TOP.reset) {
-        __Vdly__w_count = 0U;
-        __Vdly__valid = 0U;
-        __Vdly__dirty = 0U;
-        __Vdly__r_count = 0U;
-        __Vdly__state = 0U;
-    } else {
-        if ((1U & (~ ((((0U == (IData)(vlSelf->__PVT__state)) 
-                        | (1U == (IData)(vlSelf->__PVT__state))) 
-                       | (2U == (IData)(vlSelf->__PVT__state))) 
-                      | (3U != (IData)(vlSelf->__PVT__state)))))) {
-            if (vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid) {
-                __Vdly__w_count = 0U;
-            } else if ((0xfU != (IData)(vlSelf->__PVT__w_count))) {
-                __Vdly__w_count = (0xfU & ((IData)(1U) 
-                                           + (IData)(vlSelf->__PVT__w_count)));
-            }
-        }
-        if (vlSelf->__PVT___GEN_0) {
-            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1 
-                = ((0x1fU >= (0xeU & (vlSelf->__PVT__addr_reg 
-                                      >> 6U))) ? ((IData)(1U) 
-                                                  << 
-                                                  (0xeU 
-                                                   & (vlSelf->__PVT__addr_reg 
-                                                      >> 6U)))
-                    : 0U);
-            __Vdly__valid = (0xffffU & ((IData)(vlSelf->__PVT__valid) 
-                                        | vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1));
-            __Vdly__dirty = (0xffffU & ((IData)(vlSelf->__PVT__is_alloc)
-                                         ? (~ ((~ (IData)(vlSelf->__PVT__dirty)) 
-                                               | vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1))
-                                         : ((IData)(vlSelf->__PVT__dirty) 
-                                            | vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1)));
-        }
-        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_41 
-            = (((IData)(vlSelf->__PVT___T_364) & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid))
-                ? ((0U != (IData)(vlSelf->__PVT__cpu_mask)) 
-                   << 1U) : (IData)(vlSelf->__PVT__state));
-        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_42 
-            = (0xfU & ((1U & (((((IData)(vlSelf->__PVT__is_read) 
-                                 | (IData)(vlSelf->__PVT__is_write)) 
-                                | (IData)(vlSelf->__PVT___T_361)) 
-                               | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                              | (~ (IData)(vlSelf->__PVT___T_364))))
-                        ? (IData)(vlSelf->__PVT__r_count)
-                        : ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)
-                            ? 0U : ((IData)(1U) + (IData)(vlSelf->__PVT__r_count)))));
-        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_43 
-            = ((0xfff00000U & (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_42) 
-                                << 0x1cU) | (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_42) 
-                                              << 0x18U) 
-                                             | ((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_42) 
-                                                << 0x14U)))) 
-               | (0xfffffU & (((IData)(vlSelf->__PVT__r_count) 
-                               << 0x10U) | (((IData)(vlSelf->__PVT__r_count) 
-                                             << 0xcU) 
-                                            | (((IData)(vlSelf->__PVT__r_count) 
-                                                << 8U) 
-                                               | (((IData)(vlSelf->__PVT__r_count) 
-                                                   << 4U) 
-                                                  | (IData)(vlSelf->__PVT__r_count)))))));
-        __Vdly__r_count = (0xfU & (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_43 
-                                   >> (0x1fU & ((IData)(vlSelf->__PVT__state) 
-                                                << 2U))));
-        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44 
-            = (0x5000U | ((0xff8000U & (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_41) 
-                                         << 0x15U) 
-                                        | (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_41) 
-                                            << 0x12U) 
-                                           | ((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_41) 
-                                              << 0xfU)))) 
-                          | ((((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)
-                                ? 4U : (IData)(vlSelf->__PVT__state)) 
-                              << 9U) | ((((IData)(vlSelf->__PVT___T_356)
-                                           ? 0U : ((IData)(vlSelf->__PVT__dirty0)
-                                                    ? 3U
-                                                    : 4U)) 
-                                         << 6U) | (
-                                                   (((IData)(vlSelf->io_fccache_hit)
-                                                      ? (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started)
-                                                      : 
-                                                     ((IData)(vlSelf->__PVT__dirty0)
-                                                       ? 3U
-                                                       : 4U)) 
-                                                    << 3U) 
-                                                   | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started)
-                                                       ? 1U
-                                                       : (IData)(vlSelf->__PVT__state)))))));
-        __Vdly__state = ((0x17U >= (0x1fU & ((IData)(3U) 
-                                             * (IData)(vlSelf->__PVT__state))))
-                          ? (7U & (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44 
-                                   >> (0x1fU & ((IData)(3U) 
-                                                * (IData)(vlSelf->__PVT__state)))))
-                          : 0U);
-    }
-    __PVT__unnamedblk1__DOT___GEN_9 = ((1U & (((((((IData)(vlSelf->__PVT__is_read) 
-                                                   | (IData)(vlSelf->__PVT__is_write)) 
-                                                  | (IData)(vlSelf->__PVT___T_361)) 
-                                                 | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                | (~ (IData)(vlSelf->__PVT___T_364))) 
-                                               | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
-                                              | (0U 
-                                                 != (IData)(vlSelf->__PVT__r_count))))
-                                        ? vlSelf->__PVT__refill_buffer_0
-                                        : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_10 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_12 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
+                                                | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
+                                               | (0U 
+                                                  != (IData)(vlSelf->__PVT__r_count))))
+                                         ? vlSelf->__PVT__refill_buffer_0
+                                         : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
+    __PVT__unnamedblk1__DOT___GEN_13 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (1U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_1
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_11 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_14 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (2U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_2
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_12 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_15 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (3U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_3
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_13 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_16 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (4U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_4
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_14 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_17 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (5U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_5
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_15 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_18 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (6U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_6
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_16 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_19 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (7U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_7
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_17 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_20 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (8U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_8
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_18 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_21 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (9U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_9
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_19 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_22 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (0xaU 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_10
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_20 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_23 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (0xbU 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_11
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_21 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_24 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (0xcU 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_12
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_22 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_25 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (0xdU 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_13
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_23 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_26 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 2U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)) 
                                                | (0xeU 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_14
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_24 = ((1U & (((((IData)(vlSelf->__PVT__is_read) 
+    __PVT__unnamedblk1__DOT___GEN_27 = ((1U & (((((IData)(vlSelf->__PVT__is_read) 
                                                   | (IData)(vlSelf->__PVT__is_write)) 
                                                  | (IData)(vlSelf->__PVT___T_361)) 
-                                                | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
+                                                | (IData)(vlSelf->__PVT___T_363)) 
                                                | (~ 
-                                                  ((IData)(vlSelf->__PVT___T_364) 
+                                                  (((IData)(vlSelf->__PVT___T_364) 
+                                                    & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                       >> 2U)) 
                                                    & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid) 
                                                       | (0xfU 
                                                          == (IData)(vlSelf->__PVT__r_count)))))))
                                          ? vlSelf->__PVT__refill_buffer_15
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_25[0U] = (IData)(vlSelf->__PVT__refill_buffer_0);
-    __PVT__unnamedblk1__DOT___GEN_25[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_0 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[2U] = (IData)(vlSelf->__PVT__refill_buffer_0);
-    __PVT__unnamedblk1__DOT___GEN_25[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_0 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[4U] = (IData)(vlSelf->__PVT__refill_buffer_0);
-    __PVT__unnamedblk1__DOT___GEN_25[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_0 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[6U] = (IData)(vlSelf->__PVT__refill_buffer_0);
-    __PVT__unnamedblk1__DOT___GEN_25[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_0 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[8U] = (IData)(vlSelf->__PVT__refill_buffer_0);
-    __PVT__unnamedblk1__DOT___GEN_25[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_0 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_9);
-    __PVT__unnamedblk1__DOT___GEN_25[0xbU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_9 
-                                                      >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[0xcU] = (IData)(__PVT__unnamedblk1__DOT___GEN_9);
-    __PVT__unnamedblk1__DOT___GEN_25[0xdU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_9 
-                                                      >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[0xeU] = (IData)(__PVT__unnamedblk1__DOT___GEN_9);
-    __PVT__unnamedblk1__DOT___GEN_25[0xfU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_9 
-                                                      >> 0x20U));
-    vlSelf->__PVT__refill_buffer_0 = (((QData)((IData)(
-                                                       __PVT__unnamedblk1__DOT___GEN_25[
-                                                       (((IData)(0x3fU) 
-                                                         + 
-                                                         (0x1ffU 
-                                                          & ((IData)(vlSelf->__PVT__state) 
-                                                             << 6U))) 
-                                                        >> 5U)])) 
-                                       << ((0U == (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U)))
-                                            ? 0x20U
-                                            : ((IData)(0x40U) 
-                                               - (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U))))) 
-                                      | (((0U == (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U)))
-                                           ? 0ULL : 
-                                          ((QData)((IData)(
-                                                           __PVT__unnamedblk1__DOT___GEN_25[
-                                                           (((IData)(0x1fU) 
-                                                             + 
-                                                             (0x1ffU 
-                                                              & ((IData)(vlSelf->__PVT__state) 
-                                                                 << 6U))) 
-                                                            >> 5U)])) 
-                                           << ((IData)(0x20U) 
-                                               - (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U))))) 
-                                         | ((QData)((IData)(
-                                                            __PVT__unnamedblk1__DOT___GEN_25[
-                                                            (0xeU 
-                                                             & ((IData)(vlSelf->__PVT__state) 
-                                                                << 1U))])) 
-                                            >> (0x1fU 
-                                                & ((IData)(vlSelf->__PVT__state) 
-                                                   << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_26[0U] = (IData)(vlSelf->__PVT__refill_buffer_1);
-    __PVT__unnamedblk1__DOT___GEN_26[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_1 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[2U] = (IData)(vlSelf->__PVT__refill_buffer_1);
-    __PVT__unnamedblk1__DOT___GEN_26[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_1 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[4U] = (IData)(vlSelf->__PVT__refill_buffer_1);
-    __PVT__unnamedblk1__DOT___GEN_26[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_1 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[6U] = (IData)(vlSelf->__PVT__refill_buffer_1);
-    __PVT__unnamedblk1__DOT___GEN_26[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_1 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[8U] = (IData)(vlSelf->__PVT__refill_buffer_1);
-    __PVT__unnamedblk1__DOT___GEN_26[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_1 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_10);
-    __PVT__unnamedblk1__DOT___GEN_26[0xbU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_10 
-                                                      >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[0xcU] = (IData)(__PVT__unnamedblk1__DOT___GEN_10);
-    __PVT__unnamedblk1__DOT___GEN_26[0xdU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_10 
-                                                      >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[0xeU] = (IData)(__PVT__unnamedblk1__DOT___GEN_10);
-    __PVT__unnamedblk1__DOT___GEN_26[0xfU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_10 
-                                                      >> 0x20U));
-    vlSelf->__PVT__refill_buffer_1 = (((QData)((IData)(
-                                                       __PVT__unnamedblk1__DOT___GEN_26[
-                                                       (((IData)(0x3fU) 
-                                                         + 
-                                                         (0x1ffU 
-                                                          & ((IData)(vlSelf->__PVT__state) 
-                                                             << 6U))) 
-                                                        >> 5U)])) 
-                                       << ((0U == (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U)))
-                                            ? 0x20U
-                                            : ((IData)(0x40U) 
-                                               - (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U))))) 
-                                      | (((0U == (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U)))
-                                           ? 0ULL : 
-                                          ((QData)((IData)(
-                                                           __PVT__unnamedblk1__DOT___GEN_26[
-                                                           (((IData)(0x1fU) 
-                                                             + 
-                                                             (0x1ffU 
-                                                              & ((IData)(vlSelf->__PVT__state) 
-                                                                 << 6U))) 
-                                                            >> 5U)])) 
-                                           << ((IData)(0x20U) 
-                                               - (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U))))) 
-                                         | ((QData)((IData)(
-                                                            __PVT__unnamedblk1__DOT___GEN_26[
-                                                            (0xeU 
-                                                             & ((IData)(vlSelf->__PVT__state) 
-                                                                << 1U))])) 
-                                            >> (0x1fU 
-                                                & ((IData)(vlSelf->__PVT__state) 
-                                                   << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_27[0U] = (IData)(vlSelf->__PVT__refill_buffer_2);
-    __PVT__unnamedblk1__DOT___GEN_27[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_2 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[2U] = (IData)(vlSelf->__PVT__refill_buffer_2);
-    __PVT__unnamedblk1__DOT___GEN_27[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_2 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[4U] = (IData)(vlSelf->__PVT__refill_buffer_2);
-    __PVT__unnamedblk1__DOT___GEN_27[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_2 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[6U] = (IData)(vlSelf->__PVT__refill_buffer_2);
-    __PVT__unnamedblk1__DOT___GEN_27[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_2 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[8U] = (IData)(vlSelf->__PVT__refill_buffer_2);
-    __PVT__unnamedblk1__DOT___GEN_27[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_2 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_11);
-    __PVT__unnamedblk1__DOT___GEN_27[0xbU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_11 
-                                                      >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[0xcU] = (IData)(__PVT__unnamedblk1__DOT___GEN_11);
-    __PVT__unnamedblk1__DOT___GEN_27[0xdU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_11 
-                                                      >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[0xeU] = (IData)(__PVT__unnamedblk1__DOT___GEN_11);
-    __PVT__unnamedblk1__DOT___GEN_27[0xfU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_11 
-                                                      >> 0x20U));
-    vlSelf->__PVT__refill_buffer_2 = (((QData)((IData)(
-                                                       __PVT__unnamedblk1__DOT___GEN_27[
-                                                       (((IData)(0x3fU) 
-                                                         + 
-                                                         (0x1ffU 
-                                                          & ((IData)(vlSelf->__PVT__state) 
-                                                             << 6U))) 
-                                                        >> 5U)])) 
-                                       << ((0U == (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U)))
-                                            ? 0x20U
-                                            : ((IData)(0x40U) 
-                                               - (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U))))) 
-                                      | (((0U == (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U)))
-                                           ? 0ULL : 
-                                          ((QData)((IData)(
-                                                           __PVT__unnamedblk1__DOT___GEN_27[
-                                                           (((IData)(0x1fU) 
-                                                             + 
-                                                             (0x1ffU 
-                                                              & ((IData)(vlSelf->__PVT__state) 
-                                                                 << 6U))) 
-                                                            >> 5U)])) 
-                                           << ((IData)(0x20U) 
-                                               - (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U))))) 
-                                         | ((QData)((IData)(
-                                                            __PVT__unnamedblk1__DOT___GEN_27[
-                                                            (0xeU 
-                                                             & ((IData)(vlSelf->__PVT__state) 
-                                                                << 1U))])) 
-                                            >> (0x1fU 
-                                                & ((IData)(vlSelf->__PVT__state) 
-                                                   << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_28[0U] = (IData)(vlSelf->__PVT__refill_buffer_3);
+    __PVT__unnamedblk1__DOT___GEN_28[0U] = (IData)(vlSelf->__PVT__refill_buffer_0);
     __PVT__unnamedblk1__DOT___GEN_28[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_3 
+                                                   (vlSelf->__PVT__refill_buffer_0 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_28[2U] = (IData)(vlSelf->__PVT__refill_buffer_3);
+    __PVT__unnamedblk1__DOT___GEN_28[2U] = (IData)(vlSelf->__PVT__refill_buffer_0);
     __PVT__unnamedblk1__DOT___GEN_28[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_3 
+                                                   (vlSelf->__PVT__refill_buffer_0 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_28[4U] = (IData)(vlSelf->__PVT__refill_buffer_3);
+    __PVT__unnamedblk1__DOT___GEN_28[4U] = (IData)(vlSelf->__PVT__refill_buffer_0);
     __PVT__unnamedblk1__DOT___GEN_28[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_3 
+                                                   (vlSelf->__PVT__refill_buffer_0 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_28[6U] = (IData)(vlSelf->__PVT__refill_buffer_3);
+    __PVT__unnamedblk1__DOT___GEN_28[6U] = (IData)(vlSelf->__PVT__refill_buffer_0);
     __PVT__unnamedblk1__DOT___GEN_28[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_3 
+                                                   (vlSelf->__PVT__refill_buffer_0 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_28[8U] = (IData)(vlSelf->__PVT__refill_buffer_3);
+    __PVT__unnamedblk1__DOT___GEN_28[8U] = (IData)(vlSelf->__PVT__refill_buffer_0);
     __PVT__unnamedblk1__DOT___GEN_28[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_3 
+                                                   (vlSelf->__PVT__refill_buffer_0 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_28[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_12);
     __PVT__unnamedblk1__DOT___GEN_28[0xbU] = (IData)(
@@ -2728,7 +2461,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_28[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_12 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_3 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_0 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_28[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -2768,25 +2501,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_29[0U] = (IData)(vlSelf->__PVT__refill_buffer_4);
+    __PVT__unnamedblk1__DOT___GEN_29[0U] = (IData)(vlSelf->__PVT__refill_buffer_1);
     __PVT__unnamedblk1__DOT___GEN_29[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_4 
+                                                   (vlSelf->__PVT__refill_buffer_1 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_29[2U] = (IData)(vlSelf->__PVT__refill_buffer_4);
+    __PVT__unnamedblk1__DOT___GEN_29[2U] = (IData)(vlSelf->__PVT__refill_buffer_1);
     __PVT__unnamedblk1__DOT___GEN_29[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_4 
+                                                   (vlSelf->__PVT__refill_buffer_1 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_29[4U] = (IData)(vlSelf->__PVT__refill_buffer_4);
+    __PVT__unnamedblk1__DOT___GEN_29[4U] = (IData)(vlSelf->__PVT__refill_buffer_1);
     __PVT__unnamedblk1__DOT___GEN_29[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_4 
+                                                   (vlSelf->__PVT__refill_buffer_1 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_29[6U] = (IData)(vlSelf->__PVT__refill_buffer_4);
+    __PVT__unnamedblk1__DOT___GEN_29[6U] = (IData)(vlSelf->__PVT__refill_buffer_1);
     __PVT__unnamedblk1__DOT___GEN_29[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_4 
+                                                   (vlSelf->__PVT__refill_buffer_1 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_29[8U] = (IData)(vlSelf->__PVT__refill_buffer_4);
+    __PVT__unnamedblk1__DOT___GEN_29[8U] = (IData)(vlSelf->__PVT__refill_buffer_1);
     __PVT__unnamedblk1__DOT___GEN_29[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_4 
+                                                   (vlSelf->__PVT__refill_buffer_1 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_29[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_13);
     __PVT__unnamedblk1__DOT___GEN_29[0xbU] = (IData)(
@@ -2800,7 +2533,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_29[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_13 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_4 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_1 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_29[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -2840,25 +2573,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_30[0U] = (IData)(vlSelf->__PVT__refill_buffer_5);
+    __PVT__unnamedblk1__DOT___GEN_30[0U] = (IData)(vlSelf->__PVT__refill_buffer_2);
     __PVT__unnamedblk1__DOT___GEN_30[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_5 
+                                                   (vlSelf->__PVT__refill_buffer_2 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_30[2U] = (IData)(vlSelf->__PVT__refill_buffer_5);
+    __PVT__unnamedblk1__DOT___GEN_30[2U] = (IData)(vlSelf->__PVT__refill_buffer_2);
     __PVT__unnamedblk1__DOT___GEN_30[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_5 
+                                                   (vlSelf->__PVT__refill_buffer_2 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_30[4U] = (IData)(vlSelf->__PVT__refill_buffer_5);
+    __PVT__unnamedblk1__DOT___GEN_30[4U] = (IData)(vlSelf->__PVT__refill_buffer_2);
     __PVT__unnamedblk1__DOT___GEN_30[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_5 
+                                                   (vlSelf->__PVT__refill_buffer_2 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_30[6U] = (IData)(vlSelf->__PVT__refill_buffer_5);
+    __PVT__unnamedblk1__DOT___GEN_30[6U] = (IData)(vlSelf->__PVT__refill_buffer_2);
     __PVT__unnamedblk1__DOT___GEN_30[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_5 
+                                                   (vlSelf->__PVT__refill_buffer_2 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_30[8U] = (IData)(vlSelf->__PVT__refill_buffer_5);
+    __PVT__unnamedblk1__DOT___GEN_30[8U] = (IData)(vlSelf->__PVT__refill_buffer_2);
     __PVT__unnamedblk1__DOT___GEN_30[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_5 
+                                                   (vlSelf->__PVT__refill_buffer_2 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_30[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_14);
     __PVT__unnamedblk1__DOT___GEN_30[0xbU] = (IData)(
@@ -2872,7 +2605,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_30[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_14 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_5 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_2 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_30[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -2912,25 +2645,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_31[0U] = (IData)(vlSelf->__PVT__refill_buffer_6);
+    __PVT__unnamedblk1__DOT___GEN_31[0U] = (IData)(vlSelf->__PVT__refill_buffer_3);
     __PVT__unnamedblk1__DOT___GEN_31[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_6 
+                                                   (vlSelf->__PVT__refill_buffer_3 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_31[2U] = (IData)(vlSelf->__PVT__refill_buffer_6);
+    __PVT__unnamedblk1__DOT___GEN_31[2U] = (IData)(vlSelf->__PVT__refill_buffer_3);
     __PVT__unnamedblk1__DOT___GEN_31[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_6 
+                                                   (vlSelf->__PVT__refill_buffer_3 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_31[4U] = (IData)(vlSelf->__PVT__refill_buffer_6);
+    __PVT__unnamedblk1__DOT___GEN_31[4U] = (IData)(vlSelf->__PVT__refill_buffer_3);
     __PVT__unnamedblk1__DOT___GEN_31[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_6 
+                                                   (vlSelf->__PVT__refill_buffer_3 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_31[6U] = (IData)(vlSelf->__PVT__refill_buffer_6);
+    __PVT__unnamedblk1__DOT___GEN_31[6U] = (IData)(vlSelf->__PVT__refill_buffer_3);
     __PVT__unnamedblk1__DOT___GEN_31[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_6 
+                                                   (vlSelf->__PVT__refill_buffer_3 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_31[8U] = (IData)(vlSelf->__PVT__refill_buffer_6);
+    __PVT__unnamedblk1__DOT___GEN_31[8U] = (IData)(vlSelf->__PVT__refill_buffer_3);
     __PVT__unnamedblk1__DOT___GEN_31[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_6 
+                                                   (vlSelf->__PVT__refill_buffer_3 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_31[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_15);
     __PVT__unnamedblk1__DOT___GEN_31[0xbU] = (IData)(
@@ -2944,7 +2677,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_31[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_15 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_6 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_3 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_31[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -2984,25 +2717,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_32[0U] = (IData)(vlSelf->__PVT__refill_buffer_7);
+    __PVT__unnamedblk1__DOT___GEN_32[0U] = (IData)(vlSelf->__PVT__refill_buffer_4);
     __PVT__unnamedblk1__DOT___GEN_32[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_7 
+                                                   (vlSelf->__PVT__refill_buffer_4 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_32[2U] = (IData)(vlSelf->__PVT__refill_buffer_7);
+    __PVT__unnamedblk1__DOT___GEN_32[2U] = (IData)(vlSelf->__PVT__refill_buffer_4);
     __PVT__unnamedblk1__DOT___GEN_32[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_7 
+                                                   (vlSelf->__PVT__refill_buffer_4 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_32[4U] = (IData)(vlSelf->__PVT__refill_buffer_7);
+    __PVT__unnamedblk1__DOT___GEN_32[4U] = (IData)(vlSelf->__PVT__refill_buffer_4);
     __PVT__unnamedblk1__DOT___GEN_32[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_7 
+                                                   (vlSelf->__PVT__refill_buffer_4 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_32[6U] = (IData)(vlSelf->__PVT__refill_buffer_7);
+    __PVT__unnamedblk1__DOT___GEN_32[6U] = (IData)(vlSelf->__PVT__refill_buffer_4);
     __PVT__unnamedblk1__DOT___GEN_32[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_7 
+                                                   (vlSelf->__PVT__refill_buffer_4 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_32[8U] = (IData)(vlSelf->__PVT__refill_buffer_7);
+    __PVT__unnamedblk1__DOT___GEN_32[8U] = (IData)(vlSelf->__PVT__refill_buffer_4);
     __PVT__unnamedblk1__DOT___GEN_32[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_7 
+                                                   (vlSelf->__PVT__refill_buffer_4 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_32[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_16);
     __PVT__unnamedblk1__DOT___GEN_32[0xbU] = (IData)(
@@ -3016,7 +2749,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_32[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_16 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_7 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_4 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_32[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -3056,25 +2789,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_33[0U] = (IData)(vlSelf->__PVT__refill_buffer_8);
+    __PVT__unnamedblk1__DOT___GEN_33[0U] = (IData)(vlSelf->__PVT__refill_buffer_5);
     __PVT__unnamedblk1__DOT___GEN_33[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_8 
+                                                   (vlSelf->__PVT__refill_buffer_5 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_33[2U] = (IData)(vlSelf->__PVT__refill_buffer_8);
+    __PVT__unnamedblk1__DOT___GEN_33[2U] = (IData)(vlSelf->__PVT__refill_buffer_5);
     __PVT__unnamedblk1__DOT___GEN_33[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_8 
+                                                   (vlSelf->__PVT__refill_buffer_5 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_33[4U] = (IData)(vlSelf->__PVT__refill_buffer_8);
+    __PVT__unnamedblk1__DOT___GEN_33[4U] = (IData)(vlSelf->__PVT__refill_buffer_5);
     __PVT__unnamedblk1__DOT___GEN_33[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_8 
+                                                   (vlSelf->__PVT__refill_buffer_5 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_33[6U] = (IData)(vlSelf->__PVT__refill_buffer_8);
+    __PVT__unnamedblk1__DOT___GEN_33[6U] = (IData)(vlSelf->__PVT__refill_buffer_5);
     __PVT__unnamedblk1__DOT___GEN_33[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_8 
+                                                   (vlSelf->__PVT__refill_buffer_5 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_33[8U] = (IData)(vlSelf->__PVT__refill_buffer_8);
+    __PVT__unnamedblk1__DOT___GEN_33[8U] = (IData)(vlSelf->__PVT__refill_buffer_5);
     __PVT__unnamedblk1__DOT___GEN_33[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_8 
+                                                   (vlSelf->__PVT__refill_buffer_5 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_33[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_17);
     __PVT__unnamedblk1__DOT___GEN_33[0xbU] = (IData)(
@@ -3088,7 +2821,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_33[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_17 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_8 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_5 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_33[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -3128,25 +2861,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_34[0U] = (IData)(vlSelf->__PVT__refill_buffer_9);
+    __PVT__unnamedblk1__DOT___GEN_34[0U] = (IData)(vlSelf->__PVT__refill_buffer_6);
     __PVT__unnamedblk1__DOT___GEN_34[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_9 
+                                                   (vlSelf->__PVT__refill_buffer_6 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_34[2U] = (IData)(vlSelf->__PVT__refill_buffer_9);
+    __PVT__unnamedblk1__DOT___GEN_34[2U] = (IData)(vlSelf->__PVT__refill_buffer_6);
     __PVT__unnamedblk1__DOT___GEN_34[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_9 
+                                                   (vlSelf->__PVT__refill_buffer_6 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_34[4U] = (IData)(vlSelf->__PVT__refill_buffer_9);
+    __PVT__unnamedblk1__DOT___GEN_34[4U] = (IData)(vlSelf->__PVT__refill_buffer_6);
     __PVT__unnamedblk1__DOT___GEN_34[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_9 
+                                                   (vlSelf->__PVT__refill_buffer_6 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_34[6U] = (IData)(vlSelf->__PVT__refill_buffer_9);
+    __PVT__unnamedblk1__DOT___GEN_34[6U] = (IData)(vlSelf->__PVT__refill_buffer_6);
     __PVT__unnamedblk1__DOT___GEN_34[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_9 
+                                                   (vlSelf->__PVT__refill_buffer_6 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_34[8U] = (IData)(vlSelf->__PVT__refill_buffer_9);
+    __PVT__unnamedblk1__DOT___GEN_34[8U] = (IData)(vlSelf->__PVT__refill_buffer_6);
     __PVT__unnamedblk1__DOT___GEN_34[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_9 
+                                                   (vlSelf->__PVT__refill_buffer_6 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_34[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_18);
     __PVT__unnamedblk1__DOT___GEN_34[0xbU] = (IData)(
@@ -3160,7 +2893,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_34[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_18 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_9 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_6 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_34[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -3200,25 +2933,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_35[0U] = (IData)(vlSelf->__PVT__refill_buffer_10);
+    __PVT__unnamedblk1__DOT___GEN_35[0U] = (IData)(vlSelf->__PVT__refill_buffer_7);
     __PVT__unnamedblk1__DOT___GEN_35[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_10 
+                                                   (vlSelf->__PVT__refill_buffer_7 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_35[2U] = (IData)(vlSelf->__PVT__refill_buffer_10);
+    __PVT__unnamedblk1__DOT___GEN_35[2U] = (IData)(vlSelf->__PVT__refill_buffer_7);
     __PVT__unnamedblk1__DOT___GEN_35[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_10 
+                                                   (vlSelf->__PVT__refill_buffer_7 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_35[4U] = (IData)(vlSelf->__PVT__refill_buffer_10);
+    __PVT__unnamedblk1__DOT___GEN_35[4U] = (IData)(vlSelf->__PVT__refill_buffer_7);
     __PVT__unnamedblk1__DOT___GEN_35[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_10 
+                                                   (vlSelf->__PVT__refill_buffer_7 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_35[6U] = (IData)(vlSelf->__PVT__refill_buffer_10);
+    __PVT__unnamedblk1__DOT___GEN_35[6U] = (IData)(vlSelf->__PVT__refill_buffer_7);
     __PVT__unnamedblk1__DOT___GEN_35[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_10 
+                                                   (vlSelf->__PVT__refill_buffer_7 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_35[8U] = (IData)(vlSelf->__PVT__refill_buffer_10);
+    __PVT__unnamedblk1__DOT___GEN_35[8U] = (IData)(vlSelf->__PVT__refill_buffer_7);
     __PVT__unnamedblk1__DOT___GEN_35[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_10 
+                                                   (vlSelf->__PVT__refill_buffer_7 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_35[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_19);
     __PVT__unnamedblk1__DOT___GEN_35[0xbU] = (IData)(
@@ -3232,66 +2965,65 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_35[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_19 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_10 = (((QData)((IData)(
-                                                        __PVT__unnamedblk1__DOT___GEN_35[
-                                                        (((IData)(0x3fU) 
-                                                          + 
-                                                          (0x1ffU 
-                                                           & ((IData)(vlSelf->__PVT__state) 
-                                                              << 6U))) 
-                                                         >> 5U)])) 
-                                        << ((0U == 
-                                             (0x1fU 
-                                              & ((IData)(vlSelf->__PVT__state) 
-                                                 << 6U)))
-                                             ? 0x20U
-                                             : ((IData)(0x40U) 
-                                                - (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U))))) 
-                                       | (((0U == (0x1fU 
+    vlSelf->__PVT__refill_buffer_7 = (((QData)((IData)(
+                                                       __PVT__unnamedblk1__DOT___GEN_35[
+                                                       (((IData)(0x3fU) 
+                                                         + 
+                                                         (0x1ffU 
+                                                          & ((IData)(vlSelf->__PVT__state) 
+                                                             << 6U))) 
+                                                        >> 5U)])) 
+                                       << ((0U == (0x1fU 
                                                    & ((IData)(vlSelf->__PVT__state) 
                                                       << 6U)))
-                                            ? 0ULL : 
-                                           ((QData)((IData)(
-                                                            __PVT__unnamedblk1__DOT___GEN_35[
-                                                            (((IData)(0x1fU) 
-                                                              + 
-                                                              (0x1ffU 
-                                                               & ((IData)(vlSelf->__PVT__state) 
-                                                                  << 6U))) 
-                                                             >> 5U)])) 
-                                            << ((IData)(0x20U) 
-                                                - (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U))))) 
-                                          | ((QData)((IData)(
-                                                             __PVT__unnamedblk1__DOT___GEN_35[
-                                                             (0xeU 
+                                            ? 0x20U
+                                            : ((IData)(0x40U) 
+                                               - (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U))))) 
+                                      | (((0U == (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U)))
+                                           ? 0ULL : 
+                                          ((QData)((IData)(
+                                                           __PVT__unnamedblk1__DOT___GEN_35[
+                                                           (((IData)(0x1fU) 
+                                                             + 
+                                                             (0x1ffU 
                                                               & ((IData)(vlSelf->__PVT__state) 
-                                                                 << 1U))])) 
-                                             >> (0x1fU 
-                                                 & ((IData)(vlSelf->__PVT__state) 
-                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_36[0U] = (IData)(vlSelf->__PVT__refill_buffer_11);
+                                                                 << 6U))) 
+                                                            >> 5U)])) 
+                                           << ((IData)(0x20U) 
+                                               - (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U))))) 
+                                         | ((QData)((IData)(
+                                                            __PVT__unnamedblk1__DOT___GEN_35[
+                                                            (0xeU 
+                                                             & ((IData)(vlSelf->__PVT__state) 
+                                                                << 1U))])) 
+                                            >> (0x1fU 
+                                                & ((IData)(vlSelf->__PVT__state) 
+                                                   << 6U)))));
+    __PVT__unnamedblk1__DOT___GEN_36[0U] = (IData)(vlSelf->__PVT__refill_buffer_8);
     __PVT__unnamedblk1__DOT___GEN_36[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_11 
+                                                   (vlSelf->__PVT__refill_buffer_8 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_36[2U] = (IData)(vlSelf->__PVT__refill_buffer_11);
+    __PVT__unnamedblk1__DOT___GEN_36[2U] = (IData)(vlSelf->__PVT__refill_buffer_8);
     __PVT__unnamedblk1__DOT___GEN_36[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_11 
+                                                   (vlSelf->__PVT__refill_buffer_8 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_36[4U] = (IData)(vlSelf->__PVT__refill_buffer_11);
+    __PVT__unnamedblk1__DOT___GEN_36[4U] = (IData)(vlSelf->__PVT__refill_buffer_8);
     __PVT__unnamedblk1__DOT___GEN_36[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_11 
+                                                   (vlSelf->__PVT__refill_buffer_8 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_36[6U] = (IData)(vlSelf->__PVT__refill_buffer_11);
+    __PVT__unnamedblk1__DOT___GEN_36[6U] = (IData)(vlSelf->__PVT__refill_buffer_8);
     __PVT__unnamedblk1__DOT___GEN_36[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_11 
+                                                   (vlSelf->__PVT__refill_buffer_8 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_36[8U] = (IData)(vlSelf->__PVT__refill_buffer_11);
+    __PVT__unnamedblk1__DOT___GEN_36[8U] = (IData)(vlSelf->__PVT__refill_buffer_8);
     __PVT__unnamedblk1__DOT___GEN_36[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_11 
+                                                   (vlSelf->__PVT__refill_buffer_8 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_36[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_20);
     __PVT__unnamedblk1__DOT___GEN_36[0xbU] = (IData)(
@@ -3305,66 +3037,65 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_36[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_20 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_11 = (((QData)((IData)(
-                                                        __PVT__unnamedblk1__DOT___GEN_36[
-                                                        (((IData)(0x3fU) 
-                                                          + 
-                                                          (0x1ffU 
-                                                           & ((IData)(vlSelf->__PVT__state) 
-                                                              << 6U))) 
-                                                         >> 5U)])) 
-                                        << ((0U == 
-                                             (0x1fU 
-                                              & ((IData)(vlSelf->__PVT__state) 
-                                                 << 6U)))
-                                             ? 0x20U
-                                             : ((IData)(0x40U) 
-                                                - (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U))))) 
-                                       | (((0U == (0x1fU 
+    vlSelf->__PVT__refill_buffer_8 = (((QData)((IData)(
+                                                       __PVT__unnamedblk1__DOT___GEN_36[
+                                                       (((IData)(0x3fU) 
+                                                         + 
+                                                         (0x1ffU 
+                                                          & ((IData)(vlSelf->__PVT__state) 
+                                                             << 6U))) 
+                                                        >> 5U)])) 
+                                       << ((0U == (0x1fU 
                                                    & ((IData)(vlSelf->__PVT__state) 
                                                       << 6U)))
-                                            ? 0ULL : 
-                                           ((QData)((IData)(
-                                                            __PVT__unnamedblk1__DOT___GEN_36[
-                                                            (((IData)(0x1fU) 
-                                                              + 
-                                                              (0x1ffU 
-                                                               & ((IData)(vlSelf->__PVT__state) 
-                                                                  << 6U))) 
-                                                             >> 5U)])) 
-                                            << ((IData)(0x20U) 
-                                                - (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U))))) 
-                                          | ((QData)((IData)(
-                                                             __PVT__unnamedblk1__DOT___GEN_36[
-                                                             (0xeU 
+                                            ? 0x20U
+                                            : ((IData)(0x40U) 
+                                               - (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U))))) 
+                                      | (((0U == (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U)))
+                                           ? 0ULL : 
+                                          ((QData)((IData)(
+                                                           __PVT__unnamedblk1__DOT___GEN_36[
+                                                           (((IData)(0x1fU) 
+                                                             + 
+                                                             (0x1ffU 
                                                               & ((IData)(vlSelf->__PVT__state) 
-                                                                 << 1U))])) 
-                                             >> (0x1fU 
-                                                 & ((IData)(vlSelf->__PVT__state) 
-                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_37[0U] = (IData)(vlSelf->__PVT__refill_buffer_12);
+                                                                 << 6U))) 
+                                                            >> 5U)])) 
+                                           << ((IData)(0x20U) 
+                                               - (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U))))) 
+                                         | ((QData)((IData)(
+                                                            __PVT__unnamedblk1__DOT___GEN_36[
+                                                            (0xeU 
+                                                             & ((IData)(vlSelf->__PVT__state) 
+                                                                << 1U))])) 
+                                            >> (0x1fU 
+                                                & ((IData)(vlSelf->__PVT__state) 
+                                                   << 6U)))));
+    __PVT__unnamedblk1__DOT___GEN_37[0U] = (IData)(vlSelf->__PVT__refill_buffer_9);
     __PVT__unnamedblk1__DOT___GEN_37[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_12 
+                                                   (vlSelf->__PVT__refill_buffer_9 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_37[2U] = (IData)(vlSelf->__PVT__refill_buffer_12);
+    __PVT__unnamedblk1__DOT___GEN_37[2U] = (IData)(vlSelf->__PVT__refill_buffer_9);
     __PVT__unnamedblk1__DOT___GEN_37[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_12 
+                                                   (vlSelf->__PVT__refill_buffer_9 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_37[4U] = (IData)(vlSelf->__PVT__refill_buffer_12);
+    __PVT__unnamedblk1__DOT___GEN_37[4U] = (IData)(vlSelf->__PVT__refill_buffer_9);
     __PVT__unnamedblk1__DOT___GEN_37[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_12 
+                                                   (vlSelf->__PVT__refill_buffer_9 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_37[6U] = (IData)(vlSelf->__PVT__refill_buffer_12);
+    __PVT__unnamedblk1__DOT___GEN_37[6U] = (IData)(vlSelf->__PVT__refill_buffer_9);
     __PVT__unnamedblk1__DOT___GEN_37[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_12 
+                                                   (vlSelf->__PVT__refill_buffer_9 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_37[8U] = (IData)(vlSelf->__PVT__refill_buffer_12);
+    __PVT__unnamedblk1__DOT___GEN_37[8U] = (IData)(vlSelf->__PVT__refill_buffer_9);
     __PVT__unnamedblk1__DOT___GEN_37[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_12 
+                                                   (vlSelf->__PVT__refill_buffer_9 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_37[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_21);
     __PVT__unnamedblk1__DOT___GEN_37[0xbU] = (IData)(
@@ -3378,66 +3109,65 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_37[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_21 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_12 = (((QData)((IData)(
-                                                        __PVT__unnamedblk1__DOT___GEN_37[
-                                                        (((IData)(0x3fU) 
-                                                          + 
-                                                          (0x1ffU 
-                                                           & ((IData)(vlSelf->__PVT__state) 
-                                                              << 6U))) 
-                                                         >> 5U)])) 
-                                        << ((0U == 
-                                             (0x1fU 
-                                              & ((IData)(vlSelf->__PVT__state) 
-                                                 << 6U)))
-                                             ? 0x20U
-                                             : ((IData)(0x40U) 
-                                                - (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U))))) 
-                                       | (((0U == (0x1fU 
+    vlSelf->__PVT__refill_buffer_9 = (((QData)((IData)(
+                                                       __PVT__unnamedblk1__DOT___GEN_37[
+                                                       (((IData)(0x3fU) 
+                                                         + 
+                                                         (0x1ffU 
+                                                          & ((IData)(vlSelf->__PVT__state) 
+                                                             << 6U))) 
+                                                        >> 5U)])) 
+                                       << ((0U == (0x1fU 
                                                    & ((IData)(vlSelf->__PVT__state) 
                                                       << 6U)))
-                                            ? 0ULL : 
-                                           ((QData)((IData)(
-                                                            __PVT__unnamedblk1__DOT___GEN_37[
-                                                            (((IData)(0x1fU) 
-                                                              + 
-                                                              (0x1ffU 
-                                                               & ((IData)(vlSelf->__PVT__state) 
-                                                                  << 6U))) 
-                                                             >> 5U)])) 
-                                            << ((IData)(0x20U) 
-                                                - (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U))))) 
-                                          | ((QData)((IData)(
-                                                             __PVT__unnamedblk1__DOT___GEN_37[
-                                                             (0xeU 
+                                            ? 0x20U
+                                            : ((IData)(0x40U) 
+                                               - (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U))))) 
+                                      | (((0U == (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U)))
+                                           ? 0ULL : 
+                                          ((QData)((IData)(
+                                                           __PVT__unnamedblk1__DOT___GEN_37[
+                                                           (((IData)(0x1fU) 
+                                                             + 
+                                                             (0x1ffU 
                                                               & ((IData)(vlSelf->__PVT__state) 
-                                                                 << 1U))])) 
-                                             >> (0x1fU 
-                                                 & ((IData)(vlSelf->__PVT__state) 
-                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_38[0U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+                                                                 << 6U))) 
+                                                            >> 5U)])) 
+                                           << ((IData)(0x20U) 
+                                               - (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U))))) 
+                                         | ((QData)((IData)(
+                                                            __PVT__unnamedblk1__DOT___GEN_37[
+                                                            (0xeU 
+                                                             & ((IData)(vlSelf->__PVT__state) 
+                                                                << 1U))])) 
+                                            >> (0x1fU 
+                                                & ((IData)(vlSelf->__PVT__state) 
+                                                   << 6U)))));
+    __PVT__unnamedblk1__DOT___GEN_38[0U] = (IData)(vlSelf->__PVT__refill_buffer_10);
     __PVT__unnamedblk1__DOT___GEN_38[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                   (vlSelf->__PVT__refill_buffer_10 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_38[2U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_38[2U] = (IData)(vlSelf->__PVT__refill_buffer_10);
     __PVT__unnamedblk1__DOT___GEN_38[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                   (vlSelf->__PVT__refill_buffer_10 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_38[4U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_38[4U] = (IData)(vlSelf->__PVT__refill_buffer_10);
     __PVT__unnamedblk1__DOT___GEN_38[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                   (vlSelf->__PVT__refill_buffer_10 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_38[6U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_38[6U] = (IData)(vlSelf->__PVT__refill_buffer_10);
     __PVT__unnamedblk1__DOT___GEN_38[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                   (vlSelf->__PVT__refill_buffer_10 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_38[8U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_38[8U] = (IData)(vlSelf->__PVT__refill_buffer_10);
     __PVT__unnamedblk1__DOT___GEN_38[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                   (vlSelf->__PVT__refill_buffer_10 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_38[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_22);
     __PVT__unnamedblk1__DOT___GEN_38[0xbU] = (IData)(
@@ -3451,7 +3181,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_38[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_22 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_13 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_10 = (((QData)((IData)(
                                                         __PVT__unnamedblk1__DOT___GEN_38[
                                                         (((IData)(0x3fU) 
                                                           + 
@@ -3492,25 +3222,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                              >> (0x1fU 
                                                  & ((IData)(vlSelf->__PVT__state) 
                                                     << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_39[0U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_39[0U] = (IData)(vlSelf->__PVT__refill_buffer_11);
     __PVT__unnamedblk1__DOT___GEN_39[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                   (vlSelf->__PVT__refill_buffer_11 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_39[2U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_39[2U] = (IData)(vlSelf->__PVT__refill_buffer_11);
     __PVT__unnamedblk1__DOT___GEN_39[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                   (vlSelf->__PVT__refill_buffer_11 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_39[4U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_39[4U] = (IData)(vlSelf->__PVT__refill_buffer_11);
     __PVT__unnamedblk1__DOT___GEN_39[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                   (vlSelf->__PVT__refill_buffer_11 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_39[6U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_39[6U] = (IData)(vlSelf->__PVT__refill_buffer_11);
     __PVT__unnamedblk1__DOT___GEN_39[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                   (vlSelf->__PVT__refill_buffer_11 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_39[8U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_39[8U] = (IData)(vlSelf->__PVT__refill_buffer_11);
     __PVT__unnamedblk1__DOT___GEN_39[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                   (vlSelf->__PVT__refill_buffer_11 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_39[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_23);
     __PVT__unnamedblk1__DOT___GEN_39[0xbU] = (IData)(
@@ -3524,7 +3254,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_39[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_23 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_14 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_11 = (((QData)((IData)(
                                                         __PVT__unnamedblk1__DOT___GEN_39[
                                                         (((IData)(0x3fU) 
                                                           + 
@@ -3565,25 +3295,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                              >> (0x1fU 
                                                  & ((IData)(vlSelf->__PVT__state) 
                                                     << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_40[0U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_40[0U] = (IData)(vlSelf->__PVT__refill_buffer_12);
     __PVT__unnamedblk1__DOT___GEN_40[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                   (vlSelf->__PVT__refill_buffer_12 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_40[2U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_40[2U] = (IData)(vlSelf->__PVT__refill_buffer_12);
     __PVT__unnamedblk1__DOT___GEN_40[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                   (vlSelf->__PVT__refill_buffer_12 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_40[4U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_40[4U] = (IData)(vlSelf->__PVT__refill_buffer_12);
     __PVT__unnamedblk1__DOT___GEN_40[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                   (vlSelf->__PVT__refill_buffer_12 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_40[6U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_40[6U] = (IData)(vlSelf->__PVT__refill_buffer_12);
     __PVT__unnamedblk1__DOT___GEN_40[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                   (vlSelf->__PVT__refill_buffer_12 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_40[8U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_40[8U] = (IData)(vlSelf->__PVT__refill_buffer_12);
     __PVT__unnamedblk1__DOT___GEN_40[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                   (vlSelf->__PVT__refill_buffer_12 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_40[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_24);
     __PVT__unnamedblk1__DOT___GEN_40[0xbU] = (IData)(
@@ -3597,7 +3327,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_40[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_24 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_15 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_12 = (((QData)((IData)(
                                                         __PVT__unnamedblk1__DOT___GEN_40[
                                                         (((IData)(0x3fU) 
                                                           + 
@@ -3638,6 +3368,225 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                              >> (0x1fU 
                                                  & ((IData)(vlSelf->__PVT__state) 
                                                     << 6U)))));
+    __PVT__unnamedblk1__DOT___GEN_41[0U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_41[1U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[2U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_41[3U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[4U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_41[5U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[6U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_41[7U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[8U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_41[9U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_25);
+    __PVT__unnamedblk1__DOT___GEN_41[0xbU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_25 
+                                                      >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[0xcU] = (IData)(__PVT__unnamedblk1__DOT___GEN_25);
+    __PVT__unnamedblk1__DOT___GEN_41[0xdU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_25 
+                                                      >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[0xeU] = (IData)(__PVT__unnamedblk1__DOT___GEN_25);
+    __PVT__unnamedblk1__DOT___GEN_41[0xfU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_25 
+                                                      >> 0x20U));
+    vlSelf->__PVT__refill_buffer_13 = (((QData)((IData)(
+                                                        __PVT__unnamedblk1__DOT___GEN_41[
+                                                        (((IData)(0x3fU) 
+                                                          + 
+                                                          (0x1ffU 
+                                                           & ((IData)(vlSelf->__PVT__state) 
+                                                              << 6U))) 
+                                                         >> 5U)])) 
+                                        << ((0U == 
+                                             (0x1fU 
+                                              & ((IData)(vlSelf->__PVT__state) 
+                                                 << 6U)))
+                                             ? 0x20U
+                                             : ((IData)(0x40U) 
+                                                - (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U))))) 
+                                       | (((0U == (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U)))
+                                            ? 0ULL : 
+                                           ((QData)((IData)(
+                                                            __PVT__unnamedblk1__DOT___GEN_41[
+                                                            (((IData)(0x1fU) 
+                                                              + 
+                                                              (0x1ffU 
+                                                               & ((IData)(vlSelf->__PVT__state) 
+                                                                  << 6U))) 
+                                                             >> 5U)])) 
+                                            << ((IData)(0x20U) 
+                                                - (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U))))) 
+                                          | ((QData)((IData)(
+                                                             __PVT__unnamedblk1__DOT___GEN_41[
+                                                             (0xeU 
+                                                              & ((IData)(vlSelf->__PVT__state) 
+                                                                 << 1U))])) 
+                                             >> (0x1fU 
+                                                 & ((IData)(vlSelf->__PVT__state) 
+                                                    << 6U)))));
+    __PVT__unnamedblk1__DOT___GEN_42[0U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_42[1U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[2U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_42[3U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[4U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_42[5U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[6U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_42[7U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[8U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_42[9U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_26);
+    __PVT__unnamedblk1__DOT___GEN_42[0xbU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_26 
+                                                      >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[0xcU] = (IData)(__PVT__unnamedblk1__DOT___GEN_26);
+    __PVT__unnamedblk1__DOT___GEN_42[0xdU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_26 
+                                                      >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[0xeU] = (IData)(__PVT__unnamedblk1__DOT___GEN_26);
+    __PVT__unnamedblk1__DOT___GEN_42[0xfU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_26 
+                                                      >> 0x20U));
+    vlSelf->__PVT__refill_buffer_14 = (((QData)((IData)(
+                                                        __PVT__unnamedblk1__DOT___GEN_42[
+                                                        (((IData)(0x3fU) 
+                                                          + 
+                                                          (0x1ffU 
+                                                           & ((IData)(vlSelf->__PVT__state) 
+                                                              << 6U))) 
+                                                         >> 5U)])) 
+                                        << ((0U == 
+                                             (0x1fU 
+                                              & ((IData)(vlSelf->__PVT__state) 
+                                                 << 6U)))
+                                             ? 0x20U
+                                             : ((IData)(0x40U) 
+                                                - (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U))))) 
+                                       | (((0U == (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U)))
+                                            ? 0ULL : 
+                                           ((QData)((IData)(
+                                                            __PVT__unnamedblk1__DOT___GEN_42[
+                                                            (((IData)(0x1fU) 
+                                                              + 
+                                                              (0x1ffU 
+                                                               & ((IData)(vlSelf->__PVT__state) 
+                                                                  << 6U))) 
+                                                             >> 5U)])) 
+                                            << ((IData)(0x20U) 
+                                                - (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U))))) 
+                                          | ((QData)((IData)(
+                                                             __PVT__unnamedblk1__DOT___GEN_42[
+                                                             (0xeU 
+                                                              & ((IData)(vlSelf->__PVT__state) 
+                                                                 << 1U))])) 
+                                             >> (0x1fU 
+                                                 & ((IData)(vlSelf->__PVT__state) 
+                                                    << 6U)))));
+    __PVT__unnamedblk1__DOT___GEN_43[0U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_43[1U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[2U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_43[3U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[4U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_43[5U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[6U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_43[7U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[8U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_43[9U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_27);
+    __PVT__unnamedblk1__DOT___GEN_43[0xbU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_27 
+                                                      >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[0xcU] = (IData)(__PVT__unnamedblk1__DOT___GEN_27);
+    __PVT__unnamedblk1__DOT___GEN_43[0xdU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_27 
+                                                      >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[0xeU] = (IData)(__PVT__unnamedblk1__DOT___GEN_27);
+    __PVT__unnamedblk1__DOT___GEN_43[0xfU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_27 
+                                                      >> 0x20U));
+    vlSelf->__PVT__refill_buffer_15 = (((QData)((IData)(
+                                                        __PVT__unnamedblk1__DOT___GEN_43[
+                                                        (((IData)(0x3fU) 
+                                                          + 
+                                                          (0x1ffU 
+                                                           & ((IData)(vlSelf->__PVT__state) 
+                                                              << 6U))) 
+                                                         >> 5U)])) 
+                                        << ((0U == 
+                                             (0x1fU 
+                                              & ((IData)(vlSelf->__PVT__state) 
+                                                 << 6U)))
+                                             ? 0x20U
+                                             : ((IData)(0x40U) 
+                                                - (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U))))) 
+                                       | (((0U == (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U)))
+                                            ? 0ULL : 
+                                           ((QData)((IData)(
+                                                            __PVT__unnamedblk1__DOT___GEN_43[
+                                                            (((IData)(0x1fU) 
+                                                              + 
+                                                              (0x1ffU 
+                                                               & ((IData)(vlSelf->__PVT__state) 
+                                                                  << 6U))) 
+                                                             >> 5U)])) 
+                                            << ((IData)(0x20U) 
+                                                - (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U))))) 
+                                          | ((QData)((IData)(
+                                                             __PVT__unnamedblk1__DOT___GEN_43[
+                                                             (0xeU 
+                                                              & ((IData)(vlSelf->__PVT__state) 
+                                                                 << 1U))])) 
+                                             >> (0x1fU 
+                                                 & ((IData)(vlSelf->__PVT__state) 
+                                                    << 6U)))));
     vlSelf->__PVT__TagArray_ext__DOT___GEN_1 = vlSelf->__PVT__ren;
     vlSelf->__PVT__DataArray_15_7_ext__DOT___GEN_1 
         = vlSelf->__PVT__ren;
@@ -3665,6 +3614,162 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     vlSelf->__PVT__DataArray_15_0_ext__DOT___GEN = vlSelf->__PVT__ren;
     vlSelf->__PVT__DataArray_14_7_ext__DOT___GEN_1 
         = vlSelf->__PVT__ren;
+    if (vlSymsp->TOP.reset) {
+        __Vdly__w_count = 0U;
+        __Vdly__valid = 0U;
+        __Vdly__dirty = 0U;
+        __Vdly__r_count = 0U;
+        __Vdly__state = 0U;
+        vlSelf->__PVT__rw_buf = 0U;
+        vlSelf->__PVT__addr_buf = 0U;
+    } else {
+        if ((1U & (~ ((((0U == (IData)(vlSelf->__PVT__state)) 
+                        | (1U == (IData)(vlSelf->__PVT__state))) 
+                       | (2U == (IData)(vlSelf->__PVT__state))) 
+                      | (~ ((3U == (IData)(vlSelf->__PVT__state)) 
+                            & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                               >> 2U))))))) {
+            if (vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid) {
+                __Vdly__w_count = 0U;
+            } else if ((0xfU != (IData)(vlSelf->__PVT__w_count))) {
+                __Vdly__w_count = (0xfU & ((IData)(1U) 
+                                           + (IData)(vlSelf->__PVT__w_count)));
+            }
+        }
+        if (vlSelf->__PVT___GEN_0) {
+            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1 
+                = ((0x1fU >= (0xeU & (vlSelf->__PVT__addr_reg 
+                                      >> 6U))) ? ((IData)(1U) 
+                                                  << 
+                                                  (0xeU 
+                                                   & (vlSelf->__PVT__addr_reg 
+                                                      >> 6U)))
+                    : 0U);
+            __Vdly__valid = (0xffffU & ((IData)(vlSelf->__PVT__valid) 
+                                        | vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1));
+            __Vdly__dirty = (0xffffU & ((IData)(vlSelf->__PVT__is_alloc)
+                                         ? (~ ((~ (IData)(vlSelf->__PVT__dirty)) 
+                                               | vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1))
+                                         : ((IData)(vlSelf->__PVT__dirty) 
+                                            | vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1)));
+        }
+        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44 
+            = ((((IData)(vlSelf->__PVT___T_364) & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                   >> 2U)) 
+                & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid))
+                ? ((0U != (IData)(vlSelf->__PVT__cpu_mask)) 
+                   << 1U) : (IData)(vlSelf->__PVT__state));
+        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_45 
+            = (0xfU & ((1U & (((((IData)(vlSelf->__PVT__is_read) 
+                                 | (IData)(vlSelf->__PVT__is_write)) 
+                                | (IData)(vlSelf->__PVT___T_361)) 
+                               | (IData)(vlSelf->__PVT___T_363)) 
+                              | (~ ((IData)(vlSelf->__PVT___T_364) 
+                                    & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                       >> 2U))))) ? (IData)(vlSelf->__PVT__r_count)
+                        : ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)
+                            ? 0U : ((IData)(1U) + (IData)(vlSelf->__PVT__r_count)))));
+        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_46 
+            = ((0xfff00000U & (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_45) 
+                                << 0x1cU) | (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_45) 
+                                              << 0x18U) 
+                                             | ((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_45) 
+                                                << 0x14U)))) 
+               | (0xfffffU & (((IData)(vlSelf->__PVT__r_count) 
+                               << 0x10U) | (((IData)(vlSelf->__PVT__r_count) 
+                                             << 0xcU) 
+                                            | (((IData)(vlSelf->__PVT__r_count) 
+                                                << 8U) 
+                                               | (((IData)(vlSelf->__PVT__r_count) 
+                                                   << 4U) 
+                                                  | (IData)(vlSelf->__PVT__r_count)))))));
+        __Vdly__r_count = (0xfU & (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_46 
+                                   >> (0x1fU & ((IData)(vlSelf->__PVT__state) 
+                                                << 2U))));
+        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_47 
+            = ((0xff8000U & (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44) 
+                              << 0x15U) | (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44) 
+                                            << 0x12U) 
+                                           | ((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44) 
+                                              << 0xfU)))) 
+               | ((((4U & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
+                     ? 5U : (IData)(vlSelf->__PVT__state)) 
+                   << 0xcU) | ((((((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                   >> 2U) & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid))
+                                  ? 4U : (IData)(vlSelf->__PVT__state)) 
+                                << 9U) | ((((IData)(vlSelf->__PVT___T_356)
+                                             ? 0U : 
+                                            ((IData)(vlSelf->__PVT__dirty0)
+                                              ? 3U : 4U)) 
+                                           << 6U) | 
+                                          ((((IData)(vlSelf->io_fccache_hit)
+                                              ? (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started)
+                                              : ((IData)(vlSelf->__PVT__dirty0)
+                                                  ? 3U
+                                                  : 4U)) 
+                                            << 3U) 
+                                           | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started)
+                                               ? 1U
+                                               : (IData)(vlSelf->__PVT__state)))))));
+        __Vdly__state = ((0x17U >= (0x1fU & ((IData)(3U) 
+                                             * (IData)(vlSelf->__PVT__state))))
+                          ? (7U & (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_47 
+                                   >> (0x1fU & ((IData)(3U) 
+                                                * (IData)(vlSelf->__PVT__state)))))
+                          : 0U);
+        if ((0U != (IData)(vlSelf->__PVT__state))) {
+            if ((1U == (IData)(vlSelf->__PVT__state))) {
+                if ((1U & (~ (IData)(vlSelf->io_fccache_hit)))) {
+                    vlSelf->__PVT__rw_buf = vlSelf->io_axi_req_bits_rw;
+                    if ((0U == (IData)(vlSelf->__PVT__state))) {
+                        vlSelf->__PVT__addr_buf = 0U;
+                    } else if ((1U == (IData)(vlSelf->__PVT__state))) {
+                        vlSelf->__PVT__addr_buf = ((IData)(vlSelf->io_fccache_hit)
+                                                    ? 0U
+                                                    : vlSelf->__PVT___GEN_8);
+                    } else if ((2U == (IData)(vlSelf->__PVT__state))) {
+                        vlSelf->__PVT__addr_buf = ((IData)(vlSelf->__PVT___T_356)
+                                                    ? 0U
+                                                    : vlSelf->__PVT___GEN_8);
+                    } else if ((3U == (IData)(vlSelf->__PVT__state))) {
+                        if ((4U & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))) {
+                            vlSelf->__PVT__addr_buf 
+                                = ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)
+                                    ? (0xffffff80U 
+                                       & vlSelf->__PVT__addr_reg)
+                                    : 0U);
+                        }
+                    } else if (vlSelf->__PVT___GEN_10) {
+                        vlSelf->__PVT__addr_buf = 0U;
+                    }
+                }
+            } else if ((1U & (~ ((2U != (IData)(vlSelf->__PVT__state)) 
+                                 | (IData)(vlSelf->__PVT___T_356))))) {
+                vlSelf->__PVT__rw_buf = vlSelf->io_axi_req_bits_rw;
+                if ((0U == (IData)(vlSelf->__PVT__state))) {
+                    vlSelf->__PVT__addr_buf = 0U;
+                } else if ((1U == (IData)(vlSelf->__PVT__state))) {
+                    vlSelf->__PVT__addr_buf = ((IData)(vlSelf->io_fccache_hit)
+                                                ? 0U
+                                                : vlSelf->__PVT___GEN_8);
+                } else if ((2U == (IData)(vlSelf->__PVT__state))) {
+                    vlSelf->__PVT__addr_buf = ((IData)(vlSelf->__PVT___T_356)
+                                                ? 0U
+                                                : vlSelf->__PVT___GEN_8);
+                } else if ((3U == (IData)(vlSelf->__PVT__state))) {
+                    if ((4U & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))) {
+                        vlSelf->__PVT__addr_buf = ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)
+                                                    ? 
+                                                   (0xffffff80U 
+                                                    & vlSelf->__PVT__addr_reg)
+                                                    : 0U);
+                    }
+                } else if (vlSelf->__PVT___GEN_10) {
+                    vlSelf->__PVT__addr_buf = 0U;
+                }
+            }
+        }
+    }
     vlSelf->__PVT__DataArray_14_7_ext__DOT___GEN = vlSelf->__PVT__ren;
     vlSelf->__PVT__DataArray_14_6_ext__DOT___GEN_1 
         = vlSelf->__PVT__ren;
@@ -5241,12 +5346,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     vlSelf->__VdfgTmp_h25305f44__0[0x1dU] = (IData)(
                                                     (vlSelf->__PVT__refill_buffer_14 
                                                      >> 0x20U));
-    vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_361 = (3U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_364 = (5U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT__is_alloc = ((5U == (IData)(vlSelf->__PVT__state)) 
-                               & (0xfU == (IData)(vlSelf->__PVT__r_count)));
     vlSelf->__PVT__ren_reg = vlSelf->__PVT__ren;
     vlSelf->__PVT___TagArray_ext_R1_data = ((IData)(vlSelf->__PVT__TagArray_ext__DOT___GEN_1)
                                              ? vlSelf->__PVT__TagArray_ext__DOT__Memory
@@ -6462,6 +6561,13 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                              ? vlSelf->__PVT__TagArray_ext__DOT__Memory
                                             [vlSelf->__PVT__TagArray_ext__DOT___GEN_0]
                                              : 0U);
+    vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_361 = (3U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_363 = (4U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_364 = (5U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT__is_alloc = ((5U == (IData)(vlSelf->__PVT__state)) 
+                               & (0xfU == (IData)(vlSelf->__PVT__r_count)));
     __Vtemp_hfe7561f7__0[0U] = vlSelf->__PVT__cpu_mask;
     __Vtemp_hfe7561f7__0[1U] = 0U;
     __Vtemp_hfe7561f7__0[2U] = 0U;
@@ -6666,17 +6772,14 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                             & (vlSelf->__PVT___TagArray_ext_R1_data 
                                                == (vlSelf->__PVT__addr_reg 
                                                    >> 0xaU)))));
-    vlSelf->__VdfgTmp_h082e9772__0 = (((IData)(vlSelf->__PVT__dirty0)
-                                        ? ((((IData)(vlSelf->__PVT__dirty0)
-                                              ? vlSelf->__PVT___TagArray_ext_R0_data
-                                              : vlSelf->__PVT___TagArray_ext_R1_data) 
-                                            << 3U) 
-                                           | (7U & 
-                                              (vlSelf->__PVT__addr_reg 
-                                               >> 7U)))
-                                        : (vlSelf->__PVT__addr_reg 
-                                           >> 7U)) 
-                                      << 7U);
+    vlSelf->__PVT___GEN_8 = (((IData)(vlSelf->__PVT__dirty0)
+                               ? ((((IData)(vlSelf->__PVT__dirty0)
+                                     ? vlSelf->__PVT___TagArray_ext_R0_data
+                                     : vlSelf->__PVT___TagArray_ext_R1_data) 
+                                   << 3U) | (7U & (vlSelf->__PVT__addr_reg 
+                                                   >> 7U)))
+                               : (vlSelf->__PVT__addr_reg 
+                                  >> 7U)) << 7U);
     vlSelf->io_cpu_resp_bits_data = (((QData)((IData)(
                                                       vlSelf->__PVT__read[
                                                       (((IData)(0x3fU) 
@@ -6710,6 +6813,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__1
                           & (((0U == (IData)(vlSelf->__PVT__state)) 
                               | (1U == (IData)(vlSelf->__PVT__state))) 
                              & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started)));
+    vlSelf->__PVT___GEN_10 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
+                                    | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                       >> 2U)));
 }
 
 VL_INLINE_OPT void VSoc_Cache___nba_comb__TOP__Soc__DOT__core__DOT__Icache__0(VSoc_Cache* vlSelf) {
@@ -6801,8 +6907,24 @@ VL_INLINE_OPT void VSoc_Cache___nba_comb__TOP__Soc__DOT__core__DOT__Icache__0(VS
         vlSelf->__PVT__wdata[0x1fU] = (IData)((vlSelf->__PVT__cpu_data 
                                                >> 0x20U));
     }
-    vlSelf->__PVT___GEN_8 = ((3U == (IData)(vlSelf->__PVT__state)) 
-                             & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid));
+    vlSelf->io_axi_req_bits_rw = ((0U != (IData)(vlSelf->__PVT__state)) 
+                                  & ((1U == (IData)(vlSelf->__PVT__state))
+                                      ? ((~ (IData)(vlSelf->io_fccache_hit)) 
+                                         & (~ (IData)(vlSelf->__PVT__dirty0)))
+                                      : ((2U == (IData)(vlSelf->__PVT__state))
+                                          ? ((~ (IData)(vlSelf->__PVT___T_356)) 
+                                             & (~ (IData)(vlSelf->__PVT__dirty0)))
+                                          : ((3U == (IData)(vlSelf->__PVT__state))
+                                              ? ((4U 
+                                                  & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
+                                                  ? (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)
+                                                  : (IData)(vlSelf->__PVT__rw_buf))
+                                              : ((4U 
+                                                  == (IData)(vlSelf->__PVT__state)) 
+                                                 & ((~ 
+                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                      >> 2U)) 
+                                                    & (IData)(vlSelf->__PVT__rw_buf)))))));
 }
 
 VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(VSoc_Cache* vlSelf) {
@@ -6810,14 +6932,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+          VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0\n"); );
     // Init
-    CData/*0:0*/ __PVT__unnamedblk1__DOT___T_363;
-    __PVT__unnamedblk1__DOT___T_363 = 0;
-    QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_9;
-    __PVT__unnamedblk1__DOT___GEN_9 = 0;
-    QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_10;
-    __PVT__unnamedblk1__DOT___GEN_10 = 0;
-    QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_11;
-    __PVT__unnamedblk1__DOT___GEN_11 = 0;
     QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_12;
     __PVT__unnamedblk1__DOT___GEN_12 = 0;
     QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_13;
@@ -6844,12 +6958,12 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_23 = 0;
     QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_24;
     __PVT__unnamedblk1__DOT___GEN_24 = 0;
-    VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_25;
-    VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_25);
-    VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_26;
-    VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_26);
-    VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_27;
-    VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_27);
+    QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_25;
+    __PVT__unnamedblk1__DOT___GEN_25 = 0;
+    QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_26;
+    __PVT__unnamedblk1__DOT___GEN_26 = 0;
+    QData/*63:0*/ __PVT__unnamedblk1__DOT___GEN_27;
+    __PVT__unnamedblk1__DOT___GEN_27 = 0;
     VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_28;
     VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_28);
     VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_29;
@@ -6876,6 +6990,14 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_39);
     VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_40;
     VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_40);
+    VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_41;
+    VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_41);
+    VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_42;
+    VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_42);
+    VlWide<16>/*511:0*/ __PVT__unnamedblk1__DOT___GEN_43;
+    VL_ZERO_W(512, __PVT__unnamedblk1__DOT___GEN_43);
+    CData/*3:0*/ __Vdly__w_count;
+    __Vdly__w_count = 0;
     CData/*3:0*/ __Vdly__r_count;
     __Vdly__r_count = 0;
     CData/*2:0*/ __Vdly__state;
@@ -6884,8 +7006,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __Vdly__valid = 0;
     SData/*15:0*/ __Vdly__dirty;
     __Vdly__dirty = 0;
-    CData/*3:0*/ __Vdly__w_count;
-    __Vdly__w_count = 0;
     CData/*3:0*/ __Vdlyvdim0__TagArray_ext__DOT__Memory__v0;
     __Vdlyvdim0__TagArray_ext__DOT__Memory__v0 = 0;
     IData/*21:0*/ __Vdlyvval__TagArray_ext__DOT__Memory__v0;
@@ -7668,9 +7788,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __Vdly__w_count = vlSelf->__PVT__w_count;
     __Vdly__dirty = vlSelf->__PVT__dirty;
     __Vdly__valid = vlSelf->__PVT__valid;
+    __Vdlyvset__TagArray_ext__DOT__Memory__v0 = 0U;
     __Vdly__r_count = vlSelf->__PVT__r_count;
     __Vdly__state = vlSelf->__PVT__state;
-    __Vdlyvset__TagArray_ext__DOT__Memory__v0 = 0U;
     __Vdlyvset__DataArray_15_7_ext__DOT__Memory__v0 = 0U;
     __Vdlyvset__DataArray_15_6_ext__DOT__Memory__v0 = 0U;
     __Vdlyvset__DataArray_15_5_ext__DOT__Memory__v0 = 0U;
@@ -7799,517 +7919,255 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __Vdlyvset__DataArray_0_2_ext__DOT__Memory__v0 = 0U;
     __Vdlyvset__DataArray_0_1_ext__DOT__Memory__v0 = 0U;
     __Vdlyvset__DataArray_0_0_ext__DOT__Memory__v0 = 0U;
-    __PVT__unnamedblk1__DOT___T_363 = (4U == (IData)(vlSelf->__PVT__state));
-    if (vlSymsp->TOP.reset) {
-        __Vdly__w_count = 0U;
-        __Vdly__valid = 0U;
-        __Vdly__dirty = 0U;
-        __Vdly__r_count = 0U;
-        __Vdly__state = 0U;
-    } else {
-        if ((1U & (~ ((((0U == (IData)(vlSelf->__PVT__state)) 
-                        | (1U == (IData)(vlSelf->__PVT__state))) 
-                       | (2U == (IData)(vlSelf->__PVT__state))) 
-                      | (3U != (IData)(vlSelf->__PVT__state)))))) {
-            if (vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid) {
-                __Vdly__w_count = 0U;
-            } else if ((0xfU != (IData)(vlSelf->__PVT__w_count))) {
-                __Vdly__w_count = (0xfU & ((IData)(1U) 
-                                           + (IData)(vlSelf->__PVT__w_count)));
-            }
-        }
-        if (vlSelf->__PVT___GEN_0) {
-            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1 
-                = ((0x1fU >= (0xeU & (vlSelf->__PVT__addr_reg 
-                                      >> 6U))) ? ((IData)(1U) 
-                                                  << 
-                                                  (0xeU 
-                                                   & (vlSelf->__PVT__addr_reg 
-                                                      >> 6U)))
-                    : 0U);
-            __Vdly__valid = (0xffffU & ((IData)(vlSelf->__PVT__valid) 
-                                        | vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1));
-            __Vdly__dirty = (0xffffU & ((IData)(vlSelf->__PVT__is_alloc)
-                                         ? (~ ((~ (IData)(vlSelf->__PVT__dirty)) 
-                                               | vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1))
-                                         : ((IData)(vlSelf->__PVT__dirty) 
-                                            | vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1)));
-        }
-        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_41 
-            = (((IData)(vlSelf->__PVT___T_364) & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid))
-                ? ((0U != (IData)(vlSelf->__PVT__cpu_mask)) 
-                   << 1U) : (IData)(vlSelf->__PVT__state));
-        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_42 
-            = (0xfU & ((1U & (((((IData)(vlSelf->__PVT__is_read) 
-                                 | (IData)(vlSelf->__PVT__is_write)) 
-                                | (IData)(vlSelf->__PVT___T_361)) 
-                               | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                              | (~ (IData)(vlSelf->__PVT___T_364))))
-                        ? (IData)(vlSelf->__PVT__r_count)
-                        : ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)
-                            ? 0U : ((IData)(1U) + (IData)(vlSelf->__PVT__r_count)))));
-        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_43 
-            = ((0xfff00000U & (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_42) 
-                                << 0x1cU) | (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_42) 
-                                              << 0x18U) 
-                                             | ((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_42) 
-                                                << 0x14U)))) 
-               | (0xfffffU & (((IData)(vlSelf->__PVT__r_count) 
-                               << 0x10U) | (((IData)(vlSelf->__PVT__r_count) 
-                                             << 0xcU) 
-                                            | (((IData)(vlSelf->__PVT__r_count) 
-                                                << 8U) 
-                                               | (((IData)(vlSelf->__PVT__r_count) 
-                                                   << 4U) 
-                                                  | (IData)(vlSelf->__PVT__r_count)))))));
-        __Vdly__r_count = (0xfU & (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_43 
-                                   >> (0x1fU & ((IData)(vlSelf->__PVT__state) 
-                                                << 2U))));
-        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44 
-            = (0x5000U | ((0xff8000U & (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_41) 
-                                         << 0x15U) 
-                                        | (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_41) 
-                                            << 0x12U) 
-                                           | ((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_41) 
-                                              << 0xfU)))) 
-                          | ((((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)
-                                ? 4U : (IData)(vlSelf->__PVT__state)) 
-                              << 9U) | ((((IData)(vlSelf->__PVT___T_356)
-                                           ? 0U : ((IData)(vlSelf->__PVT__dirty0)
-                                                    ? 3U
-                                                    : 4U)) 
-                                         << 6U) | (
-                                                   (((IData)(vlSelf->io_fccache_hit)
-                                                      ? (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid)
-                                                      : 
-                                                     ((IData)(vlSelf->__PVT__dirty0)
-                                                       ? 3U
-                                                       : 4U)) 
-                                                    << 3U) 
-                                                   | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid)
-                                                       ? 
-                                                      ((0U 
-                                                        != (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask))
-                                                        ? 2U
-                                                        : 1U)
-                                                       : (IData)(vlSelf->__PVT__state)))))));
-        __Vdly__state = ((0x17U >= (0x1fU & ((IData)(3U) 
-                                             * (IData)(vlSelf->__PVT__state))))
-                          ? (7U & (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44 
-                                   >> (0x1fU & ((IData)(3U) 
-                                                * (IData)(vlSelf->__PVT__state)))))
-                          : 0U);
+    if (((IData)(vlSelf->__PVT___GEN_0) & (IData)(vlSelf->__PVT__is_alloc))) {
+        __Vdlyvval__TagArray_ext__DOT__Memory__v0 = 
+            (vlSelf->__PVT__addr_reg >> 0xaU);
+        __Vdlyvset__TagArray_ext__DOT__Memory__v0 = 1U;
+        __Vdlyvdim0__TagArray_ext__DOT__Memory__v0 
+            = (0xeU & (vlSelf->__PVT__addr_reg >> 6U));
     }
-    __PVT__unnamedblk1__DOT___GEN_9 = ((1U & (((((((IData)(vlSelf->__PVT__is_read) 
-                                                   | (IData)(vlSelf->__PVT__is_write)) 
-                                                  | (IData)(vlSelf->__PVT___T_361)) 
-                                                 | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                | (~ (IData)(vlSelf->__PVT___T_364))) 
-                                               | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
-                                              | (0U 
-                                                 != (IData)(vlSelf->__PVT__r_count))))
-                                        ? vlSelf->__PVT__refill_buffer_0
-                                        : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_10 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_12 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
+                                                | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
+                                               | (0U 
+                                                  != (IData)(vlSelf->__PVT__r_count))))
+                                         ? vlSelf->__PVT__refill_buffer_0
+                                         : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
+    __PVT__unnamedblk1__DOT___GEN_13 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (1U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_1
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_11 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_14 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (2U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_2
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_12 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_15 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (3U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_3
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_13 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_16 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (4U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_4
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_14 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_17 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (5U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_5
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_15 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_18 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (6U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_6
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_16 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_19 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (7U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_7
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_17 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_20 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (8U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_8
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_18 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_21 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (9U 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_9
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_19 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_22 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (0xaU 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_10
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_20 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_23 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (0xbU 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_11
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_21 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_24 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (0xcU 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_12
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_22 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_25 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (0xdU 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_13
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_23 = ((1U & (((((
-                                                   ((IData)(vlSelf->__PVT__is_read) 
-                                                    | (IData)(vlSelf->__PVT__is_write)) 
-                                                   | (IData)(vlSelf->__PVT___T_361)) 
-                                                  | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
-                                                 | (~ (IData)(vlSelf->__PVT___T_364))) 
+    __PVT__unnamedblk1__DOT___GEN_26 = ((1U & (((((
+                                                   (((IData)(vlSelf->__PVT__is_read) 
+                                                     | (IData)(vlSelf->__PVT__is_write)) 
+                                                    | (IData)(vlSelf->__PVT___T_361)) 
+                                                   | (IData)(vlSelf->__PVT___T_363)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_364))) 
+                                                 | (~ 
+                                                    ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                     >> 1U))) 
                                                 | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)) 
                                                | (0xeU 
                                                   != (IData)(vlSelf->__PVT__r_count))))
                                          ? vlSelf->__PVT__refill_buffer_14
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_24 = ((1U & (((((IData)(vlSelf->__PVT__is_read) 
+    __PVT__unnamedblk1__DOT___GEN_27 = ((1U & (((((IData)(vlSelf->__PVT__is_read) 
                                                   | (IData)(vlSelf->__PVT__is_write)) 
                                                  | (IData)(vlSelf->__PVT___T_361)) 
-                                                | (IData)(__PVT__unnamedblk1__DOT___T_363)) 
+                                                | (IData)(vlSelf->__PVT___T_363)) 
                                                | (~ 
-                                                  ((IData)(vlSelf->__PVT___T_364) 
+                                                  (((IData)(vlSelf->__PVT___T_364) 
+                                                    & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                       >> 1U)) 
                                                    & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid) 
                                                       | (0xfU 
                                                          == (IData)(vlSelf->__PVT__r_count)))))))
                                          ? vlSelf->__PVT__refill_buffer_15
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data);
-    __PVT__unnamedblk1__DOT___GEN_25[0U] = (IData)(vlSelf->__PVT__refill_buffer_0);
-    __PVT__unnamedblk1__DOT___GEN_25[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_0 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[2U] = (IData)(vlSelf->__PVT__refill_buffer_0);
-    __PVT__unnamedblk1__DOT___GEN_25[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_0 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[4U] = (IData)(vlSelf->__PVT__refill_buffer_0);
-    __PVT__unnamedblk1__DOT___GEN_25[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_0 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[6U] = (IData)(vlSelf->__PVT__refill_buffer_0);
-    __PVT__unnamedblk1__DOT___GEN_25[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_0 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[8U] = (IData)(vlSelf->__PVT__refill_buffer_0);
-    __PVT__unnamedblk1__DOT___GEN_25[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_0 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_9);
-    __PVT__unnamedblk1__DOT___GEN_25[0xbU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_9 
-                                                      >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[0xcU] = (IData)(__PVT__unnamedblk1__DOT___GEN_9);
-    __PVT__unnamedblk1__DOT___GEN_25[0xdU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_9 
-                                                      >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_25[0xeU] = (IData)(__PVT__unnamedblk1__DOT___GEN_9);
-    __PVT__unnamedblk1__DOT___GEN_25[0xfU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_9 
-                                                      >> 0x20U));
-    vlSelf->__PVT__refill_buffer_0 = (((QData)((IData)(
-                                                       __PVT__unnamedblk1__DOT___GEN_25[
-                                                       (((IData)(0x3fU) 
-                                                         + 
-                                                         (0x1ffU 
-                                                          & ((IData)(vlSelf->__PVT__state) 
-                                                             << 6U))) 
-                                                        >> 5U)])) 
-                                       << ((0U == (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U)))
-                                            ? 0x20U
-                                            : ((IData)(0x40U) 
-                                               - (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U))))) 
-                                      | (((0U == (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U)))
-                                           ? 0ULL : 
-                                          ((QData)((IData)(
-                                                           __PVT__unnamedblk1__DOT___GEN_25[
-                                                           (((IData)(0x1fU) 
-                                                             + 
-                                                             (0x1ffU 
-                                                              & ((IData)(vlSelf->__PVT__state) 
-                                                                 << 6U))) 
-                                                            >> 5U)])) 
-                                           << ((IData)(0x20U) 
-                                               - (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U))))) 
-                                         | ((QData)((IData)(
-                                                            __PVT__unnamedblk1__DOT___GEN_25[
-                                                            (0xeU 
-                                                             & ((IData)(vlSelf->__PVT__state) 
-                                                                << 1U))])) 
-                                            >> (0x1fU 
-                                                & ((IData)(vlSelf->__PVT__state) 
-                                                   << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_26[0U] = (IData)(vlSelf->__PVT__refill_buffer_1);
-    __PVT__unnamedblk1__DOT___GEN_26[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_1 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[2U] = (IData)(vlSelf->__PVT__refill_buffer_1);
-    __PVT__unnamedblk1__DOT___GEN_26[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_1 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[4U] = (IData)(vlSelf->__PVT__refill_buffer_1);
-    __PVT__unnamedblk1__DOT___GEN_26[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_1 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[6U] = (IData)(vlSelf->__PVT__refill_buffer_1);
-    __PVT__unnamedblk1__DOT___GEN_26[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_1 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[8U] = (IData)(vlSelf->__PVT__refill_buffer_1);
-    __PVT__unnamedblk1__DOT___GEN_26[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_1 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_10);
-    __PVT__unnamedblk1__DOT___GEN_26[0xbU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_10 
-                                                      >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[0xcU] = (IData)(__PVT__unnamedblk1__DOT___GEN_10);
-    __PVT__unnamedblk1__DOT___GEN_26[0xdU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_10 
-                                                      >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_26[0xeU] = (IData)(__PVT__unnamedblk1__DOT___GEN_10);
-    __PVT__unnamedblk1__DOT___GEN_26[0xfU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_10 
-                                                      >> 0x20U));
-    vlSelf->__PVT__refill_buffer_1 = (((QData)((IData)(
-                                                       __PVT__unnamedblk1__DOT___GEN_26[
-                                                       (((IData)(0x3fU) 
-                                                         + 
-                                                         (0x1ffU 
-                                                          & ((IData)(vlSelf->__PVT__state) 
-                                                             << 6U))) 
-                                                        >> 5U)])) 
-                                       << ((0U == (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U)))
-                                            ? 0x20U
-                                            : ((IData)(0x40U) 
-                                               - (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U))))) 
-                                      | (((0U == (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U)))
-                                           ? 0ULL : 
-                                          ((QData)((IData)(
-                                                           __PVT__unnamedblk1__DOT___GEN_26[
-                                                           (((IData)(0x1fU) 
-                                                             + 
-                                                             (0x1ffU 
-                                                              & ((IData)(vlSelf->__PVT__state) 
-                                                                 << 6U))) 
-                                                            >> 5U)])) 
-                                           << ((IData)(0x20U) 
-                                               - (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U))))) 
-                                         | ((QData)((IData)(
-                                                            __PVT__unnamedblk1__DOT___GEN_26[
-                                                            (0xeU 
-                                                             & ((IData)(vlSelf->__PVT__state) 
-                                                                << 1U))])) 
-                                            >> (0x1fU 
-                                                & ((IData)(vlSelf->__PVT__state) 
-                                                   << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_27[0U] = (IData)(vlSelf->__PVT__refill_buffer_2);
-    __PVT__unnamedblk1__DOT___GEN_27[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_2 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[2U] = (IData)(vlSelf->__PVT__refill_buffer_2);
-    __PVT__unnamedblk1__DOT___GEN_27[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_2 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[4U] = (IData)(vlSelf->__PVT__refill_buffer_2);
-    __PVT__unnamedblk1__DOT___GEN_27[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_2 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[6U] = (IData)(vlSelf->__PVT__refill_buffer_2);
-    __PVT__unnamedblk1__DOT___GEN_27[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_2 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[8U] = (IData)(vlSelf->__PVT__refill_buffer_2);
-    __PVT__unnamedblk1__DOT___GEN_27[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_2 
-                                                    >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_11);
-    __PVT__unnamedblk1__DOT___GEN_27[0xbU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_11 
-                                                      >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[0xcU] = (IData)(__PVT__unnamedblk1__DOT___GEN_11);
-    __PVT__unnamedblk1__DOT___GEN_27[0xdU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_11 
-                                                      >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_27[0xeU] = (IData)(__PVT__unnamedblk1__DOT___GEN_11);
-    __PVT__unnamedblk1__DOT___GEN_27[0xfU] = (IData)(
-                                                     (__PVT__unnamedblk1__DOT___GEN_11 
-                                                      >> 0x20U));
-    vlSelf->__PVT__refill_buffer_2 = (((QData)((IData)(
-                                                       __PVT__unnamedblk1__DOT___GEN_27[
-                                                       (((IData)(0x3fU) 
-                                                         + 
-                                                         (0x1ffU 
-                                                          & ((IData)(vlSelf->__PVT__state) 
-                                                             << 6U))) 
-                                                        >> 5U)])) 
-                                       << ((0U == (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U)))
-                                            ? 0x20U
-                                            : ((IData)(0x40U) 
-                                               - (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U))))) 
-                                      | (((0U == (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U)))
-                                           ? 0ULL : 
-                                          ((QData)((IData)(
-                                                           __PVT__unnamedblk1__DOT___GEN_27[
-                                                           (((IData)(0x1fU) 
-                                                             + 
-                                                             (0x1ffU 
-                                                              & ((IData)(vlSelf->__PVT__state) 
-                                                                 << 6U))) 
-                                                            >> 5U)])) 
-                                           << ((IData)(0x20U) 
-                                               - (0x1fU 
-                                                  & ((IData)(vlSelf->__PVT__state) 
-                                                     << 6U))))) 
-                                         | ((QData)((IData)(
-                                                            __PVT__unnamedblk1__DOT___GEN_27[
-                                                            (0xeU 
-                                                             & ((IData)(vlSelf->__PVT__state) 
-                                                                << 1U))])) 
-                                            >> (0x1fU 
-                                                & ((IData)(vlSelf->__PVT__state) 
-                                                   << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_28[0U] = (IData)(vlSelf->__PVT__refill_buffer_3);
+    __PVT__unnamedblk1__DOT___GEN_28[0U] = (IData)(vlSelf->__PVT__refill_buffer_0);
     __PVT__unnamedblk1__DOT___GEN_28[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_3 
+                                                   (vlSelf->__PVT__refill_buffer_0 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_28[2U] = (IData)(vlSelf->__PVT__refill_buffer_3);
+    __PVT__unnamedblk1__DOT___GEN_28[2U] = (IData)(vlSelf->__PVT__refill_buffer_0);
     __PVT__unnamedblk1__DOT___GEN_28[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_3 
+                                                   (vlSelf->__PVT__refill_buffer_0 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_28[4U] = (IData)(vlSelf->__PVT__refill_buffer_3);
+    __PVT__unnamedblk1__DOT___GEN_28[4U] = (IData)(vlSelf->__PVT__refill_buffer_0);
     __PVT__unnamedblk1__DOT___GEN_28[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_3 
+                                                   (vlSelf->__PVT__refill_buffer_0 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_28[6U] = (IData)(vlSelf->__PVT__refill_buffer_3);
+    __PVT__unnamedblk1__DOT___GEN_28[6U] = (IData)(vlSelf->__PVT__refill_buffer_0);
     __PVT__unnamedblk1__DOT___GEN_28[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_3 
+                                                   (vlSelf->__PVT__refill_buffer_0 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_28[8U] = (IData)(vlSelf->__PVT__refill_buffer_3);
+    __PVT__unnamedblk1__DOT___GEN_28[8U] = (IData)(vlSelf->__PVT__refill_buffer_0);
     __PVT__unnamedblk1__DOT___GEN_28[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_3 
+                                                   (vlSelf->__PVT__refill_buffer_0 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_28[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_12);
     __PVT__unnamedblk1__DOT___GEN_28[0xbU] = (IData)(
@@ -8323,7 +8181,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_28[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_12 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_3 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_0 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_28[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -8363,25 +8221,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_29[0U] = (IData)(vlSelf->__PVT__refill_buffer_4);
+    __PVT__unnamedblk1__DOT___GEN_29[0U] = (IData)(vlSelf->__PVT__refill_buffer_1);
     __PVT__unnamedblk1__DOT___GEN_29[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_4 
+                                                   (vlSelf->__PVT__refill_buffer_1 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_29[2U] = (IData)(vlSelf->__PVT__refill_buffer_4);
+    __PVT__unnamedblk1__DOT___GEN_29[2U] = (IData)(vlSelf->__PVT__refill_buffer_1);
     __PVT__unnamedblk1__DOT___GEN_29[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_4 
+                                                   (vlSelf->__PVT__refill_buffer_1 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_29[4U] = (IData)(vlSelf->__PVT__refill_buffer_4);
+    __PVT__unnamedblk1__DOT___GEN_29[4U] = (IData)(vlSelf->__PVT__refill_buffer_1);
     __PVT__unnamedblk1__DOT___GEN_29[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_4 
+                                                   (vlSelf->__PVT__refill_buffer_1 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_29[6U] = (IData)(vlSelf->__PVT__refill_buffer_4);
+    __PVT__unnamedblk1__DOT___GEN_29[6U] = (IData)(vlSelf->__PVT__refill_buffer_1);
     __PVT__unnamedblk1__DOT___GEN_29[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_4 
+                                                   (vlSelf->__PVT__refill_buffer_1 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_29[8U] = (IData)(vlSelf->__PVT__refill_buffer_4);
+    __PVT__unnamedblk1__DOT___GEN_29[8U] = (IData)(vlSelf->__PVT__refill_buffer_1);
     __PVT__unnamedblk1__DOT___GEN_29[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_4 
+                                                   (vlSelf->__PVT__refill_buffer_1 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_29[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_13);
     __PVT__unnamedblk1__DOT___GEN_29[0xbU] = (IData)(
@@ -8395,7 +8253,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_29[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_13 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_4 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_1 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_29[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -8435,25 +8293,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_30[0U] = (IData)(vlSelf->__PVT__refill_buffer_5);
+    __PVT__unnamedblk1__DOT___GEN_30[0U] = (IData)(vlSelf->__PVT__refill_buffer_2);
     __PVT__unnamedblk1__DOT___GEN_30[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_5 
+                                                   (vlSelf->__PVT__refill_buffer_2 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_30[2U] = (IData)(vlSelf->__PVT__refill_buffer_5);
+    __PVT__unnamedblk1__DOT___GEN_30[2U] = (IData)(vlSelf->__PVT__refill_buffer_2);
     __PVT__unnamedblk1__DOT___GEN_30[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_5 
+                                                   (vlSelf->__PVT__refill_buffer_2 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_30[4U] = (IData)(vlSelf->__PVT__refill_buffer_5);
+    __PVT__unnamedblk1__DOT___GEN_30[4U] = (IData)(vlSelf->__PVT__refill_buffer_2);
     __PVT__unnamedblk1__DOT___GEN_30[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_5 
+                                                   (vlSelf->__PVT__refill_buffer_2 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_30[6U] = (IData)(vlSelf->__PVT__refill_buffer_5);
+    __PVT__unnamedblk1__DOT___GEN_30[6U] = (IData)(vlSelf->__PVT__refill_buffer_2);
     __PVT__unnamedblk1__DOT___GEN_30[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_5 
+                                                   (vlSelf->__PVT__refill_buffer_2 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_30[8U] = (IData)(vlSelf->__PVT__refill_buffer_5);
+    __PVT__unnamedblk1__DOT___GEN_30[8U] = (IData)(vlSelf->__PVT__refill_buffer_2);
     __PVT__unnamedblk1__DOT___GEN_30[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_5 
+                                                   (vlSelf->__PVT__refill_buffer_2 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_30[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_14);
     __PVT__unnamedblk1__DOT___GEN_30[0xbU] = (IData)(
@@ -8467,7 +8325,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_30[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_14 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_5 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_2 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_30[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -8507,25 +8365,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_31[0U] = (IData)(vlSelf->__PVT__refill_buffer_6);
+    __PVT__unnamedblk1__DOT___GEN_31[0U] = (IData)(vlSelf->__PVT__refill_buffer_3);
     __PVT__unnamedblk1__DOT___GEN_31[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_6 
+                                                   (vlSelf->__PVT__refill_buffer_3 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_31[2U] = (IData)(vlSelf->__PVT__refill_buffer_6);
+    __PVT__unnamedblk1__DOT___GEN_31[2U] = (IData)(vlSelf->__PVT__refill_buffer_3);
     __PVT__unnamedblk1__DOT___GEN_31[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_6 
+                                                   (vlSelf->__PVT__refill_buffer_3 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_31[4U] = (IData)(vlSelf->__PVT__refill_buffer_6);
+    __PVT__unnamedblk1__DOT___GEN_31[4U] = (IData)(vlSelf->__PVT__refill_buffer_3);
     __PVT__unnamedblk1__DOT___GEN_31[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_6 
+                                                   (vlSelf->__PVT__refill_buffer_3 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_31[6U] = (IData)(vlSelf->__PVT__refill_buffer_6);
+    __PVT__unnamedblk1__DOT___GEN_31[6U] = (IData)(vlSelf->__PVT__refill_buffer_3);
     __PVT__unnamedblk1__DOT___GEN_31[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_6 
+                                                   (vlSelf->__PVT__refill_buffer_3 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_31[8U] = (IData)(vlSelf->__PVT__refill_buffer_6);
+    __PVT__unnamedblk1__DOT___GEN_31[8U] = (IData)(vlSelf->__PVT__refill_buffer_3);
     __PVT__unnamedblk1__DOT___GEN_31[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_6 
+                                                   (vlSelf->__PVT__refill_buffer_3 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_31[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_15);
     __PVT__unnamedblk1__DOT___GEN_31[0xbU] = (IData)(
@@ -8539,7 +8397,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_31[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_15 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_6 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_3 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_31[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -8579,25 +8437,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_32[0U] = (IData)(vlSelf->__PVT__refill_buffer_7);
+    __PVT__unnamedblk1__DOT___GEN_32[0U] = (IData)(vlSelf->__PVT__refill_buffer_4);
     __PVT__unnamedblk1__DOT___GEN_32[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_7 
+                                                   (vlSelf->__PVT__refill_buffer_4 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_32[2U] = (IData)(vlSelf->__PVT__refill_buffer_7);
+    __PVT__unnamedblk1__DOT___GEN_32[2U] = (IData)(vlSelf->__PVT__refill_buffer_4);
     __PVT__unnamedblk1__DOT___GEN_32[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_7 
+                                                   (vlSelf->__PVT__refill_buffer_4 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_32[4U] = (IData)(vlSelf->__PVT__refill_buffer_7);
+    __PVT__unnamedblk1__DOT___GEN_32[4U] = (IData)(vlSelf->__PVT__refill_buffer_4);
     __PVT__unnamedblk1__DOT___GEN_32[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_7 
+                                                   (vlSelf->__PVT__refill_buffer_4 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_32[6U] = (IData)(vlSelf->__PVT__refill_buffer_7);
+    __PVT__unnamedblk1__DOT___GEN_32[6U] = (IData)(vlSelf->__PVT__refill_buffer_4);
     __PVT__unnamedblk1__DOT___GEN_32[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_7 
+                                                   (vlSelf->__PVT__refill_buffer_4 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_32[8U] = (IData)(vlSelf->__PVT__refill_buffer_7);
+    __PVT__unnamedblk1__DOT___GEN_32[8U] = (IData)(vlSelf->__PVT__refill_buffer_4);
     __PVT__unnamedblk1__DOT___GEN_32[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_7 
+                                                   (vlSelf->__PVT__refill_buffer_4 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_32[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_16);
     __PVT__unnamedblk1__DOT___GEN_32[0xbU] = (IData)(
@@ -8611,7 +8469,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_32[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_16 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_7 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_4 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_32[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -8651,25 +8509,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_33[0U] = (IData)(vlSelf->__PVT__refill_buffer_8);
+    __PVT__unnamedblk1__DOT___GEN_33[0U] = (IData)(vlSelf->__PVT__refill_buffer_5);
     __PVT__unnamedblk1__DOT___GEN_33[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_8 
+                                                   (vlSelf->__PVT__refill_buffer_5 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_33[2U] = (IData)(vlSelf->__PVT__refill_buffer_8);
+    __PVT__unnamedblk1__DOT___GEN_33[2U] = (IData)(vlSelf->__PVT__refill_buffer_5);
     __PVT__unnamedblk1__DOT___GEN_33[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_8 
+                                                   (vlSelf->__PVT__refill_buffer_5 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_33[4U] = (IData)(vlSelf->__PVT__refill_buffer_8);
+    __PVT__unnamedblk1__DOT___GEN_33[4U] = (IData)(vlSelf->__PVT__refill_buffer_5);
     __PVT__unnamedblk1__DOT___GEN_33[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_8 
+                                                   (vlSelf->__PVT__refill_buffer_5 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_33[6U] = (IData)(vlSelf->__PVT__refill_buffer_8);
+    __PVT__unnamedblk1__DOT___GEN_33[6U] = (IData)(vlSelf->__PVT__refill_buffer_5);
     __PVT__unnamedblk1__DOT___GEN_33[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_8 
+                                                   (vlSelf->__PVT__refill_buffer_5 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_33[8U] = (IData)(vlSelf->__PVT__refill_buffer_8);
+    __PVT__unnamedblk1__DOT___GEN_33[8U] = (IData)(vlSelf->__PVT__refill_buffer_5);
     __PVT__unnamedblk1__DOT___GEN_33[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_8 
+                                                   (vlSelf->__PVT__refill_buffer_5 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_33[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_17);
     __PVT__unnamedblk1__DOT___GEN_33[0xbU] = (IData)(
@@ -8683,7 +8541,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_33[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_17 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_8 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_5 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_33[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -8723,25 +8581,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_34[0U] = (IData)(vlSelf->__PVT__refill_buffer_9);
+    __PVT__unnamedblk1__DOT___GEN_34[0U] = (IData)(vlSelf->__PVT__refill_buffer_6);
     __PVT__unnamedblk1__DOT___GEN_34[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_9 
+                                                   (vlSelf->__PVT__refill_buffer_6 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_34[2U] = (IData)(vlSelf->__PVT__refill_buffer_9);
+    __PVT__unnamedblk1__DOT___GEN_34[2U] = (IData)(vlSelf->__PVT__refill_buffer_6);
     __PVT__unnamedblk1__DOT___GEN_34[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_9 
+                                                   (vlSelf->__PVT__refill_buffer_6 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_34[4U] = (IData)(vlSelf->__PVT__refill_buffer_9);
+    __PVT__unnamedblk1__DOT___GEN_34[4U] = (IData)(vlSelf->__PVT__refill_buffer_6);
     __PVT__unnamedblk1__DOT___GEN_34[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_9 
+                                                   (vlSelf->__PVT__refill_buffer_6 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_34[6U] = (IData)(vlSelf->__PVT__refill_buffer_9);
+    __PVT__unnamedblk1__DOT___GEN_34[6U] = (IData)(vlSelf->__PVT__refill_buffer_6);
     __PVT__unnamedblk1__DOT___GEN_34[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_9 
+                                                   (vlSelf->__PVT__refill_buffer_6 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_34[8U] = (IData)(vlSelf->__PVT__refill_buffer_9);
+    __PVT__unnamedblk1__DOT___GEN_34[8U] = (IData)(vlSelf->__PVT__refill_buffer_6);
     __PVT__unnamedblk1__DOT___GEN_34[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_9 
+                                                   (vlSelf->__PVT__refill_buffer_6 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_34[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_18);
     __PVT__unnamedblk1__DOT___GEN_34[0xbU] = (IData)(
@@ -8755,7 +8613,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_34[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_18 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_9 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_6 = (((QData)((IData)(
                                                        __PVT__unnamedblk1__DOT___GEN_34[
                                                        (((IData)(0x3fU) 
                                                          + 
@@ -8795,25 +8653,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                             >> (0x1fU 
                                                 & ((IData)(vlSelf->__PVT__state) 
                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_35[0U] = (IData)(vlSelf->__PVT__refill_buffer_10);
+    __PVT__unnamedblk1__DOT___GEN_35[0U] = (IData)(vlSelf->__PVT__refill_buffer_7);
     __PVT__unnamedblk1__DOT___GEN_35[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_10 
+                                                   (vlSelf->__PVT__refill_buffer_7 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_35[2U] = (IData)(vlSelf->__PVT__refill_buffer_10);
+    __PVT__unnamedblk1__DOT___GEN_35[2U] = (IData)(vlSelf->__PVT__refill_buffer_7);
     __PVT__unnamedblk1__DOT___GEN_35[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_10 
+                                                   (vlSelf->__PVT__refill_buffer_7 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_35[4U] = (IData)(vlSelf->__PVT__refill_buffer_10);
+    __PVT__unnamedblk1__DOT___GEN_35[4U] = (IData)(vlSelf->__PVT__refill_buffer_7);
     __PVT__unnamedblk1__DOT___GEN_35[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_10 
+                                                   (vlSelf->__PVT__refill_buffer_7 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_35[6U] = (IData)(vlSelf->__PVT__refill_buffer_10);
+    __PVT__unnamedblk1__DOT___GEN_35[6U] = (IData)(vlSelf->__PVT__refill_buffer_7);
     __PVT__unnamedblk1__DOT___GEN_35[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_10 
+                                                   (vlSelf->__PVT__refill_buffer_7 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_35[8U] = (IData)(vlSelf->__PVT__refill_buffer_10);
+    __PVT__unnamedblk1__DOT___GEN_35[8U] = (IData)(vlSelf->__PVT__refill_buffer_7);
     __PVT__unnamedblk1__DOT___GEN_35[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_10 
+                                                   (vlSelf->__PVT__refill_buffer_7 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_35[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_19);
     __PVT__unnamedblk1__DOT___GEN_35[0xbU] = (IData)(
@@ -8827,66 +8685,65 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_35[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_19 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_10 = (((QData)((IData)(
-                                                        __PVT__unnamedblk1__DOT___GEN_35[
-                                                        (((IData)(0x3fU) 
-                                                          + 
-                                                          (0x1ffU 
-                                                           & ((IData)(vlSelf->__PVT__state) 
-                                                              << 6U))) 
-                                                         >> 5U)])) 
-                                        << ((0U == 
-                                             (0x1fU 
-                                              & ((IData)(vlSelf->__PVT__state) 
-                                                 << 6U)))
-                                             ? 0x20U
-                                             : ((IData)(0x40U) 
-                                                - (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U))))) 
-                                       | (((0U == (0x1fU 
+    vlSelf->__PVT__refill_buffer_7 = (((QData)((IData)(
+                                                       __PVT__unnamedblk1__DOT___GEN_35[
+                                                       (((IData)(0x3fU) 
+                                                         + 
+                                                         (0x1ffU 
+                                                          & ((IData)(vlSelf->__PVT__state) 
+                                                             << 6U))) 
+                                                        >> 5U)])) 
+                                       << ((0U == (0x1fU 
                                                    & ((IData)(vlSelf->__PVT__state) 
                                                       << 6U)))
-                                            ? 0ULL : 
-                                           ((QData)((IData)(
-                                                            __PVT__unnamedblk1__DOT___GEN_35[
-                                                            (((IData)(0x1fU) 
-                                                              + 
-                                                              (0x1ffU 
-                                                               & ((IData)(vlSelf->__PVT__state) 
-                                                                  << 6U))) 
-                                                             >> 5U)])) 
-                                            << ((IData)(0x20U) 
-                                                - (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U))))) 
-                                          | ((QData)((IData)(
-                                                             __PVT__unnamedblk1__DOT___GEN_35[
-                                                             (0xeU 
+                                            ? 0x20U
+                                            : ((IData)(0x40U) 
+                                               - (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U))))) 
+                                      | (((0U == (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U)))
+                                           ? 0ULL : 
+                                          ((QData)((IData)(
+                                                           __PVT__unnamedblk1__DOT___GEN_35[
+                                                           (((IData)(0x1fU) 
+                                                             + 
+                                                             (0x1ffU 
                                                               & ((IData)(vlSelf->__PVT__state) 
-                                                                 << 1U))])) 
-                                             >> (0x1fU 
-                                                 & ((IData)(vlSelf->__PVT__state) 
-                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_36[0U] = (IData)(vlSelf->__PVT__refill_buffer_11);
+                                                                 << 6U))) 
+                                                            >> 5U)])) 
+                                           << ((IData)(0x20U) 
+                                               - (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U))))) 
+                                         | ((QData)((IData)(
+                                                            __PVT__unnamedblk1__DOT___GEN_35[
+                                                            (0xeU 
+                                                             & ((IData)(vlSelf->__PVT__state) 
+                                                                << 1U))])) 
+                                            >> (0x1fU 
+                                                & ((IData)(vlSelf->__PVT__state) 
+                                                   << 6U)))));
+    __PVT__unnamedblk1__DOT___GEN_36[0U] = (IData)(vlSelf->__PVT__refill_buffer_8);
     __PVT__unnamedblk1__DOT___GEN_36[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_11 
+                                                   (vlSelf->__PVT__refill_buffer_8 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_36[2U] = (IData)(vlSelf->__PVT__refill_buffer_11);
+    __PVT__unnamedblk1__DOT___GEN_36[2U] = (IData)(vlSelf->__PVT__refill_buffer_8);
     __PVT__unnamedblk1__DOT___GEN_36[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_11 
+                                                   (vlSelf->__PVT__refill_buffer_8 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_36[4U] = (IData)(vlSelf->__PVT__refill_buffer_11);
+    __PVT__unnamedblk1__DOT___GEN_36[4U] = (IData)(vlSelf->__PVT__refill_buffer_8);
     __PVT__unnamedblk1__DOT___GEN_36[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_11 
+                                                   (vlSelf->__PVT__refill_buffer_8 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_36[6U] = (IData)(vlSelf->__PVT__refill_buffer_11);
+    __PVT__unnamedblk1__DOT___GEN_36[6U] = (IData)(vlSelf->__PVT__refill_buffer_8);
     __PVT__unnamedblk1__DOT___GEN_36[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_11 
+                                                   (vlSelf->__PVT__refill_buffer_8 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_36[8U] = (IData)(vlSelf->__PVT__refill_buffer_11);
+    __PVT__unnamedblk1__DOT___GEN_36[8U] = (IData)(vlSelf->__PVT__refill_buffer_8);
     __PVT__unnamedblk1__DOT___GEN_36[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_11 
+                                                   (vlSelf->__PVT__refill_buffer_8 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_36[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_20);
     __PVT__unnamedblk1__DOT___GEN_36[0xbU] = (IData)(
@@ -8900,66 +8757,65 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_36[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_20 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_11 = (((QData)((IData)(
-                                                        __PVT__unnamedblk1__DOT___GEN_36[
-                                                        (((IData)(0x3fU) 
-                                                          + 
-                                                          (0x1ffU 
-                                                           & ((IData)(vlSelf->__PVT__state) 
-                                                              << 6U))) 
-                                                         >> 5U)])) 
-                                        << ((0U == 
-                                             (0x1fU 
-                                              & ((IData)(vlSelf->__PVT__state) 
-                                                 << 6U)))
-                                             ? 0x20U
-                                             : ((IData)(0x40U) 
-                                                - (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U))))) 
-                                       | (((0U == (0x1fU 
+    vlSelf->__PVT__refill_buffer_8 = (((QData)((IData)(
+                                                       __PVT__unnamedblk1__DOT___GEN_36[
+                                                       (((IData)(0x3fU) 
+                                                         + 
+                                                         (0x1ffU 
+                                                          & ((IData)(vlSelf->__PVT__state) 
+                                                             << 6U))) 
+                                                        >> 5U)])) 
+                                       << ((0U == (0x1fU 
                                                    & ((IData)(vlSelf->__PVT__state) 
                                                       << 6U)))
-                                            ? 0ULL : 
-                                           ((QData)((IData)(
-                                                            __PVT__unnamedblk1__DOT___GEN_36[
-                                                            (((IData)(0x1fU) 
-                                                              + 
-                                                              (0x1ffU 
-                                                               & ((IData)(vlSelf->__PVT__state) 
-                                                                  << 6U))) 
-                                                             >> 5U)])) 
-                                            << ((IData)(0x20U) 
-                                                - (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U))))) 
-                                          | ((QData)((IData)(
-                                                             __PVT__unnamedblk1__DOT___GEN_36[
-                                                             (0xeU 
+                                            ? 0x20U
+                                            : ((IData)(0x40U) 
+                                               - (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U))))) 
+                                      | (((0U == (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U)))
+                                           ? 0ULL : 
+                                          ((QData)((IData)(
+                                                           __PVT__unnamedblk1__DOT___GEN_36[
+                                                           (((IData)(0x1fU) 
+                                                             + 
+                                                             (0x1ffU 
                                                               & ((IData)(vlSelf->__PVT__state) 
-                                                                 << 1U))])) 
-                                             >> (0x1fU 
-                                                 & ((IData)(vlSelf->__PVT__state) 
-                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_37[0U] = (IData)(vlSelf->__PVT__refill_buffer_12);
+                                                                 << 6U))) 
+                                                            >> 5U)])) 
+                                           << ((IData)(0x20U) 
+                                               - (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U))))) 
+                                         | ((QData)((IData)(
+                                                            __PVT__unnamedblk1__DOT___GEN_36[
+                                                            (0xeU 
+                                                             & ((IData)(vlSelf->__PVT__state) 
+                                                                << 1U))])) 
+                                            >> (0x1fU 
+                                                & ((IData)(vlSelf->__PVT__state) 
+                                                   << 6U)))));
+    __PVT__unnamedblk1__DOT___GEN_37[0U] = (IData)(vlSelf->__PVT__refill_buffer_9);
     __PVT__unnamedblk1__DOT___GEN_37[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_12 
+                                                   (vlSelf->__PVT__refill_buffer_9 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_37[2U] = (IData)(vlSelf->__PVT__refill_buffer_12);
+    __PVT__unnamedblk1__DOT___GEN_37[2U] = (IData)(vlSelf->__PVT__refill_buffer_9);
     __PVT__unnamedblk1__DOT___GEN_37[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_12 
+                                                   (vlSelf->__PVT__refill_buffer_9 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_37[4U] = (IData)(vlSelf->__PVT__refill_buffer_12);
+    __PVT__unnamedblk1__DOT___GEN_37[4U] = (IData)(vlSelf->__PVT__refill_buffer_9);
     __PVT__unnamedblk1__DOT___GEN_37[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_12 
+                                                   (vlSelf->__PVT__refill_buffer_9 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_37[6U] = (IData)(vlSelf->__PVT__refill_buffer_12);
+    __PVT__unnamedblk1__DOT___GEN_37[6U] = (IData)(vlSelf->__PVT__refill_buffer_9);
     __PVT__unnamedblk1__DOT___GEN_37[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_12 
+                                                   (vlSelf->__PVT__refill_buffer_9 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_37[8U] = (IData)(vlSelf->__PVT__refill_buffer_12);
+    __PVT__unnamedblk1__DOT___GEN_37[8U] = (IData)(vlSelf->__PVT__refill_buffer_9);
     __PVT__unnamedblk1__DOT___GEN_37[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_12 
+                                                   (vlSelf->__PVT__refill_buffer_9 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_37[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_21);
     __PVT__unnamedblk1__DOT___GEN_37[0xbU] = (IData)(
@@ -8973,66 +8829,65 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_37[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_21 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_12 = (((QData)((IData)(
-                                                        __PVT__unnamedblk1__DOT___GEN_37[
-                                                        (((IData)(0x3fU) 
-                                                          + 
-                                                          (0x1ffU 
-                                                           & ((IData)(vlSelf->__PVT__state) 
-                                                              << 6U))) 
-                                                         >> 5U)])) 
-                                        << ((0U == 
-                                             (0x1fU 
-                                              & ((IData)(vlSelf->__PVT__state) 
-                                                 << 6U)))
-                                             ? 0x20U
-                                             : ((IData)(0x40U) 
-                                                - (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U))))) 
-                                       | (((0U == (0x1fU 
+    vlSelf->__PVT__refill_buffer_9 = (((QData)((IData)(
+                                                       __PVT__unnamedblk1__DOT___GEN_37[
+                                                       (((IData)(0x3fU) 
+                                                         + 
+                                                         (0x1ffU 
+                                                          & ((IData)(vlSelf->__PVT__state) 
+                                                             << 6U))) 
+                                                        >> 5U)])) 
+                                       << ((0U == (0x1fU 
                                                    & ((IData)(vlSelf->__PVT__state) 
                                                       << 6U)))
-                                            ? 0ULL : 
-                                           ((QData)((IData)(
-                                                            __PVT__unnamedblk1__DOT___GEN_37[
-                                                            (((IData)(0x1fU) 
-                                                              + 
-                                                              (0x1ffU 
-                                                               & ((IData)(vlSelf->__PVT__state) 
-                                                                  << 6U))) 
-                                                             >> 5U)])) 
-                                            << ((IData)(0x20U) 
-                                                - (0x1fU 
-                                                   & ((IData)(vlSelf->__PVT__state) 
-                                                      << 6U))))) 
-                                          | ((QData)((IData)(
-                                                             __PVT__unnamedblk1__DOT___GEN_37[
-                                                             (0xeU 
+                                            ? 0x20U
+                                            : ((IData)(0x40U) 
+                                               - (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U))))) 
+                                      | (((0U == (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U)))
+                                           ? 0ULL : 
+                                          ((QData)((IData)(
+                                                           __PVT__unnamedblk1__DOT___GEN_37[
+                                                           (((IData)(0x1fU) 
+                                                             + 
+                                                             (0x1ffU 
                                                               & ((IData)(vlSelf->__PVT__state) 
-                                                                 << 1U))])) 
-                                             >> (0x1fU 
-                                                 & ((IData)(vlSelf->__PVT__state) 
-                                                    << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_38[0U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+                                                                 << 6U))) 
+                                                            >> 5U)])) 
+                                           << ((IData)(0x20U) 
+                                               - (0x1fU 
+                                                  & ((IData)(vlSelf->__PVT__state) 
+                                                     << 6U))))) 
+                                         | ((QData)((IData)(
+                                                            __PVT__unnamedblk1__DOT___GEN_37[
+                                                            (0xeU 
+                                                             & ((IData)(vlSelf->__PVT__state) 
+                                                                << 1U))])) 
+                                            >> (0x1fU 
+                                                & ((IData)(vlSelf->__PVT__state) 
+                                                   << 6U)))));
+    __PVT__unnamedblk1__DOT___GEN_38[0U] = (IData)(vlSelf->__PVT__refill_buffer_10);
     __PVT__unnamedblk1__DOT___GEN_38[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                   (vlSelf->__PVT__refill_buffer_10 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_38[2U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_38[2U] = (IData)(vlSelf->__PVT__refill_buffer_10);
     __PVT__unnamedblk1__DOT___GEN_38[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                   (vlSelf->__PVT__refill_buffer_10 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_38[4U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_38[4U] = (IData)(vlSelf->__PVT__refill_buffer_10);
     __PVT__unnamedblk1__DOT___GEN_38[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                   (vlSelf->__PVT__refill_buffer_10 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_38[6U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_38[6U] = (IData)(vlSelf->__PVT__refill_buffer_10);
     __PVT__unnamedblk1__DOT___GEN_38[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                   (vlSelf->__PVT__refill_buffer_10 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_38[8U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_38[8U] = (IData)(vlSelf->__PVT__refill_buffer_10);
     __PVT__unnamedblk1__DOT___GEN_38[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                   (vlSelf->__PVT__refill_buffer_10 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_38[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_22);
     __PVT__unnamedblk1__DOT___GEN_38[0xbU] = (IData)(
@@ -9046,7 +8901,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_38[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_22 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_13 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_10 = (((QData)((IData)(
                                                         __PVT__unnamedblk1__DOT___GEN_38[
                                                         (((IData)(0x3fU) 
                                                           + 
@@ -9087,25 +8942,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                              >> (0x1fU 
                                                  & ((IData)(vlSelf->__PVT__state) 
                                                     << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_39[0U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_39[0U] = (IData)(vlSelf->__PVT__refill_buffer_11);
     __PVT__unnamedblk1__DOT___GEN_39[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                   (vlSelf->__PVT__refill_buffer_11 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_39[2U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_39[2U] = (IData)(vlSelf->__PVT__refill_buffer_11);
     __PVT__unnamedblk1__DOT___GEN_39[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                   (vlSelf->__PVT__refill_buffer_11 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_39[4U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_39[4U] = (IData)(vlSelf->__PVT__refill_buffer_11);
     __PVT__unnamedblk1__DOT___GEN_39[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                   (vlSelf->__PVT__refill_buffer_11 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_39[6U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_39[6U] = (IData)(vlSelf->__PVT__refill_buffer_11);
     __PVT__unnamedblk1__DOT___GEN_39[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                   (vlSelf->__PVT__refill_buffer_11 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_39[8U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_39[8U] = (IData)(vlSelf->__PVT__refill_buffer_11);
     __PVT__unnamedblk1__DOT___GEN_39[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                   (vlSelf->__PVT__refill_buffer_11 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_39[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_23);
     __PVT__unnamedblk1__DOT___GEN_39[0xbU] = (IData)(
@@ -9119,7 +8974,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_39[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_23 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_14 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_11 = (((QData)((IData)(
                                                         __PVT__unnamedblk1__DOT___GEN_39[
                                                         (((IData)(0x3fU) 
                                                           + 
@@ -9160,25 +9015,25 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                              >> (0x1fU 
                                                  & ((IData)(vlSelf->__PVT__state) 
                                                     << 6U)))));
-    __PVT__unnamedblk1__DOT___GEN_40[0U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_40[0U] = (IData)(vlSelf->__PVT__refill_buffer_12);
     __PVT__unnamedblk1__DOT___GEN_40[1U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                   (vlSelf->__PVT__refill_buffer_12 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_40[2U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_40[2U] = (IData)(vlSelf->__PVT__refill_buffer_12);
     __PVT__unnamedblk1__DOT___GEN_40[3U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                   (vlSelf->__PVT__refill_buffer_12 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_40[4U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_40[4U] = (IData)(vlSelf->__PVT__refill_buffer_12);
     __PVT__unnamedblk1__DOT___GEN_40[5U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                   (vlSelf->__PVT__refill_buffer_12 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_40[6U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_40[6U] = (IData)(vlSelf->__PVT__refill_buffer_12);
     __PVT__unnamedblk1__DOT___GEN_40[7U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                   (vlSelf->__PVT__refill_buffer_12 
                                                     >> 0x20U));
-    __PVT__unnamedblk1__DOT___GEN_40[8U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_40[8U] = (IData)(vlSelf->__PVT__refill_buffer_12);
     __PVT__unnamedblk1__DOT___GEN_40[9U] = (IData)(
-                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                   (vlSelf->__PVT__refill_buffer_12 
                                                     >> 0x20U));
     __PVT__unnamedblk1__DOT___GEN_40[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_24);
     __PVT__unnamedblk1__DOT___GEN_40[0xbU] = (IData)(
@@ -9192,7 +9047,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __PVT__unnamedblk1__DOT___GEN_40[0xfU] = (IData)(
                                                      (__PVT__unnamedblk1__DOT___GEN_24 
                                                       >> 0x20U));
-    vlSelf->__PVT__refill_buffer_15 = (((QData)((IData)(
+    vlSelf->__PVT__refill_buffer_12 = (((QData)((IData)(
                                                         __PVT__unnamedblk1__DOT___GEN_40[
                                                         (((IData)(0x3fU) 
                                                           + 
@@ -9233,13 +9088,225 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                              >> (0x1fU 
                                                  & ((IData)(vlSelf->__PVT__state) 
                                                     << 6U)))));
-    if (((IData)(vlSelf->__PVT___GEN_0) & (IData)(vlSelf->__PVT__is_alloc))) {
-        __Vdlyvval__TagArray_ext__DOT__Memory__v0 = 
-            (vlSelf->__PVT__addr_reg >> 0xaU);
-        __Vdlyvset__TagArray_ext__DOT__Memory__v0 = 1U;
-        __Vdlyvdim0__TagArray_ext__DOT__Memory__v0 
-            = (0xeU & (vlSelf->__PVT__addr_reg >> 6U));
-    }
+    __PVT__unnamedblk1__DOT___GEN_41[0U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_41[1U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[2U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_41[3U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[4U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_41[5U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[6U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_41[7U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[8U] = (IData)(vlSelf->__PVT__refill_buffer_13);
+    __PVT__unnamedblk1__DOT___GEN_41[9U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_13 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_25);
+    __PVT__unnamedblk1__DOT___GEN_41[0xbU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_25 
+                                                      >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[0xcU] = (IData)(__PVT__unnamedblk1__DOT___GEN_25);
+    __PVT__unnamedblk1__DOT___GEN_41[0xdU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_25 
+                                                      >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_41[0xeU] = (IData)(__PVT__unnamedblk1__DOT___GEN_25);
+    __PVT__unnamedblk1__DOT___GEN_41[0xfU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_25 
+                                                      >> 0x20U));
+    vlSelf->__PVT__refill_buffer_13 = (((QData)((IData)(
+                                                        __PVT__unnamedblk1__DOT___GEN_41[
+                                                        (((IData)(0x3fU) 
+                                                          + 
+                                                          (0x1ffU 
+                                                           & ((IData)(vlSelf->__PVT__state) 
+                                                              << 6U))) 
+                                                         >> 5U)])) 
+                                        << ((0U == 
+                                             (0x1fU 
+                                              & ((IData)(vlSelf->__PVT__state) 
+                                                 << 6U)))
+                                             ? 0x20U
+                                             : ((IData)(0x40U) 
+                                                - (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U))))) 
+                                       | (((0U == (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U)))
+                                            ? 0ULL : 
+                                           ((QData)((IData)(
+                                                            __PVT__unnamedblk1__DOT___GEN_41[
+                                                            (((IData)(0x1fU) 
+                                                              + 
+                                                              (0x1ffU 
+                                                               & ((IData)(vlSelf->__PVT__state) 
+                                                                  << 6U))) 
+                                                             >> 5U)])) 
+                                            << ((IData)(0x20U) 
+                                                - (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U))))) 
+                                          | ((QData)((IData)(
+                                                             __PVT__unnamedblk1__DOT___GEN_41[
+                                                             (0xeU 
+                                                              & ((IData)(vlSelf->__PVT__state) 
+                                                                 << 1U))])) 
+                                             >> (0x1fU 
+                                                 & ((IData)(vlSelf->__PVT__state) 
+                                                    << 6U)))));
+    __PVT__unnamedblk1__DOT___GEN_42[0U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_42[1U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[2U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_42[3U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[4U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_42[5U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[6U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_42[7U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[8U] = (IData)(vlSelf->__PVT__refill_buffer_14);
+    __PVT__unnamedblk1__DOT___GEN_42[9U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_14 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_26);
+    __PVT__unnamedblk1__DOT___GEN_42[0xbU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_26 
+                                                      >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[0xcU] = (IData)(__PVT__unnamedblk1__DOT___GEN_26);
+    __PVT__unnamedblk1__DOT___GEN_42[0xdU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_26 
+                                                      >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_42[0xeU] = (IData)(__PVT__unnamedblk1__DOT___GEN_26);
+    __PVT__unnamedblk1__DOT___GEN_42[0xfU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_26 
+                                                      >> 0x20U));
+    vlSelf->__PVT__refill_buffer_14 = (((QData)((IData)(
+                                                        __PVT__unnamedblk1__DOT___GEN_42[
+                                                        (((IData)(0x3fU) 
+                                                          + 
+                                                          (0x1ffU 
+                                                           & ((IData)(vlSelf->__PVT__state) 
+                                                              << 6U))) 
+                                                         >> 5U)])) 
+                                        << ((0U == 
+                                             (0x1fU 
+                                              & ((IData)(vlSelf->__PVT__state) 
+                                                 << 6U)))
+                                             ? 0x20U
+                                             : ((IData)(0x40U) 
+                                                - (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U))))) 
+                                       | (((0U == (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U)))
+                                            ? 0ULL : 
+                                           ((QData)((IData)(
+                                                            __PVT__unnamedblk1__DOT___GEN_42[
+                                                            (((IData)(0x1fU) 
+                                                              + 
+                                                              (0x1ffU 
+                                                               & ((IData)(vlSelf->__PVT__state) 
+                                                                  << 6U))) 
+                                                             >> 5U)])) 
+                                            << ((IData)(0x20U) 
+                                                - (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U))))) 
+                                          | ((QData)((IData)(
+                                                             __PVT__unnamedblk1__DOT___GEN_42[
+                                                             (0xeU 
+                                                              & ((IData)(vlSelf->__PVT__state) 
+                                                                 << 1U))])) 
+                                             >> (0x1fU 
+                                                 & ((IData)(vlSelf->__PVT__state) 
+                                                    << 6U)))));
+    __PVT__unnamedblk1__DOT___GEN_43[0U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_43[1U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[2U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_43[3U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[4U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_43[5U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[6U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_43[7U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[8U] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT__unnamedblk1__DOT___GEN_43[9U] = (IData)(
+                                                   (vlSelf->__PVT__refill_buffer_15 
+                                                    >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[0xaU] = (IData)(__PVT__unnamedblk1__DOT___GEN_27);
+    __PVT__unnamedblk1__DOT___GEN_43[0xbU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_27 
+                                                      >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[0xcU] = (IData)(__PVT__unnamedblk1__DOT___GEN_27);
+    __PVT__unnamedblk1__DOT___GEN_43[0xdU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_27 
+                                                      >> 0x20U));
+    __PVT__unnamedblk1__DOT___GEN_43[0xeU] = (IData)(__PVT__unnamedblk1__DOT___GEN_27);
+    __PVT__unnamedblk1__DOT___GEN_43[0xfU] = (IData)(
+                                                     (__PVT__unnamedblk1__DOT___GEN_27 
+                                                      >> 0x20U));
+    vlSelf->__PVT__refill_buffer_15 = (((QData)((IData)(
+                                                        __PVT__unnamedblk1__DOT___GEN_43[
+                                                        (((IData)(0x3fU) 
+                                                          + 
+                                                          (0x1ffU 
+                                                           & ((IData)(vlSelf->__PVT__state) 
+                                                              << 6U))) 
+                                                         >> 5U)])) 
+                                        << ((0U == 
+                                             (0x1fU 
+                                              & ((IData)(vlSelf->__PVT__state) 
+                                                 << 6U)))
+                                             ? 0x20U
+                                             : ((IData)(0x40U) 
+                                                - (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U))))) 
+                                       | (((0U == (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U)))
+                                            ? 0ULL : 
+                                           ((QData)((IData)(
+                                                            __PVT__unnamedblk1__DOT___GEN_43[
+                                                            (((IData)(0x1fU) 
+                                                              + 
+                                                              (0x1ffU 
+                                                               & ((IData)(vlSelf->__PVT__state) 
+                                                                  << 6U))) 
+                                                             >> 5U)])) 
+                                            << ((IData)(0x20U) 
+                                                - (0x1fU 
+                                                   & ((IData)(vlSelf->__PVT__state) 
+                                                      << 6U))))) 
+                                          | ((QData)((IData)(
+                                                             __PVT__unnamedblk1__DOT___GEN_43[
+                                                             (0xeU 
+                                                              & ((IData)(vlSelf->__PVT__state) 
+                                                                 << 1U))])) 
+                                             >> (0x1fU 
+                                                 & ((IData)(vlSelf->__PVT__state) 
+                                                    << 6U)))));
     if (((IData)(vlSelf->__PVT___GEN_0) & ((IData)(vlSelf->__PVT__is_alloc) 
                                            | (vlSelf->__PVT___wmask_T_2[3U] 
                                               >> 0x1fU)))) {
@@ -10465,6 +10532,165 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     vlSelf->__PVT__DataArray_15_1_ext__DOT___GEN = vlSelf->__PVT__ren;
     vlSelf->__PVT__DataArray_15_0_ext__DOT___GEN_1 
         = vlSelf->__PVT__ren;
+    if (vlSymsp->TOP.reset) {
+        __Vdly__w_count = 0U;
+        __Vdly__valid = 0U;
+        __Vdly__dirty = 0U;
+        __Vdly__r_count = 0U;
+        __Vdly__state = 0U;
+        vlSelf->__PVT__rw_buf = 0U;
+        vlSelf->__PVT__addr_buf = 0U;
+    } else {
+        if ((1U & (~ ((((0U == (IData)(vlSelf->__PVT__state)) 
+                        | (1U == (IData)(vlSelf->__PVT__state))) 
+                       | (2U == (IData)(vlSelf->__PVT__state))) 
+                      | (~ ((3U == (IData)(vlSelf->__PVT__state)) 
+                            & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                               >> 1U))))))) {
+            if (vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid) {
+                __Vdly__w_count = 0U;
+            } else if ((0xfU != (IData)(vlSelf->__PVT__w_count))) {
+                __Vdly__w_count = (0xfU & ((IData)(1U) 
+                                           + (IData)(vlSelf->__PVT__w_count)));
+            }
+        }
+        if (vlSelf->__PVT___GEN_0) {
+            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1 
+                = ((0x1fU >= (0xeU & (vlSelf->__PVT__addr_reg 
+                                      >> 6U))) ? ((IData)(1U) 
+                                                  << 
+                                                  (0xeU 
+                                                   & (vlSelf->__PVT__addr_reg 
+                                                      >> 6U)))
+                    : 0U);
+            __Vdly__valid = (0xffffU & ((IData)(vlSelf->__PVT__valid) 
+                                        | vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1));
+            __Vdly__dirty = (0xffffU & ((IData)(vlSelf->__PVT__is_alloc)
+                                         ? (~ ((~ (IData)(vlSelf->__PVT__dirty)) 
+                                               | vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1))
+                                         : ((IData)(vlSelf->__PVT__dirty) 
+                                            | vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1)));
+        }
+        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44 
+            = ((((IData)(vlSelf->__PVT___T_364) & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                                   >> 1U)) 
+                & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid))
+                ? ((0U != (IData)(vlSelf->__PVT__cpu_mask)) 
+                   << 1U) : (IData)(vlSelf->__PVT__state));
+        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_45 
+            = (0xfU & ((1U & (((((IData)(vlSelf->__PVT__is_read) 
+                                 | (IData)(vlSelf->__PVT__is_write)) 
+                                | (IData)(vlSelf->__PVT___T_361)) 
+                               | (IData)(vlSelf->__PVT___T_363)) 
+                              | (~ ((IData)(vlSelf->__PVT___T_364) 
+                                    & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                       >> 1U))))) ? (IData)(vlSelf->__PVT__r_count)
+                        : ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)
+                            ? 0U : ((IData)(1U) + (IData)(vlSelf->__PVT__r_count)))));
+        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_46 
+            = ((0xfff00000U & (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_45) 
+                                << 0x1cU) | (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_45) 
+                                              << 0x18U) 
+                                             | ((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_45) 
+                                                << 0x14U)))) 
+               | (0xfffffU & (((IData)(vlSelf->__PVT__r_count) 
+                               << 0x10U) | (((IData)(vlSelf->__PVT__r_count) 
+                                             << 0xcU) 
+                                            | (((IData)(vlSelf->__PVT__r_count) 
+                                                << 8U) 
+                                               | (((IData)(vlSelf->__PVT__r_count) 
+                                                   << 4U) 
+                                                  | (IData)(vlSelf->__PVT__r_count)))))));
+        __Vdly__r_count = (0xfU & (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_46 
+                                   >> (0x1fU & ((IData)(vlSelf->__PVT__state) 
+                                                << 2U))));
+        vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_47 
+            = ((0xff8000U & (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44) 
+                              << 0x15U) | (((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44) 
+                                            << 0x12U) 
+                                           | ((IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44) 
+                                              << 0xfU)))) 
+               | ((((2U & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
+                     ? 5U : (IData)(vlSelf->__PVT__state)) 
+                   << 0xcU) | ((((((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                   >> 1U) & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid))
+                                  ? 4U : (IData)(vlSelf->__PVT__state)) 
+                                << 9U) | ((((IData)(vlSelf->__PVT___T_356)
+                                             ? 0U : 
+                                            ((IData)(vlSelf->__PVT__dirty0)
+                                              ? 3U : 4U)) 
+                                           << 6U) | 
+                                          ((((IData)(vlSelf->io_fccache_hit)
+                                              ? (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid)
+                                              : ((IData)(vlSelf->__PVT__dirty0)
+                                                  ? 3U
+                                                  : 4U)) 
+                                            << 3U) 
+                                           | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid)
+                                               ? ((0U 
+                                                   != (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask))
+                                                   ? 2U
+                                                   : 1U)
+                                               : (IData)(vlSelf->__PVT__state)))))));
+        __Vdly__state = ((0x17U >= (0x1fU & ((IData)(3U) 
+                                             * (IData)(vlSelf->__PVT__state))))
+                          ? (7U & (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_47 
+                                   >> (0x1fU & ((IData)(3U) 
+                                                * (IData)(vlSelf->__PVT__state)))))
+                          : 0U);
+        if ((0U != (IData)(vlSelf->__PVT__state))) {
+            if ((1U == (IData)(vlSelf->__PVT__state))) {
+                if ((1U & (~ (IData)(vlSelf->io_fccache_hit)))) {
+                    vlSelf->__PVT__rw_buf = vlSelf->io_axi_req_bits_rw;
+                    if ((0U == (IData)(vlSelf->__PVT__state))) {
+                        vlSelf->__PVT__addr_buf = 0U;
+                    } else if ((1U == (IData)(vlSelf->__PVT__state))) {
+                        vlSelf->__PVT__addr_buf = ((IData)(vlSelf->io_fccache_hit)
+                                                    ? 0U
+                                                    : vlSelf->__PVT___GEN_8);
+                    } else if ((2U == (IData)(vlSelf->__PVT__state))) {
+                        vlSelf->__PVT__addr_buf = ((IData)(vlSelf->__PVT___T_356)
+                                                    ? 0U
+                                                    : vlSelf->__PVT___GEN_8);
+                    } else if ((3U == (IData)(vlSelf->__PVT__state))) {
+                        if ((2U & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))) {
+                            vlSelf->__PVT__addr_buf 
+                                = ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)
+                                    ? (0xffffff80U 
+                                       & vlSelf->__PVT__addr_reg)
+                                    : 0U);
+                        }
+                    } else if (vlSelf->__PVT___GEN_10) {
+                        vlSelf->__PVT__addr_buf = 0U;
+                    }
+                }
+            } else if ((1U & (~ ((2U != (IData)(vlSelf->__PVT__state)) 
+                                 | (IData)(vlSelf->__PVT___T_356))))) {
+                vlSelf->__PVT__rw_buf = vlSelf->io_axi_req_bits_rw;
+                if ((0U == (IData)(vlSelf->__PVT__state))) {
+                    vlSelf->__PVT__addr_buf = 0U;
+                } else if ((1U == (IData)(vlSelf->__PVT__state))) {
+                    vlSelf->__PVT__addr_buf = ((IData)(vlSelf->io_fccache_hit)
+                                                ? 0U
+                                                : vlSelf->__PVT___GEN_8);
+                } else if ((2U == (IData)(vlSelf->__PVT__state))) {
+                    vlSelf->__PVT__addr_buf = ((IData)(vlSelf->__PVT___T_356)
+                                                ? 0U
+                                                : vlSelf->__PVT___GEN_8);
+                } else if ((3U == (IData)(vlSelf->__PVT__state))) {
+                    if ((2U & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))) {
+                        vlSelf->__PVT__addr_buf = ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)
+                                                    ? 
+                                                   (0xffffff80U 
+                                                    & vlSelf->__PVT__addr_reg)
+                                                    : 0U);
+                    }
+                } else if (vlSelf->__PVT___GEN_10) {
+                    vlSelf->__PVT__addr_buf = 0U;
+                }
+            }
+        }
+    }
     vlSelf->__PVT__DataArray_15_0_ext__DOT___GEN = vlSelf->__PVT__ren;
     vlSelf->__PVT__DataArray_14_7_ext__DOT___GEN_1 
         = vlSelf->__PVT__ren;
@@ -11469,12 +11695,11 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     vlSelf->__PVT__w_count = __Vdly__w_count;
     vlSelf->__PVT__dirty = __Vdly__dirty;
     vlSelf->__PVT__valid = __Vdly__valid;
-    vlSelf->__PVT__r_count = __Vdly__r_count;
-    vlSelf->__PVT__state = __Vdly__state;
     if (__Vdlyvset__TagArray_ext__DOT__Memory__v0) {
         vlSelf->__PVT__TagArray_ext__DOT__Memory[__Vdlyvdim0__TagArray_ext__DOT__Memory__v0] 
             = __Vdlyvval__TagArray_ext__DOT__Memory__v0;
     }
+    vlSelf->__PVT__r_count = __Vdly__r_count;
     if (__Vdlyvset__DataArray_15_7_ext__DOT__Memory__v0) {
         vlSelf->__PVT__DataArray_15_7_ext__DOT__Memory[__Vdlyvdim0__DataArray_15_7_ext__DOT__Memory__v0] 
             = __Vdlyvval__DataArray_15_7_ext__DOT__Memory__v0;
@@ -11987,6 +12212,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
         vlSelf->__PVT__DataArray_0_0_ext__DOT__Memory[__Vdlyvdim0__DataArray_0_0_ext__DOT__Memory__v0] 
             = __Vdlyvval__DataArray_0_0_ext__DOT__Memory__v0;
     }
+    vlSelf->__PVT__state = __Vdly__state;
     vlSelf->__VdfgTmp_h25305f44__0[0U] = (IData)(vlSelf->__PVT__refill_buffer_0);
     vlSelf->__VdfgTmp_h25305f44__0[1U] = (IData)((vlSelf->__PVT__refill_buffer_0 
                                                   >> 0x20U));
@@ -12042,12 +12268,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     vlSelf->__VdfgTmp_h25305f44__0[0x1dU] = (IData)(
                                                     (vlSelf->__PVT__refill_buffer_14 
                                                      >> 0x20U));
-    vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_361 = (3U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_364 = (5U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT__is_alloc = ((5U == (IData)(vlSelf->__PVT__state)) 
-                               & (0xfU == (IData)(vlSelf->__PVT__r_count)));
     vlSelf->__PVT__ren_reg = vlSelf->__PVT__ren;
     vlSelf->__PVT___TagArray_ext_R1_data = ((IData)(vlSelf->__PVT__TagArray_ext__DOT___GEN_1)
                                              ? vlSelf->__PVT__TagArray_ext__DOT__Memory
@@ -13263,6 +13483,13 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                             ? vlSelf->__PVT__DataArray_15_4_ext__DOT__Memory
                                            [vlSelf->__PVT__DataArray_15_4_ext__DOT___GEN_0]
                                             : 0U))));
+    vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_361 = (3U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_363 = (4U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_364 = (5U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT__is_alloc = ((5U == (IData)(vlSelf->__PVT__state)) 
+                               & (0xfU == (IData)(vlSelf->__PVT__r_count)));
     __Vtemp_hfe7561f7__0[0U] = vlSelf->__PVT__cpu_mask;
     __Vtemp_hfe7561f7__0[1U] = 0U;
     __Vtemp_hfe7561f7__0[2U] = 0U;
@@ -13467,17 +13694,14 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                             & (vlSelf->__PVT___TagArray_ext_R1_data 
                                                == (vlSelf->__PVT__addr_reg 
                                                    >> 0xaU)))));
-    vlSelf->__VdfgTmp_h082e9772__0 = (((IData)(vlSelf->__PVT__dirty0)
-                                        ? ((((IData)(vlSelf->__PVT__dirty0)
-                                              ? vlSelf->__PVT___TagArray_ext_R0_data
-                                              : vlSelf->__PVT___TagArray_ext_R1_data) 
-                                            << 3U) 
-                                           | (7U & 
-                                              (vlSelf->__PVT__addr_reg 
-                                               >> 7U)))
-                                        : (vlSelf->__PVT__addr_reg 
-                                           >> 7U)) 
-                                      << 7U);
+    vlSelf->__PVT___GEN_8 = (((IData)(vlSelf->__PVT__dirty0)
+                               ? ((((IData)(vlSelf->__PVT__dirty0)
+                                     ? vlSelf->__PVT___TagArray_ext_R0_data
+                                     : vlSelf->__PVT___TagArray_ext_R1_data) 
+                                   << 3U) | (7U & (vlSelf->__PVT__addr_reg 
+                                                   >> 7U)))
+                               : (vlSelf->__PVT__addr_reg 
+                                  >> 7U)) << 7U);
     vlSelf->io_cpu_resp_bits_data = (((QData)((IData)(
                                                       vlSelf->__PVT__read[
                                                       (((IData)(0x3fU) 

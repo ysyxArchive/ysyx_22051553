@@ -325,6 +325,7 @@ class Cache extends Module{
                     }
                 }
             }.otherwise{ //可能没选上
+                io.axi.req.valid := 1.B
                 io.axi.req.bits.addr := addr_buf
                 io.axi.req.bits.rw := rw_buf
             }
@@ -333,6 +334,7 @@ class Cache extends Module{
             when(io.axi.resp.bits.choose){
                 state := s_Refill
             }.otherwise{
+                io.axi.req.valid := 1.B
                 io.axi.req.bits.addr := addr_buf
                 io.axi.req.bits.rw := rw_buf
             }
