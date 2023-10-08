@@ -115,6 +115,7 @@ class Cache extends Module{
     val tag_reg = addr_reg(ADDRWIDTH-1,slen+blen)
     val idx_reg = addr_reg(slen+blen-1, blen)
     val off_reg = addr_reg(blen-1, byteOffsetBits) //选择某个XLEN,某个8Byte对齐的数据
+    dontTouch(off_reg)
 
     
     val way0 = nWays.U*idx_reg      //idx_reg是缓存过的
@@ -313,7 +314,6 @@ class Cache extends Module{
                 refill_buffer(15) := io.axi.resp.bits.data
                 state := Mux(cpu_mask.orR, s_WriteCache, s_Idle)
 
-                addr_reg := 0.U //使不能hit
             }.otherwise{
                 r_count := r_count + 1.U
                 refill_buffer(r_count) := io.axi.resp.bits.data

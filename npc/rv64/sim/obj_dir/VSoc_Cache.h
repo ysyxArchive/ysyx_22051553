@@ -45,10 +45,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __PVT___T_356;
         CData/*0:0*/ __PVT___T_361;
         CData/*0:0*/ __PVT___GEN_8;
-        CData/*2:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_41;
-        CData/*3:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_42;
-        IData/*31:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_43;
-        IData/*23:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44;
+        CData/*2:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_45;
+        CData/*3:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_46;
+        IData/*31:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_47;
+        IData/*23:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_48;
         CData/*0:0*/ __PVT__TagArray_ext__DOT___GEN;
         CData/*3:0*/ __PVT__TagArray_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__TagArray_ext__DOT___GEN_1;
