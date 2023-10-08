@@ -312,6 +312,8 @@ class Cache extends Module{
                 r_count := 0.U
                 refill_buffer(15) := io.axi.resp.bits.data
                 state := Mux(cpu_mask.orR, s_WriteCache, s_Idle)
+
+                tag_reg := 0.U //使不能hit
             }.otherwise{
                 r_count := r_count + 1.U
                 refill_buffer(r_count) := io.axi.resp.bits.data

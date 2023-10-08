@@ -18,11 +18,10 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
     VlWide<3>/*95:0*/ __Vtemp_h83c7e9ab__0;
     VlWide<3>/*95:0*/ __Vtemp_h26349e5a__0;
     // Body
-    vlSelf->__PVT__is_idle = (0U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT___T_361 = (3U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_363 = (4U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_364 = (5U == (IData)(vlSelf->__PVT__state));
     __Vtemp_hfe7561f7__0[0U] = vlSelf->__PVT__cpu_mask;
     __Vtemp_hfe7561f7__0[1U] = 0U;
     __Vtemp_hfe7561f7__0[2U] = 0U;
@@ -35,7 +34,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
     vlSelf->__PVT___wmask_T_2[2U] = __Vtemp_h33bc51d6__0[2U];
     vlSelf->__PVT___wmask_T_2[3U] = __Vtemp_h33bc51d6__0[3U];
     vlSelf->__PVT___wmask_T_2[4U] = (0x7fU & __Vtemp_h33bc51d6__0[4U]);
-    vlSelf->__PVT__is_alloc = ((4U == (IData)(vlSelf->__PVT__state)) 
+    vlSelf->__PVT__is_alloc = ((5U == (IData)(vlSelf->__PVT__state)) 
                                & (0xfU == (IData)(vlSelf->__PVT__r_count)));
     vlSelf->__VdfgTmp_h25305f44__0[0U] = (IData)(vlSelf->__PVT__refill_buffer_0);
     vlSelf->__VdfgTmp_h25305f44__0[1U] = (IData)((vlSelf->__PVT__refill_buffer_0 
@@ -1632,11 +1631,10 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
     VlWide<3>/*95:0*/ __Vtemp_h83c7e9ab__0;
     VlWide<3>/*95:0*/ __Vtemp_h26349e5a__0;
     // Body
-    vlSelf->__PVT__is_idle = (0U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT___T_361 = (3U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_363 = (4U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_364 = (5U == (IData)(vlSelf->__PVT__state));
     __Vtemp_hfe7561f7__0[0U] = vlSelf->__PVT__cpu_mask;
     __Vtemp_hfe7561f7__0[1U] = 0U;
     __Vtemp_hfe7561f7__0[2U] = 0U;
@@ -1649,7 +1647,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
     vlSelf->__PVT___wmask_T_2[2U] = __Vtemp_h33bc51d6__0[2U];
     vlSelf->__PVT___wmask_T_2[3U] = __Vtemp_h33bc51d6__0[3U];
     vlSelf->__PVT___wmask_T_2[4U] = (0x7fU & __Vtemp_h33bc51d6__0[4U]);
-    vlSelf->__PVT__is_alloc = ((4U == (IData)(vlSelf->__PVT__state)) 
+    vlSelf->__PVT__is_alloc = ((5U == (IData)(vlSelf->__PVT__state)) 
                                & (0xfU == (IData)(vlSelf->__PVT__r_count)));
     vlSelf->__VdfgTmp_h25305f44__0[0U] = (IData)(vlSelf->__PVT__refill_buffer_0);
     vlSelf->__VdfgTmp_h25305f44__0[1U] = (IData)((vlSelf->__PVT__refill_buffer_0 

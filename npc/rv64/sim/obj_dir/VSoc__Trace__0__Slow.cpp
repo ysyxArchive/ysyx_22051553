@@ -3479,9 +3479,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
         tracep->declBus(c+3030+i*1,"Memory", true,(i+0), 21,0);
     }
     tracep->popNamePrefix(1);
+    tracep->pushNamePrefix("unnamedblk1 ");
     tracep->pushNamePrefix("unnamedblk2 ");
-    tracep->popNamePrefix(1);
-    tracep->pushNamePrefix("unnamedblk3 ");
+    tracep->pushNamePrefix("unnamedblk4 ");
+    tracep->popNamePrefix(3);
+    tracep->pushNamePrefix("unnamedblk5 ");
     tracep->popNamePrefix(1);
 }
 
@@ -6263,9 +6265,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
         tracep->declBus(c+5698+i*1,"Memory", true,(i+0), 21,0);
     }
     tracep->popNamePrefix(1);
+    tracep->pushNamePrefix("unnamedblk1 ");
     tracep->pushNamePrefix("unnamedblk2 ");
-    tracep->popNamePrefix(1);
-    tracep->pushNamePrefix("unnamedblk3 ");
+    tracep->pushNamePrefix("unnamedblk4 ");
+    tracep->popNamePrefix(3);
+    tracep->pushNamePrefix("unnamedblk5 ");
     tracep->popNamePrefix(1);
 }
 
