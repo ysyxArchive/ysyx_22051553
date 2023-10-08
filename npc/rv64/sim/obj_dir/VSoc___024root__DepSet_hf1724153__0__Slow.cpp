@@ -938,12 +938,12 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__1(VSoc___024root* vlSelf) {
     Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h32d1be8b__0 = 0;
     CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h3c60961a__0;
     Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h3c60961a__0 = 0;
-    CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_hf66dd529__0;
-    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_hf66dd529__0 = 0;
+    CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h14961daa__0;
+    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h14961daa__0 = 0;
     CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h8e05e725__0;
     Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h8e05e725__0 = 0;
-    CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h833cad57__0;
-    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h833cad57__0 = 0;
+    CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_he5d5e4d4__0;
+    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_he5d5e4d4__0 = 0;
     CData/*6:0*/ __VdfgTmp_h0243950b__0;
     __VdfgTmp_h0243950b__0 = 0;
     VlWide<12>/*383:0*/ __Vtemp_h3c1ab257__0;
@@ -1087,12 +1087,9 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__1(VSoc___024root* vlSelf) {
                                             ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
                                              << 6U)))))
                                : 0ULL))));
-    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h833cad57__0 
-        = ((((~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_fccache_hit)) 
-             & (0U != (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state))) 
-            | ((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT__started) 
-               & ((0U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state)) 
-                  & (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__is_alloc_reg)))) 
+    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_he5d5e4d4__0 
+        = (((~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_fccache_hit)) 
+            & (0U != (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state))) 
            | ((0U != (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)) 
               | (((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_hb9efb46f__0) 
                   & (0U != (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_wmask))) 
@@ -1189,12 +1186,12 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__1(VSoc___024root* vlSelf) {
               ? (7U & (IData)((vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_cpu_resp_bits_data 
                                >> 0xcU))) : 0U) << 7U) 
            | (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0));
-    vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_hcaab6729__0 
+    vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h63333fac__0 
         = (1U & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__IO_stall)) 
-                 & (~ (IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h833cad57__0))));
-    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_hf66dd529__0 
+                 & (~ (IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_he5d5e4d4__0))));
+    Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h14961daa__0 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__IO_stall) 
-           | (IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h833cad57__0));
+           | (IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_he5d5e4d4__0));
     __Vtemp_h3c1ab257__0[0U] = (IData)(((6U == (IData)(vlSelf->Soc__DOT__core__DOT__emreg_ld_addr_lowbit))
                                          ? (((- (QData)((IData)(
                                                                 (1U 
@@ -3415,26 +3412,26 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__1(VSoc___024root* vlSelf) {
                      & (IData)(Soc__DOT__core__DOT__decode__DOT___load_use_T_12))))) 
            & (0U != (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT__lu_rd)));
     vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_hcaab6729__0) 
+        = ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h63333fac__0) 
            & ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16) 
               | ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
                  | ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_14) 
                     | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3)) 
                        & (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_fcex_jump_flag))))));
     vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1 
-        = ((IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_hf66dd529__0) 
+        = ((IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h14961daa__0) 
            | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
               & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3)) 
                  & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_14)) 
                     & (IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h8e05e725__0)))));
     vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_0 
-        = ((IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_hf66dd529__0) 
+        = ((IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h14961daa__0) 
            | ((IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16) 
               | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3)) 
                  & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_14) 
                     | (IData)(Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h8e05e725__0)))));
     vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2 
-        = (((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_hcaab6729__0) 
+        = (((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h63333fac__0) 
             & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__decode__DOT___load_use_T_16)) 
                & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
                   | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_14)) 
