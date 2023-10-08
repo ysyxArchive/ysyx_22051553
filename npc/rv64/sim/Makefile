@@ -14,7 +14,8 @@ build:
 	@verilator -cc -trace vsrc/*.v -top-module Soc
 
 compile:
-	@verilator -cc --prof-cfuncs -trace vsrc/*.v -CFLAGS "$(INCLUDE) $(LLVM_FLAGS)" -top-module Soc --exe $(SRCS) -LDFLAGS "-lreadline -lpcre $(LLVM_LIB) -lSDL2"
+	# @verilator -cc --prof-cfuncs -trace vsrc/*.v -CFLAGS "$(INCLUDE) $(LLVM_FLAGS)" -top-module Soc --exe $(SRCS) -LDFLAGS "-lreadline -lpcre $(LLVM_LIB) -lSDL2"
+	@verilator -cc -trace vsrc/*.v -CFLAGS "$(INCLUDE) $(LLVM_FLAGS)" -top-module Soc --exe $(SRCS) -LDFLAGS "-lreadline -lpcre $(LLVM_LIB) -lSDL2"
 
 #是需要在cflags里加include,而不是直接-Iinclude
 
