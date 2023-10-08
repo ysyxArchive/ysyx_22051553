@@ -246,7 +246,7 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
         IData/*31:0*/ Soc__DOT__core__DOT___fetch_io_fdio_pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fdreg_pc;
-        IData/*31:0*/ Soc__DOT__core__DOT___GEN;
+        IData/*31:0*/ Soc__DOT__core__DOT____Vcellinp__trap__io_inst;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT__pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT__old_pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT___next_pc_T_7;

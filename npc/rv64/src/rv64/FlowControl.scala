@@ -145,16 +145,9 @@ class FlowControl extends Module{
 
 
     
-    when(io.fcDcache.state =/= 0.U){
+    when(io.fcDcache.state =/= 0.U && !io.fcDcache.hit){
         Dcache_stall := 1.B
-    }.elsewhen(io.fcDcache.state === 0.U && io.fcDcache.req && io.fcDcache.mask.orR){ //写，一定需要stall
-        Dcache_stall := 1.B
-    }.elsewhen(io.fcDcache.state === 0.U && io.fcDcache.req && !io.fcDcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
-        Dcache_stall := 1.B
-    }.elsewhen(io.fcDcache.cpu_valid){ //恢复  优先级低于上面
-        Dcache_stall := 0.B
-    }
-    .otherwise{
+    }.otherwise{
         Dcache_stall := 0.B
     }
 

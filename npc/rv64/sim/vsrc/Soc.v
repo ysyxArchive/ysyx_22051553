@@ -6221,7 +6221,6 @@ module Core(	// <stdin>:7859:10
   reg         mwreg_csr_wen;	// Core.scala:71:24
   reg  [11:0] mwreg_csr_waddr;	// Core.scala:71:24
   reg         mwreg_has_inst;	// Core.scala:71:24
-  wire [31:0] _GEN = _Icache_io_cpu_resp_valid ? _Icache_io_cpu_resp_bits_data[31:0] : 32'h13;	// Core.scala:104:24, :416:24
   wire [63:0] _DI_io_mem_addr_T = _excute_io_waddr | _excute_io_raddr;	// Core.scala:27:24, :454:93
   always @(posedge clock) begin
     if (reset) begin
@@ -6694,7 +6693,7 @@ module Core(	// <stdin>:7859:10
     .io_csrtr_MIE       (_csrs_io_CSRTr_MIE),	// Core.scala:95:22
     .io_csrtr_MIP       (_csrs_io_CSRTr_MIP),	// Core.scala:95:22
     .io_csrtr_MSTATUS   (_csrs_io_CSRTr_MSTATUS),	// Core.scala:95:22
-    .io_inst            (_GEN),	// Core.scala:416:24
+    .io_inst            (_Icache_io_cpu_resp_valid ? _Icache_io_cpu_resp_bits_data[31:0] : 32'h13),	// Core.scala:104:24, :416:24
     .io_pc              (_fetch_io_pc_bits),	// Core.scala:25:23
     .io_csrtr_rd        (_trap_io_csrtr_rd),
     .io_csrtr_csr_wen   (_trap_io_csrtr_csr_wen),
@@ -6812,14 +6811,15 @@ module Core(	// <stdin>:7859:10
     .rst        (reset),
     .pc         (_fetch_io_pc_bits),	// Core.scala:25:23
     .pc_req     (_fetch_io_pc_valid),	// Core.scala:25:23
-    .inst       (_GEN),	// Core.scala:416:24
-    .inst_valid (_Icache_io_cpu_resp_valid & ~_fc_io_fcde_flush),	// Core.scala:92:20, :104:24, :489:{50,70}
+    .inst       (_Icache_io_cpu_resp_valid ? (fdreg_pc[2] ? _Icache_io_cpu_resp_bits_data[63:32] :
+                _Icache_io_cpu_resp_bits_data[31:0]) : 32'h13),	// Core.scala:33:24, :104:24, :416:24, :488:22, :489:{12,21}, :490:41, :491:41
+    .inst_valid (_Icache_io_cpu_resp_valid & ~_fc_io_fcde_flush),	// Core.scala:92:20, :104:24, :494:{50,70}
     .load_use   (_decode_io_load_use),	// Core.scala:26:24
     .op_a       (dereg_op_a),	// Core.scala:39:24
     .op_b       (dereg_op_b),	// Core.scala:39:24
     .result     (_excute_io_emio_reg_wdata),	// Core.scala:27:24
     .br_yes     (_excute_io_fcex_jump_flag),	// Core.scala:27:24
-    .mem_access ((|dereg_ld_type) | (|dereg_sd_type)),	// Core.scala:39:24, :467:55, :468:56, :495:52
+    .mem_access ((|dereg_ld_type) | (|dereg_sd_type)),	// Core.scala:39:24, :467:55, :468:56, :500:52
     .mem_addr   (_DI_io_mem_addr_T),	// Core.scala:454:93
     .rd         (_wb_io_rfio_rd),	// Core.scala:30:20
     .reg_wen    (_wb_io_rfio_reg_wen),	// Core.scala:30:20
@@ -6830,9 +6830,9 @@ module Core(	// <stdin>:7859:10
     .sdb_stall  (_fc_io_sdb_stall),	// Core.scala:92:20
     .trap_state (_trap_io_fctr_trap_state)	// Core.scala:98:22
   );
-  Interact interact (	// Core.scala:507:26
+  Interact interact (	// Core.scala:512:26
     .inst (_Icache_io_cpu_resp_valid & ~_fc_io_fcde_flush ? _Icache_io_cpu_resp_bits_data[31:0] :
-                32'h0),	// Core.scala:92:20, :104:24, :489:70, :508:{28,54,111}
+                32'h0),	// Core.scala:92:20, :104:24, :491:41, :494:70, :513:{28,54}
     .clk  (clock),
     .rst  (reset)
   );
@@ -6840,7 +6840,7 @@ endmodule
 
 // external module Sram
 
-module Soc(	// <stdin>:8288:10
+module Soc(	// <stdin>:8292:10
   input clock,
         reset);
 
@@ -7227,5 +7227,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 

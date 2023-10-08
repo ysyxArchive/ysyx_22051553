@@ -956,7 +956,8 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__1(VSoc___024root* vlSelf) {
             ? (IData)((vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_cpu_resp_bits_data 
                        >> 0x20U)) : (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_cpu_resp_bits_data));
     if (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_cpu_resp_valid) {
-        vlSelf->Soc__DOT__core__DOT___GEN = (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_cpu_resp_bits_data);
+        vlSelf->Soc__DOT__core__DOT____Vcellinp__trap__io_inst 
+            = (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_cpu_resp_bits_data);
         vlSelf->Soc__DOT__core__DOT___decode_io_deio_reg_waddr 
             = (0x1fU & (vlSelf->Soc__DOT__core__DOT__decode__DOT____VdfgTmp_hd891a444__0 
                         >> 7U));
@@ -980,7 +981,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__1(VSoc___024root* vlSelf) {
         vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0 
             = (0x7fU & vlSelf->Soc__DOT__core__DOT__decode__DOT____VdfgTmp_hd891a444__0);
     } else {
-        vlSelf->Soc__DOT__core__DOT___GEN = 0x13U;
+        vlSelf->Soc__DOT__core__DOT____Vcellinp__trap__io_inst = 0x13U;
         vlSelf->Soc__DOT__core__DOT___decode_io_deio_reg_waddr = 0U;
         vlSelf->__VdfgTmp_hd31110f2__0 = 0U;
         vlSelf->__VdfgTmp_hd0a2fa80__0 = 0U;
@@ -1130,7 +1131,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__1(VSoc___024root* vlSelf) {
            & (0U != (0x1fU & (vlSelf->Soc__DOT__core__DOT__decode__DOT____VdfgTmp_hd891a444__0 
                               >> 0xfU))));
     vlSelf->Soc__DOT__core__DOT__trap__DOT___T_2 = 
-        ((0x73U == vlSelf->Soc__DOT__core__DOT___GEN) 
+        ((0x73U == vlSelf->Soc__DOT__core__DOT____Vcellinp__trap__io_inst) 
          & (IData)((vlSelf->Soc__DOT__core__DOT__csrs__DOT__MSTATUS 
                     >> 3U)));
     vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h63333fac__0 
@@ -1948,7 +1949,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__1(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_14 
         = (((0U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
             & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT___T_2) 
-               | ((0x30200073U == vlSelf->Soc__DOT__core__DOT___GEN) 
+               | ((0x30200073U == vlSelf->Soc__DOT__core__DOT____Vcellinp__trap__io_inst) 
                   | (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT___T_7)))) 
            | ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
               | ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
