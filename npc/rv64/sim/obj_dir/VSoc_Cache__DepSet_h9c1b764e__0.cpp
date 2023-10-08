@@ -2246,9 +2246,8 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
         }
         vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_41 
             = (((IData)(vlSelf->__PVT___T_364) & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid))
-                ? ((0U != (IData)(vlSelf->__PVT__cpu_mask))
-                    ? 2U : (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started))
-                : (IData)(vlSelf->__PVT__state));
+                ? ((0U != (IData)(vlSelf->__PVT__cpu_mask)) 
+                   << 1U) : (IData)(vlSelf->__PVT__state));
         vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_42 
             = (0xfU & ((1U & (((((IData)(vlSelf->__PVT__is_read) 
                                  | (IData)(vlSelf->__PVT__is_write)) 
@@ -7837,9 +7836,8 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
         }
         vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_41 
             = (((IData)(vlSelf->__PVT___T_364) & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid))
-                ? ((0U != (IData)(vlSelf->__PVT__cpu_mask))
-                    ? 2U : (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid))
-                : (IData)(vlSelf->__PVT__state));
+                ? ((0U != (IData)(vlSelf->__PVT__cpu_mask)) 
+                   << 1U) : (IData)(vlSelf->__PVT__state));
         vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_42 
             = (0xfU & ((1U & (((((IData)(vlSelf->__PVT__is_read) 
                                  | (IData)(vlSelf->__PVT__is_write)) 

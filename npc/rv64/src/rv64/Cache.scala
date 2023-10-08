@@ -177,7 +177,7 @@ class Cache extends Module{
             valid := valid.bitSet(way0, 1.B)
             dirty := dirty.bitSet(way0, !is_alloc) //写命中为脏,写分配为不脏
 
-            replace.bitSet(way0, 0.B)
+            replace.bitSet(way0, 0.B) //需要修改
             replace.bitSet(way1, 1.B)
 
             when(is_alloc){
