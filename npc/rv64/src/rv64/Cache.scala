@@ -142,7 +142,7 @@ class Cache extends Module{
 
     //读出
     io.cpu.resp.bits.data := VecInit.tabulate(nWords)(i => read((i + 1) * X_LEN - 1, i * X_LEN))(off_reg)
-    io.cpu.resp.valid := (hit0 || hit1) || is_alloc_reg && !cpu_mask.orR
+    io.cpu.resp.valid := (is_idle) || is_alloc_reg && !cpu_mask.orR
     /*
     1.读命中
     2.写命中
