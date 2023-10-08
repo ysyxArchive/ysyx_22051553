@@ -84,7 +84,7 @@ class Cache extends Module{
     val cpu_mask = Reg(chiselTypeOf(io.cpu.req.bits.mask))
 
     val addr_buf = RegInit(0.U(ADDRWIDTH.W))
-    val rw_buf = RegInit(Bool())
+    val rw_buf = RegInit(0.B)
     //标记项
     val valid = RegInit(0.U((nWays*nSets).W))
     val dirty = RegInit(0.U((nWays*nSets).W))
