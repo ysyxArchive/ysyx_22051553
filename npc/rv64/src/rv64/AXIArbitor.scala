@@ -15,6 +15,7 @@ class AXIMasterReq extends Bundle{
 
 class AXIMasterResp extends Bundle{
     val data = UInt((X_LEN).W)
+    val choose = Bool()
 }
 
 class AXIMasterIO extends Bundle{
@@ -152,10 +153,13 @@ class AXIArbitor extends Module{
 
     io.master0.resp.valid := 0.B
     io.master0.resp.bits.data := 0.U
+    io.master0.resp.bits.choose := choose_buffer(0)
     io.master1.resp.valid := 0.B
     io.master1.resp.bits.data := 0.U
+    io.master1.resp.bits.choose := choose_buffer(1)
     io.master2.resp.valid := 0.B
     io.master2.resp.bits.data := 0.U
+    io.master2.resp.bits.choose := choose_buffer(2)
 
     //--------aw
     io.AXI_O.aw.bits.id := 0.U  //固定

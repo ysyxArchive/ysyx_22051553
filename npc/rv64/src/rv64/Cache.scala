@@ -82,6 +82,9 @@ class Cache extends Module{
     val addr_reg = Reg(chiselTypeOf(io.cpu.req.bits.addr))
     val cpu_data = Reg(chiselTypeOf(io.cpu.req.bits.data))
     val cpu_mask = Reg(chiselTypeOf(io.cpu.req.bits.mask))
+
+    val addr_buf = RegInit(0.U(ADDRWIDTH.W))
+    val rw_buf = RegInit(Bool())
     //标记项
     val valid = RegInit(0.U((nWays*nSets).W))
     val dirty = RegInit(0.U((nWays*nSets).W))
@@ -268,10 +271,15 @@ class Cache extends Module{
                         io.axi.req.bits.addr := (Cat(rtag1, idx_reg) << blen.U).asUInt
                     }
                     
+                    addr_buf := io.axi.req.bits.addr
+                    rw_buf := io.axi.req.bits.rw
                 }.otherwise{ //直接读Ram
                     state := s_RefillReady
                     io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
                     io.axi.req.bits.rw := 1.B
+
+                    addr_buf := io.axi.req.bits.addr
+                    rw_buf := io.axi.req.bits.rw
                 }
             }
         }
@@ -289,41 +297,62 @@ class Cache extends Module{
                         io.axi.req.bits.addr := (Cat(rtag1, idx_reg) << blen.U).asUInt
                     }
 
+                    addr_buf := io.axi.req.bits.addr
+                    rw_buf := io.axi.req.bits.rw
+
                 }.otherwise{ //直接读Ram
                     state := s_RefillReady
                     io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
                     io.axi.req.bits.rw := 1.B
+
+                    addr_buf := io.axi.req.bits.addr
+                    rw_buf := io.axi.req.bits.rw
                 }
             }
         }
         is(s_WriteBack){
-            when(io.axi.resp.valid){
-                w_count := 0.U
-                state := s_RefillReady
-                io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
-                io.axi.req.bits.rw := 1.B
-            }.otherwise{
-                when(w_count === 15.U){
-                    w_count := w_count
+            when(io.axi.resp.bits.choose){
+                when(io.axi.resp.valid){
+                    w_count := 0.U
+                    state := s_RefillReady
+                    io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
+                    io.axi.req.bits.rw := 1.B
                 }.otherwise{
-                    w_count := w_count + 1.U
+                    when(w_count === 15.U){
+                        w_count := w_count
+                    }.otherwise{
+                        w_count := w_count + 1.U
+                    }
                 }
+            }.otherwise{ //可能没选上
+                io.axi.req.bits.addr := addr_buf
+                io.axi.req.bits.rw := rw_buf
             }
         }
         is(s_RefillReady){
-            state := s_Refill
+            when(io.axi.resp.bits.choose){
+                state := s_Refill
+            }.otherwise{
+                io.axi.req.bits.addr := addr_buf
+                io.axi.req.bits.rw := rw_buf
+            }
+            
         }
         is(s_Refill){
-            when(io.axi.resp.valid){
-                r_count := 0.U
-                refill_buffer(15) := io.axi.resp.bits.data
-                state := Mux(cpu_mask.orR, s_WriteCache, s_Idle)
-
+            when(io.axi.resp.bits.choose){
+                when(io.axi.resp.valid){
+                    r_count := 0.U
+                    refill_buffer(15) := io.axi.resp.bits.data
+                    state := Mux(cpu_mask.orR, s_WriteCache, s_Idle)
+                }.otherwise{
+                    r_count := r_count + 1.U
+                    refill_buffer(r_count) := io.axi.resp.bits.data
+                }
             }.otherwise{
-                r_count := r_count + 1.U
-                refill_buffer(r_count) := io.axi.resp.bits.data
-                
+                state := state
+                r_count := r_count
             }
+            
         }
 
     }
