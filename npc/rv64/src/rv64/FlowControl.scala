@@ -137,44 +137,32 @@ class FlowControl extends Module{
     dontTouch(IO_stall)
     dontTouch(MULDIV_stall)
 
-    // when(io.fcIcache.cpu_valid){ //恢复
-    //     Icache_stall := 0.B
-    // }.elsewhen(io.fcIcache.state === CacheState.s_hitWrite){ //写命中提前释放
-    //     Icache_stall := 0.B
-    // }.elsewhen(io.fcIcache.state === CacheState.s_WriteAllocate && io.fcIcache.axi_valid){ //写分配提前释放
-    //     Icache_stall := 0.B
-    // // }.elsewhen(io.fcIcache.state === CacheState.s_ReadAck && io.fcIcache.axi_valid){ //读提前释放
-    // //     Icache_stall := 0.B
-    // }.elsewhen(io.fcIcache.state =/= 0.U){
-    //     Icache_stall := 1.B
-    // }.elsewhen(io.fcIcache.state === 0.U && io.fcIcache.req && io.fcIcache.mask.orR){ //写，一定需要stall
-    //     Icache_stall := 1.B
-    // }.elsewhen(io.fcIcache.state === 0.U && io.fcIcache.req && !io.fcIcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
-    //     Icache_stall := 1.B
-    // }.otherwise{
-    //     Icache_stall := 0.B
-    // }
+    when(io.fcIcache.cpu_valid){ //恢复
+        Icache_stall := 0.B
+    }.elsewhen(io.fcIcache.state =/= 0.U){
+        Icache_stall := 1.B
+    }.elsewhen(io.fcIcache.state === 0.U && io.fcIcache.req && io.fcIcache.mask.orR){ //写，一定需要stall
+        Icache_stall := 1.B
+    }.elsewhen(io.fcIcache.state === 0.U && io.fcIcache.req && !io.fcIcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
+        Icache_stall := 1.B
+    }.otherwise{
+        Icache_stall := 0.B
+    }
 
 
     
-    // when(io.fcDcache.state === CacheState.s_hitWrite){ //写命中提前一周期释放
-    //     Dcache_stall := 0.B
-    // }.elsewhen(io.fcDcache.state === CacheState.s_WriteAllocate && io.fcDcache.axi_valid){ //写分配提前释放
-    //     Dcache_stall := 0.B
-    // }.elsewhen(io.fcDcache.state === CacheState.s_ReadAck && io.fcDcache.axi_valid){ //读提前释放
-    //     Dcache_stall := 0.B
-    // }.elsewhen(io.fcDcache.state =/= 0.U){
-    //     Dcache_stall := 1.B
-    // }.elsewhen(io.fcDcache.state === 0.U && io.fcDcache.req && io.fcDcache.mask.orR){ //写，一定需要stall
-    //     Dcache_stall := 1.B
-    // }.elsewhen(io.fcDcache.state === 0.U && io.fcDcache.req && !io.fcDcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
-    //     Dcache_stall := 1.B
-    // }.elsewhen(io.fcDcache.cpu_valid){ //恢复  优先级低于上面
-    //     Dcache_stall := 0.B
-    // }
-    // .otherwise{
-    //     Dcache_stall := 0.B
-    // }
+    when(io.fcDcache.state =/= 0.U){
+        Dcache_stall := 1.B
+    }.elsewhen(io.fcDcache.state === 0.U && io.fcDcache.req && io.fcDcache.mask.orR){ //写，一定需要stall
+        Dcache_stall := 1.B
+    }.elsewhen(io.fcDcache.state === 0.U && io.fcDcache.req && !io.fcDcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
+        Dcache_stall := 1.B
+    }.elsewhen(io.fcDcache.cpu_valid){ //恢复  优先级低于上面
+        Dcache_stall := 0.B
+    }
+    .otherwise{
+        Dcache_stall := 0.B
+    }
 
     
     when(io.fcio.req && io.fcio.state === IoforMem.s_Idle){

@@ -59,12 +59,12 @@ class AXIArbitor extends Module{
     )
     val choose_buffer = RegInit(0.U(4.W))
 
-    val rw = WireInit(0.B)
+    val rw = RegInit(0.B) //保持
     val rw_idle = WireInit(0.B)
-    val addr = WireInit(0.U(ADDRWIDTH.W))
+    val addr = RegInit(0.U(ADDRWIDTH.W))  //保持
     val data = WireInit(0.U((16*X_LEN).W))
-    val mask = WireInit(0.U((X_LEN/8).W))
-    val burst_len = WireInit(0.U(4.W))
+    val mask = WireInit(0.U((X_LEN/8).W)) 
+    val burst_len = RegInit(0.U(4.W)) //保持
 
 
     rw_idle := Mux(master_choose(3), 
@@ -79,24 +79,24 @@ class AXIArbitor extends Module{
     ,0.B)
 
 
-    rw := Mux(choose_buffer(3), 
+    rw := Mux(master_choose(3), 
         MuxCase(
             0.B,
             Seq(
-                choose_buffer(0) -> io.master0.req.bits.rw,
-                choose_buffer(1) -> io.master1.req.bits.rw,
-                choose_buffer(2) -> io.master2.req.bits.rw,
+                master_choose(0) -> io.master0.req.bits.rw,
+                master_choose(1) -> io.master1.req.bits.rw,
+                master_choose(2) -> io.master2.req.bits.rw,
             )
         )
     ,0.B)
 
-    addr := Mux(choose_buffer(3), 
+    addr := Mux(master_choose(3), 
         MuxCase(
             0.B,
             Seq(
-                choose_buffer(0) -> io.master0.req.bits.addr,
-                choose_buffer(1) -> io.master1.req.bits.addr,
-                choose_buffer(2) -> io.master2.req.bits.addr,
+                master_choose(0) -> io.master0.req.bits.addr,
+                master_choose(1) -> io.master1.req.bits.addr,
+                master_choose(2) -> io.master2.req.bits.addr,
             )
         )
     ,0.B)
@@ -123,13 +123,13 @@ class AXIArbitor extends Module{
         )
     ,0.B)
 
-    burst_len := Mux(choose_buffer(3), 
+    burst_len := Mux(master_choose(3), 
         MuxCase(
             0.B,
             Seq(
-                choose_buffer(0) -> 0.U,
-                choose_buffer(1) -> 15.U,
-                choose_buffer(2) -> 15.U,
+                master_choose(0) -> 0.U,
+                master_choose(1) -> 15.U,
+                master_choose(2) -> 15.U,
             )
         )
     ,0.B)
@@ -142,12 +142,10 @@ class AXIArbitor extends Module{
     val w_comp = RegInit(0.B)
     val b_comp = WireInit(0.B)  //不耽误周期
     val w_count = RegInit(0.U(4.W))
-    val dataVec = VecInit(Seq.fill(16)(0.U(X_LEN.W)))
 
     val ar_comp = WireInit(0.B)
     val r_comp = WireInit(0.B)
     val r_count = RegInit(0.U(4.W))
-    val r_buffer = RegInit(0.U((16*X_LEN).W))
 
     b_comp := 0.B
     ar_comp := 0.B
@@ -221,8 +219,7 @@ class AXIArbitor extends Module{
             aw_comp := Mux(io.AXI_O.aw.valid && io.AXI_O.aw.ready, 1.B, aw_comp)
 
             //w_channel
-            (0 until 16).map(i => dataVec(i) := data(64*i+63, 64*i))  //可行吗
-            io.AXI_O.w.bits.data := dataVec(w_count)
+            io.AXI_O.w.bits.data := data
             io.AXI_O.w.bits.strb := mask
             io.AXI_O.w.bits.last := Mux(burst_len === w_count, 1.B, 0.B)  
             io.AXI_O.w.valid := Mux(w_comp, 0.B, 1.B)
@@ -263,43 +260,32 @@ class AXIArbitor extends Module{
         is(s_R){
             io.AXI_O.r.ready := 1.B
             when(io.AXI_O.r.valid && io.AXI_O.r.ready){ //先读的是低位数据
-                // r_buffer := Cat(r_buffer(959,0), io.AXI_O.r.bits.data)
-                r_buffer := MuxLookup(r_count, 0.U,
-                    (0.U -> Cat(r_buffer(1023,64), io.AXI_O.r.bits.data))
-                    +:
-                    (for(i <- 1 until 15)yield{
-                        val r = 64+64*i
-                        val l = 64*i-1
-                        i.U -> Cat(r_buffer(1023,r), io.AXI_O.r.bits.data, r_buffer(l,0))
-                    })
-                    :+
-                    15.U -> Cat(io.AXI_O.r.bits.data, r_buffer(959,0))
-                )
+                when(choose_buffer(0)){ //选择的master0
+                    io.master0.resp.bits.data := io.AXI_O.r.bits.data
+                }.elsewhen(choose_buffer(1)){
+                    io.master1.resp.bits.data := io.AXI_O.r.bits.data
+                }.otherwise{
+                    io.master2.resp.bits.data := io.AXI_O.r.bits.data
+                }
                 r_count := r_count + 1.U
             }
             
             r_comp := Mux(io.AXI_O.r.valid && io.AXI_O.r.ready && io.AXI_O.r.bits.last, 1.B, 0.B)
             when(r_comp){
                 state := s_Idle
-                r_buffer := 0.U
                 r_count := 0.U
 
                 when(choose_buffer(0)){ //选择的master0
                     io.master0.resp.valid := 1.B
-                    io.master0.resp.bits.data := Cat(io.AXI_O.r.bits.data, r_buffer(959,0))
+                    io.master0.resp.bits.data := io.AXI_O.r.bits.data
                 }.elsewhen(choose_buffer(1)){
                     io.master1.resp.valid := 1.B
-                    io.master1.resp.bits.data := Cat(io.AXI_O.r.bits.data, r_buffer(959,0))
+                    io.master1.resp.bits.data := io.AXI_O.r.bits.data
                 }.otherwise{
                     io.master2.resp.valid := 1.B
-                    io.master2.resp.bits.data := Cat(io.AXI_O.r.bits.data, r_buffer(959,0))
+                    io.master2.resp.bits.data := io.AXI_O.r.bits.data
                 }
             }
         }
     }
-
-
-    
-    
-  
 }

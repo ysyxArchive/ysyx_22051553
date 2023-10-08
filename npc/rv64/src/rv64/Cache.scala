@@ -290,21 +290,29 @@ class Cache extends Module{
             }
         }
         is(s_WriteBack){
-            w_count := w_count + 1.U
-            when(w_count === 15.U){
+            when(io.axi.resp.valid){
+                w_count := 0.U
                 state := s_Refill
                 io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
                 io.axi.req.bits.rw := 1.B
+            }.otherwise{
+                when(w_count === 15.U){
+                    w_count := w_count
+                }.otherwise{
+                    w_count := w_count + 1.U
+                }
             }
         }
         is(s_Refill){
-            r_count := r_count + 1.U
-            refill_buffer(r_count) := io.axi.resp.bits.data
-            when(r_count === 15.U){
+            when(io.axi.resp.valid){
+                r_count := 0.U
                 state := Mux(cpu_mask.orR, s_WriteCache, s_Idle)
+            }.otherwise{
+                r_count := r_count + 1.U
+                refill_buffer(r_count) := io.axi.resp.bits.data
+                
             }
         }
-    }
 
-    
+    }
 }
