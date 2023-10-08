@@ -9,12 +9,13 @@ import Define._
 class AXIMasterReq extends Bundle{
     val rw = Bool()  //0w-1r
     val addr = UInt(ADDRWIDTH.W)
-    val data = UInt((16*X_LEN).W)
+    val data = UInt((X_LEN).W)
     val mask = UInt((X_LEN/8).W) //主要针对IO操作
 }
 
 class AXIMasterResp extends Bundle{
-    val data = UInt((16*X_LEN).W)
+    val data = UInt((X_LEN).W)
+    val last = Bool()
 }
 
 class AXIMasterIO extends Bundle{

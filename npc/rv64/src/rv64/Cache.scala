@@ -14,6 +14,7 @@ import chisel3.util._
 import Define._
 
 
+
 object CacheState { //有的会产生没必要的延迟周期，但是状态机更清晰
     val s_Idle :: s_ReadCache :: s_WriteCache :: s_WriteBack :: s_Refill :: Nil = Enum(5)
 }
@@ -29,11 +30,11 @@ object Cache{
     val nWords = bBits/X_LEN //16->一个Cacheline中包含16个Word
     val wBytes = X_LEN/8 
     val byteOffsetBits = log2Ceil(wBytes)
+    val dataBeats = bBits / X_LEN
 }
 
 class CacheReq extends Bundle{  //来自CPU
     // val inst_type = Bool() //对于Icache,每次都读4字节，对于普通读取，每次都读8字节(XLEN)
-
     val addr = UInt(ADDRWIDTH.W)
     val data = UInt(X_LEN.W)
     val mask = UInt((X_LEN/8).W)
@@ -62,13 +63,17 @@ import CacheState._
 class Cache extends Module{
     val io = IO(new CacheModuleIO)
 
+    //Counters
+    val r_count = RegInit(0.U(4.W))
+    val w_count = RegInit(0.U(4.W))
+
     //cache_state
     val state = RegInit(s_Idle)
 
     val is_idle = state === s_Idle
     val is_read = state === s_ReadCache
     val is_write = state === s_WriteCache
-    val is_alloc = state === s_Refill //
+    val is_alloc = state === s_Refill && r_count===15.U
     val is_alloc_reg = RegNext(is_alloc)
 
 
@@ -84,14 +89,19 @@ class Cache extends Module{
     val TagArray = SyncReadMem(nSets*nWays, UInt(tlen.W))
     val DataArray = Seq.fill(nWords)(SyncReadMem(nWays*nSets, Vec(wBytes, UInt(8.W))))
 
-
     //控制信号
     val hit0 = Wire(Bool())
     val hit1 = Wire(Bool())
     dontTouch(hit0)
     dontTouch(hit1)
-    val wen = is_write && (hit0 || hit1 || is_alloc_reg) || is_alloc
-    val ren = !wen && (is_idle || is_read) && io.cpu.req.valid   //cpu申请读出
+    val wen = is_write && (hit0 || hit1) || is_alloc
+    /*
+    1.写命中,需要写入
+    2.写分配最后一周期,需要写入
+    */
+    val ren = !wen && (is_idle) && io.cpu.req.valid   //cpu申请读出 Tag和Data
+    val ren_reg = RegNext(ren)
+    
     /*
     1.idle需要读出:
         对于Tag,idle就需要申请同步读出,在ReadCache或WriteCache判断是否命中
@@ -99,29 +109,28 @@ class Cache extends Module{
     2.
     */
 
-
-    val ren_reg = RegNext(ren)
-
     val addr = io.cpu.req.bits.addr
     val idx = addr(slen+blen-1,blen)
     val tag_reg = addr_reg(ADDRWIDTH-1,slen+blen)
     val idx_reg = addr_reg(slen+blen-1, blen)
     val off_reg = addr_reg(blen-1, byteOffsetBits) //选择某个XLEN,某个8Byte对齐的数据
 
-
+    
     val way0 = nWays.U*idx_reg      //idx_reg是缓存过的
     val way1 = nWays.U*idx_reg + 1.U
-    
-    
     val rtag0 = TagArray.read(way0,ren)
     val rtag1 = TagArray.read(way1,ren)
     val rdata0 = Cat((DataArray.map(_.read(way0,ren).asUInt)).reverse) //读出
     val rdata1 = Cat((DataArray.map(_.read(way1,ren).asUInt)).reverse) //读出
-    val read = Mux(is_alloc && io.axi.resp.valid, //未命中
-        io.axi.resp.bits.data,
-        Mux(hit0,   //命中
-            rdata0,
-            rdata1
+    val rdata0_buf = RegEnable(rdata0, ren_reg)
+    val rdata1_buf = RegEnable(rdata1, ren_reg)
+    val refill_buffer = Reg(Vec(dataBeats, UInt(X_LEN.W)))
+    
+    val read = Mux(is_alloc_reg,   //已经全部Refill到Cacheline,且Refill_buf中是完整的数据
+        refill_buffer.asUInt,
+        Mux(ren_reg, //ren_reg有效时,rdata有效,ren_reg无效时,rdata已经存入rdata_buf中
+            Mux(rtag0 === tag_reg, rdata0, rdata1),
+            Mux(rtag0 === tag_reg, rdata0_buf, rdata1_buf)
         )
     )
         
@@ -130,7 +139,17 @@ class Cache extends Module{
 
     //读出
     io.cpu.resp.bits.data := VecInit.tabulate(nWords)(i => read((i + 1) * X_LEN - 1, i * X_LEN))(off_reg)
-    io.cpu.resp.valid := is_read && (hit0 || hit1) || is_alloc_reg && !cpu_mask.orR
+    io.cpu.resp.valid := (hit0 || hit1) || is_alloc_reg && !cpu_mask.orR
+    /*
+    1.读命中
+    2.写命中
+    3.写分配完成
+    */
+    when(io.cpu.req.valid){
+        addr_reg := addr
+        cpu_data := io.cpu.req.bits.data
+        cpu_mask := io.cpu.req.bits.mask
+    }
 
 
     val dirty0 = valid(way0) && dirty(way0)
@@ -148,7 +167,7 @@ class Cache extends Module{
     val wdata = Mux(
         !is_alloc, //is_alloc为0->写命中, is_alloc为1->写分配
         Fill(nWords, cpu_data),
-        io.axi.resp.bits.data
+        Cat(io.axi.resp.bits.data, Cat(refill_buffer.init.reverse))
     )
 
     when(wen){
@@ -206,11 +225,15 @@ class Cache extends Module{
     }
     //-------------------------------------------------------------------
 
+    //顶层
+    io.axi.req.valid := 0.B
+    io.axi.req.bits.rw := 0.B
+    io.axi.req.bits.data := VecInit.tabulate(dataBeats)(i => read((i+1)*X_LEN-1, i*X_LEN))(w_count)
+
 
     switch(state){
         is(s_Idle){
             when(io.cpu.req.valid){
-                addr_reg := addr
                 state := Mux(io.cpu.req.bits.mask.orR, s_WriteCache, s_ReadCache)
             }
         }
@@ -218,10 +241,14 @@ class Cache extends Module{
             when(hit0 | hit1){ //命中即读出
                 state := s_Idle
             }.otherwise{ //未命中
+                io.axi.req.valid := 1.B
+                io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
                 when( (~replace_wire && dirty0) | (replace_wire && dirty1)){ //写回
                     state := s_WriteBack
+                    io.axi.req.bits.rw := 0.B
                 }.otherwise{ //直接读Ram
                     state := s_Refill
+                    io.axi.req.bits.rw := 1.B
                 }
             }
         }
@@ -229,8 +256,10 @@ class Cache extends Module{
             when((hit0 | hit1) || is_alloc_reg){ //1.命中 2.刚从Refill转移(写分配)过来
                 state := s_Idle
             }.otherwise{
+                io.axi.req.valid := 1.B
                 when( (~replace_wire && dirty0) | (replace_wire && dirty1)){ //写回
                     state := s_WriteBack
+                    
                 }.otherwise{ //直接读Ram
                     state := s_Refill
                 }
@@ -238,7 +267,7 @@ class Cache extends Module{
         }
         is(s_WriteBack){
             when(io.axi.resp.valid){
-                state := s_Refill
+                
             }
         }
         is(s_Refill){
