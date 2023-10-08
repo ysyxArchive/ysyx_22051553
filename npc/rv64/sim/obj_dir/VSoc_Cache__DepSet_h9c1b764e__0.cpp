@@ -2289,7 +2289,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                                     : 4U)) 
                                          << 6U) | (
                                                    (((IData)(vlSelf->io_fccache_hit)
-                                                      ? 0U
+                                                      ? (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started)
                                                       : 
                                                      ((IData)(vlSelf->__PVT__dirty0)
                                                        ? 3U
@@ -7879,7 +7879,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                                     : 4U)) 
                                          << 6U) | (
                                                    (((IData)(vlSelf->io_fccache_hit)
-                                                      ? 0U
+                                                      ? (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid)
                                                       : 
                                                      ((IData)(vlSelf->__PVT__dirty0)
                                                        ? 3U

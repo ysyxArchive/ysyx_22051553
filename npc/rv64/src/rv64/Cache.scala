@@ -317,7 +317,12 @@ class Cache extends Module{
             when(io.axi.resp.valid){
                 r_count := 0.U
                 refill_buffer(15) := io.axi.resp.bits.data
-                state := Mux(cpu_mask.orR, s_WriteCache, s_Idle)
+                state := Mux(cpu_mask.orR, s_WriteCache, 
+                    Mux(io.cpu.req.valid,
+                        s_ReadCache,
+                        s_Idle
+                    )
+                )
 
             }.otherwise{
                 r_count := r_count + 1.U
