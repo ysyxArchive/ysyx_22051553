@@ -95,7 +95,7 @@ class Cache extends Module{
     val hit1 = Wire(Bool())
     dontTouch(hit0)
     dontTouch(hit1)
-    val wen = (hit0 || hit1) || is_alloc
+    val wen = is_write && (hit0 || hit1) || is_alloc
     /*
     1.写命中,需要写入
     2.写分配最后一周期,需要写入
@@ -317,12 +317,7 @@ class Cache extends Module{
             when(io.axi.resp.valid){
                 r_count := 0.U
                 refill_buffer(15) := io.axi.resp.bits.data
-                state := Mux(cpu_mask.orR, s_WriteCache, 
-                    Mux(io.cpu.req.valid,
-                        s_ReadCache,
-                        s_Idle
-                    )
-                )
+                state := Mux(cpu_mask.orR, s_WriteCache, s_Idle)
 
             }.otherwise{
                 r_count := r_count + 1.U
