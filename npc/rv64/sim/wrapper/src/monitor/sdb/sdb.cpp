@@ -423,11 +423,20 @@ static int cmd_s(char *args){
   if(args == NULL){
 
     #ifdef ITRACE
-    while(decode_list.size() < 3){  //对齐dut和ref decode_list.size()为3表示，ex、mem、wb三个流水线都有指令
-      single_cycle();
+
+    if(clear_cnt > 0 || in_ecall || after_ecall || in_mret || after_mret){
+    
+    }else{
+      while(decode_list.size() < 3){  //对齐dut和ref
+        single_cycle();
+        if(clear_cnt > 0 || in_ecall || after_ecall || in_mret || after_mret){
+          break;
+        }
+      }
     }
     #endif
 
+      
     #ifdef SHOW_LIST
     for(auto arg : fetch_list){
       printf("pc:0x%lx\n", arg.pc);
@@ -443,7 +452,7 @@ static int cmd_s(char *args){
     #endif
 
     #ifdef ITRACE
-    if( decode_list.front().load_use){
+    if( decode_list.front().load_use){  //去掉第一条指令，然后再填充序列
       fetch_list.pop_front();
       decode_list.pop_front();
       execute_list.pop_front();
@@ -466,12 +475,14 @@ static int cmd_s(char *args){
     }
     #endif
 
-    //-----disasmble     --对当前wb中的pc
+
+  //-----disasmble
+
     #ifdef ITRACE
     char* p = log_itrace;
-    p += snprintf(p, sizeof(log_itrace), "(dnpc)0x%016lx" ":", fetch_list.front().pc);
+    p += snprintf(p, sizeof(log_itrace), "0x%016lx" ":", fetch_list.front().pc);
     int ilen = 4;
-    uint8_t* inst = (uint8_t *)(&(decode_list.front().inst));
+    uint8_t* inst = (uint8_t *)(&decode_list.front().inst);
     for(int i = ilen - 1; i >= 0; i--){
       p += snprintf(p, 4, "%02x", inst[i]);
     }
@@ -490,27 +501,52 @@ static int cmd_s(char *args){
     irb_pos = (irb_pos == 15) ? 0 : irb_pos+1;
     #endif
 
+      //-----------------
 
-    //-----------------
-    
     #ifdef ITRACE
-      while(decode_list.size() < 4)  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成
-        single_cycle();   
+      if(clear_cnt > 0 || in_ecall || in_mret){
+        single_cycle();
+      }
+      else if(!after_ecall && !after_mret){
+        while(decode_list.size() < 4){
+          single_cycle();   
+          if(clear_cnt > 0|| in_ecall || after_ecall || in_mret || after_mret){
+            break;
+          }
+        }  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成
+      }
     #else
         single_cycle();   
     #endif
+        
+      #ifdef ITRACE
 
-    #ifdef ITRACE
-      
-      
-    #ifdef DIFFTEST
-    int skip = (*(execute_list.begin()++)).skip_ref_one_inst;
+      #ifdef DIFFTEST
+      if(after_ecall || after_mret){
+        if(after_ecall){
+          ref_difftest_raise_intr(11);
+        }
+
+        if(after_mret){
+          ref_difftest_mret();
+        }
+        
+
+        ref_difftest_regcpy(&cpu_ins.regs_state,1);
+
+        while(decode_list.size() < 4){  //对齐dut和ref,并让dut执行一条指令,即mtvec的第一条指令
+          
+          single_cycle();
+        }
+      }
+
+
+      int skip = (*(++execute_list.begin())).skip_ref_one_inst || in_ecall || in_mret;
       if(skip){
         difftest_skip_ref();
       }
-    else if(decode_list.front().valid){
-      if(! difftest_step()){  //比较当前的通用寄存器状态和下一条指令的pc
-  
+      else
+      if(! difftest_step()){
           //dut_regs
           printf("-----------dut_regs--------------\n");
           printf("pc\t\t0x%-16lx\t\t%-20ld\n", fetch_list.front().pc, fetch_list.front().pc);
@@ -524,6 +560,7 @@ static int cmd_s(char *args){
             printf("%s\t\t0x%-16lx\t\t%-20ld\n", cpu::regs[i], ref_r.gpr[i], ref_r.gpr[i]);
           }    
 
+        
           //-----itrace
           #ifdef ITRACE
           printf("-----------itrace--------------\n");
@@ -537,20 +574,29 @@ static int cmd_s(char *args){
             }
           #endif
           //---------------
-            Verilated::gotFinish(1);
+              Verilated::gotFinish(1);
+      }
+      #endif
+
+      if(clear_cnt > 0){
+        clear_cnt --;
+      }
+      
+
+      if(!decode_list.empty()){
+        decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
+      }
+      if(!fetch_list.empty()){
+        fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
+      }
+      if(!execute_list.empty()){
+        execute_list.pop_front();
       }
 
-      
-    }
-    
-    #endif
+      #endif      
 
-    decode_list.pop_front(); //single_cycle和difftest_step使用后丢弃
-    fetch_list.pop_front(); //single_cycle和difftest_step使用后丢弃
-    execute_list.pop_front();
-    #endif
-    
-    event_update();
+
+      event_update();
       
   }
   else {

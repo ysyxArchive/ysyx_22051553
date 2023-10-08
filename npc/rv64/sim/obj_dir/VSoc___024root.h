@@ -223,10 +223,10 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__sram__DOT__rvalid;
         CData/*0:0*/ Soc__DOT__sram__DOT__need_resp;
         CData/*0:0*/ Soc__DOT__sram__DOT__need_read;
-        CData/*0:0*/ __VdfgTmp_hf97a0e2a__0;
-        CData/*0:0*/ __VdfgTmp_h32e33dc7__0;
-        CData/*5:0*/ __VdfgTmp_h0272b304__0;
-        CData/*3:0*/ __VdfgTmp_h0a2b9dfa__0;
+        CData/*0:0*/ __VdfgTmp_hae56d818__0;
+        CData/*0:0*/ __VdfgTmp_h3db68a5f__0;
+        CData/*5:0*/ __VdfgTmp_hd31110f2__0;
+        CData/*3:0*/ __VdfgTmp_hd0a2fa80__0;
         CData/*0:0*/ __VdfgTmp_h9d5684c6__0;
         CData/*3:0*/ __Vdly__Soc__DOT__sram__DOT__r_count;
         CData/*0:0*/ __Vdly__Soc__DOT__sram__DOT__rlast;
@@ -246,10 +246,12 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
         IData/*31:0*/ Soc__DOT__core__DOT___fetch_io_fdio_pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fdreg_pc;
+        IData/*31:0*/ Soc__DOT__core__DOT___GEN;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT__pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT__old_pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT___next_pc_T_7;
         IData/*31:0*/ Soc__DOT__core__DOT__decode__DOT__inst;
+        IData/*31:0*/ Soc__DOT__core__DOT__decode__DOT____VdfgTmp_hd891a444__0;
         IData/*16:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_1;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_58;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_65;
@@ -282,10 +284,10 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ __VactIterCount;
         QData/*63:0*/ Soc__DOT___core_io_AXI_Interface_w_bits_data;
         QData/*63:0*/ Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data;
-        QData/*63:0*/ Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data;
-        QData/*63:0*/ Soc__DOT__core__DOT___trap_io_csrtr_csr_wdata;
     };
     struct {
+        QData/*63:0*/ Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data;
+        QData/*63:0*/ Soc__DOT__core__DOT___trap_io_csrtr_csr_wdata;
         QData/*63:0*/ Soc__DOT__core__DOT___mem_io_mwio_reg_wdata;
         QData/*63:0*/ Soc__DOT__core__DOT___excute_io_fwex_reg_wdata;
         QData/*63:0*/ Soc__DOT__core__DOT__dereg_op_a;

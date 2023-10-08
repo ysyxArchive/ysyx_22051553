@@ -53,7 +53,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 6842, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 6843, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -197,6 +197,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__mwreg_csr_wen = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__mwreg_csr_waddr = VL_RAND_RESET_I(12);
     vlSelf->Soc__DOT__core__DOT__mwreg_has_inst = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT___GEN = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__fetch__DOT__started = VL_RAND_RESET_I(1);
@@ -216,6 +217,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__decode__DOT___io_jump_pc_T_4 = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__decode__DOT___io_deio_reg2_rdata_T = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__decode__DOT___io_deio_csr_t_T = VL_RAND_RESET_Q(64);
+    vlSelf->Soc__DOT__core__DOT__decode__DOT____VdfgTmp_hd891a444__0 = 0;
     vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN = VL_RAND_RESET_I(10);
     vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_0 = VL_RAND_RESET_I(16);
     vlSelf->Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_1 = VL_RAND_RESET_I(17);
@@ -437,10 +439,10 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__sram__DOT__need_resp = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__sram__DOT__araddr = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__sram__DOT__need_read = VL_RAND_RESET_I(1);
-    vlSelf->__VdfgTmp_hf97a0e2a__0 = 0;
-    vlSelf->__VdfgTmp_h32e33dc7__0 = 0;
-    vlSelf->__VdfgTmp_h0272b304__0 = 0;
-    vlSelf->__VdfgTmp_h0a2b9dfa__0 = 0;
+    vlSelf->__VdfgTmp_hae56d818__0 = 0;
+    vlSelf->__VdfgTmp_h3db68a5f__0 = 0;
+    vlSelf->__VdfgTmp_hd31110f2__0 = 0;
+    vlSelf->__VdfgTmp_hd0a2fa80__0 = 0;
     vlSelf->__VdfgTmp_h9d5684c6__0 = 0;
     vlSelf->__Vdly__Soc__DOT__sram__DOT__r_count = VL_RAND_RESET_I(4);
     vlSelf->__Vdly__Soc__DOT__sram__DOT__rlast = VL_RAND_RESET_I(1);
