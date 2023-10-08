@@ -16,6 +16,7 @@
 // INCLUDE MODULE CLASSES
 #include "VSoc___024root.h"
 #include "VSoc___024unit.h"
+#include "VSoc_Cache.h"
 
 // DPI TYPES for DPI Export callbacks (Internal use)
 
@@ -31,6 +32,8 @@ class VSoc__Syms final : public VerilatedSyms {
 
     // MODULE INSTANCE STATE
     VSoc___024root                 TOP;
+    VSoc_Cache                     TOP__Soc__DOT__core__DOT__Dcache;
+    VSoc_Cache                     TOP__Soc__DOT__core__DOT__Icache;
     VSoc___024unit                 TOP____024unit;
 
     // CONSTRUCTORS

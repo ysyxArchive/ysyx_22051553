@@ -16,7 +16,8 @@ import Define._
 
 
 object CacheState { //有的会产生没必要的延迟周期，但是状态机更清晰
-    val s_Idle :: s_ReadCache :: s_WriteCache :: s_WriteBack :: s_Refill :: Nil = Enum(5)
+    val s_Idle :: s_ReadCache :: s_WriteCache :: s_WriteBack :: s_RefillReady :: s_Refill :: Nil = Enum(6)
+//                                                              等待AR的周期
 }
 
 object Cache{
@@ -262,7 +263,7 @@ class Cache extends Module{
                     }
                     
                 }.otherwise{ //直接读Ram
-                    state := s_Refill
+                    state := s_RefillReady
                     io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
                     io.axi.req.bits.rw := 1.B
                 }
@@ -283,7 +284,7 @@ class Cache extends Module{
                     }
 
                 }.otherwise{ //直接读Ram
-                    state := s_Refill
+                    state := s_RefillReady
                     io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
                     io.axi.req.bits.rw := 1.B
                 }
@@ -292,7 +293,7 @@ class Cache extends Module{
         is(s_WriteBack){
             when(io.axi.resp.valid){
                 w_count := 0.U
-                state := s_Refill
+                state := s_RefillReady
                 io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
                 io.axi.req.bits.rw := 1.B
             }.otherwise{
@@ -303,9 +304,13 @@ class Cache extends Module{
                 }
             }
         }
+        is(s_RefillReady){
+            state := s_Refill
+        }
         is(s_Refill){
             when(io.axi.resp.valid){
                 r_count := 0.U
+                refill_buffer(15) := io.axi.resp.bits.data
                 state := Mux(cpu_mask.orR, s_WriteCache, s_Idle)
             }.otherwise{
                 r_count := r_count + 1.U
