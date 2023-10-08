@@ -95,7 +95,7 @@ class Cache extends Module{
     val hit1 = Wire(Bool())
     dontTouch(hit0)
     dontTouch(hit1)
-    val wen = is_write && (hit0 || hit1) || is_alloc
+    val wen = (hit0 || hit1) || is_alloc
     /*
     1.写命中,需要写入
     2.写分配最后一周期,需要写入
