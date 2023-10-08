@@ -229,6 +229,7 @@ class Cache extends Module{
     io.axi.req.valid := 0.B
     io.axi.req.bits.rw := 0.B
     io.axi.req.bits.data := VecInit.tabulate(dataBeats)(i => read((i+1)*X_LEN-1, i*X_LEN))(w_count)
+    io.axi.req.bits.addr := 0.U
 
 
     switch(state){
@@ -242,12 +243,19 @@ class Cache extends Module{
                 state := s_Idle
             }.otherwise{ //未命中
                 io.axi.req.valid := 1.B
-                io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
+                
                 when( (~replace_wire && dirty0) | (replace_wire && dirty1)){ //写回
                     state := s_WriteBack
                     io.axi.req.bits.rw := 0.B
+                    when(dirty0){
+                        io.axi.req.bits.addr := (Cat(rtag0, idx_reg) << blen.U).asUInt //tag0为原来way0中存在的有效tag
+                    }.otherwise{
+                        io.axi.req.bits.addr := (Cat(rtag1, idx_reg) << blen.U).asUInt
+                    }
+                    
                 }.otherwise{ //直接读Ram
                     state := s_Refill
+                    io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
                     io.axi.req.bits.rw := 1.B
                 }
             }
@@ -259,19 +267,32 @@ class Cache extends Module{
                 io.axi.req.valid := 1.B
                 when( (~replace_wire && dirty0) | (replace_wire && dirty1)){ //写回
                     state := s_WriteBack
-                    
+                    io.axi.req.bits.rw := 0.B
+                    when(dirty0){
+                        io.axi.req.bits.addr := (Cat(rtag0, idx_reg) << blen.U).asUInt //tag0为原来way0中存在的有效tag
+                    }.otherwise{
+                        io.axi.req.bits.addr := (Cat(rtag1, idx_reg) << blen.U).asUInt
+                    }
+
                 }.otherwise{ //直接读Ram
                     state := s_Refill
+                    io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
+                    io.axi.req.bits.rw := 1.B
                 }
             }
         }
         is(s_WriteBack){
-            when(io.axi.resp.valid){
-                
+            w_count := w_count + 1.U
+            when(w_count === 15.U){
+                state := s_Refill
+                io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
+                io.axi.req.bits.rw := 1.B
             }
         }
         is(s_Refill){
-            when(io.axi.resp.valid){
+            r_count := r_count + 1.U
+            refill_buffer(r_count) := io.axi.resp.bits.data
+            when(r_count === 15.U){
                 state := Mux(cpu_mask.orR, s_WriteCache, s_Idle)
             }
         }
