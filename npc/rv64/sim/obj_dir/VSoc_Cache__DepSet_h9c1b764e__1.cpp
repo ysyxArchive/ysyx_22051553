@@ -14,7 +14,8 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
     VL_DEBUG_IF(VL_DBG_MSGF("+          VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1\n"); );
     // Body
     vlSelf->__PVT__ren = ((~ (IData)(vlSelf->__PVT___GEN_0)) 
-                          & ((0U == (IData)(vlSelf->__PVT__state)) 
+                          & (((0U == (IData)(vlSelf->__PVT__state)) 
+                              | (1U == (IData)(vlSelf->__PVT__state))) 
                              & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid)));
 }
 
