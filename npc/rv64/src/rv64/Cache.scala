@@ -230,6 +230,14 @@ class Cache extends Module{
     io.axi.req.bits.rw := 0.B
     io.axi.req.bits.data := VecInit.tabulate(dataBeats)(i => read((i+1)*X_LEN-1, i*X_LEN))(w_count)
     io.axi.req.bits.addr := 0.U
+    io.axi.req.bits.mask := "b11111111".U
+
+    io.fccache.hit := hit0 | hit1
+    io.fccache.mask := io.cpu.req.bits.mask
+    io.fccache.cpu_valid := io.cpu.resp.valid
+    io.fccache.req := io.cpu.req.valid
+    io.fccache.state := state
+    io.fccache.axi_valid := is_alloc_reg
 
 
     switch(state){
