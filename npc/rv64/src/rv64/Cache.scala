@@ -192,7 +192,7 @@ class Cache extends Module{
             对DataArray取索引,得到nWords个mem,每个mem都是nSets*nWays个wBytes,
             应该写的位置是way0
 
-            val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8)) //字节序列,组成XLEN长度
+            val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, ioi * X_LEN + k * 8)) //字节序列,组成XLEN长度
             i=0时,即nWords为0,取第0个XLEN(8字节对齐数据),
             k从0增长到wBytes-1,
             k=0时,data(0)为wdata(7,0);k=1时,data(1)为wdata(15,8)
