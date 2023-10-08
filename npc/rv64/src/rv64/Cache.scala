@@ -22,7 +22,7 @@ object CacheState { //有的会产生没必要的延迟周期，但是状态机�
 
 object Cache{
     val nWays = 2
-    val nSets = 8
+    val nSets = 16
     val bBytes = 128 //Cacheline长度
     val bBits = bBytes << 3
     val blen = log2Ceil(bBytes) //offset位域7位
@@ -87,7 +87,7 @@ class Cache extends Module{
     val dirty = RegInit(0.U((nWays*nSets).W))
     val replace = RegInit(0.U((nWays*nSets).W))  //LRU算法，0新1旧
     
-    val TagArray = SyncReadMem(nSets*nWays, UInt(tlen.W))
+    val TagArray = Mem(nSets*nWays, UInt(tlen.W))
     val DataArray = Seq.fill(nWords)(SyncReadMem(nWays*nSets, Vec(wBytes, UInt(8.W))))
 
     //控制信号
@@ -112,16 +112,17 @@ class Cache extends Module{
 
     val addr = io.cpu.req.bits.addr
     val idx = addr(slen+blen-1,blen)
+    val tag = addr(ADDRWIDTH-1,slen+blen)
     val tag_reg = addr_reg(ADDRWIDTH-1,slen+blen)
     val idx_reg = addr_reg(slen+blen-1, blen)
     val off_reg = addr_reg(blen-1, byteOffsetBits) //选择某个XLEN,某个8Byte对齐的数据
     dontTouch(off_reg)
 
     
-    val way0 = nWays.U*idx_reg      //idx_reg是缓存过的
-    val way1 = nWays.U*idx_reg + 1.U
-    val rtag0 = TagArray.read(way0,ren)
-    val rtag1 = TagArray.read(way1,ren)
+    val way0 = nWays.U*idx      //idx_reg是缓存过的
+    val way1 = nWays.U*idx + 1.U
+    val rtag0 = TagArray(way0)
+    val rtag1 = TagArray(way1)
     val rdata0 = Cat((DataArray.map(_.read(way0,ren).asUInt)).reverse) //读出
     val rdata1 = Cat((DataArray.map(_.read(way1,ren).asUInt)).reverse) //读出
     val rdata0_buf = RegEnable(rdata0, ren_reg)
@@ -136,8 +137,8 @@ class Cache extends Module{
         )
     )
         
-    hit0 := valid(way0) && rtag0 === tag_reg
-    hit1 := valid(way1) && rtag1 === tag_reg
+    hit0 := valid(way0) && rtag0 === tag
+    hit1 := valid(way1) && rtag1 === tag
 
     //读出
     io.cpu.resp.bits.data := VecInit.tabulate(nWords)(i => read((i + 1) * X_LEN - 1, i * X_LEN))(off_reg)
@@ -245,50 +246,46 @@ class Cache extends Module{
     switch(state){
         is(s_Idle){
             when(io.cpu.req.valid){
-                state := Mux(io.cpu.req.bits.mask.orR, s_WriteCache, s_ReadCache)
+                when(hit0 | hit1){
+                    state := s_Idle
+                }.otherwise{
+                    state := Mux(io.cpu.req.bits.mask.orR, s_WriteCache, s_ReadCache)
+                }
             }
         }
         is(s_ReadCache){
-            when(hit0 | hit1){ //命中即读出
-                state := s_Idle
-            }.otherwise{ //未命中
-                io.axi.req.valid := 1.B
-                
-                when( (~replace_wire && dirty0) | (replace_wire && dirty1)){ //写回
-                    state := s_WriteBack
-                    io.axi.req.bits.rw := 0.B
-                    when(dirty0){
-                        io.axi.req.bits.addr := (Cat(rtag0, idx_reg) << blen.U).asUInt //tag0为原来way0中存在的有效tag
-                    }.otherwise{
-                        io.axi.req.bits.addr := (Cat(rtag1, idx_reg) << blen.U).asUInt
-                    }
-                    
-                }.otherwise{ //直接读Ram
-                    state := s_RefillReady
-                    io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
-                    io.axi.req.bits.rw := 1.B
+            io.axi.req.valid := 1.B
+            
+            when( (~replace_wire && dirty0) | (replace_wire && dirty1)){ //写回
+                state := s_WriteBack
+                io.axi.req.bits.rw := 0.B
+                when(dirty0){
+                    io.axi.req.bits.addr := (Cat(rtag0, idx_reg) << blen.U).asUInt //tag0为原来way0中存在的有效tag
+                }.otherwise{
+                    io.axi.req.bits.addr := (Cat(rtag1, idx_reg) << blen.U).asUInt
                 }
+                
+            }.otherwise{ //直接读Ram
+                state := s_RefillReady
+                io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
+                io.axi.req.bits.rw := 1.B
             }
         }
         is(s_WriteCache){
-            when((hit0 | hit1) || is_alloc_reg){ //1.命中 2.刚从Refill转移(写分配)过来
-                state := s_Idle
-            }.otherwise{
-                io.axi.req.valid := 1.B
-                when( (~replace_wire && dirty0) | (replace_wire && dirty1)){ //写回
-                    state := s_WriteBack
-                    io.axi.req.bits.rw := 0.B
-                    when(dirty0){
-                        io.axi.req.bits.addr := (Cat(rtag0, idx_reg) << blen.U).asUInt //tag0为原来way0中存在的有效tag
-                    }.otherwise{
-                        io.axi.req.bits.addr := (Cat(rtag1, idx_reg) << blen.U).asUInt
-                    }
-
-                }.otherwise{ //直接读Ram
-                    state := s_RefillReady
-                    io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
-                    io.axi.req.bits.rw := 1.B
+            io.axi.req.valid := 1.B
+            when( (~replace_wire && dirty0) | (replace_wire && dirty1)){ //写回
+                state := s_WriteBack
+                io.axi.req.bits.rw := 0.B
+                when(dirty0){
+                    io.axi.req.bits.addr := (Cat(rtag0, idx_reg) << blen.U).asUInt //tag0为原来way0中存在的有效tag
+                }.otherwise{
+                    io.axi.req.bits.addr := (Cat(rtag1, idx_reg) << blen.U).asUInt
                 }
+
+            }.otherwise{ //直接读Ram
+                state := s_RefillReady
+                io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
+                io.axi.req.bits.rw := 1.B
             }
         }
         is(s_WriteBack){

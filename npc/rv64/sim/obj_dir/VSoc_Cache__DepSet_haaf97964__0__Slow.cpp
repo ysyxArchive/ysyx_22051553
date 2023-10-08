@@ -30,7 +30,6 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->io_fccache_state = VL_RAND_RESET_I(3);
     vlSelf->io_fccache_mask = VL_RAND_RESET_I(8);
     vlSelf->io_fccache_hit = VL_RAND_RESET_I(1);
-    vlSelf->io_fccache_cpu_valid = VL_RAND_RESET_I(1);
     vlSelf->__PVT___GEN_0 = VL_RAND_RESET_I(1);
     vlSelf->__PVT___TagArray_ext_R0_data = VL_RAND_RESET_I(22);
     vlSelf->__PVT___TagArray_ext_R1_data = VL_RAND_RESET_I(22);
@@ -78,10 +77,10 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__PVT___T_356 = VL_RAND_RESET_I(1);
     vlSelf->__PVT___T_361 = VL_RAND_RESET_I(1);
     vlSelf->__PVT___GEN_8 = VL_RAND_RESET_I(1);
-    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_45 = VL_RAND_RESET_I(3);
-    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_46 = VL_RAND_RESET_I(4);
-    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_47 = VL_RAND_RESET_I(32);
-    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_48 = VL_RAND_RESET_I(24);
+    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_41 = VL_RAND_RESET_I(3);
+    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_42 = VL_RAND_RESET_I(4);
+    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_43 = VL_RAND_RESET_I(32);
+    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_44 = VL_RAND_RESET_I(24);
     vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___T_1 = VL_RAND_RESET_I(32);
     vlSelf->__VdfgTmp_h082e9772__0 = 0;
     VL_ZERO_RESET_W(960, vlSelf->__VdfgTmp_h25305f44__0);
