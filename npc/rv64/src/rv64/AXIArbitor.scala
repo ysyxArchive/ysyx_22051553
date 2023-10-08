@@ -15,7 +15,6 @@ class AXIMasterReq extends Bundle{
 
 class AXIMasterResp extends Bundle{
     val data = UInt((X_LEN).W)
-    val last = Bool()
 }
 
 class AXIMasterIO extends Bundle{
