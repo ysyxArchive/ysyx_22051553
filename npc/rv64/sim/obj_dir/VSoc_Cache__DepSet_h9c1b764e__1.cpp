@@ -3589,10 +3589,10 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__2
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+          VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__2\n"); );
     // Body
-    vlSelf->__PVT__ren = ((~ (IData)(vlSelf->__PVT__wen)) 
-                          & (((0U == (IData)(vlSelf->__PVT__state)) 
-                              | (1U == (IData)(vlSelf->__PVT__state))) 
-                             & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started)));
+    vlSelf->__PVT__ren = (((0U == (IData)(vlSelf->__PVT__state)) 
+                           | ((1U == (IData)(vlSelf->__PVT__state)) 
+                              | (2U == (IData)(vlSelf->__PVT__state)))) 
+                          & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started));
     vlSelf->__PVT___GEN_16 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 2U)));
