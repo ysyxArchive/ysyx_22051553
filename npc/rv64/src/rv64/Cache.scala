@@ -191,59 +191,86 @@ class Cache extends Module{
     )
 
     when(wen){
-        when(!replace_wire){
-            valid := valid.bitSet(way0_buf, 1.B)
-            dirty := dirty.bitSet(way0_buf, !is_alloc) //写命中为脏,写分配为不脏
+        when(hit0 | hit1){ //命中就不涉及写valid等
+            when(hit0){
+                rep0 := replace.bitSet(way0_buf, 0.B)
+                rep1 := replace.bitSet(way1_buf, 1.B)
+                replace := rep0 | rep1
 
-            rep0 := replace.bitSet(way0_buf, 0.B)
-            rep1 := replace.bitSet(way1_buf, 1.B)
-            replace := rep0 | rep1
-
-            when(is_alloc){
-                TagArray.write(way0_buf, tag_reg)
-            }
-            DataArray.zipWithIndex.foreach{
+                DataArray.zipWithIndex.foreach{
                 case(mem, i) =>
                     val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
                     mem.write(way0_buf, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
-            }
-            /*
-            对DataArray取索引,得到nWords个mem,每个mem都是nSets*nWays个wBytes,
-            应该写的位置是way0
+                }
+            }.otherwise{
+                rep0 := replace.bitSet(way0_buf, 1.B)
+                rep1 := replace.bitSet(way1_buf, 0.B)
+                replace := rep0 | rep1
 
-            val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8)) //字节序列,组成XLEN长度
-            i=0时,即nWords为0,取第0个XLEN(8字节对齐数据),
-            k从0增长到wBytes-1,
-            k=0时,data(0)为wdata(7,0);k=1时,data(1)为wdata(15,8)
-            i=1时,即nWords为1,取第1个XLEN(8字节对齐数据),
-            k从0增长到wBytes-1,
-            k=0时,data(0)为wdata(71,64);k=1时,data(1)为wdata(79,72)
-
-            mem.write(way0, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools())
-            选择way0,即对应的way中的set,写data(8字节),mask为wmask((i + 1) * wBytes - 1, i * wBytes).asBools()
-
-            对于is_alloc,mask全为1,即Cacheline全部需要写
-            对于写命中,mask为cpu_mask << Cat(off_reg, 0.U(byteOffsetBits.W)),
-            例:cpu_mask为0000_0001 off_reg(选择某个XLEN)为1 ->(off_reg为1时,需要写(127,64))
-            则,wmask为1 << 1000即为8,即写第8字节(71,64)
-            */
-        }.otherwise{
-            valid := valid.bitSet(way1_buf, 1.B)
-            dirty := dirty.bitSet(way1_buf, !is_alloc) //写命中为脏,写分配为不脏
-
-            rep0 := replace.bitSet(way0_buf, 1.B)
-            rep1 := replace.bitSet(way1_buf, 0.B)
-            replace := rep0 | rep1
-
-            when(is_alloc){
-                TagArray.write(way1_buf, tag_reg)
-            }
-            DataArray.zipWithIndex.foreach{
+                DataArray.zipWithIndex.foreach{
                 case(mem, i) =>
                     val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
                     mem.write(way1_buf, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
+                }
             }
+        }.otherwise{
+
+            when(!replace_wire){
+                valid := valid.bitSet(way0_buf, 1.B)
+                dirty := dirty.bitSet(way0_buf, !is_alloc) //写命中为脏,写分配为不脏
+
+                rep0 := replace.bitSet(way0_buf, 0.B)
+                rep1 := replace.bitSet(way1_buf, 1.B)
+                replace := rep0 | rep1
+
+                when(is_alloc){
+                    TagArray.write(way0_buf, tag_reg)
+                }
+                DataArray.zipWithIndex.foreach{
+                    case(mem, i) =>
+                        val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
+                        mem.write(way0_buf, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
+                }
+                /*
+                对DataArray取索引,得到nWords个mem,每个mem都是nSets*nWays个wBytes,
+                应该写的位置是way0
+
+                val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8)) //字节序列,组成XLEN长度
+                i=0时,即nWords为0,取第0个XLEN(8字节对齐数据),
+                k从0增长到wBytes-1,
+                k=0时,data(0)为wdata(7,0);k=1时,data(1)为wdata(15,8)
+                i=1时,即nWords为1,取第1个XLEN(8字节对齐数据),
+                k从0增长到wBytes-1,
+                k=0时,data(0)为wdata(71,64);k=1时,data(1)为wdata(79,72)
+
+                mem.write(way0, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools())
+                选择way0,即对应的way中的set,写data(8字节),mask为wmask((i + 1) * wBytes - 1, i * wBytes).asBools()
+
+                对于is_alloc,mask全为1,即Cacheline全部需要写
+                对于写命中,mask为cpu_mask << Cat(off_reg, 0.U(byteOffsetBits.W)),
+                例:cpu_mask为0000_0001 off_reg(选择某个XLEN)为1 ->(off_reg为1时,需要写(127,64))
+                则,wmask为1 << 1000即为8,即写第8字节(71,64)
+                */
+            }.otherwise{
+                valid := valid.bitSet(way1_buf, 1.B)
+                dirty := dirty.bitSet(way1_buf, !is_alloc) //写命中为脏,写分配为不脏
+
+                rep0 := replace.bitSet(way0_buf, 1.B)
+                rep1 := replace.bitSet(way1_buf, 0.B)
+                replace := rep0 | rep1
+
+                when(is_alloc){
+                    TagArray.write(way1_buf, tag_reg)
+                }
+                DataArray.zipWithIndex.foreach{
+                    case(mem, i) =>
+                        val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
+                        mem.write(way1_buf, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
+                }
+            }
+
         }
+
     }
     //-------------------------------------------------------------------
 

@@ -106,9 +106,9 @@ class Excute extends Module{
     io.wdata := io.deio.reg2_rdata
     io.wmask := MuxLookup(io.deio.sd_type, 0.U,
         Seq(
-            SD_SB -> "b00000001".U,
-            SD_SH -> "b00000011".U,
-            SD_SW -> "b00001111".U,
+            SD_SB -> ("b00000001".U << alu.io.result(2,0)),
+            SD_SH -> ("b00000011".U << alu.io.result(2,0)),
+            SD_SW -> ("b00001111".U << alu.io.result(2,0)),
             SD_SD -> "b11111111".U
         )
     )
@@ -122,7 +122,7 @@ class Excute extends Module{
 
     io.clex.sd_type := io.deio.sd_type
     io.clex.waddr := alu.io.result
-    io.clex.wmask := MuxLookup(io.deio.sd_type, 0.U,
+    io.clex.wmask := MuxLookup(io.deio.sd_type, 0.U,  //暂且不管
         Seq(
             SD_SB -> "b00000001".U,
             SD_SH -> "b00000011".U,
