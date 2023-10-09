@@ -92,6 +92,8 @@ class Cache extends Module{
     val replace = RegInit(0.U((nWays*nSets).W))  //LRU算法，0新1旧
     val rep0 = Wire(UInt(nSets.W))
     val rep1 = Wire(UInt(nSets.W))
+    rep0 := 0.U
+    rep1 := 1.U
     
     val TagArray = SyncReadMem(nSets*nWays, UInt(tlen.W))
     val DataArray = Seq.fill(nWords)(SyncReadMem(nWays*nSets, Vec(wBytes, UInt(8.W))))
