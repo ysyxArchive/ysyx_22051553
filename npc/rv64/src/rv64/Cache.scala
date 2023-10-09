@@ -93,7 +93,7 @@ class Cache extends Module{
     val rep0 = Wire(UInt((nWays*nSets).W))
     val rep1 = Wire(UInt((nWays*nSets).W))
     rep0 := 0.U
-    rep1 := 1.U
+    rep1 := 0.U
     
     val TagArray = SyncReadMem(nSets*nWays, UInt(tlen.W))
     val DataArray = Seq.fill(nWords)(SyncReadMem(nWays*nSets, Vec(wBytes, UInt(8.W))))
@@ -193,8 +193,8 @@ class Cache extends Module{
             valid := valid.bitSet(way0_buf, 1.B)
             dirty := dirty.bitSet(way0_buf, !is_alloc) //写命中为脏,写分配为不脏
 
-            rep0 := rep0.bitSet(way0_buf, 0.B)
-            rep1 := rep1.bitSet(way1_buf, 1.B)
+            rep0 := replace.bitSet(way0_buf, 0.B)
+            rep1 := replace.bitSet(way1_buf, 1.B)
             replace := rep0 | rep1
 
             when(is_alloc){
@@ -229,8 +229,8 @@ class Cache extends Module{
             valid := valid.bitSet(way1_buf, 1.B)
             dirty := dirty.bitSet(way1_buf, !is_alloc) //写命中为脏,写分配为不脏
 
-            rep0 := rep0.bitSet(way0_buf, 1.B)
-            rep1 := rep1.bitSet(way1_buf, 0.B)
+            rep0 := replace.bitSet(way0_buf, 1.B)
+            rep1 := replace.bitSet(way1_buf, 0.B)
             replace := rep0 | rep1
 
             when(is_alloc){
