@@ -138,6 +138,8 @@ class Cache extends Module{
     dontTouch(way1)
     val rtag0 = TagArray.read(way0,ren)
     val rtag1 = TagArray.read(way1,ren)
+    dontTouch(rtag0)
+    dontTouch(rtag1)
     val rdata0 = Cat((DataArray.map(_.read(way0,ren).asUInt)).reverse) //读出
     val rdata1 = Cat((DataArray.map(_.read(way1,ren).asUInt)).reverse) //读出
     val rdata0_buf = RegEnable(rdata0, ren_reg)

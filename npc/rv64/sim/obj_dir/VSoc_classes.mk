@@ -29,6 +29,7 @@ VM_CLASSES_FAST += \
 	VSoc___024unit__DepSet_h02486a38__0 \
 	VSoc_Cache__DepSet_h9c1b764e__0 \
 	VSoc_Cache__DepSet_h9c1b764e__1 \
+	VSoc_Cache__DepSet_h9c1b764e__2 \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
 VM_CLASSES_SLOW += \
