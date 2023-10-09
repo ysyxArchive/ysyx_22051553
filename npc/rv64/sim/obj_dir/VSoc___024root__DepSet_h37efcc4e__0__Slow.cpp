@@ -53,7 +53,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 6912, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 8485, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -109,11 +109,6 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT____Vcellinp__sram__ARESETn = (1U 
                                                    & (~ (IData)(vlSelf->reset)));
     vlSelf->Soc__DOT___sram_S_AXI_BVALID = vlSelf->Soc__DOT__sram__DOT__bvalid;
-    vlSelf->Soc__DOT__core__DOT___excute_io_wmask = 
-        ((4U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))
-          ? 0xffU : ((3U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))
-                      ? 0xfU : ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))
-                                 ? 3U : (1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type)))));
     vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_7 
         = ((IData)(4U) + vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T = 
@@ -773,6 +768,25 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                                                                  ? 
                                                                                 vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_81[0U]
                                                                                  : (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_126)))))))))))))))))))))))))))));
+    if ((4U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))) {
+        vlSelf->Soc__DOT__core__DOT___excute_io_clex_wmask = 0xffU;
+        vlSelf->Soc__DOT__core__DOT___excute_io_wmask = 0xffU;
+    } else if ((3U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))) {
+        vlSelf->Soc__DOT__core__DOT___excute_io_clex_wmask = 0xfU;
+        vlSelf->Soc__DOT__core__DOT___excute_io_wmask 
+            = (0xffU & ((IData)(0xfU) << (7U & (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result))));
+    } else if ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))) {
+        vlSelf->Soc__DOT__core__DOT___excute_io_clex_wmask = 3U;
+        vlSelf->Soc__DOT__core__DOT___excute_io_wmask 
+            = (0xffU & ((IData)(3U) << (7U & (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result))));
+    } else {
+        vlSelf->Soc__DOT__core__DOT___excute_io_clex_wmask 
+            = (1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type));
+        vlSelf->Soc__DOT__core__DOT___excute_io_wmask 
+            = (0xffU & ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))
+                         ? ((IData)(1U) << (7U & (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result)))
+                         : 0U));
+    }
     __Vtemp_hda373ffc__0[0U] = 0U;
     __Vtemp_hda373ffc__0[1U] = 0U;
     __Vtemp_hda373ffc__0[2U] = 0U;
@@ -1048,6 +1062,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT___excute_io_wmask = VL_RAND_RESET_I(8);
     vlSelf->Soc__DOT__core__DOT___excute_io_fwex_reg_wdata = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT___excute_io_fwex_reg_we = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT___excute_io_clex_wmask = VL_RAND_RESET_I(8);
     vlSelf->Soc__DOT__core__DOT___decode_io_rfio_reg1_raddr = VL_RAND_RESET_I(5);
     vlSelf->Soc__DOT__core__DOT___decode_io_rfio_reg2_raddr = VL_RAND_RESET_I(5);
     vlSelf->Soc__DOT__core__DOT___decode_io_deio_reg_waddr = VL_RAND_RESET_I(5);

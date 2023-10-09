@@ -332,8 +332,14 @@ class Cache extends Module{
             }
         }
         is(s_WriteCache){
-            when((hit0 | hit1) || is_alloc_reg){ //1.命中 2.刚从Refill转移(写分配)过来
-                state := s_Idle
+            when((hit0 | hit1) || is_alloc_reg){ //1.命中 2.刚从Refill转移(写分配)过来  //需要is_alloc_reg转到这?
+                when(io.cpu.req.valid){ //应对连续申请
+                    state := s_WriteCache
+                }.otherwise{
+                    state := s_Idle
+                }
+
+
             }.otherwise{
                 io.axi.req.valid := 1.B
                 when( (~replace_wire && dirty0) | (replace_wire && dirty1)){ //写回
