@@ -12,6 +12,7 @@ package rv64
 import chisel3._
 import chisel3.util._
 import Define._
+import firrtl.bitWidth
 
 
 
@@ -89,6 +90,8 @@ class Cache extends Module{
     val valid = RegInit(0.U((nWays*nSets).W))
     val dirty = RegInit(0.U((nWays*nSets).W))
     val replace = RegInit(0.U((nWays*nSets).W))  //LRU算法，0新1旧
+    val rep0 = Wire(UInt(nSets.W))
+    val rep1 = Wire(UInt(nSets.W))
     
     val TagArray = SyncReadMem(nSets*nWays, UInt(tlen.W))
     val DataArray = Seq.fill(nWords)(SyncReadMem(nWays*nSets, Vec(wBytes, UInt(8.W))))
@@ -124,9 +127,13 @@ class Cache extends Module{
     dontTouch(idx_reg)
     dontTouch(off_reg)
 
-    
-    val way0 = nWays.U*idx_reg      //idx_reg是缓存过的
-    val way1 = nWays.U*idx_reg + 1.U
+
+    val way0 = nWays.U*idx
+    val way1 = nWays.U*idx + 1.U
+    val way0_buf = nWays.U*idx_reg
+    val way1_buf = nWays.U*idx_reg + 1.U
+    dontTouch(way0)
+    dontTouch(way1)
     val rtag0 = TagArray.read(way0,ren)
     val rtag1 = TagArray.read(way1,ren)
     val rdata0 = Cat((DataArray.map(_.read(way0,ren).asUInt)).reverse) //读出
@@ -143,8 +150,8 @@ class Cache extends Module{
         )
     )
         
-    hit0 := valid(way0) && rtag0 === tag_reg
-    hit1 := valid(way1) && rtag1 === tag_reg
+    hit0 := valid(way0_buf) && rtag0 === tag_reg
+    hit1 := valid(way1_buf) && rtag1 === tag_reg
 
     //读出
     io.cpu.resp.bits.data := VecInit.tabulate(nWords)(i => read((i + 1) * X_LEN - 1, i * X_LEN))(off_reg)
@@ -161,10 +168,10 @@ class Cache extends Module{
     }
 
 
-    val dirty0 = valid(way0) && dirty(way0)
-    val dirty1 = valid(way1) && dirty(way1)
+    val dirty0 = valid(way0_buf) && dirty(way0_buf)
+    val dirty1 = valid(way1_buf) && dirty(way1_buf)
     //选择替代，00选0,01选0,10选1   --根据replace选择，若选择的是dirty,则需要写回
-    val replace_wire = Mux(replace(way1), 1.B, 0.B)
+    val replace_wire = Mux(replace(way1_buf), 1.B, 0.B)
 
 
     //写入-----------
@@ -181,19 +188,20 @@ class Cache extends Module{
 
     when(wen){
         when(!replace_wire){
-            valid := valid.bitSet(way0, 1.B)
-            dirty := dirty.bitSet(way0, !is_alloc) //写命中为脏,写分配为不脏
+            valid := valid.bitSet(way0_buf, 1.B)
+            dirty := dirty.bitSet(way0_buf, !is_alloc) //写命中为脏,写分配为不脏
 
-            replace.bitSet(way0, 0.B) //需要修改
-            replace.bitSet(way1, 1.B)
+            rep0 := rep0.bitSet(way0_buf, 0.B)
+            rep1 := rep1.bitSet(way1_buf, 1.B)
+            replace := rep0 | rep1
 
             when(is_alloc){
-                TagArray.write(way0, tag_reg)
+                TagArray.write(way0_buf, tag_reg)
             }
             DataArray.zipWithIndex.foreach{
                 case(mem, i) =>
                     val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
-                    mem.write(way0, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
+                    mem.write(way0_buf, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
             }
             /*
             对DataArray取索引,得到nWords个mem,每个mem都是nSets*nWays个wBytes,
@@ -216,19 +224,20 @@ class Cache extends Module{
             则,wmask为1 << 1000即为8,即写第8字节(71,64)
             */
         }.otherwise{
-            valid := valid.bitSet(way1, 1.B)
-            dirty := dirty.bitSet(way1, !is_alloc) //写命中为脏,写分配为不脏
+            valid := valid.bitSet(way1_buf, 1.B)
+            dirty := dirty.bitSet(way1_buf, !is_alloc) //写命中为脏,写分配为不脏
 
-            replace.bitSet(way0, 1.B)
-            replace.bitSet(way1, 0.B)
+            rep0 := rep0.bitSet(way0_buf, 1.B)
+            rep1 := rep1.bitSet(way1_buf, 0.B)
+            replace := rep0 | rep1
 
             when(is_alloc){
-                TagArray.write(way1, tag_reg)
+                TagArray.write(way1_buf, tag_reg)
             }
             DataArray.zipWithIndex.foreach{
                 case(mem, i) =>
                     val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
-                    mem.write(way1, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
+                    mem.write(way1_buf, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
             }
         }
     }

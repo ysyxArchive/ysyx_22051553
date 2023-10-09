@@ -6772,14 +6772,13 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                             & (vlSelf->__PVT___TagArray_ext_R1_data 
                                                == (vlSelf->__PVT__addr_reg 
                                                    >> 0xaU)))));
-    vlSelf->__PVT___GEN_8 = (((IData)(vlSelf->__PVT__dirty0)
-                               ? ((((IData)(vlSelf->__PVT__dirty0)
-                                     ? vlSelf->__PVT___TagArray_ext_R0_data
-                                     : vlSelf->__PVT___TagArray_ext_R1_data) 
-                                   << 3U) | (7U & (vlSelf->__PVT__addr_reg 
-                                                   >> 7U)))
-                               : (vlSelf->__PVT__addr_reg 
-                                  >> 7U)) << 7U);
+    vlSelf->__PVT___GEN_8 = ((((IData)(vlSelf->__PVT__dirty0)
+                                ? ((IData)(vlSelf->__PVT__dirty0)
+                                    ? vlSelf->__PVT___TagArray_ext_R0_data
+                                    : vlSelf->__PVT___TagArray_ext_R1_data)
+                                : (vlSelf->__PVT__addr_reg 
+                                   >> 0xaU)) << 0xaU) 
+                             | (0x380U & vlSelf->__PVT__addr_reg));
     vlSelf->io_cpu_resp_bits_data = (((QData)((IData)(
                                                       vlSelf->__PVT__read[
                                                       (((IData)(0x3fU) 
@@ -13694,14 +13693,13 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                             & (vlSelf->__PVT___TagArray_ext_R1_data 
                                                == (vlSelf->__PVT__addr_reg 
                                                    >> 0xaU)))));
-    vlSelf->__PVT___GEN_8 = (((IData)(vlSelf->__PVT__dirty0)
-                               ? ((((IData)(vlSelf->__PVT__dirty0)
-                                     ? vlSelf->__PVT___TagArray_ext_R0_data
-                                     : vlSelf->__PVT___TagArray_ext_R1_data) 
-                                   << 3U) | (7U & (vlSelf->__PVT__addr_reg 
-                                                   >> 7U)))
-                               : (vlSelf->__PVT__addr_reg 
-                                  >> 7U)) << 7U);
+    vlSelf->__PVT___GEN_8 = ((((IData)(vlSelf->__PVT__dirty0)
+                                ? ((IData)(vlSelf->__PVT__dirty0)
+                                    ? vlSelf->__PVT___TagArray_ext_R0_data
+                                    : vlSelf->__PVT___TagArray_ext_R1_data)
+                                : (vlSelf->__PVT__addr_reg 
+                                   >> 0xaU)) << 0xaU) 
+                             | (0x380U & vlSelf->__PVT__addr_reg));
     vlSelf->io_cpu_resp_bits_data = (((QData)((IData)(
                                                       vlSelf->__PVT__read[
                                                       (((IData)(0x3fU) 

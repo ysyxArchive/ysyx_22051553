@@ -1404,14 +1404,13 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
     vlSelf->__PVT___hit0_T_2 = (vlSelf->__PVT___TagArray_ext_R0_data 
                                 == (vlSelf->__PVT__addr_reg 
                                     >> 0xaU));
-    vlSelf->__PVT___GEN_8 = (((IData)(vlSelf->__PVT__dirty0)
-                               ? ((((IData)(vlSelf->__PVT__dirty0)
-                                     ? vlSelf->__PVT___TagArray_ext_R0_data
-                                     : vlSelf->__PVT___TagArray_ext_R1_data) 
-                                   << 3U) | (7U & (vlSelf->__PVT__addr_reg 
-                                                   >> 7U)))
-                               : (vlSelf->__PVT__addr_reg 
-                                  >> 7U)) << 7U);
+    vlSelf->__PVT___GEN_8 = ((((IData)(vlSelf->__PVT__dirty0)
+                                ? ((IData)(vlSelf->__PVT__dirty0)
+                                    ? vlSelf->__PVT___TagArray_ext_R0_data
+                                    : vlSelf->__PVT___TagArray_ext_R1_data)
+                                : (vlSelf->__PVT__addr_reg 
+                                   >> 0xaU)) << 0xaU) 
+                             | (0x380U & vlSelf->__PVT__addr_reg));
     if (vlSelf->__PVT__is_alloc_reg) {
         vlSelf->__PVT__read[0U] = vlSelf->__VdfgTmp_h25305f44__0[0U];
         vlSelf->__PVT__read[1U] = vlSelf->__VdfgTmp_h25305f44__0[1U];
@@ -3035,14 +3034,13 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
     vlSelf->__PVT___hit0_T_2 = (vlSelf->__PVT___TagArray_ext_R0_data 
                                 == (vlSelf->__PVT__addr_reg 
                                     >> 0xaU));
-    vlSelf->__PVT___GEN_8 = (((IData)(vlSelf->__PVT__dirty0)
-                               ? ((((IData)(vlSelf->__PVT__dirty0)
-                                     ? vlSelf->__PVT___TagArray_ext_R0_data
-                                     : vlSelf->__PVT___TagArray_ext_R1_data) 
-                                   << 3U) | (7U & (vlSelf->__PVT__addr_reg 
-                                                   >> 7U)))
-                               : (vlSelf->__PVT__addr_reg 
-                                  >> 7U)) << 7U);
+    vlSelf->__PVT___GEN_8 = ((((IData)(vlSelf->__PVT__dirty0)
+                                ? ((IData)(vlSelf->__PVT__dirty0)
+                                    ? vlSelf->__PVT___TagArray_ext_R0_data
+                                    : vlSelf->__PVT___TagArray_ext_R1_data)
+                                : (vlSelf->__PVT__addr_reg 
+                                   >> 0xaU)) << 0xaU) 
+                             | (0x380U & vlSelf->__PVT__addr_reg));
     if (vlSelf->__PVT__is_alloc_reg) {
         vlSelf->__PVT__read[0U] = vlSelf->__VdfgTmp_h25305f44__0[0U];
         vlSelf->__PVT__read[1U] = vlSelf->__VdfgTmp_h25305f44__0[1U];
