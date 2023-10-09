@@ -3796,12 +3796,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __Vdlyvval__TagArray_ext__DOT__Memory__v1 = 0;
     CData/*0:0*/ __Vdlyvset__TagArray_ext__DOT__Memory__v1;
     __Vdlyvset__TagArray_ext__DOT__Memory__v1 = 0;
-    CData/*3:0*/ __Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v0;
-    __Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v0 = 0;
-    CData/*7:0*/ __Vdlyvval__DataArray_12_1_ext__DOT__Memory__v0;
-    __Vdlyvval__DataArray_12_1_ext__DOT__Memory__v0 = 0;
-    CData/*0:0*/ __Vdlyvset__DataArray_12_1_ext__DOT__Memory__v0;
-    __Vdlyvset__DataArray_12_1_ext__DOT__Memory__v0 = 0;
     CData/*3:0*/ __Vdlyvdim0__DataArray_12_2_ext__DOT__Memory__v0;
     __Vdlyvdim0__DataArray_12_2_ext__DOT__Memory__v0 = 0;
     CData/*7:0*/ __Vdlyvval__DataArray_12_2_ext__DOT__Memory__v0;
@@ -4650,7 +4644,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     __Vdlyvset__DataArray_12_2_ext__DOT__Memory__v1 = 0U;
     __Vdlyvset__DataArray_12_2_ext__DOT__Memory__v2 = 0U;
     __Vdlyvset__DataArray_12_2_ext__DOT__Memory__v3 = 0U;
-    __Vdlyvset__DataArray_12_1_ext__DOT__Memory__v0 = 0U;
+    vlSelf->__Vdlyvset__DataArray_12_1_ext__DOT__Memory__v0 = 0U;
     vlSelf->__Vdlyvset__DataArray_12_1_ext__DOT__Memory__v1 = 0U;
     vlSelf->__Vdlyvset__DataArray_12_1_ext__DOT__Memory__v2 = 0U;
     vlSelf->__Vdlyvset__DataArray_12_1_ext__DOT__Memory__v3 = 0U;
@@ -7399,11 +7393,11 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                               >> 6U))));
     }
     if (((IData)(vlSelf->__PVT___GEN_2) & (IData)(vlSelf->__PVT___T_606))) {
-        __Vdlyvval__DataArray_12_1_ext__DOT__Memory__v0 
+        vlSelf->__Vdlyvval__DataArray_12_1_ext__DOT__Memory__v0 
             = (0xffU & (vlSelf->__PVT__wdata[0x18U] 
                         >> 8U));
-        __Vdlyvset__DataArray_12_1_ext__DOT__Memory__v0 = 1U;
-        __Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v0 
+        vlSelf->__Vdlyvset__DataArray_12_1_ext__DOT__Memory__v0 = 1U;
+        vlSelf->__Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v0 
             = (0xeU & (vlSelf->__PVT__addr_reg >> 6U));
     }
     if (((IData)(vlSelf->__PVT___GEN_1) & (IData)(vlSelf->__PVT___T_606))) {
@@ -10590,9 +10584,11 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                    >> 1U) & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid))
                                   ? 4U : (IData)(vlSelf->__PVT__state)) 
                                 << 9U) | ((((IData)(vlSelf->__PVT___T_653)
-                                             ? 0U : 
-                                            ((IData)(vlSelf->__PVT___T_650)
-                                              ? 3U : 4U)) 
+                                             ? ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid) 
+                                                << 1U)
+                                             : ((IData)(vlSelf->__PVT___T_650)
+                                                 ? 3U
+                                                 : 4U)) 
                                            << 6U) | 
                                           ((((IData)(vlSelf->io_fccache_hit)
                                               ? (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid)
@@ -12445,9 +12441,5 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     if (__Vdlyvset__DataArray_12_2_ext__DOT__Memory__v3) {
         vlSelf->__PVT__DataArray_12_2_ext__DOT__Memory[__Vdlyvdim0__DataArray_12_2_ext__DOT__Memory__v3] 
             = __Vdlyvval__DataArray_12_2_ext__DOT__Memory__v3;
-    }
-    if (__Vdlyvset__DataArray_12_1_ext__DOT__Memory__v0) {
-        vlSelf->__PVT__DataArray_12_1_ext__DOT__Memory[__Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v0] 
-            = __Vdlyvval__DataArray_12_1_ext__DOT__Memory__v0;
     }
 }

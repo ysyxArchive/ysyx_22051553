@@ -2289,6 +2289,9 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__Vdlyvdim0__DataArray_12_0_ext__DOT__Memory__v3 = 0;
     vlSelf->__Vdlyvval__DataArray_12_0_ext__DOT__Memory__v3 = VL_RAND_RESET_I(8);
     vlSelf->__Vdlyvset__DataArray_12_0_ext__DOT__Memory__v3 = 0;
+    vlSelf->__Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v0 = 0;
+    vlSelf->__Vdlyvval__DataArray_12_1_ext__DOT__Memory__v0 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvset__DataArray_12_1_ext__DOT__Memory__v0 = 0;
     vlSelf->__Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v1 = 0;
     vlSelf->__Vdlyvval__DataArray_12_1_ext__DOT__Memory__v1 = VL_RAND_RESET_I(8);
     vlSelf->__Vdlyvset__DataArray_12_1_ext__DOT__Memory__v1 = 0;

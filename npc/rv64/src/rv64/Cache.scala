@@ -108,7 +108,7 @@ class Cache extends Module{
     1.写命中,需要写入
     2.写分配最后一周期,需要写入
     */
-    val ren = !wen && (is_idle || is_read) && io.cpu.req.valid   //cpu申请读出 Tag和Data
+    val ren = (is_idle || is_read || is_write) && io.cpu.req.valid   //cpu申请读出 Tag和Data
     val ren_reg = RegNext(ren)
     
     /*

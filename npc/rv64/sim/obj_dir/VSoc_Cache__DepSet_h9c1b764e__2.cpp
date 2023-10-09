@@ -36,6 +36,10 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
     VlWide<5>/*159:0*/ __Vtemp_hfe7561f7__0;
     VlWide<5>/*159:0*/ __Vtemp_h33bc51d6__0;
     // Body
+    if (vlSelf->__Vdlyvset__DataArray_12_1_ext__DOT__Memory__v0) {
+        vlSelf->__PVT__DataArray_12_1_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v0] 
+            = vlSelf->__Vdlyvval__DataArray_12_1_ext__DOT__Memory__v0;
+    }
     if (vlSelf->__Vdlyvset__DataArray_12_1_ext__DOT__Memory__v1) {
         vlSelf->__PVT__DataArray_12_1_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v1] 
             = vlSelf->__Vdlyvval__DataArray_12_1_ext__DOT__Memory__v1;

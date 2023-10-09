@@ -1919,16 +1919,19 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*3:0*/ __Vdlyvdim0__DataArray_12_0_ext__DOT__Memory__v3;
         CData/*7:0*/ __Vdlyvval__DataArray_12_0_ext__DOT__Memory__v3;
         CData/*0:0*/ __Vdlyvset__DataArray_12_0_ext__DOT__Memory__v3;
+        CData/*3:0*/ __Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v0;
+        CData/*7:0*/ __Vdlyvval__DataArray_12_1_ext__DOT__Memory__v0;
+        CData/*0:0*/ __Vdlyvset__DataArray_12_1_ext__DOT__Memory__v0;
         CData/*3:0*/ __Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_12_1_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_12_1_ext__DOT__Memory__v1;
         CData/*3:0*/ __Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v2;
         CData/*7:0*/ __Vdlyvval__DataArray_12_1_ext__DOT__Memory__v2;
+    };
+    struct {
         CData/*0:0*/ __Vdlyvset__DataArray_12_1_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v3;
         CData/*7:0*/ __Vdlyvval__DataArray_12_1_ext__DOT__Memory__v3;
-    };
-    struct {
         CData/*0:0*/ __Vdlyvset__DataArray_12_1_ext__DOT__Memory__v3;
         SData/*15:0*/ __PVT__valid;
         SData/*15:0*/ __PVT__dirty;
@@ -1990,11 +1993,11 @@ class VSoc_Cache final : public VerilatedModule {
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_1_6_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_1_7_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_2_0_ext__DOT__Memory;
+    };
+    struct {
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_2_1_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_2_2_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_2_3_ext__DOT__Memory;
-    };
-    struct {
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_2_4_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_2_5_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_2_6_ext__DOT__Memory;
@@ -2056,11 +2059,11 @@ class VSoc_Cache final : public VerilatedModule {
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_9_6_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_9_7_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_10_0_ext__DOT__Memory;
+    };
+    struct {
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_10_1_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_10_2_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_10_3_ext__DOT__Memory;
-    };
-    struct {
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_10_4_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_10_5_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_10_6_ext__DOT__Memory;

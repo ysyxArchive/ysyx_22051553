@@ -6886,9 +6886,11 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                    >> 2U) & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid))
                                   ? 4U : (IData)(vlSelf->__PVT__state)) 
                                 << 9U) | ((((IData)(vlSelf->__PVT___T_653)
-                                             ? 0U : 
-                                            ((IData)(vlSelf->__PVT___T_650)
-                                              ? 3U : 4U)) 
+                                             ? ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started) 
+                                                << 1U)
+                                             : ((IData)(vlSelf->__PVT___T_650)
+                                                 ? 3U
+                                                 : 4U)) 
                                            << 6U) | 
                                           ((((IData)(vlSelf->io_fccache_hit)
                                               ? (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started)
