@@ -90,8 +90,8 @@ class Cache extends Module{
     val valid = RegInit(0.U((nWays*nSets).W))
     val dirty = RegInit(0.U((nWays*nSets).W))
     val replace = RegInit(0.U((nWays*nSets).W))  //LRU算法，0新1旧
-    val rep0 = Wire(UInt(nSets.W))
-    val rep1 = Wire(UInt(nSets.W))
+    val rep0 = Wire(UInt((nWays*nSets).W))
+    val rep1 = Wire(UInt((nWays*nSets).W))
     rep0 := 0.U
     rep1 := 1.U
     
