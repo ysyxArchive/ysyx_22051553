@@ -450,7 +450,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
             = (0x3fU & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)));
         if (VL_UNLIKELY((0x1eU == (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)))) {
             VL_WRITEF("ebreak!\n");
-            VL_FINISH_MT("vsrc/Soc.v", 7089, "");
+            VL_FINISH_MT("vsrc/Soc.v", 7090, "");
         }
     }
     if (vlSelf->reset) {
@@ -6365,13 +6365,23 @@ VL_INLINE_OPT void VSoc___024root___nba_comb__TOP__0(VSoc___024root* vlSelf) {
             ? 9U : (((0U != (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)) 
                      & ((1U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state))
                          ? (~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.io_fccache_hit))
-                         : ((~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___T_356)) 
-                            & (2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)))))
+                         : ((2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state))
+                             ? (~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___T_356))
+                             : ((~ ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                    >> 1U)) & ((3U 
+                                                == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)) 
+                                               | (4U 
+                                                  == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)))))))
                      ? 0xaU : (((0U != (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state)) 
                                 & ((1U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state))
                                     ? (~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_fccache_hit))
-                                    : ((~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___T_356)) 
-                                       & (2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state)))))
+                                    : ((2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state))
+                                        ? (~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___T_356))
+                                        : ((~ ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                               >> 2U)) 
+                                           & ((3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state)) 
+                                              | (4U 
+                                                 == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state)))))))
                                 ? 0xcU : 0U)));
 }
 

@@ -102,8 +102,13 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgBit(oldp+74,(((0U != (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)) 
                                & ((1U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state))
                                    ? (~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.io_fccache_hit))
-                                   : ((~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___T_356)) 
-                                      & (2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)))))));
+                                   : ((2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state))
+                                       ? (~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___T_356))
+                                       : ((~ ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                              >> 1U)) 
+                                          & ((3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)) 
+                                             | (4U 
+                                                == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)))))))));
         bufp->chgQData(oldp+75,((((QData)((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__read[
                                                   (((IData)(0x3fU) 
                                                     + 
@@ -147,8 +152,13 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgBit(oldp+77,(((0U != (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state)) 
                                & ((1U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state))
                                    ? (~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_fccache_hit))
-                                   : ((~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___T_356)) 
-                                      & (2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state)))))));
+                                   : ((2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state))
+                                       ? (~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___T_356))
+                                       : ((~ ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                              >> 2U)) 
+                                          & ((3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state)) 
+                                             | (4U 
+                                                == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state)))))))));
         bufp->chgQData(oldp+78,((((QData)((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__read[
                                                   (((IData)(0x3fU) 
                                                     + 

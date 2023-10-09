@@ -118,6 +118,10 @@ class Cache extends Module{
     val tag_reg = addr_reg(ADDRWIDTH-1,slen+blen)
     val idx_reg = addr_reg(slen+blen-1, blen)
     val off_reg = addr_reg(blen-1, byteOffsetBits) //选择某个XLEN,某个8Byte对齐的数据
+    dontTouch(addr)
+    dontTouch(idx)
+    dontTouch(tag_reg)
+    dontTouch(idx_reg)
     dontTouch(off_reg)
 
     
