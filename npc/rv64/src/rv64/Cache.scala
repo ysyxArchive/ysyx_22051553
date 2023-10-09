@@ -193,6 +193,8 @@ class Cache extends Module{
     when(wen){
         when(hit0 | hit1){ //命中就不涉及写valid等
             when(hit0){
+                dirty := dirty.bitSet(way0_buf, 1.B) //写命中为脏,写分配为不脏
+
                 rep0 := replace.bitSet(way0_buf, 0.B)
                 rep1 := replace.bitSet(way1_buf, 1.B)
                 replace := rep0 | rep1
@@ -203,6 +205,8 @@ class Cache extends Module{
                     mem.write(way0_buf, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
                 }
             }.otherwise{
+                dirty := dirty.bitSet(way1_buf, 1.B) //写命中为脏,写分配为不脏
+
                 rep0 := replace.bitSet(way0_buf, 1.B)
                 rep1 := replace.bitSet(way1_buf, 0.B)
                 replace := rep0 | rep1
@@ -213,11 +217,11 @@ class Cache extends Module{
                     mem.write(way1_buf, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
                 }
             }
-        }.otherwise{
+        }.otherwise{ //alloc
 
             when(!replace_wire){
                 valid := valid.bitSet(way0_buf, 1.B)
-                dirty := dirty.bitSet(way0_buf, !is_alloc) //写命中为脏,写分配为不脏
+                dirty := dirty.bitSet(way0_buf, 0.B) //写命中为脏,写分配为不脏
 
                 rep0 := replace.bitSet(way0_buf, 0.B)
                 rep1 := replace.bitSet(way1_buf, 1.B)
@@ -253,7 +257,7 @@ class Cache extends Module{
                 */
             }.otherwise{
                 valid := valid.bitSet(way1_buf, 1.B)
-                dirty := dirty.bitSet(way1_buf, !is_alloc) //写命中为脏,写分配为不脏
+                dirty := dirty.bitSet(way1_buf, 0.B) //写命中为脏,写分配为不脏
 
                 rep0 := replace.bitSet(way0_buf, 1.B)
                 rep1 := replace.bitSet(way1_buf, 0.B)
