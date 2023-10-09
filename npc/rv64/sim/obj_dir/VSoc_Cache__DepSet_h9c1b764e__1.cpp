@@ -10449,7 +10449,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                               >> 6U))));
     }
     if (vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid) {
-        vlSelf->__PVT__cpu_data = vlSymsp->TOP.Soc__DOT__core__DOT__dereg_reg2_rdata;
+        vlSelf->__PVT__cpu_data = vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata;
     }
     vlSelf->__PVT__is_alloc_reg = vlSelf->__PVT__is_alloc;
     vlSelf->__PVT__TagArray_ext__DOT___GEN_1 = vlSelf->__PVT__ren;
