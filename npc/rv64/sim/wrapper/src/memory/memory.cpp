@@ -17,15 +17,11 @@ uint8_t* memory::get_mem(){
 uint64_t memory::mem_read(uint32_t raddr){ //用于rtl
     // uint32_t addr = (pmem.mem + raddr - CONFIG_MBASE) & ~0x7ul; //错误
 
-    #ifdef MTRACE
-    printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr, 8);
-    #endif
-
     uint64_t addr = (uint64_t)(pmem.mem + raddr - CONFIG_MBASE) & ~0x7ull; 
 
-    #ifdef MTRACE
-    printf(ANSI_FMT("read value is 0x%lx\n", ANSI_FG_YELLOW),*(uint64_t*)addr);
-    #endif
+    // #ifdef MTRACE
+    // printf(ANSI_FMT("read value is 0x%lx\n", ANSI_FG_YELLOW),*(uint64_t*)addr);
+    // #endif
 
     return *(uint64_t*)addr;
 }
@@ -43,16 +39,16 @@ uint64_t memory::mem_readbylen(uint32_t raddr, int len){ //用于仿真
 
 void memory::mem_write(uint32_t waddr, uint64_t wdata, uint8_t wmask){
 
-    #ifdef MTRACE
-    printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),waddr, 
-    (wmask == 0xff) ? 8 : 
-    (wmask == 0x0f) ? 4 : 
-    (wmask == 0x03) ? 2 : 
-    (wmask == 0x01) ? 1 : 0
-    );
+    // #ifdef MTRACE
+    // printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),waddr, 
+    // (wmask == 0xff) ? 8 : 
+    // (wmask == 0x0f) ? 4 : 
+    // (wmask == 0x03) ? 2 : 
+    // (wmask == 0x01) ? 1 : 0
+    // );
 
-    printf("write data is 0x%lx\n", wdata);
-    #endif
+    // printf("write data is 0x%lx\n", wdata);
+    // #endif
     // std::ofstream file;
     // file.open("/home/shikye/ysyx-workbench/npc/rv64/sim/log", std::ios::app);
     // assert(file.is_open());
@@ -88,7 +84,7 @@ void memory::mem_write(uint32_t waddr, uint64_t wdata, uint8_t wmask){
         case 0x01:
             *(uint8_t*)(pmem.mem + waddr - CONFIG_MBASE) = wdata;
             break;
-        default:;
+        default:assert(0);
     }
 }
 

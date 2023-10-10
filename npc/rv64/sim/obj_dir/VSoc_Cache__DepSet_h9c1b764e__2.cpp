@@ -3705,16 +3705,16 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+          VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2\n"); );
     // Body
-    vlSelf->__PVT__ren = (((0U == (IData)(vlSelf->__PVT__state)) 
-                           | ((1U == (IData)(vlSelf->__PVT__state)) 
-                              | (2U == (IData)(vlSelf->__PVT__state)))) 
-                          & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid));
     vlSelf->__PVT___GEN_15 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 1U)));
     vlSelf->__VdfgTmp_h3e550451__0 = ((~ ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                           >> 1U)) & 
                                       (4U == (IData)(vlSelf->__PVT__state)));
+    vlSelf->__PVT__ren = (((0U == (IData)(vlSelf->__PVT__state)) 
+                           | ((1U == (IData)(vlSelf->__PVT__state)) 
+                              | (2U == (IData)(vlSelf->__PVT__state)))) 
+                          & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid));
     vlSelf->io_axi_req_valid = ((0U != (IData)(vlSelf->__PVT__state)) 
                                 & ((1U == (IData)(vlSelf->__PVT__state))
                                     ? (~ (IData)(vlSelf->io_fccache_hit))

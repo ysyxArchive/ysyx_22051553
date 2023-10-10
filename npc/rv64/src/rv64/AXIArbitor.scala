@@ -235,7 +235,7 @@ class AXIArbitor extends Module{
 
             when(aw_comp && w_comp && b_comp){ //b应该在aw和w之后判断，但是b常为高，就没有必要
                 
-                when(master_choose(3)){
+                when(master_choose(3)){   //添加,以适应连续的读写
                     choose_buffer := master_choose
                     when(rw_idle){ //1-r
                         state := s_AR

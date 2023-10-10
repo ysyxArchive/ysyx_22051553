@@ -192,12 +192,16 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___T_4;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___GEN_5;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___GEN_6;
-        CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___T_7;
+        CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___T_8;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___GEN_7;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___GEN_9;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___GEN_12;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT___GEN_13;
-        CData/*7:0*/ Soc__DOT__core__DOT__arbitor__DOT__unnamedblk1__DOT___GEN_18;
+        CData/*1:0*/ Soc__DOT__core__DOT__arbitor__DOT__unnamedblk1__DOT___GEN_18;
+        CData/*1:0*/ Soc__DOT__core__DOT__arbitor__DOT__unnamedblk1__DOT___GEN_19;
+        SData/*15:0*/ Soc__DOT__core__DOT__arbitor__DOT__unnamedblk1__DOT___GEN_20;
+        CData/*7:0*/ Soc__DOT__core__DOT__arbitor__DOT__unnamedblk1__DOT___GEN_21;
+        CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h4ab110e3__0;
         CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_hc0e633fc__0;
         CData/*1:0*/ Soc__DOT__core__DOT__ioformem__DOT__state;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__axi_req_valid;
@@ -214,12 +218,12 @@ class VSoc___024root final : public VerilatedModule {
         CData/*3:0*/ Soc__DOT__sram__DOT__w_count;
         CData/*3:0*/ Soc__DOT__sram__DOT__r_count;
         CData/*1:0*/ Soc__DOT__sram__DOT__bresp;
+    };
+    struct {
         CData/*0:0*/ Soc__DOT__sram__DOT__bvalid;
         CData/*0:0*/ Soc__DOT__sram__DOT__rlast;
         CData/*1:0*/ Soc__DOT__sram__DOT__rresp;
         CData/*0:0*/ Soc__DOT__sram__DOT__rvalid;
-    };
-    struct {
         CData/*0:0*/ Soc__DOT__sram__DOT__need_resp;
         CData/*0:0*/ Soc__DOT__sram__DOT__need_read;
         CData/*0:0*/ __VdfgTmp_hae56d818__0;
@@ -227,7 +231,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*5:0*/ __VdfgTmp_hd31110f2__0;
         CData/*3:0*/ __VdfgTmp_hd0a2fa80__0;
         CData/*0:0*/ __VdfgTmp_h9d5684c6__0;
-        CData/*1:0*/ __Vdly__Soc__DOT__core__DOT__arbitor__DOT__state;
+        CData/*3:0*/ __Vdly__Soc__DOT__core__DOT__arbitor__DOT__choose_buffer;
         CData/*3:0*/ __Vdly__Soc__DOT__sram__DOT__r_count;
         CData/*0:0*/ __Vdly__Soc__DOT__sram__DOT__rlast;
         CData/*0:0*/ __Vtrigrprev__TOP__clock;
@@ -280,12 +284,12 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ Soc__DOT__sram__DOT__awaddr;
         IData/*31:0*/ Soc__DOT__sram__DOT__araddr;
         IData/*31:0*/ __VstlIterCount;
+    };
+    struct {
         IData/*31:0*/ __VicoIterCount;
         IData/*31:0*/ __VactIterCount;
         QData/*63:0*/ Soc__DOT___core_io_AXI_Interface_w_bits_data;
         QData/*63:0*/ Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data;
-    };
-    struct {
         QData/*63:0*/ Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data;
         QData/*63:0*/ Soc__DOT__core__DOT___trap_io_csrtr_csr_wdata;
         QData/*63:0*/ Soc__DOT__core__DOT___mem_io_mwio_reg_wdata;
@@ -346,6 +350,8 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__trap__DOT__cause;
         QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__axi_req_bits_data;
         QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits;
+    };
+    struct {
         QData/*63:0*/ Soc__DOT__sram__DOT__rdata;
         VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
         VlUnpacked<CData/*0:0*/, 5> __Vm_traceActivity;

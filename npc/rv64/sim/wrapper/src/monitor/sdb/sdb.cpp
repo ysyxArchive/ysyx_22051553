@@ -318,17 +318,17 @@ long long pmem_read(const svLogicVecVal* raddr){
 
   void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask){
 
-    #ifdef MTRACE
-    printf("wmask is 0x%x\n", (uint8_t)wmask);
-    printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),(waddr[0].aval), 
-    ((uint8_t)wmask == 0xff) ? 8 : 
-    ((uint8_t)wmask == 0x0f) ? 4 : 
-    ((uint8_t)wmask == 0x03) ? 2 : 
-    ((uint8_t)wmask == 0x01) ? 1 : 0
-    );
+    // #ifdef MTRACE
+    // printf("wmask is 0x%x\n", (uint8_t)wmask);
+    // printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),(waddr[0].aval), 
+    // ((uint8_t)wmask == 0xff) ? 8 : 
+    // ((uint8_t)wmask == 0x0f) ? 4 : 
+    // ((uint8_t)wmask == 0x03) ? 2 : 
+    // ((uint8_t)wmask == 0x01) ? 1 : 0
+    // );
 
-    printf("write data is 0x%lx\n", (unsigned long)wdata[1].aval << 32 | wdata[0].aval);
-    #endif
+    // printf("write data is 0x%lx\n", (unsigned long)wdata[1].aval << 32 | wdata[0].aval);
+    // #endif
 
 
     if( ((unsigned long)waddr[0].aval) == SERIAL_PORT){
