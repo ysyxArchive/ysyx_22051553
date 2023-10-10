@@ -413,7 +413,12 @@ class Core extends Module{
 
     trap.io.csrtr <> csrs.io.CSRTr
 
-    trap.io.inst := Mux(Icache.io.cpu.resp.valid, Icache.io.cpu.resp.bits.data, NOP) //修改后
+    trap.io.inst := Mux(Icache.io.cpu.resp.valid, 
+        Mux(fdreg.pc(2),
+            Icache.io.cpu.resp.bits.data(63,32),
+            Icache.io.cpu.resp.bits.data(31,0)
+        )
+    , NOP)
 
     trap.io.pc := fetch.io.pc.bits
 
