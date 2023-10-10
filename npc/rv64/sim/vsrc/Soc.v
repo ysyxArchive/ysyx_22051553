@@ -8475,8 +8475,8 @@ module Core(	// <stdin>:10858:10
     .trap_state (_trap_io_fctr_trap_state)	// Core.scala:98:22
   );
   Interact interact (	// Core.scala:512:26
-    .inst (_Icache_io_cpu_resp_valid & ~_fc_io_fcde_flush ? _Icache_io_cpu_resp_bits_data[31:0] :
-                32'h0),	// Core.scala:92:20, :104:24, :491:41, :494:70, :513:{28,54}
+    .inst (_Icache_io_cpu_resp_valid & ~_fc_io_fcde_flush ? (fdreg_pc[2] ?
+                _Icache_io_cpu_resp_bits_data[63:32] : _Icache_io_cpu_resp_bits_data[31:0]) : 32'h0),	// Core.scala:33:24, :92:20, :104:24, :489:21, :490:41, :491:41, :494:70, :513:{28,54}, :514:12
     .clk  (clock),
     .rst  (reset)
   );
@@ -8484,7 +8484,7 @@ endmodule
 
 // external module Sram
 
-module Soc(	// <stdin>:11291:10
+module Soc(	// <stdin>:11294:10
   input clock,
         reset);
 
@@ -8871,5 +8871,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 

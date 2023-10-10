@@ -9027,7 +9027,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullBit(oldp+279,(vlSelf->Soc__DOT__core__DOT__fw__DOT__csr_wb_harzard));
     bufp->fullIData(oldp+280,((((~ (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush)) 
                                 & (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_cpu_resp_valid))
-                                ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_cpu_resp_bits_data)
+                                ? vlSelf->Soc__DOT__core__DOT__decode__DOT____VdfgTmp_hd891a444__0
                                 : 0U)),32);
     bufp->fullBit(oldp+281,(vlSelf->Soc__DOT__core__DOT__interact__DOT__ebreak_flag));
     bufp->fullCData(oldp+282,(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count),6);

@@ -688,7 +688,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgBit(oldp+278,(vlSelf->Soc__DOT__core__DOT__fw__DOT__csr_wb_harzard));
         bufp->chgIData(oldp+279,((((~ (IData)(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush)) 
                                    & (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_cpu_resp_valid))
-                                   ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_cpu_resp_bits_data)
+                                   ? vlSelf->Soc__DOT__core__DOT__decode__DOT____VdfgTmp_hd891a444__0
                                    : 0U)),32);
         bufp->chgBit(oldp+280,(vlSelf->Soc__DOT__core__DOT__interact__DOT__ebreak_flag));
         bufp->chgCData(oldp+281,(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count),6);

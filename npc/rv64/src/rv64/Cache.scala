@@ -103,7 +103,7 @@ class Cache extends Module{
     val hit1 = Wire(Bool())
     dontTouch(hit0)
     dontTouch(hit1)
-    val wen = is_write && (hit0 || hit1) || is_alloc
+    val wen = is_write && (hit0 || hit1) || is_alloc || (is_alloc_reg && is_write) //is_alloc用于refill,is_alloc_reg用于写不命中
     /*
     1.写命中,需要写入
     2.写分配最后一周期,需要写入
@@ -175,7 +175,7 @@ class Cache extends Module{
     val dirty0 = valid(way0_buf) && dirty(way0_buf)
     val dirty1 = valid(way1_buf) && dirty(way1_buf)
     //选择替代，00选0,01选0,10选1   --根据replace选择，若选择的是dirty,则需要写回
-    val replace_wire = Mux(replace(way1_buf), 1.B, 0.B)
+    val replace_wire = Mux(replace(way1_buf), 1.B, 0.B)  //不管是否为脏,replace_wire选择的就是真正选择的
 
 
     //写入-----------
@@ -220,16 +220,21 @@ class Cache extends Module{
         }.otherwise{ //alloc
 
             when(!replace_wire){
-                valid := valid.bitSet(way0_buf, 1.B)
-                dirty := dirty.bitSet(way0_buf, 0.B) //写命中为脏,写分配为不脏
+                
 
-                rep0 := replace.bitSet(way0_buf, 0.B)
-                rep1 := replace.bitSet(way1_buf, 1.B)
-                replace := rep0 | rep1
+                when(is_alloc){ //只有写分配才改变valid
+                    valid := valid.bitSet(way0_buf, 1.B)
+                    dirty := dirty.bitSet(way0_buf, 0.B) //写命中为脏,写分配为不脏
 
-                when(is_alloc){
+                    rep0 := replace.bitSet(way0_buf, 0.B)
+                    rep1 := replace.bitSet(way1_buf, 1.B)
+                    replace := rep0 | rep1
+
                     TagArray.write(way0_buf, tag_reg)
+                }.otherwise{ //alloc_reg
+                    dirty := dirty.bitSet(way0_buf, 1.B)   //写不命中,到写阶段,并不需要再改变replace,因为和写分配时一致
                 }
+
                 DataArray.zipWithIndex.foreach{
                     case(mem, i) =>
                         val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
@@ -256,16 +261,21 @@ class Cache extends Module{
                 则,wmask为1 << 1000即为8,即写第8字节(71,64)
                 */
             }.otherwise{
-                valid := valid.bitSet(way1_buf, 1.B)
-                dirty := dirty.bitSet(way1_buf, 0.B) //写命中为脏,写分配为不脏
-
-                rep0 := replace.bitSet(way0_buf, 1.B)
-                rep1 := replace.bitSet(way1_buf, 0.B)
-                replace := rep0 | rep1
 
                 when(is_alloc){
                     TagArray.write(way1_buf, tag_reg)
+                    valid := valid.bitSet(way1_buf, 1.B)
+                    dirty := dirty.bitSet(way1_buf, 0.B) //写命中为脏,写分配为不脏
+
+
+                    rep0 := replace.bitSet(way0_buf, 1.B)
+                    rep1 := replace.bitSet(way1_buf, 0.B)
+                    replace := rep0 | rep1
+                }.otherwise{
+                    dirty := dirty.bitSet(way1_buf, 1.B)
                 }
+
+
                 DataArray.zipWithIndex.foreach{
                     case(mem, i) =>
                         val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
