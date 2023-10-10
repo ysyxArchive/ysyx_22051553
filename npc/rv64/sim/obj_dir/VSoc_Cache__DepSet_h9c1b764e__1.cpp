@@ -3704,6 +3704,16 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__2
     vlSelf->__PVT___GEN_15 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 2U)));
+    vlSelf->__VdfgTmp_h3e550451__0 = ((~ ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                          >> 2U)) & 
+                                      (4U == (IData)(vlSelf->__PVT__state)));
+    vlSelf->io_axi_req_valid = ((0U != (IData)(vlSelf->__PVT__state)) 
+                                & ((1U == (IData)(vlSelf->__PVT__state))
+                                    ? (~ (IData)(vlSelf->io_fccache_hit))
+                                    : ((2U == (IData)(vlSelf->__PVT__state))
+                                        ? (~ (IData)(vlSelf->__PVT___T_663))
+                                        : ((3U == (IData)(vlSelf->__PVT__state)) 
+                                           | (IData)(vlSelf->__VdfgTmp_h3e550451__0)))));
 }
 
 VL_INLINE_OPT void VSoc_Cache___nba_comb__TOP__Soc__DOT__core__DOT__Icache__0(VSoc_Cache* vlSelf) {
@@ -3807,28 +3817,8 @@ VL_INLINE_OPT void VSoc_Cache___nba_comb__TOP__Soc__DOT__core__DOT__Icache__0(VS
                                                   & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
                                                   ? (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)
                                                   : (IData)(vlSelf->__PVT__rw_buf))
-                                              : ((4U 
-                                                  == (IData)(vlSelf->__PVT__state)) 
-                                                 & ((~ 
-                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
-                                                      >> 2U)) 
-                                                    & (IData)(vlSelf->__PVT__rw_buf)))))));
-    vlSelf->io_axi_req_valid = ((0U != (IData)(vlSelf->__PVT__state)) 
-                                & ((1U == (IData)(vlSelf->__PVT__state))
-                                    ? (~ (IData)(vlSelf->io_fccache_hit))
-                                    : ((2U == (IData)(vlSelf->__PVT__state))
-                                        ? (~ (IData)(vlSelf->__PVT___T_663))
-                                        : ((3U == (IData)(vlSelf->__PVT__state)) 
-                                           | ((4U == (IData)(vlSelf->__PVT__state))
-                                               ? (~ 
-                                                  ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
-                                                   >> 2U))
-                                               : ((5U 
-                                                   == (IData)(vlSelf->__PVT__state)) 
-                                                  & ((~ 
-                                                      ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
-                                                       >> 2U)) 
-                                                     | (~ (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)))))))));
+                                              : ((IData)(vlSelf->__VdfgTmp_h3e550451__0) 
+                                                 & (IData)(vlSelf->__PVT__rw_buf))))));
 }
 
 VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(VSoc_Cache* vlSelf) {

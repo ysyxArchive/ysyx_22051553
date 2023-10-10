@@ -234,7 +234,19 @@ class AXIArbitor extends Module{
             b_comp := Mux(io.AXI_O.b.valid && io.AXI_O.b.ready, 1.B, 0.B)
 
             when(aw_comp && w_comp && b_comp){ //b应该在aw和w之后判断，但是b常为高，就没有必要
-                state := s_Idle
+                
+                when(master_choose(3)){
+                    choose_buffer := master_choose
+                    when(rw_idle){ //1-r
+                        state := s_AR
+                    }.otherwise{ //0-w
+                        state := s_W
+                    }
+                }.otherwise{
+                    state := s_Idle
+                }
+
+
                 aw_comp := 0.B
                 w_comp := 0.B
                 w_count := 0.U
@@ -275,7 +287,16 @@ class AXIArbitor extends Module{
             
             r_comp := Mux(io.AXI_O.r.valid && io.AXI_O.r.ready && io.AXI_O.r.bits.last, 1.B, 0.B)
             when(r_comp){
-                state := s_Idle
+                when(master_choose(3)){
+                    choose_buffer := master_choose
+                    when(rw_idle){ //1-r
+                        state := s_AR
+                    }.otherwise{ //0-w
+                        state := s_W
+                    }
+                }.otherwise{
+                    state := s_Idle
+                }
                 r_count := 0.U
 
                 when(choose_buffer(0)){ //选择的master0

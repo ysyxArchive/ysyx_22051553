@@ -72,6 +72,9 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
                                                       (0xeU 
                                                        & (vlSelf->__PVT__addr_reg 
                                                           >> 6U))))))));
+    vlSelf->__VdfgTmp_h3e550451__0 = ((~ ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                          >> 2U)) & 
+                                      (4U == (IData)(vlSelf->__PVT__state)));
     vlSelf->__PVT___replace_wire_T = (0xffffU & ((IData)(vlSelf->__PVT__replace) 
                                                  >> 
                                                  (0x1fU 
@@ -2084,28 +2087,15 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
                                                   & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
                                                   ? (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)
                                                   : (IData)(vlSelf->__PVT__rw_buf))
-                                              : ((4U 
-                                                  == (IData)(vlSelf->__PVT__state)) 
-                                                 & ((~ 
-                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
-                                                      >> 2U)) 
-                                                    & (IData)(vlSelf->__PVT__rw_buf)))))));
+                                              : ((IData)(vlSelf->__VdfgTmp_h3e550451__0) 
+                                                 & (IData)(vlSelf->__PVT__rw_buf))))));
     vlSelf->io_axi_req_valid = ((0U != (IData)(vlSelf->__PVT__state)) 
                                 & ((1U == (IData)(vlSelf->__PVT__state))
                                     ? (~ (IData)(vlSelf->io_fccache_hit))
                                     : ((2U == (IData)(vlSelf->__PVT__state))
                                         ? (~ (IData)(vlSelf->__PVT___T_663))
                                         : ((3U == (IData)(vlSelf->__PVT__state)) 
-                                           | ((4U == (IData)(vlSelf->__PVT__state))
-                                               ? (~ 
-                                                  ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
-                                                   >> 2U))
-                                               : ((5U 
-                                                   == (IData)(vlSelf->__PVT__state)) 
-                                                  & ((~ 
-                                                      ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
-                                                       >> 2U)) 
-                                                     | (~ (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)))))))));
+                                           | (IData)(vlSelf->__VdfgTmp_h3e550451__0)))));
     if (vlSelf->__PVT__wen) {
         if (vlSelf->io_fccache_hit) {
             if (vlSelf->__PVT__hit0) {
@@ -2211,6 +2201,9 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
                                                       (0xeU 
                                                        & (vlSelf->__PVT__addr_reg 
                                                           >> 6U))))))));
+    vlSelf->__VdfgTmp_h3e550451__0 = ((~ ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                          >> 1U)) & 
+                                      (4U == (IData)(vlSelf->__PVT__state)));
     vlSelf->__PVT___replace_wire_T = (0xffffU & ((IData)(vlSelf->__PVT__replace) 
                                                  >> 
                                                  (0x1fU 
@@ -4227,28 +4220,15 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
                                                   & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
                                                   ? (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)
                                                   : (IData)(vlSelf->__PVT__rw_buf))
-                                              : ((4U 
-                                                  == (IData)(vlSelf->__PVT__state)) 
-                                                 & ((~ 
-                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
-                                                      >> 1U)) 
-                                                    & (IData)(vlSelf->__PVT__rw_buf)))))));
+                                              : ((IData)(vlSelf->__VdfgTmp_h3e550451__0) 
+                                                 & (IData)(vlSelf->__PVT__rw_buf))))));
     vlSelf->io_axi_req_valid = ((0U != (IData)(vlSelf->__PVT__state)) 
                                 & ((1U == (IData)(vlSelf->__PVT__state))
                                     ? (~ (IData)(vlSelf->io_fccache_hit))
                                     : ((2U == (IData)(vlSelf->__PVT__state))
                                         ? (~ (IData)(vlSelf->__PVT___T_663))
                                         : ((3U == (IData)(vlSelf->__PVT__state)) 
-                                           | ((4U == (IData)(vlSelf->__PVT__state))
-                                               ? (~ 
-                                                  ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
-                                                   >> 1U))
-                                               : ((5U 
-                                                   == (IData)(vlSelf->__PVT__state)) 
-                                                  & ((~ 
-                                                      ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
-                                                       >> 1U)) 
-                                                     | (~ (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master1_resp_valid)))))))));
+                                           | (IData)(vlSelf->__VdfgTmp_h3e550451__0)))));
     if (vlSelf->__PVT__wen) {
         if (vlSelf->io_fccache_hit) {
             if (vlSelf->__PVT__hit0) {

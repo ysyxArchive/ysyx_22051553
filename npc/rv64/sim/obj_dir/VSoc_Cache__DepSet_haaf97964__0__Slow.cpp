@@ -225,6 +225,7 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk3__DOT___GEN_54 = VL_RAND_RESET_I(16);
     vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___dirty_T_18 = VL_RAND_RESET_I(32);
     vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk5__DOT___dirty_T_30 = VL_RAND_RESET_I(32);
+    vlSelf->__VdfgTmp_h3e550451__0 = 0;
     VL_ZERO_RESET_W(960, vlSelf->__VdfgTmp_h25305f44__0);
     VL_ZERO_RESET_W(135, vlSelf->__VdfgTmp_hee7a4229__0);
     for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {

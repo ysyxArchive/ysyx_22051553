@@ -323,20 +323,26 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
         = (1U & ((~ ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
                      & ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                         >> 3U))) | (0U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state))));
-    vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_13 
-        = (1U & ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
-                 | ((~ (IData)((3U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)))) 
-                    | (2U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)))));
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_5 
         = (IData)((2U == (3U & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))));
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_6 
         = (IData)((0U == (3U & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))));
+    vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_13 
+        = (1U & ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
+                 | ((~ (IData)((3U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)))) 
+                    | (2U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)))));
     Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h4ab110e3__0 
         = ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
            & (1U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)));
     Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h8a5bb8da__0 
         = (1U & ((~ (IData)(vlSelf->Soc__DOT__sram__DOT__rvalid)) 
                  | (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer)));
+    vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T_4 
+        = ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__aw_comp) 
+           & ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__w_comp) 
+              & ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
+                 & ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
+                    & (IData)(vlSelf->Soc__DOT__sram__DOT__bvalid)))));
     vlSelf->Soc__DOT__core__DOT___excute_io_fwex_reg_we 
         = ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_wb_type)) 
            | (3U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_wb_type)));
@@ -346,21 +352,15 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                             >> 3U)) 
                                    & (IData)((vlSelf->Soc__DOT__core__DOT__csrs__DOT__MIE 
                                               >> 7U)))));
-    vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T_4 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__aw_comp) 
-           & ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__w_comp) 
-              & ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
-                 & ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
-                    & (IData)(vlSelf->Soc__DOT__sram__DOT__bvalid)))));
     vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_mul_div_outvalid 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__out_valid) 
            | (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__out_valid));
-    vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3 
-        = ((4U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
-           | (7U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)));
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_hc0e633fc__0 
         = ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
            & (1U != (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)));
+    vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3 
+        = ((4U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)) 
+           | (7U == (IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state)));
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT____VdfgTmp_hf1075dbb__0 
         = ((0x24U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op)) 
            | (0x25U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op)));

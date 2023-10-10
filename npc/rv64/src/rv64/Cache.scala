@@ -375,7 +375,7 @@ class Cache extends Module{
             }
         }
         is(s_WriteBack){
-            io.axi.req.valid := 1.B
+            io.axi.req.valid := 1.B //写回的最后一周期仍然为高,进入refill写地址
 
             when(io.axi.resp.bits.choose){
                 when(io.axi.resp.valid){
