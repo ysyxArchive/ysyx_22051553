@@ -6185,7 +6185,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__3(VSoc___024root* vlSelf) 
             vlSelf->Soc__DOT__sram__DOT__rresp = 0U;
             vlSelf->__Vdly__Soc__DOT__sram__DOT__r_count 
                 = (((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_7) 
-                    & (~ (IData)((0U != (IData)(vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_len)))))
+                    & (0U == (IData)(vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_len)))
                     ? 0U : (0xffU & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__sram__DOT__r_count))));
         } else {
             vlSelf->Soc__DOT__sram__DOT__rvalid = 0U;

@@ -8917,7 +8917,7 @@ always@(posedge ACLK or negedge ARESETn) begin
             end
             rresp <= 2'b00;
            
-           if(S_AXI_ARVALID && S_AXI_ARREADY &&(!S_AXI_ARLEN))
+           if(S_AXI_ARVALID && S_AXI_ARREADY &&(S_AXI_ARLEN == 'd0))
                r_count <= 'd0;
            else
                r_count <= r_count + 1'd1;  
@@ -8935,5 +8935,4 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
 
