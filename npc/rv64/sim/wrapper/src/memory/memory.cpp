@@ -18,9 +18,6 @@ uint64_t memory::mem_read(uint32_t raddr){ //用于rtl
     // uint32_t addr = (pmem.mem + raddr - CONFIG_MBASE) & ~0x7ul; //错误
 
     uint64_t addr = (uint64_t)(pmem.mem + raddr - CONFIG_MBASE) & ~0x7ull; 
-    if(raddr == 0x801b6b00){
-        printf("r yes\n");
-    }
 
     #ifdef MTRACE
     printf(ANSI_FMT("read value is 0x%lx\n", ANSI_FG_YELLOW),*(uint64_t*)addr);
@@ -41,9 +38,7 @@ uint64_t memory::mem_readbylen(uint32_t raddr, int len){ //用于仿真
 }
 
 void memory::mem_write(uint32_t waddr, uint64_t wdata, uint8_t wmask){
-    if(waddr == 0x801b6b00){
-        printf("w yes\n");
-    }
+
 
     // #ifdef MTRACE
     // printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),waddr, 
@@ -74,23 +69,31 @@ void memory::mem_write(uint32_t waddr, uint64_t wdata, uint8_t wmask){
 
     // file.close();
 
-    assert(wmask == 0xff || wmask == 0x0f || wmask == 0x03 || wmask == 0x01);
+    // assert(wmask == 0xff || wmask == 0x0f || wmask == 0x03 || wmask == 0x01);
 
-    switch (wmask)
-    {
-        case 0xff:
-            *(uint64_t*)(pmem.mem + waddr - CONFIG_MBASE) = wdata;
-            break;
-        case 0x0f:
-            *(uint32_t*)(pmem.mem + waddr - CONFIG_MBASE) = wdata;
-            break;
-        case 0x03:
-            *(uint16_t*)(pmem.mem + waddr - CONFIG_MBASE) = wdata;
-            break;
-        case 0x01:
-            *(uint8_t*)(pmem.mem + waddr - CONFIG_MBASE) = wdata;
-            break;
-        default:assert(0);
+    // switch (wmask)
+    // {
+    //     case 0xff:
+    //         *(uint64_t*)(pmem.mem + waddr - CONFIG_MBASE) = wdata;
+    //         break;
+    //     case 0x0f:
+    //         *(uint32_t*)(pmem.mem + waddr - CONFIG_MBASE) = wdata;
+    //         break;
+    //     case 0x03:
+    //         *(uint16_t*)(pmem.mem + waddr - CONFIG_MBASE) = wdata;
+    //         break;
+    //     case 0x01:
+    //         *(uint8_t*)(pmem.mem + waddr - CONFIG_MBASE) = wdata;
+    //         break;
+    //     default:assert(0);
+    // }
+
+    for(int i = 0; i < 8; i ++){
+        if(wmask & 0x1 == 1){
+            *(uint8_t*)(pmem.mem + waddr + i - CONFIG_MBASE) = (uint8_t)wdata;
+            wmask = wmask >> 1;
+            wdata = wdata >> 8;
+        }
     }
 }
 

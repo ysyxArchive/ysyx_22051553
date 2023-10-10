@@ -3611,19 +3611,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__1
                                                            (0xeU 
                                                             & (vlSelf->__PVT__addr_reg 
                                                                >> 6U))))))))));
-    vlSelf->io_cpu_resp_bits_data = (((QData)((IData)(
-                                                      vlSelf->__PVT__read[
-                                                      (((IData)(0x3fU) 
-                                                        + 
-                                                        (0x3c0U 
-                                                         & (vlSelf->__PVT__addr_reg 
-                                                            << 3U))) 
-                                                       >> 5U)])) 
-                                      << 0x20U) | (QData)((IData)(
-                                                                  vlSelf->__PVT__read[
-                                                                  (0x1eU 
-                                                                   & (vlSelf->__PVT__addr_reg 
-                                                                      >> 2U))])));
     vlSelf->io_fccache_hit = ((IData)(vlSelf->__PVT__hit0) 
                               | ((IData)(vlSelf->__PVT___dirty1_T) 
                                  & (vlSelf->__PVT___TagArray_ext_R1_data 
