@@ -165,8 +165,8 @@ class Cache extends Module{
     2.写命中
     3.写分配完成
     */
-    when(io.cpu.req.valid){
-        addr_reg := addr
+    when( (is_idle & io.cpu.req.valid) | ((is_write | is_read) & io.cpu.req.valid & (hit0 | hit1))){ //在read,write中,只有命中才能更改addr_reg
+        addr_reg := addr                                                                             //否则需要保持addr_reg进行refill等操作
         cpu_data := io.cpu.req.bits.data
         cpu_mask := io.cpu.req.bits.mask
     }
