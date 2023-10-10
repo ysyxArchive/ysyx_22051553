@@ -220,6 +220,9 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_51 = VL_RAND_RESET_I(4);
     vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_52 = VL_RAND_RESET_I(32);
     vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_53 = VL_RAND_RESET_I(24);
+    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk3__DOT___GEN_54 = VL_RAND_RESET_I(16);
+    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___dirty_T_30 = VL_RAND_RESET_I(32);
+    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk5__DOT___dirty_T_18 = VL_RAND_RESET_I(32);
     VL_ZERO_RESET_W(960, vlSelf->__VdfgTmp_h25305f44__0);
     for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
         vlSelf->__PVT__TagArray_ext__DOT__Memory[__Vi0] = VL_RAND_RESET_I(22);
@@ -2301,4 +2304,31 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v3 = 0;
     vlSelf->__Vdlyvval__DataArray_12_1_ext__DOT__Memory__v3 = VL_RAND_RESET_I(8);
     vlSelf->__Vdlyvset__DataArray_12_1_ext__DOT__Memory__v3 = 0;
+    vlSelf->__Vdlyvdim0__DataArray_12_2_ext__DOT__Memory__v0 = 0;
+    vlSelf->__Vdlyvval__DataArray_12_2_ext__DOT__Memory__v0 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvset__DataArray_12_2_ext__DOT__Memory__v0 = 0;
+    vlSelf->__Vdlyvdim0__DataArray_12_2_ext__DOT__Memory__v1 = 0;
+    vlSelf->__Vdlyvval__DataArray_12_2_ext__DOT__Memory__v1 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvset__DataArray_12_2_ext__DOT__Memory__v1 = 0;
+    vlSelf->__Vdlyvdim0__DataArray_12_2_ext__DOT__Memory__v2 = 0;
+    vlSelf->__Vdlyvval__DataArray_12_2_ext__DOT__Memory__v2 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvset__DataArray_12_2_ext__DOT__Memory__v2 = 0;
+    vlSelf->__Vdlyvdim0__DataArray_12_2_ext__DOT__Memory__v3 = 0;
+    vlSelf->__Vdlyvval__DataArray_12_2_ext__DOT__Memory__v3 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvset__DataArray_12_2_ext__DOT__Memory__v3 = 0;
+    vlSelf->__Vdlyvdim0__DataArray_12_3_ext__DOT__Memory__v0 = 0;
+    vlSelf->__Vdlyvval__DataArray_12_3_ext__DOT__Memory__v0 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvset__DataArray_12_3_ext__DOT__Memory__v0 = 0;
+    vlSelf->__Vdlyvdim0__DataArray_12_3_ext__DOT__Memory__v1 = 0;
+    vlSelf->__Vdlyvval__DataArray_12_3_ext__DOT__Memory__v1 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvset__DataArray_12_3_ext__DOT__Memory__v1 = 0;
+    vlSelf->__Vdlyvdim0__DataArray_12_3_ext__DOT__Memory__v2 = 0;
+    vlSelf->__Vdlyvval__DataArray_12_3_ext__DOT__Memory__v2 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvset__DataArray_12_3_ext__DOT__Memory__v2 = 0;
+    vlSelf->__Vdlyvdim0__DataArray_12_3_ext__DOT__Memory__v3 = 0;
+    vlSelf->__Vdlyvval__DataArray_12_3_ext__DOT__Memory__v3 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvset__DataArray_12_3_ext__DOT__Memory__v3 = 0;
+    vlSelf->__Vdlyvdim0__DataArray_12_4_ext__DOT__Memory__v3 = 0;
+    vlSelf->__Vdlyvval__DataArray_12_4_ext__DOT__Memory__v3 = VL_RAND_RESET_I(8);
+    vlSelf->__Vdlyvset__DataArray_12_4_ext__DOT__Memory__v3 = 0;
 }

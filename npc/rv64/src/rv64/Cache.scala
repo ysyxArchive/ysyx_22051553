@@ -176,7 +176,7 @@ class Cache extends Module{
     val dirty1 = valid(way1_buf) && dirty(way1_buf)
     //选择替代，00选0,01选0,10选1   --根据replace选择，若选择的是dirty,则需要写回
     val replace_wire = Mux(replace(way1_buf), 1.B, 0.B)  //不管是否为脏,replace_wire选择的就是真正选择的
-
+    dontTouch(replace_wire)
 
     //写入-----------
     val wtag = Wire(UInt(tlen.W))
@@ -184,6 +184,7 @@ class Cache extends Module{
 
     
     val wmask = Mux(!is_alloc, (cpu_mask << Cat(off_reg, 0.U(byteOffsetBits.W))).zext, (-1).S)  //off_reg用于选择Cacheline中某个对齐的8Byte
+    dontTouch(wmask)
     val wdata = Mux(
         !is_alloc, //is_alloc为0->写命中, is_alloc为1->写分配
         Fill(nWords, cpu_data),
