@@ -1348,7 +1348,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__interact__DOT__ebreak_flag = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count = VL_RAND_RESET_I(6);
     vlSelf->Soc__DOT__sram__DOT__w_count = VL_RAND_RESET_I(4);
-    vlSelf->Soc__DOT__sram__DOT__r_count = VL_RAND_RESET_I(4);
+    vlSelf->Soc__DOT__sram__DOT__r_count = VL_RAND_RESET_I(8);
     vlSelf->Soc__DOT__sram__DOT__bresp = VL_RAND_RESET_I(2);
     vlSelf->Soc__DOT__sram__DOT__bvalid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__sram__DOT__rdata = VL_RAND_RESET_Q(64);

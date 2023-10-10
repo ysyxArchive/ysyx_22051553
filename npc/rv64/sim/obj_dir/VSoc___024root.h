@@ -220,7 +220,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*3:0*/ Soc__DOT__sram__DOT__w_count;
     };
     struct {
-        CData/*3:0*/ Soc__DOT__sram__DOT__r_count;
+        CData/*7:0*/ Soc__DOT__sram__DOT__r_count;
         CData/*1:0*/ Soc__DOT__sram__DOT__bresp;
         CData/*0:0*/ Soc__DOT__sram__DOT__bvalid;
         CData/*0:0*/ Soc__DOT__sram__DOT__rlast;

@@ -9230,7 +9230,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgQData(oldp+6523,(vlSelf->Soc__DOT__sram__DOT__rdata),64);
         bufp->chgBit(oldp+6525,(vlSelf->Soc__DOT__sram__DOT__rlast));
         bufp->chgCData(oldp+6526,(vlSelf->Soc__DOT__sram__DOT__rresp),2);
-        bufp->chgCData(oldp+6527,(vlSelf->Soc__DOT__sram__DOT__r_count),4);
+        bufp->chgCData(oldp+6527,(vlSelf->Soc__DOT__sram__DOT__r_count),8);
         bufp->chgIData(oldp+6528,(vlSelf->Soc__DOT__sram__DOT__araddr),32);
         bufp->chgBit(oldp+6529,(vlSelf->Soc__DOT__sram__DOT__need_read));
         bufp->chgCData(oldp+6530,(vlSelf->Soc__DOT__sram__DOT__r_burst),8);

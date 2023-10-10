@@ -684,7 +684,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBit(c+6523,"S_AXI_RVALID", false,-1);
     tracep->declBit(c+6874,"S_AXI_RREADY", false,-1);
     tracep->declBus(c+3,"w_count", false,-1, 3,0);
-    tracep->declBus(c+6528,"r_count", false,-1, 3,0);
+    tracep->declBus(c+6528,"r_count", false,-1, 7,0);
     tracep->declBus(c+2,"bresp", false,-1, 1,0);
     tracep->declBit(c+1,"bvalid", false,-1);
     tracep->declQuad(c+6524,"rdata", false,-1, 63,0);
@@ -17573,7 +17573,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullQData(oldp+6524,(vlSelf->Soc__DOT__sram__DOT__rdata),64);
     bufp->fullBit(oldp+6526,(vlSelf->Soc__DOT__sram__DOT__rlast));
     bufp->fullCData(oldp+6527,(vlSelf->Soc__DOT__sram__DOT__rresp),2);
-    bufp->fullCData(oldp+6528,(vlSelf->Soc__DOT__sram__DOT__r_count),4);
+    bufp->fullCData(oldp+6528,(vlSelf->Soc__DOT__sram__DOT__r_count),8);
     bufp->fullIData(oldp+6529,(vlSelf->Soc__DOT__sram__DOT__araddr),32);
     bufp->fullBit(oldp+6530,(vlSelf->Soc__DOT__sram__DOT__need_read));
     bufp->fullCData(oldp+6531,(vlSelf->Soc__DOT__sram__DOT__r_burst),8);
