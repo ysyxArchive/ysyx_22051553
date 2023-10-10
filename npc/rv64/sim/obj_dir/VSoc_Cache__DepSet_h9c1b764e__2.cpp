@@ -1713,7 +1713,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
          | ((((2U == (IData)(vlSelf->__PVT__state)) 
               | (1U == (IData)(vlSelf->__PVT__state))) 
              & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid)) 
-            & (IData)(vlSelf->io_fccache_hit)))) {
+            & (~ (IData)(vlSelf->io_axi_req_valid))))) {
         vlSelf->__PVT__cpu_mask = vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask;
         vlSelf->__PVT__addr_reg = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T);
     }
@@ -3665,9 +3665,19 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2
                            | ((1U == (IData)(vlSelf->__PVT__state)) 
                               | (2U == (IData)(vlSelf->__PVT__state)))) 
                           & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid));
-    vlSelf->__PVT___GEN_15 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
+    vlSelf->__PVT___GEN_16 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 1U)));
+    vlSelf->io_axi_req_valid = ((0U != (IData)(vlSelf->__PVT__state)) 
+                                & ((1U == (IData)(vlSelf->__PVT__state))
+                                    ? (~ (IData)(vlSelf->io_fccache_hit))
+                                    : ((2U == (IData)(vlSelf->__PVT__state))
+                                        ? (~ (IData)(vlSelf->__PVT___T_663))
+                                        : ((~ ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+                                               >> 1U)) 
+                                           & ((3U == (IData)(vlSelf->__PVT__state)) 
+                                              | (4U 
+                                                 == (IData)(vlSelf->__PVT__state)))))));
 }
 
 VL_INLINE_OPT void VSoc_Cache___nba_comb__TOP__Soc__DOT__core__DOT__Dcache__0(VSoc_Cache* vlSelf) {

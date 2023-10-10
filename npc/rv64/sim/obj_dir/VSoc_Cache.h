@@ -183,11 +183,11 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __PVT___T_663;
         CData/*0:0*/ __PVT___T_668;
         CData/*0:0*/ __PVT___T_670;
-        CData/*0:0*/ __PVT___GEN_15;
-        CData/*2:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_49;
-        CData/*3:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_50;
-        IData/*31:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_51;
-        IData/*23:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_52;
+        CData/*0:0*/ __PVT___GEN_16;
+        CData/*2:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_50;
+        CData/*3:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_51;
+        IData/*31:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_52;
+        IData/*23:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_53;
         CData/*0:0*/ __PVT__TagArray_ext__DOT___GEN;
         CData/*3:0*/ __PVT__TagArray_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__TagArray_ext__DOT___GEN_1;
@@ -1981,7 +1981,7 @@ class VSoc_Cache final : public VerilatedModule {
         SData/*15:0*/ __PVT___replace_wire_T;
         SData/*15:0*/ __PVT___GEN_9;
         SData/*15:0*/ __PVT___GEN_10;
-        SData/*15:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk3__DOT___GEN_53;
+        SData/*15:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk3__DOT___GEN_54;
         VL_IN(io_cpu_req_bits_addr,31,0);
         VL_OUT(io_axi_req_bits_addr,31,0);
         IData/*21:0*/ __PVT___TagArray_ext_R0_data;

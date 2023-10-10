@@ -3672,12 +3672,13 @@ module Cache(	// <stdin>:3134:10, :6981:10
   wire              _T_668 = state == 3'h3;	// Cache.scala:73:24, :308:18, :326:27
   wire [31:0]       _io_axi_req_bits_addr_T_13 = {tag_reg, idx_reg, 7'h0};	// Cache.scala:123:27, :124:27, :329:70, :382:68
   wire              _T_670 = state == 3'h4;	// Cache.scala:73:24, :308:18, :337:27
-  wire              _GEN_15 = ~_T_670 | io_axi_resp_bits_choose;	// Cache.scala:297:26, :308:18, :398:42
-  wire              _GEN_16 = ~is_idle & (is_read ? ~_T_662 & ~_T_660 : is_write ? ~_T_663 & ~_T_667 : _T_668 ?
+  wire              _GEN_15 = ~is_idle & (is_read ? ~_T_662 : is_write ? ~_T_663 : (_T_668 | _T_670) &
+                ~io_axi_resp_bits_choose);	// Cache.scala:75:25, :76:25, :77:26, :98:31, :106:33, :196:26, :224:73, :294:22, :308:18, :315:30, :347:{32,48}, :354:34, :378:42, :392:34
+  wire              _GEN_16 = ~_T_670 | io_axi_resp_bits_choose;	// Cache.scala:297:26, :308:18, :398:42
+  wire              _GEN_17 = ~is_idle & (is_read ? ~_T_662 & ~_T_660 : is_write ? ~_T_663 & ~_T_667 : _T_668 ?
                 (io_axi_resp_bits_choose ? io_axi_resp_valid : rw_buf) : _T_670 & ~io_axi_resp_bits_choose
                 & rw_buf);	// Cache.scala:75:25, :76:25, :77:26, :88:25, :98:31, :106:33, :196:26, :224:73, :294:22, :295:24, :308:18, :315:30, :325:{49,76}, :327:40, :339:40, :347:{32,48}, :354:34, :355:{49,76}, :357:40, :370:40, :378:42, :379:40, :392:34, :394:36, :398:42
   always @(posedge clock) begin
-    automatic logic [63:0]      _GEN_17;	// Cache.scala:147:28, :308:18
     automatic logic [63:0]      _GEN_18;	// Cache.scala:147:28, :308:18
     automatic logic [63:0]      _GEN_19;	// Cache.scala:147:28, :308:18
     automatic logic [63:0]      _GEN_20;	// Cache.scala:147:28, :308:18
@@ -3693,7 +3694,7 @@ module Cache(	// <stdin>:3134:10, :6981:10
     automatic logic [63:0]      _GEN_30;	// Cache.scala:147:28, :308:18
     automatic logic [63:0]      _GEN_31;	// Cache.scala:147:28, :308:18
     automatic logic [63:0]      _GEN_32;	// Cache.scala:147:28, :308:18
-    automatic logic [7:0][63:0] _GEN_33;	// Cache.scala:75:25, :147:28, :308:18
+    automatic logic [63:0]      _GEN_33;	// Cache.scala:147:28, :308:18
     automatic logic [7:0][63:0] _GEN_34;	// Cache.scala:75:25, :147:28, :308:18
     automatic logic [7:0][63:0] _GEN_35;	// Cache.scala:75:25, :147:28, :308:18
     automatic logic [7:0][63:0] _GEN_36;	// Cache.scala:75:25, :147:28, :308:18
@@ -3709,37 +3710,38 @@ module Cache(	// <stdin>:3134:10, :6981:10
     automatic logic [7:0][63:0] _GEN_46;	// Cache.scala:75:25, :147:28, :308:18
     automatic logic [7:0][63:0] _GEN_47;	// Cache.scala:75:25, :147:28, :308:18
     automatic logic [7:0][63:0] _GEN_48;	// Cache.scala:75:25, :147:28, :308:18
-    _GEN_17 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | (|r_count) ? refill_buffer_0 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+    automatic logic [7:0][63:0] _GEN_49;	// Cache.scala:75:25, :147:28, :308:18
     _GEN_18 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | r_count != 4'h1 ? refill_buffer_1 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+                                io_axi_resp_valid | (|r_count) ? refill_buffer_0 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
     _GEN_19 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | r_count != 4'h2 ? refill_buffer_2 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+                                io_axi_resp_valid | r_count != 4'h1 ? refill_buffer_1 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
     _GEN_20 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | r_count != 4'h3 ? refill_buffer_3 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+                                io_axi_resp_valid | r_count != 4'h2 ? refill_buffer_2 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
     _GEN_21 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | r_count != 4'h4 ? refill_buffer_4 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+                                io_axi_resp_valid | r_count != 4'h3 ? refill_buffer_3 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
     _GEN_22 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | r_count != 4'h5 ? refill_buffer_5 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+                                io_axi_resp_valid | r_count != 4'h4 ? refill_buffer_4 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
     _GEN_23 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | r_count != 4'h6 ? refill_buffer_6 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+                                io_axi_resp_valid | r_count != 4'h5 ? refill_buffer_5 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
     _GEN_24 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | r_count != 4'h7 ? refill_buffer_7 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+                                io_axi_resp_valid | r_count != 4'h6 ? refill_buffer_6 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
     _GEN_25 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | r_count != 4'h8 ? refill_buffer_8 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+                                io_axi_resp_valid | r_count != 4'h7 ? refill_buffer_7 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
     _GEN_26 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | r_count != 4'h9 ? refill_buffer_9 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+                                io_axi_resp_valid | r_count != 4'h8 ? refill_buffer_8 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
     _GEN_27 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | r_count != 4'hA ? refill_buffer_10 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+                                io_axi_resp_valid | r_count != 4'h9 ? refill_buffer_9 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
     _GEN_28 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | r_count != 4'hB ? refill_buffer_11 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+                                io_axi_resp_valid | r_count != 4'hA ? refill_buffer_10 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
     _GEN_29 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | r_count != 4'hC ? refill_buffer_12 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+                                io_axi_resp_valid | r_count != 4'hB ? refill_buffer_11 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
     _GEN_30 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
-                                io_axi_resp_valid | r_count != 4'hD ? refill_buffer_13 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+                                io_axi_resp_valid | r_count != 4'hC ? refill_buffer_12 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
     _GEN_31 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
+                                io_axi_resp_valid | r_count != 4'hD ? refill_buffer_13 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
+    _GEN_32 = is_read | is_write | _T_668 | _T_670 | ~_T_671 | ~io_axi_resp_bits_choose |
                                 io_axi_resp_valid | r_count != 4'hE ? refill_buffer_14 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :294:22, :308:18, :378:42, :392:34, :408:42, :415:44
-    _GEN_32 = is_read | is_write | _T_668 | _T_670 | ~(_T_671 & io_axi_resp_bits_choose &
+    _GEN_33 = is_read | is_write | _T_668 | _T_670 | ~(_T_671 & io_axi_resp_bits_choose &
                                 (io_axi_resp_valid | (&r_count))) ? refill_buffer_15 : io_axi_resp_bits_data;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :147:28, :308:18, :408:42, :409:40, :411:39, :415:44
     if (reset) begin
       r_count <= 4'h0;	// Cache.scala:69:26
@@ -3752,27 +3754,27 @@ module Cache(	// <stdin>:3134:10, :6981:10
       replace <= 16'h0;	// Cache.scala:90:24, :92:26
     end
     else begin
-      automatic logic [2:0]      _GEN_49;	// Cache.scala:73:24, :308:18, :408:42
-      automatic logic [3:0]      _GEN_50;	// Cache.scala:69:26, :308:18
-      automatic logic [7:0][3:0] _GEN_51;	// Cache.scala:69:26, :75:25, :308:18
-      automatic logic [7:0][2:0] _GEN_52;	// Cache.scala:75:25, :76:25, :77:26, :308:18, :310:35, :315:30, :347:48, :378:42, :398:42
-      _GEN_49 = _T_671 & io_axi_resp_bits_choose & io_axi_resp_valid ? {1'h0, |cpu_mask, 1'h0} : state;	// <stdin>:3134:10, :6981:10, Cache.scala:73:24, :78:26, :85:23, :162:70, :308:18, :408:42, :412:33
-      _GEN_50 = is_read | is_write | _T_668 | _T_670 | ~(_T_671 & io_axi_resp_bits_choose) ? r_count :
+      automatic logic [2:0]      _GEN_50;	// Cache.scala:73:24, :308:18, :408:42
+      automatic logic [3:0]      _GEN_51;	// Cache.scala:69:26, :308:18
+      automatic logic [7:0][3:0] _GEN_52;	// Cache.scala:69:26, :75:25, :308:18
+      automatic logic [7:0][2:0] _GEN_53;	// Cache.scala:75:25, :76:25, :77:26, :308:18, :310:35, :315:30, :347:48, :378:42, :398:42
+      _GEN_50 = _T_671 & io_axi_resp_bits_choose & io_axi_resp_valid ? {1'h0, |cpu_mask, 1'h0} : state;	// <stdin>:3134:10, :6981:10, Cache.scala:73:24, :78:26, :85:23, :162:70, :308:18, :408:42, :412:33
+      _GEN_51 = is_read | is_write | _T_668 | _T_670 | ~(_T_671 & io_axi_resp_bits_choose) ? r_count :
                                                 io_axi_resp_valid ? 4'h0 : r_count + 4'h1;	// Cache.scala:69:26, :76:25, :77:26, :78:26, :308:18, :408:42, :409:40, :410:29, :414:{29,40}, :415:44
-      _GEN_51 = {{_GEN_50}, {_GEN_50}, {_GEN_50}, {r_count}, {r_count}, {r_count}, {r_count}, {r_count}};	// Cache.scala:69:26, :75:25, :308:18
-      r_count <= _GEN_51[state];	// Cache.scala:69:26, :73:24, :75:25, :308:18
+      _GEN_52 = {{_GEN_51}, {_GEN_51}, {_GEN_51}, {r_count}, {r_count}, {r_count}, {r_count}, {r_count}};	// Cache.scala:69:26, :75:25, :308:18
+      r_count <= _GEN_52[state];	// Cache.scala:69:26, :73:24, :75:25, :308:18
       if (is_idle | is_read | is_write | ~(_T_668 & io_axi_resp_bits_choose)) begin	// Cache.scala:70:26, :75:25, :76:25, :77:26, :308:18, :378:42
       end
       else if (io_axi_resp_valid)	// Cache.scala:70:26, :75:25, :76:25, :77:26, :308:18, :378:42
         w_count <= 4'h0;	// Cache.scala:69:26, :70:26
       else if (w_count != 4'hF)	// Cache.scala:70:26, :75:25, :76:25, :77:26, :78:49, :308:18, :378:42, :385:34
         w_count <= w_count + 4'h1;	// Cache.scala:70:26, :388:44, :415:44
-      _GEN_52 = {{_GEN_49}, {_GEN_49}, {_GEN_49}, {io_axi_resp_bits_choose ? 3'h5 : state},
+      _GEN_53 = {{_GEN_50}, {_GEN_50}, {_GEN_50}, {io_axi_resp_bits_choose ? 3'h5 : state},
                                                 {io_axi_resp_bits_choose & io_axi_resp_valid ? 3'h4 : state}, {_T_663 ? (io_cpu_req_valid ?
                                                 ((|io_cpu_req_bits_mask) ? 3'h2 : 3'h1) : 3'h0) : _T_667 ? 3'h3 : 3'h4}, {_T_662 ?
                                                 (io_cpu_req_valid ? ((|io_cpu_req_bits_mask) ? 3'h2 : 3'h1) : 3'h0) : _T_660 ? 3'h3 :
                                                 3'h4}, {io_cpu_req_valid ? ((|io_cpu_req_bits_mask) ? 3'h2 : 3'h1) : state}};	// Cache.scala:73:24, :75:25, :76:25, :77:26, :78:26, :106:33, :308:18, :310:35, :311:{23,29,51}, :315:30, :316:39, :317:{27,33,55}, :320:27, :325:{49,76}, :326:27, :337:27, :347:{32,48}, :348:39, :349:{27,33,55}, :351:27, :355:{49,76}, :356:27, :368:27, :378:42, :379:40, :398:42, :399:23, :408:42
-      state <= _GEN_52[state];	// Cache.scala:73:24, :75:25, :76:25, :77:26, :308:18, :310:35, :315:30, :347:48, :378:42, :398:42
+      state <= _GEN_53[state];	// Cache.scala:73:24, :75:25, :76:25, :77:26, :308:18, :310:35, :315:30, :347:48, :378:42, :398:42
       if (is_idle) begin	// Cache.scala:75:25
       end
       else if (is_read) begin	// Cache.scala:75:25, :76:25
@@ -3799,9 +3801,9 @@ module Cache(	// <stdin>:3134:10, :6981:10
                 addr_buf <= 32'h0;	// Cache.scala:87:27
             end
           end
-          else if (_GEN_15)	// Cache.scala:75:25, :76:25, :77:26, :297:26, :308:18, :398:42
+          else if (_GEN_16)	// Cache.scala:75:25, :76:25, :77:26, :297:26, :308:18, :398:42
             addr_buf <= 32'h0;	// Cache.scala:87:27
-          rw_buf <= _GEN_16;	// Cache.scala:88:25, :295:24, :308:18
+          rw_buf <= _GEN_17;	// Cache.scala:88:25, :295:24, :308:18
         end
       end
       else if (~is_write | _T_663) begin	// Cache.scala:75:25, :76:25, :77:26, :87:27, :308:18, :347:{32,48}
@@ -3829,19 +3831,19 @@ module Cache(	// <stdin>:3134:10, :6981:10
               addr_buf <= 32'h0;	// Cache.scala:87:27
           end
         end
-        else if (_GEN_15)	// Cache.scala:75:25, :76:25, :77:26, :297:26, :308:18, :398:42
+        else if (_GEN_16)	// Cache.scala:75:25, :76:25, :77:26, :297:26, :308:18, :398:42
           addr_buf <= 32'h0;	// Cache.scala:87:27
-        rw_buf <= _GEN_16;	// Cache.scala:88:25, :295:24, :308:18
+        rw_buf <= _GEN_17;	// Cache.scala:88:25, :295:24, :308:18
       end
       if (~wen | _T_662) begin	// Cache.scala:90:24, :106:{33,54}, :195:14, :196:26
       end
       else begin	// Cache.scala:90:24, :106:{33,54}, :195:14, :196:26
-        automatic logic [15:0] _GEN_53;	// Cache.scala:90:24, :227:31, :228:27
-        _GEN_53 = {16{is_alloc}};	// Cache.scala:78:39, :90:24, :227:31, :228:27
+        automatic logic [15:0] _GEN_54;	// Cache.scala:90:24, :227:31, :228:27
+        _GEN_54 = {16{is_alloc}};	// Cache.scala:78:39, :90:24, :227:31, :228:27
         if (_T_331)	// Cache.scala:224:43
-          valid <= _GEN_53 & _rep0_T_12[15:0] | valid;	// Cache.scala:90:24, :227:31, :228:{27,42}
+          valid <= _GEN_54 & _rep0_T_12[15:0] | valid;	// Cache.scala:90:24, :227:31, :228:{27,42}
         else	// Cache.scala:224:43
-          valid <= _GEN_53 & _rep1_T_18[15:0] | valid;	// Cache.scala:90:24, :227:31, :228:27, :267:31, :269:{27,42}
+          valid <= _GEN_54 & _rep1_T_18[15:0] | valid;	// Cache.scala:90:24, :227:31, :228:27, :267:31, :269:{27,42}
       end
       if (wen) begin	// Cache.scala:106:54
         if (_T_662) begin	// Cache.scala:106:33
@@ -3875,7 +3877,7 @@ module Cache(	// <stdin>:3134:10, :6981:10
       end
     end
     is_alloc_reg <= is_alloc;	// Cache.scala:78:39, :79:31
-    if (is_idle & io_cpu_req_valid | (is_write | is_read) & io_cpu_req_valid & _T_662) begin	// Cache.scala:75:25, :76:25, :77:26, :106:33, :168:{20,40,53,83}
+    if (is_idle & io_cpu_req_valid | (is_write | is_read) & io_cpu_req_valid & ~_GEN_15) begin	// Cache.scala:75:25, :76:25, :77:26, :168:{20,40,53,83,86}, :294:22, :308:18
       addr_reg <= io_cpu_req_bits_addr;	// Cache.scala:83:23
       cpu_data <= io_cpu_req_bits_data;	// Cache.scala:84:23
       cpu_mask <= io_cpu_req_bits_mask;	// Cache.scala:85:23
@@ -3885,54 +3887,54 @@ module Cache(	// <stdin>:3134:10, :6981:10
       rdata0_buf <= rdata0;	// Cat.scala:33:92, Reg.scala:19:16
       rdata1_buf <= rdata1;	// Cat.scala:33:92, Reg.scala:19:16
     end
-    _GEN_33 = {{_GEN_17}, {_GEN_17}, {_GEN_17}, {refill_buffer_0}, {refill_buffer_0}, {refill_buffer_0},
+    _GEN_34 = {{_GEN_18}, {_GEN_18}, {_GEN_18}, {refill_buffer_0}, {refill_buffer_0}, {refill_buffer_0},
                                 {refill_buffer_0}, {refill_buffer_0}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_0 <= _GEN_33[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_34 = {{_GEN_18}, {_GEN_18}, {_GEN_18}, {refill_buffer_1}, {refill_buffer_1}, {refill_buffer_1},
+    refill_buffer_0 <= _GEN_34[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_35 = {{_GEN_19}, {_GEN_19}, {_GEN_19}, {refill_buffer_1}, {refill_buffer_1}, {refill_buffer_1},
                                 {refill_buffer_1}, {refill_buffer_1}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_1 <= _GEN_34[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_35 = {{_GEN_19}, {_GEN_19}, {_GEN_19}, {refill_buffer_2}, {refill_buffer_2}, {refill_buffer_2},
+    refill_buffer_1 <= _GEN_35[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_36 = {{_GEN_20}, {_GEN_20}, {_GEN_20}, {refill_buffer_2}, {refill_buffer_2}, {refill_buffer_2},
                                 {refill_buffer_2}, {refill_buffer_2}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_2 <= _GEN_35[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_36 = {{_GEN_20}, {_GEN_20}, {_GEN_20}, {refill_buffer_3}, {refill_buffer_3}, {refill_buffer_3},
+    refill_buffer_2 <= _GEN_36[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_37 = {{_GEN_21}, {_GEN_21}, {_GEN_21}, {refill_buffer_3}, {refill_buffer_3}, {refill_buffer_3},
                                 {refill_buffer_3}, {refill_buffer_3}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_3 <= _GEN_36[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_37 = {{_GEN_21}, {_GEN_21}, {_GEN_21}, {refill_buffer_4}, {refill_buffer_4}, {refill_buffer_4},
+    refill_buffer_3 <= _GEN_37[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_38 = {{_GEN_22}, {_GEN_22}, {_GEN_22}, {refill_buffer_4}, {refill_buffer_4}, {refill_buffer_4},
                                 {refill_buffer_4}, {refill_buffer_4}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_4 <= _GEN_37[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_38 = {{_GEN_22}, {_GEN_22}, {_GEN_22}, {refill_buffer_5}, {refill_buffer_5}, {refill_buffer_5},
+    refill_buffer_4 <= _GEN_38[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_39 = {{_GEN_23}, {_GEN_23}, {_GEN_23}, {refill_buffer_5}, {refill_buffer_5}, {refill_buffer_5},
                                 {refill_buffer_5}, {refill_buffer_5}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_5 <= _GEN_38[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_39 = {{_GEN_23}, {_GEN_23}, {_GEN_23}, {refill_buffer_6}, {refill_buffer_6}, {refill_buffer_6},
+    refill_buffer_5 <= _GEN_39[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_40 = {{_GEN_24}, {_GEN_24}, {_GEN_24}, {refill_buffer_6}, {refill_buffer_6}, {refill_buffer_6},
                                 {refill_buffer_6}, {refill_buffer_6}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_6 <= _GEN_39[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_40 = {{_GEN_24}, {_GEN_24}, {_GEN_24}, {refill_buffer_7}, {refill_buffer_7}, {refill_buffer_7},
+    refill_buffer_6 <= _GEN_40[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_41 = {{_GEN_25}, {_GEN_25}, {_GEN_25}, {refill_buffer_7}, {refill_buffer_7}, {refill_buffer_7},
                                 {refill_buffer_7}, {refill_buffer_7}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_7 <= _GEN_40[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_41 = {{_GEN_25}, {_GEN_25}, {_GEN_25}, {refill_buffer_8}, {refill_buffer_8}, {refill_buffer_8},
+    refill_buffer_7 <= _GEN_41[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_42 = {{_GEN_26}, {_GEN_26}, {_GEN_26}, {refill_buffer_8}, {refill_buffer_8}, {refill_buffer_8},
                                 {refill_buffer_8}, {refill_buffer_8}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_8 <= _GEN_41[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_42 = {{_GEN_26}, {_GEN_26}, {_GEN_26}, {refill_buffer_9}, {refill_buffer_9}, {refill_buffer_9},
+    refill_buffer_8 <= _GEN_42[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_43 = {{_GEN_27}, {_GEN_27}, {_GEN_27}, {refill_buffer_9}, {refill_buffer_9}, {refill_buffer_9},
                                 {refill_buffer_9}, {refill_buffer_9}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_9 <= _GEN_42[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_43 = {{_GEN_27}, {_GEN_27}, {_GEN_27}, {refill_buffer_10}, {refill_buffer_10},
+    refill_buffer_9 <= _GEN_43[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_44 = {{_GEN_28}, {_GEN_28}, {_GEN_28}, {refill_buffer_10}, {refill_buffer_10},
                                 {refill_buffer_10}, {refill_buffer_10}, {refill_buffer_10}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_10 <= _GEN_43[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_44 = {{_GEN_28}, {_GEN_28}, {_GEN_28}, {refill_buffer_11}, {refill_buffer_11},
+    refill_buffer_10 <= _GEN_44[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_45 = {{_GEN_29}, {_GEN_29}, {_GEN_29}, {refill_buffer_11}, {refill_buffer_11},
                                 {refill_buffer_11}, {refill_buffer_11}, {refill_buffer_11}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_11 <= _GEN_44[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_45 = {{_GEN_29}, {_GEN_29}, {_GEN_29}, {refill_buffer_12}, {refill_buffer_12},
+    refill_buffer_11 <= _GEN_45[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_46 = {{_GEN_30}, {_GEN_30}, {_GEN_30}, {refill_buffer_12}, {refill_buffer_12},
                                 {refill_buffer_12}, {refill_buffer_12}, {refill_buffer_12}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_12 <= _GEN_45[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_46 = {{_GEN_30}, {_GEN_30}, {_GEN_30}, {refill_buffer_13}, {refill_buffer_13},
+    refill_buffer_12 <= _GEN_46[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_47 = {{_GEN_31}, {_GEN_31}, {_GEN_31}, {refill_buffer_13}, {refill_buffer_13},
                                 {refill_buffer_13}, {refill_buffer_13}, {refill_buffer_13}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_13 <= _GEN_46[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_47 = {{_GEN_31}, {_GEN_31}, {_GEN_31}, {refill_buffer_14}, {refill_buffer_14},
+    refill_buffer_13 <= _GEN_47[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_48 = {{_GEN_32}, {_GEN_32}, {_GEN_32}, {refill_buffer_14}, {refill_buffer_14},
                                 {refill_buffer_14}, {refill_buffer_14}, {refill_buffer_14}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_14 <= _GEN_47[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
-    _GEN_48 = {{_GEN_32}, {_GEN_32}, {_GEN_32}, {refill_buffer_15}, {refill_buffer_15},
+    refill_buffer_14 <= _GEN_48[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    _GEN_49 = {{_GEN_33}, {_GEN_33}, {_GEN_33}, {refill_buffer_15}, {refill_buffer_15},
                                 {refill_buffer_15}, {refill_buffer_15}, {refill_buffer_15}};	// Cache.scala:75:25, :147:28, :308:18
-    refill_buffer_15 <= _GEN_48[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
+    refill_buffer_15 <= _GEN_49[state];	// Cache.scala:73:24, :75:25, :147:28, :308:18
     replace_buf <= replace_wire;	// Cache.scala:178:27, :179:30
   end // always @(posedge)
   `ifndef SYNTHESIS	// <stdin>:3134:10, :6981:10
@@ -7544,12 +7546,11 @@ module Cache(	// <stdin>:3134:10, :6981:10
   );
   assign io_cpu_resp_valid = _T_662 | is_alloc_reg & ~(|cpu_mask);	// <stdin>:3134:10, :6981:10, Cache.scala:79:31, :85:23, :106:33, :162:{41,57,60,70}
   assign io_cpu_resp_bits_data = _GEN_6;	// <stdin>:3134:10, :6981:10, Cache.scala:161:27
-  assign io_axi_req_valid = ~is_idle & (is_read ? ~_T_662 : is_write ? ~_T_663 : (_T_668 | _T_670) &
-                ~io_axi_resp_bits_choose);	// <stdin>:3134:10, :6981:10, Cache.scala:75:25, :76:25, :77:26, :98:31, :106:33, :196:26, :224:73, :294:22, :308:18, :315:30, :347:{32,48}, :354:34, :378:42, :392:34
-  assign io_axi_req_bits_rw = _GEN_16;	// <stdin>:3134:10, :6981:10, Cache.scala:295:24, :308:18
+  assign io_axi_req_valid = _GEN_15;	// <stdin>:3134:10, :6981:10, Cache.scala:294:22, :308:18
+  assign io_axi_req_bits_rw = _GEN_17;	// <stdin>:3134:10, :6981:10, Cache.scala:295:24, :308:18
   assign io_axi_req_bits_addr = is_idle ? 32'h0 : is_read ? (_T_662 ? 32'h0 : _GEN_13) : is_write ? (_T_663 ? 32'h0 :
                 _GEN_14) : _T_668 ? (io_axi_resp_bits_choose ? (io_axi_resp_valid ?
-                _io_axi_req_bits_addr_T_13 : 32'h0) : addr_buf) : _GEN_15 ? 32'h0 : addr_buf;	// <stdin>:3134:10, :6981:10, Cache.scala:75:25, :76:25, :77:26, :87:27, :106:33, :297:26, :308:18, :315:30, :325:76, :328:33, :338:42, :347:{32,48}, :355:76, :358:33, :369:42, :378:42, :379:40, :382:{42,68}, :393:38, :398:42
+                _io_axi_req_bits_addr_T_13 : 32'h0) : addr_buf) : _GEN_16 ? 32'h0 : addr_buf;	// <stdin>:3134:10, :6981:10, Cache.scala:75:25, :76:25, :77:26, :87:27, :106:33, :297:26, :308:18, :315:30, :325:76, :328:33, :338:42, :347:{32,48}, :355:76, :358:33, :369:42, :378:42, :379:40, :382:{42,68}, :393:38, :398:42
   assign io_axi_req_bits_data = _GEN_11;	// <stdin>:3134:10, :6981:10, Cache.scala:296:26
   assign io_fccache_state = state;	// <stdin>:3134:10, :6981:10, Cache.scala:73:24
   assign io_fccache_hit = _T_662;	// <stdin>:3134:10, :6981:10, Cache.scala:106:33

@@ -375,12 +375,17 @@ class Cache extends Module{
             }
         }
         is(s_WriteBack){
+            io.axi.req.valid := 1.B
+
             when(io.axi.resp.bits.choose){
                 when(io.axi.resp.valid){
                     w_count := 0.U
                     state := s_RefillReady
                     io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
                     io.axi.req.bits.rw := 1.B
+
+                    addr_buf := io.axi.req.bits.addr
+                    rw_buf := io.axi.req.bits.rw
                 }.otherwise{
                     when(w_count === 15.U){
                         w_count := w_count
@@ -389,7 +394,6 @@ class Cache extends Module{
                     }
                 }
             }.otherwise{ //可能没选上
-                io.axi.req.valid := 1.B
                 io.axi.req.bits.addr := addr_buf
                 io.axi.req.bits.rw := rw_buf
             }
@@ -405,8 +409,11 @@ class Cache extends Module{
             
         }
         is(s_Refill){
+            io.axi.req.valid := 1.B
+
             when(io.axi.resp.bits.choose){
                 when(io.axi.resp.valid){
+                    io.axi.req.valid := 0.B
                     r_count := 0.U
                     refill_buffer(15) := io.axi.resp.bits.data
                     state := Mux(cpu_mask.orR, s_WriteCache, s_Idle)

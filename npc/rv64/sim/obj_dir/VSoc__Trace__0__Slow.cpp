@@ -8470,15 +8470,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullIData(oldp+71,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__axi_req_bits_addr),32);
     bufp->fullQData(oldp+72,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__axi_req_bits_data),64);
     bufp->fullCData(oldp+74,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__axi_req_bits_mask),8);
-    bufp->fullBit(oldp+75,(((0U != (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)) 
-                            & ((1U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state))
-                                ? (~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.io_fccache_hit))
-                                : ((2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state))
-                                    ? (~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___T_663))
-                                    : ((~ ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
-                                           >> 1U)) 
-                                       & ((3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)) 
-                                          | (4U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)))))))));
+    bufp->fullBit(oldp+75,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.io_axi_req_valid));
     bufp->fullQData(oldp+76,((((QData)((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__read[
                                                (((IData)(0x3fU) 
                                                  + 
@@ -8515,15 +8507,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                         << 1U))])) 
                                     >> (0x1fU & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
                                                  << 6U)))))),64);
-    bufp->fullBit(oldp+78,(((0U != (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state)) 
-                            & ((1U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state))
-                                ? (~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_fccache_hit))
-                                : ((2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state))
-                                    ? (~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___T_663))
-                                    : ((~ ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
-                                           >> 2U)) 
-                                       & ((3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state)) 
-                                          | (4U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state)))))))));
+    bufp->fullBit(oldp+78,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_axi_req_valid));
     bufp->fullQData(oldp+79,((((QData)((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__read[
                                                (((IData)(0x3fU) 
                                                  + 
@@ -18083,7 +18067,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                     : 0U)
                                                    : vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_buf)
                                                   : 
-                                                 ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_15)
+                                                 ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_16)
                                                    ? 0U
                                                    : vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_buf)))))),32);
     bufp->fullIData(oldp+6869,(((0U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state))
@@ -18107,7 +18091,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                     : 0U)
                                                    : vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_buf)
                                                   : 
-                                                 ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_15)
+                                                 ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_16)
                                                    ? 0U
                                                    : vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_buf)))))),32);
     __Vtemp_h26f7ce52__0[0U] = 0U;
