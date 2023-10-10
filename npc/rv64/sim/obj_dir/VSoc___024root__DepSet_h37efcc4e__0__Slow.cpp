@@ -1366,7 +1366,8 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->__VdfgTmp_hd0a2fa80__0 = 0;
     vlSelf->__VdfgTmp_h9d5684c6__0 = 0;
     vlSelf->__Vdly__Soc__DOT__core__DOT__arbitor__DOT__choose_buffer = VL_RAND_RESET_I(4);
-    vlSelf->__Vdly__Soc__DOT__sram__DOT__rlast = VL_RAND_RESET_I(1);
+    vlSelf->__Vdly__Soc__DOT__sram__DOT__r_burst = VL_RAND_RESET_I(8);
+    vlSelf->__Vdly__Soc__DOT__sram__DOT__r_count = VL_RAND_RESET_I(8);
     vlSelf->__Vtrigrprev__TOP__clock = VL_RAND_RESET_I(1);
     vlSelf->__Vtrigrprev__TOP__Soc__DOT____Vcellinp__sram__ARESETn = VL_RAND_RESET_I(1);
     for (int __Vi0 = 0; __Vi0 < 6; ++__Vi0) {

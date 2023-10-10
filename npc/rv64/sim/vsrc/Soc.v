@@ -8879,15 +8879,18 @@ always@(posedge ACLK or negedge ARESETn)begin
         r_burst <= 'd0;
     end
     else begin
-        if(S_AXI_ARVALID && S_AXI_ARREADY)begin
+        if(S_AXI_ARVALID && S_AXI_ARREADY &&(!S_AXI_ARLEN))begin
             araddr <= S_AXI_ARADDR;
             need_read <= 1'b1;
             r_burst <= S_AXI_ARLEN;
         end
-        else if(S_AXI_RLAST)begin
+        
+        
+       else if((r_count == r_burst))begin
             need_read <= 1'b0;
             r_burst <= 'd0;
-        end
+       end
+
     end
 end
 
@@ -8913,11 +8916,15 @@ always@(posedge ACLK or negedge ARESETn) begin
                rlast <= (r_count == r_burst) ? 1'd1 : 1'd0;
             end
             rresp <= 2'b00;
-            r_count <= r_count + 1'd1;  //传出第一个数据时,r_count为1
-            if(rlast)begin
-               rvalid <= 1'b0;
+           
+           if(S_AXI_ARVALID && S_AXI_ARREADY &&(!S_AXI_ARLEN))
                r_count <= 'd0;
-            end
+           else
+               r_count <= r_count + 1'd1;  
+        end
+        else begin
+            rvalid <= 1'b0;
+            r_count <= 'd0;
         end
     end 
 end
