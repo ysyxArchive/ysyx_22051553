@@ -176,6 +176,7 @@ class Cache extends Module{
     val dirty1 = valid(way1_buf) && dirty(way1_buf)
     //选择替代，00选0,01选0,10选1   --根据replace选择，若选择的是dirty,则需要写回
     val replace_wire = Mux(replace(way1_buf), 1.B, 0.B)  //不管是否为脏,replace_wire选择的就是真正选择的
+    val replace_buf = RegNext(replace_wire)
     dontTouch(replace_wire)
 
     //写入-----------
@@ -220,7 +221,7 @@ class Cache extends Module{
             }
         }.otherwise{ //alloc
 
-            when(!replace_wire){
+            when((!replace_wire&is_alloc) | (!replace_buf&is_alloc_reg)){ //alloc看!replace_wire&is_alloc,写不命中看!replace_buf&is_alloc_reg
                 
 
                 when(is_alloc){ //只有写分配才改变valid
