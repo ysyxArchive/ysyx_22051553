@@ -105,7 +105,7 @@ class Sram extends BlackBox with HasBlackBoxInline{
     |);
     |//internal reg
     |reg     [3:0]   w_count;
-    |reg     [3:0]   r_count;
+    |reg     [7:0]   r_count;
     |
     |//interface reg_def
     |reg     [1:0]   bresp;

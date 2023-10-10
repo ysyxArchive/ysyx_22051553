@@ -3194,6 +3194,10 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
         (0U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state));
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T_2 
         = (1U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state));
+    vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_8 
+        = ((0U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
+           | ((2U != (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
+              | (1U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state))));
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN 
         = ((1U != (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
            | (0U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)));
@@ -6146,7 +6150,8 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__3(VSoc___024root* vlSelf) 
                 vlSelf->Soc__DOT__sram__DOT__rdata 
                     = __Vfunc_pmem_read__3__Vfuncout;
                 vlSelf->__Vdly__Soc__DOT__sram__DOT__rlast 
-                    = (1U == (IData)(vlSelf->Soc__DOT__sram__DOT__r_count));
+                    = ((IData)(vlSelf->Soc__DOT__sram__DOT__r_count) 
+                       == (IData)(vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_len));
             } else {
                 VSoc___024unit____Vdpiimwrap_pmem_read_TOP____024unit(
                                                                       (vlSelf->Soc__DOT__sram__DOT__araddr 
@@ -6177,7 +6182,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__3(VSoc___024root* vlSelf) 
         if (vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_7) {
             vlSelf->Soc__DOT__sram__DOT__araddr = vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_addr;
             vlSelf->Soc__DOT__sram__DOT__need_read = 1U;
-            vlSelf->Soc__DOT__sram__DOT__r_burst = 1U;
+            vlSelf->Soc__DOT__sram__DOT__r_burst = vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_len;
         } else if (vlSelf->Soc__DOT__sram__DOT__rlast) {
             vlSelf->Soc__DOT__sram__DOT__need_read = 0U;
             vlSelf->Soc__DOT__sram__DOT__r_burst = 0U;
@@ -6443,5 +6448,6 @@ void VSoc___024root___eval_nba(VSoc___024root* vlSelf) {
     }
     if (vlSelf->__VnbaTriggered.at(0U)) {
         VSoc___024root___nba_sequent__TOP__4(vlSelf);
+        vlSelf->__Vm_traceActivity[5U] = 1U;
     }
 }

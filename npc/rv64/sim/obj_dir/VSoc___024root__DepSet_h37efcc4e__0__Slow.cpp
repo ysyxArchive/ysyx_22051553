@@ -129,11 +129,6 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
         = (2U == (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__state));
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT___T_10 
         = (0x40U == (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__shiftCounter));
-    vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_addr 
-        = (((0U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
-            | ((2U != (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
-               | (1U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state))))
-            ? 0U : vlSelf->Soc__DOT__core__DOT__arbitor__DOT__addr);
     vlSelf->Soc__DOT__core__DOT__regfile__DOT___regs_ext_R0_data 
         = vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
         [vlSelf->Soc__DOT__core__DOT__mwreg_reg_waddr];
@@ -308,6 +303,10 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                                           << 1U))])) 
                  >> (0x1fU & ((IData)(vlSelf->Soc__DOT__core__DOT__trap__DOT__state) 
                               << 6U)))));
+    vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_8 
+        = ((0U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
+           | ((2U != (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
+              | (1U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state))));
     vlSelf->Soc__DOT__core__DOT__fetch__DOT___io_pc_bits_T_3 
         = (vlSelf->Soc__DOT__core__DOT__fetch__DOT__old_pc 
            == vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc);
@@ -457,6 +456,15 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_58 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__dereg_op_a) 
            + (IData)(vlSelf->Soc__DOT__core__DOT__dereg_op_b));
+    if (vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_8) {
+        vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_addr = 0U;
+        vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_len = 0U;
+    } else {
+        vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_addr 
+            = vlSelf->Soc__DOT__core__DOT__arbitor__DOT__addr;
+        vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_len 
+            = vlSelf->Soc__DOT__core__DOT__arbitor__DOT__burst_len;
+    }
     vlSelf->Soc__DOT___core_io_AXI_Interface_aw_bits_addr 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN)
             ? 0U : vlSelf->Soc__DOT__core__DOT__arbitor__DOT__addr);
@@ -1047,6 +1055,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT___core_io_AXI_Interface_w_bits_data = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT___core_io_AXI_Interface_w_bits_strb = VL_RAND_RESET_I(8);
     vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_addr = VL_RAND_RESET_I(32);
+    vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_len = VL_RAND_RESET_I(8);
     vlSelf->Soc__DOT____Vcellinp__sram__ARESETn = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___arbitor_io_master0_resp_valid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT___arbitor_io_master1_resp_valid = VL_RAND_RESET_I(1);
@@ -1312,6 +1321,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_6 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T_8 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_7 = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_8 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_9 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_12 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_13 = VL_RAND_RESET_I(1);
@@ -1350,7 +1360,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__sram__DOT__need_resp = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__sram__DOT__araddr = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__sram__DOT__need_read = VL_RAND_RESET_I(1);
-    vlSelf->Soc__DOT__sram__DOT__r_burst = VL_RAND_RESET_I(4);
+    vlSelf->Soc__DOT__sram__DOT__r_burst = VL_RAND_RESET_I(8);
     vlSelf->__VdfgTmp_hae56d818__0 = 0;
     vlSelf->__VdfgTmp_h3db68a5f__0 = 0;
     vlSelf->__VdfgTmp_hd31110f2__0 = 0;
@@ -1360,7 +1370,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->__Vdly__Soc__DOT__sram__DOT__rlast = VL_RAND_RESET_I(1);
     vlSelf->__Vtrigrprev__TOP__clock = VL_RAND_RESET_I(1);
     vlSelf->__Vtrigrprev__TOP__Soc__DOT____Vcellinp__sram__ARESETn = VL_RAND_RESET_I(1);
-    for (int __Vi0 = 0; __Vi0 < 5; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 6; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = 0;
     }
 }

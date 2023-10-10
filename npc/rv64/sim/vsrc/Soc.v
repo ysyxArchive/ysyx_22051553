@@ -8869,7 +8869,7 @@ end
 //ar channel
 reg [31:0] araddr;
 reg need_read;
-reg [3:0] r_burst;
+reg [7:0] r_burst;
 
 always@(posedge ACLK or negedge ARESETn)begin
     if(!ARESETn)begin
@@ -8881,7 +8881,7 @@ always@(posedge ACLK or negedge ARESETn)begin
         if(S_AXI_ARVALID && S_AXI_ARREADY)begin
             araddr <= S_AXI_ARADDR;
             need_read <= 1'b1;
-            r_burst <= S_AXI_ARBURST;
+            r_burst <= S_AXI_ARLEN;
         end
         else if(S_AXI_RLAST)begin
             need_read <= 1'b0;
@@ -8905,7 +8905,7 @@ always@(posedge ACLK or negedge ARESETn) begin
             //rdata <= (S_AXI_ARVALID && S_AXI_ARREADY) ? pmem_read(S_AXI_ARADDR) : pmem_read(araddr+8*r_count);
             if(S_AXI_ARVALID && S_AXI_ARREADY)begin
                rdata <= pmem_read(S_AXI_ARADDR);
-               rlast <= (r_count == S_AXI_ARBURST) ? 1'd1 : 1'd0;
+               rlast <= (r_count == S_AXI_ARLEN) ? 1'd1 : 1'd0;
             end
             else begin
                rdata <= pmem_read(araddr+8*r_count);

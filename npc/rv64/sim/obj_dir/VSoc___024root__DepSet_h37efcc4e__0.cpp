@@ -37,11 +37,15 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__4(VSoc___024root* vlSelf) 
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSoc___024root___nba_sequent__TOP__4\n"); );
     // Body
-    vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_addr 
-        = (((0U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
-            | ((2U != (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)) 
-               | (1U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state))))
-            ? 0U : vlSelf->Soc__DOT__core__DOT__arbitor__DOT__addr);
+    if (vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_8) {
+        vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_addr = 0U;
+        vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_len = 0U;
+    } else {
+        vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_addr 
+            = vlSelf->Soc__DOT__core__DOT__arbitor__DOT__addr;
+        vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_len 
+            = vlSelf->Soc__DOT__core__DOT__arbitor__DOT__burst_len;
+    }
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_7 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_hc0e633fc__0) 
            & (2U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state)));

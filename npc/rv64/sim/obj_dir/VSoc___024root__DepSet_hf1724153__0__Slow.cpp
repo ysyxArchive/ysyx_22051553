@@ -2564,6 +2564,7 @@ VL_ATTR_COLD void VSoc___024root___eval_stl(VSoc___024root* vlSelf) {
     // Body
     if (vlSelf->__VstlTriggered.at(0U)) {
         VSoc___024root___stl_sequent__TOP__0(vlSelf);
+        vlSelf->__Vm_traceActivity[5U] = 1U;
         vlSelf->__Vm_traceActivity[4U] = 1U;
         vlSelf->__Vm_traceActivity[3U] = 1U;
         vlSelf->__Vm_traceActivity[2U] = 1U;
