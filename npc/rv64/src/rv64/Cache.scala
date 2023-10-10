@@ -409,8 +409,6 @@ class Cache extends Module{
             
         }
         is(s_Refill){
-            io.axi.req.valid := 1.B
-
             when(io.axi.resp.bits.choose){
                 when(io.axi.resp.valid){
                     io.axi.req.valid := 0.B
