@@ -226,13 +226,13 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__sram__DOT__rvalid;
         CData/*0:0*/ Soc__DOT__sram__DOT__need_resp;
         CData/*0:0*/ Soc__DOT__sram__DOT__need_read;
+        CData/*3:0*/ Soc__DOT__sram__DOT__r_burst;
         CData/*0:0*/ __VdfgTmp_hae56d818__0;
         CData/*0:0*/ __VdfgTmp_h3db68a5f__0;
         CData/*5:0*/ __VdfgTmp_hd31110f2__0;
         CData/*3:0*/ __VdfgTmp_hd0a2fa80__0;
         CData/*0:0*/ __VdfgTmp_h9d5684c6__0;
         CData/*3:0*/ __Vdly__Soc__DOT__core__DOT__arbitor__DOT__choose_buffer;
-        CData/*3:0*/ __Vdly__Soc__DOT__sram__DOT__r_count;
         CData/*0:0*/ __Vdly__Soc__DOT__sram__DOT__rlast;
         CData/*0:0*/ __Vtrigrprev__TOP__clock;
         CData/*0:0*/ __Vtrigrprev__TOP__Soc__DOT____Vcellinp__sram__ARESETn;
