@@ -176,7 +176,7 @@ class Cache extends Module{
     val dirty1 = valid(way1_buf) && dirty(way1_buf)
     //选择替代，00选0,01选0,10选1   --根据replace选择，若选择的是dirty,则需要写回
     val replace_wire = Mux(replace(way1_buf), 1.B, 0.B)  //不管是否为脏,replace_wire选择的就是真正选择的
-    val replace_buf = RegNext(replace_wire)
+    val replace_buf = RegNext(replace_wire) //因为在alloc阶段,replace会被改变,而下一周期的写不命中同样依赖于之前的replace
     dontTouch(replace_wire)
 
     //写入-----------
@@ -314,7 +314,7 @@ class Cache extends Module{
         is(s_ReadCache){
             when(hit0 | hit1){ //命中即读出
                 when(io.cpu.req.valid){  //应对连续申请
-                    state := s_ReadCache
+                    state := Mux(io.cpu.req.bits.mask.orR, s_WriteCache, s_ReadCache) //需要判断是否需要转到写
                 }
                 .otherwise{
                     state := s_Idle
@@ -345,13 +345,11 @@ class Cache extends Module{
         }
         is(s_WriteCache){
             when((hit0 | hit1) || is_alloc_reg){ //1.命中 2.刚从Refill转移(写分配)过来  //需要is_alloc_reg转到这?
-                when(io.cpu.req.valid){ //应对连续申请
-                    state := s_WriteCache
+                when(io.cpu.req.valid){ //应对连续申请,避免每次转到idle,耽误一周期
+                    state := Mux(io.cpu.req.bits.mask.orR, s_WriteCache, s_ReadCache) //需要判断是否需要转到读
                 }.otherwise{
                     state := s_Idle
                 }
-
-
             }.otherwise{
                 io.axi.req.valid := 1.B
                 when( (~replace_wire && dirty0) | (replace_wire && dirty1)){ //写回

@@ -26,139 +26,139 @@ class VSoc_Cache final : public VerilatedModule {
         VL_OUT8(io_axi_req_bits_rw,0,0);
         VL_OUT8(io_fccache_state,2,0);
         VL_OUT8(io_fccache_hit,0,0);
+        CData/*0:0*/ __PVT___T_646;
+        CData/*0:0*/ __PVT___T_645;
+        CData/*0:0*/ __PVT___T_644;
+        CData/*0:0*/ __PVT___T_643;
         CData/*0:0*/ __PVT___T_642;
         CData/*0:0*/ __PVT___T_641;
         CData/*0:0*/ __PVT___T_640;
         CData/*0:0*/ __PVT___T_639;
-        CData/*0:0*/ __PVT___T_638;
-        CData/*0:0*/ __PVT___T_637;
         CData/*0:0*/ __PVT___T_636;
         CData/*0:0*/ __PVT___T_635;
+        CData/*0:0*/ __PVT___T_634;
+        CData/*0:0*/ __PVT___T_633;
         CData/*0:0*/ __PVT___T_632;
         CData/*0:0*/ __PVT___T_631;
         CData/*0:0*/ __PVT___T_630;
         CData/*0:0*/ __PVT___T_629;
-        CData/*0:0*/ __PVT___T_628;
-        CData/*0:0*/ __PVT___T_627;
         CData/*0:0*/ __PVT___T_626;
         CData/*0:0*/ __PVT___T_625;
+        CData/*0:0*/ __PVT___T_624;
+        CData/*0:0*/ __PVT___T_623;
         CData/*0:0*/ __PVT___T_622;
         CData/*0:0*/ __PVT___T_621;
         CData/*0:0*/ __PVT___T_620;
         CData/*0:0*/ __PVT___T_619;
-        CData/*0:0*/ __PVT___T_618;
-        CData/*0:0*/ __PVT___T_617;
         CData/*0:0*/ __PVT___T_616;
         CData/*0:0*/ __PVT___T_615;
+        CData/*0:0*/ __PVT___T_614;
+        CData/*0:0*/ __PVT___T_613;
         CData/*0:0*/ __PVT___T_612;
         CData/*0:0*/ __PVT___T_611;
         CData/*0:0*/ __PVT___T_610;
         CData/*0:0*/ __PVT___T_609;
-        CData/*0:0*/ __PVT___T_608;
-        CData/*0:0*/ __PVT___T_607;
         CData/*0:0*/ __PVT___T_606;
         CData/*0:0*/ __PVT___T_605;
+        CData/*0:0*/ __PVT___T_604;
+        CData/*0:0*/ __PVT___T_603;
         CData/*0:0*/ __PVT___T_602;
         CData/*0:0*/ __PVT___T_601;
         CData/*0:0*/ __PVT___T_600;
         CData/*0:0*/ __PVT___T_599;
-        CData/*0:0*/ __PVT___T_598;
-        CData/*0:0*/ __PVT___T_597;
         CData/*0:0*/ __PVT___T_596;
         CData/*0:0*/ __PVT___T_595;
+        CData/*0:0*/ __PVT___T_594;
+        CData/*0:0*/ __PVT___T_593;
         CData/*0:0*/ __PVT___T_592;
         CData/*0:0*/ __PVT___T_591;
         CData/*0:0*/ __PVT___T_590;
         CData/*0:0*/ __PVT___T_589;
-        CData/*0:0*/ __PVT___T_588;
-        CData/*0:0*/ __PVT___T_587;
         CData/*0:0*/ __PVT___T_586;
         CData/*0:0*/ __PVT___T_585;
+        CData/*0:0*/ __PVT___T_584;
+        CData/*0:0*/ __PVT___T_583;
         CData/*0:0*/ __PVT___T_582;
+    };
+    struct {
         CData/*0:0*/ __PVT___T_581;
         CData/*0:0*/ __PVT___T_580;
         CData/*0:0*/ __PVT___T_579;
-        CData/*0:0*/ __PVT___T_578;
-    };
-    struct {
-        CData/*0:0*/ __PVT___T_577;
         CData/*0:0*/ __PVT___T_576;
         CData/*0:0*/ __PVT___T_575;
+        CData/*0:0*/ __PVT___T_574;
+        CData/*0:0*/ __PVT___T_573;
         CData/*0:0*/ __PVT___T_572;
         CData/*0:0*/ __PVT___T_571;
         CData/*0:0*/ __PVT___T_570;
         CData/*0:0*/ __PVT___T_569;
-        CData/*0:0*/ __PVT___T_568;
-        CData/*0:0*/ __PVT___T_567;
         CData/*0:0*/ __PVT___T_566;
         CData/*0:0*/ __PVT___T_565;
+        CData/*0:0*/ __PVT___T_564;
+        CData/*0:0*/ __PVT___T_563;
         CData/*0:0*/ __PVT___T_562;
         CData/*0:0*/ __PVT___T_561;
         CData/*0:0*/ __PVT___T_560;
         CData/*0:0*/ __PVT___T_559;
-        CData/*0:0*/ __PVT___T_558;
-        CData/*0:0*/ __PVT___T_557;
         CData/*0:0*/ __PVT___T_556;
         CData/*0:0*/ __PVT___T_555;
+        CData/*0:0*/ __PVT___T_554;
+        CData/*0:0*/ __PVT___T_553;
         CData/*0:0*/ __PVT___T_552;
         CData/*0:0*/ __PVT___T_551;
         CData/*0:0*/ __PVT___T_550;
         CData/*0:0*/ __PVT___T_549;
-        CData/*0:0*/ __PVT___T_548;
-        CData/*0:0*/ __PVT___T_547;
         CData/*0:0*/ __PVT___T_546;
         CData/*0:0*/ __PVT___T_545;
+        CData/*0:0*/ __PVT___T_544;
+        CData/*0:0*/ __PVT___T_543;
         CData/*0:0*/ __PVT___T_542;
         CData/*0:0*/ __PVT___T_541;
         CData/*0:0*/ __PVT___T_540;
         CData/*0:0*/ __PVT___T_539;
-        CData/*0:0*/ __PVT___T_538;
-        CData/*0:0*/ __PVT___T_537;
         CData/*0:0*/ __PVT___T_536;
         CData/*0:0*/ __PVT___T_535;
+        CData/*0:0*/ __PVT___T_534;
+        CData/*0:0*/ __PVT___T_533;
         CData/*0:0*/ __PVT___T_532;
         CData/*0:0*/ __PVT___T_531;
         CData/*0:0*/ __PVT___T_530;
         CData/*0:0*/ __PVT___T_529;
-        CData/*0:0*/ __PVT___T_528;
-        CData/*0:0*/ __PVT___T_527;
         CData/*0:0*/ __PVT___T_526;
         CData/*0:0*/ __PVT___T_525;
+        CData/*0:0*/ __PVT___T_524;
+        CData/*0:0*/ __PVT___T_523;
         CData/*0:0*/ __PVT___T_522;
         CData/*0:0*/ __PVT___T_521;
         CData/*0:0*/ __PVT___T_520;
         CData/*0:0*/ __PVT___T_519;
-        CData/*0:0*/ __PVT___T_518;
-        CData/*0:0*/ __PVT___T_517;
         CData/*0:0*/ __PVT___T_516;
         CData/*0:0*/ __PVT___T_515;
+        CData/*0:0*/ __PVT___T_514;
+        CData/*0:0*/ __PVT___T_513;
         CData/*0:0*/ __PVT___T_512;
         CData/*0:0*/ __PVT___T_511;
         CData/*0:0*/ __PVT___T_510;
         CData/*0:0*/ __PVT___T_509;
-        CData/*0:0*/ __PVT___T_508;
-        CData/*0:0*/ __PVT___T_507;
         CData/*0:0*/ __PVT___T_506;
         CData/*0:0*/ __PVT___T_505;
+        CData/*0:0*/ __PVT___T_504;
+        CData/*0:0*/ __PVT___T_503;
         CData/*0:0*/ __PVT___T_502;
+    };
+    struct {
         CData/*0:0*/ __PVT___T_501;
         CData/*0:0*/ __PVT___T_500;
         CData/*0:0*/ __PVT___T_499;
-        CData/*0:0*/ __PVT___T_498;
-    };
-    struct {
-        CData/*0:0*/ __PVT___T_497;
+        CData/*0:0*/ __PVT___GEN;
         CData/*0:0*/ __PVT___T_496;
         CData/*0:0*/ __PVT___T_495;
-        CData/*0:0*/ __PVT___GEN;
+        CData/*0:0*/ __PVT___T_494;
+        CData/*0:0*/ __PVT___T_493;
         CData/*0:0*/ __PVT___T_492;
         CData/*0:0*/ __PVT___T_491;
         CData/*0:0*/ __PVT___T_490;
         CData/*0:0*/ __PVT___T_489;
-        CData/*0:0*/ __PVT___T_488;
-        CData/*0:0*/ __PVT___T_487;
-        CData/*0:0*/ __PVT___T_486;
-        CData/*0:0*/ __PVT___T_485;
         CData/*0:0*/ __PVT___GEN_0;
         CData/*0:0*/ __PVT___GEN_1;
         CData/*0:0*/ __PVT___GEN_2;
@@ -167,7 +167,7 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*2:0*/ __PVT__state;
         CData/*0:0*/ __PVT__is_read;
         CData/*0:0*/ __PVT__is_write;
-        CData/*0:0*/ __PVT___T_661;
+        CData/*0:0*/ __PVT___T_665;
         CData/*0:0*/ __PVT__is_alloc;
         CData/*0:0*/ __PVT__is_alloc_reg;
         CData/*7:0*/ __PVT__cpu_mask;
@@ -177,10 +177,12 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __PVT__ren;
         CData/*0:0*/ __PVT__ren_reg;
         CData/*0:0*/ __PVT__dirty0;
-        CData/*0:0*/ __PVT___T_650;
-        CData/*0:0*/ __PVT___T_653;
-        CData/*0:0*/ __PVT___T_658;
-        CData/*0:0*/ __PVT___T_660;
+        CData/*0:0*/ __PVT__replace_buf;
+        CData/*0:0*/ __PVT___T_325;
+        CData/*0:0*/ __PVT___T_654;
+        CData/*0:0*/ __PVT___T_657;
+        CData/*0:0*/ __PVT___T_662;
+        CData/*0:0*/ __PVT___T_664;
         CData/*0:0*/ __PVT___GEN_15;
         CData/*2:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_49;
         CData/*3:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_50;
@@ -209,10 +211,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __PVT__DataArray_0_4_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_0_4_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_0_4_ext__DOT___GEN_1;
-        CData/*3:0*/ __PVT__DataArray_0_4_ext__DOT___GEN_2;
-        CData/*0:0*/ __PVT__DataArray_0_5_ext__DOT___GEN;
     };
     struct {
+        CData/*3:0*/ __PVT__DataArray_0_4_ext__DOT___GEN_2;
+        CData/*0:0*/ __PVT__DataArray_0_5_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_0_5_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_0_5_ext__DOT___GEN_1;
         CData/*3:0*/ __PVT__DataArray_0_5_ext__DOT___GEN_2;
@@ -275,10 +277,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __PVT__DataArray_2_4_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_2_4_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_2_4_ext__DOT___GEN_1;
-        CData/*3:0*/ __PVT__DataArray_2_4_ext__DOT___GEN_2;
-        CData/*0:0*/ __PVT__DataArray_2_5_ext__DOT___GEN;
     };
     struct {
+        CData/*3:0*/ __PVT__DataArray_2_4_ext__DOT___GEN_2;
+        CData/*0:0*/ __PVT__DataArray_2_5_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_2_5_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_2_5_ext__DOT___GEN_1;
         CData/*3:0*/ __PVT__DataArray_2_5_ext__DOT___GEN_2;
@@ -341,10 +343,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __PVT__DataArray_4_4_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_4_4_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_4_4_ext__DOT___GEN_1;
-        CData/*3:0*/ __PVT__DataArray_4_4_ext__DOT___GEN_2;
-        CData/*0:0*/ __PVT__DataArray_4_5_ext__DOT___GEN;
     };
     struct {
+        CData/*3:0*/ __PVT__DataArray_4_4_ext__DOT___GEN_2;
+        CData/*0:0*/ __PVT__DataArray_4_5_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_4_5_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_4_5_ext__DOT___GEN_1;
         CData/*3:0*/ __PVT__DataArray_4_5_ext__DOT___GEN_2;
@@ -407,10 +409,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __PVT__DataArray_6_4_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_6_4_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_6_4_ext__DOT___GEN_1;
-        CData/*3:0*/ __PVT__DataArray_6_4_ext__DOT___GEN_2;
-        CData/*0:0*/ __PVT__DataArray_6_5_ext__DOT___GEN;
     };
     struct {
+        CData/*3:0*/ __PVT__DataArray_6_4_ext__DOT___GEN_2;
+        CData/*0:0*/ __PVT__DataArray_6_5_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_6_5_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_6_5_ext__DOT___GEN_1;
         CData/*3:0*/ __PVT__DataArray_6_5_ext__DOT___GEN_2;
@@ -473,10 +475,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __PVT__DataArray_8_4_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_8_4_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_8_4_ext__DOT___GEN_1;
-        CData/*3:0*/ __PVT__DataArray_8_4_ext__DOT___GEN_2;
-        CData/*0:0*/ __PVT__DataArray_8_5_ext__DOT___GEN;
     };
     struct {
+        CData/*3:0*/ __PVT__DataArray_8_4_ext__DOT___GEN_2;
+        CData/*0:0*/ __PVT__DataArray_8_5_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_8_5_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_8_5_ext__DOT___GEN_1;
         CData/*3:0*/ __PVT__DataArray_8_5_ext__DOT___GEN_2;
@@ -539,10 +541,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __PVT__DataArray_10_4_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_10_4_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_10_4_ext__DOT___GEN_1;
-        CData/*3:0*/ __PVT__DataArray_10_4_ext__DOT___GEN_2;
-        CData/*0:0*/ __PVT__DataArray_10_5_ext__DOT___GEN;
     };
     struct {
+        CData/*3:0*/ __PVT__DataArray_10_4_ext__DOT___GEN_2;
+        CData/*0:0*/ __PVT__DataArray_10_5_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_10_5_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_10_5_ext__DOT___GEN_1;
         CData/*3:0*/ __PVT__DataArray_10_5_ext__DOT___GEN_2;
@@ -605,10 +607,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __PVT__DataArray_12_4_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_12_4_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_12_4_ext__DOT___GEN_1;
-        CData/*3:0*/ __PVT__DataArray_12_4_ext__DOT___GEN_2;
-        CData/*0:0*/ __PVT__DataArray_12_5_ext__DOT___GEN;
     };
     struct {
+        CData/*3:0*/ __PVT__DataArray_12_4_ext__DOT___GEN_2;
+        CData/*0:0*/ __PVT__DataArray_12_5_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_12_5_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_12_5_ext__DOT___GEN_1;
         CData/*3:0*/ __PVT__DataArray_12_5_ext__DOT___GEN_2;
@@ -671,10 +673,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __PVT__DataArray_14_4_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_14_4_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_14_4_ext__DOT___GEN_1;
-        CData/*3:0*/ __PVT__DataArray_14_4_ext__DOT___GEN_2;
-        CData/*0:0*/ __PVT__DataArray_14_5_ext__DOT___GEN;
     };
     struct {
+        CData/*3:0*/ __PVT__DataArray_14_4_ext__DOT___GEN_2;
+        CData/*0:0*/ __PVT__DataArray_14_5_ext__DOT___GEN;
         CData/*3:0*/ __PVT__DataArray_14_5_ext__DOT___GEN_0;
         CData/*0:0*/ __PVT__DataArray_14_5_ext__DOT___GEN_1;
         CData/*3:0*/ __PVT__DataArray_14_5_ext__DOT___GEN_2;
@@ -737,10 +739,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*3:0*/ __Vdlyvdim0__DataArray_0_1_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_0_1_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_0_1_ext__DOT__Memory__v1;
-        CData/*3:0*/ __Vdlyvdim0__DataArray_0_1_ext__DOT__Memory__v2;
-        CData/*7:0*/ __Vdlyvval__DataArray_0_1_ext__DOT__Memory__v2;
     };
     struct {
+        CData/*3:0*/ __Vdlyvdim0__DataArray_0_1_ext__DOT__Memory__v2;
+        CData/*7:0*/ __Vdlyvval__DataArray_0_1_ext__DOT__Memory__v2;
         CData/*0:0*/ __Vdlyvset__DataArray_0_1_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_0_1_ext__DOT__Memory__v3;
         CData/*7:0*/ __Vdlyvval__DataArray_0_1_ext__DOT__Memory__v3;
@@ -803,10 +805,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*7:0*/ __Vdlyvval__DataArray_0_6_ext__DOT__Memory__v2;
         CData/*0:0*/ __Vdlyvset__DataArray_0_6_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_0_6_ext__DOT__Memory__v3;
-        CData/*7:0*/ __Vdlyvval__DataArray_0_6_ext__DOT__Memory__v3;
-        CData/*0:0*/ __Vdlyvset__DataArray_0_6_ext__DOT__Memory__v3;
     };
     struct {
+        CData/*7:0*/ __Vdlyvval__DataArray_0_6_ext__DOT__Memory__v3;
+        CData/*0:0*/ __Vdlyvset__DataArray_0_6_ext__DOT__Memory__v3;
         CData/*3:0*/ __Vdlyvdim0__DataArray_0_7_ext__DOT__Memory__v0;
         CData/*7:0*/ __Vdlyvval__DataArray_0_7_ext__DOT__Memory__v0;
         CData/*0:0*/ __Vdlyvset__DataArray_0_7_ext__DOT__Memory__v0;
@@ -869,10 +871,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __Vdlyvset__DataArray_1_3_ext__DOT__Memory__v3;
         CData/*3:0*/ __Vdlyvdim0__DataArray_1_4_ext__DOT__Memory__v0;
         CData/*7:0*/ __Vdlyvval__DataArray_1_4_ext__DOT__Memory__v0;
-        CData/*0:0*/ __Vdlyvset__DataArray_1_4_ext__DOT__Memory__v0;
-        CData/*3:0*/ __Vdlyvdim0__DataArray_1_4_ext__DOT__Memory__v1;
     };
     struct {
+        CData/*0:0*/ __Vdlyvset__DataArray_1_4_ext__DOT__Memory__v0;
+        CData/*3:0*/ __Vdlyvdim0__DataArray_1_4_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_1_4_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_1_4_ext__DOT__Memory__v1;
         CData/*3:0*/ __Vdlyvdim0__DataArray_1_4_ext__DOT__Memory__v2;
@@ -935,10 +937,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*3:0*/ __Vdlyvdim0__DataArray_2_1_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_2_1_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_2_1_ext__DOT__Memory__v1;
-        CData/*3:0*/ __Vdlyvdim0__DataArray_2_1_ext__DOT__Memory__v2;
-        CData/*7:0*/ __Vdlyvval__DataArray_2_1_ext__DOT__Memory__v2;
     };
     struct {
+        CData/*3:0*/ __Vdlyvdim0__DataArray_2_1_ext__DOT__Memory__v2;
+        CData/*7:0*/ __Vdlyvval__DataArray_2_1_ext__DOT__Memory__v2;
         CData/*0:0*/ __Vdlyvset__DataArray_2_1_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_2_1_ext__DOT__Memory__v3;
         CData/*7:0*/ __Vdlyvval__DataArray_2_1_ext__DOT__Memory__v3;
@@ -1001,10 +1003,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*7:0*/ __Vdlyvval__DataArray_2_6_ext__DOT__Memory__v2;
         CData/*0:0*/ __Vdlyvset__DataArray_2_6_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_2_6_ext__DOT__Memory__v3;
-        CData/*7:0*/ __Vdlyvval__DataArray_2_6_ext__DOT__Memory__v3;
-        CData/*0:0*/ __Vdlyvset__DataArray_2_6_ext__DOT__Memory__v3;
     };
     struct {
+        CData/*7:0*/ __Vdlyvval__DataArray_2_6_ext__DOT__Memory__v3;
+        CData/*0:0*/ __Vdlyvset__DataArray_2_6_ext__DOT__Memory__v3;
         CData/*3:0*/ __Vdlyvdim0__DataArray_2_7_ext__DOT__Memory__v0;
         CData/*7:0*/ __Vdlyvval__DataArray_2_7_ext__DOT__Memory__v0;
         CData/*0:0*/ __Vdlyvset__DataArray_2_7_ext__DOT__Memory__v0;
@@ -1067,10 +1069,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __Vdlyvset__DataArray_3_3_ext__DOT__Memory__v3;
         CData/*3:0*/ __Vdlyvdim0__DataArray_3_4_ext__DOT__Memory__v0;
         CData/*7:0*/ __Vdlyvval__DataArray_3_4_ext__DOT__Memory__v0;
-        CData/*0:0*/ __Vdlyvset__DataArray_3_4_ext__DOT__Memory__v0;
-        CData/*3:0*/ __Vdlyvdim0__DataArray_3_4_ext__DOT__Memory__v1;
     };
     struct {
+        CData/*0:0*/ __Vdlyvset__DataArray_3_4_ext__DOT__Memory__v0;
+        CData/*3:0*/ __Vdlyvdim0__DataArray_3_4_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_3_4_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_3_4_ext__DOT__Memory__v1;
         CData/*3:0*/ __Vdlyvdim0__DataArray_3_4_ext__DOT__Memory__v2;
@@ -1133,10 +1135,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*3:0*/ __Vdlyvdim0__DataArray_4_1_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_4_1_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_4_1_ext__DOT__Memory__v1;
-        CData/*3:0*/ __Vdlyvdim0__DataArray_4_1_ext__DOT__Memory__v2;
-        CData/*7:0*/ __Vdlyvval__DataArray_4_1_ext__DOT__Memory__v2;
     };
     struct {
+        CData/*3:0*/ __Vdlyvdim0__DataArray_4_1_ext__DOT__Memory__v2;
+        CData/*7:0*/ __Vdlyvval__DataArray_4_1_ext__DOT__Memory__v2;
         CData/*0:0*/ __Vdlyvset__DataArray_4_1_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_4_1_ext__DOT__Memory__v3;
         CData/*7:0*/ __Vdlyvval__DataArray_4_1_ext__DOT__Memory__v3;
@@ -1199,10 +1201,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*7:0*/ __Vdlyvval__DataArray_4_6_ext__DOT__Memory__v2;
         CData/*0:0*/ __Vdlyvset__DataArray_4_6_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_4_6_ext__DOT__Memory__v3;
-        CData/*7:0*/ __Vdlyvval__DataArray_4_6_ext__DOT__Memory__v3;
-        CData/*0:0*/ __Vdlyvset__DataArray_4_6_ext__DOT__Memory__v3;
     };
     struct {
+        CData/*7:0*/ __Vdlyvval__DataArray_4_6_ext__DOT__Memory__v3;
+        CData/*0:0*/ __Vdlyvset__DataArray_4_6_ext__DOT__Memory__v3;
         CData/*3:0*/ __Vdlyvdim0__DataArray_4_7_ext__DOT__Memory__v0;
         CData/*7:0*/ __Vdlyvval__DataArray_4_7_ext__DOT__Memory__v0;
         CData/*0:0*/ __Vdlyvset__DataArray_4_7_ext__DOT__Memory__v0;
@@ -1265,10 +1267,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __Vdlyvset__DataArray_5_3_ext__DOT__Memory__v3;
         CData/*3:0*/ __Vdlyvdim0__DataArray_5_4_ext__DOT__Memory__v0;
         CData/*7:0*/ __Vdlyvval__DataArray_5_4_ext__DOT__Memory__v0;
-        CData/*0:0*/ __Vdlyvset__DataArray_5_4_ext__DOT__Memory__v0;
-        CData/*3:0*/ __Vdlyvdim0__DataArray_5_4_ext__DOT__Memory__v1;
     };
     struct {
+        CData/*0:0*/ __Vdlyvset__DataArray_5_4_ext__DOT__Memory__v0;
+        CData/*3:0*/ __Vdlyvdim0__DataArray_5_4_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_5_4_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_5_4_ext__DOT__Memory__v1;
         CData/*3:0*/ __Vdlyvdim0__DataArray_5_4_ext__DOT__Memory__v2;
@@ -1331,10 +1333,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*3:0*/ __Vdlyvdim0__DataArray_6_1_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_6_1_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_6_1_ext__DOT__Memory__v1;
-        CData/*3:0*/ __Vdlyvdim0__DataArray_6_1_ext__DOT__Memory__v2;
-        CData/*7:0*/ __Vdlyvval__DataArray_6_1_ext__DOT__Memory__v2;
     };
     struct {
+        CData/*3:0*/ __Vdlyvdim0__DataArray_6_1_ext__DOT__Memory__v2;
+        CData/*7:0*/ __Vdlyvval__DataArray_6_1_ext__DOT__Memory__v2;
         CData/*0:0*/ __Vdlyvset__DataArray_6_1_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_6_1_ext__DOT__Memory__v3;
         CData/*7:0*/ __Vdlyvval__DataArray_6_1_ext__DOT__Memory__v3;
@@ -1397,10 +1399,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*7:0*/ __Vdlyvval__DataArray_6_6_ext__DOT__Memory__v2;
         CData/*0:0*/ __Vdlyvset__DataArray_6_6_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_6_6_ext__DOT__Memory__v3;
-        CData/*7:0*/ __Vdlyvval__DataArray_6_6_ext__DOT__Memory__v3;
-        CData/*0:0*/ __Vdlyvset__DataArray_6_6_ext__DOT__Memory__v3;
     };
     struct {
+        CData/*7:0*/ __Vdlyvval__DataArray_6_6_ext__DOT__Memory__v3;
+        CData/*0:0*/ __Vdlyvset__DataArray_6_6_ext__DOT__Memory__v3;
         CData/*3:0*/ __Vdlyvdim0__DataArray_6_7_ext__DOT__Memory__v0;
         CData/*7:0*/ __Vdlyvval__DataArray_6_7_ext__DOT__Memory__v0;
         CData/*0:0*/ __Vdlyvset__DataArray_6_7_ext__DOT__Memory__v0;
@@ -1463,10 +1465,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __Vdlyvset__DataArray_7_3_ext__DOT__Memory__v3;
         CData/*3:0*/ __Vdlyvdim0__DataArray_7_4_ext__DOT__Memory__v0;
         CData/*7:0*/ __Vdlyvval__DataArray_7_4_ext__DOT__Memory__v0;
-        CData/*0:0*/ __Vdlyvset__DataArray_7_4_ext__DOT__Memory__v0;
-        CData/*3:0*/ __Vdlyvdim0__DataArray_7_4_ext__DOT__Memory__v1;
     };
     struct {
+        CData/*0:0*/ __Vdlyvset__DataArray_7_4_ext__DOT__Memory__v0;
+        CData/*3:0*/ __Vdlyvdim0__DataArray_7_4_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_7_4_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_7_4_ext__DOT__Memory__v1;
         CData/*3:0*/ __Vdlyvdim0__DataArray_7_4_ext__DOT__Memory__v2;
@@ -1529,10 +1531,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*3:0*/ __Vdlyvdim0__DataArray_8_1_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_8_1_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_8_1_ext__DOT__Memory__v1;
-        CData/*3:0*/ __Vdlyvdim0__DataArray_8_1_ext__DOT__Memory__v2;
-        CData/*7:0*/ __Vdlyvval__DataArray_8_1_ext__DOT__Memory__v2;
     };
     struct {
+        CData/*3:0*/ __Vdlyvdim0__DataArray_8_1_ext__DOT__Memory__v2;
+        CData/*7:0*/ __Vdlyvval__DataArray_8_1_ext__DOT__Memory__v2;
         CData/*0:0*/ __Vdlyvset__DataArray_8_1_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_8_1_ext__DOT__Memory__v3;
         CData/*7:0*/ __Vdlyvval__DataArray_8_1_ext__DOT__Memory__v3;
@@ -1595,10 +1597,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*7:0*/ __Vdlyvval__DataArray_8_6_ext__DOT__Memory__v2;
         CData/*0:0*/ __Vdlyvset__DataArray_8_6_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_8_6_ext__DOT__Memory__v3;
-        CData/*7:0*/ __Vdlyvval__DataArray_8_6_ext__DOT__Memory__v3;
-        CData/*0:0*/ __Vdlyvset__DataArray_8_6_ext__DOT__Memory__v3;
     };
     struct {
+        CData/*7:0*/ __Vdlyvval__DataArray_8_6_ext__DOT__Memory__v3;
+        CData/*0:0*/ __Vdlyvset__DataArray_8_6_ext__DOT__Memory__v3;
         CData/*3:0*/ __Vdlyvdim0__DataArray_8_7_ext__DOT__Memory__v0;
         CData/*7:0*/ __Vdlyvval__DataArray_8_7_ext__DOT__Memory__v0;
         CData/*0:0*/ __Vdlyvset__DataArray_8_7_ext__DOT__Memory__v0;
@@ -1661,10 +1663,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __Vdlyvset__DataArray_9_3_ext__DOT__Memory__v3;
         CData/*3:0*/ __Vdlyvdim0__DataArray_9_4_ext__DOT__Memory__v0;
         CData/*7:0*/ __Vdlyvval__DataArray_9_4_ext__DOT__Memory__v0;
-        CData/*0:0*/ __Vdlyvset__DataArray_9_4_ext__DOT__Memory__v0;
-        CData/*3:0*/ __Vdlyvdim0__DataArray_9_4_ext__DOT__Memory__v1;
     };
     struct {
+        CData/*0:0*/ __Vdlyvset__DataArray_9_4_ext__DOT__Memory__v0;
+        CData/*3:0*/ __Vdlyvdim0__DataArray_9_4_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_9_4_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_9_4_ext__DOT__Memory__v1;
         CData/*3:0*/ __Vdlyvdim0__DataArray_9_4_ext__DOT__Memory__v2;
@@ -1727,10 +1729,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*3:0*/ __Vdlyvdim0__DataArray_10_1_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_10_1_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_10_1_ext__DOT__Memory__v1;
-        CData/*3:0*/ __Vdlyvdim0__DataArray_10_1_ext__DOT__Memory__v2;
-        CData/*7:0*/ __Vdlyvval__DataArray_10_1_ext__DOT__Memory__v2;
     };
     struct {
+        CData/*3:0*/ __Vdlyvdim0__DataArray_10_1_ext__DOT__Memory__v2;
+        CData/*7:0*/ __Vdlyvval__DataArray_10_1_ext__DOT__Memory__v2;
         CData/*0:0*/ __Vdlyvset__DataArray_10_1_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_10_1_ext__DOT__Memory__v3;
         CData/*7:0*/ __Vdlyvval__DataArray_10_1_ext__DOT__Memory__v3;
@@ -1793,10 +1795,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*7:0*/ __Vdlyvval__DataArray_10_6_ext__DOT__Memory__v2;
         CData/*0:0*/ __Vdlyvset__DataArray_10_6_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_10_6_ext__DOT__Memory__v3;
-        CData/*7:0*/ __Vdlyvval__DataArray_10_6_ext__DOT__Memory__v3;
-        CData/*0:0*/ __Vdlyvset__DataArray_10_6_ext__DOT__Memory__v3;
     };
     struct {
+        CData/*7:0*/ __Vdlyvval__DataArray_10_6_ext__DOT__Memory__v3;
+        CData/*0:0*/ __Vdlyvset__DataArray_10_6_ext__DOT__Memory__v3;
         CData/*3:0*/ __Vdlyvdim0__DataArray_10_7_ext__DOT__Memory__v0;
         CData/*7:0*/ __Vdlyvval__DataArray_10_7_ext__DOT__Memory__v0;
         CData/*0:0*/ __Vdlyvset__DataArray_10_7_ext__DOT__Memory__v0;
@@ -1859,10 +1861,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __Vdlyvset__DataArray_11_3_ext__DOT__Memory__v3;
         CData/*3:0*/ __Vdlyvdim0__DataArray_11_4_ext__DOT__Memory__v0;
         CData/*7:0*/ __Vdlyvval__DataArray_11_4_ext__DOT__Memory__v0;
-        CData/*0:0*/ __Vdlyvset__DataArray_11_4_ext__DOT__Memory__v0;
-        CData/*3:0*/ __Vdlyvdim0__DataArray_11_4_ext__DOT__Memory__v1;
     };
     struct {
+        CData/*0:0*/ __Vdlyvset__DataArray_11_4_ext__DOT__Memory__v0;
+        CData/*3:0*/ __Vdlyvdim0__DataArray_11_4_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_11_4_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_11_4_ext__DOT__Memory__v1;
         CData/*3:0*/ __Vdlyvdim0__DataArray_11_4_ext__DOT__Memory__v2;
@@ -1925,10 +1927,10 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*3:0*/ __Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v1;
         CData/*7:0*/ __Vdlyvval__DataArray_12_1_ext__DOT__Memory__v1;
         CData/*0:0*/ __Vdlyvset__DataArray_12_1_ext__DOT__Memory__v1;
-        CData/*3:0*/ __Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v2;
-        CData/*7:0*/ __Vdlyvval__DataArray_12_1_ext__DOT__Memory__v2;
     };
     struct {
+        CData/*3:0*/ __Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v2;
+        CData/*7:0*/ __Vdlyvval__DataArray_12_1_ext__DOT__Memory__v2;
         CData/*0:0*/ __Vdlyvset__DataArray_12_1_ext__DOT__Memory__v2;
         CData/*3:0*/ __Vdlyvdim0__DataArray_12_1_ext__DOT__Memory__v3;
         CData/*7:0*/ __Vdlyvval__DataArray_12_1_ext__DOT__Memory__v3;
@@ -1981,8 +1983,8 @@ class VSoc_Cache final : public VerilatedModule {
         VlWide<32>/*1023:0*/ __PVT__read;
         VlWide<32>/*1023:0*/ __PVT__wdata;
         IData/*31:0*/ __PVT___GEN_13;
-        IData/*31:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___dirty_T_30;
-        IData/*31:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk5__DOT___dirty_T_18;
+        IData/*31:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___dirty_T_18;
+        IData/*31:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk5__DOT___dirty_T_30;
         VlWide<30>/*959:0*/ __VdfgTmp_h25305f44__0;
         VlWide<5>/*134:0*/ __VdfgTmp_hee7a4229__0;
         VL_IN64(io_cpu_req_bits_data,63,0);
@@ -1991,10 +1993,10 @@ class VSoc_Cache final : public VerilatedModule {
         VL_OUT64(io_axi_req_bits_data,63,0);
         QData/*63:0*/ __PVT__cpu_data;
         QData/*63:0*/ __PVT__refill_buffer_0;
-        QData/*63:0*/ __PVT__refill_buffer_1;
-        QData/*63:0*/ __PVT__refill_buffer_2;
     };
     struct {
+        QData/*63:0*/ __PVT__refill_buffer_1;
+        QData/*63:0*/ __PVT__refill_buffer_2;
         QData/*63:0*/ __PVT__refill_buffer_3;
         QData/*63:0*/ __PVT__refill_buffer_4;
         QData/*63:0*/ __PVT__refill_buffer_5;
@@ -2057,10 +2059,10 @@ class VSoc_Cache final : public VerilatedModule {
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_5_5_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_5_6_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_5_7_ext__DOT__Memory;
-        VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_6_0_ext__DOT__Memory;
-        VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_6_1_ext__DOT__Memory;
     };
     struct {
+        VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_6_0_ext__DOT__Memory;
+        VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_6_1_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_6_2_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_6_3_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_6_4_ext__DOT__Memory;
@@ -2123,10 +2125,10 @@ class VSoc_Cache final : public VerilatedModule {
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_13_5_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_13_6_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_13_7_ext__DOT__Memory;
-        VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_14_0_ext__DOT__Memory;
-        VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_14_1_ext__DOT__Memory;
     };
     struct {
+        VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_14_0_ext__DOT__Memory;
+        VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_14_1_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_14_2_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_14_3_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_14_4_ext__DOT__Memory;
