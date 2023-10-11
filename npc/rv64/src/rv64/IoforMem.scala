@@ -90,7 +90,7 @@ class IoforMem extends Module{
                     // axi_req_valid := 0.B  //停止申请总线，防止死锁
                 }.otherwise{
                     state := s_Idle
-                    mem_data_valid := 0.B  //多stall一个周期
+                    // mem_data_valid := 0.B  //多stall一个周期
                 }
                 
             }
@@ -98,7 +98,7 @@ class IoforMem extends Module{
         is(s_wait){
             when(!io.fc.stall){
                 state := s_Idle
-                mem_data_valid := 0.B
+                // mem_data_valid := 0.B //延长有效一个周期
             }
         }
     }
