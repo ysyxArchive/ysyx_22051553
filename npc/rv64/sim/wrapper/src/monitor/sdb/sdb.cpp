@@ -19,6 +19,14 @@
 #include <display.hpp>
 #include <SDL2/SDL.h>
 
+//性能
+uint64_t start_time = 0;
+uint64_t end_time = 0;
+uint64_t inst_num = 0;
+uint64_t stall_num = 0;
+//
+
+
 
 int clear_cnt = 0; 
 
@@ -273,6 +281,14 @@ void update_debuginfo(
   // }
 
   #endif
+  if((bool)sdb_stall){
+    stall_num ++;
+  }else{
+    inst_num ++;
+  }
+
+
+
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
     cpu_ins.set_value((unsigned int)rd[0].aval,(unsigned long)reg_wdata[1].aval << 32 | reg_wdata[0].aval);      //update里没有改写pc
   }
@@ -811,6 +827,7 @@ static int cmd_x(char *args){
 }
 
 static int cmd_c(char *args){
+  start_time = get_time();
   char num[] = "-1";
   cmd_s(num);
   return 0;
@@ -874,8 +891,20 @@ void sdb_mainloop(){
 
     if (i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
 
-    if(exam_exit() == 1)
+    if(exam_exit() == 1){
+      end_time = get_time();
+      uint64_t total_time = (end_time - start_time); //us
+      uint64_t ips = (float)((float)inst_num/(float)total_time) * 1000000;
+      float ipc = (float)inst_num / (stall_num + inst_num);
+
+
+      printf("stall_num is %d, inst_num is %d\n", stall_num, inst_num);
+      printf("verilator inst: %d inst/s\n", ips);
+      printf("npc ipc: %0.4f\n", ipc);
+
       return ;
+    }
+      
   }
 
   
