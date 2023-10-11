@@ -175,6 +175,10 @@ class Cache extends Module{
         addr_reg := addr                                                                             //否则需要保持addr_reg进行refill等操作
         cpu_data := io.cpu.req.bits.data
         cpu_mask := io.cpu.req.bits.mask
+    }.elsewhen(!io.cpu.req.valid & is_idle){
+        addr_reg := 0.U                                                                             //否则需要保持addr_reg进行refill等操作
+        cpu_data := 0.U
+        cpu_mask := 0.U
     }
 
 
