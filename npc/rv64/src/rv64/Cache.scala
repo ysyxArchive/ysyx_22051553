@@ -139,9 +139,9 @@ class Cache extends Module{
     val rtag0 = TagArray.read(way0,ren)
     val rtag1 = TagArray.read(way1,ren)
     val rtag0_buf = RegEnable(rtag0, ren_reg)  //增加作为缓存
-    val rtag1_buf = RegEnable(rtag0, ren_reg)
+    val rtag1_buf = RegEnable(rtag1, ren_reg)
     val rtag0_choose = Mux(ren_reg, rtag0, rtag0_buf)
-    val rtag1_choose = Mux(ren_reg, rtag1, rta10_buf)
+    val rtag1_choose = Mux(ren_reg, rtag1, rtag1_buf)
 
 
     val rdata0 = Cat((DataArray.map(_.read(way0,ren).asUInt)).reverse) //读出
