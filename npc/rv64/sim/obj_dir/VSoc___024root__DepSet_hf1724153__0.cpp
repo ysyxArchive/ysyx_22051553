@@ -6200,7 +6200,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__3(VSoc___024root* vlSelf) 
     }
     if (vlSelf->Soc__DOT____Vcellinp__sram__ARESETn) {
         if (((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_7) 
-             & (~ (IData)((0U != (IData)(vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_len)))))) {
+             & (0U != (IData)(vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_len)))) {
             vlSelf->Soc__DOT__sram__DOT__araddr = vlSelf->Soc__DOT___core_io_AXI_Interface_ar_bits_addr;
             vlSelf->Soc__DOT__sram__DOT__need_read = 1U;
             vlSelf->__Vdly__Soc__DOT__sram__DOT__r_burst 

@@ -8879,7 +8879,7 @@ always@(posedge ACLK or negedge ARESETn)begin
         r_burst <= 'd0;
     end
     else begin
-        if(S_AXI_ARVALID && S_AXI_ARREADY &&(!S_AXI_ARLEN))begin
+        if(S_AXI_ARVALID && S_AXI_ARREADY &&(S_AXI_ARLEN != 'd0))begin
             araddr <= S_AXI_ARADDR;
             need_read <= 1'b1;
             r_burst <= S_AXI_ARLEN;
@@ -8935,4 +8935,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 
