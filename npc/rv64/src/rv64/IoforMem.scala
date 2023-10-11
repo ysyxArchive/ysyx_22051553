@@ -67,9 +67,7 @@ class IoforMem extends Module{
 
     switch(state){
         is(s_Idle){
-            when(io.fc.stall){
-                state := s_Idle
-            }.otherwise{
+
                 when( (io.excute.load | io.excute.store) && ((io.excute.waddr | io.excute.raddr) >= "ha0000000".U) ){
                     state := s_req
                     io.axi.req.valid := 1.B 
@@ -78,7 +76,7 @@ class IoforMem extends Module{
                     io.axi.req.bits.mask := io.excute.wmask
                     io.axi.req.bits.rw := Mux(io.excute.load, 1.B, 0.B)
                 }
-            }
+            
 
             
         }
