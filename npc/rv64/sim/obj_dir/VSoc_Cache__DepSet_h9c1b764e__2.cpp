@@ -3725,8 +3725,10 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2
                                           >> 1U)) & 
                                       (4U == (IData)(vlSelf->__PVT__state)));
     vlSelf->__PVT__ren = (((0U == (IData)(vlSelf->__PVT__state)) 
-                           | ((1U == (IData)(vlSelf->__PVT__state)) 
-                              | (2U == (IData)(vlSelf->__PVT__state)))) 
+                           | (((1U == (IData)(vlSelf->__PVT__state)) 
+                               & (IData)(vlSelf->io_fccache_hit)) 
+                              | ((2U == (IData)(vlSelf->__PVT__state)) 
+                                 & (IData)(vlSelf->__PVT___T_663)))) 
                           & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid));
     vlSelf->io_axi_req_valid = ((0U != (IData)(vlSelf->__PVT__state)) 
                                 & ((1U == (IData)(vlSelf->__PVT__state))
