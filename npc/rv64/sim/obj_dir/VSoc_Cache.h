@@ -167,7 +167,7 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*2:0*/ __PVT__state;
         CData/*0:0*/ __PVT__is_read;
         CData/*0:0*/ __PVT__is_write;
-        CData/*0:0*/ __PVT___T_672;
+        CData/*0:0*/ __PVT___T_671;
         CData/*0:0*/ __PVT__is_alloc;
         CData/*0:0*/ __PVT__is_alloc_reg;
         CData/*7:0*/ __PVT__cpu_mask;
@@ -181,8 +181,8 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __PVT___T_331;
         CData/*0:0*/ __PVT___T_660;
         CData/*0:0*/ __PVT___T_663;
-        CData/*0:0*/ __PVT___T_669;
-        CData/*0:0*/ __PVT___T_671;
+        CData/*0:0*/ __PVT___T_668;
+        CData/*0:0*/ __PVT___T_670;
         CData/*0:0*/ __PVT___GEN_14;
         CData/*2:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_49;
         CData/*3:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_50;

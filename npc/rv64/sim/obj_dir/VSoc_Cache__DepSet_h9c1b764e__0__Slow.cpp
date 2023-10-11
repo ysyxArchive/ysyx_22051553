@@ -36,9 +36,9 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
     // Body
     vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_669 = (3U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_671 = (4U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_672 = (5U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_668 = (3U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_670 = (4U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_671 = (5U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT___GEN_14 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 2U)));
@@ -2170,9 +2170,9 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
     // Body
     vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_669 = (3U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_671 = (4U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_672 = (5U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_668 = (3U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_670 = (4U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_671 = (5U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT___GEN_14 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 1U)));

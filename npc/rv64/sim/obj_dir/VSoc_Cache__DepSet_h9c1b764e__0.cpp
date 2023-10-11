@@ -1196,9 +1196,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_17 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1210,9 +1210,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_18 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1224,9 +1224,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_19 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1238,9 +1238,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_20 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1252,9 +1252,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_21 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1266,9 +1266,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_22 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1280,9 +1280,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_23 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1294,9 +1294,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_24 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1308,9 +1308,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_25 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1322,9 +1322,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_26 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1336,9 +1336,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_27 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1350,9 +1350,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_28 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1364,9 +1364,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_29 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1378,9 +1378,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_30 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1392,9 +1392,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __PVT__unnamedblk1__DOT___GEN_31 = ((1U & (((((
                                                    (((IData)(vlSelf->__PVT__is_read) 
                                                      | (IData)(vlSelf->__PVT__is_write)) 
-                                                    | (IData)(vlSelf->__PVT___T_669)) 
-                                                   | (IData)(vlSelf->__PVT___T_671)) 
-                                                  | (~ (IData)(vlSelf->__PVT___T_672))) 
+                                                    | (IData)(vlSelf->__PVT___T_668)) 
+                                                   | (IData)(vlSelf->__PVT___T_670)) 
+                                                  | (~ (IData)(vlSelf->__PVT___T_671))) 
                                                  | (~ 
                                                     ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                      >> 2U))) 
@@ -1405,10 +1405,10 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                          : vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_bits_data);
     __PVT__unnamedblk1__DOT___GEN_32 = ((1U & (((((IData)(vlSelf->__PVT__is_read) 
                                                   | (IData)(vlSelf->__PVT__is_write)) 
-                                                 | (IData)(vlSelf->__PVT___T_669)) 
-                                                | (IData)(vlSelf->__PVT___T_671)) 
+                                                 | (IData)(vlSelf->__PVT___T_668)) 
+                                                | (IData)(vlSelf->__PVT___T_670)) 
                                                | (~ 
-                                                  (((IData)(vlSelf->__PVT___T_672) 
+                                                  (((IData)(vlSelf->__PVT___T_671) 
                                                     & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                        >> 2U)) 
                                                    & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid) 
@@ -6760,7 +6760,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                  | (IData)(vlSelf->__PVT__valid)));
         }
         vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_49 
-            = ((((IData)(vlSelf->__PVT___T_672) & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
+            = ((((IData)(vlSelf->__PVT___T_671) & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                                    >> 2U)) 
                 & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid))
                 ? ((0U != (IData)(vlSelf->__PVT__cpu_mask)) 
@@ -6768,9 +6768,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
         vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_50 
             = (0xfU & ((1U & (((((IData)(vlSelf->__PVT__is_read) 
                                  | (IData)(vlSelf->__PVT__is_write)) 
-                                | (IData)(vlSelf->__PVT___T_669)) 
-                               | (IData)(vlSelf->__PVT___T_671)) 
-                              | (~ ((IData)(vlSelf->__PVT___T_672) 
+                                | (IData)(vlSelf->__PVT___T_668)) 
+                               | (IData)(vlSelf->__PVT___T_670)) 
+                              | (~ ((IData)(vlSelf->__PVT___T_671) 
                                     & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 2U))))) ? (IData)(vlSelf->__PVT__r_count)
                         : ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid)

@@ -2994,9 +2994,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
     }
     vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_669 = (3U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_671 = (4U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_672 = (5U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_668 = (3U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_670 = (4U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_671 = (5U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_alloc = ((5U == (IData)(vlSelf->__PVT__state)) 
                                & (0xfU == (IData)(vlSelf->__PVT__r_count)));
     __VdfgTmp_h082604b0__0 = (0xffffU & (~ ((~ (IData)(vlSelf->__PVT__replace)) 

@@ -168,7 +168,7 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__PVT__state = VL_RAND_RESET_I(3);
     vlSelf->__PVT__is_read = VL_RAND_RESET_I(1);
     vlSelf->__PVT__is_write = VL_RAND_RESET_I(1);
-    vlSelf->__PVT___T_672 = VL_RAND_RESET_I(1);
+    vlSelf->__PVT___T_671 = VL_RAND_RESET_I(1);
     vlSelf->__PVT__is_alloc = VL_RAND_RESET_I(1);
     vlSelf->__PVT__is_alloc_reg = VL_RAND_RESET_I(1);
     vlSelf->__PVT__addr_reg = VL_RAND_RESET_I(32);
@@ -220,8 +220,8 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__PVT___GEN_12 = VL_RAND_RESET_I(32);
     vlSelf->__PVT___T_663 = VL_RAND_RESET_I(1);
     vlSelf->__PVT___GEN_13 = VL_RAND_RESET_I(32);
-    vlSelf->__PVT___T_669 = VL_RAND_RESET_I(1);
-    vlSelf->__PVT___T_671 = VL_RAND_RESET_I(1);
+    vlSelf->__PVT___T_668 = VL_RAND_RESET_I(1);
+    vlSelf->__PVT___T_670 = VL_RAND_RESET_I(1);
     vlSelf->__PVT___GEN_14 = VL_RAND_RESET_I(1);
     vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_49 = VL_RAND_RESET_I(3);
     vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_50 = VL_RAND_RESET_I(4);
