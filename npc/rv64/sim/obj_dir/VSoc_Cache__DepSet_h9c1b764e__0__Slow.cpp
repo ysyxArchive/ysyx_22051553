@@ -15,8 +15,6 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
     // Init
     CData/*0:0*/ __PVT___hit0_T_2;
     __PVT___hit0_T_2 = 0;
-    SData/*15:0*/ __PVT___dirty0_T;
-    __PVT___dirty0_T = 0;
     CData/*0:0*/ __VdfgTmp_h0e152e68__0;
     __VdfgTmp_h0e152e68__0 = 0;
     CData/*0:0*/ __VdfgTmp_h52bfe29c__0;
@@ -39,7 +37,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
     vlSelf->__PVT___T_668 = (3U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT___T_670 = (4U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT___T_671 = (5U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___GEN_14 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
+    vlSelf->__PVT___GEN_15 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 2U)));
     vlSelf->__PVT__ren = (((0U == (IData)(vlSelf->__PVT__state)) 
@@ -163,9 +161,10 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
                                                   (0xeU 
                                                    & (vlSelf->__PVT__addr_reg 
                                                       >> 6U))))));
-    __PVT___dirty0_T = (0xffffU & ((IData)(vlSelf->__PVT__valid) 
-                                   >> (0xeU & (vlSelf->__PVT__addr_reg 
-                                               >> 6U))));
+    vlSelf->__PVT___dirty0_T = (0xffffU & ((IData)(vlSelf->__PVT__valid) 
+                                           >> (0xeU 
+                                               & (vlSelf->__PVT__addr_reg 
+                                                  >> 6U))));
     __Vtemp_h83c7e9ab__0[0U] = (IData)((((QData)((IData)(
                                                          ((IData)(vlSelf->__PVT__DataArray_0_7_ext__DOT___GEN)
                                                            ? 
@@ -1856,32 +1855,21 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
         vlSelf->__PVT__rtag1_choose = vlSelf->__PVT__rtag1_buf;
         vlSelf->__PVT__rtag0_choose = vlSelf->__PVT__rtag0_buf;
     }
-    vlSelf->__PVT__dirty0 = (1U & ((IData)(__PVT___dirty0_T) 
-                                   & ((IData)(vlSelf->__PVT__dirty) 
-                                      >> (0xeU & (vlSelf->__PVT__addr_reg 
-                                                  >> 6U)))));
     vlSelf->__PVT___T_660 = (1U & (((~ (IData)(vlSelf->__PVT___replace_wire_T)) 
-                                    & (IData)(vlSelf->__PVT__dirty0)) 
-                                   | (0xffffU & ((IData)(vlSelf->__PVT___replace_wire_T) 
-                                                 & ((IData)(vlSelf->__PVT___dirty1_T) 
-                                                    & ((IData)(vlSelf->__PVT__dirty) 
-                                                       >> 
-                                                       (0x1fU 
-                                                        & ((IData)(1U) 
-                                                           + 
-                                                           (0xeU 
-                                                            & (vlSelf->__PVT__addr_reg 
-                                                               >> 6U))))))))));
-    __PVT___hit0_T_2 = (vlSelf->__PVT__rtag0_choose 
-                        == (vlSelf->__PVT__addr_reg 
-                            >> 0xaU));
-    vlSelf->__PVT___GEN_12 = ((((IData)(vlSelf->__PVT___T_660)
-                                 ? ((IData)(vlSelf->__PVT__dirty0)
-                                     ? vlSelf->__PVT__rtag0_choose
-                                     : vlSelf->__PVT__rtag1_choose)
-                                 : (vlSelf->__PVT__addr_reg 
-                                    >> 0xaU)) << 0xaU) 
-                              | (0x380U & vlSelf->__PVT__addr_reg));
+                                    & ((IData)(vlSelf->__PVT___dirty0_T) 
+                                       & ((IData)(vlSelf->__PVT__dirty) 
+                                          >> (0xeU 
+                                              & (vlSelf->__PVT__addr_reg 
+                                                 >> 6U))))) 
+                                   | ((IData)(vlSelf->__PVT___replace_wire_T) 
+                                      & ((IData)(vlSelf->__PVT___dirty1_T) 
+                                         & ((IData)(vlSelf->__PVT__dirty) 
+                                            >> (0x1fU 
+                                                & ((IData)(1U) 
+                                                   + 
+                                                   (0xeU 
+                                                    & (vlSelf->__PVT__addr_reg 
+                                                       >> 6U)))))))));
     vlSelf->__PVT___GEN_13 = ((((IData)(vlSelf->__PVT___T_660)
                                  ? ((1U & (IData)(vlSelf->__PVT___replace_wire_T))
                                      ? vlSelf->__PVT__rtag1_choose
@@ -1889,6 +1877,9 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
                                  : (vlSelf->__PVT__addr_reg 
                                     >> 0xaU)) << 0xaU) 
                               | (0x380U & vlSelf->__PVT__addr_reg));
+    __PVT___hit0_T_2 = (vlSelf->__PVT__rtag0_choose 
+                        == (vlSelf->__PVT__addr_reg 
+                            >> 0xaU));
     if (vlSelf->__PVT__is_alloc_reg) {
         vlSelf->__PVT__read[0U] = vlSelf->__VdfgTmp_h25305f44__0[0U];
         vlSelf->__PVT__read[1U] = vlSelf->__VdfgTmp_h25305f44__0[1U];
@@ -2058,7 +2049,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
         vlSelf->__PVT__read[0x1eU] = vlSelf->__PVT__rdata1_buf[0x1eU];
         vlSelf->__PVT__read[0x1fU] = vlSelf->__PVT__rdata1_buf[0x1fU];
     }
-    vlSelf->__PVT__hit0 = ((IData)(__PVT___dirty0_T) 
+    vlSelf->__PVT__hit0 = ((IData)(vlSelf->__PVT___dirty0_T) 
                            & (IData)(__PVT___hit0_T_2));
     vlSelf->io_fccache_hit = ((IData)(vlSelf->__PVT__hit0) 
                               | ((IData)(vlSelf->__PVT___dirty1_T) 
@@ -2149,8 +2140,6 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
     // Init
     CData/*0:0*/ __PVT___hit0_T_2;
     __PVT___hit0_T_2 = 0;
-    SData/*15:0*/ __PVT___dirty0_T;
-    __PVT___dirty0_T = 0;
     CData/*0:0*/ __VdfgTmp_h0e152e68__0;
     __VdfgTmp_h0e152e68__0 = 0;
     CData/*0:0*/ __VdfgTmp_h52bfe29c__0;
@@ -2173,7 +2162,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
     vlSelf->__PVT___T_668 = (3U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT___T_670 = (4U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT___T_671 = (5U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___GEN_14 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
+    vlSelf->__PVT___GEN_15 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 1U)));
     __VdfgTmp_h082604b0__0 = (0xffffU & (~ ((~ (IData)(vlSelf->__PVT__replace)) 
@@ -2279,9 +2268,10 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
                                                   (0xeU 
                                                    & (vlSelf->__PVT__addr_reg 
                                                       >> 6U))))));
-    __PVT___dirty0_T = (0xffffU & ((IData)(vlSelf->__PVT__valid) 
-                                   >> (0xeU & (vlSelf->__PVT__addr_reg 
-                                               >> 6U))));
+    vlSelf->__PVT___dirty0_T = (0xffffU & ((IData)(vlSelf->__PVT__valid) 
+                                           >> (0xeU 
+                                               & (vlSelf->__PVT__addr_reg 
+                                                  >> 6U))));
     vlSelf->__PVT___TagArray_ext_R0_data = ((IData)(vlSelf->__PVT__TagArray_ext__DOT___GEN)
                                              ? vlSelf->__PVT__TagArray_ext__DOT__Memory
                                             [vlSelf->__PVT__TagArray_ext__DOT___GEN_0]
@@ -3517,10 +3507,21 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
         vlSelf->__PVT__rtag1_choose = vlSelf->__PVT__rtag1_buf;
         vlSelf->__PVT__rtag0_choose = vlSelf->__PVT__rtag0_buf;
     }
-    vlSelf->__PVT__dirty0 = (1U & ((IData)(__PVT___dirty0_T) 
-                                   & ((IData)(vlSelf->__PVT__dirty) 
-                                      >> (0xeU & (vlSelf->__PVT__addr_reg 
-                                                  >> 6U)))));
+    vlSelf->__PVT___T_660 = (1U & (((~ (IData)(vlSelf->__PVT___replace_wire_T)) 
+                                    & ((IData)(vlSelf->__PVT___dirty0_T) 
+                                       & ((IData)(vlSelf->__PVT__dirty) 
+                                          >> (0xeU 
+                                              & (vlSelf->__PVT__addr_reg 
+                                                 >> 6U))))) 
+                                   | ((IData)(vlSelf->__PVT___replace_wire_T) 
+                                      & ((IData)(vlSelf->__PVT___dirty1_T) 
+                                         & ((IData)(vlSelf->__PVT__dirty) 
+                                            >> (0x1fU 
+                                                & ((IData)(1U) 
+                                                   + 
+                                                   (0xeU 
+                                                    & (vlSelf->__PVT__addr_reg 
+                                                       >> 6U)))))))));
     vlSelf->__PVT___T_496 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
                                       >> 1U)));
@@ -3994,28 +3995,6 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
         vlSelf->__PVT__wdata[0x1fU] = (IData)((vlSelf->__PVT__cpu_data 
                                                >> 0x20U));
     }
-    vlSelf->__PVT___T_660 = (1U & (((~ (IData)(vlSelf->__PVT___replace_wire_T)) 
-                                    & (IData)(vlSelf->__PVT__dirty0)) 
-                                   | (0xffffU & ((IData)(vlSelf->__PVT___replace_wire_T) 
-                                                 & ((IData)(vlSelf->__PVT___dirty1_T) 
-                                                    & ((IData)(vlSelf->__PVT__dirty) 
-                                                       >> 
-                                                       (0x1fU 
-                                                        & ((IData)(1U) 
-                                                           + 
-                                                           (0xeU 
-                                                            & (vlSelf->__PVT__addr_reg 
-                                                               >> 6U))))))))));
-    __PVT___hit0_T_2 = (vlSelf->__PVT__rtag0_choose 
-                        == (vlSelf->__PVT__addr_reg 
-                            >> 0xaU));
-    vlSelf->__PVT___GEN_12 = ((((IData)(vlSelf->__PVT___T_660)
-                                 ? ((IData)(vlSelf->__PVT__dirty0)
-                                     ? vlSelf->__PVT__rtag0_choose
-                                     : vlSelf->__PVT__rtag1_choose)
-                                 : (vlSelf->__PVT__addr_reg 
-                                    >> 0xaU)) << 0xaU) 
-                              | (0x380U & vlSelf->__PVT__addr_reg));
     vlSelf->__PVT___GEN_13 = ((((IData)(vlSelf->__PVT___T_660)
                                  ? ((1U & (IData)(vlSelf->__PVT___replace_wire_T))
                                      ? vlSelf->__PVT__rtag1_choose
@@ -4023,6 +4002,9 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
                                  : (vlSelf->__PVT__addr_reg 
                                     >> 0xaU)) << 0xaU) 
                               | (0x380U & vlSelf->__PVT__addr_reg));
+    __PVT___hit0_T_2 = (vlSelf->__PVT__rtag0_choose 
+                        == (vlSelf->__PVT__addr_reg 
+                            >> 0xaU));
     if (vlSelf->__PVT__is_alloc_reg) {
         vlSelf->__PVT__read[0U] = vlSelf->__VdfgTmp_h25305f44__0[0U];
         vlSelf->__PVT__read[1U] = vlSelf->__VdfgTmp_h25305f44__0[1U];
@@ -4192,7 +4174,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
         vlSelf->__PVT__read[0x1eU] = vlSelf->__PVT__rdata1_buf[0x1eU];
         vlSelf->__PVT__read[0x1fU] = vlSelf->__PVT__rdata1_buf[0x1fU];
     }
-    vlSelf->__PVT__hit0 = ((IData)(__PVT___dirty0_T) 
+    vlSelf->__PVT__hit0 = ((IData)(vlSelf->__PVT___dirty0_T) 
                            & (IData)(__PVT___hit0_T_2));
     vlSelf->io_cpu_resp_bits_data = (((QData)((IData)(
                                                       vlSelf->__PVT__read[
