@@ -34,9 +34,9 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
     // Body
     vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_668 = (3U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_670 = (4U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_671 = (5U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_670 = (3U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_672 = (4U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_673 = (5U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT___GEN_15 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 2U)));
@@ -1371,392 +1371,392 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
                                              ? vlSelf->__PVT__TagArray_ext__DOT__Memory
                                             [vlSelf->__PVT__TagArray_ext__DOT___GEN_0]
                                              : 0U);
-    vlSelf->__PVT___T_496 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 1U)));
-    vlSelf->__PVT___T_497 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 2U)));
     vlSelf->__PVT___T_498 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 3U)));
+                                      >> 1U)));
     vlSelf->__PVT___T_499 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 4U)));
+                                      >> 2U)));
     vlSelf->__PVT___T_500 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 5U)));
+                                      >> 3U)));
     vlSelf->__PVT___T_501 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 6U)));
+                                      >> 4U)));
     vlSelf->__PVT___T_502 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 5U)));
+    vlSelf->__PVT___T_503 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 6U)));
+    vlSelf->__PVT___T_504 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
                                       >> 7U)));
-    vlSelf->__PVT___T_505 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 8U)));
-    vlSelf->__PVT___T_506 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 9U)));
     vlSelf->__PVT___T_507 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0xaU)));
+                                      >> 8U)));
     vlSelf->__PVT___T_508 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0xbU)));
+                                      >> 9U)));
     vlSelf->__PVT___T_509 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0xcU)));
+                                      >> 0xaU)));
     vlSelf->__PVT___T_510 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0xdU)));
+                                      >> 0xbU)));
     vlSelf->__PVT___T_511 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0xeU)));
+                                      >> 0xcU)));
     vlSelf->__PVT___T_512 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 0xdU)));
+    vlSelf->__PVT___T_513 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 0xeU)));
+    vlSelf->__PVT___T_514 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
                                       >> 0xfU)));
-    vlSelf->__PVT___T_515 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x10U)));
-    vlSelf->__PVT___T_516 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x11U)));
     vlSelf->__PVT___T_517 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x12U)));
+                                      >> 0x10U)));
     vlSelf->__PVT___T_518 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x13U)));
+                                      >> 0x11U)));
     vlSelf->__PVT___T_519 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x14U)));
+                                      >> 0x12U)));
     vlSelf->__PVT___T_520 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x15U)));
+                                      >> 0x13U)));
     vlSelf->__PVT___T_521 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x16U)));
+                                      >> 0x14U)));
     vlSelf->__PVT___T_522 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 0x15U)));
+    vlSelf->__PVT___T_523 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 0x16U)));
+    vlSelf->__PVT___T_524 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
                                       >> 0x17U)));
-    vlSelf->__PVT___T_525 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x18U)));
-    vlSelf->__PVT___T_526 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x19U)));
     vlSelf->__PVT___T_527 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x1aU)));
+                                      >> 0x18U)));
     vlSelf->__PVT___T_528 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x1bU)));
+                                      >> 0x19U)));
     vlSelf->__PVT___T_529 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x1cU)));
+                                      >> 0x1aU)));
     vlSelf->__PVT___T_530 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x1dU)));
+                                      >> 0x1bU)));
     vlSelf->__PVT___T_531 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 0x1cU)));
+    vlSelf->__PVT___T_532 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 0x1dU)));
+    vlSelf->__PVT___T_533 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
                                       >> 0x1eU)));
-    vlSelf->__PVT___T_532 = ((IData)(vlSelf->__PVT__is_alloc) 
+    vlSelf->__PVT___T_534 = ((IData)(vlSelf->__PVT__is_alloc) 
                              | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
                                 >> 0x1fU));
-    vlSelf->__PVT___T_535 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | vlSelf->__VdfgTmp_hee7a4229__0[1U]));
-    vlSelf->__PVT___T_536 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 1U)));
     vlSelf->__PVT___T_537 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 2U)));
+                                   | vlSelf->__VdfgTmp_hee7a4229__0[1U]));
     vlSelf->__PVT___T_538 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 3U)));
+                                      >> 1U)));
     vlSelf->__PVT___T_539 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 4U)));
+                                      >> 2U)));
     vlSelf->__PVT___T_540 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 5U)));
+                                      >> 3U)));
     vlSelf->__PVT___T_541 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 6U)));
+                                      >> 4U)));
     vlSelf->__PVT___T_542 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 5U)));
+    vlSelf->__PVT___T_543 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 6U)));
+    vlSelf->__PVT___T_544 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
                                       >> 7U)));
-    vlSelf->__PVT___T_545 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 8U)));
-    vlSelf->__PVT___T_546 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 9U)));
     vlSelf->__PVT___T_547 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0xaU)));
+                                      >> 8U)));
     vlSelf->__PVT___T_548 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0xbU)));
+                                      >> 9U)));
     vlSelf->__PVT___T_549 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0xcU)));
+                                      >> 0xaU)));
     vlSelf->__PVT___T_550 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0xdU)));
+                                      >> 0xbU)));
     vlSelf->__PVT___T_551 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0xeU)));
+                                      >> 0xcU)));
     vlSelf->__PVT___T_552 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 0xdU)));
+    vlSelf->__PVT___T_553 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 0xeU)));
+    vlSelf->__PVT___T_554 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
                                       >> 0xfU)));
-    vlSelf->__PVT___T_555 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x10U)));
-    vlSelf->__PVT___T_556 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x11U)));
     vlSelf->__PVT___T_557 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x12U)));
+                                      >> 0x10U)));
     vlSelf->__PVT___T_558 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x13U)));
+                                      >> 0x11U)));
     vlSelf->__PVT___T_559 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x14U)));
+                                      >> 0x12U)));
     vlSelf->__PVT___T_560 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x15U)));
+                                      >> 0x13U)));
     vlSelf->__PVT___T_561 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x16U)));
+                                      >> 0x14U)));
     vlSelf->__PVT___T_562 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 0x15U)));
+    vlSelf->__PVT___T_563 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 0x16U)));
+    vlSelf->__PVT___T_564 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
                                       >> 0x17U)));
-    vlSelf->__PVT___T_565 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x18U)));
-    vlSelf->__PVT___T_566 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x19U)));
     vlSelf->__PVT___T_567 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x1aU)));
+                                      >> 0x18U)));
     vlSelf->__PVT___T_568 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x1bU)));
+                                      >> 0x19U)));
     vlSelf->__PVT___T_569 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x1cU)));
+                                      >> 0x1aU)));
     vlSelf->__PVT___T_570 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x1dU)));
+                                      >> 0x1bU)));
     vlSelf->__PVT___T_571 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 0x1cU)));
+    vlSelf->__PVT___T_572 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 0x1dU)));
+    vlSelf->__PVT___T_573 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
                                       >> 0x1eU)));
-    vlSelf->__PVT___T_572 = ((IData)(vlSelf->__PVT__is_alloc) 
+    vlSelf->__PVT___T_574 = ((IData)(vlSelf->__PVT__is_alloc) 
                              | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
                                 >> 0x1fU));
-    vlSelf->__PVT___T_575 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | vlSelf->__VdfgTmp_hee7a4229__0[2U]));
-    vlSelf->__PVT___T_576 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 1U)));
     vlSelf->__PVT___T_577 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 2U)));
+                                   | vlSelf->__VdfgTmp_hee7a4229__0[2U]));
     vlSelf->__PVT___T_578 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 3U)));
+                                      >> 1U)));
     vlSelf->__PVT___T_579 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 4U)));
+                                      >> 2U)));
     vlSelf->__PVT___T_580 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 5U)));
+                                      >> 3U)));
     vlSelf->__PVT___T_581 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 6U)));
+                                      >> 4U)));
     vlSelf->__PVT___T_582 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 5U)));
+    vlSelf->__PVT___T_583 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 6U)));
+    vlSelf->__PVT___T_584 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
                                       >> 7U)));
-    vlSelf->__PVT___T_585 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 8U)));
-    vlSelf->__PVT___T_586 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 9U)));
     vlSelf->__PVT___T_587 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0xaU)));
+                                      >> 8U)));
     vlSelf->__PVT___T_588 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0xbU)));
+                                      >> 9U)));
     vlSelf->__PVT___T_589 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0xcU)));
+                                      >> 0xaU)));
     vlSelf->__PVT___T_590 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0xdU)));
+                                      >> 0xbU)));
     vlSelf->__PVT___T_591 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0xeU)));
+                                      >> 0xcU)));
     vlSelf->__PVT___T_592 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 0xdU)));
+    vlSelf->__PVT___T_593 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 0xeU)));
+    vlSelf->__PVT___T_594 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
                                       >> 0xfU)));
-    vlSelf->__PVT___T_595 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x10U)));
-    vlSelf->__PVT___T_596 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x11U)));
     vlSelf->__PVT___T_597 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x12U)));
+                                      >> 0x10U)));
     vlSelf->__PVT___T_598 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x13U)));
+                                      >> 0x11U)));
     vlSelf->__PVT___T_599 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x14U)));
+                                      >> 0x12U)));
     vlSelf->__PVT___T_600 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x15U)));
+                                      >> 0x13U)));
     vlSelf->__PVT___T_601 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x16U)));
+                                      >> 0x14U)));
     vlSelf->__PVT___T_602 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 0x15U)));
+    vlSelf->__PVT___T_603 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 0x16U)));
+    vlSelf->__PVT___T_604 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
                                       >> 0x17U)));
-    vlSelf->__PVT___T_605 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x18U)));
-    vlSelf->__PVT___T_606 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x19U)));
     vlSelf->__PVT___T_607 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x1aU)));
+                                      >> 0x18U)));
     vlSelf->__PVT___T_608 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x1bU)));
+                                      >> 0x19U)));
     vlSelf->__PVT___T_609 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x1cU)));
+                                      >> 0x1aU)));
     vlSelf->__PVT___T_610 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x1dU)));
+                                      >> 0x1bU)));
     vlSelf->__PVT___T_611 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 0x1cU)));
+    vlSelf->__PVT___T_612 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 0x1dU)));
+    vlSelf->__PVT___T_613 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
                                       >> 0x1eU)));
-    vlSelf->__PVT___T_612 = ((IData)(vlSelf->__PVT__is_alloc) 
+    vlSelf->__PVT___T_614 = ((IData)(vlSelf->__PVT__is_alloc) 
                              | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
                                 >> 0x1fU));
-    vlSelf->__PVT___T_615 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | vlSelf->__VdfgTmp_hee7a4229__0[3U]));
-    vlSelf->__PVT___T_616 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 1U)));
     vlSelf->__PVT___T_617 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 2U)));
+                                   | vlSelf->__VdfgTmp_hee7a4229__0[3U]));
     vlSelf->__PVT___T_618 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 3U)));
+                                      >> 1U)));
     vlSelf->__PVT___T_619 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 4U)));
+                                      >> 2U)));
     vlSelf->__PVT___T_620 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 5U)));
+                                      >> 3U)));
     vlSelf->__PVT___T_621 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 6U)));
+                                      >> 4U)));
     vlSelf->__PVT___T_622 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 5U)));
+    vlSelf->__PVT___T_623 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 6U)));
+    vlSelf->__PVT___T_624 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
                                       >> 7U)));
-    vlSelf->__PVT___T_625 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 8U)));
-    vlSelf->__PVT___T_626 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 9U)));
     vlSelf->__PVT___T_627 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0xaU)));
+                                      >> 8U)));
     vlSelf->__PVT___T_628 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0xbU)));
+                                      >> 9U)));
     vlSelf->__PVT___T_629 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0xcU)));
+                                      >> 0xaU)));
     vlSelf->__PVT___T_630 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0xdU)));
+                                      >> 0xbU)));
     vlSelf->__PVT___T_631 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0xeU)));
+                                      >> 0xcU)));
     vlSelf->__PVT___T_632 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 0xdU)));
+    vlSelf->__PVT___T_633 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 0xeU)));
+    vlSelf->__PVT___T_634 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
                                       >> 0xfU)));
-    vlSelf->__PVT___T_635 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x10U)));
-    vlSelf->__PVT___T_636 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x11U)));
     vlSelf->__PVT___T_637 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x12U)));
+                                      >> 0x10U)));
     vlSelf->__PVT___T_638 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x13U)));
+                                      >> 0x11U)));
     vlSelf->__PVT___T_639 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x14U)));
+                                      >> 0x12U)));
     vlSelf->__PVT___T_640 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x15U)));
+                                      >> 0x13U)));
     vlSelf->__PVT___T_641 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x16U)));
+                                      >> 0x14U)));
     vlSelf->__PVT___T_642 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 0x15U)));
+    vlSelf->__PVT___T_643 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 0x16U)));
+    vlSelf->__PVT___T_644 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
                                       >> 0x17U)));
-    vlSelf->__PVT___T_645 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x18U)));
-    vlSelf->__PVT___T_646 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x19U)));
     vlSelf->__PVT___T_647 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x1aU)));
+                                      >> 0x18U)));
     vlSelf->__PVT___T_648 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x1bU)));
+                                      >> 0x19U)));
     vlSelf->__PVT___T_649 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x1cU)));
+                                      >> 0x1aU)));
     vlSelf->__PVT___T_650 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x1dU)));
+                                      >> 0x1bU)));
     vlSelf->__PVT___T_651 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 0x1cU)));
+    vlSelf->__PVT___T_652 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 0x1dU)));
+    vlSelf->__PVT___T_653 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
                                       >> 0x1eU)));
-    vlSelf->__PVT___T_652 = ((IData)(vlSelf->__PVT__is_alloc) 
+    vlSelf->__PVT___T_654 = ((IData)(vlSelf->__PVT__is_alloc) 
                              | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
                                 >> 0x1fU));
-    vlSelf->__PVT___T_495 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+    vlSelf->__PVT___T_497 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | ((0U >= (0x78U 
                                               & vlSelf->__PVT__addr_reg))
                                        ? ((IData)(vlSelf->__PVT__cpu_mask) 
                                           << (0x78U 
                                               & vlSelf->__PVT__addr_reg))
                                        : 0U)));
-    vlSelf->__PVT___T_331 = (((~ (IData)(vlSelf->__PVT___replace_wire_T)) 
+    vlSelf->__PVT___T_333 = (((~ (IData)(vlSelf->__PVT___replace_wire_T)) 
                               & (IData)(vlSelf->__PVT__is_alloc)) 
                              | ((~ (IData)(vlSelf->__PVT__replace_buf)) 
                                 & (IData)(vlSelf->__PVT__is_alloc_reg)));
@@ -1851,7 +1851,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
         vlSelf->__PVT__rtag1_choose = vlSelf->__PVT__rtag1_buf;
         vlSelf->__PVT__rtag0_choose = vlSelf->__PVT__rtag0_buf;
     }
-    vlSelf->__PVT___T_660 = (1U & (((~ (IData)(vlSelf->__PVT___replace_wire_T)) 
+    vlSelf->__PVT___T_662 = (1U & (((~ (IData)(vlSelf->__PVT___replace_wire_T)) 
                                     & ((IData)(vlSelf->__PVT___dirty0_T) 
                                        & ((IData)(vlSelf->__PVT__dirty) 
                                           >> (0xeU 
@@ -1866,7 +1866,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
                                                    (0xeU 
                                                     & (vlSelf->__PVT__addr_reg 
                                                        >> 6U)))))))));
-    vlSelf->__PVT___GEN_13 = ((((IData)(vlSelf->__PVT___T_660)
+    vlSelf->__PVT___GEN_13 = ((((IData)(vlSelf->__PVT___T_662)
                                  ? ((1U & (IData)(vlSelf->__PVT___replace_wire_T))
                                      ? vlSelf->__PVT__rtag1_choose
                                      : vlSelf->__PVT__rtag0_choose)
@@ -2052,7 +2052,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
                                  & (vlSelf->__PVT__rtag1_choose 
                                     == (vlSelf->__PVT__addr_reg 
                                         >> 0xaU))));
-    vlSelf->__PVT___T_663 = ((IData)(vlSelf->io_fccache_hit) 
+    vlSelf->__PVT___T_665 = ((IData)(vlSelf->io_fccache_hit) 
                              | (IData)(vlSelf->__PVT__is_alloc_reg));
     vlSelf->__PVT__wen = (((2U == (IData)(vlSelf->__PVT__state)) 
                            & (IData)(vlSelf->io_fccache_hit)) 
@@ -2067,15 +2067,15 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
                            | (((1U == (IData)(vlSelf->__PVT__state)) 
                                & (IData)(vlSelf->io_fccache_hit)) 
                               | ((2U == (IData)(vlSelf->__PVT__state)) 
-                                 & (IData)(vlSelf->__PVT___T_663)))) 
+                                 & (IData)(vlSelf->__PVT___T_665)))) 
                           & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started));
     vlSelf->io_axi_req_bits_rw = ((0U != (IData)(vlSelf->__PVT__state)) 
                                   & ((1U == (IData)(vlSelf->__PVT__state))
                                       ? ((~ (IData)(vlSelf->io_fccache_hit)) 
-                                         & (~ (IData)(vlSelf->__PVT___T_660)))
+                                         & (~ (IData)(vlSelf->__PVT___T_662)))
                                       : ((2U == (IData)(vlSelf->__PVT__state))
-                                          ? ((~ (IData)(vlSelf->__PVT___T_663)) 
-                                             & (~ (IData)(vlSelf->__PVT___T_660)))
+                                          ? ((~ (IData)(vlSelf->__PVT___T_665)) 
+                                             & (~ (IData)(vlSelf->__PVT___T_662)))
                                           : ((3U == (IData)(vlSelf->__PVT__state))
                                               ? ((4U 
                                                   & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
@@ -2087,7 +2087,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
                                 & ((1U == (IData)(vlSelf->__PVT__state))
                                     ? (~ (IData)(vlSelf->io_fccache_hit))
                                     : ((2U == (IData)(vlSelf->__PVT__state))
-                                        ? (~ (IData)(vlSelf->__PVT___T_663))
+                                        ? (~ (IData)(vlSelf->__PVT___T_665))
                                         : ((3U == (IData)(vlSelf->__PVT__state)) 
                                            | (IData)(vlSelf->__VdfgTmp_h3e550451__0)))));
     if (vlSelf->__PVT__wen) {
@@ -2101,7 +2101,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
             }
             __VdfgTmp_h0e152e68__0 = 1U;
         } else {
-            if (vlSelf->__PVT___T_331) {
+            if (vlSelf->__PVT___T_333) {
                 if (vlSelf->__PVT__is_alloc) {
                     vlSelf->__PVT___GEN_9 = __VdfgTmp_h082604b0__0;
                     vlSelf->__PVT___GEN_10 = __VdfgTmp_h28f607fa__0;
@@ -2130,8 +2130,8 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
     vlSelf->__PVT___GEN_1 = ((~ (IData)(vlSelf->__PVT__hit0)) 
                              & (IData)(__VdfgTmp_h0e152e68__0));
     vlSelf->__PVT___GEN_0 = ((IData)(__VdfgTmp_h52bfe29c__0) 
-                             & (IData)(vlSelf->__PVT___T_331));
-    vlSelf->__PVT___GEN = ((~ (IData)(vlSelf->__PVT___T_331)) 
+                             & (IData)(vlSelf->__PVT___T_333));
+    vlSelf->__PVT___GEN = ((~ (IData)(vlSelf->__PVT___T_333)) 
                            & (IData)(__VdfgTmp_h52bfe29c__0));
 }
 
@@ -2161,9 +2161,9 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
     // Body
     vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_668 = (3U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_670 = (4U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_671 = (5U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_670 = (3U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_672 = (4U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_673 = (5U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT___GEN_15 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 1U)));
@@ -3505,7 +3505,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
         vlSelf->__PVT__rtag1_choose = vlSelf->__PVT__rtag1_buf;
         vlSelf->__PVT__rtag0_choose = vlSelf->__PVT__rtag0_buf;
     }
-    vlSelf->__PVT___T_660 = (1U & (((~ (IData)(vlSelf->__PVT___replace_wire_T)) 
+    vlSelf->__PVT___T_662 = (1U & (((~ (IData)(vlSelf->__PVT___replace_wire_T)) 
                                     & ((IData)(vlSelf->__PVT___dirty0_T) 
                                        & ((IData)(vlSelf->__PVT__dirty) 
                                           >> (0xeU 
@@ -3520,392 +3520,392 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
                                                    (0xeU 
                                                     & (vlSelf->__PVT__addr_reg 
                                                        >> 6U)))))))));
-    vlSelf->__PVT___T_496 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 1U)));
-    vlSelf->__PVT___T_497 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 2U)));
     vlSelf->__PVT___T_498 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 3U)));
+                                      >> 1U)));
     vlSelf->__PVT___T_499 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 4U)));
+                                      >> 2U)));
     vlSelf->__PVT___T_500 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 5U)));
+                                      >> 3U)));
     vlSelf->__PVT___T_501 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 6U)));
+                                      >> 4U)));
     vlSelf->__PVT___T_502 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 5U)));
+    vlSelf->__PVT___T_503 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 6U)));
+    vlSelf->__PVT___T_504 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
                                       >> 7U)));
-    vlSelf->__PVT___T_505 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 8U)));
-    vlSelf->__PVT___T_506 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 9U)));
     vlSelf->__PVT___T_507 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0xaU)));
+                                      >> 8U)));
     vlSelf->__PVT___T_508 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0xbU)));
+                                      >> 9U)));
     vlSelf->__PVT___T_509 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0xcU)));
+                                      >> 0xaU)));
     vlSelf->__PVT___T_510 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0xdU)));
+                                      >> 0xbU)));
     vlSelf->__PVT___T_511 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0xeU)));
+                                      >> 0xcU)));
     vlSelf->__PVT___T_512 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 0xdU)));
+    vlSelf->__PVT___T_513 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 0xeU)));
+    vlSelf->__PVT___T_514 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
                                       >> 0xfU)));
-    vlSelf->__PVT___T_515 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x10U)));
-    vlSelf->__PVT___T_516 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x11U)));
     vlSelf->__PVT___T_517 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x12U)));
+                                      >> 0x10U)));
     vlSelf->__PVT___T_518 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x13U)));
+                                      >> 0x11U)));
     vlSelf->__PVT___T_519 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x14U)));
+                                      >> 0x12U)));
     vlSelf->__PVT___T_520 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x15U)));
+                                      >> 0x13U)));
     vlSelf->__PVT___T_521 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x16U)));
+                                      >> 0x14U)));
     vlSelf->__PVT___T_522 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 0x15U)));
+    vlSelf->__PVT___T_523 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 0x16U)));
+    vlSelf->__PVT___T_524 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
                                       >> 0x17U)));
-    vlSelf->__PVT___T_525 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x18U)));
-    vlSelf->__PVT___T_526 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x19U)));
     vlSelf->__PVT___T_527 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x1aU)));
+                                      >> 0x18U)));
     vlSelf->__PVT___T_528 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x1bU)));
+                                      >> 0x19U)));
     vlSelf->__PVT___T_529 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x1cU)));
+                                      >> 0x1aU)));
     vlSelf->__PVT___T_530 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
-                                      >> 0x1dU)));
+                                      >> 0x1bU)));
     vlSelf->__PVT___T_531 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 0x1cU)));
+    vlSelf->__PVT___T_532 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
+                                      >> 0x1dU)));
+    vlSelf->__PVT___T_533 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
                                       >> 0x1eU)));
-    vlSelf->__PVT___T_532 = ((IData)(vlSelf->__PVT__is_alloc) 
+    vlSelf->__PVT___T_534 = ((IData)(vlSelf->__PVT__is_alloc) 
                              | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
                                 >> 0x1fU));
-    vlSelf->__PVT___T_535 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | vlSelf->__VdfgTmp_hee7a4229__0[1U]));
-    vlSelf->__PVT___T_536 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 1U)));
     vlSelf->__PVT___T_537 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 2U)));
+                                   | vlSelf->__VdfgTmp_hee7a4229__0[1U]));
     vlSelf->__PVT___T_538 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 3U)));
+                                      >> 1U)));
     vlSelf->__PVT___T_539 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 4U)));
+                                      >> 2U)));
     vlSelf->__PVT___T_540 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 5U)));
+                                      >> 3U)));
     vlSelf->__PVT___T_541 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 6U)));
+                                      >> 4U)));
     vlSelf->__PVT___T_542 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 5U)));
+    vlSelf->__PVT___T_543 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 6U)));
+    vlSelf->__PVT___T_544 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
                                       >> 7U)));
-    vlSelf->__PVT___T_545 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 8U)));
-    vlSelf->__PVT___T_546 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 9U)));
     vlSelf->__PVT___T_547 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0xaU)));
+                                      >> 8U)));
     vlSelf->__PVT___T_548 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0xbU)));
+                                      >> 9U)));
     vlSelf->__PVT___T_549 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0xcU)));
+                                      >> 0xaU)));
     vlSelf->__PVT___T_550 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0xdU)));
+                                      >> 0xbU)));
     vlSelf->__PVT___T_551 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0xeU)));
+                                      >> 0xcU)));
     vlSelf->__PVT___T_552 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 0xdU)));
+    vlSelf->__PVT___T_553 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 0xeU)));
+    vlSelf->__PVT___T_554 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
                                       >> 0xfU)));
-    vlSelf->__PVT___T_555 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x10U)));
-    vlSelf->__PVT___T_556 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x11U)));
     vlSelf->__PVT___T_557 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x12U)));
+                                      >> 0x10U)));
     vlSelf->__PVT___T_558 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x13U)));
+                                      >> 0x11U)));
     vlSelf->__PVT___T_559 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x14U)));
+                                      >> 0x12U)));
     vlSelf->__PVT___T_560 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x15U)));
+                                      >> 0x13U)));
     vlSelf->__PVT___T_561 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x16U)));
+                                      >> 0x14U)));
     vlSelf->__PVT___T_562 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 0x15U)));
+    vlSelf->__PVT___T_563 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 0x16U)));
+    vlSelf->__PVT___T_564 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
                                       >> 0x17U)));
-    vlSelf->__PVT___T_565 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x18U)));
-    vlSelf->__PVT___T_566 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x19U)));
     vlSelf->__PVT___T_567 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x1aU)));
+                                      >> 0x18U)));
     vlSelf->__PVT___T_568 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x1bU)));
+                                      >> 0x19U)));
     vlSelf->__PVT___T_569 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x1cU)));
+                                      >> 0x1aU)));
     vlSelf->__PVT___T_570 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
-                                      >> 0x1dU)));
+                                      >> 0x1bU)));
     vlSelf->__PVT___T_571 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 0x1cU)));
+    vlSelf->__PVT___T_572 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
+                                      >> 0x1dU)));
+    vlSelf->__PVT___T_573 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
                                       >> 0x1eU)));
-    vlSelf->__PVT___T_572 = ((IData)(vlSelf->__PVT__is_alloc) 
+    vlSelf->__PVT___T_574 = ((IData)(vlSelf->__PVT__is_alloc) 
                              | (vlSelf->__VdfgTmp_hee7a4229__0[1U] 
                                 >> 0x1fU));
-    vlSelf->__PVT___T_575 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | vlSelf->__VdfgTmp_hee7a4229__0[2U]));
-    vlSelf->__PVT___T_576 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 1U)));
     vlSelf->__PVT___T_577 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 2U)));
+                                   | vlSelf->__VdfgTmp_hee7a4229__0[2U]));
     vlSelf->__PVT___T_578 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 3U)));
+                                      >> 1U)));
     vlSelf->__PVT___T_579 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 4U)));
+                                      >> 2U)));
     vlSelf->__PVT___T_580 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 5U)));
+                                      >> 3U)));
     vlSelf->__PVT___T_581 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 6U)));
+                                      >> 4U)));
     vlSelf->__PVT___T_582 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 5U)));
+    vlSelf->__PVT___T_583 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 6U)));
+    vlSelf->__PVT___T_584 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
                                       >> 7U)));
-    vlSelf->__PVT___T_585 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 8U)));
-    vlSelf->__PVT___T_586 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 9U)));
     vlSelf->__PVT___T_587 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0xaU)));
+                                      >> 8U)));
     vlSelf->__PVT___T_588 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0xbU)));
+                                      >> 9U)));
     vlSelf->__PVT___T_589 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0xcU)));
+                                      >> 0xaU)));
     vlSelf->__PVT___T_590 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0xdU)));
+                                      >> 0xbU)));
     vlSelf->__PVT___T_591 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0xeU)));
+                                      >> 0xcU)));
     vlSelf->__PVT___T_592 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 0xdU)));
+    vlSelf->__PVT___T_593 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 0xeU)));
+    vlSelf->__PVT___T_594 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
                                       >> 0xfU)));
-    vlSelf->__PVT___T_595 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x10U)));
-    vlSelf->__PVT___T_596 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x11U)));
     vlSelf->__PVT___T_597 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x12U)));
+                                      >> 0x10U)));
     vlSelf->__PVT___T_598 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x13U)));
+                                      >> 0x11U)));
     vlSelf->__PVT___T_599 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x14U)));
+                                      >> 0x12U)));
     vlSelf->__PVT___T_600 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x15U)));
+                                      >> 0x13U)));
     vlSelf->__PVT___T_601 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x16U)));
+                                      >> 0x14U)));
     vlSelf->__PVT___T_602 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 0x15U)));
+    vlSelf->__PVT___T_603 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 0x16U)));
+    vlSelf->__PVT___T_604 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
                                       >> 0x17U)));
-    vlSelf->__PVT___T_605 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x18U)));
-    vlSelf->__PVT___T_606 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x19U)));
     vlSelf->__PVT___T_607 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x1aU)));
+                                      >> 0x18U)));
     vlSelf->__PVT___T_608 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x1bU)));
+                                      >> 0x19U)));
     vlSelf->__PVT___T_609 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x1cU)));
+                                      >> 0x1aU)));
     vlSelf->__PVT___T_610 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
-                                      >> 0x1dU)));
+                                      >> 0x1bU)));
     vlSelf->__PVT___T_611 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 0x1cU)));
+    vlSelf->__PVT___T_612 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
+                                      >> 0x1dU)));
+    vlSelf->__PVT___T_613 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
                                       >> 0x1eU)));
-    vlSelf->__PVT___T_612 = ((IData)(vlSelf->__PVT__is_alloc) 
+    vlSelf->__PVT___T_614 = ((IData)(vlSelf->__PVT__is_alloc) 
                              | (vlSelf->__VdfgTmp_hee7a4229__0[2U] 
                                 >> 0x1fU));
-    vlSelf->__PVT___T_615 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | vlSelf->__VdfgTmp_hee7a4229__0[3U]));
-    vlSelf->__PVT___T_616 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 1U)));
     vlSelf->__PVT___T_617 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 2U)));
+                                   | vlSelf->__VdfgTmp_hee7a4229__0[3U]));
     vlSelf->__PVT___T_618 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 3U)));
+                                      >> 1U)));
     vlSelf->__PVT___T_619 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 4U)));
+                                      >> 2U)));
     vlSelf->__PVT___T_620 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 5U)));
+                                      >> 3U)));
     vlSelf->__PVT___T_621 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 6U)));
+                                      >> 4U)));
     vlSelf->__PVT___T_622 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 5U)));
+    vlSelf->__PVT___T_623 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 6U)));
+    vlSelf->__PVT___T_624 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
                                       >> 7U)));
-    vlSelf->__PVT___T_625 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 8U)));
-    vlSelf->__PVT___T_626 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 9U)));
     vlSelf->__PVT___T_627 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0xaU)));
+                                      >> 8U)));
     vlSelf->__PVT___T_628 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0xbU)));
+                                      >> 9U)));
     vlSelf->__PVT___T_629 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0xcU)));
+                                      >> 0xaU)));
     vlSelf->__PVT___T_630 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0xdU)));
+                                      >> 0xbU)));
     vlSelf->__PVT___T_631 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0xeU)));
+                                      >> 0xcU)));
     vlSelf->__PVT___T_632 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 0xdU)));
+    vlSelf->__PVT___T_633 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 0xeU)));
+    vlSelf->__PVT___T_634 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
                                       >> 0xfU)));
-    vlSelf->__PVT___T_635 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x10U)));
-    vlSelf->__PVT___T_636 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x11U)));
     vlSelf->__PVT___T_637 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x12U)));
+                                      >> 0x10U)));
     vlSelf->__PVT___T_638 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x13U)));
+                                      >> 0x11U)));
     vlSelf->__PVT___T_639 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x14U)));
+                                      >> 0x12U)));
     vlSelf->__PVT___T_640 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x15U)));
+                                      >> 0x13U)));
     vlSelf->__PVT___T_641 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x16U)));
+                                      >> 0x14U)));
     vlSelf->__PVT___T_642 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 0x15U)));
+    vlSelf->__PVT___T_643 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 0x16U)));
+    vlSelf->__PVT___T_644 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
                                       >> 0x17U)));
-    vlSelf->__PVT___T_645 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x18U)));
-    vlSelf->__PVT___T_646 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
-                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x19U)));
     vlSelf->__PVT___T_647 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x1aU)));
+                                      >> 0x18U)));
     vlSelf->__PVT___T_648 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x1bU)));
+                                      >> 0x19U)));
     vlSelf->__PVT___T_649 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x1cU)));
+                                      >> 0x1aU)));
     vlSelf->__PVT___T_650 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
-                                      >> 0x1dU)));
+                                      >> 0x1bU)));
     vlSelf->__PVT___T_651 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 0x1cU)));
+    vlSelf->__PVT___T_652 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
+                                      >> 0x1dU)));
+    vlSelf->__PVT___T_653 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+                                   | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
                                       >> 0x1eU)));
-    vlSelf->__PVT___T_652 = ((IData)(vlSelf->__PVT__is_alloc) 
+    vlSelf->__PVT___T_654 = ((IData)(vlSelf->__PVT__is_alloc) 
                              | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
                                 >> 0x1fU));
-    vlSelf->__PVT___T_495 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
+    vlSelf->__PVT___T_497 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | ((0U >= (0x78U 
                                               & vlSelf->__PVT__addr_reg))
                                        ? ((IData)(vlSelf->__PVT__cpu_mask) 
                                           << (0x78U 
                                               & vlSelf->__PVT__addr_reg))
                                        : 0U)));
-    vlSelf->__PVT___T_331 = (((~ (IData)(vlSelf->__PVT___replace_wire_T)) 
+    vlSelf->__PVT___T_333 = (((~ (IData)(vlSelf->__PVT___replace_wire_T)) 
                               & (IData)(vlSelf->__PVT__is_alloc)) 
                              | ((~ (IData)(vlSelf->__PVT__replace_buf)) 
                                 & (IData)(vlSelf->__PVT__is_alloc_reg)));
@@ -3993,7 +3993,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
         vlSelf->__PVT__wdata[0x1fU] = (IData)((vlSelf->__PVT__cpu_data 
                                                >> 0x20U));
     }
-    vlSelf->__PVT___GEN_13 = ((((IData)(vlSelf->__PVT___T_660)
+    vlSelf->__PVT___GEN_13 = ((((IData)(vlSelf->__PVT___T_662)
                                  ? ((1U & (IData)(vlSelf->__PVT___replace_wire_T))
                                      ? vlSelf->__PVT__rtag1_choose
                                      : vlSelf->__PVT__rtag0_choose)
@@ -4192,7 +4192,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
                                  & (vlSelf->__PVT__rtag1_choose 
                                     == (vlSelf->__PVT__addr_reg 
                                         >> 0xaU))));
-    vlSelf->__PVT___T_663 = ((IData)(vlSelf->io_fccache_hit) 
+    vlSelf->__PVT___T_665 = ((IData)(vlSelf->io_fccache_hit) 
                              | (IData)(vlSelf->__PVT__is_alloc_reg));
     vlSelf->__PVT__wen = (((2U == (IData)(vlSelf->__PVT__state)) 
                            & (IData)(vlSelf->io_fccache_hit)) 
@@ -4206,10 +4206,10 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
     vlSelf->io_axi_req_bits_rw = ((0U != (IData)(vlSelf->__PVT__state)) 
                                   & ((1U == (IData)(vlSelf->__PVT__state))
                                       ? ((~ (IData)(vlSelf->io_fccache_hit)) 
-                                         & (~ (IData)(vlSelf->__PVT___T_660)))
+                                         & (~ (IData)(vlSelf->__PVT___T_662)))
                                       : ((2U == (IData)(vlSelf->__PVT__state))
-                                          ? ((~ (IData)(vlSelf->__PVT___T_663)) 
-                                             & (~ (IData)(vlSelf->__PVT___T_660)))
+                                          ? ((~ (IData)(vlSelf->__PVT___T_665)) 
+                                             & (~ (IData)(vlSelf->__PVT___T_662)))
                                           : ((3U == (IData)(vlSelf->__PVT__state))
                                               ? ((2U 
                                                   & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
@@ -4221,14 +4221,14 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
                                 & ((1U == (IData)(vlSelf->__PVT__state))
                                     ? (~ (IData)(vlSelf->io_fccache_hit))
                                     : ((2U == (IData)(vlSelf->__PVT__state))
-                                        ? (~ (IData)(vlSelf->__PVT___T_663))
+                                        ? (~ (IData)(vlSelf->__PVT___T_665))
                                         : ((3U == (IData)(vlSelf->__PVT__state)) 
                                            | (IData)(vlSelf->__VdfgTmp_h3e550451__0)))));
     vlSelf->__PVT__ren = (((0U == (IData)(vlSelf->__PVT__state)) 
                            | (((1U == (IData)(vlSelf->__PVT__state)) 
                                & (IData)(vlSelf->io_fccache_hit)) 
                               | ((2U == (IData)(vlSelf->__PVT__state)) 
-                                 & (IData)(vlSelf->__PVT___T_663)))) 
+                                 & (IData)(vlSelf->__PVT___T_665)))) 
                           & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid));
     if (vlSelf->__PVT__wen) {
         if (vlSelf->io_fccache_hit) {
@@ -4241,7 +4241,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
             }
             __VdfgTmp_h0e152e68__0 = 1U;
         } else {
-            if (vlSelf->__PVT___T_331) {
+            if (vlSelf->__PVT___T_333) {
                 if (vlSelf->__PVT__is_alloc) {
                     vlSelf->__PVT___GEN_9 = __VdfgTmp_h082604b0__0;
                     vlSelf->__PVT___GEN_10 = __VdfgTmp_h28f607fa__0;
@@ -4270,7 +4270,7 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
     vlSelf->__PVT___GEN_1 = ((~ (IData)(vlSelf->__PVT__hit0)) 
                              & (IData)(__VdfgTmp_h0e152e68__0));
     vlSelf->__PVT___GEN_0 = ((IData)(__VdfgTmp_h52bfe29c__0) 
-                             & (IData)(vlSelf->__PVT___T_331));
-    vlSelf->__PVT___GEN = ((~ (IData)(vlSelf->__PVT___T_331)) 
+                             & (IData)(vlSelf->__PVT___T_333));
+    vlSelf->__PVT___GEN = ((~ (IData)(vlSelf->__PVT___T_333)) 
                            & (IData)(__VdfgTmp_h52bfe29c__0));
 }

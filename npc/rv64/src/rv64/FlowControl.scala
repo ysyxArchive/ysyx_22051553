@@ -157,15 +157,23 @@ class FlowControl extends Module{
     }
 
     
-    when(io.fcio.req && io.fcio.state === IoforMem.s_Idle){
-        IO_stall := 1.B
-    }.elsewhen(io.fcio.state === IoforMem.s_req){
+    // when(io.fcio.req && io.fcio.state === IoforMem.s_Idle){
+    //     IO_stall := 1.B
+    // }.elsewhen(io.fcio.state === IoforMem.s_req){
+    //     IO_stall := 1.B
+    // }.elsewhen(io.fcio.stall === IoforMem.s_wait){
+    //     IO_stall := 0.B
+    // }.otherwise{
+    //     IO_stall := 0.B
+    // }
+    when(io.fcio.state === IoforMem.s_req){
         IO_stall := 1.B
     }.elsewhen(io.fcio.stall === IoforMem.s_wait){
         IO_stall := 0.B
     }.otherwise{
         IO_stall := 0.B
     }
+
 
     when(io.fcex.mul_div_valid){
         MULDIV_stall := 0.B
