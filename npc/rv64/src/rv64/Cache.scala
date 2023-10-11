@@ -138,8 +138,12 @@ class Cache extends Module{
     dontTouch(way1)
     val rtag0 = TagArray.read(way0,ren)
     val rtag1 = TagArray.read(way1,ren)
-    dontTouch(rtag0)
-    dontTouch(rtag1)
+    val rtag0_buf = RegEnable(rtag0, ren_reg)  //增加作为缓存
+    val rtag1_buf = RegEnable(rtag0, ren_reg)
+    val rtag0_choose = Mux(ren_reg, rtag0, rtag0_buf)
+    val rtag1_choose = Mux(ren_reg, rtag1, rta10_buf)
+
+
     val rdata0 = Cat((DataArray.map(_.read(way0,ren).asUInt)).reverse) //读出
     val rdata1 = Cat((DataArray.map(_.read(way1,ren).asUInt)).reverse) //读出
     val rdata0_buf = RegEnable(rdata0, ren_reg)
@@ -149,13 +153,13 @@ class Cache extends Module{
     val read = Mux(is_alloc_reg,   //已经全部Refill到Cacheline,且Refill_buf中是完整的数据
         refill_buffer.asUInt,
         Mux(ren_reg, //ren_reg有效时,rdata有效,ren_reg无效时,rdata已经存入rdata_buf中
-            Mux(rtag0 === tag_reg, rdata0, rdata1),
-            Mux(rtag0 === tag_reg, rdata0_buf, rdata1_buf)
+            Mux(rtag0_choose === tag_reg, rdata0, rdata1),
+            Mux(rtag0_choose === tag_reg, rdata0_buf, rdata1_buf)
         )
     )
         
-    hit0 := valid(way0_buf) && rtag0 === tag_reg
-    hit1 := valid(way1_buf) && rtag1 === tag_reg
+    hit0 := valid(way0_buf) && rtag0_choose === tag_reg
+    hit1 := valid(way1_buf) && rtag1_choose === tag_reg
 
     //读出
     io.cpu.resp.bits.data := VecInit.tabulate(nWords)(i => read((i + 1) * X_LEN - 1, i * X_LEN))(off_reg)
@@ -326,9 +330,9 @@ class Cache extends Module{
                     state := s_WriteBack
                     io.axi.req.bits.rw := 0.B
                     when(dirty0){
-                        io.axi.req.bits.addr := (Cat(rtag0, idx_reg) << blen.U).asUInt //tag0为原来way0中存在的有效tag
+                        io.axi.req.bits.addr := (Cat(rtag0_choose, idx_reg) << blen.U).asUInt //tag0为原来way0中存在的有效tag
                     }.otherwise{
-                        io.axi.req.bits.addr := (Cat(rtag1, idx_reg) << blen.U).asUInt
+                        io.axi.req.bits.addr := (Cat(rtag1_choose, idx_reg) << blen.U).asUInt
                     }
                     
                     addr_buf := io.axi.req.bits.addr
@@ -356,9 +360,9 @@ class Cache extends Module{
                     state := s_WriteBack
                     io.axi.req.bits.rw := 0.B
                     when(dirty0){
-                        io.axi.req.bits.addr := (Cat(rtag0, idx_reg) << blen.U).asUInt //tag0为原来way0中存在的有效tag
+                        io.axi.req.bits.addr := (Cat(rtag0_choose, idx_reg) << blen.U).asUInt //tag0为原来way0中存在的有效tag
                     }.otherwise{
-                        io.axi.req.bits.addr := (Cat(rtag1, idx_reg) << blen.U).asUInt
+                        io.axi.req.bits.addr := (Cat(rtag1_choose, idx_reg) << blen.U).asUInt
                     }
 
                     addr_buf := io.axi.req.bits.addr

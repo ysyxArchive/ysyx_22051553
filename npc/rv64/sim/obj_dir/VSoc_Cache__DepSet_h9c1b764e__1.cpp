@@ -10414,7 +10414,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
         vlSelf->__PVT__cpu_data = vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata;
     }
     vlSelf->__PVT__TagArray_ext__DOT___GEN_1 = vlSelf->__PVT__ren;
-    vlSelf->__PVT__is_alloc_reg = vlSelf->__PVT__is_alloc;
     vlSelf->__PVT__TagArray_ext__DOT___GEN_2 = (0xfU 
                                                 & ((IData)(1U) 
                                                    + 
@@ -10423,6 +10422,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
                                                                (vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T 
                                                                 >> 7U)) 
                                                        << 1U))));
+    vlSelf->__PVT__is_alloc_reg = vlSelf->__PVT__is_alloc;
     vlSelf->__PVT__TagArray_ext__DOT___GEN = vlSelf->__PVT__ren;
     vlSelf->__PVT__TagArray_ext__DOT___GEN_0 = (0xeU 
                                                 & ((IData)(

@@ -27,7 +27,6 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->io_axi_req_bits_rw = VL_RAND_RESET_I(1);
     vlSelf->io_axi_req_bits_addr = VL_RAND_RESET_I(32);
     vlSelf->io_axi_req_bits_data = VL_RAND_RESET_Q(64);
-    vlSelf->io_fccache_req = VL_RAND_RESET_I(1);
     vlSelf->io_fccache_state = VL_RAND_RESET_I(3);
     vlSelf->io_fccache_hit = VL_RAND_RESET_I(1);
     vlSelf->__PVT___T_652 = VL_RAND_RESET_I(1);
