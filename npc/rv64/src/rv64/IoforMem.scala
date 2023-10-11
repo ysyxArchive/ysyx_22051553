@@ -94,15 +94,14 @@ class IoforMem extends Module{
             
 
             when(io.axi.resp.valid){
-                io.axi.req.valid := 0.B   //停止申请总线，防止死锁
+                axi_req_valid := 0.B   //停止申请总线，防止死锁
                 
                 mem_data_valid := 1.B
                 mem_data_bits := io.axi.resp.bits.data
 
                 when(io.fc.stall){
                     state := s_wait
-
-                    axi_req_valid := 0.B  //停止申请总线，防止死锁
+                    // axi_req_valid := 0.B  //停止申请总线，防止死锁
                 }.otherwise{
                     state := s_Idle
                     mem_data_valid := 0.B  //多stall一个周期

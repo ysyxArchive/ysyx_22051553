@@ -7631,7 +7631,7 @@ module IoforMem(	// <stdin>:10899:10
   reg         mem_data_valid;	// IoforMem.scala:56:33
   reg  [63:0] mem_data_bits;	// IoforMem.scala:57:32
   wire        _T = state == 2'h0;	// IoforMem.scala:47:24, :74:18
-  wire        _T_5 = state == 2'h1;	// IoforMem.scala:47:24, :74:18, :81:23
+  wire        _T_5 = state == 2'h1;	// IoforMem.scala:47:24, :74:18, :82:27
   always @(posedge clock) begin
     if (reset) begin
       state <= 2'h0;	// IoforMem.scala:47:24
@@ -7644,35 +7644,40 @@ module IoforMem(	// <stdin>:10899:10
       mem_data_bits <= 64'h0;	// IoforMem.scala:53:36, :57:32
     end
     else begin
-      automatic logic _T_4;	// IoforMem.scala:84:54
-      automatic logic _GEN;	// IoforMem.scala:47:24, :74:18, :113:31
-      _T_4 = (io_excute_load | io_excute_store) & (io_excute_waddr | io_excute_raddr) > 32'h9FFFFFFF;	// IoforMem.scala:69:{34,74}, :84:{54,94}
-      _GEN = state != 2'h2 | io_fc_stall;	// IoforMem.scala:47:24, :74:18, :102:27, :113:31
+      automatic logic _T_4;	// IoforMem.scala:81:58
+      automatic logic _GEN;	// IoforMem.scala:47:24, :74:18, :114:31
+      _T_4 = (io_excute_load | io_excute_store) & (io_excute_waddr | io_excute_raddr) > 32'h9FFFFFFF;	// IoforMem.scala:69:{34,74}, :81:{58,98}
+      _GEN = state != 2'h2 | io_fc_stall;	// IoforMem.scala:47:24, :74:18, :103:27, :114:31
       if (_T) begin	// IoforMem.scala:74:18
-        state <= {1'h0, ~io_fc_stall};	// IoforMem.scala:47:24, :50:32, :78:30, :79:23, :81:23
-        axi_req_valid <= _T_4 | axi_req_valid;	// IoforMem.scala:50:32, :84:{54,113}, :85:31
+        if (io_fc_stall)
+          state <= 2'h0;	// IoforMem.scala:47:24
+        else if (_T_4)	// IoforMem.scala:81:58
+          state <= 2'h1;	// IoforMem.scala:47:24, :82:27
+        axi_req_valid <= ~io_fc_stall & _T_4 | axi_req_valid;	// IoforMem.scala:50:32, :78:30, :81:{58,117}
       end
       else begin	// IoforMem.scala:74:18
         if (_T_5) begin	// IoforMem.scala:74:18
           if (io_axi_resp_valid)
-            state <= {io_fc_stall, 1'h0};	// IoforMem.scala:47:24, :50:32, :101:34, :102:27, :106:27
+            state <= {io_fc_stall, 1'h0};	// IoforMem.scala:47:24, :50:32, :102:34, :103:27, :107:27
         end
-        else if (_GEN) begin	// IoforMem.scala:47:24, :74:18, :113:31
+        else if (_GEN) begin	// IoforMem.scala:47:24, :74:18, :114:31
         end
-        else	// IoforMem.scala:47:24, :74:18, :113:31
+        else	// IoforMem.scala:47:24, :74:18, :114:31
           state <= 2'h0;	// IoforMem.scala:47:24
-        axi_req_valid <= (~_T_5 | ~io_axi_resp_valid | ~io_fc_stall) & axi_req_valid;	// IoforMem.scala:50:32, :59:22, :74:18, :78:30, :79:23, :81:23, :95:36, :96:34
+        axi_req_valid <= (~_T_5 | ~io_axi_resp_valid | ~io_fc_stall) & axi_req_valid;	// IoforMem.scala:50:32, :59:22, :74:18, :78:30, :81:117, :96:36, :97:34
       end
-      if (_T & _T_4) begin	// IoforMem.scala:52:36, :74:18, :84:{54,113}
+      if (~_T | io_fc_stall | ~_T_4) begin	// IoforMem.scala:52:36, :74:18, :78:30, :81:{58,117}
+      end
+      else begin	// IoforMem.scala:52:36, :74:18, :78:30, :81:{58,117}
         axi_req_bits_rw <= io_excute_load;	// IoforMem.scala:51:34
-        axi_req_bits_addr <= {io_excute_waddr[31:3] | io_excute_raddr[31:3], 3'h0};	// Cat.scala:33:92, IoforMem.scala:52:36, :86:{59,66,83}
+        axi_req_bits_addr <= {io_excute_waddr[31:3] | io_excute_raddr[31:3], 3'h0};	// Cat.scala:33:92, IoforMem.scala:52:36, :84:{63,70,87}
         axi_req_bits_data <= io_excute_wdata;	// IoforMem.scala:53:36
         axi_req_bits_mask <= io_excute_wmask;	// IoforMem.scala:54:36
       end
-      mem_data_valid <= ~_T & (_T_5 ? (io_axi_resp_valid ? io_fc_stall : mem_data_valid) : _GEN & mem_data_valid);	// IoforMem.scala:47:24, :56:33, :74:18, :76:28, :95:36, :101:34, :113:31
-      if (_T | ~(_T_5 & io_axi_resp_valid)) begin	// IoforMem.scala:57:32, :74:18, :95:36
+      mem_data_valid <= ~_T & (_T_5 ? (io_axi_resp_valid ? io_fc_stall : mem_data_valid) : _GEN & mem_data_valid);	// IoforMem.scala:47:24, :52:36, :56:33, :74:18, :76:28, :78:30, :96:36, :102:34, :114:31
+      if (_T | ~(_T_5 & io_axi_resp_valid)) begin	// IoforMem.scala:57:32, :74:18, :96:36
       end
-      else	// IoforMem.scala:57:32, :74:18, :95:36
+      else	// IoforMem.scala:57:32, :74:18, :96:36
         mem_data_bits <= io_axi_resp_bits_data;	// IoforMem.scala:57:32
     end
   end // always @(posedge)
@@ -7711,7 +7716,7 @@ module IoforMem(	// <stdin>:10899:10
       `FIRRTL_AFTER_INITIAL	// <stdin>:10899:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
-  assign io_axi_req_valid = (_T | ~_T_5 | ~io_axi_resp_valid) & axi_req_valid;	// <stdin>:10899:10, IoforMem.scala:50:32, :59:22, :74:18, :95:36, :96:34
+  assign io_axi_req_valid = (_T | ~_T_5 | ~io_axi_resp_valid) & axi_req_valid;	// <stdin>:10899:10, IoforMem.scala:50:32, :59:22, :74:18, :96:36, :97:34
   assign io_axi_req_bits_rw = axi_req_bits_rw;	// <stdin>:10899:10, IoforMem.scala:51:34
   assign io_axi_req_bits_addr = axi_req_bits_addr;	// <stdin>:10899:10, IoforMem.scala:52:36
   assign io_axi_req_bits_data = axi_req_bits_data;	// <stdin>:10899:10, IoforMem.scala:53:36
@@ -8950,5 +8955,3 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
-
