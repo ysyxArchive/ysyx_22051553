@@ -167,7 +167,7 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*2:0*/ __PVT__state;
         CData/*0:0*/ __PVT__is_read;
         CData/*0:0*/ __PVT__is_write;
-        CData/*0:0*/ __PVT___T_671;
+        CData/*0:0*/ __PVT___T_672;
         CData/*0:0*/ __PVT__is_alloc;
         CData/*0:0*/ __PVT__is_alloc_reg;
         CData/*7:0*/ __PVT__cpu_mask;
@@ -181,13 +181,13 @@ class VSoc_Cache final : public VerilatedModule {
         CData/*0:0*/ __PVT___T_331;
         CData/*0:0*/ __PVT___T_660;
         CData/*0:0*/ __PVT___T_663;
-        CData/*0:0*/ __PVT___T_668;
-        CData/*0:0*/ __PVT___T_670;
-        CData/*0:0*/ __PVT___GEN_15;
-        CData/*2:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_50;
-        CData/*3:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_51;
-        IData/*31:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_52;
-        IData/*23:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_53;
+        CData/*0:0*/ __PVT___T_669;
+        CData/*0:0*/ __PVT___T_671;
+        CData/*0:0*/ __PVT___GEN_14;
+        CData/*2:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_49;
+        CData/*3:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_50;
+        IData/*31:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_51;
+        IData/*23:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_52;
         CData/*0:0*/ __VdfgTmp_h3e550451__0;
         CData/*0:0*/ __PVT__TagArray_ext__DOT___GEN;
         CData/*3:0*/ __PVT__TagArray_ext__DOT___GEN_0;
@@ -2023,7 +2023,7 @@ class VSoc_Cache final : public VerilatedModule {
         SData/*15:0*/ __PVT___replace_wire_T;
         SData/*15:0*/ __PVT___GEN_9;
         SData/*15:0*/ __PVT___GEN_10;
-        SData/*15:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk3__DOT___GEN_54;
+        SData/*15:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk3__DOT___GEN_53;
         VL_IN(io_cpu_req_bits_addr,31,0);
         VL_OUT(io_axi_req_bits_addr,31,0);
         IData/*21:0*/ __PVT___TagArray_ext_R0_data;
@@ -2040,6 +2040,7 @@ class VSoc_Cache final : public VerilatedModule {
         VlWide<32>/*1023:0*/ __PVT__rdata1_buf;
         VlWide<32>/*1023:0*/ __PVT__read;
         VlWide<32>/*1023:0*/ __PVT__wdata;
+        IData/*31:0*/ __PVT___GEN_12;
         IData/*31:0*/ __PVT___GEN_13;
         IData/*31:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk4__DOT___dirty_T_18;
         IData/*31:0*/ __PVT__unnamedblk1__DOT__unnamedblk2__DOT__unnamedblk5__DOT___dirty_T_30;
@@ -2058,9 +2059,9 @@ class VSoc_Cache final : public VerilatedModule {
         QData/*63:0*/ __PVT__refill_buffer_5;
         QData/*63:0*/ __PVT__refill_buffer_6;
         QData/*63:0*/ __PVT__refill_buffer_7;
-        QData/*63:0*/ __PVT__refill_buffer_8;
     };
     struct {
+        QData/*63:0*/ __PVT__refill_buffer_8;
         QData/*63:0*/ __PVT__refill_buffer_9;
         QData/*63:0*/ __PVT__refill_buffer_10;
         QData/*63:0*/ __PVT__refill_buffer_11;
@@ -2124,9 +2125,9 @@ class VSoc_Cache final : public VerilatedModule {
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_6_4_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_6_5_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_6_6_ext__DOT__Memory;
-        VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_6_7_ext__DOT__Memory;
     };
     struct {
+        VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_6_7_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_7_0_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_7_1_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_7_2_ext__DOT__Memory;
@@ -2190,9 +2191,9 @@ class VSoc_Cache final : public VerilatedModule {
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_14_4_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_14_5_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_14_6_ext__DOT__Memory;
-        VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_14_7_ext__DOT__Memory;
     };
     struct {
+        VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_14_7_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_15_0_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_15_1_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 16> __PVT__DataArray_15_2_ext__DOT__Memory;

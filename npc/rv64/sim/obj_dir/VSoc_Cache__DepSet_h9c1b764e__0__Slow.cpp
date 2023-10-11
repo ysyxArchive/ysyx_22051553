@@ -36,10 +36,10 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
     // Body
     vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_668 = (3U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_670 = (4U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_671 = (5U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___GEN_15 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
+    vlSelf->__PVT___T_669 = (3U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_671 = (4U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_672 = (5U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___GEN_14 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 2U)));
     vlSelf->__PVT__ren = (((0U == (IData)(vlSelf->__PVT__state)) 
@@ -1875,10 +1875,17 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
     __PVT___hit0_T_2 = (vlSelf->__PVT__rtag0_choose 
                         == (vlSelf->__PVT__addr_reg 
                             >> 0xaU));
-    vlSelf->__PVT___GEN_13 = ((((IData)(vlSelf->__PVT___T_660)
+    vlSelf->__PVT___GEN_12 = ((((IData)(vlSelf->__PVT___T_660)
                                  ? ((IData)(vlSelf->__PVT__dirty0)
                                      ? vlSelf->__PVT__rtag0_choose
                                      : vlSelf->__PVT__rtag1_choose)
+                                 : (vlSelf->__PVT__addr_reg 
+                                    >> 0xaU)) << 0xaU) 
+                              | (0x380U & vlSelf->__PVT__addr_reg));
+    vlSelf->__PVT___GEN_13 = ((((IData)(vlSelf->__PVT___T_660)
+                                 ? ((1U & (IData)(vlSelf->__PVT___replace_wire_T))
+                                     ? vlSelf->__PVT__rtag1_choose
+                                     : vlSelf->__PVT__rtag0_choose)
                                  : (vlSelf->__PVT__addr_reg 
                                     >> 0xaU)) << 0xaU) 
                               | (0x380U & vlSelf->__PVT__addr_reg));
@@ -2163,10 +2170,10 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
     // Body
     vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_668 = (3U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_670 = (4U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___T_671 = (5U == (IData)(vlSelf->__PVT__state));
-    vlSelf->__PVT___GEN_15 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
+    vlSelf->__PVT___T_669 = (3U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_671 = (4U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___T_672 = (5U == (IData)(vlSelf->__PVT__state));
+    vlSelf->__PVT___GEN_14 = (1U & ((4U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 1U)));
     __VdfgTmp_h082604b0__0 = (0xffffU & (~ ((~ (IData)(vlSelf->__PVT__replace)) 
@@ -4002,10 +4009,17 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
     __PVT___hit0_T_2 = (vlSelf->__PVT__rtag0_choose 
                         == (vlSelf->__PVT__addr_reg 
                             >> 0xaU));
-    vlSelf->__PVT___GEN_13 = ((((IData)(vlSelf->__PVT___T_660)
+    vlSelf->__PVT___GEN_12 = ((((IData)(vlSelf->__PVT___T_660)
                                  ? ((IData)(vlSelf->__PVT__dirty0)
                                      ? vlSelf->__PVT__rtag0_choose
                                      : vlSelf->__PVT__rtag1_choose)
+                                 : (vlSelf->__PVT__addr_reg 
+                                    >> 0xaU)) << 0xaU) 
+                              | (0x380U & vlSelf->__PVT__addr_reg));
+    vlSelf->__PVT___GEN_13 = ((((IData)(vlSelf->__PVT___T_660)
+                                 ? ((1U & (IData)(vlSelf->__PVT___replace_wire_T))
+                                     ? vlSelf->__PVT__rtag1_choose
+                                     : vlSelf->__PVT__rtag0_choose)
                                  : (vlSelf->__PVT__addr_reg 
                                     >> 0xaU)) << 0xaU) 
                               | (0x380U & vlSelf->__PVT__addr_reg));

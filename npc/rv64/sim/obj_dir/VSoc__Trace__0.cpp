@@ -9729,7 +9729,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
     bufp->chgIData(oldp+6875,(((0U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state))
                                 ? 0U : ((1U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state))
                                          ? ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.io_fccache_hit)
-                                             ? 0U : vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_13)
+                                             ? 0U : vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_12)
                                          : ((2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state))
                                              ? ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___T_663)
                                                  ? 0U
@@ -9747,13 +9747,13 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                                    : 0U)
                                                   : vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_buf)
                                                  : 
-                                                ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_15)
+                                                ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_14)
                                                   ? 0U
                                                   : vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_buf)))))),32);
     bufp->chgIData(oldp+6876,(((0U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state))
                                 ? 0U : ((1U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state))
                                          ? ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_fccache_hit)
-                                             ? 0U : vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_13)
+                                             ? 0U : vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_12)
                                          : ((2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state))
                                              ? ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___T_663)
                                                  ? 0U
@@ -9771,7 +9771,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                                    : 0U)
                                                   : vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_buf)
                                                  : 
-                                                ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_15)
+                                                ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_14)
                                                   ? 0U
                                                   : vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_buf)))))),32);
     __Vtemp_h26f7ce52__0[0U] = 0U;
