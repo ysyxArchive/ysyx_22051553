@@ -97,18 +97,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __Vdlyvval__TagArray_ext__DOT__Memory__v1 = 0;
     CData/*0:0*/ __Vdlyvset__TagArray_ext__DOT__Memory__v1;
     __Vdlyvset__TagArray_ext__DOT__Memory__v1 = 0;
-    CData/*3:0*/ __Vdlyvdim0__DataArray_12_7_ext__DOT__Memory__v0;
-    __Vdlyvdim0__DataArray_12_7_ext__DOT__Memory__v0 = 0;
-    CData/*7:0*/ __Vdlyvval__DataArray_12_7_ext__DOT__Memory__v0;
-    __Vdlyvval__DataArray_12_7_ext__DOT__Memory__v0 = 0;
-    CData/*0:0*/ __Vdlyvset__DataArray_12_7_ext__DOT__Memory__v0;
-    __Vdlyvset__DataArray_12_7_ext__DOT__Memory__v0 = 0;
-    CData/*3:0*/ __Vdlyvdim0__DataArray_12_7_ext__DOT__Memory__v1;
-    __Vdlyvdim0__DataArray_12_7_ext__DOT__Memory__v1 = 0;
-    CData/*7:0*/ __Vdlyvval__DataArray_12_7_ext__DOT__Memory__v1;
-    __Vdlyvval__DataArray_12_7_ext__DOT__Memory__v1 = 0;
-    CData/*0:0*/ __Vdlyvset__DataArray_12_7_ext__DOT__Memory__v1;
-    __Vdlyvset__DataArray_12_7_ext__DOT__Memory__v1 = 0;
     CData/*3:0*/ __Vdlyvdim0__DataArray_13_0_ext__DOT__Memory__v0;
     __Vdlyvdim0__DataArray_13_0_ext__DOT__Memory__v0 = 0;
     CData/*7:0*/ __Vdlyvval__DataArray_13_0_ext__DOT__Memory__v0;
@@ -789,8 +777,8 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     __Vdlyvset__DataArray_13_0_ext__DOT__Memory__v1 = 0U;
     __Vdlyvset__DataArray_13_0_ext__DOT__Memory__v2 = 0U;
     __Vdlyvset__DataArray_13_0_ext__DOT__Memory__v3 = 0U;
-    __Vdlyvset__DataArray_12_7_ext__DOT__Memory__v0 = 0U;
-    __Vdlyvset__DataArray_12_7_ext__DOT__Memory__v1 = 0U;
+    vlSelf->__Vdlyvset__DataArray_12_7_ext__DOT__Memory__v0 = 0U;
+    vlSelf->__Vdlyvset__DataArray_12_7_ext__DOT__Memory__v1 = 0U;
     vlSelf->__Vdlyvset__DataArray_12_7_ext__DOT__Memory__v2 = 0U;
     vlSelf->__Vdlyvset__DataArray_12_7_ext__DOT__Memory__v3 = 0U;
     vlSelf->__Vdlyvset__DataArray_12_6_ext__DOT__Memory__v0 = 0U;
@@ -3370,17 +3358,17 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                               >> 6U))));
     }
     if (((IData)(vlSelf->__PVT___GEN_2) & (IData)(vlSelf->__PVT___T_622))) {
-        __Vdlyvval__DataArray_12_7_ext__DOT__Memory__v0 
+        vlSelf->__Vdlyvval__DataArray_12_7_ext__DOT__Memory__v0 
             = (vlSelf->__PVT__wdata[0x19U] >> 0x18U);
-        __Vdlyvset__DataArray_12_7_ext__DOT__Memory__v0 = 1U;
-        __Vdlyvdim0__DataArray_12_7_ext__DOT__Memory__v0 
+        vlSelf->__Vdlyvset__DataArray_12_7_ext__DOT__Memory__v0 = 1U;
+        vlSelf->__Vdlyvdim0__DataArray_12_7_ext__DOT__Memory__v0 
             = (0xeU & (vlSelf->__PVT__addr_reg >> 6U));
     }
     if (((IData)(vlSelf->__PVT___GEN_1) & (IData)(vlSelf->__PVT___T_622))) {
-        __Vdlyvval__DataArray_12_7_ext__DOT__Memory__v1 
+        vlSelf->__Vdlyvval__DataArray_12_7_ext__DOT__Memory__v1 
             = (vlSelf->__PVT__wdata[0x19U] >> 0x18U);
-        __Vdlyvset__DataArray_12_7_ext__DOT__Memory__v1 = 1U;
-        __Vdlyvdim0__DataArray_12_7_ext__DOT__Memory__v1 
+        vlSelf->__Vdlyvset__DataArray_12_7_ext__DOT__Memory__v1 = 1U;
+        vlSelf->__Vdlyvdim0__DataArray_12_7_ext__DOT__Memory__v1 
             = (0xfU & ((IData)(1U) + (0xeU & (vlSelf->__PVT__addr_reg 
                                               >> 6U))));
     }
@@ -7975,6 +7963,8 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                                 & (vlSymsp->TOP.Soc__DOT__core__DOT___fetch_io_fdio_pc 
                                                    >> 6U));
     if (vlSelf->__PVT__ren_reg) {
+        vlSelf->__PVT__rtag0_buf = vlSelf->__PVT___TagArray_ext_R0_data;
+        vlSelf->__PVT__rtag1_buf = vlSelf->__PVT___TagArray_ext_R1_data;
         vlSelf->__PVT__rdata0_buf[0U] = vlSelf->__PVT__rdata0[0U];
         vlSelf->__PVT__rdata0_buf[1U] = vlSelf->__PVT__rdata0[1U];
         vlSelf->__PVT__rdata0_buf[2U] = vlSelf->__PVT__rdata0[2U];
@@ -8435,13 +8425,5 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
     if (__Vdlyvset__DataArray_13_0_ext__DOT__Memory__v3) {
         vlSelf->__PVT__DataArray_13_0_ext__DOT__Memory[__Vdlyvdim0__DataArray_13_0_ext__DOT__Memory__v3] 
             = __Vdlyvval__DataArray_13_0_ext__DOT__Memory__v3;
-    }
-    if (__Vdlyvset__DataArray_12_7_ext__DOT__Memory__v0) {
-        vlSelf->__PVT__DataArray_12_7_ext__DOT__Memory[__Vdlyvdim0__DataArray_12_7_ext__DOT__Memory__v0] 
-            = __Vdlyvval__DataArray_12_7_ext__DOT__Memory__v0;
-    }
-    if (__Vdlyvset__DataArray_12_7_ext__DOT__Memory__v1) {
-        vlSelf->__PVT__DataArray_12_7_ext__DOT__Memory[__Vdlyvdim0__DataArray_12_7_ext__DOT__Memory__v1] 
-            = __Vdlyvval__DataArray_12_7_ext__DOT__Memory__v1;
     }
 }

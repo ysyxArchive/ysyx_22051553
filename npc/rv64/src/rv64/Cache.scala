@@ -356,10 +356,10 @@ class Cache extends Module{
                 }
             }.otherwise{
                 io.axi.req.valid := 1.B
-                when( (~replace_wire && dirty0) | (replace_wire && dirty1)){ //写回
+                when( (~replace_wire & dirty0) | (replace_wire & dirty1)){ //写回  replace是谁就选谁
                     state := s_WriteBack
                     io.axi.req.bits.rw := 0.B
-                    when(dirty0){
+                    when(~replace_wire){  //从dirty0改为~replace
                         io.axi.req.bits.addr := (Cat(rtag0_choose, idx_reg) << blen.U).asUInt //tag0为原来way0中存在的有效tag
                     }.otherwise{
                         io.axi.req.bits.addr := (Cat(rtag1_choose, idx_reg) << blen.U).asUInt

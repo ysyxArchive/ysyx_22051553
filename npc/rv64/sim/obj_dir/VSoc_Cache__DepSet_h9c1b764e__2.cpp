@@ -17,10 +17,10 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
     __PVT___hit0_T_2 = 0;
     SData/*15:0*/ __PVT___dirty0_T;
     __PVT___dirty0_T = 0;
-    CData/*0:0*/ __VdfgTmp_hf0d69e76__0;
-    __VdfgTmp_hf0d69e76__0 = 0;
-    CData/*0:0*/ __VdfgTmp_h1acee690__0;
-    __VdfgTmp_h1acee690__0 = 0;
+    CData/*0:0*/ __VdfgTmp_h0e152e68__0;
+    __VdfgTmp_h0e152e68__0 = 0;
+    CData/*0:0*/ __VdfgTmp_h52bfe29c__0;
+    __VdfgTmp_h52bfe29c__0 = 0;
     SData/*15:0*/ __VdfgTmp_h082604b0__0;
     __VdfgTmp_h082604b0__0 = 0;
     SData/*15:0*/ __VdfgTmp_h6db892a9__0;
@@ -34,6 +34,14 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
     VlWide<5>/*159:0*/ __Vtemp_hfe7561f7__0;
     VlWide<5>/*159:0*/ __Vtemp_h33bc51d6__0;
     // Body
+    if (vlSelf->__Vdlyvset__DataArray_13_0_ext__DOT__Memory__v2) {
+        vlSelf->__PVT__DataArray_13_0_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_13_0_ext__DOT__Memory__v2] 
+            = vlSelf->__Vdlyvval__DataArray_13_0_ext__DOT__Memory__v2;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_13_0_ext__DOT__Memory__v3) {
+        vlSelf->__PVT__DataArray_13_0_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_13_0_ext__DOT__Memory__v3] 
+            = vlSelf->__Vdlyvval__DataArray_13_0_ext__DOT__Memory__v3;
+    }
     if (vlSelf->__Vdlyvset__DataArray_12_7_ext__DOT__Memory__v0) {
         vlSelf->__PVT__DataArray_12_7_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_12_7_ext__DOT__Memory__v0] 
             = vlSelf->__Vdlyvval__DataArray_12_7_ext__DOT__Memory__v0;
@@ -2977,6 +2985,13 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
                                             : 0U))));
     vlSelf->__PVT__ren_reg = vlSelf->__PVT__ren;
     vlSelf->__PVT__state = vlSelf->__Vdly__state;
+    if (vlSelf->__PVT__ren_reg) {
+        vlSelf->__PVT__rtag1_choose = vlSelf->__PVT___TagArray_ext_R1_data;
+        vlSelf->__PVT__rtag0_choose = vlSelf->__PVT___TagArray_ext_R0_data;
+    } else {
+        vlSelf->__PVT__rtag1_choose = vlSelf->__PVT__rtag1_buf;
+        vlSelf->__PVT__rtag0_choose = vlSelf->__PVT__rtag0_buf;
+    }
     vlSelf->__PVT__is_read = (1U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_write = (2U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT___T_668 = (3U == (IData)(vlSelf->__PVT__state));
@@ -3028,9 +3043,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
     __PVT___dirty0_T = (0xffffU & ((IData)(vlSelf->__PVT__valid) 
                                    >> (0xeU & (vlSelf->__PVT__addr_reg 
                                                >> 6U))));
-    __PVT___hit0_T_2 = (vlSelf->__PVT___TagArray_ext_R0_data 
-                        == (vlSelf->__PVT__addr_reg 
-                            >> 0xaU));
     __Vtemp_hfe7561f7__0[0U] = vlSelf->__PVT__cpu_mask;
     __Vtemp_hfe7561f7__0[1U] = 0U;
     __Vtemp_hfe7561f7__0[2U] = 0U;
@@ -3043,6 +3055,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
     vlSelf->__VdfgTmp_hee7a4229__0[2U] = __Vtemp_h33bc51d6__0[2U];
     vlSelf->__VdfgTmp_hee7a4229__0[3U] = __Vtemp_h33bc51d6__0[3U];
     vlSelf->__VdfgTmp_hee7a4229__0[4U] = (0x7fU & __Vtemp_h33bc51d6__0[4U]);
+    __PVT___hit0_T_2 = (vlSelf->__PVT__rtag0_choose 
+                        == (vlSelf->__PVT__addr_reg 
+                            >> 0xaU));
     vlSelf->__PVT___T_495 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | ((0U >= (0x78U 
                                               & vlSelf->__PVT__addr_reg))
@@ -3058,177 +3073,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
                                    & ((IData)(vlSelf->__PVT__dirty) 
                                       >> (0xeU & (vlSelf->__PVT__addr_reg 
                                                   >> 6U)))));
-    if (vlSelf->__PVT__is_alloc_reg) {
-        vlSelf->__PVT__read[0U] = vlSelf->__VdfgTmp_h25305f44__0[0U];
-        vlSelf->__PVT__read[1U] = vlSelf->__VdfgTmp_h25305f44__0[1U];
-        vlSelf->__PVT__read[2U] = vlSelf->__VdfgTmp_h25305f44__0[2U];
-        vlSelf->__PVT__read[3U] = vlSelf->__VdfgTmp_h25305f44__0[3U];
-        vlSelf->__PVT__read[4U] = vlSelf->__VdfgTmp_h25305f44__0[4U];
-        vlSelf->__PVT__read[5U] = vlSelf->__VdfgTmp_h25305f44__0[5U];
-        vlSelf->__PVT__read[6U] = vlSelf->__VdfgTmp_h25305f44__0[6U];
-        vlSelf->__PVT__read[7U] = vlSelf->__VdfgTmp_h25305f44__0[7U];
-        vlSelf->__PVT__read[8U] = vlSelf->__VdfgTmp_h25305f44__0[8U];
-        vlSelf->__PVT__read[9U] = vlSelf->__VdfgTmp_h25305f44__0[9U];
-        vlSelf->__PVT__read[0xaU] = vlSelf->__VdfgTmp_h25305f44__0[0xaU];
-        vlSelf->__PVT__read[0xbU] = vlSelf->__VdfgTmp_h25305f44__0[0xbU];
-        vlSelf->__PVT__read[0xcU] = vlSelf->__VdfgTmp_h25305f44__0[0xcU];
-        vlSelf->__PVT__read[0xdU] = vlSelf->__VdfgTmp_h25305f44__0[0xdU];
-        vlSelf->__PVT__read[0xeU] = vlSelf->__VdfgTmp_h25305f44__0[0xeU];
-        vlSelf->__PVT__read[0xfU] = vlSelf->__VdfgTmp_h25305f44__0[0xfU];
-        vlSelf->__PVT__read[0x10U] = vlSelf->__VdfgTmp_h25305f44__0[0x10U];
-        vlSelf->__PVT__read[0x11U] = vlSelf->__VdfgTmp_h25305f44__0[0x11U];
-        vlSelf->__PVT__read[0x12U] = vlSelf->__VdfgTmp_h25305f44__0[0x12U];
-        vlSelf->__PVT__read[0x13U] = vlSelf->__VdfgTmp_h25305f44__0[0x13U];
-        vlSelf->__PVT__read[0x14U] = vlSelf->__VdfgTmp_h25305f44__0[0x14U];
-        vlSelf->__PVT__read[0x15U] = vlSelf->__VdfgTmp_h25305f44__0[0x15U];
-        vlSelf->__PVT__read[0x16U] = vlSelf->__VdfgTmp_h25305f44__0[0x16U];
-        vlSelf->__PVT__read[0x17U] = vlSelf->__VdfgTmp_h25305f44__0[0x17U];
-        vlSelf->__PVT__read[0x18U] = vlSelf->__VdfgTmp_h25305f44__0[0x18U];
-        vlSelf->__PVT__read[0x19U] = vlSelf->__VdfgTmp_h25305f44__0[0x19U];
-        vlSelf->__PVT__read[0x1aU] = vlSelf->__VdfgTmp_h25305f44__0[0x1aU];
-        vlSelf->__PVT__read[0x1bU] = vlSelf->__VdfgTmp_h25305f44__0[0x1bU];
-        vlSelf->__PVT__read[0x1cU] = vlSelf->__VdfgTmp_h25305f44__0[0x1cU];
-        vlSelf->__PVT__read[0x1dU] = vlSelf->__VdfgTmp_h25305f44__0[0x1dU];
-        vlSelf->__PVT__read[0x1eU] = (IData)(vlSelf->__PVT__refill_buffer_15);
-        vlSelf->__PVT__read[0x1fU] = (IData)((vlSelf->__PVT__refill_buffer_15 
-                                              >> 0x20U));
-    } else if (vlSelf->__PVT__ren_reg) {
-        if (__PVT___hit0_T_2) {
-            vlSelf->__PVT__read[0U] = vlSelf->__PVT__rdata0[0U];
-            vlSelf->__PVT__read[1U] = vlSelf->__PVT__rdata0[1U];
-            vlSelf->__PVT__read[2U] = vlSelf->__PVT__rdata0[2U];
-            vlSelf->__PVT__read[3U] = vlSelf->__PVT__rdata0[3U];
-            vlSelf->__PVT__read[4U] = vlSelf->__PVT__rdata0[4U];
-            vlSelf->__PVT__read[5U] = vlSelf->__PVT__rdata0[5U];
-            vlSelf->__PVT__read[6U] = vlSelf->__PVT__rdata0[6U];
-            vlSelf->__PVT__read[7U] = vlSelf->__PVT__rdata0[7U];
-            vlSelf->__PVT__read[8U] = vlSelf->__PVT__rdata0[8U];
-            vlSelf->__PVT__read[9U] = vlSelf->__PVT__rdata0[9U];
-            vlSelf->__PVT__read[0xaU] = vlSelf->__PVT__rdata0[0xaU];
-            vlSelf->__PVT__read[0xbU] = vlSelf->__PVT__rdata0[0xbU];
-            vlSelf->__PVT__read[0xcU] = vlSelf->__PVT__rdata0[0xcU];
-            vlSelf->__PVT__read[0xdU] = vlSelf->__PVT__rdata0[0xdU];
-            vlSelf->__PVT__read[0xeU] = vlSelf->__PVT__rdata0[0xeU];
-            vlSelf->__PVT__read[0xfU] = vlSelf->__PVT__rdata0[0xfU];
-            vlSelf->__PVT__read[0x10U] = vlSelf->__PVT__rdata0[0x10U];
-            vlSelf->__PVT__read[0x11U] = vlSelf->__PVT__rdata0[0x11U];
-            vlSelf->__PVT__read[0x12U] = vlSelf->__PVT__rdata0[0x12U];
-            vlSelf->__PVT__read[0x13U] = vlSelf->__PVT__rdata0[0x13U];
-            vlSelf->__PVT__read[0x14U] = vlSelf->__PVT__rdata0[0x14U];
-            vlSelf->__PVT__read[0x15U] = vlSelf->__PVT__rdata0[0x15U];
-            vlSelf->__PVT__read[0x16U] = vlSelf->__PVT__rdata0[0x16U];
-            vlSelf->__PVT__read[0x17U] = vlSelf->__PVT__rdata0[0x17U];
-            vlSelf->__PVT__read[0x18U] = vlSelf->__PVT__rdata0[0x18U];
-            vlSelf->__PVT__read[0x19U] = vlSelf->__PVT__rdata0[0x19U];
-            vlSelf->__PVT__read[0x1aU] = vlSelf->__PVT__rdata0[0x1aU];
-            vlSelf->__PVT__read[0x1bU] = vlSelf->__PVT__rdata0[0x1bU];
-            vlSelf->__PVT__read[0x1cU] = vlSelf->__PVT__rdata0[0x1cU];
-            vlSelf->__PVT__read[0x1dU] = vlSelf->__PVT__rdata0[0x1dU];
-            vlSelf->__PVT__read[0x1eU] = vlSelf->__PVT__rdata0[0x1eU];
-            vlSelf->__PVT__read[0x1fU] = vlSelf->__PVT__rdata0[0x1fU];
-        } else {
-            vlSelf->__PVT__read[0U] = vlSelf->__PVT__rdata1[0U];
-            vlSelf->__PVT__read[1U] = vlSelf->__PVT__rdata1[1U];
-            vlSelf->__PVT__read[2U] = vlSelf->__PVT__rdata1[2U];
-            vlSelf->__PVT__read[3U] = vlSelf->__PVT__rdata1[3U];
-            vlSelf->__PVT__read[4U] = vlSelf->__PVT__rdata1[4U];
-            vlSelf->__PVT__read[5U] = vlSelf->__PVT__rdata1[5U];
-            vlSelf->__PVT__read[6U] = vlSelf->__PVT__rdata1[6U];
-            vlSelf->__PVT__read[7U] = vlSelf->__PVT__rdata1[7U];
-            vlSelf->__PVT__read[8U] = vlSelf->__PVT__rdata1[8U];
-            vlSelf->__PVT__read[9U] = vlSelf->__PVT__rdata1[9U];
-            vlSelf->__PVT__read[0xaU] = vlSelf->__PVT__rdata1[0xaU];
-            vlSelf->__PVT__read[0xbU] = vlSelf->__PVT__rdata1[0xbU];
-            vlSelf->__PVT__read[0xcU] = vlSelf->__PVT__rdata1[0xcU];
-            vlSelf->__PVT__read[0xdU] = vlSelf->__PVT__rdata1[0xdU];
-            vlSelf->__PVT__read[0xeU] = vlSelf->__PVT__rdata1[0xeU];
-            vlSelf->__PVT__read[0xfU] = vlSelf->__PVT__rdata1[0xfU];
-            vlSelf->__PVT__read[0x10U] = vlSelf->__PVT__rdata1[0x10U];
-            vlSelf->__PVT__read[0x11U] = vlSelf->__PVT__rdata1[0x11U];
-            vlSelf->__PVT__read[0x12U] = vlSelf->__PVT__rdata1[0x12U];
-            vlSelf->__PVT__read[0x13U] = vlSelf->__PVT__rdata1[0x13U];
-            vlSelf->__PVT__read[0x14U] = vlSelf->__PVT__rdata1[0x14U];
-            vlSelf->__PVT__read[0x15U] = vlSelf->__PVT__rdata1[0x15U];
-            vlSelf->__PVT__read[0x16U] = vlSelf->__PVT__rdata1[0x16U];
-            vlSelf->__PVT__read[0x17U] = vlSelf->__PVT__rdata1[0x17U];
-            vlSelf->__PVT__read[0x18U] = vlSelf->__PVT__rdata1[0x18U];
-            vlSelf->__PVT__read[0x19U] = vlSelf->__PVT__rdata1[0x19U];
-            vlSelf->__PVT__read[0x1aU] = vlSelf->__PVT__rdata1[0x1aU];
-            vlSelf->__PVT__read[0x1bU] = vlSelf->__PVT__rdata1[0x1bU];
-            vlSelf->__PVT__read[0x1cU] = vlSelf->__PVT__rdata1[0x1cU];
-            vlSelf->__PVT__read[0x1dU] = vlSelf->__PVT__rdata1[0x1dU];
-            vlSelf->__PVT__read[0x1eU] = vlSelf->__PVT__rdata1[0x1eU];
-            vlSelf->__PVT__read[0x1fU] = vlSelf->__PVT__rdata1[0x1fU];
-        }
-    } else if (__PVT___hit0_T_2) {
-        vlSelf->__PVT__read[0U] = vlSelf->__PVT__rdata0_buf[0U];
-        vlSelf->__PVT__read[1U] = vlSelf->__PVT__rdata0_buf[1U];
-        vlSelf->__PVT__read[2U] = vlSelf->__PVT__rdata0_buf[2U];
-        vlSelf->__PVT__read[3U] = vlSelf->__PVT__rdata0_buf[3U];
-        vlSelf->__PVT__read[4U] = vlSelf->__PVT__rdata0_buf[4U];
-        vlSelf->__PVT__read[5U] = vlSelf->__PVT__rdata0_buf[5U];
-        vlSelf->__PVT__read[6U] = vlSelf->__PVT__rdata0_buf[6U];
-        vlSelf->__PVT__read[7U] = vlSelf->__PVT__rdata0_buf[7U];
-        vlSelf->__PVT__read[8U] = vlSelf->__PVT__rdata0_buf[8U];
-        vlSelf->__PVT__read[9U] = vlSelf->__PVT__rdata0_buf[9U];
-        vlSelf->__PVT__read[0xaU] = vlSelf->__PVT__rdata0_buf[0xaU];
-        vlSelf->__PVT__read[0xbU] = vlSelf->__PVT__rdata0_buf[0xbU];
-        vlSelf->__PVT__read[0xcU] = vlSelf->__PVT__rdata0_buf[0xcU];
-        vlSelf->__PVT__read[0xdU] = vlSelf->__PVT__rdata0_buf[0xdU];
-        vlSelf->__PVT__read[0xeU] = vlSelf->__PVT__rdata0_buf[0xeU];
-        vlSelf->__PVT__read[0xfU] = vlSelf->__PVT__rdata0_buf[0xfU];
-        vlSelf->__PVT__read[0x10U] = vlSelf->__PVT__rdata0_buf[0x10U];
-        vlSelf->__PVT__read[0x11U] = vlSelf->__PVT__rdata0_buf[0x11U];
-        vlSelf->__PVT__read[0x12U] = vlSelf->__PVT__rdata0_buf[0x12U];
-        vlSelf->__PVT__read[0x13U] = vlSelf->__PVT__rdata0_buf[0x13U];
-        vlSelf->__PVT__read[0x14U] = vlSelf->__PVT__rdata0_buf[0x14U];
-        vlSelf->__PVT__read[0x15U] = vlSelf->__PVT__rdata0_buf[0x15U];
-        vlSelf->__PVT__read[0x16U] = vlSelf->__PVT__rdata0_buf[0x16U];
-        vlSelf->__PVT__read[0x17U] = vlSelf->__PVT__rdata0_buf[0x17U];
-        vlSelf->__PVT__read[0x18U] = vlSelf->__PVT__rdata0_buf[0x18U];
-        vlSelf->__PVT__read[0x19U] = vlSelf->__PVT__rdata0_buf[0x19U];
-        vlSelf->__PVT__read[0x1aU] = vlSelf->__PVT__rdata0_buf[0x1aU];
-        vlSelf->__PVT__read[0x1bU] = vlSelf->__PVT__rdata0_buf[0x1bU];
-        vlSelf->__PVT__read[0x1cU] = vlSelf->__PVT__rdata0_buf[0x1cU];
-        vlSelf->__PVT__read[0x1dU] = vlSelf->__PVT__rdata0_buf[0x1dU];
-        vlSelf->__PVT__read[0x1eU] = vlSelf->__PVT__rdata0_buf[0x1eU];
-        vlSelf->__PVT__read[0x1fU] = vlSelf->__PVT__rdata0_buf[0x1fU];
-    } else {
-        vlSelf->__PVT__read[0U] = vlSelf->__PVT__rdata1_buf[0U];
-        vlSelf->__PVT__read[1U] = vlSelf->__PVT__rdata1_buf[1U];
-        vlSelf->__PVT__read[2U] = vlSelf->__PVT__rdata1_buf[2U];
-        vlSelf->__PVT__read[3U] = vlSelf->__PVT__rdata1_buf[3U];
-        vlSelf->__PVT__read[4U] = vlSelf->__PVT__rdata1_buf[4U];
-        vlSelf->__PVT__read[5U] = vlSelf->__PVT__rdata1_buf[5U];
-        vlSelf->__PVT__read[6U] = vlSelf->__PVT__rdata1_buf[6U];
-        vlSelf->__PVT__read[7U] = vlSelf->__PVT__rdata1_buf[7U];
-        vlSelf->__PVT__read[8U] = vlSelf->__PVT__rdata1_buf[8U];
-        vlSelf->__PVT__read[9U] = vlSelf->__PVT__rdata1_buf[9U];
-        vlSelf->__PVT__read[0xaU] = vlSelf->__PVT__rdata1_buf[0xaU];
-        vlSelf->__PVT__read[0xbU] = vlSelf->__PVT__rdata1_buf[0xbU];
-        vlSelf->__PVT__read[0xcU] = vlSelf->__PVT__rdata1_buf[0xcU];
-        vlSelf->__PVT__read[0xdU] = vlSelf->__PVT__rdata1_buf[0xdU];
-        vlSelf->__PVT__read[0xeU] = vlSelf->__PVT__rdata1_buf[0xeU];
-        vlSelf->__PVT__read[0xfU] = vlSelf->__PVT__rdata1_buf[0xfU];
-        vlSelf->__PVT__read[0x10U] = vlSelf->__PVT__rdata1_buf[0x10U];
-        vlSelf->__PVT__read[0x11U] = vlSelf->__PVT__rdata1_buf[0x11U];
-        vlSelf->__PVT__read[0x12U] = vlSelf->__PVT__rdata1_buf[0x12U];
-        vlSelf->__PVT__read[0x13U] = vlSelf->__PVT__rdata1_buf[0x13U];
-        vlSelf->__PVT__read[0x14U] = vlSelf->__PVT__rdata1_buf[0x14U];
-        vlSelf->__PVT__read[0x15U] = vlSelf->__PVT__rdata1_buf[0x15U];
-        vlSelf->__PVT__read[0x16U] = vlSelf->__PVT__rdata1_buf[0x16U];
-        vlSelf->__PVT__read[0x17U] = vlSelf->__PVT__rdata1_buf[0x17U];
-        vlSelf->__PVT__read[0x18U] = vlSelf->__PVT__rdata1_buf[0x18U];
-        vlSelf->__PVT__read[0x19U] = vlSelf->__PVT__rdata1_buf[0x19U];
-        vlSelf->__PVT__read[0x1aU] = vlSelf->__PVT__rdata1_buf[0x1aU];
-        vlSelf->__PVT__read[0x1bU] = vlSelf->__PVT__rdata1_buf[0x1bU];
-        vlSelf->__PVT__read[0x1cU] = vlSelf->__PVT__rdata1_buf[0x1cU];
-        vlSelf->__PVT__read[0x1dU] = vlSelf->__PVT__rdata1_buf[0x1dU];
-        vlSelf->__PVT__read[0x1eU] = vlSelf->__PVT__rdata1_buf[0x1eU];
-        vlSelf->__PVT__read[0x1fU] = vlSelf->__PVT__rdata1_buf[0x1fU];
-    }
-    vlSelf->__PVT__hit0 = ((IData)(__PVT___dirty0_T) 
-                           & (IData)(__PVT___hit0_T_2));
     vlSelf->__PVT___T_496 = (1U & ((IData)(vlSelf->__PVT__is_alloc) 
                                    | (vlSelf->__VdfgTmp_hee7a4229__0[0U] 
                                       >> 1U)));
@@ -3607,6 +3451,177 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
     vlSelf->__PVT___T_652 = ((IData)(vlSelf->__PVT__is_alloc) 
                              | (vlSelf->__VdfgTmp_hee7a4229__0[3U] 
                                 >> 0x1fU));
+    if (vlSelf->__PVT__is_alloc_reg) {
+        vlSelf->__PVT__read[0U] = vlSelf->__VdfgTmp_h25305f44__0[0U];
+        vlSelf->__PVT__read[1U] = vlSelf->__VdfgTmp_h25305f44__0[1U];
+        vlSelf->__PVT__read[2U] = vlSelf->__VdfgTmp_h25305f44__0[2U];
+        vlSelf->__PVT__read[3U] = vlSelf->__VdfgTmp_h25305f44__0[3U];
+        vlSelf->__PVT__read[4U] = vlSelf->__VdfgTmp_h25305f44__0[4U];
+        vlSelf->__PVT__read[5U] = vlSelf->__VdfgTmp_h25305f44__0[5U];
+        vlSelf->__PVT__read[6U] = vlSelf->__VdfgTmp_h25305f44__0[6U];
+        vlSelf->__PVT__read[7U] = vlSelf->__VdfgTmp_h25305f44__0[7U];
+        vlSelf->__PVT__read[8U] = vlSelf->__VdfgTmp_h25305f44__0[8U];
+        vlSelf->__PVT__read[9U] = vlSelf->__VdfgTmp_h25305f44__0[9U];
+        vlSelf->__PVT__read[0xaU] = vlSelf->__VdfgTmp_h25305f44__0[0xaU];
+        vlSelf->__PVT__read[0xbU] = vlSelf->__VdfgTmp_h25305f44__0[0xbU];
+        vlSelf->__PVT__read[0xcU] = vlSelf->__VdfgTmp_h25305f44__0[0xcU];
+        vlSelf->__PVT__read[0xdU] = vlSelf->__VdfgTmp_h25305f44__0[0xdU];
+        vlSelf->__PVT__read[0xeU] = vlSelf->__VdfgTmp_h25305f44__0[0xeU];
+        vlSelf->__PVT__read[0xfU] = vlSelf->__VdfgTmp_h25305f44__0[0xfU];
+        vlSelf->__PVT__read[0x10U] = vlSelf->__VdfgTmp_h25305f44__0[0x10U];
+        vlSelf->__PVT__read[0x11U] = vlSelf->__VdfgTmp_h25305f44__0[0x11U];
+        vlSelf->__PVT__read[0x12U] = vlSelf->__VdfgTmp_h25305f44__0[0x12U];
+        vlSelf->__PVT__read[0x13U] = vlSelf->__VdfgTmp_h25305f44__0[0x13U];
+        vlSelf->__PVT__read[0x14U] = vlSelf->__VdfgTmp_h25305f44__0[0x14U];
+        vlSelf->__PVT__read[0x15U] = vlSelf->__VdfgTmp_h25305f44__0[0x15U];
+        vlSelf->__PVT__read[0x16U] = vlSelf->__VdfgTmp_h25305f44__0[0x16U];
+        vlSelf->__PVT__read[0x17U] = vlSelf->__VdfgTmp_h25305f44__0[0x17U];
+        vlSelf->__PVT__read[0x18U] = vlSelf->__VdfgTmp_h25305f44__0[0x18U];
+        vlSelf->__PVT__read[0x19U] = vlSelf->__VdfgTmp_h25305f44__0[0x19U];
+        vlSelf->__PVT__read[0x1aU] = vlSelf->__VdfgTmp_h25305f44__0[0x1aU];
+        vlSelf->__PVT__read[0x1bU] = vlSelf->__VdfgTmp_h25305f44__0[0x1bU];
+        vlSelf->__PVT__read[0x1cU] = vlSelf->__VdfgTmp_h25305f44__0[0x1cU];
+        vlSelf->__PVT__read[0x1dU] = vlSelf->__VdfgTmp_h25305f44__0[0x1dU];
+        vlSelf->__PVT__read[0x1eU] = (IData)(vlSelf->__PVT__refill_buffer_15);
+        vlSelf->__PVT__read[0x1fU] = (IData)((vlSelf->__PVT__refill_buffer_15 
+                                              >> 0x20U));
+    } else if (vlSelf->__PVT__ren_reg) {
+        if (__PVT___hit0_T_2) {
+            vlSelf->__PVT__read[0U] = vlSelf->__PVT__rdata0[0U];
+            vlSelf->__PVT__read[1U] = vlSelf->__PVT__rdata0[1U];
+            vlSelf->__PVT__read[2U] = vlSelf->__PVT__rdata0[2U];
+            vlSelf->__PVT__read[3U] = vlSelf->__PVT__rdata0[3U];
+            vlSelf->__PVT__read[4U] = vlSelf->__PVT__rdata0[4U];
+            vlSelf->__PVT__read[5U] = vlSelf->__PVT__rdata0[5U];
+            vlSelf->__PVT__read[6U] = vlSelf->__PVT__rdata0[6U];
+            vlSelf->__PVT__read[7U] = vlSelf->__PVT__rdata0[7U];
+            vlSelf->__PVT__read[8U] = vlSelf->__PVT__rdata0[8U];
+            vlSelf->__PVT__read[9U] = vlSelf->__PVT__rdata0[9U];
+            vlSelf->__PVT__read[0xaU] = vlSelf->__PVT__rdata0[0xaU];
+            vlSelf->__PVT__read[0xbU] = vlSelf->__PVT__rdata0[0xbU];
+            vlSelf->__PVT__read[0xcU] = vlSelf->__PVT__rdata0[0xcU];
+            vlSelf->__PVT__read[0xdU] = vlSelf->__PVT__rdata0[0xdU];
+            vlSelf->__PVT__read[0xeU] = vlSelf->__PVT__rdata0[0xeU];
+            vlSelf->__PVT__read[0xfU] = vlSelf->__PVT__rdata0[0xfU];
+            vlSelf->__PVT__read[0x10U] = vlSelf->__PVT__rdata0[0x10U];
+            vlSelf->__PVT__read[0x11U] = vlSelf->__PVT__rdata0[0x11U];
+            vlSelf->__PVT__read[0x12U] = vlSelf->__PVT__rdata0[0x12U];
+            vlSelf->__PVT__read[0x13U] = vlSelf->__PVT__rdata0[0x13U];
+            vlSelf->__PVT__read[0x14U] = vlSelf->__PVT__rdata0[0x14U];
+            vlSelf->__PVT__read[0x15U] = vlSelf->__PVT__rdata0[0x15U];
+            vlSelf->__PVT__read[0x16U] = vlSelf->__PVT__rdata0[0x16U];
+            vlSelf->__PVT__read[0x17U] = vlSelf->__PVT__rdata0[0x17U];
+            vlSelf->__PVT__read[0x18U] = vlSelf->__PVT__rdata0[0x18U];
+            vlSelf->__PVT__read[0x19U] = vlSelf->__PVT__rdata0[0x19U];
+            vlSelf->__PVT__read[0x1aU] = vlSelf->__PVT__rdata0[0x1aU];
+            vlSelf->__PVT__read[0x1bU] = vlSelf->__PVT__rdata0[0x1bU];
+            vlSelf->__PVT__read[0x1cU] = vlSelf->__PVT__rdata0[0x1cU];
+            vlSelf->__PVT__read[0x1dU] = vlSelf->__PVT__rdata0[0x1dU];
+            vlSelf->__PVT__read[0x1eU] = vlSelf->__PVT__rdata0[0x1eU];
+            vlSelf->__PVT__read[0x1fU] = vlSelf->__PVT__rdata0[0x1fU];
+        } else {
+            vlSelf->__PVT__read[0U] = vlSelf->__PVT__rdata1[0U];
+            vlSelf->__PVT__read[1U] = vlSelf->__PVT__rdata1[1U];
+            vlSelf->__PVT__read[2U] = vlSelf->__PVT__rdata1[2U];
+            vlSelf->__PVT__read[3U] = vlSelf->__PVT__rdata1[3U];
+            vlSelf->__PVT__read[4U] = vlSelf->__PVT__rdata1[4U];
+            vlSelf->__PVT__read[5U] = vlSelf->__PVT__rdata1[5U];
+            vlSelf->__PVT__read[6U] = vlSelf->__PVT__rdata1[6U];
+            vlSelf->__PVT__read[7U] = vlSelf->__PVT__rdata1[7U];
+            vlSelf->__PVT__read[8U] = vlSelf->__PVT__rdata1[8U];
+            vlSelf->__PVT__read[9U] = vlSelf->__PVT__rdata1[9U];
+            vlSelf->__PVT__read[0xaU] = vlSelf->__PVT__rdata1[0xaU];
+            vlSelf->__PVT__read[0xbU] = vlSelf->__PVT__rdata1[0xbU];
+            vlSelf->__PVT__read[0xcU] = vlSelf->__PVT__rdata1[0xcU];
+            vlSelf->__PVT__read[0xdU] = vlSelf->__PVT__rdata1[0xdU];
+            vlSelf->__PVT__read[0xeU] = vlSelf->__PVT__rdata1[0xeU];
+            vlSelf->__PVT__read[0xfU] = vlSelf->__PVT__rdata1[0xfU];
+            vlSelf->__PVT__read[0x10U] = vlSelf->__PVT__rdata1[0x10U];
+            vlSelf->__PVT__read[0x11U] = vlSelf->__PVT__rdata1[0x11U];
+            vlSelf->__PVT__read[0x12U] = vlSelf->__PVT__rdata1[0x12U];
+            vlSelf->__PVT__read[0x13U] = vlSelf->__PVT__rdata1[0x13U];
+            vlSelf->__PVT__read[0x14U] = vlSelf->__PVT__rdata1[0x14U];
+            vlSelf->__PVT__read[0x15U] = vlSelf->__PVT__rdata1[0x15U];
+            vlSelf->__PVT__read[0x16U] = vlSelf->__PVT__rdata1[0x16U];
+            vlSelf->__PVT__read[0x17U] = vlSelf->__PVT__rdata1[0x17U];
+            vlSelf->__PVT__read[0x18U] = vlSelf->__PVT__rdata1[0x18U];
+            vlSelf->__PVT__read[0x19U] = vlSelf->__PVT__rdata1[0x19U];
+            vlSelf->__PVT__read[0x1aU] = vlSelf->__PVT__rdata1[0x1aU];
+            vlSelf->__PVT__read[0x1bU] = vlSelf->__PVT__rdata1[0x1bU];
+            vlSelf->__PVT__read[0x1cU] = vlSelf->__PVT__rdata1[0x1cU];
+            vlSelf->__PVT__read[0x1dU] = vlSelf->__PVT__rdata1[0x1dU];
+            vlSelf->__PVT__read[0x1eU] = vlSelf->__PVT__rdata1[0x1eU];
+            vlSelf->__PVT__read[0x1fU] = vlSelf->__PVT__rdata1[0x1fU];
+        }
+    } else if (__PVT___hit0_T_2) {
+        vlSelf->__PVT__read[0U] = vlSelf->__PVT__rdata0_buf[0U];
+        vlSelf->__PVT__read[1U] = vlSelf->__PVT__rdata0_buf[1U];
+        vlSelf->__PVT__read[2U] = vlSelf->__PVT__rdata0_buf[2U];
+        vlSelf->__PVT__read[3U] = vlSelf->__PVT__rdata0_buf[3U];
+        vlSelf->__PVT__read[4U] = vlSelf->__PVT__rdata0_buf[4U];
+        vlSelf->__PVT__read[5U] = vlSelf->__PVT__rdata0_buf[5U];
+        vlSelf->__PVT__read[6U] = vlSelf->__PVT__rdata0_buf[6U];
+        vlSelf->__PVT__read[7U] = vlSelf->__PVT__rdata0_buf[7U];
+        vlSelf->__PVT__read[8U] = vlSelf->__PVT__rdata0_buf[8U];
+        vlSelf->__PVT__read[9U] = vlSelf->__PVT__rdata0_buf[9U];
+        vlSelf->__PVT__read[0xaU] = vlSelf->__PVT__rdata0_buf[0xaU];
+        vlSelf->__PVT__read[0xbU] = vlSelf->__PVT__rdata0_buf[0xbU];
+        vlSelf->__PVT__read[0xcU] = vlSelf->__PVT__rdata0_buf[0xcU];
+        vlSelf->__PVT__read[0xdU] = vlSelf->__PVT__rdata0_buf[0xdU];
+        vlSelf->__PVT__read[0xeU] = vlSelf->__PVT__rdata0_buf[0xeU];
+        vlSelf->__PVT__read[0xfU] = vlSelf->__PVT__rdata0_buf[0xfU];
+        vlSelf->__PVT__read[0x10U] = vlSelf->__PVT__rdata0_buf[0x10U];
+        vlSelf->__PVT__read[0x11U] = vlSelf->__PVT__rdata0_buf[0x11U];
+        vlSelf->__PVT__read[0x12U] = vlSelf->__PVT__rdata0_buf[0x12U];
+        vlSelf->__PVT__read[0x13U] = vlSelf->__PVT__rdata0_buf[0x13U];
+        vlSelf->__PVT__read[0x14U] = vlSelf->__PVT__rdata0_buf[0x14U];
+        vlSelf->__PVT__read[0x15U] = vlSelf->__PVT__rdata0_buf[0x15U];
+        vlSelf->__PVT__read[0x16U] = vlSelf->__PVT__rdata0_buf[0x16U];
+        vlSelf->__PVT__read[0x17U] = vlSelf->__PVT__rdata0_buf[0x17U];
+        vlSelf->__PVT__read[0x18U] = vlSelf->__PVT__rdata0_buf[0x18U];
+        vlSelf->__PVT__read[0x19U] = vlSelf->__PVT__rdata0_buf[0x19U];
+        vlSelf->__PVT__read[0x1aU] = vlSelf->__PVT__rdata0_buf[0x1aU];
+        vlSelf->__PVT__read[0x1bU] = vlSelf->__PVT__rdata0_buf[0x1bU];
+        vlSelf->__PVT__read[0x1cU] = vlSelf->__PVT__rdata0_buf[0x1cU];
+        vlSelf->__PVT__read[0x1dU] = vlSelf->__PVT__rdata0_buf[0x1dU];
+        vlSelf->__PVT__read[0x1eU] = vlSelf->__PVT__rdata0_buf[0x1eU];
+        vlSelf->__PVT__read[0x1fU] = vlSelf->__PVT__rdata0_buf[0x1fU];
+    } else {
+        vlSelf->__PVT__read[0U] = vlSelf->__PVT__rdata1_buf[0U];
+        vlSelf->__PVT__read[1U] = vlSelf->__PVT__rdata1_buf[1U];
+        vlSelf->__PVT__read[2U] = vlSelf->__PVT__rdata1_buf[2U];
+        vlSelf->__PVT__read[3U] = vlSelf->__PVT__rdata1_buf[3U];
+        vlSelf->__PVT__read[4U] = vlSelf->__PVT__rdata1_buf[4U];
+        vlSelf->__PVT__read[5U] = vlSelf->__PVT__rdata1_buf[5U];
+        vlSelf->__PVT__read[6U] = vlSelf->__PVT__rdata1_buf[6U];
+        vlSelf->__PVT__read[7U] = vlSelf->__PVT__rdata1_buf[7U];
+        vlSelf->__PVT__read[8U] = vlSelf->__PVT__rdata1_buf[8U];
+        vlSelf->__PVT__read[9U] = vlSelf->__PVT__rdata1_buf[9U];
+        vlSelf->__PVT__read[0xaU] = vlSelf->__PVT__rdata1_buf[0xaU];
+        vlSelf->__PVT__read[0xbU] = vlSelf->__PVT__rdata1_buf[0xbU];
+        vlSelf->__PVT__read[0xcU] = vlSelf->__PVT__rdata1_buf[0xcU];
+        vlSelf->__PVT__read[0xdU] = vlSelf->__PVT__rdata1_buf[0xdU];
+        vlSelf->__PVT__read[0xeU] = vlSelf->__PVT__rdata1_buf[0xeU];
+        vlSelf->__PVT__read[0xfU] = vlSelf->__PVT__rdata1_buf[0xfU];
+        vlSelf->__PVT__read[0x10U] = vlSelf->__PVT__rdata1_buf[0x10U];
+        vlSelf->__PVT__read[0x11U] = vlSelf->__PVT__rdata1_buf[0x11U];
+        vlSelf->__PVT__read[0x12U] = vlSelf->__PVT__rdata1_buf[0x12U];
+        vlSelf->__PVT__read[0x13U] = vlSelf->__PVT__rdata1_buf[0x13U];
+        vlSelf->__PVT__read[0x14U] = vlSelf->__PVT__rdata1_buf[0x14U];
+        vlSelf->__PVT__read[0x15U] = vlSelf->__PVT__rdata1_buf[0x15U];
+        vlSelf->__PVT__read[0x16U] = vlSelf->__PVT__rdata1_buf[0x16U];
+        vlSelf->__PVT__read[0x17U] = vlSelf->__PVT__rdata1_buf[0x17U];
+        vlSelf->__PVT__read[0x18U] = vlSelf->__PVT__rdata1_buf[0x18U];
+        vlSelf->__PVT__read[0x19U] = vlSelf->__PVT__rdata1_buf[0x19U];
+        vlSelf->__PVT__read[0x1aU] = vlSelf->__PVT__rdata1_buf[0x1aU];
+        vlSelf->__PVT__read[0x1bU] = vlSelf->__PVT__rdata1_buf[0x1bU];
+        vlSelf->__PVT__read[0x1cU] = vlSelf->__PVT__rdata1_buf[0x1cU];
+        vlSelf->__PVT__read[0x1dU] = vlSelf->__PVT__rdata1_buf[0x1dU];
+        vlSelf->__PVT__read[0x1eU] = vlSelf->__PVT__rdata1_buf[0x1eU];
+        vlSelf->__PVT__read[0x1fU] = vlSelf->__PVT__rdata1_buf[0x1fU];
+    }
+    vlSelf->__PVT__hit0 = ((IData)(__PVT___dirty0_T) 
+                           & (IData)(__PVT___hit0_T_2));
     vlSelf->__PVT___T_660 = (1U & (((~ (IData)(vlSelf->__PVT___replace_wire_T)) 
                                     & (IData)(vlSelf->__PVT__dirty0)) 
                                    | (0xffffU & ((IData)(vlSelf->__PVT___replace_wire_T) 
@@ -3634,13 +3649,13 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
                                                                       >> 2U))])));
     vlSelf->io_fccache_hit = ((IData)(vlSelf->__PVT__hit0) 
                               | ((IData)(vlSelf->__PVT___dirty1_T) 
-                                 & (vlSelf->__PVT___TagArray_ext_R1_data 
+                                 & (vlSelf->__PVT__rtag1_choose 
                                     == (vlSelf->__PVT__addr_reg 
                                         >> 0xaU))));
     vlSelf->__PVT___GEN_13 = ((((IData)(vlSelf->__PVT___T_660)
                                  ? ((IData)(vlSelf->__PVT__dirty0)
-                                     ? vlSelf->__PVT___TagArray_ext_R0_data
-                                     : vlSelf->__PVT___TagArray_ext_R1_data)
+                                     ? vlSelf->__PVT__rtag0_choose
+                                     : vlSelf->__PVT__rtag1_choose)
                                  : (vlSelf->__PVT__addr_reg 
                                     >> 0xaU)) << 0xaU) 
                               | (0x380U & vlSelf->__PVT__addr_reg));
@@ -3664,7 +3679,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
                 vlSelf->__PVT___GEN_9 = __VdfgTmp_h6db892a9__0;
                 vlSelf->__PVT___GEN_10 = __VdfgTmp_hb5f4fc5d__0;
             }
-            __VdfgTmp_hf0d69e76__0 = 1U;
+            __VdfgTmp_h0e152e68__0 = 1U;
         } else {
             if (vlSelf->__PVT___T_331) {
                 if (vlSelf->__PVT__is_alloc) {
@@ -3681,23 +3696,23 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
                 vlSelf->__PVT___GEN_9 = 0U;
                 vlSelf->__PVT___GEN_10 = 0U;
             }
-            __VdfgTmp_hf0d69e76__0 = 0U;
+            __VdfgTmp_h0e152e68__0 = 0U;
         }
-        __VdfgTmp_h1acee690__0 = (1U & (~ (IData)(vlSelf->io_fccache_hit)));
+        __VdfgTmp_h52bfe29c__0 = (1U & (~ (IData)(vlSelf->io_fccache_hit)));
     } else {
         vlSelf->__PVT___GEN_9 = 0U;
         vlSelf->__PVT___GEN_10 = 0U;
-        __VdfgTmp_hf0d69e76__0 = 0U;
-        __VdfgTmp_h1acee690__0 = 0U;
+        __VdfgTmp_h0e152e68__0 = 0U;
+        __VdfgTmp_h52bfe29c__0 = 0U;
     }
-    vlSelf->__PVT___GEN_2 = ((IData)(__VdfgTmp_hf0d69e76__0) 
+    vlSelf->__PVT___GEN_2 = ((IData)(__VdfgTmp_h0e152e68__0) 
                              & (IData)(vlSelf->__PVT__hit0));
     vlSelf->__PVT___GEN_1 = ((~ (IData)(vlSelf->__PVT__hit0)) 
-                             & (IData)(__VdfgTmp_hf0d69e76__0));
-    vlSelf->__PVT___GEN_0 = ((IData)(__VdfgTmp_h1acee690__0) 
+                             & (IData)(__VdfgTmp_h0e152e68__0));
+    vlSelf->__PVT___GEN_0 = ((IData)(__VdfgTmp_h52bfe29c__0) 
                              & (IData)(vlSelf->__PVT___T_331));
     vlSelf->__PVT___GEN = ((~ (IData)(vlSelf->__PVT___T_331)) 
-                           & (IData)(__VdfgTmp_h1acee690__0));
+                           & (IData)(__VdfgTmp_h52bfe29c__0));
 }
 
 VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2(VSoc_Cache* vlSelf) {
