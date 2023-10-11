@@ -214,13 +214,12 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_4;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___T_5;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_0;
         CData/*0:0*/ Soc__DOT__core__DOT__interact__DOT__ebreak_flag;
         CData/*5:0*/ Soc__DOT__core__DOT__interact__DOT__over_count;
         CData/*3:0*/ Soc__DOT__sram__DOT__w_count;
+        CData/*7:0*/ Soc__DOT__sram__DOT__r_count;
     };
     struct {
-        CData/*7:0*/ Soc__DOT__sram__DOT__r_count;
         CData/*1:0*/ Soc__DOT__sram__DOT__bresp;
         CData/*0:0*/ Soc__DOT__sram__DOT__bvalid;
         CData/*0:0*/ Soc__DOT__sram__DOT__rlast;
@@ -284,9 +283,9 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ Soc__DOT__sram__DOT__awaddr;
         IData/*31:0*/ Soc__DOT__sram__DOT__araddr;
         IData/*31:0*/ __VstlIterCount;
+        IData/*31:0*/ __VicoIterCount;
     };
     struct {
-        IData/*31:0*/ __VicoIterCount;
         IData/*31:0*/ __VactIterCount;
         QData/*63:0*/ Soc__DOT___core_io_AXI_Interface_w_bits_data;
         QData/*63:0*/ Soc__DOT__core__DOT___arbitor_io_master1_resp_bits_data;
@@ -350,9 +349,9 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__trap__DOT__cause;
         QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits;
         QData/*63:0*/ Soc__DOT__sram__DOT__rdata;
+        VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
     };
     struct {
-        VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
         VlUnpacked<CData/*0:0*/, 6> __Vm_traceActivity;
     };
     VlTriggerVec<1> __VstlTriggered;

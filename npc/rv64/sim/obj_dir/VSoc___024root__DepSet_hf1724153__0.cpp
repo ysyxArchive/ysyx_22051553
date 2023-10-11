@@ -473,7 +473,7 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
             = (0x3fU & ((IData)(1U) + (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)));
         if (VL_UNLIKELY((0x1eU == (IData)(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count)))) {
             VL_WRITEF("ebreak!\n");
-            VL_FINISH_MT("vsrc/Soc.v", 8714, "");
+            VL_FINISH_MT("vsrc/Soc.v", 8708, "");
         }
     }
     if (vlSelf->reset) {
@@ -2481,20 +2481,16 @@ VL_INLINE_OPT void VSoc___024root___nba_sequent__TOP__1(VSoc___024root* vlSelf) 
                 __Vdly__Soc__DOT__core__DOT__ioformem__DOT__state 
                     = ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1) 
                        << 1U);
-                __Vdly__Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid 
-                    = vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1;
             }
-        } else {
-            vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_0 
-                = ((2U != (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state)) 
-                   | (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1));
-            if ((1U & (~ (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_0)))) {
-                __Vdly__Soc__DOT__core__DOT__ioformem__DOT__state = 0U;
-            }
-            __Vdly__Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid 
-                = ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_0) 
-                   & (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid));
+        } else if ((1U & (~ ((2U != (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state)) 
+                             | (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1))))) {
+            __Vdly__Soc__DOT__core__DOT__ioformem__DOT__state = 0U;
         }
+        __Vdly__Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid 
+            = ((((~ (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T)) 
+                 & (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___T_5)) 
+                & (IData)(vlSelf->Soc__DOT__core__DOT___ioformem_io_fc_valid)) 
+               | (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid));
         if ((1U & (~ ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T) 
                       | (~ ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___T_5) 
                             & (IData)(vlSelf->Soc__DOT__core__DOT___ioformem_io_fc_valid))))))) {

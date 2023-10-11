@@ -509,9 +509,8 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__0(VSoc___024root* vlSelf,
     tracep->declBit(c+275,"mem_data_valid", false,-1);
     tracep->declQuad(c+276,"mem_data_bits", false,-1, 63,0);
     tracep->pushNamePrefix("unnamedblk1 ");
+    tracep->popNamePrefix(1);
     tracep->pushNamePrefix("unnamedblk2 ");
-    tracep->popNamePrefix(2);
-    tracep->pushNamePrefix("unnamedblk3 ");
     tracep->popNamePrefix(2);
     tracep->pushNamePrefix("mem ");
     tracep->declBit(c+6875,"clock", false,-1);

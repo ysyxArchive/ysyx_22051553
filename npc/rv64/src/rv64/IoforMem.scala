@@ -81,6 +81,10 @@ class IoforMem extends Module{
             
         }
         is(s_req){
+
+
+
+
             when(io.axi.resp.valid){
                 mem_data_valid := 1.B
                 mem_data_bits := io.axi.resp.bits.data
@@ -91,9 +95,15 @@ class IoforMem extends Module{
                 }.otherwise{
                     state := s_Idle
                     // mem_data_valid := 0.B  //多stall一个周期
-                }
-                
+                }    
+            }.otherwise{
+                io.axi.req.valid := 1.B 
+                io.axi.req.bits.addr := Cat( (io.excute.waddr(31,3) | io.excute.raddr(31,3)), 0.U(3.W) ).asUInt //修改后，对齐8字节
+                io.axi.req.bits.data := io.excute.wdata
+                io.axi.req.bits.mask := io.excute.wmask
+                io.axi.req.bits.rw := Mux(io.excute.load, 1.B, 0.B)
             }
+
         }
         is(s_wait){
             when(!io.fc.stall){
