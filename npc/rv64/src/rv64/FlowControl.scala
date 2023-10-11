@@ -139,10 +139,7 @@ class FlowControl extends Module{
 
     when((io.fcIcache.state =/= 0.U && !io.fcIcache.hit)){
         Icache_stall := 1.B
-    }.elsewhen(io.fcIcache.state === 0.U && io.fcIcache.req){
-        Icache_stall := 1.B
-    }
-    .otherwise{
+    }.otherwise{
         Icache_stall := 0.B
     }
 
@@ -150,10 +147,7 @@ class FlowControl extends Module{
     
     when(io.fcDcache.state =/= 0.U && !io.fcDcache.hit){
         Dcache_stall := 1.B
-    }.elsewhen(io.fcDcache.state === 0.U && io.fcDcache.req){ //进入时一定stall
-        Dcache_stall := 1.B
-    }
-    .otherwise{
+    }.otherwise{
         Dcache_stall := 0.B
     }
 

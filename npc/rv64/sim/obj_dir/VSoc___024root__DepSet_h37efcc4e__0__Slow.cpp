@@ -53,7 +53,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 8537, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 8547, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -968,28 +968,28 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
            & (0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type)));
     vlSelf->__VdfgTmp_h9d5684c6__0 = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6)) 
                                       & (0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type)));
-    vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T 
-        = (((IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hf0b5fb69__0)
-             ? vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result
-             : 0ULL) | ((IData)(vlSelf->__VdfgTmp_h9d5684c6__0)
-                         ? vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result
-                         : 0ULL));
     vlSelf->Soc__DOT__core__DOT__ioformem__DOT___axi_req_bits_addr_T 
         = (((IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hf0b5fb69__0)
              ? (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result)
              : 0U) | ((IData)(vlSelf->__VdfgTmp_h9d5684c6__0)
                        ? (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result)
                        : 0U));
-    vlSelf->Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid 
-        = ((0U != ((IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type) 
-                   | (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))) 
-           & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6)) 
-              & (0xa0000000ULL > vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T)));
+    vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T 
+        = (((IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hf0b5fb69__0)
+             ? vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result
+             : 0ULL) | ((IData)(vlSelf->__VdfgTmp_h9d5684c6__0)
+                         ? vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result
+                         : 0ULL));
     vlSelf->Soc__DOT__core__DOT__fc__DOT__IO_stall 
         = ((((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_1) 
              & (0x9fffffffU < vlSelf->Soc__DOT__core__DOT__ioformem__DOT___axi_req_bits_addr_T)) 
             & (0U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state))) 
            | (1U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state)));
+    vlSelf->Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid 
+        = ((0U != ((IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type) 
+                   | (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))) 
+           & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6)) 
+              & (0xa0000000ULL > vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T)));
 }
 
 #ifdef VL_DEBUG
@@ -1277,7 +1277,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_14 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_0 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1 = VL_RAND_RESET_I(1);
-    vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h87b31294__0 = 0;
+    vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h31988b74__0 = 0;
     vlSelf->Soc__DOT__core__DOT__csrs__DOT__MTVEC = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__csrs__DOT__MCAUSE = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__csrs__DOT__MEPC = VL_RAND_RESET_Q(64);
