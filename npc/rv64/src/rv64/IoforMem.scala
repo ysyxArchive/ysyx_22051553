@@ -68,7 +68,7 @@ class IoforMem extends Module{
     //顶层
     io.fc.req := (io.excute.load | io.excute.store) && ((io.excute.waddr | io.excute.raddr) >= "ha0000000".U)
     io.fc.state := state
-    io.fc.valid := io.mem.data.valid
+    io.fc.valid := io.axi.resp.valid
 
 
     switch(state){
@@ -100,7 +100,7 @@ class IoforMem extends Module{
                     axi_req_valid := 0.B  //停止申请总线，防止死锁
                 }.otherwise{
                     state := s_Idle
-                    mem_data_valid := 0.B
+                    mem_data_valid := 0.B  //多stall一个周期
                 }
                 
             }

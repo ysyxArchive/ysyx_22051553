@@ -8,9 +8,9 @@
 //开启批处理模式
 // #define BATCH_MODE
 //开启VCD跟踪
-// #define VCD_ON
+#define VCD_ON
 //开启访存跟踪
-#define MTRACE
+// #define MTRACE
 //开启差分测试  --DIFFTEST依赖于ITRACE
 // #define DIFFTEST
 

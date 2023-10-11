@@ -305,16 +305,12 @@ long long pmem_read(const svLogicVecVal* raddr){
     printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr[0].aval, 8);
     #endif
 
-  if( ((unsigned long)raddr[0].aval) == RTC_ADDRH || ((unsigned long)raddr[0].aval) == RTC_ADDRL){
-    if(((unsigned long)raddr[0].aval) == RTC_ADDRH){
+  if( ((unsigned long)raddr[0].aval) == RTC_BASE){
         struct timespec now;
         clock_gettime(CLOCK_MONOTONIC_COARSE, &now);
         rtc_time = now.tv_sec * 1000000 + now.tv_nsec / 1000;
 
-        return  (long long) (rtc_time >> 32);
-    }
-    else
-      return (long long) (rtc_time & 0xffffffff);
+        return  (long long) (rtc_time);
   }
   else if(((unsigned long)raddr[0].aval) == VGACTL_ADDR){
       uint32_t vga_ctrl_bundle = SCREEN_W << 16 | SCREEN_H;

@@ -9,11 +9,12 @@ int h = 0;
 
 void __am_gpu_init() {
   uint32_t vga_ctrl_bundle = inl(VGACTL_ADDR);
-  int i;
+  
   w = vga_ctrl_bundle>>16;  
   h = vga_ctrl_bundle & 0xffff;  
+  // 初始化成白色
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
-  for (i = 0; i < w * h; i ++) fb[i] = 0x00FFFFFF;
+  for (int i = 0; i < w * h; i ++) fb[i] = 0x00FFFFFF;
   outl(SYNC_ADDR, 1);
 }
 
