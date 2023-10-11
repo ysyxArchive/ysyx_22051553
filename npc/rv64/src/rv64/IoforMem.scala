@@ -49,6 +49,12 @@ class IoforMem extends Module{
     val mem_data_valid = RegInit(0.B)
     val mem_data_bits = RegInit(0.U(X_LEN.W))
 
+    io.axi.req.valid := 0.B
+    io.axi.req.bits.addr := 0.U
+    io.axi.req.bits.data := 0.U
+    io.axi.req.bits.mask := 0.U
+    io.axi.req.bits.rw := 0.B
+
 
     io.mem.data.valid := mem_data_valid
     io.mem.data.bits := mem_data_bits
