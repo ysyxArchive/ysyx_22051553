@@ -75,9 +75,13 @@ class IoforMem extends Module{
         is(s_Idle){
             mem_data_valid := 0.B
 
-            when( (io.excute.load | io.excute.store) && ((io.excute.waddr | io.excute.raddr) >= "ha0000000".U) ){
+            when(io.fc.stall){
+                state := s_Idle
+            }.otherwise{
                 state := s_req
-                
+            }
+
+            when( (io.excute.load | io.excute.store) && ((io.excute.waddr | io.excute.raddr) >= "ha0000000".U) ){
                 axi_req_valid := 1.B 
                 axi_req_bits_addr := Cat( (io.excute.waddr(31,3) | io.excute.raddr(31,3)), 0.U(3.W) ).asUInt //修改后，对齐8字节
                 axi_req_bits_data := io.excute.wdata
