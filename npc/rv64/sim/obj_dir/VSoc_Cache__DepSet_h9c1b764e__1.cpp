@@ -10463,8 +10463,8 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
         __Vdly__valid = 0U;
         __Vdly__r_count = 0U;
         vlSelf->__Vdly__state = 0U;
-        vlSelf->__PVT__replace = 0U;
         vlSelf->__PVT__rw_buf = 0U;
+        vlSelf->__PVT__replace = 0U;
         vlSelf->__PVT__addr_buf = 0U;
     } else {
         if ((1U & (~ ((((0U == (IData)(vlSelf->__PVT__state)) 

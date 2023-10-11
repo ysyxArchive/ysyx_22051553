@@ -46,21 +46,9 @@ class IoforMem extends Module{
 
     val state = RegInit(s_Idle)
 
-
-    val axi_req_valid = RegInit(0.B)   //模仿verilog输出reg
-    val axi_req_bits_rw = RegInit(0.B)
-    val axi_req_bits_addr = RegInit(0.U(ADDRWIDTH.W))
-    val axi_req_bits_data = RegInit(0.U(X_LEN.W))
-    val axi_req_bits_mask = RegInit(0.U((X_LEN/8).W))
-
     val mem_data_valid = RegInit(0.B)
     val mem_data_bits = RegInit(0.U(X_LEN.W))
 
-    io.axi.req.valid := axi_req_valid
-    io.axi.req.bits.addr := axi_req_bits_addr
-    io.axi.req.bits.data := axi_req_bits_data
-    io.axi.req.bits.mask := axi_req_bits_mask
-    io.axi.req.bits.rw := axi_req_bits_rw
 
     io.mem.data.valid := mem_data_valid
     io.mem.data.bits := mem_data_bits
@@ -73,29 +61,23 @@ class IoforMem extends Module{
 
     switch(state){
         is(s_Idle){
-            mem_data_valid := 0.B
-
             when(io.fc.stall){
                 state := s_Idle
             }.otherwise{
                 when( (io.excute.load | io.excute.store) && ((io.excute.waddr | io.excute.raddr) >= "ha0000000".U) ){
                     state := s_req
-                    axi_req_valid := 1.B 
-                    axi_req_bits_addr := Cat( (io.excute.waddr(31,3) | io.excute.raddr(31,3)), 0.U(3.W) ).asUInt //修改后，对齐8字节
-                    axi_req_bits_data := io.excute.wdata
-                    axi_req_bits_mask := io.excute.wmask
-                    axi_req_bits_rw := Mux(io.excute.load, 1.B, 0.B)
+                    io.axi.req.valid := 1.B 
+                    io.axi.req.bits.addr := Cat( (io.excute.waddr(31,3) | io.excute.raddr(31,3)), 0.U(3.W) ).asUInt //修改后，对齐8字节
+                    io.axi.req.bits.data := io.excute.wdata
+                    io.axi.req.bits.mask := io.excute.wmask
+                    io.axi.req.bits.rw := Mux(io.excute.load, 1.B, 0.B)
                 }
             }
 
             
         }
         is(s_req){
-            
-
             when(io.axi.resp.valid){
-                axi_req_valid := 0.B   //停止申请总线，防止死锁
-                
                 mem_data_valid := 1.B
                 mem_data_bits := io.axi.resp.bits.data
 
@@ -118,3 +100,5 @@ class IoforMem extends Module{
     }
   
 }
+
+
