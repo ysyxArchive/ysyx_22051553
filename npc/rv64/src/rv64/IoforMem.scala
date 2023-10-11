@@ -68,6 +68,8 @@ class IoforMem extends Module{
     switch(state){
         is(s_Idle){
 
+            mem_data_valid := 0.B 
+
                 when( (io.excute.load | io.excute.store) && ((io.excute.waddr | io.excute.raddr) >= "ha0000000".U) ){
                     state := s_req
                     io.axi.req.valid := 1.B 

@@ -83,109 +83,91 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__1(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT___core_io_AXI_Interface_w_bits_data 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT___GEN_2)
             ? 0ULL : ((1U & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
-                       ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN)
-                           ? vlSelf->Soc__DOT__core__DOT___excute_io_wdata
-                           : 0ULL) : ((2U & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
-                                       ? (((QData)((IData)(
-                                                           vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__read[
-                                                           (((IData)(0x3fU) 
-                                                             + 
-                                                             (0x3ffU 
-                                                              & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
-                                                                 << 6U))) 
-                                                            >> 5U)])) 
-                                           << ((0U 
-                                                == 
-                                                (0x1fU 
-                                                 & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
-                                                    << 6U)))
-                                                ? 0x20U
-                                                : ((IData)(0x40U) 
-                                                   - 
-                                                   (0x1fU 
-                                                    & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
-                                                       << 6U))))) 
-                                          | (((0U == 
-                                               (0x1fU 
-                                                & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
+                       ? ((0U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state))
+                           ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_4)
+                               ? vlSelf->Soc__DOT__core__DOT___excute_io_wdata
+                               : 0ULL) : ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN)
+                                           ? 0ULL : vlSelf->Soc__DOT__core__DOT___excute_io_wdata))
+                       : ((2U & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
+                           ? (((QData)((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__read[
+                                               (((IData)(0x3fU) 
+                                                 + 
+                                                 (0x3ffU 
+                                                  & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
+                                                     << 6U))) 
+                                                >> 5U)])) 
+                               << ((0U == (0x1fU & 
+                                           ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
+                                            << 6U)))
+                                    ? 0x20U : ((IData)(0x40U) 
+                                               - (0x1fU 
+                                                  & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
+                                                     << 6U))))) 
+                              | (((0U == (0x1fU & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
                                                    << 6U)))
-                                               ? 0ULL
-                                               : ((QData)((IData)(
-                                                                  vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__read[
-                                                                  (((IData)(0x1fU) 
-                                                                    + 
-                                                                    (0x3ffU 
-                                                                     & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
-                                                                        << 6U))) 
-                                                                   >> 5U)])) 
-                                                  << 
-                                                  ((IData)(0x20U) 
+                                   ? 0ULL : ((QData)((IData)(
+                                                             vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__read[
+                                                             (((IData)(0x1fU) 
+                                                               + 
+                                                               (0x3ffU 
+                                                                & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
+                                                                   << 6U))) 
+                                                              >> 5U)])) 
+                                             << ((IData)(0x20U) 
+                                                 - 
+                                                 (0x1fU 
+                                                  & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
+                                                     << 6U))))) 
+                                 | ((QData)((IData)(
+                                                    vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__read[
+                                                    (0x1eU 
+                                                     & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
+                                                        << 1U))])) 
+                                    >> (0x1fU & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
+                                                 << 6U)))))
+                           : ((4U & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
+                               ? (((QData)((IData)(
+                                                   vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__read[
+                                                   (((IData)(0x3fU) 
+                                                     + 
+                                                     (0x3ffU 
+                                                      & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
+                                                         << 6U))) 
+                                                    >> 5U)])) 
+                                   << ((0U == (0x1fU 
+                                               & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
+                                                  << 6U)))
+                                        ? 0x20U : ((IData)(0x40U) 
                                                    - 
-                                                   (0x1fU 
-                                                    & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
-                                                       << 6U))))) 
-                                             | ((QData)((IData)(
-                                                                vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__read[
-                                                                (0x1eU 
-                                                                 & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
-                                                                    << 1U))])) 
-                                                >> 
-                                                (0x1fU 
-                                                 & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__w_count) 
-                                                    << 6U)))))
-                                       : ((4U & (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
-                                           ? (((QData)((IData)(
-                                                               vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__read[
-                                                               (((IData)(0x3fU) 
-                                                                 + 
-                                                                 (0x3ffU 
-                                                                  & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
-                                                                     << 6U))) 
-                                                                >> 5U)])) 
-                                               << (
-                                                   (0U 
-                                                    == 
-                                                    (0x1fU 
-                                                     & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
-                                                        << 6U)))
-                                                    ? 0x20U
-                                                    : 
-                                                   ((IData)(0x40U) 
-                                                    - 
-                                                    (0x1fU 
-                                                     & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
-                                                        << 6U))))) 
-                                              | (((0U 
-                                                   == 
                                                    (0x1fU 
                                                     & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
-                                                       << 6U)))
-                                                   ? 0ULL
-                                                   : 
-                                                  ((QData)((IData)(
-                                                                   vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__read[
-                                                                   (((IData)(0x1fU) 
-                                                                     + 
-                                                                     (0x3ffU 
-                                                                      & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
-                                                                         << 6U))) 
-                                                                    >> 5U)])) 
-                                                   << 
-                                                   ((IData)(0x20U) 
-                                                    - 
-                                                    (0x1fU 
-                                                     & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
-                                                        << 6U))))) 
-                                                 | ((QData)((IData)(
-                                                                    vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__read[
-                                                                    (0x1eU 
-                                                                     & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
-                                                                        << 1U))])) 
-                                                    >> 
-                                                    (0x1fU 
-                                                     & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
-                                                        << 6U)))))
-                                           : 0ULL))));
+                                                       << 6U))))) 
+                                  | (((0U == (0x1fU 
+                                              & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
+                                                 << 6U)))
+                                       ? 0ULL : ((QData)((IData)(
+                                                                 vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__read[
+                                                                 (((IData)(0x1fU) 
+                                                                   + 
+                                                                   (0x3ffU 
+                                                                    & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
+                                                                       << 6U))) 
+                                                                  >> 5U)])) 
+                                                 << 
+                                                 ((IData)(0x20U) 
+                                                  - 
+                                                  (0x1fU 
+                                                   & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
+                                                      << 6U))))) 
+                                     | ((QData)((IData)(
+                                                        vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__read[
+                                                        (0x1eU 
+                                                         & ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
+                                                            << 1U))])) 
+                                        >> (0x1fU & 
+                                            ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__w_count) 
+                                             << 6U)))))
+                               : 0ULL))));
     vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h5fc28a32__0 
         = ((((~ (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_fccache_hit)) 
              & (0U != (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state))) 
@@ -212,7 +194,9 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__1(VSoc___024root* vlSelf) {
                                 ? vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits
                                 : 0ULL))))));
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT__master_choose 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN)
+        = (((0U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state))
+             ? (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_4)
+             : (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_h899521a4__0))
             ? 9U : ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.io_axi_req_valid)
                      ? 0xaU : ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.io_axi_req_valid)
                                 ? 0xcU : 0U)));
