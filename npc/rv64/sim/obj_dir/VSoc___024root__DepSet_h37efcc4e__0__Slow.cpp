@@ -53,7 +53,7 @@ VL_ATTR_COLD void VSoc___024root___eval_settle(VSoc___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSoc___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/Soc.v", 8555, "", "Settle region did not converge.");
+                VL_FATAL_MT("vsrc/Soc.v", 8549, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -109,6 +109,8 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT___sram_S_AXI_BVALID = vlSelf->Soc__DOT__sram__DOT__bvalid;
     vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_7 
         = ((IData)(4U) + vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc);
+    vlSelf->Soc__DOT__core__DOT__fc__DOT__IO_stall 
+        = (1U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state));
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T_8 
         = (2U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state));
     vlSelf->Soc__DOT__core__DOT__arbitor__DOT___T = 
@@ -117,8 +119,6 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
         = (1U == (IData)(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__state));
     vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T 
         = (0U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state));
-    vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_5 
-        = (1U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state));
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT___T 
         = (0U == (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__state));
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT___T_3 
@@ -361,9 +361,6 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT____VdfgTmp_hf1075dbb__0 
         = ((0x24U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op)) 
            | (0x25U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_alu_op)));
-    vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_1 
-        = ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type)) 
-           | (0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type)));
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_100 
         = VL_MODDIV_QQQ(64, vlSelf->Soc__DOT__core__DOT__dereg_op_a, vlSelf->Soc__DOT__core__DOT__dereg_op_b);
     vlSelf->Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_97 
@@ -950,13 +947,14 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
                     ? vlSelf->Soc__DOT__core__DOT__excute__DOT__alu_buffer
                     : vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result)
                 : 0ULL) : vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result);
+    vlSelf->Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6 
+        = (((0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type)) 
+            | (0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))) 
+           & ((0U != (vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result 
+                      >> 0x19U)) & (0x200c000ULL > vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result)));
     vlSelf->Soc__DOT__core__DOT___excute_io_fcex_jump_flag 
         = ((IData)(vlSelf->Soc__DOT__core__DOT__dereg_branch_type) 
            & (0U != vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result));
-    vlSelf->Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_1) 
-           & ((0U != (vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result 
-                      >> 0x19U)) & (0x200c000ULL > vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result)));
     vlSelf->Soc__DOT__core__DOT___excute_io_fwex_reg_wdata 
         = ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__dereg_wb_type))
             ? vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_h7d5adbc1__0
@@ -974,22 +972,11 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
              : 0ULL) | ((IData)(vlSelf->__VdfgTmp_h9d5684c6__0)
                          ? vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result
                          : 0ULL));
-    vlSelf->Soc__DOT__core__DOT__ioformem__DOT___axi_req_bits_addr_T 
-        = (((IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hf0b5fb69__0)
-             ? (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result)
-             : 0U) | ((IData)(vlSelf->__VdfgTmp_h9d5684c6__0)
-                       ? (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result)
-                       : 0U));
     vlSelf->Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid 
         = ((0U != ((IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type) 
                    | (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))) 
            & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6)) 
               & (0xa0000000ULL > vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T)));
-    vlSelf->Soc__DOT__core__DOT__fc__DOT__IO_stall 
-        = ((((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_1) 
-             & (0x9fffffffU < vlSelf->Soc__DOT__core__DOT__ioformem__DOT___axi_req_bits_addr_T)) 
-            & (0U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state))) 
-           | (1U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state)));
 }
 
 #ifdef VL_DEBUG
@@ -1277,7 +1264,7 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_14 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_0 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1 = VL_RAND_RESET_I(1);
-    vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_hf5288212__0 = 0;
+    vlSelf->Soc__DOT__core__DOT__fc__DOT____VdfgTmp_hf8bfaf64__0 = 0;
     vlSelf->Soc__DOT__core__DOT__csrs__DOT__MTVEC = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__csrs__DOT__MCAUSE = VL_RAND_RESET_Q(64);
     vlSelf->Soc__DOT__core__DOT__csrs__DOT__MEPC = VL_RAND_RESET_Q(64);
@@ -1338,10 +1325,8 @@ VL_ATTR_COLD void VSoc___024root___ctor_var_reset(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__ioformem__DOT__axi_req_bits_mask = VL_RAND_RESET_I(8);
     vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits = VL_RAND_RESET_Q(64);
-    vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_1 = VL_RAND_RESET_I(1);
-    vlSelf->Soc__DOT__core__DOT__ioformem__DOT___axi_req_bits_addr_T = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T = VL_RAND_RESET_I(1);
-    vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_5 = VL_RAND_RESET_I(1);
+    vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___axi_req_bits_addr_T = VL_RAND_RESET_I(32);
     vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___T_4 = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN = VL_RAND_RESET_I(1);
     vlSelf->Soc__DOT__core__DOT__interact__DOT__ebreak_flag = VL_RAND_RESET_I(1);

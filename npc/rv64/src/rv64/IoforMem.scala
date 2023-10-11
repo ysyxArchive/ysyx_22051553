@@ -79,7 +79,7 @@ class IoforMem extends Module{
                 state := s_req
                 
                 axi_req_valid := 1.B
-                axi_req_bits_addr := io.excute.waddr | io.excute.raddr
+                axi_req_bits_addr := ((io.excute.waddr | io.excute.raddr) << Cache.blen.U).asUInt
                 axi_req_bits_data := io.excute.wdata
                 axi_req_bits_mask := io.excute.wmask
                 axi_req_bits_rw := Mux(io.excute.load, 1.B, 0.B)

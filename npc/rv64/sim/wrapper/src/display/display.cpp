@@ -31,12 +31,12 @@ void Display::update_screen(){
 }
 
 void Display::vmem_write(uint64_t waddr, uint64_t wdata, uint8_t wmask){
-    #ifdef MTRACE
+    // #ifdef MTRACE
     printf("wmask is 0x%x\n", wmask);
     printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),waddr,8);
 
     printf("write data is 0x%lx\n", wdata);
-    #endif
+    // #endif
 
     // switch (wmask)
     // {

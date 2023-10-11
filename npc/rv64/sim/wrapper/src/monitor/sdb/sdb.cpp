@@ -339,8 +339,8 @@ long long pmem_read(const svLogicVecVal* raddr){
     else if( (FB_ADDR <= ((unsigned long)waddr[0].aval)) 
       && (((unsigned long)waddr[0].aval) <= FB_ADDR + SCREEN_W*SCREEN_H*sizeof(uint32_t))){
 
-        printf("write at 0x%x\n", (unsigned long)waddr[0].aval);
-        printf("write data is 0x%lx\n", (unsigned long)wdata[1].aval << 32 | wdata[0].aval);
+        // printf("write at 0x%x\n", (unsigned long)waddr[0].aval);
+        // printf("write data is 0x%lx\n", (unsigned long)wdata[1].aval << 32 | wdata[0].aval);
 
       display.vmem_write(
         (unsigned long)waddr[0].aval,
