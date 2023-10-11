@@ -58,8 +58,8 @@ void Display::vmem_write(uint64_t waddr, uint64_t wdata, uint8_t wmask){
     for(int i = 0; i < 8; i ++){
         if(wmask & 0x1 == 1){
             *(uint8_t*)((uint8_t*)vmem + waddr + i - FB_ADDR) = (uint8_t)wdata;
-            wmask = wmask >> 1;
-            wdata = wdata >> 8;
         }
+        wmask = wmask >> 1;
+        wdata = wdata >> 8;
     }
 }

@@ -3,20 +3,24 @@
 
 #define SYNC_ADDR (VGACTL_ADDR + 4)
 
+int w = 0;
+int h = 0;
+
+
 void __am_gpu_init() {
   uint32_t vga_ctrl_bundle = inl(VGACTL_ADDR);
   int i;
-  int w = vga_ctrl_bundle>>16;  
-  int h = vga_ctrl_bundle & 0xffff;  
+  w = vga_ctrl_bundle>>16;  
+  h = vga_ctrl_bundle & 0xffff;  
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
   for (i = 0; i < w * h; i ++) fb[i] = 0x00FFFFFF;
   outl(SYNC_ADDR, 1);
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
-  uint32_t vga_ctrl_bundle = inl(VGACTL_ADDR);
-  int height = vga_ctrl_bundle & 0xffff;
-  int width = (vga_ctrl_bundle >> 16) & 0xffff;
+  // uint32_t vga_ctrl_bundle = inl(VGACTL_ADDR);
+  int height = h;
+  int width = w;
   int vmemsz = height*width*sizeof(uint32_t);
 
   *cfg = (AM_GPU_CONFIG_T) {
@@ -36,7 +40,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   gpuptr_t *pixels = ctl->pixels;
 
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
-  int screen_w = inl(VGACTL_ADDR) >> 16;
+  int screen_w = w;
   for(int n = 0; n < ctl->h; n ++)
     for(int m = 0; m < ctl->w; m ++){   //行优先
       outl((uintptr_t)(fb + ctl->x + (ctl->y)*(screen_w) + m + n*screen_w),

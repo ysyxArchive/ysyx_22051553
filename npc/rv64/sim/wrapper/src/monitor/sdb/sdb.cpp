@@ -38,7 +38,7 @@ bool is_keydown;
 void event_update(){
   static uint64_t last = 0;
   uint64_t now = get_time();
-  if (now - last < 1000000 / 60) {
+  if (now - last < 10000000 / 60) {
     return;
   }
   last = now;
