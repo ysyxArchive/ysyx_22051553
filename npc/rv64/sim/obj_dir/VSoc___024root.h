@@ -251,6 +251,8 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
         IData/*31:0*/ Soc__DOT__core__DOT___fetch_io_fdio_pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fdreg_pc;
+        IData/*31:0*/ Soc__DOT__core__DOT____Vcellinp__ioformem__io_excute_raddr;
+        IData/*31:0*/ Soc__DOT__core__DOT____Vcellinp__ioformem__io_excute_waddr;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT__pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT__old_pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fetch__DOT___next_pc_T_7;
@@ -279,13 +281,12 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ Soc__DOT__core__DOT__trap__DOT__pc;
         IData/*31:0*/ Soc__DOT__core__DOT__arbitor__DOT__addr;
         IData/*31:0*/ Soc__DOT__core__DOT__ioformem__DOT__axi_req_bits_addr;
-        IData/*31:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___axi_req_bits_addr_T;
         IData/*31:0*/ Soc__DOT__sram__DOT__awaddr_buffer;
         IData/*31:0*/ Soc__DOT__sram__DOT__awaddr;
         IData/*31:0*/ Soc__DOT__sram__DOT__araddr;
-        IData/*31:0*/ __VstlIterCount;
     };
     struct {
+        IData/*31:0*/ __VstlIterCount;
         IData/*31:0*/ __VicoIterCount;
         IData/*31:0*/ __VactIterCount;
         QData/*63:0*/ Soc__DOT___core_io_AXI_Interface_w_bits_data;
@@ -349,9 +350,9 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSCRATCH;
         QData/*63:0*/ Soc__DOT__core__DOT__trap__DOT__cause;
         QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__axi_req_bits_data;
-        QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits;
     };
     struct {
+        QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits;
         QData/*63:0*/ Soc__DOT__sram__DOT__rdata;
         VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
         VlUnpacked<CData/*0:0*/, 6> __Vm_traceActivity;

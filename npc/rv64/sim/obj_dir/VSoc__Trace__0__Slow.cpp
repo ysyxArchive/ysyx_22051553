@@ -9051,12 +9051,8 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                 : 0U)),32);
     bufp->fullBit(oldp+279,(vlSelf->Soc__DOT__core__DOT__interact__DOT__ebreak_flag));
     bufp->fullCData(oldp+280,(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count),6);
-    bufp->fullIData(oldp+281,(((IData)(vlSelf->__VdfgTmp_h9d5684c6__0)
-                                ? (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result)
-                                : 0U)),32);
-    bufp->fullIData(oldp+282,(((IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hf0b5fb69__0)
-                                ? (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result)
-                                : 0U)),32);
+    bufp->fullIData(oldp+281,(vlSelf->Soc__DOT__core__DOT____Vcellinp__ioformem__io_excute_waddr),32);
+    bufp->fullIData(oldp+282,(vlSelf->Soc__DOT__core__DOT____Vcellinp__ioformem__io_excute_raddr),32);
     bufp->fullBit(oldp+283,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type))));
     bufp->fullBit(oldp+284,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))));
     bufp->fullBit(oldp+285,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid));

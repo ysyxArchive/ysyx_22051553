@@ -349,7 +349,7 @@ long long pmem_read(const svLogicVecVal* raddr){
       );
       return ;
     }
-    else if(((unsigned long)waddr[0].aval) == SYNC_ADDR){
+    else if(((unsigned long)waddr[0].aval) == VGACTL_ADDR){  //实际上是+4
       printf("update screen\n");
       display.update_screen();
     }

@@ -688,12 +688,8 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                    : 0U)),32);
         bufp->chgBit(oldp+278,(vlSelf->Soc__DOT__core__DOT__interact__DOT__ebreak_flag));
         bufp->chgCData(oldp+279,(vlSelf->Soc__DOT__core__DOT__interact__DOT__over_count),6);
-        bufp->chgIData(oldp+280,(((IData)(vlSelf->__VdfgTmp_h9d5684c6__0)
-                                   ? (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result)
-                                   : 0U)),32);
-        bufp->chgIData(oldp+281,(((IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT____VdfgTmp_hf0b5fb69__0)
-                                   ? (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result)
-                                   : 0U)),32);
+        bufp->chgIData(oldp+280,(vlSelf->Soc__DOT__core__DOT____Vcellinp__ioformem__io_excute_waddr),32);
+        bufp->chgIData(oldp+281,(vlSelf->Soc__DOT__core__DOT____Vcellinp__ioformem__io_excute_raddr),32);
         bufp->chgBit(oldp+282,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type))));
         bufp->chgBit(oldp+283,((0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))));
         bufp->chgBit(oldp+284,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid));
