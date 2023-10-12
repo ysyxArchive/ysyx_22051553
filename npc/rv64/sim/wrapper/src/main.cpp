@@ -21,6 +21,8 @@ void sdb_mainloop();
 void init_regex();
 void init_difftest(const char *ref_so_file, long img_size, int port);
 void init_disasm(const char *triple);
+void getelf(char* filename);
+
 
 void init_keymap();
 
@@ -67,6 +69,12 @@ int main(int argc, char **argv) {
   #endif
 
   uint64_t size = pmem.mem_loader("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
+
+  #ifdef FTRACE
+  getelf("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
+  #endif
+
+
   #ifdef VCD_ON
   Verilated::traceEverOn(true);
   dut.trace(vcd,0);

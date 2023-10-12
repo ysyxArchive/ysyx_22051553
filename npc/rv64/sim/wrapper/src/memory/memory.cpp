@@ -157,56 +157,5 @@ uint64_t memory::mem_loader(const char* filename){
 
 }
 
-// void memory::mem_getelf(char* filename){ //解析elf
-    
-//     // std::array<char,512> shstrtab;
-//     char shstrtab[512];
-//     char strtab[4096];
-//     Elf64_Sym symtab[512];
 
-//     int avoid_warning = 0;
-    
-//     Elf64_Ehdr ehdr;   //elf头结构
-    
-//     if(filename == NULL)
-//         return ;
-
-//     std::ifstream elf_in;
-//     elf_in.open(filename, std::ios::binary);
-
-//     assert(elf_in.is_open());
-
-//     elf_in.read(reinterpret_cast<char *>(&ehdr), sizeof(Elf64_Ehdr));      //elf头
- 
-//     Elf64_Shdr shdr[ehdr.e_shnum];                        //段表
-//     elf_in.seekg(ehdr.e_shoff, std::ios::beg);
-//     for(int i = 0; i < ehdr.e_shnum; i++){
-//         elf_in.read(reinterpret_cast<char *>(&shdr[i]), sizeof(Elf64_Shdr));
-//     }
-
-//     Elf64_Shdr shdr_shstrtab = shdr[ehdr.e_shstrndx];     //段表字符串表
-//     elf_in.seekg(shdr_shstrtab.sh_offset, std::ios::beg);
-//     elf_in.read(shstrtab, shdr_shstrtab.sh_size);
-
-//     for(int i = 0; i < ehdr.e_shnum; i ++){ //字符串表
-//         if(strcmp(".strtab", &shstrtab[shdr[i].sh_name]) == 0){
-//             elf_in.seekg(shdr[i].sh_offset, std::ios::beg);
-//             elf_in.read(strtab, shdr[i].sh_size);
-//         }
-//     }
-
-
-//     int sym_entnum = 0;
-//     for(int i = 0; i < ehdr.e_shnum; i ++){ //符号表
-//         if(strcmp(".symtab", &shstrtab[shdr[i].sh_name]) == 0){
-//             elf_in.seekg(shdr[i].sh_offset, std::ios::beg);
-//             elf_in.read(strtab, shdr[i].sh_size);
-//             sym_entnum = shdr[i].sh_size/shdr[i].sh_entsize;
-//         }
-//     }
-
-
-//     return ;
-
-// }
 

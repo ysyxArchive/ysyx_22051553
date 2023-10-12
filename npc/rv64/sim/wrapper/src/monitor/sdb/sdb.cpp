@@ -43,6 +43,9 @@ uint32_t key_dequeue();
 uint8_t k;
 bool is_keydown;
 
+int decode(uint32_t inst, uint64_t dnpc, uint64_t pc);
+uint64_t pc_buf = 0x80000000;
+
 void event_update(){
   static uint64_t last = 0;
   uint64_t now = get_time();
@@ -287,6 +290,14 @@ void update_debuginfo(
     inst_num ++;
   }
 
+  #ifdef FTRACE
+  if(!(bool)sdb_stall){
+    decode((unsigned int)inst[0].aval, (unsigned long)pc[0].aval, pc_buf);
+    pc_buf = (unsigned long)pc[0].aval;
+  }
+  
+  #endif
+
 
 
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
@@ -302,7 +313,7 @@ void update_debuginfo(
 long long pmem_read(const svLogicVecVal* raddr){
 
     // #ifdef MTRACE
-    printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr[0].aval, 8);
+    // printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr[0].aval, 8);
     // #endif
 
   if( ((unsigned long)raddr[0].aval) == RTC_BASE){

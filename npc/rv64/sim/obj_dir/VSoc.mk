@@ -35,7 +35,7 @@ VM_PREFIX = VSoc
 VM_MODPREFIX = VSoc
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
-	-I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/display/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/monitor/debug/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/memory/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/isa/include  -fPIE \
+	-I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/utils/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/display/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/monitor/debug/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/monitor/sdb/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/memory/include -I /home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/src/isa/include  -fPIE \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
@@ -45,11 +45,13 @@ VM_USER_LDLIBS = \
 VM_USER_CLASSES = \
 	difftest \
 	display \
+	elf \
 	cpu \
 	key \
 	main \
 	memory \
 	debug \
+	decode \
 	expr \
 	sdb \
 	time \
@@ -61,6 +63,7 @@ VM_USER_DIR = \
 	./wrapper/src \
 	./wrapper/src/difftest \
 	./wrapper/src/display \
+	./wrapper/src/elf \
 	./wrapper/src/isa \
 	./wrapper/src/key \
 	./wrapper/src/memory \
@@ -82,6 +85,8 @@ difftest.o: ./wrapper/src/difftest/difftest.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 display.o: ./wrapper/src/display/display.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+elf.o: ./wrapper/src/elf/elf.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 cpu.o: ./wrapper/src/isa/cpu.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 key.o: ./wrapper/src/key/key.cpp
@@ -91,6 +96,8 @@ main.o: ./wrapper/src/main.cpp
 memory.o: ./wrapper/src/memory/memory.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 debug.o: ./wrapper/src/monitor/debug/debug.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+decode.o: ./wrapper/src/monitor/sdb/decode.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 expr.o: ./wrapper/src/monitor/sdb/expr.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
