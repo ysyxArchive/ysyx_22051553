@@ -25,14 +25,14 @@ uint64_t end_time = 0;
 uint64_t inst_num = 0;
 uint64_t stall_num = 0;
 
+uint64_t cycles = 0;
+
 
 
 uint64_t Icache_hit_num = 0;
-uint64_t Icache_stall_num = 0;
 uint64_t Icache_req_num = 0;
 
 uint64_t Dcache_hit_num = 0;
-uint64_t Dcache_stall_num = 0;
 uint64_t Dcache_req_num = 0;
 
 int Dcache_req_buf = 0;
@@ -61,7 +61,7 @@ uint64_t pc_buf = 0x80000000;
 void event_update(){
   static uint64_t last = 0;
   uint64_t now = get_time();
-  if (now - last < 10000000 / 60) {
+  if (now - last < 100000000 / 60) {
     return;
   }
   last = now;
@@ -204,7 +204,7 @@ void update_debuginfo(
     svLogic fcex_stall
   )
 {
-  
+  cycles ++;
 
   debug_ins.update(
     (unsigned long)pc[0].aval,
@@ -315,14 +315,12 @@ void update_debuginfo(
   }
 
 
-  if((bool)(Icache_req)){
+
+  if((bool)(Icache_req) && !(bool)(fcfe_stall)){
     Icache_req_num ++;
   }
-  if((bool)(Icache_hit)){
+  if((bool)(Icache_hit) && !(bool)(fcfe_stall)){
     Icache_hit_num ++;
-  }
-  if((bool)(fcfe_stall)){
-    Icache_stall_num ++;
   }
 
 
@@ -330,10 +328,7 @@ void update_debuginfo(
   if((bool)(Dcache_hit && Dcache_req_buf)){
     Dcache_hit_num ++;
   }
-  if((bool)(fcex_stall)){
-    Dcache_stall_num ++;
-  }
-  if((bool)(Dcache_req)){
+  if((bool)(Dcache_req) && !(bool)(fcex_stall)){
     Dcache_req_num ++;
     Dcache_req_buf = 1;
   }else{
@@ -884,6 +879,7 @@ static int cmd_x(char *args){
 
 static int cmd_c(char *args){
   start_time = get_time();
+  cycles = 0;
   char num[] = "-1";
   cmd_s(num);
   return 0;
@@ -952,15 +948,18 @@ void sdb_mainloop(){
       uint64_t total_time = (end_time - start_time); //us
       uint64_t ips = (float)((float)inst_num/(float)total_time) * 1000000;
       float ipc = (float)inst_num / (stall_num + inst_num);
+      uint64_t freq = (cycles*1000000) / total_time;
 
-      float Icache_hitrate = (float)(Icache_hit_num - Icache_stall_num)/(float)(Icache_req_num-Icache_stall_num);
-      float Dcache_hitrate = (float)(Dcache_hit_num)/(float)(Dcache_req_num-Dcache_stall_num);
+      double Icache_hitrate = 1 - ((double)(Icache_req_num - Icache_hit_num) / (double)Icache_req_num);
+      double Dcache_hitrate = 1 - ((double)(Dcache_req_num - Dcache_hit_num) / (double)Dcache_req_num);
+
 
       printf("Icache------\n");
-      printf("access num:%d, hit num:%d, hit rate:%0.4f\n", Icache_req_num-Icache_stall_num, Icache_hit_num-Icache_stall_num, Icache_hitrate);
+      printf("access num:%d, hit num:%d, hit rate:%0.4f\n", Icache_req_num, Icache_hit_num, Icache_hitrate);
       printf("Dcache------\n");
-      printf("access num:%d, hit num:%d, hit rate:%0.4f\n", Dcache_req_num - Dcache_stall_num, Dcache_hit_num, Dcache_hitrate);
+      printf("access num:%d, hit num:%d, hit rate:%0.4f\n", Dcache_req_num, Dcache_hit_num, Dcache_hitrate);
       printf("perf--------\n");
+      printf("freq is %d\n", freq);
       printf("stall_num is %d, inst_num is %d\n", stall_num, inst_num);
       printf("verilator inst: %d inst/s\n", ips);
       printf("npc ipc: %0.4f\n", ipc);
