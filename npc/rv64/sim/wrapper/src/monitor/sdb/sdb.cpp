@@ -24,6 +24,18 @@ uint64_t start_time = 0;
 uint64_t end_time = 0;
 uint64_t inst_num = 0;
 uint64_t stall_num = 0;
+
+
+
+uint64_t Icache_hit_num = 0;
+uint64_t Icache_stall_num = 0;
+uint64_t Icache_req_num = 0;
+
+uint64_t Dcache_hit_num = 0;
+uint64_t Dcache_stall_num = 0;
+uint64_t Dcache_req_num = 0;
+
+int Dcache_req_buf = 0;
 //
 
 
@@ -43,7 +55,7 @@ uint32_t key_dequeue();
 uint8_t k;
 bool is_keydown;
 
-int decode(uint32_t inst, uint64_t dnpc, uint64_t pc);
+int decode_func(uint32_t inst, uint64_t dnpc, uint64_t pc);
 uint64_t pc_buf = 0x80000000;
 
 void event_update(){
@@ -150,8 +162,14 @@ extern "C" {
     const svLogicVecVal* csr_wdata,
     const svLogicVecVal* csr_waddr,
     svLogic sdb_stall,
-    const svLogicVecVal* trap_state
-    );
+    const svLogicVecVal* trap_state,
+    svLogic Icache_hit,
+    svLogic Icache_req,
+    svLogic fcfe_stall,
+    svLogic Dcache_hit,
+    svLogic Dcache_req,
+    svLogic fcex_stall
+  );
 
   long long pmem_read(const svLogicVecVal* raddr);
 
@@ -177,7 +195,13 @@ void update_debuginfo(
   const svLogicVecVal* csr_wdata,
   const svLogicVecVal* csr_waddr,
   svLogic sdb_stall,
-  const svLogicVecVal* trap_state
+  const svLogicVecVal* trap_state,
+     svLogic Icache_hit,
+    svLogic Icache_req,
+    svLogic fcfe_stall,
+    svLogic Dcache_hit,
+    svLogic Dcache_req,
+    svLogic fcex_stall
   )
 {
   
@@ -284,18 +308,43 @@ void update_debuginfo(
   // }
 
   #endif
-  if((bool)sdb_stall){
+  if((unsigned int)inst[0].aval == 0x13 || (unsigned int)inst[0].aval == 0 || (bool)sdb_stall){
     stall_num ++;
   }else{
     inst_num ++;
   }
 
+
+  if((bool)(Icache_req)){
+    Icache_req_num ++;
+  }
+  if((bool)(Icache_hit)){
+    Icache_hit_num ++;
+  }
+  if((bool)(fcfe_stall)){
+    Icache_stall_num ++;
+  }
+
+
+  
+  if((bool)(Dcache_hit && Dcache_req_buf)){
+    Dcache_hit_num ++;
+  }
+  if((bool)(fcex_stall)){
+    Dcache_stall_num ++;
+  }
+  if((bool)(Dcache_req)){
+    Dcache_req_num ++;
+    Dcache_req_buf = 1;
+  }else{
+    Dcache_req_buf = 0;
+  }
+
   #ifdef FTRACE
-  if(!(bool)sdb_stall){
-    decode((unsigned int)inst[0].aval, (unsigned long)pc[0].aval, pc_buf);
+  if(!(bool)sdb_stall && !(bool)(br_yes) && !(bool)(load_use)){  //应对branch和load_use
+    decode_func((unsigned int)inst[0].aval, (unsigned long)pc[0].aval, pc_buf);
     pc_buf = (unsigned long)pc[0].aval;
   }
-  
   #endif
 
 
@@ -904,7 +953,14 @@ void sdb_mainloop(){
       uint64_t ips = (float)((float)inst_num/(float)total_time) * 1000000;
       float ipc = (float)inst_num / (stall_num + inst_num);
 
+      float Icache_hitrate = (float)(Icache_hit_num - Icache_stall_num)/(float)(Icache_req_num-Icache_stall_num);
+      float Dcache_hitrate = (float)(Dcache_hit_num)/(float)(Dcache_req_num-Dcache_stall_num);
 
+      printf("Icache------\n");
+      printf("access num:%d, hit num:%d, hit rate:%0.4f\n", Icache_req_num-Icache_stall_num, Icache_hit_num-Icache_stall_num, Icache_hitrate);
+      printf("Dcache------\n");
+      printf("access num:%d, hit num:%d, hit rate:%0.4f\n", Dcache_req_num - Dcache_stall_num, Dcache_hit_num, Dcache_hitrate);
+      printf("perf--------\n");
       printf("stall_num is %d, inst_num is %d\n", stall_num, inst_num);
       printf("verilator inst: %d inst/s\n", ips);
       printf("npc ipc: %0.4f\n", ipc);

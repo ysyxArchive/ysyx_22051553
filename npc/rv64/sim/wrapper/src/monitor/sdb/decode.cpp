@@ -9,7 +9,7 @@ typedef struct{
 extern Func elf_func[];
 extern int nr_elffunc;
 
-int decode(uint32_t inst, uint64_t dnpc, uint64_t pc) {
+int decode_func(uint32_t inst, uint64_t dnpc, uint64_t pc) {
   // printf("inst is 0x%x, dnpc is 0x%x, pc is 0x%x\n", inst, dnpc, pc);
 
   int rs1 = 0;

@@ -512,6 +512,13 @@ class Core extends Module{
     DI.io.csr_wen := wb.io.csrs.csr_wen
     DI.io.sdb_stall := fc.io.sdb_stall
     DI.io.trap_state := trap.io.fctr.trap_state
+    DI.io.Icache_hit := Icache.io.fccache.hit
+    DI.io.Icache_req := Icache.io.fccache.req
+    DI.io.fcfe_stall := fc.io.fcfe.stall
+    DI.io.Dcache_hit := Dcache.io.fccache.hit
+    DI.io.Dcache_req := Dcache.io.fccache.req
+    DI.io.fcex_stall := fc.io.fcex.stall
+
 
     //interact
     val interact = Module(new Interact)
