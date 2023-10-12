@@ -67,25 +67,49 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) { //优化
   uint32_t* fb = (uint32_t *)(uintptr_t)FB_ADDR;
   //计算初始地址，防止在循环里每次都计算
   uintptr_t begin_addr = (uintptr_t)((uint32_t*)fb + ctl->x + (ctl->y)*(screen_w));
-  //展开双层循环
-  bool is_odd = (ctl->w) % 2;
+  
+  
+  
+  //使用outd
+  bool w_odd = (ctl->w) % 2;  //保证如果w为奇数，也能写入单个pixel
+  bool x_odd = (ctl->x) % 2;  //保证sd指令8字节对齐
 
   for(int n = 0; n < ctl->h; n ++){
     uint64_t offaddr = (uint64_t)((uint32_t*)begin_addr + n*screen_w);  //screen_w也是以4字节为单位
-    uint64_t offnum = n* (ctl->w);
-    for(int m = 0; m < ctl->w/2; m++){
-      uint64_t pixel_pair = *((uint64_t *)(&pixels[m*2 + offnum]));
-      outd(offaddr + m*8, pixel_pair); 
+    uint64_t offnum = n* (ctl->w); //避免每次都乘法计算
+
+    if(x_odd){
+      uint32_t pixel = pixels[offnum];
+      outl(offaddr, pixel); 
+
+      if(w_odd){
+        for(int m = 0; m < ctl->w/2; m++){
+          uint64_t pixel_pair = *((uint64_t *)(&pixels[m*2 + 1 + offnum]));
+          outd(offaddr + m*8 + 4, pixel_pair); 
+        }
+      }
+      else{
+        for(int m = 0; m < ctl->w/2 - 1; m++){
+          uint64_t pixel_pair = *((uint64_t *)(&pixels[m*2 + 1 + offnum]));
+          outd(offaddr + m*8 + 4, pixel_pair); 
+        }
+
+        uint32_t pixel = pixels[offnum+ctl->w-1];
+        outl(offaddr + (ctl->w -1) * 4 , pixel); 
+      }
     }
-    if(is_odd){
-      uint32_t pixel = pixels[ctl->w - 1 + offnum];
-      outl(offaddr + (ctl->w - 1) * 4, pixel); 
+    else{
+      for(int m = 0; m < ctl->w/2; m++){
+        uint64_t pixel_pair = *((uint64_t *)(&pixels[m*2 + offnum]));
+        outd(offaddr + m*8, pixel_pair); 
+      }
+
+      if(w_odd){
+        uint32_t pixel = pixels[offnum+ctl->w-1];
+        outl(offaddr + (ctl->w -1) * 4 , pixel); 
+      }
     }
   }
-        
-  // if (ctl->sync) {
-  //   outl(SYNC_ADDR, 1);
-  // }
 }
 
 

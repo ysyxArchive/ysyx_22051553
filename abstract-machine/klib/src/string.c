@@ -109,14 +109,96 @@ void *memmove(void *dst, const void *src, size_t n) {  //确保重叠不产生�
 }
 
 
-void *memcpy(void *out, const void *in, size_t n) {
-  int offset = 0;
-  while(offset < n){
-	*(char*)(out+offset) = *(char *)(in+offset);
-	offset ++;
-  }
-  return out;
+// void *memcpy(void *out, const void *in, size_t n) {
+//   int offset = 0;
+//   while(offset < n){
+// 	*(char*)(out+offset) = *(char *)(in+offset);
+// 	offset ++;
+//   }
+//   return out;
+// }
+// void * memcpy(void *dest, const void *src, size_t n) //优化 --可能有非8字节对齐的sd操作问题
+// {
+//   char *cdest = (char*) dest;
+//   const char *csrc = (const char*) src;
+  
+//   //搬运字
+//   for (; n >= sizeof(long); n -= sizeof(long), csrc += sizeof(long), cdest += sizeof(long)) {
+//     *(long*) cdest = *(const long*) csrc;
+//   }
+  
+//   //搬运字节
+//   while (n--) {
+//     *cdest++ = *csrc++;
+//   }
+  
+//   return dest;
+// }
+void * memcpy(void *dest, const void *src, size_t n) //优化
+{
+    char *cdest = (char*) dest;
+    const char *csrc = (const char*) src;
+
+
+    size_t diff = 0;
+    if((uintptr_t)cdest - (uintptr_t)csrc){
+      diff = (uintptr_t)cdest - (uintptr_t)csrc;
+    }else{
+      diff = (uintptr_t)csrc - (uintptr_t)cdest;
+    }
+
+    while (((uintptr_t)csrc & 7) && n) {  //csrc 8字节对齐
+        *cdest++ = *csrc++;
+        n--;
+    }
+
+
+    if (diff % 8 == 0) { //如果源和目标地址相差8的倍数，可以使用8字节读写，ld,sd
+        while (n >= 8) {
+            *((long*)cdest) = *((long*)csrc);
+            cdest += 8;
+            csrc += 8;
+            n -= 8;
+        }
+    } else if (diff % 4 == 0) {
+        while (n >= 4) {
+            *((int*)cdest) = *((int*)csrc);
+            cdest += 4;
+            csrc += 4;
+            n -= 4;
+        }
+    } else if (diff % 2 == 0) {
+        while (n >= 2) {
+            *((short*)cdest) = *((short*)csrc);
+            cdest += 2;
+            csrc += 2;
+            n -= 2;
+        }
+    }
+
+    while(n > 8){ //优化，不while(n--)
+      cdest[0] = csrc[0];
+      cdest[1] = csrc[1];
+      cdest[2] = csrc[2];
+      cdest[3] = csrc[3];
+      cdest[4] = csrc[4];
+      cdest[5] = csrc[5];
+      cdest[6] = csrc[6];
+      cdest[7] = csrc[7];
+      cdest += 8;
+      csrc += 8;
+      n = n - 8;
+    }
+
+    while (n--) { //一次写，一次跳转判断
+        *cdest++ = *csrc++;
+    }
+
+    return dest;
 }
+
+
+
 
 int memcmp(const void *s1, const void *s2, size_t n) {
   int offset = 0;

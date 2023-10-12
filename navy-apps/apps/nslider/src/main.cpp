@@ -27,6 +27,7 @@ void render() {
   }
   char fname[256];
   sprintf(fname, path, cur);
+  
   slide = SDL_LoadBMP(fname);
   assert(slide);
   // SDL_UpdateRect(slide, 0, 0, slide->w, slide->h);  //修改 原来是SDL_UpdateRect(slide, 0, 0, 0, 0);
@@ -52,9 +53,7 @@ int main() {
   SDL_Surface *screen = SDL_SetVideoMode(W, H, 32, SDL_HWSURFACE);
 
   int rep = 0, g = 0;
-
   render();
-
   while (1) {
     SDL_Event e;
     SDL_WaitEvent(&e);
