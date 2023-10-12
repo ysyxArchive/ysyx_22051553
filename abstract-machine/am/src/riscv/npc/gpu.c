@@ -61,20 +61,25 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) { //优化
   }
 
 
-  uint64_t * pixels = ctl->pixels;
+  uint32_t * pixels = ctl->pixels;
   int screen_w = w;
   //使用8字节写vmem
-  uint64_t* fb = (uint64_t *)(uintptr_t)FB_ADDR;
+  uint32_t* fb = (uint32_t *)(uintptr_t)FB_ADDR;
   //计算初始地址，防止在循环里每次都计算
   uintptr_t begin_addr = (uintptr_t)((uint32_t*)fb + ctl->x + (ctl->y)*(screen_w));
   //展开双层循环
-  
+  bool is_odd = (ctl->w) % 2;
+
   for(int n = 0; n < ctl->h; n ++){
-    uint64_t offaddr = (uint64_t)((uint32_t*)begin_addr + n*screen_w);
-    uint64_t offnum = n* (ctl->w/2);
+    uint64_t offaddr = (uint64_t)((uint32_t*)begin_addr + n*screen_w);  //screen_w也是以4字节为单位
+    uint64_t offnum = n* (ctl->w);
     for(int m = 0; m < ctl->w/2; m++){
-      uint64_t pixel_pair = pixels[m + offnum];
+      uint64_t pixel_pair = *((uint64_t *)(&pixels[m*2 + offnum]));
       outd(offaddr + m*8, pixel_pair); 
+    }
+    if(is_odd){
+      uint32_t pixel = pixels[ctl->w - 1 + offnum];
+      outl(offaddr + (ctl->w - 1) * 4, pixel); 
     }
   }
         
