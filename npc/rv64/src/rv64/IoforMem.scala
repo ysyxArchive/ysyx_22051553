@@ -8,7 +8,7 @@ import dataclass.data
 
 
 object IoforMem{
-    val s_Idle :: s_singlereq ::  s_multiready :: s_multireq :: s_wait :: Nil = Enum(5)
+    val s_Idle :: s_singlereq :: s_multireq :: s_wait :: Nil = Enum(4)
 }
 //s_multiready:与Cache一致，等待Arbitor写地址结束
 
@@ -71,7 +71,7 @@ class IoforMem extends Module{
     val begin_waddr = RegInit(0.U(ADDRWIDTH.W))
 
     val data_count = RegInit(0.U(4.W)) //16个8字节 --虽然写vmem会有写4字节情况，但是写4字节情况都是无法8字节对齐的情况
-    val wait_cycle = RegInit(0.U(3.W))
+    val wait_cycle = RegInit(0.U(4.W))
 
     
     val jump_data = RegInit(0.U((X_LEN.W))) //支持vmem跳跃的情况
@@ -105,6 +105,9 @@ class IoforMem extends Module{
 
     switch(state){
         is(s_Idle){
+                when(begin_flag){ //记时16个周期后，申请写入vmem
+                    wait_cycle := wait_cycle + 1.U
+                }
 
                 mem_data_valid := 0.B 
 
@@ -119,6 +122,7 @@ class IoforMem extends Module{
                             io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
                             io.axi.req.bits.rw := 0.B
                             io.multiwrite := 1.B
+                            ren := 1.U
 
                             jump_data := io.excute.wdata
                             jump_addr := io.excute.waddr
@@ -137,20 +141,17 @@ class IoforMem extends Module{
                             data_count := data_count + 1.U
                             wait_cycle := 0.U //若有写，则重新计数
                             
-                            when(wait_cycle === 7.U || data_count === 15.U){
+                            when(wait_cycle === 15.U || data_count === 15.U){
                                 state := s_multireq
                                 io.axi.req.valid := 1.B 
                                 io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
                                 io.axi.req.bits.rw := 0.B
                                 io.multiwrite := 1.B
+                                ren := 1.U
                             }
                         }
 
                     }.otherwise{ //普通读写请求，同步进行
-
-                        when(begin_flag){ //记时8个周期后，申请写入vmem
-                            wait_cycle := wait_cycle + 1.U
-                        }
 
                         state := s_singlereq
                         io.axi.req.valid := 1.B 
@@ -179,17 +180,6 @@ class IoforMem extends Module{
                 io.axi.req.bits.data := io.excute.wdata
                 io.axi.req.bits.mask := io.excute.wmask
                 io.axi.req.bits.rw := Mux(io.excute.ld_type.orR, 1.B, 0.B)
-            }
-        }
-        is(s_multiready){
-            when(io.axi.resp.bits.choose){
-                state := s_multireq
-                ren := 1.B
-                r_count := r_count + 1.U
-            }.otherwise{
-                io.axi.req.valid := 1.B
-                io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt
-                io.axi.req.bits.rw := 0.U
             }
         }
         is(s_multireq){
