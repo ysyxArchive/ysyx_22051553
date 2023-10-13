@@ -68,7 +68,7 @@ class IoforMem extends Module{
     val wait_cycle = RegInit(0.U(3.W))
 
     
-    val jump_data = RegInit(0.U(UInt(X_LEN.W))) //支持vmem跳跃的情况
+    val jump_data = RegInit(0.U((X_LEN.W))) //支持vmem跳跃的情况
     val jump_mask = RegInit(0.U((X_LEN/8).W))
     val jump_addr = RegInit(0.U(ADDRWIDTH.W))  //记录跳跃地址
 
