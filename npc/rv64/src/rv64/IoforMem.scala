@@ -8,7 +8,7 @@ import dataclass.data
 
 
 object IoforMem{
-    val s_Idle :: s_singlereq :: :: s_multiready :: s_multireq :: s_wait :: Nil = Enum(5)
+    val s_Idle :: s_singlereq ::  s_multiready :: s_multireq :: s_wait :: Nil = Enum(5)
 }
 //s_multiready:与Cache一致，等待Arbitor写地址结束
 
