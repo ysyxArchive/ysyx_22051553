@@ -210,6 +210,7 @@ class IoforMem extends Module{
                 io.axi.req.bits.mask := mask
 
                 ren := 1.B
+                io.multiwrite := 1.B
                 r_count := r_count + 1.U
             }
         }

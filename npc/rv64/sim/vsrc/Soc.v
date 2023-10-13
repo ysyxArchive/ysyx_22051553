@@ -2296,26 +2296,27 @@ module AXIArbitor(	// <stdin>:2920:10
                                                 {master_choose[3] ? master_choose : 4'h0}};	// <stdin>:2926:22, AXIArbitor.scala:61:32, :71:33, :143:24, :157:12, :208:18, :210:27, :212:35, :213:31, :241:{36,46}, :243:39, :294:25
       choose_buffer <= _GEN_20[state];	// AXIArbitor.scala:61:32, :143:24, :208:18, :212:35, :241:46
       if (master_choose[3]) begin	// AXIArbitor.scala:71:33
-        if (master_choose[0]) begin	// AXIArbitor.scala:71:33, :75:30
+        if (master_choose[0])	// AXIArbitor.scala:71:33, :75:30
           addr <= io_master0_req_bits_addr;	// AXIArbitor.scala:65:23
-          burst_len <= {4{io_multiwrite}};	// AXIArbitor.scala:68:28, :131:40
-        end
-        else if (master_choose[1]) begin	// AXIArbitor.scala:71:33, :75:30, :76:30
+        else if (master_choose[1])	// AXIArbitor.scala:71:33, :75:30, :76:30
           addr <= io_master1_req_bits_addr;	// AXIArbitor.scala:65:23
-          burst_len <= 4'hF;	// AXIArbitor.scala:68:28, :131:40
-        end
-        else begin	// AXIArbitor.scala:71:33, :75:30, :76:30
-          if (master_choose[2])	// AXIArbitor.scala:71:33, :77:30
-            addr <= io_master2_req_bits_addr;	// AXIArbitor.scala:65:23
-          else	// AXIArbitor.scala:71:33, :77:30
-            addr <= 32'h0;	// AXIArbitor.scala:65:23
-          burst_len <= {4{master_choose[2]}};	// AXIArbitor.scala:68:28, :71:33, :77:30, Mux.scala:101:16
-        end
+        else if (master_choose[2])	// AXIArbitor.scala:71:33, :75:30, :76:30, :77:30
+          addr <= io_master2_req_bits_addr;	// AXIArbitor.scala:65:23
+        else	// AXIArbitor.scala:71:33, :75:30, :76:30, :77:30
+          addr <= 32'h0;	// AXIArbitor.scala:65:23
       end
-      else begin	// AXIArbitor.scala:71:33
+      else	// AXIArbitor.scala:71:33
         addr <= 32'h0;	// AXIArbitor.scala:65:23
-        burst_len <= 4'h0;	// <stdin>:2926:22, AXIArbitor.scala:68:28
+      if (choose_buffer[3]) begin	// AXIArbitor.scala:61:32, :105:30
+        if (choose_buffer[0])	// AXIArbitor.scala:61:32, :109:30
+          burst_len <= {4{io_multiwrite}};	// AXIArbitor.scala:68:28, :131:40
+        else if (choose_buffer[1])	// AXIArbitor.scala:61:32, :109:30, :110:30
+          burst_len <= 4'hF;	// AXIArbitor.scala:68:28, :131:40
+        else	// AXIArbitor.scala:61:32, :109:30, :110:30
+          burst_len <= {4{choose_buffer[2]}};	// AXIArbitor.scala:61:32, :68:28, :111:30, Mux.scala:101:16
       end
+      else	// AXIArbitor.scala:61:32, :105:30
+        burst_len <= 4'h0;	// <stdin>:2926:22, AXIArbitor.scala:68:28
       _GEN_21 = {{(&state) & _GEN_12 ? _GEN_19 : state}, {~_T & ~_T_2 & _T_8 & _GEN_7 & io_AXI_O_ar_ready ?
                                                 2'h3 : state}, {_T_4 ? _GEN_19 : state}, {master_choose[3] ? _GEN_18 : state}};	// AXIArbitor.scala:71:33, :143:24, :156:13, :157:12, :171:27, :173:27, :179:23, :201:23, :208:18, :212:35, :215:30, :216:27, :218:27, :241:{36,46}, :243:39, :245:34, :251:27, :276:26, :277:23, :294:25
       state <= _GEN_21[state];	// AXIArbitor.scala:143:24, :208:18, :212:35, :241:46, :276:26

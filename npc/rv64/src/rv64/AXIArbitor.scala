@@ -124,17 +124,17 @@ class AXIArbitor extends Module{
         )
     ,0.B)
 
-    burst_len := Mux(choose_buffer(3), 
+    burst_len := Mux(master_choose(3), 
         MuxCase(
             0.B,
             Seq(
-                choose_buffer(0) -> Mux(
+                master_choose(0) -> Mux(
                     io.multiwrite,
                     15.U,
                     0.U
                 ),
-                choose_buffer(1) -> 15.U,
-                choose_buffer(2) -> 15.U,
+                master_choose(1) -> 15.U,
+                master_choose(2) -> 15.U,
             )
         )
     ,0.B)
