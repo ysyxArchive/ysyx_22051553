@@ -4481,8 +4481,8 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
     // Body
     __Vdly__w_count = vlSelf->__PVT__w_count;
     __Vdly__dirty = vlSelf->__PVT__dirty;
-    __Vdly__r_count = vlSelf->__PVT__r_count;
     __Vdly__valid = vlSelf->__PVT__valid;
+    __Vdly__r_count = vlSelf->__PVT__r_count;
     vlSelf->__Vdly__state = vlSelf->__PVT__state;
     __Vdlyvset__TagArray_ext__DOT__Memory__v0 = 0U;
     __Vdlyvset__TagArray_ext__DOT__Memory__v1 = 0U;

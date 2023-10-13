@@ -25,6 +25,7 @@ VM_TRACE_FST = 0
 VM_CLASSES_FAST += \
 	VSoc \
 	VSoc___024root__DepSet_hf1724153__0 \
+	VSoc___024root__DepSet_hf1724153__1 \
 	VSoc___024root__DepSet_h37efcc4e__0 \
 	VSoc___024unit__DepSet_h02486a38__0 \
 	VSoc_Cache__DepSet_h9c1b764e__0 \
