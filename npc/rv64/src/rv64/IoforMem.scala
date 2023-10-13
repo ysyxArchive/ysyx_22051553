@@ -99,7 +99,7 @@ class IoforMem extends Module{
                 mem_data_valid := 0.B 
 
                 when( (io.excute.ld_type.orR | io.excute.sd_type.orR) && ((io.excute.waddr | io.excute.raddr) >= "ha0000000".U) ){
-                    when(io.excute.sd_type.orR && io.excute.waddr >= VMEM_ADDR.U){ //vmem写请求，直到1.满、2.时间到达3.地址跳跃
+                    when(io.excute.sd_type.orR && io.excute.waddr >= "ha1000000".U){ //vmem写请求，直到1.满、2.时间到达3.地址跳跃
                         
                         when(begin_flag && (last_addr =/= io.excute.waddr)){ //data_in_buffer代表第一个数据已经写入buffer
                             state := s_multireq
