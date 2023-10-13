@@ -166,7 +166,7 @@ class FlowControl extends Module{
     // }.otherwise{
     //     IO_stall := 0.B
     // } 调整到下一周期stall
-    when((io.fcio.state === IoforMem.s_singlereq | io.fcio.stall === IoforMem.s_multireq) && (!io.fcio.valid)){
+    when((io.fcio.state === IoforMem.s_singlereq | io.fcio.state === IoforMem.s_multireq) && (!io.fcio.valid)){
         IO_stall := 1.B
     }.elsewhen(io.fcio.state === IoforMem.s_Idle && io.fcio.req){
         IO_stall := 1.B
