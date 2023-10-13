@@ -60,9 +60,9 @@ class IoforMem extends Module{
     val read = WireInit(0.U(X_LEN.W))
     val mask = WireInit(0.U(8.W))
 
-    val last_addr = RegInit(UInt(ADDRWIDTH.W))
+    val last_addr = RegInit(0.U(ADDRWIDTH.W))
     val begin_flag = RegInit(Bool())  //代表是否有第一个数据已经写入buffer
-    val begin_waddr = RegInit(UInt(ADDRWIDTH.W))
+    val begin_waddr = RegInit(0.U(ADDRWIDTH.W))
 
     val data_count = RegInit(0.U(4.W)) //16个8字节 --虽然写vmem会有写4字节情况，但是写4字节情况都是无法8字节对齐的情况
     val wait_cycle = RegInit(0.U(3.W))
