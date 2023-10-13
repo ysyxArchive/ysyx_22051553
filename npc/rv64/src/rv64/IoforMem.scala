@@ -8,8 +8,9 @@ import dataclass.data
 
 
 object IoforMem{
-    val s_Idle :: s_singlereq :: s_multireq :: s_wait :: Nil = Enum(4)
+    val s_Idle :: s_singlereq :: :: s_multiready :: s_multireq :: s_wait :: Nil = Enum(5)
 }
+//s_multiready:与Cache一致，等待Arbitor写地址结束
 
 
 class IOex extends Bundle{
@@ -63,6 +64,7 @@ class IoforMem extends Module{
     val mask = WireInit(0.U(8.W))
     dontTouch(read)
     dontTouch(mask)
+    dontTouch(ren)
 
     val last_addr = RegInit(0.U(ADDRWIDTH.W))
     val begin_flag = RegInit(0.B)  //代表是否有第一个数据已经写入buffer
@@ -113,8 +115,6 @@ class IoforMem extends Module{
 
                         when(begin_flag && (last_addr =/= io.excute.waddr)){ //data_in_buffer代表第一个数据已经写入buffer
                             state := s_multireq
-                            ren := 1.B
-                            r_count := r_count + 1.U
                             io.axi.req.valid := 1.B 
                             io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
                             io.axi.req.bits.rw := 0.B
@@ -139,8 +139,6 @@ class IoforMem extends Module{
                             
                             when(wait_cycle === 7.U || data_count === 15.U){
                                 state := s_multireq
-                                ren := 1.B
-                                r_count := r_count + 1.U
                                 io.axi.req.valid := 1.B 
                                 io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
                                 io.axi.req.bits.rw := 0.B
@@ -183,6 +181,17 @@ class IoforMem extends Module{
                 io.axi.req.bits.rw := Mux(io.excute.ld_type.orR, 1.B, 0.B)
             }
         }
+        is(s_multiready){
+            when(io.axi.resp.bits.choose){
+                state := s_multireq
+                ren := 1.B
+                r_count := r_count + 1.U
+            }.otherwise{
+                io.axi.req.valid := 1.B
+                io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt
+                io.axi.req.bits.rw := 0.U
+            }
+        }
         is(s_multireq){
             when(io.axi.resp.valid){
                 state := s_Idle
@@ -208,6 +217,8 @@ class IoforMem extends Module{
                 io.axi.req.valid := 1.B
                 io.axi.req.bits.data := read
                 io.axi.req.bits.mask := mask
+
+                ren := 1.B
                 r_count := r_count + 1.U
             }
         }
