@@ -17,4 +17,11 @@ int fs_close(int fd);
 size_t fs_begin(int fd);
 
 
+//配合NDL_DrawRect
+typedef struct my_pixel{
+  void * pixel_budle;
+  int w, h;
+}my_pixel;
+
+
 #endif

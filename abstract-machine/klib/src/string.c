@@ -78,6 +78,20 @@ int strncmp(const char *s1, const char *s2, size_t n) {
 	else return (*(s1 + offset) < *(s2 + offset)) ? -1 : 1;
 }
 
+
+//补充
+char* strrchr(const char* str, int c) {
+    char* last_occurrence = NULL;
+    for (; *str; ++str) {
+        if (*str == c) {
+            last_occurrence = (char*) str;
+        }
+    }
+
+    return last_occurrence;
+}
+
+
 void *memset(void *s, int c, size_t n) {
   int offset = 0;
   while(offset < n){

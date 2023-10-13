@@ -26,6 +26,7 @@ class AXIMasterIO extends Bundle{
 
 class AXIArbIO extends Bundle{
     val master0 = new AXIMasterIO
+    val multiwrite = Input(Bool())
     val master1 = new AXIMasterIO
     val master2 = new AXIMasterIO
 
@@ -127,7 +128,11 @@ class AXIArbitor extends Module{
         MuxCase(
             0.B,
             Seq(
-                master_choose(0) -> 0.U,
+                master_choose(0) -> Mux(
+                    io.multiwrite,
+                    15.U,
+                    0.U
+                ),
                 master_choose(1) -> 15.U,
                 master_choose(2) -> 15.U,
             )

@@ -1,10 +1,13 @@
 #include <fs.h>
 #include <common.h>
 
+extern uint8_t ramdisk_start;
+
 typedef size_t (*ReadFn) (void *buf, size_t offset, size_t len);
 typedef size_t (*WriteFn) (const void *buf, size_t offset, size_t len);
 
 size_t ramdisk_read(void *buf, size_t offset, size_t len);
+size_t ramdisk_alignread(void *buf, size_t offset, size_t len);
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 
 size_t serial_write(const void *buf, size_t offset, size_t len);
@@ -13,6 +16,12 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len);
 size_t fb_write(const void *buf, size_t offset, size_t len);
 size_t fbsync_write(const void *buf, size_t offset, size_t len);
 size_t screeninfo_write(const void *buf, size_t offset, size_t len);
+
+bool bmp_read = 0;
+unsigned int append_head = 0;
+size_t bmp_breakaddr = 0;
+
+uint8_t bmp_buf[8] = {};
 
 
 typedef struct {
@@ -83,7 +92,37 @@ size_t fs_read(int fd, void *buf, size_t len){
       real_len = len;
     }
 
+    //判断是否为bmp
+    char *dot = strrchr(file_table[fd].name, '.');
+    // if((dot == NULL || strcmp(dot, ".bmp") != 0) && bmp_read == 1){ //结束bmp读取，恢复
+    //   memcpy(&ramdisk_start+bmp_breakaddr, bmp_buf, append_head);
+    //   bmp_read = 0;
+    //   append_head = 0;
+    // }
+
+    if(dot != NULL && strcmp(dot, ".bmp") == 0 && file_table[fd].open_offset != 0 && bmp_read == 0){
+      bmp_read = 1;
+      size_t base_addr = file_table[fd].disk_offset+file_table[fd].open_offset;
+      append_head = base_addr & 0x7;
+      bmp_breakaddr = base_addr - append_head;
+      memcpy(bmp_buf, &ramdisk_start+bmp_breakaddr, append_head);
+      memset(&ramdisk_start+bmp_breakaddr, 0, append_head); //赋值0
+      file_table[fd].open_offset -= append_head;
+    }
+    
+    // if(dot != NULL && strcmp(dot, ".bmp") == 0 && file_table[fd].open_offset != 0){
+    //   printf("offset is %p\n", &ramdisk_start + file_table[fd].disk_offset+file_table[fd].open_offset);
+    //   printf("real_len is %d\n", real_len);
+    // }
+    
     ramdisk_read(buf, file_table[fd].disk_offset+file_table[fd].open_offset, real_len);
+
+    if((dot != NULL && strcmp(dot, ".bmp") == 0 && file_table[fd].open_offset != 0 && real_len < 1024) && bmp_read == 1){ //回复， 注意bmp的最后real_len有0
+      memcpy(&ramdisk_start+bmp_breakaddr, bmp_buf, append_head);
+      bmp_read = 0;
+      append_head = 0;
+    }
+
     file_table[fd].open_offset += real_len;
 
     return real_len;

@@ -58,7 +58,7 @@ struct BitmapHeader {
 void* BMP_Load(const char *filename, int *width, int *height) {
     FILE *fp = fopen(filename, "rb");  
     if (!fp) return NULL;
-
+    
     struct BitmapHeader hdr;
     assert(sizeof(hdr) == 54);
     fread(&hdr, sizeof(struct BitmapHeader), 1, fp);
@@ -70,30 +70,45 @@ void* BMP_Load(const char *filename, int *width, int *height) {
 
     int w = hdr.width;
     int h = hdr.height;
-
-    printf("time0\n");
+    // printf("offset is %d\n", hdr.offset);
+    // printf("time0\n");
     uint32_t *pixels = malloc(w * h * sizeof(uint32_t));
-    uint8_t *buf = malloc(w * h * 3);
-    printf("time1\n");
-
+    // uint8_t *buf = aligned_alloc(8, w * h * 3 + 8);  //buf8字节对齐 --扩充8个字节，最多7个不对齐 --aligned_alloc无法使用
+    uint8_t *base = malloc(w * h * 3 + 16);  //涉及两次对齐
+    uint64_t align_addr = (uint64_t)(base);
+    while(align_addr & 0x7 != 0){
+      align_addr ++;
+    }
+    uint8_t * buf = (uint8_t*)align_addr;
+    // printf("buf is %p\n", buf);
+    // printf("time1\n");
     fseek(fp, hdr.offset, SEEK_SET);
     printf("time2\n");
     // fread(buf, 1, w * h * 3, fp);
-    fread(buf, w * h * 3, 1, fp); //修改
+    // printf("total is %d\n", w*h*3);
+
+    fread(buf, w * h * 3 + 8, 1, fp); //修改
+
+
+    uint8_t *buf_off = buf;
+    while(*buf_off == 0){
+      buf_off ++;
+    }
+    // printf("buf_off is %p\n", buf_off);
     printf("time3\n");
     fclose(fp); 
 
     for (int i = 0; i < h; i++) {
          for (int j = 0; j < w; j++) {
               int index = (h - 1 - i) * w + j;
-              uint8_t r = buf[index * 3 + 2]; //改成内存操作
-              uint8_t g = buf[index * 3 + 1];
-              uint8_t b = buf[index * 3];
+              uint8_t r = buf_off[index * 3 + 2]; //改成内存操作
+              uint8_t g = buf_off[index * 3 + 1];
+              uint8_t b = buf_off[index * 3];
               pixels[i * w + j] = (r << 16) | (g << 8) | b;
          }
     }
 
-    free(buf); 
+    free(base); 
 
     if (width) *width = w;
     if (height) *height = h;

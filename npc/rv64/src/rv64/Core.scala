@@ -469,8 +469,8 @@ class Core extends Module{
     ioformem.io.excute.raddr := excute.io.raddr
     ioformem.io.excute.wdata := excute.io.wdata
     ioformem.io.excute.wmask := excute.io.wmask
-    ioformem.io.excute.load := excute.io.deio.ld_type.orR
-    ioformem.io.excute.store := excute.io.deio.sd_type.orR
+    ioformem.io.excute.ld_type := excute.io.deio.ld_type
+    ioformem.io.excute.sd_type := excute.io.deio.sd_type
 
     ioformem.io.fc <> fc.io.fcio
     ioformem.io.mem <> mem.io.rdata_io
@@ -479,7 +479,7 @@ class Core extends Module{
     arbitor.io.master0 <> ioformem.io.axi
     arbitor.io.master1 <> Dcache.io.axi //先让在允许的指令获得运行数据
     arbitor.io.master2 <> Icache.io.axi
-
+    arbitor.io.multiwrite := ioformem.io.multiwrite
     
 
     
