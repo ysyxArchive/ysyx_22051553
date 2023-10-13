@@ -186,6 +186,7 @@ class IoforMem extends Module{
             when(io.axi.resp.valid){
                 state := s_Idle
 
+                io.axi.req.valid := 0.B
 
                 for(i <- 0 until 16)yield{
                     VmemBuffer.write(i.U, VecInit.fill(8)(0.U))

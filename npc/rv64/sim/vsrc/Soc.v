@@ -1895,12 +1895,12 @@ module FlowControl(	// <stdin>:2466:10
                 3'h4 | io_fcIcache_state == 3'h5;	// FlowControl.scala:140:{29,37,40,58}, :141:22, :142:{34,81,130,154}
   assign Dcache_stall = (|io_fcDcache_state) & ~io_fcDcache_hit | io_fcDcache_state == 3'h3 | io_fcDcache_state ==
                 3'h4 | io_fcDcache_state == 3'h5;	// FlowControl.scala:142:{34,81,130}, :150:{28,36,39,56}, :151:22, :152:{34,81,130,154}
-  assign IO_stall = (io_fcio_state == 2'h1 | (&io_fcio_state)) & ~io_fcio_valid | io_fcio_state == 2'h0 &
+  assign IO_stall = (io_fcio_state == 2'h1 | io_fcio_state == 2'h2) & ~io_fcio_valid | io_fcio_state == 2'h0 &
                 io_fcio_req & ~io_fcio_vmem_range;	// FlowControl.scala:169:{25,50,66,91,95,111}, :170:18, :171:{30,65,68,90}
   assign MULDIV_stall = ~io_fcex_mul_div_valid & io_fcex_mul_div;	// FlowControl.scala:181:32, :182:22, :183:32
   wire _SFBundle_T_3 = io_fctr_trap_state == 3'h4 | (&io_fctr_trap_state);	// FlowControl.scala:142:81, :195:{33,47,70}
   wire _SFBundle_T_14 = io_fctr_pop_NOP | io_fctr_trap_state == 3'h1 | io_fctr_trap_state == 3'h2 |
-                io_fctr_trap_state == 3'h3 | io_fctr_trap_state == 3'h5 | io_fctr_trap_state == 3'h6;	// FlowControl.scala:142:{34,130}, :169:25, :196:{60,93}, :197:{36,71,87,109}
+                io_fctr_trap_state == 3'h3 | io_fctr_trap_state == 3'h5 | io_fctr_trap_state == 3'h6;	// FlowControl.scala:142:{34,130}, :196:{60,93}, :197:{36,71,87,109}
   wire SFBundle_0 = IO_stall | Icache_stall | Dcache_stall | io_fcde_load_use | ~_SFBundle_T_3 &
                 (_SFBundle_T_14 | ~io_fctr_jump_flag & ~io_fcex_jump_flag & ~io_fcde_jump_flag &
                 MULDIV_stall);	// FlowControl.scala:195:47, :197:87, Mux.scala:101:16
@@ -2222,8 +2222,7 @@ module AXIArbitor(	// <stdin>:2920:10
   input         io_AXI_O_r_bits_last,
   output        io_master0_resp_valid,
   output [63:0] io_master0_resp_bits_data,
-  output        io_master0_resp_bits_choose,
-                io_master1_resp_valid,
+  output        io_master1_resp_valid,
   output [63:0] io_master1_resp_bits_data,
   output        io_master1_resp_bits_choose,
                 io_master2_resp_valid,
@@ -2360,7 +2359,6 @@ module AXIArbitor(	// <stdin>:2920:10
   `endif // not def SYNTHESIS
   assign io_master0_resp_valid = ~_T & (_T_2 ? _T_4 & choose_buffer[0] : ~_T_8 & (&state) & _GEN_12 & choose_buffer[0]);	// <stdin>:2920:10, AXIArbitor.scala:61:32, :109:30, :143:24, :157:12, :159:27, :179:23, :193:27, :208:18, :241:{36,46}, :259:39
   assign io_master0_resp_bits_data = _GEN_14[state];	// <stdin>:2920:10, AXIArbitor.scala:143:24, :160:31, :208:18
-  assign io_master0_resp_bits_choose = choose_buffer[0];	// <stdin>:2920:10, AXIArbitor.scala:61:32, :109:30
   assign io_master1_resp_valid = ~_T & (_T_2 ? _T_4 & _GEN_5 : ~_T_8 & (&state) & _GEN_12 & _GEN_5);	// <stdin>:2920:10, AXIArbitor.scala:143:24, :157:12, :162:27, :179:23, :193:27, :208:18, :241:{36,46}, :259:39, :261:45
   assign io_master1_resp_bits_data = _GEN_16[state];	// <stdin>:2920:10, AXIArbitor.scala:143:24, :163:31, :208:18
   assign io_master1_resp_bits_choose = choose_buffer[1];	// <stdin>:2920:10, AXIArbitor.scala:61:32, :110:30
@@ -7820,7 +7818,6 @@ module IoforMem(	// <stdin>:10909:10
                 reset,
                 io_axi_resp_valid,
   input  [63:0] io_axi_resp_bits_data,
-  input         io_axi_resp_bits_choose,
   input  [31:0] io_excute_waddr,
                 io_excute_raddr,
   input  [63:0] io_excute_wdata,
@@ -7842,23 +7839,23 @@ module IoforMem(	// <stdin>:10909:10
                 io_multiwrite);
 
   wire        _GEN;	// IoforMem.scala:59:33, :106:18
-  wire        _T_35;	// IoforMem.scala:211:59
-  wire        _T_34;	// IoforMem.scala:211:59
-  wire        _T_33;	// IoforMem.scala:211:59
-  wire        _T_32;	// IoforMem.scala:211:59
-  wire        _T_31;	// IoforMem.scala:211:59
-  wire        _T_30;	// IoforMem.scala:211:59
-  wire        _T_29;	// IoforMem.scala:211:59
-  wire        _T_28;	// IoforMem.scala:211:59
-  wire        _GEN_0;	// IoforMem.scala:59:33, :106:18, :111:130
-  wire        _T_20;	// IoforMem.scala:134:80
-  wire        _T_19;	// IoforMem.scala:134:80
-  wire        _T_18;	// IoforMem.scala:134:80
-  wire        _T_17;	// IoforMem.scala:134:80
-  wire        _T_16;	// IoforMem.scala:134:80
-  wire        _T_15;	// IoforMem.scala:134:80
-  wire        _T_14;	// IoforMem.scala:134:80
-  wire        _T_13;	// IoforMem.scala:134:80
+  wire        _T_34;	// IoforMem.scala:201:59
+  wire        _T_33;	// IoforMem.scala:201:59
+  wire        _T_32;	// IoforMem.scala:201:59
+  wire        _T_31;	// IoforMem.scala:201:59
+  wire        _T_30;	// IoforMem.scala:201:59
+  wire        _T_29;	// IoforMem.scala:201:59
+  wire        _T_28;	// IoforMem.scala:201:59
+  wire        _T_27;	// IoforMem.scala:201:59
+  wire        _GEN_0;	// IoforMem.scala:59:33, :106:18, :114:130
+  wire        _T_20;	// IoforMem.scala:138:80
+  wire        _T_19;	// IoforMem.scala:138:80
+  wire        _T_18;	// IoforMem.scala:138:80
+  wire        _T_17;	// IoforMem.scala:138:80
+  wire        _T_16;	// IoforMem.scala:138:80
+  wire        _T_15;	// IoforMem.scala:138:80
+  wire        _T_14;	// IoforMem.scala:138:80
+  wire        _T_13;	// IoforMem.scala:138:80
   wire [7:0]  _VmemBuffer_7_ext_R0_data;	// IoforMem.scala:59:33
   wire [7:0]  _VmemBuffer_6_ext_R0_data;	// IoforMem.scala:59:33
   wire [7:0]  _VmemBuffer_5_ext_R0_data;	// IoforMem.scala:59:33
@@ -7867,7 +7864,7 @@ module IoforMem(	// <stdin>:10909:10
   wire [7:0]  _VmemBuffer_2_ext_R0_data;	// IoforMem.scala:59:33
   wire [7:0]  _VmemBuffer_1_ext_R0_data;	// IoforMem.scala:59:33
   wire [7:0]  _VmemBuffer_0_ext_R0_data;	// IoforMem.scala:59:33
-  reg  [2:0]  state;	// IoforMem.scala:53:24
+  reg  [1:0]  state;	// IoforMem.scala:53:24
   reg         mem_data_valid;	// IoforMem.scala:55:33
   reg  [63:0] mem_data_bits;	// IoforMem.scala:56:32
   wire        ren;	// <stdin>:10922:5
@@ -7878,7 +7875,7 @@ module IoforMem(	// <stdin>:10909:10
   reg         begin_flag;	// IoforMem.scala:70:29
   reg  [31:0] begin_waddr;	// IoforMem.scala:71:30
   reg  [3:0]  data_count;	// IoforMem.scala:73:29
-  reg  [2:0]  wait_cycle;	// IoforMem.scala:74:29
+  reg  [3:0]  wait_cycle;	// IoforMem.scala:74:29
   reg  [63:0] jump_data;	// IoforMem.scala:77:28
   reg  [7:0]  jump_mask;	// IoforMem.scala:78:28
   reg  [31:0] jump_addr;	// IoforMem.scala:79:28
@@ -7886,42 +7883,41 @@ module IoforMem(	// <stdin>:10909:10
                 _VmemBuffer_4_ext_R0_data, _VmemBuffer_3_ext_R0_data, _VmemBuffer_2_ext_R0_data,
                 _VmemBuffer_1_ext_R0_data, _VmemBuffer_0_ext_R0_data};	// IoforMem.scala:59:33, :82:{10,43}
   wire [31:0] _T_4 = io_excute_waddr | io_excute_raddr;	// IoforMem.scala:98:87
-  wire        _T = state == 3'h0;	// IoforMem.scala:53:24, :106:18
-  wire        _T_6 = ((|io_excute_ld_type) | (|io_excute_sd_type)) & _T_4 > 32'h9FFFFFFF;	// IoforMem.scala:98:{37,61,87,106}, :111:{46,71,111}
-  wire        _T_9 = (|io_excute_sd_type) & io_excute_waddr > 32'hA0FFFFFF;	// IoforMem.scala:98:61, :113:{48,67}
-  wire        _T_11 = begin_flag & last_addr != io_excute_waddr;	// IoforMem.scala:69:28, :70:29, :116:{41,55}
-  wire        _GEN_1 = _T_6 & _T_9 & ~_T_11;	// IoforMem.scala:70:29, :111:{71,130}, :113:{48,84}, :116:{41,76}, :128:53
-  assign _T_13 = io_excute_wmask[0];	// IoforMem.scala:134:80
-  assign _T_14 = io_excute_wmask[1];	// IoforMem.scala:134:80
-  assign _T_15 = io_excute_wmask[2];	// IoforMem.scala:134:80
-  assign _T_16 = io_excute_wmask[3];	// IoforMem.scala:134:80
-  assign _T_17 = io_excute_wmask[4];	// IoforMem.scala:134:80
-  assign _T_18 = io_excute_wmask[5];	// IoforMem.scala:134:80
-  assign _T_19 = io_excute_wmask[6];	// IoforMem.scala:134:80
-  assign _T_20 = io_excute_wmask[7];	// IoforMem.scala:134:80
-  assign _GEN_0 = _T & _GEN_1;	// IoforMem.scala:59:33, :70:29, :106:18, :111:130, :113:84
-  wire        _T_23 = (&wait_cycle) | (&data_count);	// IoforMem.scala:73:29, :74:29, :140:{45,53,67}
-  wire        _GEN_2 = _T_11 | _T_23;	// IoforMem.scala:116:{41,76}, :117:35, :140:{53,76}
-  wire        _GEN_3 = ~_T_6 | _T_9;	// IoforMem.scala:71:30, :89:26, :111:{71,130}, :113:{48,84}
-  wire        _T_24 = state == 3'h1;	// IoforMem.scala:53:24, :106:18, :155:31
-  wire        _T_25 = state == 3'h2;	// IoforMem.scala:53:24, :106:18
-  wire        _T_26 = state == 3'h3;	// IoforMem.scala:53:24, :106:18, :117:35
-  wire        _GEN_4 = ~_T & ~_T_24 & ~_T_25 & _T_26 & io_axi_resp_valid;	// IoforMem.scala:59:33, :71:30, :88:26, :106:18, :111:130, :185:42
-  assign _T_28 = jump_mask[0];	// IoforMem.scala:78:28, :211:59
-  assign _T_29 = jump_mask[1];	// IoforMem.scala:78:28, :211:59
-  assign _T_30 = jump_mask[2];	// IoforMem.scala:78:28, :211:59
-  assign _T_31 = jump_mask[3];	// IoforMem.scala:78:28, :211:59
-  assign _T_32 = jump_mask[4];	// IoforMem.scala:78:28, :211:59
-  assign _T_33 = jump_mask[5];	// IoforMem.scala:78:28, :211:59
-  assign _T_34 = jump_mask[6];	// IoforMem.scala:78:28, :211:59
-  assign _T_35 = jump_mask[7];	// IoforMem.scala:78:28, :211:59
-  assign _GEN = ~_T & ~_T_24 & ~_T_25 & _T_26 & io_axi_resp_valid & (|jump_addr);	// IoforMem.scala:59:33, :71:30, :79:28, :88:26, :106:18, :111:130, :185:42, :209:32
-  wire        _GEN_5 = _T_26 & ~io_axi_resp_valid;	// IoforMem.scala:87:22, :106:18, :165:36, :177:34, :196:36
-  wire        _GEN_6 = _T_25 | ~_T_26 | io_axi_resp_valid;	// IoforMem.scala:70:29, :89:26, :106:18, :196:36
-  assign ren = ~_T & ~_T_24 & (_T_25 ? io_axi_resp_bits_choose : _GEN_5);	// IoforMem.scala:59:33, :71:30, :85:9, :87:22, :106:18, :111:130, :185:42, :196:36
+  wire        _T = state == 2'h0;	// IoforMem.scala:53:24, :106:18
+  wire        _T_6 = ((|io_excute_ld_type) | (|io_excute_sd_type)) & _T_4 > 32'h9FFFFFFF;	// IoforMem.scala:98:{37,61,87,106}, :114:{46,71,111}
+  wire        _T_9 = (|io_excute_sd_type) & io_excute_waddr > 32'hA0FFFFFF;	// IoforMem.scala:98:61, :116:{48,67}
+  wire        _T_11 = begin_flag & last_addr != io_excute_waddr;	// IoforMem.scala:69:28, :70:29, :119:{41,55}
+  wire        _GEN_1 = _T_6 & _T_9 & ~_T_11;	// IoforMem.scala:70:29, :114:{71,130}, :116:{48,84}, :119:{41,76}, :132:53
+  assign _T_13 = io_excute_wmask[0];	// IoforMem.scala:138:80
+  assign _T_14 = io_excute_wmask[1];	// IoforMem.scala:138:80
+  assign _T_15 = io_excute_wmask[2];	// IoforMem.scala:138:80
+  assign _T_16 = io_excute_wmask[3];	// IoforMem.scala:138:80
+  assign _T_17 = io_excute_wmask[4];	// IoforMem.scala:138:80
+  assign _T_18 = io_excute_wmask[5];	// IoforMem.scala:138:80
+  assign _T_19 = io_excute_wmask[6];	// IoforMem.scala:138:80
+  assign _T_20 = io_excute_wmask[7];	// IoforMem.scala:138:80
+  assign _GEN_0 = _T & _GEN_1;	// IoforMem.scala:59:33, :70:29, :106:18, :114:130, :116:84
+  wire        _T_23 = (&wait_cycle) | (&data_count);	// IoforMem.scala:73:29, :74:29, :144:{45,54,68}
+  wire        _GEN_2 = _T_11 | _T_23;	// IoforMem.scala:119:{41,76}, :120:35, :144:{54,77}
+  wire        _GEN_3 = _T_6 & _T_9 & _GEN_2;	// IoforMem.scala:103:19, :114:{71,130}, :116:{48,84}, :119:76, :120:35, :144:77
+  wire        _GEN_4 = ~_T_6 | _T_9;	// IoforMem.scala:71:30, :89:26, :114:{71,130}, :116:{48,84}
+  wire        _T_24 = state == 2'h1;	// IoforMem.scala:53:24, :106:18, :156:31
+  wire        _T_25 = state == 2'h2;	// IoforMem.scala:53:24, :106:18, :120:35
+  wire        _GEN_5 = ~_T & ~_T_24 & _T_25 & io_axi_resp_valid;	// IoforMem.scala:59:33, :71:30, :88:26, :106:18, :114:130, :166:36
+  assign _T_27 = jump_mask[0];	// IoforMem.scala:78:28, :201:59
+  assign _T_28 = jump_mask[1];	// IoforMem.scala:78:28, :201:59
+  assign _T_29 = jump_mask[2];	// IoforMem.scala:78:28, :201:59
+  assign _T_30 = jump_mask[3];	// IoforMem.scala:78:28, :201:59
+  assign _T_31 = jump_mask[4];	// IoforMem.scala:78:28, :201:59
+  assign _T_32 = jump_mask[5];	// IoforMem.scala:78:28, :201:59
+  assign _T_33 = jump_mask[6];	// IoforMem.scala:78:28, :201:59
+  assign _T_34 = jump_mask[7];	// IoforMem.scala:78:28, :201:59
+  assign _GEN = ~_T & ~_T_24 & _T_25 & io_axi_resp_valid & (|jump_addr);	// IoforMem.scala:59:33, :71:30, :79:28, :88:26, :106:18, :114:130, :166:36, :199:32
+  wire        _GEN_6 = ~_T_25 | io_axi_resp_valid;	// IoforMem.scala:70:29, :89:26, :106:18, :186:36
+  assign ren = _T ? _GEN_3 : ~_T_24 & _T_25 & ~io_axi_resp_valid;	// IoforMem.scala:85:9, :87:22, :88:26, :103:19, :106:18, :114:130, :116:84, :166:36, :178:34
   always @(posedge clock) begin
     if (reset) begin
-      state <= 3'h0;	// IoforMem.scala:53:24
+      state <= 2'h0;	// IoforMem.scala:53:24
       mem_data_valid <= 1'h0;	// <stdin>:10909:10, IoforMem.scala:55:33
       mem_data_bits <= 64'h0;	// IoforMem.scala:56:32
       r_count <= 4'h0;	// IoforMem.scala:62:26
@@ -7929,89 +7925,62 @@ module IoforMem(	// <stdin>:10909:10
       begin_flag <= 1'h0;	// <stdin>:10909:10, IoforMem.scala:70:29
       begin_waddr <= 32'h0;	// IoforMem.scala:69:28, :71:30
       data_count <= 4'h0;	// IoforMem.scala:62:26, :73:29
-      wait_cycle <= 3'h0;	// IoforMem.scala:53:24, :74:29
+      wait_cycle <= 4'h0;	// IoforMem.scala:62:26, :74:29
       jump_data <= 64'h0;	// IoforMem.scala:56:32, :77:28
       jump_mask <= 8'h0;	// <stdin>:10929:13, IoforMem.scala:78:28
       jump_addr <= 32'h0;	// IoforMem.scala:69:28, :79:28
     end
     else begin
-      automatic logic _GEN_7 = _T_24 & io_axi_resp_valid;	// IoforMem.scala:55:33, :106:18, :165:36
+      automatic logic            _GEN_7 = _T_24 & io_axi_resp_valid;	// IoforMem.scala:55:33, :106:18, :166:36
+      automatic logic [3:0][1:0] _GEN_8;	// IoforMem.scala:106:18, :114:130, :166:36, :186:36
+      _GEN_8 = {{state != 2'h3 | io_fc_stall ? state : 2'h0}, {io_axi_resp_valid ? 2'h0 : state},
+                                                {io_axi_resp_valid ? {2{io_fc_stall}} : state}, {_T_6 ? (_T_9 ? (_GEN_2 ? 2'h2 : state) :
+                                                2'h1) : state}};	// IoforMem.scala:53:24, :106:18, :114:{71,130}, :116:{48,84}, :119:76, :120:35, :144:77, :156:31, :166:36, :170:34, :171:27, :174:27, :186:36, :187:23, :216:31
+      state <= _GEN_8[state];	// IoforMem.scala:53:24, :106:18, :114:130, :166:36, :186:36
+      mem_data_valid <= ~_T & (_GEN_7 | mem_data_valid);	// IoforMem.scala:55:33, :71:30, :106:18, :112:32, :114:130, :166:36
+      if (_T | ~_GEN_7) begin	// IoforMem.scala:55:33, :56:32, :106:18, :166:36
+      end
+      else	// IoforMem.scala:55:33, :56:32, :106:18, :166:36
+        mem_data_bits <= io_axi_resp_bits_data;	// IoforMem.scala:56:32
+      if (_T | _T_24 | ~_T_25) begin	// IoforMem.scala:62:26, :70:29, :106:18, :186:36
+      end
+      else if (io_axi_resp_valid)	// IoforMem.scala:62:26, :70:29, :106:18, :186:36
+        r_count <= 4'h0;	// IoforMem.scala:62:26
+      else	// IoforMem.scala:62:26, :70:29, :106:18, :186:36
+        r_count <= r_count + 4'h1;	// <stdin>:11149:13, IoforMem.scala:62:26, :212:36
       if (_T) begin	// IoforMem.scala:106:18
-        if (_T_6) begin	// IoforMem.scala:111:71
-          if (_T_9) begin	// IoforMem.scala:113:48
-            if (_GEN_2)	// IoforMem.scala:116:76, :117:35, :140:76
-              state <= 3'h3;	// IoforMem.scala:53:24, :117:35
-            if (~_T_11)	// IoforMem.scala:70:29, :116:{41,76}, :128:53
-              wait_cycle <= 3'h0;	// IoforMem.scala:53:24, :74:29
-          end
-          else begin	// IoforMem.scala:113:48
-            state <= 3'h1;	// IoforMem.scala:53:24, :155:31
-            if (begin_flag)	// IoforMem.scala:70:29
-              wait_cycle <= wait_cycle + 3'h1;	// IoforMem.scala:74:29, :152:54, :155:31
-          end
+        if (~_T_6 | ~_T_9 | _T_11) begin	// IoforMem.scala:69:28, :71:30, :114:{71,130}, :116:{48,84}, :119:{41,76}
+          if (begin_flag)	// IoforMem.scala:70:29
+            wait_cycle <= wait_cycle + 4'h1;	// <stdin>:11149:13, IoforMem.scala:74:29, :109:46
         end
-        if (~_T_6 | ~_T_9 | _T_11) begin	// IoforMem.scala:69:28, :71:30, :111:{71,130}, :113:{48,84}, :116:{41,76}
+        else begin	// IoforMem.scala:69:28, :71:30, :114:{71,130}, :116:{48,84}, :119:{41,76}
+          last_addr <= io_excute_waddr + 32'h8;	// IoforMem.scala:69:28, :140:58
+          data_count <= data_count + 4'h1;	// <stdin>:11149:13, IoforMem.scala:73:29, :141:54
+          wait_cycle <= 4'h0;	// IoforMem.scala:62:26, :74:29
         end
-        else begin	// IoforMem.scala:69:28, :71:30, :111:{71,130}, :113:{48,84}, :116:{41,76}
-          last_addr <= io_excute_waddr + 32'h8;	// IoforMem.scala:69:28, :136:58
-          data_count <= data_count + 4'h1;	// <stdin>:11162:15, IoforMem.scala:73:29, :137:54
-        end
-        begin_flag <= _GEN_1 | begin_flag;	// IoforMem.scala:70:29, :111:130, :113:84
-        if (_T_6 & _T_9 & _T_11)	// IoforMem.scala:79:28, :111:{71,130}, :113:{48,84}, :116:41
+        begin_flag <= _GEN_1 | begin_flag;	// IoforMem.scala:70:29, :114:130, :116:84
+        if (_T_6 & _T_9 & _T_11)	// IoforMem.scala:79:28, :114:{71,130}, :116:{48,84}, :119:41
           jump_addr <= io_excute_waddr;	// IoforMem.scala:79:28
       end
       else begin	// IoforMem.scala:106:18
-        if (_T_24) begin	// IoforMem.scala:106:18
-          if (io_axi_resp_valid)
-            state <= {io_fc_stall, 2'h0};	// IoforMem.scala:53:24, :169:34, :170:27, :173:27
+        if (_T_24 | ~(_T_25 & io_axi_resp_valid & (|jump_addr))) begin	// IoforMem.scala:69:28, :79:28, :106:18, :186:36, :199:32
         end
-        else if (_T_25) begin	// IoforMem.scala:106:18
-          if (io_axi_resp_bits_choose)
-            state <= 3'h3;	// IoforMem.scala:53:24, :117:35
+        else	// IoforMem.scala:69:28, :79:28, :106:18, :186:36, :199:32
+          last_addr <= jump_addr + 32'h8;	// IoforMem.scala:69:28, :79:28, :140:58, :203:44
+        begin_flag <= (_T_24 | ~_T_25 | ~io_axi_resp_valid) & begin_flag;	// IoforMem.scala:70:29, :87:22, :106:18, :166:36, :178:34, :186:36
+        if (_T_24 | ~(_T_25 & io_axi_resp_valid)) begin	// IoforMem.scala:74:29, :106:18, :186:36
         end
-        else if (_T_26) begin	// IoforMem.scala:106:18
-          if (io_axi_resp_valid)
-            state <= 3'h0;	// IoforMem.scala:53:24
-        end
-        else if (state != 3'h4 | io_fc_stall) begin	// IoforMem.scala:53:24, :106:18, :170:27, :226:31
-        end
-        else	// IoforMem.scala:53:24, :106:18, :170:27, :226:31
-          state <= 3'h0;	// IoforMem.scala:53:24
-        if (_T_24 | _T_25 | ~(_T_26 & io_axi_resp_valid & (|jump_addr))) begin	// IoforMem.scala:69:28, :79:28, :106:18, :196:36, :209:32
-        end
-        else	// IoforMem.scala:69:28, :79:28, :106:18, :196:36, :209:32
-          last_addr <= jump_addr + 32'h8;	// IoforMem.scala:69:28, :79:28, :136:58, :213:44
-        begin_flag <= (_T_24 | _T_25 | ~_T_26 | ~io_axi_resp_valid) & begin_flag;	// IoforMem.scala:70:29, :87:22, :106:18, :165:36, :177:34, :196:36
-        if (_T_24 | _T_25 | ~(_T_26 & io_axi_resp_valid)) begin	// IoforMem.scala:74:29, :106:18, :196:36
-        end
-        else begin	// IoforMem.scala:74:29, :106:18, :196:36
-          data_count <= {3'h0, |jump_addr};	// IoforMem.scala:53:24, :73:29, :79:28, :205:28, :209:{32,40}, :214:32
-          wait_cycle <= 3'h0;	// IoforMem.scala:53:24, :74:29
+        else begin	// IoforMem.scala:74:29, :106:18, :186:36
+          data_count <= {3'h0, |jump_addr};	// Cat.scala:33:92, IoforMem.scala:73:29, :79:28, :195:28, :199:{32,40}, :204:32
+          wait_cycle <= 4'h0;	// IoforMem.scala:62:26, :74:29
           jump_addr <= 32'h0;	// IoforMem.scala:69:28, :79:28
         end
       end
-      mem_data_valid <= ~_T & (_GEN_7 | mem_data_valid);	// IoforMem.scala:55:33, :71:30, :106:18, :109:32, :111:130, :165:36
-      if (_T | ~_GEN_7) begin	// IoforMem.scala:55:33, :56:32, :106:18, :165:36
+      if (~_T | ~_T_6 | ~_T_9 | _T_11 | begin_flag) begin	// IoforMem.scala:70:29, :71:30, :106:18, :114:{71,130}, :116:{48,84}, :119:{41,76}
       end
-      else	// IoforMem.scala:55:33, :56:32, :106:18, :165:36
-        mem_data_bits <= io_axi_resp_bits_data;	// IoforMem.scala:56:32
-      if (_T | _T_24) begin	// IoforMem.scala:62:26, :106:18
-      end
-      else if (_T_25) begin	// IoforMem.scala:62:26, :106:18
-        if (io_axi_resp_bits_choose)
-          r_count <= r_count + 4'h1;	// <stdin>:11162:15, IoforMem.scala:62:26, :188:36
-      end
-      else if (_T_26) begin	// IoforMem.scala:62:26, :106:18
-        if (io_axi_resp_valid)
-          r_count <= 4'h0;	// IoforMem.scala:62:26
-        else
-          r_count <= r_count + 4'h1;	// <stdin>:11162:15, IoforMem.scala:62:26, :222:36
-      end
-      if (~_T | ~_T_6 | ~_T_9 | _T_11 | begin_flag) begin	// IoforMem.scala:70:29, :71:30, :106:18, :111:{71,130}, :113:{48,84}, :116:{41,76}
-      end
-      else	// IoforMem.scala:70:29, :71:30, :106:18, :111:{71,130}, :113:{48,84}, :116:{41,76}
+      else	// IoforMem.scala:70:29, :71:30, :106:18, :114:{71,130}, :116:{48,84}, :119:{41,76}
         begin_waddr <= io_excute_waddr;	// IoforMem.scala:71:30
-      if (_T & _T_6 & _T_9 & _T_11) begin	// IoforMem.scala:77:28, :106:18, :111:{71,130}, :113:48, :116:41
+      if (_T & _T_6 & _T_9 & _T_11) begin	// IoforMem.scala:77:28, :106:18, :114:{71,130}, :116:48, :119:41
         jump_data <= io_excute_wdata;	// IoforMem.scala:77:28
         jump_mask <= io_excute_wmask;	// IoforMem.scala:78:28
       end
@@ -8042,15 +8011,15 @@ module IoforMem(	// <stdin>:10909:10
         _RANDOM_5 = `RANDOM;	// <stdin>:10909:10
         _RANDOM_6 = `RANDOM;	// <stdin>:10909:10
         _RANDOM_7 = `RANDOM;	// <stdin>:10909:10
-        state = _RANDOM_0[2:0];	// IoforMem.scala:53:24
-        mem_data_valid = _RANDOM_0[3];	// IoforMem.scala:53:24, :55:33
-        mem_data_bits = {_RANDOM_0[31:4], _RANDOM_1, _RANDOM_2[3:0]};	// IoforMem.scala:53:24, :56:32
-        r_count = _RANDOM_2[7:4];	// IoforMem.scala:56:32, :62:26
-        last_addr = {_RANDOM_2[31:8], _RANDOM_3[7:0]};	// IoforMem.scala:56:32, :69:28
-        begin_flag = _RANDOM_3[8];	// IoforMem.scala:69:28, :70:29
-        begin_waddr = {_RANDOM_3[31:9], _RANDOM_4[8:0]};	// IoforMem.scala:69:28, :71:30
-        data_count = _RANDOM_4[12:9];	// IoforMem.scala:71:30, :73:29
-        wait_cycle = _RANDOM_4[15:13];	// IoforMem.scala:71:30, :74:29
+        state = _RANDOM_0[1:0];	// IoforMem.scala:53:24
+        mem_data_valid = _RANDOM_0[2];	// IoforMem.scala:53:24, :55:33
+        mem_data_bits = {_RANDOM_0[31:3], _RANDOM_1, _RANDOM_2[2:0]};	// IoforMem.scala:53:24, :56:32
+        r_count = _RANDOM_2[6:3];	// IoforMem.scala:56:32, :62:26
+        last_addr = {_RANDOM_2[31:7], _RANDOM_3[6:0]};	// IoforMem.scala:56:32, :69:28
+        begin_flag = _RANDOM_3[7];	// IoforMem.scala:69:28, :70:29
+        begin_waddr = {_RANDOM_3[31:8], _RANDOM_4[7:0]};	// IoforMem.scala:69:28, :71:30
+        data_count = _RANDOM_4[11:8];	// IoforMem.scala:71:30, :73:29
+        wait_cycle = _RANDOM_4[15:12];	// IoforMem.scala:71:30, :74:29
         jump_data = {_RANDOM_4[31:16], _RANDOM_5, _RANDOM_6[15:0]};	// IoforMem.scala:71:30, :77:28
         jump_mask = _RANDOM_6[23:16];	// IoforMem.scala:77:28, :78:28
         jump_addr = {_RANDOM_6[31:24], _RANDOM_7[23:0]};	// IoforMem.scala:77:28, :79:28
@@ -8065,75 +8034,75 @@ module IoforMem(	// <stdin>:10909:10
     .R0_en    (ren),	// IoforMem.scala:82:28
     .R0_clk   (clock),
     .W0_addr  (data_count),	// IoforMem.scala:73:29
-    .W0_en    (_GEN_0 & _T_13),	// IoforMem.scala:59:33, :106:18, :111:130, :134:80
+    .W0_en    (_GEN_0 & _T_13),	// IoforMem.scala:59:33, :106:18, :114:130, :138:80
     .W0_clk   (clock),
-    .W0_data  (io_excute_wdata[7:0]),	// IoforMem.scala:133:80
-    .W1_addr  (4'h8),	// IoforMem.scala:136:58
-    .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W0_data  (io_excute_wdata[7:0]),	// IoforMem.scala:137:80
+    .W1_addr  (4'h8),	// IoforMem.scala:140:58
+    .W1_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
     .W1_data  (8'h0),	// <stdin>:10929:13
-    .W2_addr  (4'h9),	// <stdin>:11250:49
-    .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W2_addr  (4'h9),	// <stdin>:11237:47
+    .W2_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
     .W2_data  (8'h0),	// <stdin>:10929:13
-    .W3_addr  (4'hA),	// <stdin>:11261:49
-    .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W3_addr  (4'hA),	// <stdin>:11248:47
+    .W3_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
     .W3_data  (8'h0),	// <stdin>:10929:13
-    .W4_addr  (4'hB),	// <stdin>:11272:49
-    .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W4_addr  (4'hB),	// <stdin>:11259:47
+    .W4_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
     .W4_data  (8'h0),	// <stdin>:10929:13
-    .W5_addr  (4'hC),	// <stdin>:11283:49
-    .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W5_addr  (4'hC),	// <stdin>:11270:47
+    .W5_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
     .W5_data  (8'h0),	// <stdin>:10929:13
-    .W6_addr  (4'hD),	// <stdin>:11294:49
-    .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W6_addr  (4'hD),	// <stdin>:11281:47
+    .W6_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
     .W6_data  (8'h0),	// <stdin>:10929:13
-    .W7_addr  (4'hE),	// <stdin>:11305:49
-    .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W7_addr  (4'hE),	// <stdin>:11292:47
+    .W7_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
     .W7_data  (8'h0),	// <stdin>:10929:13
-    .W8_addr  (4'hF),	// IoforMem.scala:140:67
-    .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W8_addr  (4'hF),	// IoforMem.scala:144:45
+    .W8_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
     .W8_data  (8'h0),	// <stdin>:10929:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
-    .W9_en    (_GEN & _T_28),	// IoforMem.scala:59:33, :106:18, :211:59
+    .W9_en    (_GEN & _T_27),	// IoforMem.scala:59:33, :106:18, :201:59
     .W9_clk   (clock),
-    .W9_data  (jump_data[7:0]),	// IoforMem.scala:77:28, :210:66
+    .W9_data  (jump_data[7:0]),	// IoforMem.scala:77:28, :200:66
     .W10_addr (4'h0),	// IoforMem.scala:62:26
-    .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W10_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
     .W10_data (8'h0),	// <stdin>:10929:13
-    .W11_addr (4'h1),	// <stdin>:11162:15
-    .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W11_addr (4'h1),	// <stdin>:11149:13
+    .W11_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
     .W11_data (8'h0),	// <stdin>:10929:13
-    .W12_addr (4'h2),	// <stdin>:11173:15
-    .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W12_addr (4'h2),	// <stdin>:11160:13
+    .W12_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
     .W12_data (8'h0),	// <stdin>:10929:13
-    .W13_addr (4'h3),	// <stdin>:11184:15
-    .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W13_addr (4'h3),	// <stdin>:11171:13
+    .W13_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
     .W13_data (8'h0),	// <stdin>:10929:13
-    .W14_addr (4'h4),	// <stdin>:11195:15
-    .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W14_addr (4'h4),	// <stdin>:11182:13
+    .W14_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
     .W14_data (8'h0),	// <stdin>:10929:13
-    .W15_addr (4'h5),	// <stdin>:11206:15
-    .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W15_addr (4'h5),	// <stdin>:11193:13
+    .W15_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
     .W15_data (8'h0),	// <stdin>:10929:13
-    .W16_addr (4'h6),	// <stdin>:11217:15
-    .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W16_addr (4'h6),	// <stdin>:11204:13
+    .W16_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
     .W16_data (8'h0),	// <stdin>:10929:13
-    .W17_addr (4'h7),	// <stdin>:11228:15
-    .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W17_addr (4'h7),	// <stdin>:11215:13
+    .W17_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
     .W17_data (8'h0),	// <stdin>:10929:13
     .R0_data  (_VmemBuffer_0_ext_R0_data)
@@ -8143,75 +8112,75 @@ module IoforMem(	// <stdin>:10909:10
     .R0_en    (ren),	// IoforMem.scala:82:28
     .R0_clk   (clock),
     .W0_addr  (data_count),	// IoforMem.scala:73:29
-    .W0_en    (_GEN_0 & _T_14),	// IoforMem.scala:59:33, :106:18, :111:130, :134:80
+    .W0_en    (_GEN_0 & _T_14),	// IoforMem.scala:59:33, :106:18, :114:130, :138:80
     .W0_clk   (clock),
-    .W0_data  (io_excute_wdata[15:8]),	// IoforMem.scala:133:80
-    .W1_addr  (4'h8),	// IoforMem.scala:136:58
-    .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W0_data  (io_excute_wdata[15:8]),	// IoforMem.scala:137:80
+    .W1_addr  (4'h8),	// IoforMem.scala:140:58
+    .W1_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
     .W1_data  (8'h0),	// <stdin>:10929:13
-    .W2_addr  (4'h9),	// <stdin>:11250:49
-    .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W2_addr  (4'h9),	// <stdin>:11237:47
+    .W2_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
     .W2_data  (8'h0),	// <stdin>:10929:13
-    .W3_addr  (4'hA),	// <stdin>:11261:49
-    .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W3_addr  (4'hA),	// <stdin>:11248:47
+    .W3_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
     .W3_data  (8'h0),	// <stdin>:10929:13
-    .W4_addr  (4'hB),	// <stdin>:11272:49
-    .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W4_addr  (4'hB),	// <stdin>:11259:47
+    .W4_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
     .W4_data  (8'h0),	// <stdin>:10929:13
-    .W5_addr  (4'hC),	// <stdin>:11283:49
-    .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W5_addr  (4'hC),	// <stdin>:11270:47
+    .W5_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
     .W5_data  (8'h0),	// <stdin>:10929:13
-    .W6_addr  (4'hD),	// <stdin>:11294:49
-    .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W6_addr  (4'hD),	// <stdin>:11281:47
+    .W6_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
     .W6_data  (8'h0),	// <stdin>:10929:13
-    .W7_addr  (4'hE),	// <stdin>:11305:49
-    .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W7_addr  (4'hE),	// <stdin>:11292:47
+    .W7_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
     .W7_data  (8'h0),	// <stdin>:10929:13
-    .W8_addr  (4'hF),	// IoforMem.scala:140:67
-    .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W8_addr  (4'hF),	// IoforMem.scala:144:45
+    .W8_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
     .W8_data  (8'h0),	// <stdin>:10929:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
-    .W9_en    (_GEN & _T_29),	// IoforMem.scala:59:33, :106:18, :211:59
+    .W9_en    (_GEN & _T_28),	// IoforMem.scala:59:33, :106:18, :201:59
     .W9_clk   (clock),
-    .W9_data  (jump_data[15:8]),	// IoforMem.scala:77:28, :210:66
+    .W9_data  (jump_data[15:8]),	// IoforMem.scala:77:28, :200:66
     .W10_addr (4'h0),	// IoforMem.scala:62:26
-    .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W10_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
     .W10_data (8'h0),	// <stdin>:10929:13
-    .W11_addr (4'h1),	// <stdin>:11162:15
-    .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W11_addr (4'h1),	// <stdin>:11149:13
+    .W11_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
     .W11_data (8'h0),	// <stdin>:10929:13
-    .W12_addr (4'h2),	// <stdin>:11173:15
-    .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W12_addr (4'h2),	// <stdin>:11160:13
+    .W12_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
     .W12_data (8'h0),	// <stdin>:10929:13
-    .W13_addr (4'h3),	// <stdin>:11184:15
-    .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W13_addr (4'h3),	// <stdin>:11171:13
+    .W13_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
     .W13_data (8'h0),	// <stdin>:10929:13
-    .W14_addr (4'h4),	// <stdin>:11195:15
-    .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W14_addr (4'h4),	// <stdin>:11182:13
+    .W14_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
     .W14_data (8'h0),	// <stdin>:10929:13
-    .W15_addr (4'h5),	// <stdin>:11206:15
-    .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W15_addr (4'h5),	// <stdin>:11193:13
+    .W15_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
     .W15_data (8'h0),	// <stdin>:10929:13
-    .W16_addr (4'h6),	// <stdin>:11217:15
-    .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W16_addr (4'h6),	// <stdin>:11204:13
+    .W16_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
     .W16_data (8'h0),	// <stdin>:10929:13
-    .W17_addr (4'h7),	// <stdin>:11228:15
-    .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W17_addr (4'h7),	// <stdin>:11215:13
+    .W17_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
     .W17_data (8'h0),	// <stdin>:10929:13
     .R0_data  (_VmemBuffer_1_ext_R0_data)
@@ -8221,75 +8190,75 @@ module IoforMem(	// <stdin>:10909:10
     .R0_en    (ren),	// IoforMem.scala:82:28
     .R0_clk   (clock),
     .W0_addr  (data_count),	// IoforMem.scala:73:29
-    .W0_en    (_GEN_0 & _T_15),	// IoforMem.scala:59:33, :106:18, :111:130, :134:80
+    .W0_en    (_GEN_0 & _T_15),	// IoforMem.scala:59:33, :106:18, :114:130, :138:80
     .W0_clk   (clock),
-    .W0_data  (io_excute_wdata[23:16]),	// IoforMem.scala:133:80
-    .W1_addr  (4'h8),	// IoforMem.scala:136:58
-    .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W0_data  (io_excute_wdata[23:16]),	// IoforMem.scala:137:80
+    .W1_addr  (4'h8),	// IoforMem.scala:140:58
+    .W1_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
     .W1_data  (8'h0),	// <stdin>:10929:13
-    .W2_addr  (4'h9),	// <stdin>:11250:49
-    .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W2_addr  (4'h9),	// <stdin>:11237:47
+    .W2_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
     .W2_data  (8'h0),	// <stdin>:10929:13
-    .W3_addr  (4'hA),	// <stdin>:11261:49
-    .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W3_addr  (4'hA),	// <stdin>:11248:47
+    .W3_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
     .W3_data  (8'h0),	// <stdin>:10929:13
-    .W4_addr  (4'hB),	// <stdin>:11272:49
-    .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W4_addr  (4'hB),	// <stdin>:11259:47
+    .W4_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
     .W4_data  (8'h0),	// <stdin>:10929:13
-    .W5_addr  (4'hC),	// <stdin>:11283:49
-    .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W5_addr  (4'hC),	// <stdin>:11270:47
+    .W5_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
     .W5_data  (8'h0),	// <stdin>:10929:13
-    .W6_addr  (4'hD),	// <stdin>:11294:49
-    .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W6_addr  (4'hD),	// <stdin>:11281:47
+    .W6_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
     .W6_data  (8'h0),	// <stdin>:10929:13
-    .W7_addr  (4'hE),	// <stdin>:11305:49
-    .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W7_addr  (4'hE),	// <stdin>:11292:47
+    .W7_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
     .W7_data  (8'h0),	// <stdin>:10929:13
-    .W8_addr  (4'hF),	// IoforMem.scala:140:67
-    .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W8_addr  (4'hF),	// IoforMem.scala:144:45
+    .W8_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
     .W8_data  (8'h0),	// <stdin>:10929:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
-    .W9_en    (_GEN & _T_30),	// IoforMem.scala:59:33, :106:18, :211:59
+    .W9_en    (_GEN & _T_29),	// IoforMem.scala:59:33, :106:18, :201:59
     .W9_clk   (clock),
-    .W9_data  (jump_data[23:16]),	// IoforMem.scala:77:28, :210:66
+    .W9_data  (jump_data[23:16]),	// IoforMem.scala:77:28, :200:66
     .W10_addr (4'h0),	// IoforMem.scala:62:26
-    .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W10_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
     .W10_data (8'h0),	// <stdin>:10929:13
-    .W11_addr (4'h1),	// <stdin>:11162:15
-    .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W11_addr (4'h1),	// <stdin>:11149:13
+    .W11_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
     .W11_data (8'h0),	// <stdin>:10929:13
-    .W12_addr (4'h2),	// <stdin>:11173:15
-    .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W12_addr (4'h2),	// <stdin>:11160:13
+    .W12_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
     .W12_data (8'h0),	// <stdin>:10929:13
-    .W13_addr (4'h3),	// <stdin>:11184:15
-    .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W13_addr (4'h3),	// <stdin>:11171:13
+    .W13_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
     .W13_data (8'h0),	// <stdin>:10929:13
-    .W14_addr (4'h4),	// <stdin>:11195:15
-    .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W14_addr (4'h4),	// <stdin>:11182:13
+    .W14_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
     .W14_data (8'h0),	// <stdin>:10929:13
-    .W15_addr (4'h5),	// <stdin>:11206:15
-    .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W15_addr (4'h5),	// <stdin>:11193:13
+    .W15_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
     .W15_data (8'h0),	// <stdin>:10929:13
-    .W16_addr (4'h6),	// <stdin>:11217:15
-    .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W16_addr (4'h6),	// <stdin>:11204:13
+    .W16_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
     .W16_data (8'h0),	// <stdin>:10929:13
-    .W17_addr (4'h7),	// <stdin>:11228:15
-    .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W17_addr (4'h7),	// <stdin>:11215:13
+    .W17_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
     .W17_data (8'h0),	// <stdin>:10929:13
     .R0_data  (_VmemBuffer_2_ext_R0_data)
@@ -8299,75 +8268,75 @@ module IoforMem(	// <stdin>:10909:10
     .R0_en    (ren),	// IoforMem.scala:82:28
     .R0_clk   (clock),
     .W0_addr  (data_count),	// IoforMem.scala:73:29
-    .W0_en    (_GEN_0 & _T_16),	// IoforMem.scala:59:33, :106:18, :111:130, :134:80
+    .W0_en    (_GEN_0 & _T_16),	// IoforMem.scala:59:33, :106:18, :114:130, :138:80
     .W0_clk   (clock),
-    .W0_data  (io_excute_wdata[31:24]),	// IoforMem.scala:133:80
-    .W1_addr  (4'h8),	// IoforMem.scala:136:58
-    .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W0_data  (io_excute_wdata[31:24]),	// IoforMem.scala:137:80
+    .W1_addr  (4'h8),	// IoforMem.scala:140:58
+    .W1_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
     .W1_data  (8'h0),	// <stdin>:10929:13
-    .W2_addr  (4'h9),	// <stdin>:11250:49
-    .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W2_addr  (4'h9),	// <stdin>:11237:47
+    .W2_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
     .W2_data  (8'h0),	// <stdin>:10929:13
-    .W3_addr  (4'hA),	// <stdin>:11261:49
-    .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W3_addr  (4'hA),	// <stdin>:11248:47
+    .W3_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
     .W3_data  (8'h0),	// <stdin>:10929:13
-    .W4_addr  (4'hB),	// <stdin>:11272:49
-    .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W4_addr  (4'hB),	// <stdin>:11259:47
+    .W4_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
     .W4_data  (8'h0),	// <stdin>:10929:13
-    .W5_addr  (4'hC),	// <stdin>:11283:49
-    .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W5_addr  (4'hC),	// <stdin>:11270:47
+    .W5_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
     .W5_data  (8'h0),	// <stdin>:10929:13
-    .W6_addr  (4'hD),	// <stdin>:11294:49
-    .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W6_addr  (4'hD),	// <stdin>:11281:47
+    .W6_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
     .W6_data  (8'h0),	// <stdin>:10929:13
-    .W7_addr  (4'hE),	// <stdin>:11305:49
-    .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W7_addr  (4'hE),	// <stdin>:11292:47
+    .W7_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
     .W7_data  (8'h0),	// <stdin>:10929:13
-    .W8_addr  (4'hF),	// IoforMem.scala:140:67
-    .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W8_addr  (4'hF),	// IoforMem.scala:144:45
+    .W8_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
     .W8_data  (8'h0),	// <stdin>:10929:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
-    .W9_en    (_GEN & _T_31),	// IoforMem.scala:59:33, :106:18, :211:59
+    .W9_en    (_GEN & _T_30),	// IoforMem.scala:59:33, :106:18, :201:59
     .W9_clk   (clock),
-    .W9_data  (jump_data[31:24]),	// IoforMem.scala:77:28, :210:66
+    .W9_data  (jump_data[31:24]),	// IoforMem.scala:77:28, :200:66
     .W10_addr (4'h0),	// IoforMem.scala:62:26
-    .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W10_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
     .W10_data (8'h0),	// <stdin>:10929:13
-    .W11_addr (4'h1),	// <stdin>:11162:15
-    .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W11_addr (4'h1),	// <stdin>:11149:13
+    .W11_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
     .W11_data (8'h0),	// <stdin>:10929:13
-    .W12_addr (4'h2),	// <stdin>:11173:15
-    .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W12_addr (4'h2),	// <stdin>:11160:13
+    .W12_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
     .W12_data (8'h0),	// <stdin>:10929:13
-    .W13_addr (4'h3),	// <stdin>:11184:15
-    .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W13_addr (4'h3),	// <stdin>:11171:13
+    .W13_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
     .W13_data (8'h0),	// <stdin>:10929:13
-    .W14_addr (4'h4),	// <stdin>:11195:15
-    .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W14_addr (4'h4),	// <stdin>:11182:13
+    .W14_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
     .W14_data (8'h0),	// <stdin>:10929:13
-    .W15_addr (4'h5),	// <stdin>:11206:15
-    .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W15_addr (4'h5),	// <stdin>:11193:13
+    .W15_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
     .W15_data (8'h0),	// <stdin>:10929:13
-    .W16_addr (4'h6),	// <stdin>:11217:15
-    .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W16_addr (4'h6),	// <stdin>:11204:13
+    .W16_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
     .W16_data (8'h0),	// <stdin>:10929:13
-    .W17_addr (4'h7),	// <stdin>:11228:15
-    .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W17_addr (4'h7),	// <stdin>:11215:13
+    .W17_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
     .W17_data (8'h0),	// <stdin>:10929:13
     .R0_data  (_VmemBuffer_3_ext_R0_data)
@@ -8377,75 +8346,75 @@ module IoforMem(	// <stdin>:10909:10
     .R0_en    (ren),	// IoforMem.scala:82:28
     .R0_clk   (clock),
     .W0_addr  (data_count),	// IoforMem.scala:73:29
-    .W0_en    (_GEN_0 & _T_17),	// IoforMem.scala:59:33, :106:18, :111:130, :134:80
+    .W0_en    (_GEN_0 & _T_17),	// IoforMem.scala:59:33, :106:18, :114:130, :138:80
     .W0_clk   (clock),
-    .W0_data  (io_excute_wdata[39:32]),	// IoforMem.scala:133:80
-    .W1_addr  (4'h8),	// IoforMem.scala:136:58
-    .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W0_data  (io_excute_wdata[39:32]),	// IoforMem.scala:137:80
+    .W1_addr  (4'h8),	// IoforMem.scala:140:58
+    .W1_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
     .W1_data  (8'h0),	// <stdin>:10929:13
-    .W2_addr  (4'h9),	// <stdin>:11250:49
-    .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W2_addr  (4'h9),	// <stdin>:11237:47
+    .W2_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
     .W2_data  (8'h0),	// <stdin>:10929:13
-    .W3_addr  (4'hA),	// <stdin>:11261:49
-    .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W3_addr  (4'hA),	// <stdin>:11248:47
+    .W3_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
     .W3_data  (8'h0),	// <stdin>:10929:13
-    .W4_addr  (4'hB),	// <stdin>:11272:49
-    .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W4_addr  (4'hB),	// <stdin>:11259:47
+    .W4_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
     .W4_data  (8'h0),	// <stdin>:10929:13
-    .W5_addr  (4'hC),	// <stdin>:11283:49
-    .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W5_addr  (4'hC),	// <stdin>:11270:47
+    .W5_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
     .W5_data  (8'h0),	// <stdin>:10929:13
-    .W6_addr  (4'hD),	// <stdin>:11294:49
-    .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W6_addr  (4'hD),	// <stdin>:11281:47
+    .W6_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
     .W6_data  (8'h0),	// <stdin>:10929:13
-    .W7_addr  (4'hE),	// <stdin>:11305:49
-    .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W7_addr  (4'hE),	// <stdin>:11292:47
+    .W7_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
     .W7_data  (8'h0),	// <stdin>:10929:13
-    .W8_addr  (4'hF),	// IoforMem.scala:140:67
-    .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W8_addr  (4'hF),	// IoforMem.scala:144:45
+    .W8_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
     .W8_data  (8'h0),	// <stdin>:10929:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
-    .W9_en    (_GEN & _T_32),	// IoforMem.scala:59:33, :106:18, :211:59
+    .W9_en    (_GEN & _T_31),	// IoforMem.scala:59:33, :106:18, :201:59
     .W9_clk   (clock),
-    .W9_data  (jump_data[39:32]),	// IoforMem.scala:77:28, :210:66
+    .W9_data  (jump_data[39:32]),	// IoforMem.scala:77:28, :200:66
     .W10_addr (4'h0),	// IoforMem.scala:62:26
-    .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W10_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
     .W10_data (8'h0),	// <stdin>:10929:13
-    .W11_addr (4'h1),	// <stdin>:11162:15
-    .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W11_addr (4'h1),	// <stdin>:11149:13
+    .W11_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
     .W11_data (8'h0),	// <stdin>:10929:13
-    .W12_addr (4'h2),	// <stdin>:11173:15
-    .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W12_addr (4'h2),	// <stdin>:11160:13
+    .W12_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
     .W12_data (8'h0),	// <stdin>:10929:13
-    .W13_addr (4'h3),	// <stdin>:11184:15
-    .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W13_addr (4'h3),	// <stdin>:11171:13
+    .W13_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
     .W13_data (8'h0),	// <stdin>:10929:13
-    .W14_addr (4'h4),	// <stdin>:11195:15
-    .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W14_addr (4'h4),	// <stdin>:11182:13
+    .W14_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
     .W14_data (8'h0),	// <stdin>:10929:13
-    .W15_addr (4'h5),	// <stdin>:11206:15
-    .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W15_addr (4'h5),	// <stdin>:11193:13
+    .W15_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
     .W15_data (8'h0),	// <stdin>:10929:13
-    .W16_addr (4'h6),	// <stdin>:11217:15
-    .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W16_addr (4'h6),	// <stdin>:11204:13
+    .W16_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
     .W16_data (8'h0),	// <stdin>:10929:13
-    .W17_addr (4'h7),	// <stdin>:11228:15
-    .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W17_addr (4'h7),	// <stdin>:11215:13
+    .W17_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
     .W17_data (8'h0),	// <stdin>:10929:13
     .R0_data  (_VmemBuffer_4_ext_R0_data)
@@ -8455,75 +8424,75 @@ module IoforMem(	// <stdin>:10909:10
     .R0_en    (ren),	// IoforMem.scala:82:28
     .R0_clk   (clock),
     .W0_addr  (data_count),	// IoforMem.scala:73:29
-    .W0_en    (_GEN_0 & _T_18),	// IoforMem.scala:59:33, :106:18, :111:130, :134:80
+    .W0_en    (_GEN_0 & _T_18),	// IoforMem.scala:59:33, :106:18, :114:130, :138:80
     .W0_clk   (clock),
-    .W0_data  (io_excute_wdata[47:40]),	// IoforMem.scala:133:80
-    .W1_addr  (4'h8),	// IoforMem.scala:136:58
-    .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W0_data  (io_excute_wdata[47:40]),	// IoforMem.scala:137:80
+    .W1_addr  (4'h8),	// IoforMem.scala:140:58
+    .W1_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
     .W1_data  (8'h0),	// <stdin>:10929:13
-    .W2_addr  (4'h9),	// <stdin>:11250:49
-    .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W2_addr  (4'h9),	// <stdin>:11237:47
+    .W2_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
     .W2_data  (8'h0),	// <stdin>:10929:13
-    .W3_addr  (4'hA),	// <stdin>:11261:49
-    .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W3_addr  (4'hA),	// <stdin>:11248:47
+    .W3_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
     .W3_data  (8'h0),	// <stdin>:10929:13
-    .W4_addr  (4'hB),	// <stdin>:11272:49
-    .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W4_addr  (4'hB),	// <stdin>:11259:47
+    .W4_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
     .W4_data  (8'h0),	// <stdin>:10929:13
-    .W5_addr  (4'hC),	// <stdin>:11283:49
-    .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W5_addr  (4'hC),	// <stdin>:11270:47
+    .W5_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
     .W5_data  (8'h0),	// <stdin>:10929:13
-    .W6_addr  (4'hD),	// <stdin>:11294:49
-    .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W6_addr  (4'hD),	// <stdin>:11281:47
+    .W6_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
     .W6_data  (8'h0),	// <stdin>:10929:13
-    .W7_addr  (4'hE),	// <stdin>:11305:49
-    .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W7_addr  (4'hE),	// <stdin>:11292:47
+    .W7_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
     .W7_data  (8'h0),	// <stdin>:10929:13
-    .W8_addr  (4'hF),	// IoforMem.scala:140:67
-    .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W8_addr  (4'hF),	// IoforMem.scala:144:45
+    .W8_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
     .W8_data  (8'h0),	// <stdin>:10929:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
-    .W9_en    (_GEN & _T_33),	// IoforMem.scala:59:33, :106:18, :211:59
+    .W9_en    (_GEN & _T_32),	// IoforMem.scala:59:33, :106:18, :201:59
     .W9_clk   (clock),
-    .W9_data  (jump_data[47:40]),	// IoforMem.scala:77:28, :210:66
+    .W9_data  (jump_data[47:40]),	// IoforMem.scala:77:28, :200:66
     .W10_addr (4'h0),	// IoforMem.scala:62:26
-    .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W10_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
     .W10_data (8'h0),	// <stdin>:10929:13
-    .W11_addr (4'h1),	// <stdin>:11162:15
-    .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W11_addr (4'h1),	// <stdin>:11149:13
+    .W11_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
     .W11_data (8'h0),	// <stdin>:10929:13
-    .W12_addr (4'h2),	// <stdin>:11173:15
-    .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W12_addr (4'h2),	// <stdin>:11160:13
+    .W12_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
     .W12_data (8'h0),	// <stdin>:10929:13
-    .W13_addr (4'h3),	// <stdin>:11184:15
-    .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W13_addr (4'h3),	// <stdin>:11171:13
+    .W13_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
     .W13_data (8'h0),	// <stdin>:10929:13
-    .W14_addr (4'h4),	// <stdin>:11195:15
-    .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W14_addr (4'h4),	// <stdin>:11182:13
+    .W14_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
     .W14_data (8'h0),	// <stdin>:10929:13
-    .W15_addr (4'h5),	// <stdin>:11206:15
-    .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W15_addr (4'h5),	// <stdin>:11193:13
+    .W15_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
     .W15_data (8'h0),	// <stdin>:10929:13
-    .W16_addr (4'h6),	// <stdin>:11217:15
-    .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W16_addr (4'h6),	// <stdin>:11204:13
+    .W16_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
     .W16_data (8'h0),	// <stdin>:10929:13
-    .W17_addr (4'h7),	// <stdin>:11228:15
-    .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W17_addr (4'h7),	// <stdin>:11215:13
+    .W17_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
     .W17_data (8'h0),	// <stdin>:10929:13
     .R0_data  (_VmemBuffer_5_ext_R0_data)
@@ -8533,75 +8502,75 @@ module IoforMem(	// <stdin>:10909:10
     .R0_en    (ren),	// IoforMem.scala:82:28
     .R0_clk   (clock),
     .W0_addr  (data_count),	// IoforMem.scala:73:29
-    .W0_en    (_GEN_0 & _T_19),	// IoforMem.scala:59:33, :106:18, :111:130, :134:80
+    .W0_en    (_GEN_0 & _T_19),	// IoforMem.scala:59:33, :106:18, :114:130, :138:80
     .W0_clk   (clock),
-    .W0_data  (io_excute_wdata[55:48]),	// IoforMem.scala:133:80
-    .W1_addr  (4'h8),	// IoforMem.scala:136:58
-    .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W0_data  (io_excute_wdata[55:48]),	// IoforMem.scala:137:80
+    .W1_addr  (4'h8),	// IoforMem.scala:140:58
+    .W1_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
     .W1_data  (8'h0),	// <stdin>:10929:13
-    .W2_addr  (4'h9),	// <stdin>:11250:49
-    .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W2_addr  (4'h9),	// <stdin>:11237:47
+    .W2_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
     .W2_data  (8'h0),	// <stdin>:10929:13
-    .W3_addr  (4'hA),	// <stdin>:11261:49
-    .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W3_addr  (4'hA),	// <stdin>:11248:47
+    .W3_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
     .W3_data  (8'h0),	// <stdin>:10929:13
-    .W4_addr  (4'hB),	// <stdin>:11272:49
-    .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W4_addr  (4'hB),	// <stdin>:11259:47
+    .W4_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
     .W4_data  (8'h0),	// <stdin>:10929:13
-    .W5_addr  (4'hC),	// <stdin>:11283:49
-    .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W5_addr  (4'hC),	// <stdin>:11270:47
+    .W5_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
     .W5_data  (8'h0),	// <stdin>:10929:13
-    .W6_addr  (4'hD),	// <stdin>:11294:49
-    .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W6_addr  (4'hD),	// <stdin>:11281:47
+    .W6_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
     .W6_data  (8'h0),	// <stdin>:10929:13
-    .W7_addr  (4'hE),	// <stdin>:11305:49
-    .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W7_addr  (4'hE),	// <stdin>:11292:47
+    .W7_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
     .W7_data  (8'h0),	// <stdin>:10929:13
-    .W8_addr  (4'hF),	// IoforMem.scala:140:67
-    .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W8_addr  (4'hF),	// IoforMem.scala:144:45
+    .W8_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
     .W8_data  (8'h0),	// <stdin>:10929:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
-    .W9_en    (_GEN & _T_34),	// IoforMem.scala:59:33, :106:18, :211:59
+    .W9_en    (_GEN & _T_33),	// IoforMem.scala:59:33, :106:18, :201:59
     .W9_clk   (clock),
-    .W9_data  (jump_data[55:48]),	// IoforMem.scala:77:28, :210:66
+    .W9_data  (jump_data[55:48]),	// IoforMem.scala:77:28, :200:66
     .W10_addr (4'h0),	// IoforMem.scala:62:26
-    .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W10_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
     .W10_data (8'h0),	// <stdin>:10929:13
-    .W11_addr (4'h1),	// <stdin>:11162:15
-    .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W11_addr (4'h1),	// <stdin>:11149:13
+    .W11_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
     .W11_data (8'h0),	// <stdin>:10929:13
-    .W12_addr (4'h2),	// <stdin>:11173:15
-    .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W12_addr (4'h2),	// <stdin>:11160:13
+    .W12_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
     .W12_data (8'h0),	// <stdin>:10929:13
-    .W13_addr (4'h3),	// <stdin>:11184:15
-    .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W13_addr (4'h3),	// <stdin>:11171:13
+    .W13_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
     .W13_data (8'h0),	// <stdin>:10929:13
-    .W14_addr (4'h4),	// <stdin>:11195:15
-    .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W14_addr (4'h4),	// <stdin>:11182:13
+    .W14_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
     .W14_data (8'h0),	// <stdin>:10929:13
-    .W15_addr (4'h5),	// <stdin>:11206:15
-    .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W15_addr (4'h5),	// <stdin>:11193:13
+    .W15_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
     .W15_data (8'h0),	// <stdin>:10929:13
-    .W16_addr (4'h6),	// <stdin>:11217:15
-    .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W16_addr (4'h6),	// <stdin>:11204:13
+    .W16_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
     .W16_data (8'h0),	// <stdin>:10929:13
-    .W17_addr (4'h7),	// <stdin>:11228:15
-    .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W17_addr (4'h7),	// <stdin>:11215:13
+    .W17_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
     .W17_data (8'h0),	// <stdin>:10929:13
     .R0_data  (_VmemBuffer_6_ext_R0_data)
@@ -8611,75 +8580,75 @@ module IoforMem(	// <stdin>:10909:10
     .R0_en    (ren),	// IoforMem.scala:82:28
     .R0_clk   (clock),
     .W0_addr  (data_count),	// IoforMem.scala:73:29
-    .W0_en    (_GEN_0 & _T_20),	// IoforMem.scala:59:33, :106:18, :111:130, :134:80
+    .W0_en    (_GEN_0 & _T_20),	// IoforMem.scala:59:33, :106:18, :114:130, :138:80
     .W0_clk   (clock),
-    .W0_data  (io_excute_wdata[63:56]),	// IoforMem.scala:133:80
-    .W1_addr  (4'h8),	// IoforMem.scala:136:58
-    .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W0_data  (io_excute_wdata[63:56]),	// IoforMem.scala:137:80
+    .W1_addr  (4'h8),	// IoforMem.scala:140:58
+    .W1_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
     .W1_data  (8'h0),	// <stdin>:10929:13
-    .W2_addr  (4'h9),	// <stdin>:11250:49
-    .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W2_addr  (4'h9),	// <stdin>:11237:47
+    .W2_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
     .W2_data  (8'h0),	// <stdin>:10929:13
-    .W3_addr  (4'hA),	// <stdin>:11261:49
-    .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W3_addr  (4'hA),	// <stdin>:11248:47
+    .W3_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
     .W3_data  (8'h0),	// <stdin>:10929:13
-    .W4_addr  (4'hB),	// <stdin>:11272:49
-    .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W4_addr  (4'hB),	// <stdin>:11259:47
+    .W4_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
     .W4_data  (8'h0),	// <stdin>:10929:13
-    .W5_addr  (4'hC),	// <stdin>:11283:49
-    .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W5_addr  (4'hC),	// <stdin>:11270:47
+    .W5_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
     .W5_data  (8'h0),	// <stdin>:10929:13
-    .W6_addr  (4'hD),	// <stdin>:11294:49
-    .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W6_addr  (4'hD),	// <stdin>:11281:47
+    .W6_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
     .W6_data  (8'h0),	// <stdin>:10929:13
-    .W7_addr  (4'hE),	// <stdin>:11305:49
-    .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W7_addr  (4'hE),	// <stdin>:11292:47
+    .W7_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
     .W7_data  (8'h0),	// <stdin>:10929:13
-    .W8_addr  (4'hF),	// IoforMem.scala:140:67
-    .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W8_addr  (4'hF),	// IoforMem.scala:144:45
+    .W8_en    (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
     .W8_data  (8'h0),	// <stdin>:10929:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
-    .W9_en    (_GEN & _T_35),	// IoforMem.scala:59:33, :106:18, :211:59
+    .W9_en    (_GEN & _T_34),	// IoforMem.scala:59:33, :106:18, :201:59
     .W9_clk   (clock),
-    .W9_data  (jump_data[63:56]),	// IoforMem.scala:77:28, :210:66
+    .W9_data  (jump_data[63:56]),	// IoforMem.scala:77:28, :200:66
     .W10_addr (4'h0),	// IoforMem.scala:62:26
-    .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W10_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
     .W10_data (8'h0),	// <stdin>:10929:13
-    .W11_addr (4'h1),	// <stdin>:11162:15
-    .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W11_addr (4'h1),	// <stdin>:11149:13
+    .W11_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
     .W11_data (8'h0),	// <stdin>:10929:13
-    .W12_addr (4'h2),	// <stdin>:11173:15
-    .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W12_addr (4'h2),	// <stdin>:11160:13
+    .W12_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
     .W12_data (8'h0),	// <stdin>:10929:13
-    .W13_addr (4'h3),	// <stdin>:11184:15
-    .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W13_addr (4'h3),	// <stdin>:11171:13
+    .W13_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
     .W13_data (8'h0),	// <stdin>:10929:13
-    .W14_addr (4'h4),	// <stdin>:11195:15
-    .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W14_addr (4'h4),	// <stdin>:11182:13
+    .W14_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
     .W14_data (8'h0),	// <stdin>:10929:13
-    .W15_addr (4'h5),	// <stdin>:11206:15
-    .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W15_addr (4'h5),	// <stdin>:11193:13
+    .W15_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
     .W15_data (8'h0),	// <stdin>:10929:13
-    .W16_addr (4'h6),	// <stdin>:11217:15
-    .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W16_addr (4'h6),	// <stdin>:11204:13
+    .W16_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
     .W16_data (8'h0),	// <stdin>:10929:13
-    .W17_addr (4'h7),	// <stdin>:11228:15
-    .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
+    .W17_addr (4'h7),	// <stdin>:11215:13
+    .W17_en   (_GEN_5),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
     .W17_data (8'h0),	// <stdin>:10929:13
     .R0_data  (_VmemBuffer_7_ext_R0_data)
@@ -8689,7 +8658,7 @@ module IoforMem(	// <stdin>:10909:10
     .R0_en   (ren),	// IoforMem.scala:82:28
     .R0_clk  (clock),
     .W0_addr (data_count),	// IoforMem.scala:73:29
-    .W0_en   (_GEN_0),	// IoforMem.scala:59:33, :106:18, :111:130
+    .W0_en   (_GEN_0),	// IoforMem.scala:59:33, :106:18, :114:130
     .W0_clk  (clock),
     .W0_data (io_excute_wmask),
     .W1_addr (4'h0),	// IoforMem.scala:62:26
@@ -8698,32 +8667,30 @@ module IoforMem(	// <stdin>:10909:10
     .W1_data (jump_mask),	// IoforMem.scala:78:28
     .R0_data (mask)
   );
-  assign io_axi_req_valid = _T ? _T_6 & (~_T_9 | _GEN_2) : _T_24 ? ~io_axi_resp_valid : _T_25 ?
-                ~io_axi_resp_bits_choose : _GEN_5;	// <stdin>:10909:10, IoforMem.scala:71:30, :87:22, :106:18, :111:{71,130}, :113:{48,84}, :116:76, :117:35, :140:76, :156:42, :165:36, :177:34, :185:42, :190:34, :196:36
+  assign io_axi_req_valid = _T ? _T_6 & (~_T_9 | _GEN_2) : (_T_24 | _T_25) & ~io_axi_resp_valid;	// <stdin>:10909:10, IoforMem.scala:71:30, :87:22, :106:18, :114:{71,130}, :116:{48,84}, :119:76, :120:35, :144:77, :157:42, :166:36, :178:34
   assign io_axi_req_bits_rw = _T ? _T_6 & ~_T_9 & (|io_excute_ld_type) : _T_24 & ~io_axi_resp_valid &
-                (|io_excute_ld_type);	// <stdin>:10909:10, IoforMem.scala:71:30, :87:22, :91:24, :98:37, :106:18, :111:{71,130}, :113:{48,84}, :116:76, :165:36, :177:34
+                (|io_excute_ld_type);	// <stdin>:10909:10, IoforMem.scala:71:30, :87:22, :91:24, :98:37, :106:18, :114:{71,130}, :116:{48,84}, :119:76, :166:36, :178:34
   assign io_axi_req_bits_addr = _T ? (_T_6 ? (_T_9 ? (_T_11 ? {begin_waddr[31:3], 3'h0} : _T_23 ? {begin_waddr[31:3], 3'h0}
-                : 32'h0) : {io_excute_waddr[31:3] | io_excute_raddr[31:3], 3'h0}) : 32'h0) : _T_24 ?
-                (io_axi_resp_valid ? 32'h0 : {io_excute_waddr[31:3] | io_excute_raddr[31:3], 3'h0}) :
-                ~_T_25 | io_axi_resp_bits_choose ? 32'h0 : {begin_waddr[31:3], 3'h0};	// <stdin>:10909:10, Cat.scala:33:92, IoforMem.scala:53:24, :69:28, :71:30, :88:26, :106:18, :111:{71,130}, :113:{48,84}, :116:{41,76}, :119:{50,68}, :140:{53,76}, :143:{54,72}, :157:{46,70,77,94}, :165:36, :178:{38,62,69,86}, :185:42, :191:56
-  assign io_axi_req_bits_data = _T ? (_GEN_3 ? 64'h0 : io_excute_wdata) : _T_24 ? (io_axi_resp_valid ? 64'h0 :
-                io_excute_wdata) : _GEN_6 ? 64'h0 : read;	// <stdin>:10909:10, IoforMem.scala:56:32, :89:26, :106:18, :111:130, :113:84, :165:36, :179:38, :196:36, :218:38
-  assign io_axi_req_bits_mask = _T ? (_GEN_3 ? 8'h0 : io_excute_wmask) : _T_24 ? (io_axi_resp_valid ? 8'h0 :
-                io_excute_wmask) : _GEN_6 ? 8'h0 : mask;	// <stdin>:10909:10, :10929:13, IoforMem.scala:89:26, :90:26, :106:18, :111:130, :113:84, :165:36, :180:38, :196:36, :219:38
+                : 32'h0) : {io_excute_waddr[31:3] | io_excute_raddr[31:3], 3'h0}) : 32'h0) : ~_T_24 |
+                io_axi_resp_valid ? 32'h0 : {io_excute_waddr[31:3] | io_excute_raddr[31:3], 3'h0};	// <stdin>:10909:10, Cat.scala:33:92, IoforMem.scala:69:28, :71:30, :88:26, :106:18, :114:{71,130}, :116:{48,84}, :119:{41,76}, :122:{50,68}, :144:{54,77}, :147:{54,72}, :158:{46,70,77,94}, :166:36, :179:{62,69,86}
+  assign io_axi_req_bits_data = _T ? (_GEN_4 ? 64'h0 : io_excute_wdata) : _T_24 ? (io_axi_resp_valid ? 64'h0 :
+                io_excute_wdata) : _GEN_6 ? 64'h0 : read;	// <stdin>:10909:10, IoforMem.scala:56:32, :89:26, :106:18, :114:130, :116:84, :166:36, :180:38, :186:36, :208:38
+  assign io_axi_req_bits_mask = _T ? (_GEN_4 ? 8'h0 : io_excute_wmask) : _T_24 ? (io_axi_resp_valid ? 8'h0 :
+                io_excute_wmask) : _GEN_6 ? 8'h0 : mask;	// <stdin>:10909:10, :10929:13, IoforMem.scala:89:26, :90:26, :106:18, :114:130, :116:84, :166:36, :181:38, :186:36, :209:38
   assign io_mem_data_valid = mem_data_valid;	// <stdin>:10909:10, IoforMem.scala:55:33
   assign io_mem_data_bits = mem_data_bits;	// <stdin>:10909:10, IoforMem.scala:56:32
   assign io_fc_req = ((|io_excute_ld_type) | (|io_excute_sd_type)) & _T_4 > 32'h9FFFFFFF;	// <stdin>:10909:10, IoforMem.scala:98:{37,41,61,66,87,106}
-  assign io_fc_state = state[1:0];	// <stdin>:10909:10, IoforMem.scala:53:24, :99:17
+  assign io_fc_state = state;	// <stdin>:10909:10, IoforMem.scala:53:24
   assign io_fc_valid = io_axi_resp_valid;	// <stdin>:10909:10
-  assign io_fc_vmem_range = _T & _T_6 & _T_9;	// <stdin>:10909:10, IoforMem.scala:101:22, :106:18, :111:{71,130}, :113:48
-  assign io_multiwrite = _T & _T_6 & _T_9 & _GEN_2;	// <stdin>:10909:10, IoforMem.scala:103:19, :106:18, :111:{71,130}, :113:48, :116:76, :117:35, :140:76
+  assign io_fc_vmem_range = _T & _T_6 & _T_9;	// <stdin>:10909:10, IoforMem.scala:101:22, :106:18, :114:{71,130}, :116:48
+  assign io_multiwrite = _T & _GEN_3;	// <stdin>:10909:10, IoforMem.scala:103:19, :106:18, :114:130, :116:84
 endmodule
 
 // external module DebugInterface
 
 // external module Interact
 
-module Core(	// <stdin>:11424:10
+module Core(	// <stdin>:11411:10
   input         clock,
                 reset,
                 io_AXI_Interface_aw_ready,
@@ -8776,7 +8743,6 @@ module Core(	// <stdin>:11424:10
   wire        _Icache_io_fccache_hit;	// Core.scala:104:24
   wire        _arbitor_io_master0_resp_valid;	// Core.scala:101:25
   wire [63:0] _arbitor_io_master0_resp_bits_data;	// Core.scala:101:25
-  wire        _arbitor_io_master0_resp_bits_choose;	// Core.scala:101:25
   wire        _arbitor_io_master1_resp_valid;	// Core.scala:101:25
   wire [63:0] _arbitor_io_master1_resp_bits_data;	// Core.scala:101:25
   wire        _arbitor_io_master1_resp_bits_choose;	// Core.scala:101:25
@@ -8937,35 +8903,35 @@ module Core(	// <stdin>:11424:10
   wire [63:0] _DI_io_mem_addr_T = _excute_io_waddr | _excute_io_raddr;	// Core.scala:27:24, :459:93
   always @(posedge clock) begin
     if (reset) begin
-      fdreg_pc <= 32'h80000000;	// <stdin>:11445:23, Core.scala:33:24
+      fdreg_pc <= 32'h80000000;	// <stdin>:11432:23, Core.scala:33:24
       dereg_op_a <= 64'h0;	// Core.scala:39:24, :437:36
       dereg_op_b <= 64'h0;	// Core.scala:39:24, :437:36
-      dereg_reg_waddr <= 5'h0;	// <stdin>:11461:27, Core.scala:39:24
-      dereg_branch_type <= 1'h0;	// <stdin>:11424:10, Core.scala:39:24
+      dereg_reg_waddr <= 5'h0;	// <stdin>:11448:27, Core.scala:39:24
+      dereg_branch_type <= 1'h0;	// <stdin>:11411:10, Core.scala:39:24
       dereg_branch_addr <= 64'h0;	// Core.scala:39:24, :437:36
-      dereg_alu_op <= 6'h3F;	// <stdin>:11458:27, Core.scala:39:24
-      dereg_shamt <= 6'h0;	// <stdin>:11457:23, Core.scala:39:24
-      dereg_wb_type <= 2'h0;	// <stdin>:11456:25, Core.scala:39:24
-      dereg_sd_type <= 3'h0;	// <stdin>:11424:10, Core.scala:39:24
+      dereg_alu_op <= 6'h3F;	// <stdin>:11445:27, Core.scala:39:24
+      dereg_shamt <= 6'h0;	// <stdin>:11444:23, Core.scala:39:24
+      dereg_wb_type <= 2'h0;	// <stdin>:11443:25, Core.scala:39:24
+      dereg_sd_type <= 3'h0;	// <stdin>:11411:10, Core.scala:39:24
       dereg_reg2_rdata <= 64'h0;	// Core.scala:39:24, :437:36
-      dereg_ld_type <= 3'h0;	// <stdin>:11424:10, Core.scala:39:24
+      dereg_ld_type <= 3'h0;	// <stdin>:11411:10, Core.scala:39:24
       dereg_csr_t <= 64'h0;	// Core.scala:39:24, :437:36
-      dereg_csr_waddr <= 12'h0;	// <stdin>:11451:27, Core.scala:39:24
-      dereg_csr_wen <= 1'h0;	// <stdin>:11424:10, Core.scala:39:24
+      dereg_csr_waddr <= 12'h0;	// <stdin>:11438:27, Core.scala:39:24
+      dereg_csr_wen <= 1'h0;	// <stdin>:11411:10, Core.scala:39:24
       emreg_reg_wdata <= 64'h0;	// Core.scala:57:24, :437:36
-      emreg_reg_waddr <= 5'h0;	// <stdin>:11461:27, Core.scala:57:24
-      emreg_wb_type <= 2'h0;	// <stdin>:11456:25, Core.scala:57:24
-      emreg_ld_type <= 3'h0;	// <stdin>:11424:10, Core.scala:57:24
-      emreg_ld_addr_lowbit <= 3'h0;	// <stdin>:11424:10, Core.scala:57:24
+      emreg_reg_waddr <= 5'h0;	// <stdin>:11448:27, Core.scala:57:24
+      emreg_wb_type <= 2'h0;	// <stdin>:11443:25, Core.scala:57:24
+      emreg_ld_type <= 3'h0;	// <stdin>:11411:10, Core.scala:57:24
+      emreg_ld_addr_lowbit <= 3'h0;	// <stdin>:11411:10, Core.scala:57:24
       emreg_csr_wdata <= 64'h0;	// Core.scala:57:24, :437:36
-      emreg_csr_wen <= 1'h0;	// <stdin>:11424:10, Core.scala:57:24
-      emreg_csr_waddr <= 12'h0;	// <stdin>:11451:27, Core.scala:57:24
+      emreg_csr_wen <= 1'h0;	// <stdin>:11411:10, Core.scala:57:24
+      emreg_csr_waddr <= 12'h0;	// <stdin>:11438:27, Core.scala:57:24
       mwreg_reg_wdata <= 64'h0;	// Core.scala:71:24, :437:36
-      mwreg_reg_waddr <= 5'h0;	// <stdin>:11461:27, Core.scala:71:24
-      mwreg_wb_type <= 2'h0;	// <stdin>:11456:25, Core.scala:71:24
+      mwreg_reg_waddr <= 5'h0;	// <stdin>:11448:27, Core.scala:71:24
+      mwreg_wb_type <= 2'h0;	// <stdin>:11443:25, Core.scala:71:24
       mwreg_csr_wdata <= 64'h0;	// Core.scala:71:24, :437:36
-      mwreg_csr_wen <= 1'h0;	// <stdin>:11424:10, Core.scala:71:24
-      mwreg_csr_waddr <= 12'h0;	// <stdin>:11451:27, Core.scala:71:24
+      mwreg_csr_wen <= 1'h0;	// <stdin>:11411:10, Core.scala:71:24
+      mwreg_csr_waddr <= 12'h0;	// <stdin>:11438:27, Core.scala:71:24
     end
     else begin
       fdreg_pc <= _fetch_io_fdio_pc;	// Core.scala:25:23, :33:24
@@ -8975,16 +8941,16 @@ module Core(	// <stdin>:11424:10
         if (_fc_io_fcde_flush) begin	// Core.scala:92:20
           dereg_op_a <= 64'h0;	// Core.scala:39:24, :437:36
           dereg_op_b <= 64'h0;	// Core.scala:39:24, :437:36
-          dereg_reg_waddr <= 5'h0;	// <stdin>:11461:27, Core.scala:39:24
+          dereg_reg_waddr <= 5'h0;	// <stdin>:11448:27, Core.scala:39:24
           dereg_branch_addr <= 64'h0;	// Core.scala:39:24, :437:36
-          dereg_alu_op <= 6'h0;	// <stdin>:11457:23, Core.scala:39:24
-          dereg_shamt <= 6'h0;	// <stdin>:11457:23, Core.scala:39:24
-          dereg_wb_type <= 2'h0;	// <stdin>:11456:25, Core.scala:39:24
-          dereg_sd_type <= 3'h0;	// <stdin>:11424:10, Core.scala:39:24
+          dereg_alu_op <= 6'h0;	// <stdin>:11444:23, Core.scala:39:24
+          dereg_shamt <= 6'h0;	// <stdin>:11444:23, Core.scala:39:24
+          dereg_wb_type <= 2'h0;	// <stdin>:11443:25, Core.scala:39:24
+          dereg_sd_type <= 3'h0;	// <stdin>:11411:10, Core.scala:39:24
           dereg_reg2_rdata <= 64'h0;	// Core.scala:39:24, :437:36
-          dereg_ld_type <= 3'h0;	// <stdin>:11424:10, Core.scala:39:24
+          dereg_ld_type <= 3'h0;	// <stdin>:11411:10, Core.scala:39:24
           dereg_csr_t <= 64'h0;	// Core.scala:39:24, :437:36
-          dereg_csr_waddr <= 12'h0;	// <stdin>:11451:27, Core.scala:39:24
+          dereg_csr_waddr <= 12'h0;	// <stdin>:11438:27, Core.scala:39:24
         end
         else begin	// Core.scala:92:20
           dereg_op_a <= _decode_io_deio_op_a;	// Core.scala:26:24, :39:24
@@ -9039,59 +9005,59 @@ module Core(	// <stdin>:11424:10
     else	// Core.scala:92:20
       mwreg_has_inst <= _mem_io_mwio_has_inst;	// Core.scala:29:21, :71:24
   end // always @(posedge)
-  `ifndef SYNTHESIS	// <stdin>:11424:10
-    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:11424:10
-      `FIRRTL_BEFORE_INITIAL	// <stdin>:11424:10
+  `ifndef SYNTHESIS	// <stdin>:11411:10
+    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:11411:10
+      `FIRRTL_BEFORE_INITIAL	// <stdin>:11411:10
     `endif // FIRRTL_BEFORE_INITIAL
-    initial begin	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_0;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_1;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_2;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_3;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_4;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_5;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_6;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_7;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_8;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_9;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_10;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_11;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_12;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_13;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_14;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_15;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_16;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_17;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_18;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_19;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_20;	// <stdin>:11424:10
-      automatic logic [31:0] _RANDOM_21;	// <stdin>:11424:10
-      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:11424:10
-        `INIT_RANDOM_PROLOG_	// <stdin>:11424:10
+    initial begin	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_0;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_1;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_2;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_3;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_4;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_5;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_6;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_7;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_8;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_9;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_10;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_11;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_12;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_13;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_14;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_15;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_16;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_17;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_18;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_19;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_20;	// <stdin>:11411:10
+      automatic logic [31:0] _RANDOM_21;	// <stdin>:11411:10
+      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:11411:10
+        `INIT_RANDOM_PROLOG_	// <stdin>:11411:10
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// <stdin>:11424:10
-        _RANDOM_0 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_1 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_2 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_3 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_4 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_5 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_6 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_7 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_8 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_9 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_10 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_11 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_12 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_13 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_14 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_15 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_16 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_17 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_18 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_19 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_20 = `RANDOM;	// <stdin>:11424:10
-        _RANDOM_21 = `RANDOM;	// <stdin>:11424:10
+      `ifdef RANDOMIZE_REG_INIT	// <stdin>:11411:10
+        _RANDOM_0 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_1 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_2 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_3 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_4 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_5 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_6 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_7 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_8 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_9 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_10 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_11 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_12 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_13 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_14 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_15 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_16 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_17 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_18 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_19 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_20 = `RANDOM;	// <stdin>:11411:10
+        _RANDOM_21 = `RANDOM;	// <stdin>:11411:10
         fdreg_pc = _RANDOM_0;	// Core.scala:33:24
         dereg_op_a = {_RANDOM_1, _RANDOM_2};	// Core.scala:39:24
         dereg_op_b = {_RANDOM_3, _RANDOM_4};	// Core.scala:39:24
@@ -9126,8 +9092,8 @@ module Core(	// <stdin>:11424:10
         mwreg_has_inst = _RANDOM_21[23];	// Core.scala:71:24
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:11424:10
-      `FIRRTL_AFTER_INITIAL	// <stdin>:11424:10
+    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:11411:10
+      `FIRRTL_AFTER_INITIAL	// <stdin>:11411:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   Fetch fetch (	// Core.scala:25:23
@@ -9443,7 +9409,6 @@ module Core(	// <stdin>:11424:10
     .io_AXI_O_r_bits_last        (io_AXI_Interface_r_bits_last),
     .io_master0_resp_valid       (_arbitor_io_master0_resp_valid),
     .io_master0_resp_bits_data   (_arbitor_io_master0_resp_bits_data),
-    .io_master0_resp_bits_choose (_arbitor_io_master0_resp_bits_choose),
     .io_master1_resp_valid       (_arbitor_io_master1_resp_valid),
     .io_master1_resp_bits_data   (_arbitor_io_master1_resp_bits_data),
     .io_master1_resp_bits_choose (_arbitor_io_master1_resp_bits_choose),
@@ -9503,30 +9468,29 @@ module Core(	// <stdin>:11424:10
     .io_fccache_hit          (_Dcache_io_fccache_hit)
   );
   IoforMem ioformem (	// Core.scala:108:26
-    .clock                   (clock),
-    .reset                   (reset),
-    .io_axi_resp_valid       (_arbitor_io_master0_resp_valid),	// Core.scala:101:25
-    .io_axi_resp_bits_data   (_arbitor_io_master0_resp_bits_data),	// Core.scala:101:25
-    .io_axi_resp_bits_choose (_arbitor_io_master0_resp_bits_choose),	// Core.scala:101:25
-    .io_excute_waddr         (_excute_io_waddr[31:0]),	// Core.scala:27:24, :468:30
-    .io_excute_raddr         (_excute_io_raddr[31:0]),	// Core.scala:27:24, :469:30
-    .io_excute_wdata         (_excute_io_wdata),	// Core.scala:27:24
-    .io_excute_wmask         (_excute_io_wmask),	// Core.scala:27:24
-    .io_excute_ld_type       (dereg_ld_type),	// Core.scala:39:24
-    .io_excute_sd_type       (dereg_sd_type),	// Core.scala:39:24
-    .io_fc_stall             (_fc_io_fcio_stall),	// Core.scala:92:20
-    .io_axi_req_valid        (_ioformem_io_axi_req_valid),
-    .io_axi_req_bits_rw      (_ioformem_io_axi_req_bits_rw),
-    .io_axi_req_bits_addr    (_ioformem_io_axi_req_bits_addr),
-    .io_axi_req_bits_data    (_ioformem_io_axi_req_bits_data),
-    .io_axi_req_bits_mask    (_ioformem_io_axi_req_bits_mask),
-    .io_mem_data_valid       (_ioformem_io_mem_data_valid),
-    .io_mem_data_bits        (_ioformem_io_mem_data_bits),
-    .io_fc_req               (_ioformem_io_fc_req),
-    .io_fc_state             (_ioformem_io_fc_state),
-    .io_fc_valid             (_ioformem_io_fc_valid),
-    .io_fc_vmem_range        (_ioformem_io_fc_vmem_range),
-    .io_multiwrite           (_ioformem_io_multiwrite)
+    .clock                 (clock),
+    .reset                 (reset),
+    .io_axi_resp_valid     (_arbitor_io_master0_resp_valid),	// Core.scala:101:25
+    .io_axi_resp_bits_data (_arbitor_io_master0_resp_bits_data),	// Core.scala:101:25
+    .io_excute_waddr       (_excute_io_waddr[31:0]),	// Core.scala:27:24, :468:30
+    .io_excute_raddr       (_excute_io_raddr[31:0]),	// Core.scala:27:24, :469:30
+    .io_excute_wdata       (_excute_io_wdata),	// Core.scala:27:24
+    .io_excute_wmask       (_excute_io_wmask),	// Core.scala:27:24
+    .io_excute_ld_type     (dereg_ld_type),	// Core.scala:39:24
+    .io_excute_sd_type     (dereg_sd_type),	// Core.scala:39:24
+    .io_fc_stall           (_fc_io_fcio_stall),	// Core.scala:92:20
+    .io_axi_req_valid      (_ioformem_io_axi_req_valid),
+    .io_axi_req_bits_rw    (_ioformem_io_axi_req_bits_rw),
+    .io_axi_req_bits_addr  (_ioformem_io_axi_req_bits_addr),
+    .io_axi_req_bits_data  (_ioformem_io_axi_req_bits_data),
+    .io_axi_req_bits_mask  (_ioformem_io_axi_req_bits_mask),
+    .io_mem_data_valid     (_ioformem_io_mem_data_valid),
+    .io_mem_data_bits      (_ioformem_io_mem_data_bits),
+    .io_fc_req             (_ioformem_io_fc_req),
+    .io_fc_state           (_ioformem_io_fc_state),
+    .io_fc_valid           (_ioformem_io_fc_valid),
+    .io_fc_vmem_range      (_ioformem_io_fc_vmem_range),
+    .io_multiwrite         (_ioformem_io_multiwrite)
   );
   DebugInterface DI (	// Core.scala:488:19
     .clk        (clock),
@@ -9568,7 +9532,7 @@ endmodule
 
 // external module Sram
 
-module Soc(	// <stdin>:11875:10
+module Soc(	// <stdin>:11862:10
   input clock,
         reset);
 
