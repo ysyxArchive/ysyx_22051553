@@ -76,6 +76,7 @@ class IoforMem extends Module{
     read := VmemBuffer.read(r_count, ren).asUInt //Vec转为UInt
     mask := maskbuffer.read(r_count, ren)
 
+    ren := 0.B
 
     io.axi.req.valid := 0.B
     io.axi.req.bits.addr := 0.U
