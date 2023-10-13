@@ -73,7 +73,7 @@ class IoforMem extends Module{
     val jump_addr = RegInit(0.U(ADDRWIDTH.W))  //记录跳跃地址
 
 
-    read := VmemBuffer.read(r_count, ren)
+    read := VmemBuffer.read(r_count, ren).asUInt //Vec转为UInt
     mask := maskbuffer.read(r_count, ren)
 
 
