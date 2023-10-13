@@ -92,6 +92,8 @@ class IoforMem extends Module{
     io.fc.state := state
     io.fc.valid := io.axi.resp.valid
 
+    io.multiwrite := 0.B
+
 
     switch(state){
         is(s_Idle){
