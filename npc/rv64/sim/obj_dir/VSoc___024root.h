@@ -29,6 +29,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*7:0*/ Soc__DOT___core_io_AXI_Interface_w_bits_strb;
         CData/*7:0*/ Soc__DOT___core_io_AXI_Interface_ar_bits_len;
         CData/*0:0*/ Soc__DOT__core__DOT___ioformem_io_fc_valid;
+        CData/*0:0*/ Soc__DOT__core__DOT___ioformem_io_fc_vmem_range;
         CData/*0:0*/ Soc__DOT__core__DOT___arbitor_io_master1_resp_valid;
         CData/*0:0*/ Soc__DOT__core__DOT___arbitor_io_master2_resp_valid;
         CData/*0:0*/ Soc__DOT__core__DOT___trap_io_csrtr_csr_wen;
@@ -85,9 +86,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h567a98b8__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_hb0fa7988__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h90ba5b66__0;
-        CData/*6:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0;
     };
     struct {
+        CData/*6:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h1fd6a75a__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT____VdfgTmp_h156a9c0e__0;
         CData/*0:0*/ Soc__DOT__core__DOT__decode__DOT__eximm__DOT____VdfgTmp_h1c2633e7__0;
         CData/*0:0*/ Soc__DOT__core__DOT__excute__DOT___alu_io_mul_div_outvalid;
@@ -151,9 +152,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_mem_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_mem_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg1_wb_hazard;
-        CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_wb_hazard;
     };
     struct {
+        CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__reg2_wb_hazard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__csr_ex_harzard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__csr_mem_harzard;
         CData/*0:0*/ Soc__DOT__core__DOT__fw__DOT__csr_wb_harzard;
@@ -164,7 +165,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___SFBundle_T_14;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT__SFBundle_0;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT__SFBundle_1;
-        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h4511a20b__0;
+        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h84c28b24__0;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h8e05e725__0;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h5fc28a32__0;
         CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_1;
@@ -217,9 +218,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__data_count;
         CData/*2:0*/ Soc__DOT__core__DOT__ioformem__DOT__wait_cycle;
         CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__jump_mask;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_6;
     };
     struct {
+        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_6;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_9;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_11;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_1;
@@ -283,9 +284,9 @@ class VSoc___024root final : public VerilatedModule {
         SData/*15:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_0;
         SData/*11:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T;
         IData/*31:0*/ Soc__DOT___core_io_AXI_Interface_aw_bits_addr;
-        IData/*31:0*/ Soc__DOT___core_io_AXI_Interface_ar_bits_addr;
     };
     struct {
+        IData/*31:0*/ Soc__DOT___core_io_AXI_Interface_ar_bits_addr;
         IData/*31:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
         IData/*31:0*/ Soc__DOT__core__DOT___fetch_io_fdio_pc;
         IData/*31:0*/ Soc__DOT__core__DOT__fdreg_pc;
@@ -349,9 +350,9 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___io_deio_reg2_rdata_T;
         QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___io_deio_csr_t_T;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___alu_io_result;
-        QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu_buffer;
     };
     struct {
+        QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu_buffer;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT____VdfgTmp_h7d5adbc1__0;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_34;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_38;
