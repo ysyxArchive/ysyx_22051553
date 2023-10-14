@@ -18,10 +18,14 @@ size_t fbsync_write(const void *buf, size_t offset, size_t len);
 size_t screeninfo_write(const void *buf, size_t offset, size_t len);
 
 bool bmp_read = 0;
-unsigned int append_head = 0;
+unsigned int append_bmp = 0;
 size_t bmp_breakaddr = 0;
-
 uint8_t bmp_buf[8] = {};
+
+
+unsigned int append_mkf = 0;
+size_t mkf_breakaddr = 0;
+uint8_t mkf_buf[8] = {};
 
 
 typedef struct {
@@ -101,34 +105,56 @@ size_t fs_read(int fd, void *buf, size_t len){
     //判断是否为bmp
     char *dot = strrchr(file_table[fd].name, '.');
     // if((dot == NULL || strcmp(dot, ".bmp") != 0) && bmp_read == 1){ //结束bmp读取，恢复
-    //   memcpy(&ramdisk_start+bmp_breakaddr, bmp_buf, append_head);
+    //   memcpy(&ramdisk_start+bmp_breakaddr, bmp_buf, append_bmp);
     //   bmp_read = 0;
-    //   append_head = 0;
+    //   append_bmp = 0;
     // }
 
+    //--------------bmp
     if(dot != NULL && strcmp(dot, ".bmp") == 0 && file_table[fd].open_offset != 0 && bmp_read == 0){
       bmp_read = 1;
       size_t base_addr = file_table[fd].disk_offset+file_table[fd].open_offset;
-      append_head = base_addr & 0x7;
-      bmp_breakaddr = base_addr - append_head;
-      memcpy(bmp_buf, &ramdisk_start+bmp_breakaddr, append_head);
-      memset(&ramdisk_start+bmp_breakaddr, 0, append_head); //赋值0
-      file_table[fd].open_offset -= append_head;
+      append_bmp = base_addr & 0x7;
+      bmp_breakaddr = base_addr - append_bmp;
+      memcpy(bmp_buf, &ramdisk_start+bmp_breakaddr, append_bmp);
+      memset(&ramdisk_start+bmp_breakaddr, 0, append_bmp); //赋值0
+      file_table[fd].open_offset -= append_bmp;
     }
-    
+    //---------------bmp
+
+    //------mkf
+    if(dot != NULL && strcmp(dot, ".mkf") == 0 && file_table[fd].open_offset != 0){  //避免开头
+      size_t base_addr = file_table[fd].disk_offset+file_table[fd].open_offset;
+      append_mkf = base_addr & 0x7;
+      mkf_breakaddr = base_addr - append_mkf;
+      memcpy(mkf_buf, &ramdisk_start+mkf_breakaddr, append_mkf);
+      memset(&ramdisk_start+mkf_breakaddr, 0, append_mkf); //赋值0
+      file_table[fd].open_offset -= append_mkf;
+    }
+    //---------mkf
+
     // if(dot != NULL && strcmp(dot, ".bmp") == 0 && file_table[fd].open_offset != 0){
-      printf("offset is %p\n", &ramdisk_start + file_table[fd].disk_offset+file_table[fd].open_offset);
+    //   printf("offset is %p\n", &ramdisk_start + file_table[fd].disk_offset+file_table[fd].open_offset);
     //   printf("real_len is %d\n", real_len);
     // }
 
     
     ramdisk_read(buf, file_table[fd].disk_offset+file_table[fd].open_offset, real_len);
 
+    //----------------bmp
     if((dot != NULL && strcmp(dot, ".bmp") == 0 && file_table[fd].open_offset != 0 && real_len < 1024) && bmp_read == 1){ //回复， 注意bmp的最后real_len有0
-      memcpy(&ramdisk_start+bmp_breakaddr, bmp_buf, append_head);
+      memcpy(&ramdisk_start+bmp_breakaddr, bmp_buf, append_bmp);
       bmp_read = 0;
-      append_head = 0;
+      append_bmp = 0;
     }
+    //---------------------bmp
+
+    //--------mkf
+    if(dot != NULL && strcmp(dot, ".mkf") == 0 && file_table[fd].open_offset != 0){ //mkf每次都需要恢复
+      memcpy(&ramdisk_start+mkf_breakaddr, mkf_buf, append_mkf);
+      append_mkf = 0;
+    }
+    //-----------mkf
 
     file_table[fd].open_offset += real_len;
 
