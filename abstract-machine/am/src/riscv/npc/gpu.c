@@ -74,7 +74,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) { //优化
   bool w_odd = (ctl->w) % 2;  //保证如果w为奇数，也能写入单个pixel
   bool x_odd = (ctl->x) % 2;  //保证sd指令8字节对齐
 
-  for(int n = 9; n < 11; n ++){
+  for(int n = 0; n < ctl->h; n ++){
     uint64_t offaddr = (uint64_t)((uint32_t*)begin_addr + n*screen_w);  //screen_w也是以4字节为单位
     uint64_t offnum = n* (ctl->w); //避免每次都乘法计算
 

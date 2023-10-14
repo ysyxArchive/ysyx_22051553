@@ -198,8 +198,8 @@ class FlowControl extends Module{
                 -> FlowControl.TrapWait_SFBundle,
             (io.fctr.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
             (io.fcex.jump_flag === 1.B) -> FlowControl.BRANCH_SFBundle,
+            MULDIV_stall -> FlowControl.MULDIV_SFBundle,
             (io.fcde.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
-            MULDIV_stall -> FlowControl.MULDIV_SFBundle
         )
     )
 
