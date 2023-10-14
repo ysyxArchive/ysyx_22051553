@@ -114,12 +114,12 @@ void *_sbrk(intptr_t increment) {  //总是分配8字节对齐的数据
 
   if(_syscall_(SYS_brk, increment, 0, 0) == 0){
     char * old = hbrk;
-    
+
     if(increment & 0x7 == 0){
       hbrk += increment;
       return old;
     }else{
-      hbrk = (char *)(increment - increment & 0x7 + 8);
+      hbrk += (char *)(increment - increment & 0x7 + 8);
       return old;
     }
   
