@@ -106,9 +106,9 @@ void* BMP_Load(const char *filename, int *width, int *height) {
          int index_base = (h-1-i)*w;
          for (int j = 0; j < w; j++) {
               int index = (index_base + j)*3;
-              uint8_t r = buf[index + 2]; //改成内存操作
+              uint8_t r = buf[index ]; //改成内存操作
               uint8_t g = buf[index + 1];
-              uint8_t b = buf[index];
+              uint8_t b = buf[index + 2];
               pixels[i * w + j] = (r << 16) | (g << 8) | b;
          }
     }
