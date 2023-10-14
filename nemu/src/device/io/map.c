@@ -70,6 +70,7 @@ void map_write(paddr_t addr, int len, word_t data, IOMap *map) {
   #endif
   assert(len >= 1 && len <= 8);
   check_bound(map, addr);
+  printf("write mem at " "0x%x" " for %d bytes, data is 0x%lx\n",addr, len, data);
   paddr_t offset = addr - map->low;
   host_write(map->space + offset, len, data);
   invoke_callback(map->callback, offset, len, true);
