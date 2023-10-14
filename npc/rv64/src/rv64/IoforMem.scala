@@ -123,6 +123,7 @@ class IoforMem extends Module{
                             io.axi.req.bits.rw := 0.B
                             io.multiwrite := 1.B
                             ren := 1.U
+                            r_count := r_count + 1.U
 
                             jump_data := io.excute.wdata
                             jump_addr := io.excute.waddr
@@ -148,6 +149,7 @@ class IoforMem extends Module{
                                 io.axi.req.bits.rw := 0.B
                                 io.multiwrite := 1.B
                                 ren := 1.U
+                                r_count := r_count + 1.U  //重要
                             }
                         }
 
