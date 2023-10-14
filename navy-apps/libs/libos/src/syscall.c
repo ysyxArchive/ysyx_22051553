@@ -116,14 +116,13 @@ void *_sbrk(intptr_t increment) {  //总是分配8字节对齐的数据
     char * old = hbrk;
 
     if(increment & 0x7 == 0){
-      hbrk += increment;
+      hbrk = hbrk + increment;
       return old;
     }else{
-      hbrk += (increment - increment & 0x7 + 8);
+      hbrk = hbrk + (increment - increment & 0x7 + 8);
       return old;
     }
   
-    
   }
   else
     return (void *)-1;
