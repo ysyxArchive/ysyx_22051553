@@ -92,10 +92,10 @@ void* BMP_Load(const char *filename, int *width, int *height) {
       printf("buf is %p\n", buf);
     fread(buf, w * h * 3, 1, fp); //修改
     
-    // uint8_t *buf_off = buf;
-    // while(*buf_off == 0){
-    //   buf_off ++;
-    // }
+    uint8_t *buf_off = buf;
+    while(*buf_off == 0){
+      buf_off ++;
+    }
     // printf("buf_off is %p\n", buf_off);
     printf("time3\n");
     fclose(fp); 
@@ -106,9 +106,9 @@ void* BMP_Load(const char *filename, int *width, int *height) {
          int index_base = (h-1-i)*w;
          for (int j = 0; j < w; j++) {
               int index = (index_base + j)*3;
-              uint8_t r = buf[index ]; //改成内存操作
-              uint8_t g = buf[index + 1];
-              uint8_t b = buf[index + 2];
+              uint8_t r = buf_off[index + 2]; //改成内存操作
+              uint8_t g = buf_off[index + 1];
+              uint8_t b = buf_off[index];
               pixels[i * w + j] = (r << 16) | (g << 8) | b;
          }
     }
