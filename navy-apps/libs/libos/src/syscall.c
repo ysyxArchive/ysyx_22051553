@@ -119,6 +119,7 @@ void *_sbrk(intptr_t increment) {  //总是分配8字节对齐的数据
       hbrk = hbrk + increment;
       return old;
     }else{
+      // hbrk = hbrk + (increment - increment & 0x7 + 8);  //这样有问题   &的优先级低于加减
       hbrk = hbrk + (increment - (increment & 0x7) + 8);
       return old;
     }

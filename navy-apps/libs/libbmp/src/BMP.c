@@ -74,12 +74,12 @@ void* BMP_Load(const char *filename, int *width, int *height) {
     // printf("time0\n");
     uint32_t *pixels = malloc(w * h * sizeof(uint32_t));
     // uint8_t *buf = aligned_alloc(8, w * h * 3 + 8);  //buf8字节对齐 --扩充8个字节，最多7个不对齐 --aligned_alloc无法使用
-    uint8_t *base = malloc(w * h * 3 + 16);  //涉及两次对齐
-    uint64_t align_addr = (uint64_t)(base);
-    while(align_addr & 0x7 != 0){
-      align_addr ++;
-    }
-    uint8_t * buf = (uint8_t*)align_addr;
+    // uint8_t *base = malloc(w * h * 3 + 16);  //涉及两次对齐
+    // uint64_t align_addr = (uint64_t)(base);
+    // while(align_addr & 0x7 != 0){
+    //   align_addr ++;
+    // }
+    // uint8_t * buf = (uint8_t*)align_addr;
     // printf("buf is %p\n", buf);
     // printf("time1\n");
     fseek(fp, hdr.offset, SEEK_SET);
@@ -87,13 +87,15 @@ void* BMP_Load(const char *filename, int *width, int *height) {
     // fread(buf, 1, w * h * 3, fp);
     // printf("total is %d\n", w*h*3);
 
-    fread(buf, w * h * 3 + 8, 1, fp); //修改
-
-
-    uint8_t *buf_off = buf;
-    while(*buf_off == 0){
-      buf_off ++;
-    }
+    // fread(buf, w * h * 3 + 8, 1, fp); //修改
+    uint8_t * buf = malloc(w * h * sizeof(uint32_t));
+      printf("buf is %p\n", buf);
+    fread(buf, w * h * 3, 1, fp); //修改
+    
+    // uint8_t *buf_off = buf;
+    // while(*buf_off == 0){
+    //   buf_off ++;
+    // }
     // printf("buf_off is %p\n", buf_off);
     printf("time3\n");
     fclose(fp); 
@@ -104,9 +106,9 @@ void* BMP_Load(const char *filename, int *width, int *height) {
          int index_base = (h-1-i)*w;
          for (int j = 0; j < w; j++) {
               int index = (index_base + j)*3;
-              uint8_t r = buf_off[index + 2]; //改成内存操作
-              uint8_t g = buf_off[index + 1];
-              uint8_t b = buf_off[index];
+              uint8_t r = buf[index + 2]; //改成内存操作
+              uint8_t g = buf[index + 1];
+              uint8_t b = buf[index];
               pixels[i * w + j] = (r << 16) | (g << 8) | b;
          }
     }
@@ -205,7 +207,8 @@ void* BMP_Load(const char *filename, int *width, int *height) {
 
 
 
-    free(base); 
+    // free(base); 
+    free(buf);
     printf("time4\n");
 
     if (width) *width = w;
