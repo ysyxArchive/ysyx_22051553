@@ -152,7 +152,6 @@ size_t fs_read(int fd, void *buf, size_t len){
     //--------mkf
     if(dot != NULL && strcmp(dot, ".mkf") == 0 && file_table[fd].open_offset != 0){ //mkf每次都需要恢复
       memcpy(&ramdisk_start+mkf_breakaddr, mkf_buf, append_mkf);
-      printf("hree\n");
       append_mkf = 0;
     }
     //-----------mkf
