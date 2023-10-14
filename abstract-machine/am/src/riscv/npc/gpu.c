@@ -13,9 +13,9 @@ void __am_gpu_init() {
   w = vga_ctrl_bundle>>16;  
   h = vga_ctrl_bundle & 0xffff;  
   // 初始化成白色
-  // uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
-  // for (int i = 0; i < w * h; i ++) fb[i] = 0x00FFFFFF;
-  // outl(SYNC_ADDR, 1);
+  uint64_t *fb = (uint64_t *)(uintptr_t)FB_ADDR;
+  for (int i = 0; i < w * h / 2; i ++) fb[i] = 0xFFFFFF00FFFFFF;
+  outl(SYNC_ADDR, 1);
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
