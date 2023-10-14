@@ -30,6 +30,6 @@ SECTIONS {
   . = _stack_top + 0x8000;
   _stack_pointer = .;
   end = .;
-  _end = ALIGN(0x08); 
+  _end = .;
   _heap_start = ALIGN(0x1000);
 }
