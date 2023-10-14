@@ -109,13 +109,19 @@ off_t _lseek(int fd, off_t offset, int whence) {
 
 
 
-void *_sbrk(intptr_t increment) {
-  static char* hbrk = &_end;
+void *_sbrk(intptr_t increment) {  //总是分配8字节对齐的数据
+  static char* hbrk = &_end;  //_end在脚本中设置了8字节对齐
 
   if(_syscall_(SYS_brk, increment, 0, 0) == 0){
     char * old = hbrk;
-    hbrk += increment;
-    return old;
+
+    if(increment & 0x7 == 0){
+      hbrk += increment;
+      return old;
+    }else{
+      hbrk = increment - increment & 0x7 + 8;
+      return old;
+    }
   }
   else
     return (void *)-1;
