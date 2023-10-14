@@ -335,7 +335,6 @@ void SDL_SetPalette(SDL_Surface *s, int flags, SDL_Color *colors, int firstcolor
 // }
 
 static uint32_t swap_red_blue(uint32_t v){
-    // keep green and alpha, swap red and blue
     return (v & 0xff00ff00) | ((v & 0xff0000) >> 16) | ((v & 0xff) << 16);
 }
 
