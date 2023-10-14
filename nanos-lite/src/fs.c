@@ -116,7 +116,7 @@ size_t fs_read(int fd, void *buf, size_t len){
     
     // if(dot != NULL && strcmp(dot, ".bmp") == 0 && file_table[fd].open_offset != 0){
     //   printf("offset is %p\n", &ramdisk_start + file_table[fd].disk_offset+file_table[fd].open_offset);
-    //   printf("real_len is %d\n", real_len);
+      printf("real_len is %d\n", real_len);
     // }
     
     ramdisk_read(buf, file_table[fd].disk_offset+file_table[fd].open_offset, real_len);
