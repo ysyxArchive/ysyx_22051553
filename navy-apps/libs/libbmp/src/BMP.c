@@ -75,6 +75,8 @@ void* BMP_Load(const char *filename, int *width, int *height) {
     uint32_t *pixels = malloc(w * h * sizeof(uint32_t));
     // uint8_t *buf = aligned_alloc(8, w * h * 3 + 8);  //buf8字节对齐 --扩充8个字节，最多7个不对齐 --aligned_alloc无法使用
     // uint8_t *base = malloc(w * h * 3 + 16);  //涉及两次对齐
+    //------------------不再需要对齐 操作系统只会给对齐地址
+
     // uint64_t align_addr = (uint64_t)(base);
     // while(align_addr & 0x7 != 0){
     //   align_addr ++;
@@ -89,7 +91,6 @@ void* BMP_Load(const char *filename, int *width, int *height) {
 
     // fread(buf, w * h * 3 + 8, 1, fp); //修改
     uint8_t * buf = malloc(w * h * sizeof(uint32_t));
-      printf("buf is %p\n", buf);
     fread(buf, w * h * 3, 1, fp); //修改
     
     uint8_t *buf_off = buf;
