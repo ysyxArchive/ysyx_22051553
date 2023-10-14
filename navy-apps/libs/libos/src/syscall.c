@@ -125,7 +125,7 @@ void *_sbrk(intptr_t increment) {  //总是分配8字节对齐的数据
   
   }
   else
-    return (void *)-1;
+    return (void *)1;
 }
 
 
