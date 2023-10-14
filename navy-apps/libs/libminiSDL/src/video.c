@@ -307,32 +307,47 @@ void SDL_SetPalette(SDL_Surface *s, int flags, SDL_Color *colors, int firstcolor
   }
 }
 
-static void ConvertPixelsARGB_ABGR(void *dst, void *src, int len) {
-  int i;
-  uint8_t (*pdst)[4] = dst;
-  uint8_t (*psrc)[4] = src;
-  union {
-    uint8_t val8[4];
-    uint32_t val32;
-  } tmp;
-  int first = len & ~0xf;
-  for (i = 0; i < first; i += 16) {
-#define macro(i) \
-    tmp.val32 = *((uint32_t *)psrc[i]); \
-    *((uint32_t *)pdst[i]) = tmp.val32; \
-    pdst[i][0] = tmp.val8[2]; \
-    pdst[i][2] = tmp.val8[0];
+// static void ConvertPixelsARGB_ABGR(void *dst, void *src, int len) {
+//   int i;
+//   uint8_t (*pdst)[4] = dst;
+//   uint8_t (*psrc)[4] = src;
+//   union {
+//     uint8_t val8[4];
+//     uint32_t val32;
+//   } tmp;
+//   int first = len & ~0xf;
+//   for (i = 0; i < first; i += 16) {
+// #define macro(i) \
+//     tmp.val32 = *((uint32_t *)psrc[i]); \
+//     *((uint32_t *)pdst[i]) = tmp.val32; \
+//     pdst[i][0] = tmp.val8[2]; \
+//     pdst[i][2] = tmp.val8[0];
 
-    macro(i + 0); macro(i + 1); macro(i + 2); macro(i + 3);
-    macro(i + 4); macro(i + 5); macro(i + 6); macro(i + 7);
-    macro(i + 8); macro(i + 9); macro(i +10); macro(i +11);
-    macro(i +12); macro(i +13); macro(i +14); macro(i +15);
-  }
+//     macro(i + 0); macro(i + 1); macro(i + 2); macro(i + 3);
+//     macro(i + 4); macro(i + 5); macro(i + 6); macro(i + 7);
+//     macro(i + 8); macro(i + 9); macro(i +10); macro(i +11);
+//     macro(i +12); macro(i +13); macro(i +14); macro(i +15);
+//   }
 
-  for (; i < len; i ++) {
-    macro(i);
-  }
+//   for (; i < len; i ++) {
+//     macro(i);
+//   }
+// }
+
+static uint32_t swap_red_blue(uint32_t v){
+    // keep green and alpha, swap red and blue
+    return (v & 0xff00ff00) | ((v & 0xff0000) >> 16) | ((v & 0xff) << 16);
 }
+
+void ConvertPixelsARGB_ABGR(void *dst, void *src, int len) {
+    uint32_t *pdst = (uint32_t*)dst;
+    uint32_t *psrc = (uint32_t*)src;
+    for (int i = 0; i < len; i++){
+        pdst[i] = swap_red_blue(psrc[i]);
+    }
+}
+
+
 
 SDL_Surface *SDL_ConvertSurface(SDL_Surface *src, SDL_PixelFormat *fmt, uint32_t flags) {
   assert(src->format->BitsPerPixel == 32);
