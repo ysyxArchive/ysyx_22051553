@@ -23,9 +23,9 @@ size_t bmp_breakaddr = 0;
 uint8_t bmp_buf[8] = {};
 
 
-unsigned int append_mkf = 0;
-size_t mkf_breakaddr = 0;
-uint8_t mkf_buf[8] = {};
+// unsigned int append_mkf = 0;
+// size_t mkf_breakaddr = 0;
+// uint8_t mkf_buf[8] = {};
 
 
 typedef struct {
@@ -84,9 +84,9 @@ int fs_open(const char *pathname, int flags, int mode){
 }
 
 size_t fs_read(int fd, void *buf, size_t len){
-  if(!strcmp(file_table[fd].name, "/dev/events") == 0){
-    printf("reading file is %s\n", file_table[fd].name);
-  }
+  // if(!strcmp(file_table[fd].name, "/dev/events") == 0){
+  //   printf("reading file is %s\n", file_table[fd].name);
+  // }
 
 
   if(file_table[fd].read != NULL){
@@ -123,14 +123,14 @@ size_t fs_read(int fd, void *buf, size_t len){
     //---------------bmp
 
     //------mkf
-    if(dot != NULL && strcmp(dot, ".mkf") == 0 && file_table[fd].open_offset != 0){  //避免开头
-      size_t base_addr = file_table[fd].disk_offset+file_table[fd].open_offset;
-      append_mkf = base_addr & 0x7;
-      mkf_breakaddr = base_addr - append_mkf;
-      memcpy(mkf_buf, &ramdisk_start+mkf_breakaddr, append_mkf);
-      memset(&ramdisk_start+mkf_breakaddr, 0, append_mkf); //赋值0
-      file_table[fd].open_offset -= append_mkf;
-    }
+    // if(dot != NULL && strcmp(dot, ".mkf") == 0 && file_table[fd].open_offset != 0){  //避免开头
+    //   size_t base_addr = file_table[fd].disk_offset+file_table[fd].open_offset;
+    //   append_mkf = base_addr & 0x7;
+    //   mkf_breakaddr = base_addr - append_mkf;
+    //   memcpy(mkf_buf, &ramdisk_start+mkf_breakaddr, append_mkf);
+    //   memset(&ramdisk_start+mkf_breakaddr, 0, append_mkf); //赋值0
+    //   file_table[fd].open_offset -= append_mkf;
+    // }
     //---------mkf
 
     // if(dot != NULL && strcmp(dot, ".bmp") == 0 && file_table[fd].open_offset != 0){
@@ -150,10 +150,10 @@ size_t fs_read(int fd, void *buf, size_t len){
     //---------------------bmp
 
     //--------mkf
-    if(dot != NULL && strcmp(dot, ".mkf") == 0 && file_table[fd].open_offset != 0){ //mkf每次都需要恢复
-      memcpy(&ramdisk_start+mkf_breakaddr, mkf_buf, append_mkf);
-      append_mkf = 0;
-    }
+    // if(dot != NULL && strcmp(dot, ".mkf") == 0 && file_table[fd].open_offset != 0){ //mkf每次都需要恢复
+    //   memcpy(&ramdisk_start+mkf_breakaddr, mkf_buf, append_mkf);
+    //   append_mkf = 0;
+    // }
     //-----------mkf
 
     file_table[fd].open_offset += real_len;
