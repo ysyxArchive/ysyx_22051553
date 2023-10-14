@@ -130,6 +130,7 @@ size_t fs_read(int fd, void *buf, size_t len){
       memcpy(mkf_buf, &ramdisk_start+mkf_breakaddr, append_mkf);
       memset(&ramdisk_start+mkf_breakaddr, 0, append_mkf); //赋值0
       file_table[fd].open_offset -= append_mkf;
+      printf("hree\n");
     }
     //---------mkf
 
@@ -138,7 +139,7 @@ size_t fs_read(int fd, void *buf, size_t len){
     //   printf("real_len is %d\n", real_len);
     // }
 
-    printf("hree\n");
+    
     ramdisk_read(buf, file_table[fd].disk_offset+file_table[fd].open_offset, real_len);
 
     //----------------bmp
