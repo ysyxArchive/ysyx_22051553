@@ -127,8 +127,9 @@ size_t fs_read(int fd, void *buf, size_t len){
       size_t base_addr = file_table[fd].disk_offset+file_table[fd].open_offset;
       append_mkf = base_addr & 0x7;
       mkf_breakaddr = base_addr - append_mkf;
-      printf("hree\n");
+      
       memcpy(mkf_buf, &ramdisk_start+mkf_breakaddr, append_mkf);
+      printf("hree\n");
       memset(&ramdisk_start+mkf_breakaddr, 0, append_mkf); //赋值0
       file_table[fd].open_offset -= append_mkf;
     }
