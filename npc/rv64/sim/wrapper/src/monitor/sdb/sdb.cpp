@@ -357,7 +357,7 @@ void update_debuginfo(
 long long pmem_read(const svLogicVecVal* raddr){
 
     // #ifdef MTRACE
-    printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr[0].aval, 8);
+    // printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr[0].aval, 8);
     // #endif
 
   if( ((unsigned long)raddr[0].aval) == RTC_BASE){

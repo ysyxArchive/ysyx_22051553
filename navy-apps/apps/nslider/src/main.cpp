@@ -31,6 +31,7 @@ void render() {
   slide = SDL_LoadBMP(fname);
   assert(slide);
   // SDL_UpdateRect(slide, 0, 0, slide->w, slide->h);  //修改 原来是SDL_UpdateRect(slide, 0, 0, 0, 0);
+  printf("time5\n");
   SDL_UpdateRect(slide, 0, 0, 0, 0);
 }
 

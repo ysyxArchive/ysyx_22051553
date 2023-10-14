@@ -1902,30 +1902,26 @@ module FlowControl(	// <stdin>:2466:10
   wire _SFBundle_T_14 = io_fctr_pop_NOP | io_fctr_trap_state == 3'h1 | io_fctr_trap_state == 3'h2 |
                 io_fctr_trap_state == 3'h3 | io_fctr_trap_state == 3'h5 | io_fctr_trap_state == 3'h6;	// FlowControl.scala:142:{34,130}, :196:{60,93}, :197:{36,71,87,109}
   wire SFBundle_0 = IO_stall | Icache_stall | Dcache_stall | io_fcde_load_use | ~_SFBundle_T_3 &
-                (_SFBundle_T_14 | ~io_fctr_jump_flag & ~io_fcex_jump_flag & ~io_fcde_jump_flag &
-                MULDIV_stall);	// FlowControl.scala:195:47, :197:87, Mux.scala:101:16
+                (_SFBundle_T_14 | ~io_fctr_jump_flag & ~io_fcex_jump_flag & MULDIV_stall);	// FlowControl.scala:195:47, :197:87, Mux.scala:101:16
   wire SFBundle_1 = IO_stall | Icache_stall | Dcache_stall | ~io_fcde_load_use & ~_SFBundle_T_3 &
-                ~_SFBundle_T_14 & ~io_fctr_jump_flag & ~io_fcex_jump_flag & ~io_fcde_jump_flag &
-                MULDIV_stall;	// FlowControl.scala:195:47, :197:87, Mux.scala:101:16
+                ~_SFBundle_T_14 & ~io_fctr_jump_flag & ~io_fcex_jump_flag & MULDIV_stall;	// FlowControl.scala:195:47, :197:87, Mux.scala:101:16
   wire SFBundle_2 = IO_stall | Icache_stall | Dcache_stall | ~io_fcde_load_use & ~_SFBundle_T_3 &
-                ~_SFBundle_T_14 & ~io_fctr_jump_flag & ~io_fcex_jump_flag & ~io_fcde_jump_flag &
-                MULDIV_stall;	// FlowControl.scala:195:47, :197:87, Mux.scala:101:16
+                ~_SFBundle_T_14 & ~io_fctr_jump_flag & ~io_fcex_jump_flag & MULDIV_stall;	// FlowControl.scala:195:47, :197:87, Mux.scala:101:16
   wire SFBundle_4 = IO_stall | Icache_stall | Dcache_stall | ~io_fcde_load_use & ~_SFBundle_T_3 &
-                ~_SFBundle_T_14 & ~io_fctr_jump_flag & ~io_fcex_jump_flag & ~io_fcde_jump_flag &
-                MULDIV_stall;	// FlowControl.scala:195:47, :197:87, Mux.scala:101:16
+                ~_SFBundle_T_14 & ~io_fctr_jump_flag & ~io_fcex_jump_flag & MULDIV_stall;	// FlowControl.scala:195:47, :197:87, Mux.scala:101:16
   assign io_fcfe_jump_flag = io_fcde_jump_flag | io_fcex_jump_flag | io_fctr_jump_flag;	// <stdin>:2466:10, FlowControl.scala:218:65
   assign io_fcfe_jump_pc = io_fctr_jump_flag ? io_fctr_jump_pc : io_fcex_jump_flag ? io_fcex_jump_pc :
                 io_fcde_jump_flag ? io_fcde_jump_pc : 32'h80000000;	// <stdin>:2466:10, Mux.scala:101:16
   assign io_fcfe_flush = ~IO_stall & ~Icache_stall & ~Dcache_stall & ~io_fcde_load_use & (_SFBundle_T_3 |
-                ~_SFBundle_T_14 & (io_fctr_jump_flag | io_fcex_jump_flag | io_fcde_jump_flag));	// <stdin>:2466:10, FlowControl.scala:195:47, :197:87, Mux.scala:101:16
+                ~_SFBundle_T_14 & (io_fctr_jump_flag | io_fcex_jump_flag | ~MULDIV_stall &
+                io_fcde_jump_flag));	// <stdin>:2466:10, FlowControl.scala:195:47, :197:87, Mux.scala:101:16
   assign io_fcfe_stall = SFBundle_0;	// <stdin>:2466:10, Mux.scala:101:16
   assign io_fcde_flush = ~IO_stall & ~Icache_stall & ~Dcache_stall & (io_fcde_load_use | _SFBundle_T_3 |
                 _SFBundle_T_14 | ~io_fctr_jump_flag & io_fcex_jump_flag);	// <stdin>:2466:10, FlowControl.scala:195:47, :197:87, Mux.scala:101:16
   assign io_fcde_stall = SFBundle_1;	// <stdin>:2466:10, Mux.scala:101:16
   assign io_fcex_stall = SFBundle_2;	// <stdin>:2466:10, Mux.scala:101:16
   assign io_fcmem_stall = IO_stall | Icache_stall | Dcache_stall | ~io_fcde_load_use & ~_SFBundle_T_3 &
-                ~_SFBundle_T_14 & ~io_fctr_jump_flag & ~io_fcex_jump_flag & ~io_fcde_jump_flag &
-                MULDIV_stall;	// <stdin>:2466:10, FlowControl.scala:195:47, :197:87, Mux.scala:101:16
+                ~_SFBundle_T_14 & ~io_fctr_jump_flag & ~io_fcex_jump_flag & MULDIV_stall;	// <stdin>:2466:10, FlowControl.scala:195:47, :197:87, Mux.scala:101:16
   assign io_fcwb_stall = SFBundle_4;	// <stdin>:2466:10, Mux.scala:101:16
   assign io_fcio_stall = SFBundle_2;	// <stdin>:2466:10, Mux.scala:101:16
   assign io_sdb_stall = SFBundle_0 & SFBundle_1 & SFBundle_2 & SFBundle_4;	// <stdin>:2466:10, FlowControl.scala:232:67, Mux.scala:101:16

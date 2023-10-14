@@ -98,17 +98,112 @@ void* BMP_Load(const char *filename, int *width, int *height) {
     printf("time3\n");
     fclose(fp); 
 
-    for (int i = 0; i < h; i++) {
-         for (int j = 0; j < w; j++) {
-              int index = (h - 1 - i) * w + j;
-              uint8_t r = buf_off[index * 3 + 2]; //改成内存操作
-              uint8_t g = buf_off[index * 3 + 1];
-              uint8_t b = buf_off[index * 3];
-              pixels[i * w + j] = (r << 16) | (g << 8) | b;
-         }
+    // for (int i = 0; i < h; i++) {   //非常消耗时间：1.每个像素的rgb通道值都分别获取，2.二重循环，3.每次像素计算都涉及大量运算，4.pixel为32位，可以尝试pixel_pair
+    //      for (int j = 0; j < w; j++) {
+    //           int index = (h - 1 - i) * w + j;
+    //           uint8_t r = buf_off[index * 3 + 2]; //改成内存操作
+    //           uint8_t g = buf_off[index * 3 + 1];
+    //           uint8_t b = buf_off[index * 3];
+    //           pixels[i * w + j] = (r << 16) | (g << 8) | b;
+    //      }
+    // }
+
+
+    int index_base = (h-1)*w;
+    for (int i = 0; i < h; i++) {   //非常消耗时间：1.每个像素的rgb通道值都分别获取，2.二重循环，3.每次像素计算都涉及大量运算，4.pixel为32位，可以尝试pixel_pair
+      int j = 0;
+
+      while(j < w){
+
+        uint8_t* index = buf_off + (index_base -  i*w + j) * 3;
+        int off = (uint64_t)index & 0x7;
+        uint64_t base_addr = ((uint64_t)index >> 3) << 3;
+        uint64_t pixel_pair = 0;
+        uint64_t buffer_64 = 0;
+        uint64_t buffer_next = 0;
+        uint32_t pixel = 0;
+
+        int pixel_off = i * w + j;
+        switch (off)
+        {
+        case 0:
+          buffer_64 = *((uint64_t*)base_addr);
+          pixel_pair = buffer_64 & 0xfff | ((buffer_64 >> 24) & 0xfff) << 32;
+          *(uint64_t*)(&pixels[pixel_off]) = pixel_pair;
+          j += 2;
+          break;
+        case 1:
+          buffer_64 = *((uint64_t*)base_addr);
+          pixel_pair = (buffer_64 >> 8) & 0xfff | ((buffer_64 >> 32) & 0xfff) << 32;
+          *(uint64_t*)(&pixels[pixel_off]) = pixel_pair;
+          j += 2;
+          break;
+        case 2:
+          buffer_64 = *((uint64_t*)base_addr);
+          pixel_pair = (buffer_64 >> 16) & 0xfff | ((buffer_64 >> 40) & 0xfff) << 32;
+          *(uint64_t*)(&pixels[pixel_off]) = pixel_pair;
+          j += 2;
+          break;
+        case 3:
+          buffer_64 = *((uint64_t*)base_addr);
+          pixel = (buffer_64 >> 24) & 0xfff;
+          *(uint32_t*)(&pixels[pixel_off]) = pixel;
+          j += 1;
+          break;
+        case 4:
+          buffer_64 = *((uint64_t*)base_addr);
+          pixel = (buffer_64 >> 32) & 0xfff;
+          *(uint32_t*)(&pixels[pixel_off]) = pixel;
+          j += 1;
+          break;
+        case 5:
+          buffer_64 = *((uint64_t*)base_addr);
+          pixel = (buffer_64 >> 40) & 0xfff;
+          *(uint32_t*)(&pixels[pixel_off]) = pixel;
+          j += 1;
+          break;
+        case 6:
+          if(pixel_off < w*h -1){
+            buffer_64 = *((uint64_t*)base_addr);
+            buffer_next = *((uint64_t*)(base_addr + 8));
+            pixel_pair = ((buffer_64 >> 48) & 0xff | (buffer_next & 0xf) << 16) | ((buffer_next >> 8) & 0xfff) << 32;
+            *(uint64_t*)(&pixels[pixel_off]) = pixel_pair;
+            j += 2;
+          }else{
+            buffer_64 = *((uint64_t*)base_addr);
+            buffer_next = *((uint64_t*)(base_addr + 8));
+            pixel = ((buffer_64 >> 48) & 0xff | (buffer_next & 0xf) << 16);
+            *(uint32_t*)(&pixels[pixel_off]) = pixel;
+            j += 1;
+          }
+        break;
+        case 7:
+          if(pixel_off < w*h -1){
+            buffer_64 = *((uint64_t*)base_addr);
+            buffer_next = *((uint64_t*)(base_addr + 8));
+            pixel_pair = ((buffer_64 >> 56) & 0xf | (buffer_next & 0xff) << 8) | ((buffer_next >> 16) & 0xfff) << 32;
+            *(uint64_t*)(&pixels[pixel_off]) = pixel_pair;
+            j += 2;
+          }else{
+            buffer_64 = *((uint64_t*)base_addr);
+            buffer_next = *((uint64_t*)(base_addr + 8));
+            pixel = ((buffer_64 >> 56) & 0xf | (buffer_next & 0xff) << 8);
+            *(uint32_t*)(&pixels[pixel_off]) = pixel;
+            j += 1;
+          }
+        break;
+        default:
+          break;
+        }
+        
+
+      }
     }
 
+
+
     free(base); 
+    printf("time4\n");
 
     if (width) *width = w;
     if (height) *height = h;

@@ -635,8 +635,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                 | ((3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)) 
                                    | ((4U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)) 
                                       | (5U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state)))))));
-        bufp->chgBit(oldp+244,(((~ (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_mul_div_outvalid)) 
-                                & (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___mul_div_type_T_16))));
+        bufp->chgBit(oldp+244,(vlSelf->Soc__DOT__core__DOT__fc__DOT__MULDIV_stall));
         bufp->chgIData(oldp+245,(vlSelf->Soc__DOT__core__DOT__fetch__DOT__pc),32);
         bufp->chgIData(oldp+246,(vlSelf->Soc__DOT__core__DOT__fetch__DOT__old_pc),32);
         bufp->chgQData(oldp+247,(vlSelf->Soc__DOT__core__DOT___mem_io_mwio_reg_wdata),64);
@@ -9673,8 +9672,9 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                     & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
                                        | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_14)) 
                                           & ((IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT___SFBundle_T_3) 
-                                             | ((IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag) 
-                                                | (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_fcex_jump_flag)))))))));
+                                             | ((IData)(vlSelf->Soc__DOT__core__DOT___excute_io_fcex_jump_flag) 
+                                                | ((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__MULDIV_stall)) 
+                                                   & (IData)(vlSelf->Soc__DOT__core__DOT___decode_io_jump_flag))))))))));
         bufp->chgIData(oldp+6701,(((IData)(vlSelf->Soc__DOT__core__DOT__fetch__DOT___next_pc_T_2)
                                     ? ((IData)(4U) 
                                        + vlSelf->Soc__DOT__core__DOT___fc_io_fcfe_jump_pc)
