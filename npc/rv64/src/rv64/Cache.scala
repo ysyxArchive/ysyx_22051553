@@ -115,7 +115,7 @@ class Cache extends Module{
     dontTouch(hit2)
     dontTouch(hit3)
 
-    
+    val w_req = io.cpu.req.bits.mask.orR
     val wen = (is_idle && hit && w_req) || (is_alloc) || (is_alloc_reg && cpu_mask.orR)
     // 1.写命中
     // 2.从AXI读出，一定需要写
@@ -149,8 +149,8 @@ class Cache extends Module{
     dontTouch(idx_reg)
     dontTouch(off_reg)
 
-    val w_req = io.cpu.req.bits.mask.orR
-    // val r_req = ~w_req
+    
+    
 
     val way0 = nWays.U*idx
     val way1 = nWays.U*idx + 1.U
