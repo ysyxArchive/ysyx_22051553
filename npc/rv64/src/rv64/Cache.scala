@@ -299,6 +299,8 @@ class Cache extends Module{
 
     val choose_tagway = Wire(chiselTypeOf(victim))
     val choose_dataway = Wire(chiselTypeOf(victim))
+    choose_dataway := 0.U
+    choose_tagway := 0.U
     dontTouch(choose_dataway)
     dontTouch(choose_tagway)
 
