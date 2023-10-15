@@ -150,8 +150,7 @@ class FlowControl extends Module{
         Dcache_stall := 1.B
     }.elsewhen(io.fcDcache.state =/= 0.U){ 
         Dcache_stall := 1.B
-    }
-    .otherwise{
+    }.otherwise{
         Dcache_stall := 0.B
     }
 
