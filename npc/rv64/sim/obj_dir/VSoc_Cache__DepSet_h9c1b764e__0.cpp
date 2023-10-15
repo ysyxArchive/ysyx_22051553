@@ -1885,8 +1885,8 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
             (vlSelf->__PVT__addr_reg >> 0xaU);
         __Vdlyvset__TagArray_ext__DOT__Memory__v0 = 1U;
         __Vdlyvdim0__TagArray_ext__DOT__Memory__v0 
-            = ((IData)(vlSelf->__PVT___GEN_12) ? 0U
-                : (IData)(vlSelf->__VdfgTmp_h7dd49ee2__0));
+            = ((IData)(vlSelf->__PVT___GEN_11) ? 0U
+                : (IData)(vlSelf->__VdfgTmp_h41c8fb80__0));
         __Vdlyvval__replace_ext__DOT__Memory__v1 = 
             ((0U == (IData)(vlSelf->__PVT__victim))
               ? 0U : (((IData)(vlSelf->__PVT___GEN) 
@@ -4911,7 +4911,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                            + (IData)(vlSelf->__PVT__w_count)));
             }
         }
-        vlSelf->__PVT__unnamedblk1__DOT___GEN_19 = 
+        vlSelf->__PVT__unnamedblk1__DOT___GEN_18 = 
             (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
               >> 2U) & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___arbitor_io_master2_resp_valid));
         vlSelf->__PVT__unnamedblk1__DOT___dirty_T_28 
@@ -4920,20 +4920,20 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                                               & (vlSelf->__PVT__addr_reg 
                                                                  >> 7U)))) 
                                              << 2U));
-        vlSelf->__PVT__unnamedblk1__DOT___GEN_20 = 
+        vlSelf->__PVT__unnamedblk1__DOT___GEN_19 = 
             (0x10U | (((0xfc0000U & (((IData)(vlSelf->__PVT__state) 
                                       << 0x15U) | ((IData)(vlSelf->__PVT__state) 
                                                    << 0x12U))) 
-                       | ((((IData)(vlSelf->__PVT__unnamedblk1__DOT___GEN_19)
+                       | ((((IData)(vlSelf->__PVT__unnamedblk1__DOT___GEN_18)
                              ? ((0U != (IData)(vlSelf->__PVT__cpu_mask))
                                  ? 5U : 0U) : (IData)(vlSelf->__PVT__state)) 
                            << 0xcU) | ((((4U & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))
                                           ? 4U : (IData)(vlSelf->__PVT__state)) 
-                                        << 9U) | (((IData)(vlSelf->__PVT__unnamedblk1__DOT___GEN_19)
+                                        << 9U) | (((IData)(vlSelf->__PVT__unnamedblk1__DOT___GEN_18)
                                                     ? 3U
                                                     : (IData)(vlSelf->__PVT__state)) 
                                                   << 6U)))) 
-                      | ((8U & (((IData)(vlSelf->__PVT___GEN_15) 
+                      | ((8U & (((IData)(vlSelf->__PVT___GEN_14) 
                                  >> (IData)(vlSelf->__PVT__victim)) 
                                 << 3U)) | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started)
                                             ? (1U & 
@@ -4954,45 +4954,45 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
         vlSelf->__Vdly__state = ((0x17U >= (0x1fU & 
                                             ((IData)(3U) 
                                              * (IData)(vlSelf->__PVT__state))))
-                                  ? (7U & (vlSelf->__PVT__unnamedblk1__DOT___GEN_20 
+                                  ? (7U & (vlSelf->__PVT__unnamedblk1__DOT___GEN_19 
                                            >> (0x1fU 
                                                & ((IData)(3U) 
                                                   * (IData)(vlSelf->__PVT__state)))))
                                   : 0U);
-        if ((1U & (~ (IData)(vlSelf->__PVT___GEN_12)))) {
-            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21 
+        if ((1U & (~ (IData)(vlSelf->__PVT___GEN_11)))) {
+            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_20 
                 = (QData)((IData)(vlSelf->__PVT__valid));
-            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_22[0U] 
-                = (IData)((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21 
+            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21[0U] 
+                = (IData)((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_20 
                            | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_28));
-            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_22[1U] 
-                = (IData)(((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21 
+            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21[1U] 
+                = (IData)(((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_20 
                             | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_28) 
                            >> 0x20U));
-            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_22[2U] 
-                = (IData)((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21 
+            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21[2U] 
+                = (IData)((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_20 
                            | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_34));
-            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_22[3U] 
-                = (IData)(((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21 
+            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21[3U] 
+                = (IData)(((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_20 
                             | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_34) 
                            >> 0x20U));
-            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_22[4U] 
-                = (IData)((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21 
+            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21[4U] 
+                = (IData)((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_20 
                            | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_40));
-            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_22[5U] 
-                = (IData)(((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21 
+            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21[5U] 
+                = (IData)(((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_20 
                             | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_40) 
                            >> 0x20U));
-            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_22[6U] 
-                = (IData)((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21 
+            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21[6U] 
+                = (IData)((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_20 
                            | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_46));
-            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_22[7U] 
-                = (IData)(((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21 
+            vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21[7U] 
+                = (IData)(((vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_20 
                             | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_46) 
                            >> 0x20U));
             __Vdly__valid = (((0U == (0x1fU & ((IData)(vlSelf->__PVT__victim) 
                                                << 6U)))
-                               ? 0U : (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_22[
+                               ? 0U : (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21[
                                        (((IData)(0x1fU) 
                                          + (0xffU & 
                                             ((IData)(vlSelf->__PVT__victim) 
@@ -5002,7 +5002,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                         - (0x1fU & 
                                            ((IData)(vlSelf->__PVT__victim) 
                                             << 6U))))) 
-                             | (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_22[
+                             | (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21[
                                 (6U & ((IData)(vlSelf->__PVT__victim) 
                                        << 1U))] >> 
                                 (0x1fU & ((IData)(vlSelf->__PVT__victim) 
@@ -5042,39 +5042,39 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                                  | (IData)(vlSelf->__PVT__unnamedblk1__DOT__unnamedblk3__DOT___dirty_T_18))
                                               : 0U))));
             } else {
-                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23 
+                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_22 
                     = (QData)((IData)((~ vlSelf->__PVT__valid)));
-                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_24[0U] 
-                    = (IData)((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23 
+                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23[0U] 
+                    = (IData)((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_22 
                                   | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_28)));
-                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_24[1U] 
-                    = (IData)(((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23 
+                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23[1U] 
+                    = (IData)(((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_22 
                                    | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_28)) 
                                >> 0x20U));
-                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_24[2U] 
-                    = (IData)((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23 
+                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23[2U] 
+                    = (IData)((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_22 
                                   | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_34)));
-                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_24[3U] 
-                    = (IData)(((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23 
+                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23[3U] 
+                    = (IData)(((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_22 
                                    | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_34)) 
                                >> 0x20U));
-                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_24[4U] 
-                    = (IData)((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23 
+                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23[4U] 
+                    = (IData)((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_22 
                                   | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_40)));
-                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_24[5U] 
-                    = (IData)(((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23 
+                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23[5U] 
+                    = (IData)(((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_22 
                                    | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_40)) 
                                >> 0x20U));
-                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_24[6U] 
-                    = (IData)((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23 
+                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23[6U] 
+                    = (IData)((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_22 
                                   | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_46)));
-                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_24[7U] 
-                    = (IData)(((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23 
+                vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23[7U] 
+                    = (IData)(((~ (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_22 
                                    | vlSelf->__PVT__unnamedblk1__DOT___dirty_T_46)) 
                                >> 0x20U));
                 __Vdly__dirty = (((0U == (0x1fU & ((IData)(vlSelf->__PVT__victim) 
                                                    << 6U)))
-                                   ? 0U : (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_24[
+                                   ? 0U : (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23[
                                            (((IData)(0x1fU) 
                                              + (0xffU 
                                                 & ((IData)(vlSelf->__PVT__victim) 
@@ -5084,7 +5084,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                                - (0x1fU 
                                                   & ((IData)(vlSelf->__PVT__victim) 
                                                      << 6U))))) 
-                                 | (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_24[
+                                 | (vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23[
                                     (6U & ((IData)(vlSelf->__PVT__victim) 
                                            << 1U))] 
                                     >> (0x1fU & ((IData)(vlSelf->__PVT__victim) 
@@ -5108,7 +5108,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                                    & vlSelf->__PVT__addr_reg)
                                                 : 0U);
                 }
-            } else if (vlSelf->__PVT___GEN_17) {
+            } else if (vlSelf->__PVT___GEN_16) {
                 vlSelf->__PVT__addr_buf = 0U;
             }
         }

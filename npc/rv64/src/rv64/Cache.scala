@@ -231,8 +231,8 @@ class Cache extends Module{
     )
         
     val hit_reg = RegNext(hit)
-    io.cpu.resp.valid := hit_reg || (is_alloc_reg && !cpu_mask.orR) || (is_idle && cpu_mask.orR)
-    //1.读命中或写命中
+    io.cpu.resp.valid := (hit_reg && is_idle) || (is_alloc_reg && !cpu_mask.orR) || (is_idle && cpu_mask.orR)
+    //1.读命中或写命中且此时在idle ----可能当前不在idle,新的dcache请求命中
     //2.Refill后无需写入
     //3.Refill后写入
     

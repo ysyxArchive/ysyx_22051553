@@ -3602,37 +3602,38 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
     vlSelf->__VdfgTmp_h8165a582__0 = vlSelf->__PVT__replace_ext__DOT__Memory
         [(0x1fU & ((IData)(3U) + (0x1cU & (vlSelf->__PVT__addr_reg 
                                            >> 5U))))];
-    vlSelf->__VdfgTmp_h7dd49ee2__0 = ((0x17U >= (0x1fU 
+    vlSelf->__VdfgTmp_h41c8fb80__0 = ((0x17U >= (0x1fU 
                                                  & ((IData)(6U) 
                                                     * (IData)(vlSelf->__PVT__victim))))
-                                       ? (3U & (((0xfc0000U 
-                                                  & (((IData)(3U) 
-                                                      + 
-                                                      (0x1cU 
-                                                       & (vlSelf->__PVT__addr_reg 
-                                                          >> 5U))) 
-                                                     << 0x12U)) 
-                                                 | ((0x3f000U 
-                                                     & (((IData)(2U) 
+                                       ? (0x1fU & (
+                                                   ((0xfc0000U 
+                                                     & (((IData)(3U) 
                                                          + 
                                                          (0x1cU 
                                                           & (vlSelf->__PVT__addr_reg 
                                                              >> 5U))) 
-                                                        << 0xcU)) 
-                                                    | ((0xfc0U 
-                                                        & (((IData)(1U) 
+                                                        << 0x12U)) 
+                                                    | ((0x3f000U 
+                                                        & (((IData)(2U) 
                                                             + 
                                                             (0x1cU 
                                                              & (vlSelf->__PVT__addr_reg 
                                                                 >> 5U))) 
-                                                           << 6U)) 
-                                                       | (0x1cU 
-                                                          & (vlSelf->__PVT__addr_reg 
-                                                             >> 5U))))) 
-                                                >> 
-                                                (0x1fU 
-                                                 & ((IData)(6U) 
-                                                    * (IData)(vlSelf->__PVT__victim)))))
+                                                           << 0xcU)) 
+                                                       | ((0xfc0U 
+                                                           & (((IData)(1U) 
+                                                               + 
+                                                               (0x1cU 
+                                                                & (vlSelf->__PVT__addr_reg 
+                                                                   >> 5U))) 
+                                                              << 6U)) 
+                                                          | (0x1cU 
+                                                             & (vlSelf->__PVT__addr_reg 
+                                                                >> 5U))))) 
+                                                   >> 
+                                                   (0x1fU 
+                                                    & ((IData)(6U) 
+                                                       * (IData)(vlSelf->__PVT__victim)))))
                                        : 0U);
     vlSelf->__PVT__dirty0 = (1U & ((vlSelf->__PVT__valid 
                                     >> (0x1cU & (vlSelf->__PVT__addr_reg 
@@ -3818,7 +3819,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
                                                   << 0xaU) 
                                                  | (0x380U 
                                                     & vlSelf->__PVT__addr_reg));
-    vlSelf->__PVT___GEN_15 = ((8U & ((~ (IData)(vlSelf->__PVT__dirty3)) 
+    vlSelf->__PVT___GEN_14 = ((8U & ((~ (IData)(vlSelf->__PVT__dirty3)) 
                                      << 3U)) | (7U 
                                                 & (~ 
                                                    (((IData)(vlSelf->__PVT__dirty2) 
@@ -3904,7 +3905,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2
                                                    (vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T 
                                                     >> 7U)) 
                                            << 2U))))];
-    vlSelf->__PVT___GEN_17 = (1U & ((3U != (IData)(vlSelf->__PVT__state)) 
+    vlSelf->__PVT___GEN_16 = (1U & ((3U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 1U)));
     vlSelf->__VdfgTmp_h661b8699__0 = ((~ ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
@@ -3988,7 +3989,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2
                           | ((IData)(vlSelf->__PVT__is_alloc) 
                              | ((IData)(vlSelf->__PVT__is_alloc_reg) 
                                 & (0U != (IData)(vlSelf->__PVT__cpu_mask)))));
-    vlSelf->__PVT___GEN_12 = (1U & ((~ (IData)(vlSelf->__PVT__wen)) 
+    vlSelf->__PVT___GEN_11 = (1U & ((~ (IData)(vlSelf->__PVT__wen)) 
                                     | (IData)(vlSelf->io_fccache_hit)));
     vlSelf->__PVT___GEN_0 = ((IData)(vlSelf->__PVT__wen) 
                              & (IData)(vlSelf->io_fccache_hit));
@@ -3998,9 +3999,15 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2
                           & ((~ (IData)((0U != (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask)))) 
                              & (IData)(__PVT___ren_T_1)));
     vlSelf->__PVT__choose_dataway = ((IData)(vlSelf->__PVT__wen)
-                                      ? (3U & ((IData)(vlSelf->io_fccache_hit)
-                                                ? ((IData)(vlSelf->__PVT__hit0)
-                                                    ? 0U
+                                      ? (0x1fU & ((IData)(vlSelf->io_fccache_hit)
+                                                   ? 
+                                                  ((IData)(vlSelf->__PVT__hit0)
+                                                    ? 
+                                                   (0x1cU 
+                                                    & ((IData)(
+                                                               (vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T 
+                                                                >> 7U)) 
+                                                       << 2U))
                                                     : 
                                                    ((IData)(vlSelf->__PVT__hit1)
                                                      ? 
@@ -4032,7 +4039,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2
                                                                     >> 7U)) 
                                                            << 2U)))
                                                        : 0U))))
-                                                : (IData)(vlSelf->__VdfgTmp_h7dd49ee2__0)))
+                                                   : (IData)(vlSelf->__VdfgTmp_h41c8fb80__0)))
                                       : 0U);
 }
 
@@ -4176,7 +4183,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_comb__TOP__Soc__DOT__core__DOT__Dcache__0(VS
     }
     vlSelf->io_axi_req_bits_rw = ((0U != (IData)(vlSelf->__PVT__state)) 
                                   & ((1U == (IData)(vlSelf->__PVT__state))
-                                      ? ((IData)(vlSelf->__PVT___GEN_15) 
+                                      ? ((IData)(vlSelf->__PVT___GEN_14) 
                                          >> (IData)(vlSelf->__PVT__victim))
                                       : ((2U == (IData)(vlSelf->__PVT__state))
                                           ? ((2U & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))

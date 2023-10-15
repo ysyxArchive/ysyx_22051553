@@ -3692,8 +3692,8 @@ module Cache(	// <stdin>:3153:10, :6238:10
                 refill_buffer_9, refill_buffer_8, refill_buffer_7, refill_buffer_6, refill_buffer_5,
                 refill_buffer_4, refill_buffer_3, refill_buffer_2, refill_buffer_1, refill_buffer_0} :
                 {2{{2{{2{{2{cpu_data}}}}}}}};	// Cache.scala:74:25, :75:39, :81:23, :194:28, :292:20, :294:12, Cat.scala:33:92
-  wire [1:0]         choose_tagway;	// Cache.scala:300:29
-  wire [1:0]         choose_dataway;	// Cache.scala:301:30
+  wire [4:0]         choose_tagway;	// Cache.scala:300:29
+  wire [4:0]         choose_dataway;	// Cache.scala:301:30
   assign _GEN_0 = wen & _hit_T_2;	// Cache.scala:90:22, :125:55, :224:31, :307:14, :308:18
   assign _T_36 = wmask[0];	// Cache.scala:282:20, :341:93
   assign _T_37 = wmask[1];	// Cache.scala:282:20, :341:93
@@ -3703,7 +3703,6 @@ module Cache(	// <stdin>:3153:10, :6238:10
   assign _T_41 = wmask[5];	// Cache.scala:282:20, :341:93
   assign _T_42 = wmask[6];	// Cache.scala:282:20, :341:93
   assign _T_43 = wmask[7];	// Cache.scala:282:20, :341:93
-  wire [4:0]         _GEN_11 = {3'h0, choose_dataway};	// <stdin>:4593:9, :7678:9, Cache.scala:72:24
   assign _T_45 = wmask[8];	// Cache.scala:282:20, :341:93
   assign _T_46 = wmask[9];	// Cache.scala:282:20, :341:93
   assign _T_47 = wmask[10];	// Cache.scala:282:20, :341:93
@@ -3824,13 +3823,13 @@ module Cache(	// <stdin>:3153:10, :6238:10
   assign _T_176 = wmask[125];	// Cache.scala:282:20, :341:93
   assign _T_177 = wmask[126];	// Cache.scala:282:20, :341:93
   assign _T_178 = wmask[127];	// Cache.scala:282:20, :341:93
-  wire               _GEN_12 = ~wen | _hit_T_2;	// Cache.scala:87:24, :125:55, :224:31, :307:14, :308:18
+  wire               _GEN_11 = ~wen | _hit_T_2;	// Cache.scala:87:24, :125:55, :224:31, :307:14, :308:18
   wire [4:0]         _T_183 = {idx_reg, 2'h0};	// Cache.scala:96:25, :149:27, :363:20
   assign _GEN = wen & ~_hit_T_2;	// Cache.scala:90:22, :125:55, :224:31, :307:14, :308:18, :363:20
-  wire [3:0][5:0]    _GEN_13 = {{way3_buf}, {way2_buf}, {way1_buf}, {_GEN_1}};	// Cache.scala:162:27, :163:36, :164:36, :165:36, Mux.scala:81:{58,61}
-  assign choose_tagway = _GEN_12 ? 2'h0 : _GEN_13[victim][1:0];	// Cache.scala:87:24, :96:25, :303:19, :307:14, :308:18, :373:27, Mux.scala:81:{58,61}
-  assign choose_dataway = wen ? (_hit_T_2 ? (hit0 ? way0[1:0] : hit1 ? way1[1:0] : hit2 ? way2[1:0] : hit3 ?
-                way3[1:0] : 2'h0) : _GEN_13[victim][1:0]) : 2'h0;	// Cache.scala:96:25, :112:27, :113:27, :114:27, :115:27, :125:55, :158:23, :159:28, :160:28, :161:28, :224:31, :302:20, :307:14, :308:18, :329:28, :383:28, Mux.scala:81:{58,61}, :101:16
+  wire [3:0][5:0]    _GEN_12 = {{way3_buf}, {way2_buf}, {way1_buf}, {_GEN_1}};	// Cache.scala:162:27, :163:36, :164:36, :165:36, Mux.scala:81:{58,61}
+  assign choose_tagway = _GEN_11 ? 5'h0 : _GEN_12[victim][4:0];	// Cache.scala:87:24, :96:25, :302:20, :303:19, :307:14, :308:18, :373:27, Mux.scala:81:{58,61}
+  assign choose_dataway = wen ? (_hit_T_2 ? (hit0 ? way0[4:0] : hit1 ? way1[4:0] : hit2 ? way2[4:0] : hit3 ?
+                way3[4:0] : 5'h0) : _GEN_12[victim][4:0]) : 5'h0;	// Cache.scala:96:25, :112:27, :113:27, :114:27, :115:27, :125:55, :158:23, :159:28, :160:28, :161:28, :224:31, :302:20, :307:14, :308:18, :329:28, :383:28, Mux.scala:81:{58,61}, :101:16
   assign _T_216 = wmask[0];	// Cache.scala:282:20, :394:93
   assign _T_217 = wmask[1];	// Cache.scala:282:20, :394:93
   assign _T_218 = wmask[2];	// Cache.scala:282:20, :394:93
@@ -3959,19 +3958,19 @@ module Cache(	// <stdin>:3153:10, :6238:10
   assign _T_356 = wmask[125];	// Cache.scala:282:20, :394:93
   assign _T_357 = wmask[126];	// Cache.scala:282:20, :394:93
   assign _T_358 = wmask[127];	// Cache.scala:282:20, :394:93
-  wire [63:0]        _GEN_14;	// Cache.scala:406:26
+  wire [63:0]        _GEN_13;	// Cache.scala:406:26
   /* synopsys infer_mux_override */
-  assign _GEN_14 = _GEN_5[w_count] /* cadence map_to_mux */;	// Cache.scala:69:26, :228:33, :406:26
+  assign _GEN_13 = _GEN_5[w_count] /* cadence map_to_mux */;	// Cache.scala:69:26, :228:33, :406:26
   wire               _T_360 = state == 3'h1;	// Cache.scala:72:24, :418:18, :424:27
-  wire [3:0]         _GEN_15 = {{~dirty3}, {~dirty2}, {~dirty1}, {~dirty0}};	// Cache.scala:272:34, :273:34, :274:34, :275:34, :434:31, :435:31, :436:31, :437:31, Mux.scala:81:{58,61}
-  wire [3:0][21:0]   _GEN_16 = {{dirty3 ? rtag3_buf : tag_reg}, {dirty2 ? rtag2_buf : tag_reg}, {dirty1 ? rtag1_buf :
+  wire [3:0]         _GEN_14 = {{~dirty3}, {~dirty2}, {~dirty1}, {~dirty0}};	// Cache.scala:272:34, :273:34, :274:34, :275:34, :434:31, :435:31, :436:31, :437:31, Mux.scala:81:{58,61}
+  wire [3:0][21:0]   _GEN_15 = {{dirty3 ? rtag3_buf : tag_reg}, {dirty2 ? rtag2_buf : tag_reg}, {dirty1 ? rtag1_buf :
                 tag_reg}, {dirty0 ? rtag0_buf : tag_reg}};	// Cache.scala:148:27, :175:28, :176:28, :177:28, :178:28, :272:34, :273:34, :274:34, :275:34, :452:31, :453:31, :454:31, :455:31, Mux.scala:81:{58,61}
-  wire [31:0]        _io_axi_req_bits_addr_T_25 = {_GEN_16[victim], idx_reg, 7'h0};	// Cache.scala:96:25, :149:27, :452:64, Mux.scala:81:{58,61}
+  wire [31:0]        _io_axi_req_bits_addr_T_25 = {_GEN_15[victim], idx_reg, 7'h0};	// Cache.scala:96:25, :149:27, :452:64, Mux.scala:81:{58,61}
   wire               _T_361 = state == 3'h2;	// Cache.scala:72:24, :418:18, :434:31
   wire [31:0]        _io_axi_req_bits_addr_T_27 = {tag_reg, idx_reg, 7'h0};	// Cache.scala:148:27, :149:27, :452:64, :469:68
   wire               _T_363 = state == 3'h3;	// Cache.scala:72:24, :418:18, :434:31
-  wire               _GEN_17 = ~_T_363 | io_axi_resp_bits_choose;	// Cache.scala:407:26, :418:18, :487:42
-  wire               _GEN_18 = ~is_idle & (_T_360 ? _GEN_15[victim] : _T_361 ? (io_axi_resp_bits_choose ?
+  wire               _GEN_16 = ~_T_363 | io_axi_resp_bits_choose;	// Cache.scala:407:26, :418:18, :487:42
+  wire               _GEN_17 = ~is_idle & (_T_360 ? _GEN_14[victim] : _T_361 ? (io_axi_resp_bits_choose ?
                 io_axi_resp_valid : rw_buf) : _T_363 & ~io_axi_resp_bits_choose & rw_buf);	// Cache.scala:74:25, :85:25, :96:25, :404:22, :405:24, :418:18, :441:32, :465:42, :466:40, :483:36, :487:42, :490:34, Mux.scala:81:{58,61}
   always @(posedge clock) begin
     if (reset) begin
@@ -3989,8 +3988,8 @@ module Cache(	// <stdin>:3153:10, :6238:10
       automatic logic [63:0]     _dirty_T_34;	// Cache.scala:348:40
       automatic logic [63:0]     _dirty_T_40;	// Cache.scala:349:40
       automatic logic [63:0]     _dirty_T_46;	// Cache.scala:350:40
-      automatic logic            _GEN_19 = io_axi_resp_bits_choose & io_axi_resp_valid;	// Cache.scala:72:24, :465:42, :466:40
-      automatic logic [7:0][2:0] _GEN_20;	// Cache.scala:72:24, :74:25, :75:26, :418:18, :420:35, :432:19, :465:42, :487:42, :497:42, :513:19
+      automatic logic            _GEN_18 = io_axi_resp_bits_choose & io_axi_resp_valid;	// Cache.scala:72:24, :465:42, :466:40
+      automatic logic [7:0][2:0] _GEN_19;	// Cache.scala:72:24, :74:25, :75:26, :418:18, :420:35, :432:19, :465:42, :487:42, :497:42, :513:19
       _dirty_T_28 = 64'h1 << {59'h0, idx_reg, 2'h0};	// Cache.scala:96:25, :149:27, :313:43, :347:40
       _dirty_T_34 = 64'h1 << way1_buf;	// Cache.scala:163:36, :313:43, :348:40
       _dirty_T_40 = 64'h1 << way2_buf;	// Cache.scala:164:36, :313:43, :349:40
@@ -4007,10 +4006,10 @@ module Cache(	// <stdin>:3153:10, :6238:10
         w_count <= 4'h0;	// Cache.scala:68:26, :69:26
       else if (w_count != 4'hF)	// Cache.scala:69:26, :74:25, :75:49, :418:18, :465:42, :475:34
         w_count <= w_count + 4'h1;	// Cache.scala:69:26, :478:44, :505:44
-      _GEN_20 = {{state}, {state}, {3'h0}, {_GEN_19 ? ((|cpu_mask) ? 3'h5 : 3'h0) : state},
-                                                {io_axi_resp_bits_choose ? 3'h4 : state}, {_GEN_19 ? 3'h3 : state}, {{2'h1,
-                                                _GEN_15[victim]}}, {io_cpu_req_valid ? {2'h0, ~_hit_T_2} : state}};	// Cache.scala:72:24, :74:25, :75:26, :82:23, :90:22, :96:25, :125:84, :224:31, :308:18, :363:20, :418:18, :420:35, :421:26, :422:27, :424:27, :432:19, :434:31, :465:42, :466:40, :487:42, :488:23, :497:42, :498:40, :502:33, :508:23, :513:19, Mux.scala:81:{58,61}, :101:16
-      state <= _GEN_20[state];	// Cache.scala:72:24, :74:25, :75:26, :418:18, :420:35, :432:19, :465:42, :487:42, :497:42, :513:19
+      _GEN_19 = {{state}, {state}, {3'h0}, {_GEN_18 ? ((|cpu_mask) ? 3'h5 : 3'h0) : state},
+                                                {io_axi_resp_bits_choose ? 3'h4 : state}, {_GEN_18 ? 3'h3 : state}, {{2'h1,
+                                                _GEN_14[victim]}}, {io_cpu_req_valid ? {2'h0, ~_hit_T_2} : state}};	// Cache.scala:72:24, :74:25, :75:26, :82:23, :90:22, :96:25, :125:84, :224:31, :308:18, :363:20, :418:18, :420:35, :421:26, :422:27, :424:27, :432:19, :434:31, :465:42, :466:40, :487:42, :488:23, :497:42, :498:40, :502:33, :508:23, :513:19, Mux.scala:81:{58,61}, :101:16
+      state <= _GEN_19[state];	// Cache.scala:72:24, :74:25, :75:26, :418:18, :420:35, :432:19, :465:42, :487:42, :497:42, :513:19
       if (is_idle | ~(_T_360 | _T_361 & io_axi_resp_bits_choose & io_axi_resp_valid)) begin	// Cache.scala:74:25, :84:27, :418:18, :459:22, :465:42
       end
       else begin	// Cache.scala:74:25, :84:27, :418:18, :459:22, :465:42
@@ -4026,19 +4025,19 @@ module Cache(	// <stdin>:3153:10, :6238:10
               addr_buf <= 32'h0;	// Cache.scala:84:27
           end
         end
-        else if (_GEN_17)	// Cache.scala:74:25, :407:26, :418:18, :487:42
+        else if (_GEN_16)	// Cache.scala:74:25, :407:26, :418:18, :487:42
           addr_buf <= 32'h0;	// Cache.scala:84:27
-        rw_buf <= _GEN_18;	// Cache.scala:85:25, :405:24, :418:18
+        rw_buf <= _GEN_17;	// Cache.scala:85:25, :405:24, :418:18
       end
-      if (_GEN_12) begin	// Cache.scala:87:24, :307:14, :308:18
+      if (_GEN_11) begin	// Cache.scala:87:24, :307:14, :308:18
       end
       else begin	// Cache.scala:87:24, :307:14, :308:18
-        automatic logic [63:0]      _GEN_21;	// Cache.scala:347:40
-        automatic logic [3:0][63:0] _GEN_22;	// Mux.scala:81:{58,61}
-        _GEN_21 = {32'h0, valid};	// Cache.scala:84:27, :87:24, :347:40
-        _GEN_22 = {{_GEN_21 | _dirty_T_46}, {_GEN_21 | _dirty_T_40}, {_GEN_21 | _dirty_T_34}, {_GEN_21 |
+        automatic logic [63:0]      _GEN_20;	// Cache.scala:347:40
+        automatic logic [3:0][63:0] _GEN_21;	// Mux.scala:81:{58,61}
+        _GEN_20 = {32'h0, valid};	// Cache.scala:84:27, :87:24, :347:40
+        _GEN_21 = {{_GEN_20 | _dirty_T_46}, {_GEN_20 | _dirty_T_40}, {_GEN_20 | _dirty_T_34}, {_GEN_20 |
                                                                 _dirty_T_28}};	// Cache.scala:347:40, :348:40, :349:40, :350:40, Mux.scala:81:{58,61}
-        valid <= _GEN_22[victim][31:0];	// Cache.scala:87:24, :96:25, :345:19, Mux.scala:81:{58,61}
+        valid <= _GEN_21[victim][31:0];	// Cache.scala:87:24, :96:25, :345:19, Mux.scala:81:{58,61}
       end
       if (wen) begin	// Cache.scala:125:55
         if (_hit_T_2) begin	// Cache.scala:224:31
@@ -4050,12 +4049,12 @@ module Cache(	// <stdin>:3153:10, :6238:10
                                                                                 _dirty_T_12[31:0] : hit3 ? dirty | _dirty_T_18[31:0] : 32'h0;	// Cache.scala:84:27, :88:24, :112:27, :113:27, :114:27, :115:27, :313:43, :314:43, :315:43, :316:43, Mux.scala:101:16
         end
         else begin	// Cache.scala:224:31
-          automatic logic [63:0]      _GEN_23;	// Cache.scala:356:40
-          automatic logic [3:0][63:0] _GEN_24;	// Mux.scala:81:{58,61}
-          _GEN_23 = {32'h0, ~valid};	// Cache.scala:84:27, :87:24, :347:40, :356:40
-          _GEN_24 = {{~(_GEN_23 | _dirty_T_46)}, {~(_GEN_23 | _dirty_T_40)}, {~(_GEN_23 | _dirty_T_34)},
-                                                                                {~(_GEN_23 | _dirty_T_28)}};	// Cache.scala:347:40, :348:40, :349:40, :350:40, :356:40, :357:40, :358:40, :359:40, Mux.scala:81:{58,61}
-          dirty <= _GEN_24[victim][31:0];	// Cache.scala:88:24, :96:25, :354:19, Mux.scala:81:{58,61}
+          automatic logic [63:0]      _GEN_22;	// Cache.scala:356:40
+          automatic logic [3:0][63:0] _GEN_23;	// Mux.scala:81:{58,61}
+          _GEN_22 = {32'h0, ~valid};	// Cache.scala:84:27, :87:24, :347:40, :356:40
+          _GEN_23 = {{~(_GEN_22 | _dirty_T_46)}, {~(_GEN_22 | _dirty_T_40)}, {~(_GEN_22 | _dirty_T_34)},
+                                                                                {~(_GEN_22 | _dirty_T_28)}};	// Cache.scala:347:40, :348:40, :349:40, :350:40, :356:40, :357:40, :358:40, :359:40, Mux.scala:81:{58,61}
+          dirty <= _GEN_23[victim][31:0];	// Cache.scala:88:24, :96:25, :354:19, Mux.scala:81:{58,61}
         end
       end
       if (_T) begin	// Cache.scala:241:18
@@ -4765,7 +4764,7 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way1[4:0]),	// Cache.scala:159:28, :172:25
     .R3_en   (1'h1),	// <stdin>:3153:10, :6238:10
     .R3_clk  (clock),
-    .W0_addr ({3'h0, choose_tagway}),	// Cache.scala:72:24, :381:21
+    .W0_addr (choose_tagway),	// Cache.scala:307:14
     .W0_en   (_GEN),	// Cache.scala:90:22, :307:14, :308:18
     .W0_clk  (clock),
     .W0_data (tag_reg),	// Cache.scala:148:27
@@ -4787,11 +4786,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_36),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[7:0]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_216),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[7:0]),	// Cache.scala:292:20, :393:67
@@ -4813,11 +4812,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_37),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[15:8]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_217),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[15:8]),	// Cache.scala:292:20, :393:67
@@ -4839,11 +4838,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_38),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[23:16]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_218),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[23:16]),	// Cache.scala:292:20, :393:67
@@ -4865,11 +4864,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_39),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[31:24]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_219),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[31:24]),	// Cache.scala:292:20, :393:67
@@ -4891,11 +4890,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_40),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[39:32]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_220),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[39:32]),	// Cache.scala:292:20, :393:67
@@ -4917,11 +4916,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_41),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[47:40]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_221),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[47:40]),	// Cache.scala:292:20, :393:67
@@ -4943,11 +4942,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_42),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[55:48]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_222),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[55:48]),	// Cache.scala:292:20, :393:67
@@ -4969,11 +4968,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_43),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[63:56]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_223),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[63:56]),	// Cache.scala:292:20, :393:67
@@ -4995,11 +4994,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_45),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[71:64]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_225),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[71:64]),	// Cache.scala:292:20, :393:67
@@ -5021,11 +5020,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_46),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[79:72]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_226),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[79:72]),	// Cache.scala:292:20, :393:67
@@ -5047,11 +5046,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_47),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[87:80]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_227),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[87:80]),	// Cache.scala:292:20, :393:67
@@ -5073,11 +5072,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_48),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[95:88]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_228),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[95:88]),	// Cache.scala:292:20, :393:67
@@ -5099,11 +5098,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_49),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[103:96]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_229),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[103:96]),	// Cache.scala:292:20, :393:67
@@ -5125,11 +5124,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_50),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[111:104]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_230),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[111:104]),	// Cache.scala:292:20, :393:67
@@ -5151,11 +5150,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_51),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[119:112]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_231),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[119:112]),	// Cache.scala:292:20, :393:67
@@ -5177,11 +5176,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_52),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[127:120]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_232),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[127:120]),	// Cache.scala:292:20, :393:67
@@ -5203,11 +5202,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_54),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[135:128]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_234),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[135:128]),	// Cache.scala:292:20, :393:67
@@ -5229,11 +5228,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_55),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[143:136]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_235),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[143:136]),	// Cache.scala:292:20, :393:67
@@ -5255,11 +5254,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_56),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[151:144]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_236),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[151:144]),	// Cache.scala:292:20, :393:67
@@ -5281,11 +5280,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_57),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[159:152]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_237),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[159:152]),	// Cache.scala:292:20, :393:67
@@ -5307,11 +5306,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_58),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[167:160]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_238),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[167:160]),	// Cache.scala:292:20, :393:67
@@ -5333,11 +5332,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_59),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[175:168]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_239),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[175:168]),	// Cache.scala:292:20, :393:67
@@ -5359,11 +5358,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_60),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[183:176]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_240),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[183:176]),	// Cache.scala:292:20, :393:67
@@ -5385,11 +5384,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_61),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[191:184]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_241),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[191:184]),	// Cache.scala:292:20, :393:67
@@ -5411,11 +5410,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_63),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[199:192]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_243),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[199:192]),	// Cache.scala:292:20, :393:67
@@ -5437,11 +5436,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_64),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[207:200]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_244),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[207:200]),	// Cache.scala:292:20, :393:67
@@ -5463,11 +5462,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_65),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[215:208]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_245),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[215:208]),	// Cache.scala:292:20, :393:67
@@ -5489,11 +5488,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_66),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[223:216]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_246),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[223:216]),	// Cache.scala:292:20, :393:67
@@ -5515,11 +5514,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_67),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[231:224]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_247),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[231:224]),	// Cache.scala:292:20, :393:67
@@ -5541,11 +5540,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_68),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[239:232]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_248),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[239:232]),	// Cache.scala:292:20, :393:67
@@ -5567,11 +5566,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_69),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[247:240]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_249),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[247:240]),	// Cache.scala:292:20, :393:67
@@ -5593,11 +5592,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_70),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[255:248]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_250),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[255:248]),	// Cache.scala:292:20, :393:67
@@ -5619,11 +5618,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_72),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[263:256]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_252),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[263:256]),	// Cache.scala:292:20, :393:67
@@ -5645,11 +5644,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_73),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[271:264]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_253),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[271:264]),	// Cache.scala:292:20, :393:67
@@ -5671,11 +5670,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_74),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[279:272]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_254),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[279:272]),	// Cache.scala:292:20, :393:67
@@ -5697,11 +5696,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_75),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[287:280]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_255),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[287:280]),	// Cache.scala:292:20, :393:67
@@ -5723,11 +5722,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_76),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[295:288]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_256),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[295:288]),	// Cache.scala:292:20, :393:67
@@ -5749,11 +5748,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_77),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[303:296]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_257),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[303:296]),	// Cache.scala:292:20, :393:67
@@ -5775,11 +5774,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_78),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[311:304]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_258),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[311:304]),	// Cache.scala:292:20, :393:67
@@ -5801,11 +5800,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_79),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[319:312]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_259),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[319:312]),	// Cache.scala:292:20, :393:67
@@ -5827,11 +5826,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_81),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[327:320]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_261),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[327:320]),	// Cache.scala:292:20, :393:67
@@ -5853,11 +5852,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_82),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[335:328]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_262),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[335:328]),	// Cache.scala:292:20, :393:67
@@ -5879,11 +5878,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_83),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[343:336]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_263),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[343:336]),	// Cache.scala:292:20, :393:67
@@ -5905,11 +5904,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_84),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[351:344]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_264),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[351:344]),	// Cache.scala:292:20, :393:67
@@ -5931,11 +5930,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_85),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[359:352]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_265),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[359:352]),	// Cache.scala:292:20, :393:67
@@ -5957,11 +5956,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_86),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[367:360]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_266),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[367:360]),	// Cache.scala:292:20, :393:67
@@ -5983,11 +5982,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_87),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[375:368]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_267),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[375:368]),	// Cache.scala:292:20, :393:67
@@ -6009,11 +6008,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_88),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[383:376]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_268),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[383:376]),	// Cache.scala:292:20, :393:67
@@ -6035,11 +6034,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_90),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[391:384]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_270),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[391:384]),	// Cache.scala:292:20, :393:67
@@ -6061,11 +6060,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_91),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[399:392]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_271),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[399:392]),	// Cache.scala:292:20, :393:67
@@ -6087,11 +6086,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_92),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[407:400]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_272),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[407:400]),	// Cache.scala:292:20, :393:67
@@ -6113,11 +6112,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_93),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[415:408]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_273),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[415:408]),	// Cache.scala:292:20, :393:67
@@ -6139,11 +6138,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_94),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[423:416]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_274),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[423:416]),	// Cache.scala:292:20, :393:67
@@ -6165,11 +6164,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_95),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[431:424]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_275),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[431:424]),	// Cache.scala:292:20, :393:67
@@ -6191,11 +6190,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_96),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[439:432]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_276),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[439:432]),	// Cache.scala:292:20, :393:67
@@ -6217,11 +6216,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_97),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[447:440]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_277),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[447:440]),	// Cache.scala:292:20, :393:67
@@ -6243,11 +6242,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_99),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[455:448]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_279),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[455:448]),	// Cache.scala:292:20, :393:67
@@ -6269,11 +6268,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_100),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[463:456]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_280),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[463:456]),	// Cache.scala:292:20, :393:67
@@ -6295,11 +6294,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_101),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[471:464]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_281),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[471:464]),	// Cache.scala:292:20, :393:67
@@ -6321,11 +6320,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_102),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[479:472]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_282),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[479:472]),	// Cache.scala:292:20, :393:67
@@ -6347,11 +6346,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_103),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[487:480]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_283),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[487:480]),	// Cache.scala:292:20, :393:67
@@ -6373,11 +6372,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_104),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[495:488]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_284),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[495:488]),	// Cache.scala:292:20, :393:67
@@ -6399,11 +6398,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_105),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[503:496]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_285),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[503:496]),	// Cache.scala:292:20, :393:67
@@ -6425,11 +6424,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_106),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[511:504]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_286),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[511:504]),	// Cache.scala:292:20, :393:67
@@ -6451,11 +6450,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_108),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[519:512]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_288),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[519:512]),	// Cache.scala:292:20, :393:67
@@ -6477,11 +6476,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_109),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[527:520]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_289),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[527:520]),	// Cache.scala:292:20, :393:67
@@ -6503,11 +6502,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_110),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[535:528]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_290),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[535:528]),	// Cache.scala:292:20, :393:67
@@ -6529,11 +6528,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_111),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[543:536]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_291),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[543:536]),	// Cache.scala:292:20, :393:67
@@ -6555,11 +6554,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_112),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[551:544]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_292),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[551:544]),	// Cache.scala:292:20, :393:67
@@ -6581,11 +6580,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_113),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[559:552]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_293),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[559:552]),	// Cache.scala:292:20, :393:67
@@ -6607,11 +6606,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_114),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[567:560]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_294),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[567:560]),	// Cache.scala:292:20, :393:67
@@ -6633,11 +6632,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_115),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[575:568]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_295),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[575:568]),	// Cache.scala:292:20, :393:67
@@ -6659,11 +6658,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_117),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[583:576]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_297),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[583:576]),	// Cache.scala:292:20, :393:67
@@ -6685,11 +6684,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_118),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[591:584]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_298),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[591:584]),	// Cache.scala:292:20, :393:67
@@ -6711,11 +6710,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_119),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[599:592]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_299),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[599:592]),	// Cache.scala:292:20, :393:67
@@ -6737,11 +6736,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_120),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[607:600]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_300),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[607:600]),	// Cache.scala:292:20, :393:67
@@ -6763,11 +6762,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_121),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[615:608]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_301),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[615:608]),	// Cache.scala:292:20, :393:67
@@ -6789,11 +6788,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_122),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[623:616]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_302),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[623:616]),	// Cache.scala:292:20, :393:67
@@ -6815,11 +6814,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_123),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[631:624]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_303),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[631:624]),	// Cache.scala:292:20, :393:67
@@ -6841,11 +6840,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_124),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[639:632]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_304),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[639:632]),	// Cache.scala:292:20, :393:67
@@ -6867,11 +6866,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_126),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[647:640]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_306),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[647:640]),	// Cache.scala:292:20, :393:67
@@ -6893,11 +6892,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_127),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[655:648]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_307),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[655:648]),	// Cache.scala:292:20, :393:67
@@ -6919,11 +6918,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_128),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[663:656]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_308),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[663:656]),	// Cache.scala:292:20, :393:67
@@ -6945,11 +6944,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_129),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[671:664]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_309),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[671:664]),	// Cache.scala:292:20, :393:67
@@ -6971,11 +6970,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_130),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[679:672]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_310),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[679:672]),	// Cache.scala:292:20, :393:67
@@ -6997,11 +6996,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_131),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[687:680]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_311),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[687:680]),	// Cache.scala:292:20, :393:67
@@ -7023,11 +7022,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_132),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[695:688]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_312),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[695:688]),	// Cache.scala:292:20, :393:67
@@ -7049,11 +7048,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_133),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[703:696]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_313),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[703:696]),	// Cache.scala:292:20, :393:67
@@ -7075,11 +7074,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_135),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[711:704]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_315),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[711:704]),	// Cache.scala:292:20, :393:67
@@ -7101,11 +7100,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_136),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[719:712]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_316),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[719:712]),	// Cache.scala:292:20, :393:67
@@ -7127,11 +7126,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_137),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[727:720]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_317),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[727:720]),	// Cache.scala:292:20, :393:67
@@ -7153,11 +7152,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_138),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[735:728]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_318),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[735:728]),	// Cache.scala:292:20, :393:67
@@ -7179,11 +7178,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_139),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[743:736]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_319),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[743:736]),	// Cache.scala:292:20, :393:67
@@ -7205,11 +7204,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_140),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[751:744]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_320),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[751:744]),	// Cache.scala:292:20, :393:67
@@ -7231,11 +7230,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_141),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[759:752]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_321),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[759:752]),	// Cache.scala:292:20, :393:67
@@ -7257,11 +7256,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_142),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[767:760]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_322),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[767:760]),	// Cache.scala:292:20, :393:67
@@ -7283,11 +7282,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_144),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[775:768]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_324),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[775:768]),	// Cache.scala:292:20, :393:67
@@ -7309,11 +7308,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_145),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[783:776]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_325),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[783:776]),	// Cache.scala:292:20, :393:67
@@ -7335,11 +7334,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_146),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[791:784]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_326),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[791:784]),	// Cache.scala:292:20, :393:67
@@ -7361,11 +7360,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_147),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[799:792]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_327),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[799:792]),	// Cache.scala:292:20, :393:67
@@ -7387,11 +7386,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_148),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[807:800]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_328),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[807:800]),	// Cache.scala:292:20, :393:67
@@ -7413,11 +7412,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_149),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[815:808]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_329),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[815:808]),	// Cache.scala:292:20, :393:67
@@ -7439,11 +7438,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_150),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[823:816]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_330),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[823:816]),	// Cache.scala:292:20, :393:67
@@ -7465,11 +7464,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_151),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[831:824]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_331),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[831:824]),	// Cache.scala:292:20, :393:67
@@ -7491,11 +7490,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_153),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[839:832]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_333),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[839:832]),	// Cache.scala:292:20, :393:67
@@ -7517,11 +7516,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_154),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[847:840]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_334),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[847:840]),	// Cache.scala:292:20, :393:67
@@ -7543,11 +7542,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_155),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[855:848]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_335),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[855:848]),	// Cache.scala:292:20, :393:67
@@ -7569,11 +7568,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_156),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[863:856]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_336),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[863:856]),	// Cache.scala:292:20, :393:67
@@ -7595,11 +7594,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_157),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[871:864]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_337),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[871:864]),	// Cache.scala:292:20, :393:67
@@ -7621,11 +7620,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_158),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[879:872]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_338),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[879:872]),	// Cache.scala:292:20, :393:67
@@ -7647,11 +7646,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_159),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[887:880]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_339),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[887:880]),	// Cache.scala:292:20, :393:67
@@ -7673,11 +7672,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_160),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[895:888]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_340),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[895:888]),	// Cache.scala:292:20, :393:67
@@ -7699,11 +7698,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_162),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[903:896]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_342),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[903:896]),	// Cache.scala:292:20, :393:67
@@ -7725,11 +7724,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_163),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[911:904]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_343),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[911:904]),	// Cache.scala:292:20, :393:67
@@ -7751,11 +7750,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_164),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[919:912]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_344),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[919:912]),	// Cache.scala:292:20, :393:67
@@ -7777,11 +7776,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_165),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[927:920]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_345),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[927:920]),	// Cache.scala:292:20, :393:67
@@ -7803,11 +7802,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_166),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[935:928]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_346),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[935:928]),	// Cache.scala:292:20, :393:67
@@ -7829,11 +7828,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_167),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[943:936]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_347),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[943:936]),	// Cache.scala:292:20, :393:67
@@ -7855,11 +7854,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_168),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[951:944]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_348),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[951:944]),	// Cache.scala:292:20, :393:67
@@ -7881,11 +7880,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_169),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[959:952]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_349),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[959:952]),	// Cache.scala:292:20, :393:67
@@ -7907,11 +7906,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_171),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[967:960]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_351),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[967:960]),	// Cache.scala:292:20, :393:67
@@ -7933,11 +7932,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_172),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[975:968]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_352),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[975:968]),	// Cache.scala:292:20, :393:67
@@ -7959,11 +7958,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_173),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[983:976]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_353),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[983:976]),	// Cache.scala:292:20, :393:67
@@ -7985,11 +7984,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_174),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[991:984]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_354),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[991:984]),	// Cache.scala:292:20, :393:67
@@ -8011,11 +8010,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_175),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[999:992]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_355),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[999:992]),	// Cache.scala:292:20, :393:67
@@ -8037,11 +8036,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_176),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[1007:1000]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_356),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[1007:1000]),	// Cache.scala:292:20, :393:67
@@ -8063,11 +8062,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_177),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[1015:1008]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_357),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[1015:1008]),	// Cache.scala:292:20, :393:67
@@ -8089,11 +8088,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R3_addr (way3[4:0]),	// Cache.scala:161:28, :188:43
     .R3_en   (ren),	// Cache.scala:130:20
     .R3_clk  (clock),
-    .W0_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W0_addr (choose_dataway),	// Cache.scala:307:14
     .W0_en   (_GEN_0 & _T_178),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :341:93
     .W0_clk  (clock),
     .W0_data (wdata[1023:1016]),	// Cache.scala:292:20, :340:67
-    .W1_addr (_GEN_11),	// <stdin>:4593:9, :7678:9
+    .W1_addr (choose_dataway),	// Cache.scala:307:14
     .W1_en   (_GEN & _T_358),	// Cache.scala:90:22, :105:49, :307:14, :308:18, :394:93
     .W1_clk  (clock),
     .W1_data (wdata[1023:1016]),	// Cache.scala:292:20, :393:67
@@ -8105,11 +8104,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
   assign io_cpu_resp_valid = hit_reg | is_alloc_reg & ~(|cpu_mask) | is_idle & (|cpu_mask);	// <stdin>:3153:10, :6238:10, Cache.scala:74:25, :76:31, :82:23, :125:84, :233:26, :234:{51,54,69,81}
   assign io_cpu_resp_bits_data = is_alloc_reg ? _GEN_4 : _GEN_6;	// <stdin>:3153:10, :6238:10, Cache.scala:76:31, :228:33
   assign io_axi_req_valid = ~is_idle & (_T_360 | _T_361 | _T_363 & ~io_axi_resp_bits_choose);	// <stdin>:3153:10, :6238:10, Cache.scala:74:25, :404:22, :405:24, :418:18, :430:30, :487:42, :490:34
-  assign io_axi_req_bits_rw = _GEN_18;	// <stdin>:3153:10, :6238:10, Cache.scala:405:24, :418:18
+  assign io_axi_req_bits_rw = _GEN_17;	// <stdin>:3153:10, :6238:10, Cache.scala:405:24, :418:18
   assign io_axi_req_bits_addr = is_idle ? 32'h0 : _T_360 ? _io_axi_req_bits_addr_T_25 : _T_361 ? (io_axi_resp_bits_choose ?
-                (io_axi_resp_valid ? _io_axi_req_bits_addr_T_27 : 32'h0) : addr_buf) : _GEN_17 ? 32'h0 :
+                (io_axi_resp_valid ? _io_axi_req_bits_addr_T_27 : 32'h0) : addr_buf) : _GEN_16 ? 32'h0 :
                 addr_buf;	// <stdin>:3153:10, :6238:10, Cache.scala:74:25, :84:27, :407:26, :418:18, :450:34, :465:42, :466:40, :469:{42,68}, :482:38, :487:42, Mux.scala:81:58
-  assign io_axi_req_bits_data = _GEN_14;	// <stdin>:3153:10, :6238:10, Cache.scala:406:26
+  assign io_axi_req_bits_data = _GEN_13;	// <stdin>:3153:10, :6238:10, Cache.scala:406:26
   assign io_fccache_req = io_cpu_req_valid;	// <stdin>:3153:10, :6238:10
   assign io_fccache_state = state;	// <stdin>:3153:10, :6238:10, Cache.scala:72:24
   assign io_fccache_hit = _hit_T_2;	// <stdin>:3153:10, :6238:10, Cache.scala:224:31
@@ -10249,4 +10248,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 
