@@ -229,9 +229,8 @@ class Cache extends Module{
     val hit_reg = RegNext(hit)
     io.cpu.resp.valid := hit_reg || (is_alloc_reg && !cpu_mask.orR) || (is_idle && cpu_mask.orR)
     //1.读命中或写命中
-    //2.Refill后无需写入rv64/build/rv64/build/DebugInterface.v
-rv64/build/rv64/build/Interact.v
-rv64/build/rv64/build/Sram.v
+    //2.Refill后无需写入
+    //3.Refill后写入
     
 
 
