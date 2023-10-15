@@ -3709,10 +3709,20 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2
     __VdfgTmp_h32233c1c__0 = 0;
     CData/*0:0*/ __VdfgTmp_h285ecfef__0;
     __VdfgTmp_h285ecfef__0 = 0;
+    VlWide<5>/*159:0*/ __Vtemp_h55fa3dca__0;
+    VlWide<5>/*159:0*/ __Vtemp_h61d9b0a4__0;
     VlWide<5>/*159:0*/ __Vtemp_hfe7561f7__0;
     VlWide<5>/*159:0*/ __Vtemp_h33bc51d6__0;
     VlWide<3>/*95:0*/ __Vtemp_h80e6ca2c__0;
     // Body
+    __Vtemp_h55fa3dca__0[0U] = vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask;
+    __Vtemp_h55fa3dca__0[1U] = 0U;
+    __Vtemp_h55fa3dca__0[2U] = 0U;
+    __Vtemp_h55fa3dca__0[3U] = 0U;
+    __Vtemp_h55fa3dca__0[4U] = 0U;
+    VL_SHIFTL_WWI(135,135,7, __Vtemp_h61d9b0a4__0, __Vtemp_h55fa3dca__0, 
+                  (0x78U & ((IData)((vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T 
+                                     >> 3U)) << 3U)));
     __Vtemp_hfe7561f7__0[0U] = vlSelf->__PVT__cpu_mask;
     __Vtemp_hfe7561f7__0[1U] = 0U;
     __Vtemp_hfe7561f7__0[2U] = 0U;
@@ -3721,38 +3731,11 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2
     VL_SHIFTL_WWI(135,135,7, __Vtemp_h33bc51d6__0, __Vtemp_hfe7561f7__0, 
                   (0x78U & vlSelf->__PVT__addr_reg));
     if ((0U == (IData)(vlSelf->__PVT__state))) {
-        vlSelf->__PVT__wmask[0U] = (((- (IData)((1U 
-                                                 & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                    >> 7U)))) 
-                                     << 8U) | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask));
-        vlSelf->__PVT__wmask[1U] = (((- (IData)((1U 
-                                                 & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                    >> 7U)))) 
-                                     >> 0x18U) | ((- (IData)(
-                                                             (1U 
-                                                              & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                                 >> 7U)))) 
-                                                  << 8U));
-        vlSelf->__PVT__wmask[2U] = (((- (IData)((1U 
-                                                 & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                    >> 7U)))) 
-                                     >> 0x18U) | ((- (IData)(
-                                                             (1U 
-                                                              & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                                 >> 7U)))) 
-                                                  << 8U));
-        vlSelf->__PVT__wmask[3U] = (((- (IData)((1U 
-                                                 & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                    >> 7U)))) 
-                                     >> 0x18U) | ((- (IData)(
-                                                             (1U 
-                                                              & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                                 >> 7U)))) 
-                                                  << 8U));
-        vlSelf->__PVT__wmask[4U] = ((- (IData)((1U 
-                                                & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                   >> 7U)))) 
-                                    >> 0x18U);
+        vlSelf->__PVT__wmask[0U] = __Vtemp_h61d9b0a4__0[0U];
+        vlSelf->__PVT__wmask[1U] = __Vtemp_h61d9b0a4__0[1U];
+        vlSelf->__PVT__wmask[2U] = __Vtemp_h61d9b0a4__0[2U];
+        vlSelf->__PVT__wmask[3U] = __Vtemp_h61d9b0a4__0[3U];
+        vlSelf->__PVT__wmask[4U] = (0x7fU & __Vtemp_h61d9b0a4__0[4U]);
     } else if (vlSelf->__PVT__is_alloc) {
         vlSelf->__PVT__wmask[0U] = 0xffffffffU;
         vlSelf->__PVT__wmask[1U] = 0xffffffffU;

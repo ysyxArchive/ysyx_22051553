@@ -172,6 +172,10 @@ class Cache extends Module{
     val rtag1 = TagArray(way1)
     val rtag2 = TagArray(way0)
     val rtag3 = TagArray(way1)
+    val rtag0_buf = RegNext(rtag0)
+    val rtag1_buf = RegNext(rtag1)
+    val rtag2_buf = RegNext(rtag2)
+    val rtag3_buf = RegNext(rtag3)
     dontTouch(rtag0)
     dontTouch(rtag1)
     dontTouch(rtag2)
@@ -429,10 +433,10 @@ class Cache extends Module{
 
             io.axi.req.bits.addr := MuxLookup(victim, s_Idle,  
                 Seq(
-                    0.U -> Mux(dirty0, Cat(rtag0, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
-                    1.U -> Mux(dirty1, Cat(rtag1, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
-                    2.U -> Mux(dirty2, Cat(rtag2, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
-                    3.U -> Mux(dirty3, Cat(rtag3, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
+                    0.U -> Mux(dirty0, Cat(rtag0_buf, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
+                    1.U -> Mux(dirty1, Cat(rtag1_buf, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
+                    2.U -> Mux(dirty2, Cat(rtag2_buf, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
+                    3.U -> Mux(dirty3, Cat(rtag3_buf, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
                 )
             )
 
