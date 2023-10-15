@@ -159,7 +159,7 @@ class Cache extends Module{
     val way1 = nWays.U*idx + 1.U
     val way2 = nWays.U*idx + 2.U
     val way3 = nWays.U*idx + 3.U
-    val way0_buf = nWays.U*idx_reg   //需要吗
+    val way0_buf = nWays.U*idx_reg   
     val way1_buf = nWays.U*idx_reg + 1.U
     val way2_buf = nWays.U*idx_reg + 2.U
     val way3_buf = nWays.U*idx_reg + 3.U
@@ -297,8 +297,8 @@ class Cache extends Module{
         )
     )
 
-    val choose_tagway = Wire(UInt(2.W))
-    val choose_dataway = Wire(UInt(2.W))
+    val choose_tagway = Wire(UInt(5.W))
+    val choose_dataway = Wire(UInt(5.W))
     choose_dataway := 0.U
     choose_tagway := 0.U
     dontTouch(choose_dataway)
