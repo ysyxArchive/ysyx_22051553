@@ -137,7 +137,6 @@ class Cache extends Module{
     val addr = io.cpu.req.bits.addr
     val idx = addr(slen+blen-1,blen)
     val tag = addr(ADDRWIDTH-1,slen+blen)
-    val off = addr(blen-1, byteOffsetBits)
 
     val tag_reg = addr_reg(ADDRWIDTH-1,slen+blen)  //需要缓存吗
     val idx_reg = addr_reg(slen+blen-1, blen)
@@ -148,9 +147,6 @@ class Cache extends Module{
     dontTouch(tag_reg)
     dontTouch(idx_reg)
     dontTouch(off_reg)
-
-    
-    
 
     val way0 = nWays.U*idx
     val way1 = nWays.U*idx + 1.U
@@ -220,7 +216,7 @@ class Cache extends Module{
     //读出
     io.cpu.resp.bits.data := Mux(
         is_alloc_reg, refill_buffer(off_reg),
-        VecInit.tabulate(nWords)(i => read((i + 1) * X_LEN - 1, i * X_LEN))(off)  //命中
+        VecInit.tabulate(nWords)(i => read((i + 1) * X_LEN - 1, i * X_LEN))(off_reg)  //命中
     )
         
     val hit_reg = RegNext(hit)
@@ -231,7 +227,7 @@ class Cache extends Module{
     
 
 
-    when( (is_idle & io.cpu.req.valid & !hit)){ //1.未命中
+    when(is_idle & io.cpu.req.valid){ //1.未命中
         addr_reg := addr                 
         cpu_data := io.cpu.req.bits.data
         cpu_mask := io.cpu.req.bits.mask
