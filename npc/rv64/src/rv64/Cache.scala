@@ -223,7 +223,8 @@ class Cache extends Module{
         VecInit.tabulate(nWords)(i => read((i + 1) * X_LEN - 1, i * X_LEN))(off)  //命中
     )
         
-    io.cpu.resp.valid := hit || (is_alloc_reg && !cpu_mask.orR) || (is_idle && cpu_mask.orR)
+    val hit_reg = RegNext(hit)
+    io.cpu.resp.valid := hit_reg || (is_alloc_reg && !cpu_mask.orR) || (is_idle && cpu_mask.orR)
     //1.读命中或写命中
     //2.Refill后无需写入
     //3.Refill后需要写入
