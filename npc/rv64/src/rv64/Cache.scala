@@ -272,7 +272,7 @@ class Cache extends Module{
     wtag := Mux(is_idle, tag, tag_reg)
 
     val wmask = Mux(
-        is_idle, io.cpu.req.bits.mask, //写命中
+        is_idle, io.cpu.req.bits.mask.asSInt, //写命中
         Mux(
             is_alloc, (-1).S,   //从AXI读取完所有数据
             (cpu_mask << Cat(off_reg, 0.U(byteOffsetBits.W))).zext //写不命中，写入cache //off_reg用于选择Cacheline中某个对齐的8Byte
