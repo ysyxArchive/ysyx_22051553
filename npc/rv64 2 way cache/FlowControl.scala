@@ -137,18 +137,19 @@ class FlowControl extends Module{
     dontTouch(IO_stall)
     dontTouch(MULDIV_stall)
 
-    when((io.fcIcache.state === 0.U && io.fcIcache.req !io.fcIcache.hit)){
+    when((io.fcIcache.state =/= 0.U && !io.fcIcache.hit)){
         Icache_stall := 1.B
-    }.elsewhen(io.fcIcache.state =/= 0.U){
+    }.elsewhen(io.fcIcache.state === CacheState.s_WriteBack | io.fcIcache.state === CacheState.s_RefillReady | io.fcIcache.state === CacheState.s_Refill){
         Icache_stall := 1.B
     }.otherwise{
         Icache_stall := 0.B
     }
 
+
     
-    when((io.fcDcache.state === 0.U && io.fcDcache.req !io.fcDcache.hit)){
+    when(io.fcDcache.state =/= 0.U && !io.fcDcache.hit){
         Dcache_stall := 1.B
-    }.elsewhen(io.fcDcache.state =/= 0.U){ 
+    }.elsewhen(io.fcDcache.state === CacheState.s_WriteBack | io.fcDcache.state === CacheState.s_RefillReady | io.fcDcache.state === CacheState.s_Refill){ //添加,防止下个ex hit
         Dcache_stall := 1.B
     }
     .otherwise{
