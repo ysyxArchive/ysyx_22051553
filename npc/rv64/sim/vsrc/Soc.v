@@ -2578,7 +2578,7 @@ module AXIArbitor(	// <stdin>:2900:10
   assign io_AXI_O_ar_bits_len = _GEN_8 ? 8'h0 : _GEN_0;	// <stdin>:2900:10, AXIArbitor.scala:193:27, :194:26, :208:18, :225:34, Mux.scala:101:16
 endmodule
 
-module Cache(	// <stdin>:3153:10, :6238:10
+module Cache(	// <stdin>:3153:10, :6239:10
   input         clock,
                 reset,
                 io_cpu_req_valid,
@@ -3433,11 +3433,11 @@ module Cache(	// <stdin>:3153:10, :6238:10
   wire [21:0]        tag_reg = addr_reg[31:10];	// Cache.scala:80:23, :148:27
   wire [2:0]         idx_reg = addr_reg[9:7];	// Cache.scala:80:23, :149:27
   wire [3:0]         off_reg = addr_reg[6:3];	// Cache.scala:80:23, :150:27
-  wire [5:0]         way0 = {1'h0, idx, 2'h0};	// <stdin>:3153:10, :6238:10, Cache.scala:96:25, :144:19, :158:23
+  wire [5:0]         way0 = {1'h0, idx, 2'h0};	// <stdin>:3153:10, :6239:10, Cache.scala:96:25, :144:19, :158:23
   wire [5:0]         way1 = way0 + 6'h1;	// Cache.scala:158:23, :159:28
   wire [5:0]         way2 = way0 + 6'h2;	// Cache.scala:158:23, :160:28
   wire [5:0]         way3 = way0 + 6'h3;	// Cache.scala:158:23, :161:28
-  wire [5:0]         _GEN_1 = {1'h0, idx_reg, 2'h0};	// <stdin>:3153:10, :6238:10, Cache.scala:96:25, :149:27, :162:27
+  wire [5:0]         _GEN_1 = {1'h0, idx_reg, 2'h0};	// <stdin>:3153:10, :6239:10, Cache.scala:96:25, :149:27, :162:27
   wire [5:0]         way1_buf = _GEN_1 + 6'h1;	// Cache.scala:159:28, :162:27, :163:36
   wire [5:0]         way2_buf = _GEN_1 + 6'h2;	// Cache.scala:160:28, :162:27, :164:36
   wire [5:0]         way3_buf = _GEN_1 + 6'h3;	// Cache.scala:161:28, :162:27, :165:36
@@ -3686,7 +3686,7 @@ module Cache(	// <stdin>:3153:10, :6238:10
   wire               dirty3 = _dirty3_T[0] & _dirty3_T_2[0];	// Cache.scala:275:{23,34,42}
   wire [135:0]       wmask = is_idle ? {1'h0, {127'h0, io_cpu_req_bits_mask} << {128'h0, io_cpu_req_bits_addr[6:3],
                 3'h0}} : is_alloc ? 136'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF : {1'h0, {127'h0, cpu_mask} <<
-                {128'h0, off_reg, 3'h0}};	// <stdin>:3153:10, :6238:10, Cache.scala:72:24, :74:25, :75:39, :82:23, :146:19, :150:27, :282:20, :283:{40,76}, :284:12, :286:{23,63}
+                {128'h0, off_reg, 3'h0}};	// <stdin>:3153:10, :6239:10, Cache.scala:72:24, :74:25, :75:39, :82:23, :146:19, :150:27, :282:20, :283:{40,76}, :284:12, :286:{23,63}
   wire [1023:0]      wdata = is_idle ? {2{{2{{2{{2{io_cpu_req_bits_data}}}}}}}} : is_alloc ? {io_axi_resp_bits_data,
                 refill_buffer_14, refill_buffer_13, refill_buffer_12, refill_buffer_11, refill_buffer_10,
                 refill_buffer_9, refill_buffer_8, refill_buffer_7, refill_buffer_6, refill_buffer_5,
@@ -3978,7 +3978,7 @@ module Cache(	// <stdin>:3153:10, :6238:10
       w_count <= 4'h0;	// Cache.scala:68:26, :69:26
       state <= 3'h0;	// Cache.scala:72:24
       addr_buf <= 32'h0;	// Cache.scala:84:27
-      rw_buf <= 1'h0;	// <stdin>:3153:10, :6238:10, Cache.scala:85:25
+      rw_buf <= 1'h0;	// <stdin>:3153:10, :6239:10, Cache.scala:85:25
       valid <= 32'h0;	// Cache.scala:84:27, :87:24
       dirty <= 32'h0;	// Cache.scala:84:27, :88:24
       victim <= 2'h0;	// Cache.scala:96:25
@@ -4192,355 +4192,355 @@ module Cache(	// <stdin>:3153:10, :6238:10
       refill_buffer_15 <= io_axi_resp_bits_data;	// Cache.scala:194:28
     hit_reg <= _hit_T_2;	// Cache.scala:224:31, :233:26
   end // always @(posedge)
-  `ifndef SYNTHESIS	// <stdin>:3153:10, :6238:10
-    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:3153:10, :6238:10
-      `FIRRTL_BEFORE_INITIAL	// <stdin>:3153:10, :6238:10
+  `ifndef SYNTHESIS	// <stdin>:3153:10, :6239:10
+    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:3153:10, :6239:10
+      `FIRRTL_BEFORE_INITIAL	// <stdin>:3153:10, :6239:10
     `endif // FIRRTL_BEFORE_INITIAL
-    initial begin	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_0;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_1;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_2;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_3;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_4;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_5;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_6;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_7;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_8;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_9;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_10;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_11;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_12;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_13;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_14;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_15;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_16;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_17;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_18;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_19;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_20;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_21;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_22;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_23;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_24;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_25;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_26;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_27;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_28;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_29;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_30;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_31;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_32;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_33;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_34;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_35;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_36;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_37;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_38;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_39;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_40;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_41;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_42;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_43;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_44;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_45;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_46;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_47;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_48;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_49;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_50;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_51;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_52;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_53;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_54;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_55;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_56;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_57;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_58;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_59;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_60;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_61;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_62;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_63;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_64;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_65;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_66;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_67;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_68;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_69;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_70;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_71;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_72;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_73;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_74;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_75;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_76;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_77;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_78;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_79;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_80;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_81;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_82;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_83;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_84;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_85;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_86;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_87;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_88;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_89;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_90;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_91;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_92;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_93;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_94;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_95;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_96;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_97;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_98;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_99;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_100;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_101;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_102;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_103;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_104;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_105;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_106;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_107;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_108;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_109;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_110;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_111;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_112;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_113;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_114;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_115;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_116;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_117;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_118;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_119;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_120;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_121;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_122;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_123;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_124;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_125;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_126;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_127;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_128;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_129;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_130;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_131;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_132;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_133;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_134;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_135;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_136;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_137;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_138;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_139;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_140;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_141;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_142;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_143;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_144;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_145;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_146;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_147;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_148;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_149;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_150;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_151;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_152;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_153;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_154;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_155;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_156;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_157;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_158;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_159;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_160;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_161;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_162;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_163;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_164;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_165;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_166;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_167;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_168;	// <stdin>:3153:10, :6238:10
-      automatic logic [31:0] _RANDOM_169;	// <stdin>:3153:10, :6238:10
-      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:3153:10, :6238:10
-        `INIT_RANDOM_PROLOG_	// <stdin>:3153:10, :6238:10
+    initial begin	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_0;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_1;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_2;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_3;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_4;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_5;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_6;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_7;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_8;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_9;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_10;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_11;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_12;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_13;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_14;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_15;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_16;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_17;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_18;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_19;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_20;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_21;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_22;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_23;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_24;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_25;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_26;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_27;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_28;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_29;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_30;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_31;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_32;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_33;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_34;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_35;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_36;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_37;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_38;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_39;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_40;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_41;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_42;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_43;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_44;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_45;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_46;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_47;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_48;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_49;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_50;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_51;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_52;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_53;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_54;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_55;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_56;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_57;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_58;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_59;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_60;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_61;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_62;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_63;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_64;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_65;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_66;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_67;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_68;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_69;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_70;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_71;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_72;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_73;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_74;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_75;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_76;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_77;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_78;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_79;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_80;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_81;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_82;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_83;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_84;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_85;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_86;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_87;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_88;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_89;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_90;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_91;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_92;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_93;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_94;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_95;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_96;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_97;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_98;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_99;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_100;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_101;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_102;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_103;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_104;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_105;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_106;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_107;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_108;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_109;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_110;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_111;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_112;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_113;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_114;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_115;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_116;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_117;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_118;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_119;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_120;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_121;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_122;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_123;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_124;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_125;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_126;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_127;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_128;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_129;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_130;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_131;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_132;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_133;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_134;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_135;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_136;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_137;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_138;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_139;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_140;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_141;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_142;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_143;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_144;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_145;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_146;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_147;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_148;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_149;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_150;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_151;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_152;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_153;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_154;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_155;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_156;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_157;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_158;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_159;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_160;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_161;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_162;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_163;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_164;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_165;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_166;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_167;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_168;	// <stdin>:3153:10, :6239:10
+      automatic logic [31:0] _RANDOM_169;	// <stdin>:3153:10, :6239:10
+      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:3153:10, :6239:10
+        `INIT_RANDOM_PROLOG_	// <stdin>:3153:10, :6239:10
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// <stdin>:3153:10, :6238:10
-        _RANDOM_0 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_1 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_2 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_3 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_4 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_5 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_6 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_7 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_8 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_9 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_10 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_11 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_12 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_13 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_14 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_15 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_16 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_17 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_18 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_19 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_20 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_21 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_22 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_23 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_24 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_25 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_26 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_27 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_28 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_29 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_30 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_31 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_32 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_33 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_34 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_35 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_36 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_37 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_38 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_39 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_40 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_41 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_42 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_43 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_44 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_45 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_46 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_47 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_48 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_49 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_50 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_51 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_52 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_53 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_54 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_55 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_56 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_57 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_58 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_59 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_60 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_61 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_62 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_63 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_64 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_65 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_66 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_67 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_68 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_69 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_70 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_71 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_72 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_73 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_74 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_75 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_76 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_77 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_78 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_79 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_80 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_81 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_82 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_83 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_84 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_85 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_86 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_87 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_88 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_89 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_90 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_91 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_92 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_93 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_94 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_95 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_96 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_97 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_98 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_99 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_100 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_101 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_102 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_103 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_104 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_105 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_106 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_107 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_108 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_109 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_110 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_111 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_112 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_113 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_114 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_115 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_116 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_117 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_118 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_119 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_120 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_121 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_122 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_123 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_124 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_125 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_126 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_127 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_128 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_129 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_130 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_131 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_132 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_133 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_134 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_135 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_136 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_137 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_138 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_139 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_140 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_141 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_142 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_143 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_144 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_145 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_146 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_147 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_148 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_149 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_150 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_151 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_152 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_153 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_154 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_155 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_156 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_157 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_158 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_159 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_160 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_161 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_162 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_163 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_164 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_165 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_166 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_167 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_168 = `RANDOM;	// <stdin>:3153:10, :6238:10
-        _RANDOM_169 = `RANDOM;	// <stdin>:3153:10, :6238:10
+      `ifdef RANDOMIZE_REG_INIT	// <stdin>:3153:10, :6239:10
+        _RANDOM_0 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_1 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_2 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_3 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_4 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_5 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_6 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_7 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_8 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_9 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_10 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_11 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_12 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_13 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_14 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_15 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_16 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_17 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_18 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_19 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_20 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_21 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_22 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_23 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_24 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_25 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_26 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_27 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_28 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_29 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_30 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_31 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_32 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_33 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_34 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_35 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_36 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_37 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_38 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_39 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_40 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_41 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_42 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_43 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_44 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_45 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_46 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_47 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_48 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_49 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_50 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_51 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_52 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_53 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_54 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_55 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_56 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_57 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_58 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_59 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_60 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_61 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_62 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_63 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_64 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_65 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_66 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_67 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_68 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_69 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_70 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_71 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_72 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_73 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_74 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_75 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_76 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_77 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_78 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_79 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_80 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_81 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_82 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_83 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_84 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_85 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_86 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_87 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_88 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_89 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_90 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_91 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_92 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_93 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_94 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_95 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_96 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_97 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_98 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_99 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_100 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_101 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_102 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_103 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_104 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_105 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_106 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_107 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_108 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_109 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_110 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_111 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_112 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_113 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_114 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_115 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_116 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_117 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_118 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_119 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_120 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_121 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_122 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_123 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_124 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_125 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_126 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_127 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_128 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_129 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_130 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_131 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_132 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_133 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_134 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_135 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_136 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_137 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_138 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_139 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_140 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_141 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_142 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_143 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_144 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_145 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_146 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_147 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_148 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_149 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_150 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_151 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_152 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_153 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_154 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_155 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_156 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_157 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_158 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_159 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_160 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_161 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_162 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_163 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_164 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_165 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_166 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_167 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_168 = `RANDOM;	// <stdin>:3153:10, :6239:10
+        _RANDOM_169 = `RANDOM;	// <stdin>:3153:10, :6239:10
         r_count = _RANDOM_0[3:0];	// Cache.scala:68:26
         w_count = _RANDOM_0[7:4];	// Cache.scala:68:26, :69:26
         state = _RANDOM_0[10:8];	// Cache.scala:68:26, :72:24
@@ -4601,8 +4601,8 @@ module Cache(	// <stdin>:3153:10, :6238:10
         hit_reg = _RANDOM_169[20];	// Cache.scala:194:28, :233:26
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:3153:10, :6238:10
-      `FIRRTL_AFTER_INITIAL	// <stdin>:3153:10, :6238:10
+    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:3153:10, :6239:10
+      `FIRRTL_AFTER_INITIAL	// <stdin>:3153:10, :6239:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   replace_combMem replace_ext (	// Cache.scala:90:22
@@ -4753,16 +4753,16 @@ module Cache(	// <stdin>:3153:10, :6238:10
   );
   TagArray_combMem TagArray_ext (	// Cache.scala:104:23
     .R0_addr (way0[4:0]),	// Cache.scala:158:23, :171:25
-    .R0_en   (1'h1),	// <stdin>:3153:10, :6238:10
+    .R0_en   (1'h1),	// <stdin>:3153:10, :6239:10
     .R0_clk  (clock),
     .R1_addr (way1[4:0]),	// Cache.scala:159:28, :172:25
-    .R1_en   (1'h1),	// <stdin>:3153:10, :6238:10
+    .R1_en   (1'h1),	// <stdin>:3153:10, :6239:10
     .R1_clk  (clock),
     .R2_addr (way0[4:0]),	// Cache.scala:158:23, :171:25
-    .R2_en   (1'h1),	// <stdin>:3153:10, :6238:10
+    .R2_en   (1'h1),	// <stdin>:3153:10, :6239:10
     .R2_clk  (clock),
     .R3_addr (way1[4:0]),	// Cache.scala:159:28, :172:25
-    .R3_en   (1'h1),	// <stdin>:3153:10, :6238:10
+    .R3_en   (1'h1),	// <stdin>:3153:10, :6239:10
     .R3_clk  (clock),
     .W0_addr (choose_tagway),	// Cache.scala:307:14
     .W0_en   (_GEN),	// Cache.scala:90:22, :307:14, :308:18
@@ -8101,20 +8101,20 @@ module Cache(	// <stdin>:3153:10, :6238:10
     .R2_data (_DataArray_15_7_ext_R2_data),
     .R3_data (_DataArray_15_7_ext_R3_data)
   );
-  assign io_cpu_resp_valid = hit_reg | is_alloc_reg & ~(|cpu_mask) | is_idle & (|cpu_mask);	// <stdin>:3153:10, :6238:10, Cache.scala:74:25, :76:31, :82:23, :125:84, :233:26, :234:{51,54,69,81}
-  assign io_cpu_resp_bits_data = is_alloc_reg ? _GEN_4 : _GEN_6;	// <stdin>:3153:10, :6238:10, Cache.scala:76:31, :228:33
-  assign io_axi_req_valid = ~is_idle & (_T_360 | _T_361 | _T_363 & ~io_axi_resp_bits_choose);	// <stdin>:3153:10, :6238:10, Cache.scala:74:25, :404:22, :405:24, :418:18, :430:30, :487:42, :490:34
-  assign io_axi_req_bits_rw = _GEN_17;	// <stdin>:3153:10, :6238:10, Cache.scala:405:24, :418:18
+  assign io_cpu_resp_valid = hit_reg & is_idle | is_alloc_reg & ~(|cpu_mask) | is_idle & (|cpu_mask);	// <stdin>:3153:10, :6239:10, Cache.scala:74:25, :76:31, :82:23, :125:84, :233:26, :234:{35,64,67,82,94}
+  assign io_cpu_resp_bits_data = is_alloc_reg ? _GEN_4 : _GEN_6;	// <stdin>:3153:10, :6239:10, Cache.scala:76:31, :228:33
+  assign io_axi_req_valid = ~is_idle & (_T_360 | _T_361 | _T_363 & ~io_axi_resp_bits_choose);	// <stdin>:3153:10, :6239:10, Cache.scala:74:25, :404:22, :405:24, :418:18, :430:30, :487:42, :490:34
+  assign io_axi_req_bits_rw = _GEN_17;	// <stdin>:3153:10, :6239:10, Cache.scala:405:24, :418:18
   assign io_axi_req_bits_addr = is_idle ? 32'h0 : _T_360 ? _io_axi_req_bits_addr_T_25 : _T_361 ? (io_axi_resp_bits_choose ?
                 (io_axi_resp_valid ? _io_axi_req_bits_addr_T_27 : 32'h0) : addr_buf) : _GEN_16 ? 32'h0 :
-                addr_buf;	// <stdin>:3153:10, :6238:10, Cache.scala:74:25, :84:27, :407:26, :418:18, :450:34, :465:42, :466:40, :469:{42,68}, :482:38, :487:42, Mux.scala:81:58
-  assign io_axi_req_bits_data = _GEN_13;	// <stdin>:3153:10, :6238:10, Cache.scala:406:26
-  assign io_fccache_req = io_cpu_req_valid;	// <stdin>:3153:10, :6238:10
-  assign io_fccache_state = state;	// <stdin>:3153:10, :6238:10, Cache.scala:72:24
-  assign io_fccache_hit = _hit_T_2;	// <stdin>:3153:10, :6238:10, Cache.scala:224:31
+                addr_buf;	// <stdin>:3153:10, :6239:10, Cache.scala:74:25, :84:27, :407:26, :418:18, :450:34, :465:42, :466:40, :469:{42,68}, :482:38, :487:42, Mux.scala:81:58
+  assign io_axi_req_bits_data = _GEN_13;	// <stdin>:3153:10, :6239:10, Cache.scala:406:26
+  assign io_fccache_req = io_cpu_req_valid;	// <stdin>:3153:10, :6239:10
+  assign io_fccache_state = state;	// <stdin>:3153:10, :6239:10, Cache.scala:72:24
+  assign io_fccache_hit = _hit_T_2;	// <stdin>:3153:10, :6239:10, Cache.scala:224:31
 endmodule
 
-module IoforMem(	// <stdin>:9323:10
+module IoforMem(	// <stdin>:9325:10
   input         clock,
                 reset,
                 io_axi_resp_valid,
@@ -8168,10 +8168,10 @@ module IoforMem(	// <stdin>:9323:10
   reg  [1:0]  state;	// IoforMem.scala:53:24
   reg         mem_data_valid;	// IoforMem.scala:55:33
   reg  [63:0] mem_data_bits;	// IoforMem.scala:56:32
-  wire        ren;	// <stdin>:9336:5
+  wire        ren;	// <stdin>:9338:5
   reg  [3:0]  r_count;	// IoforMem.scala:62:26
-  wire [63:0] read;	// <stdin>:9340:5
-  wire [7:0]  mask;	// <stdin>:9342:5
+  wire [63:0] read;	// <stdin>:9342:5
+  wire [7:0]  mask;	// <stdin>:9344:5
   reg  [31:0] last_addr;	// IoforMem.scala:69:28
   reg         begin_flag;	// IoforMem.scala:70:29
   reg  [31:0] begin_waddr;	// IoforMem.scala:71:30
@@ -8218,16 +8218,16 @@ module IoforMem(	// <stdin>:9323:10
   always @(posedge clock) begin
     if (reset) begin
       state <= 2'h0;	// IoforMem.scala:53:24
-      mem_data_valid <= 1'h0;	// <stdin>:9323:10, IoforMem.scala:55:33
+      mem_data_valid <= 1'h0;	// <stdin>:9325:10, IoforMem.scala:55:33
       mem_data_bits <= 64'h0;	// IoforMem.scala:56:32
       r_count <= 4'h0;	// IoforMem.scala:62:26
       last_addr <= 32'h0;	// IoforMem.scala:69:28
-      begin_flag <= 1'h0;	// <stdin>:9323:10, IoforMem.scala:70:29
+      begin_flag <= 1'h0;	// <stdin>:9325:10, IoforMem.scala:70:29
       begin_waddr <= 32'h0;	// IoforMem.scala:69:28, :71:30
       data_count <= 4'h0;	// IoforMem.scala:62:26, :73:29
       wait_cycle <= 4'h0;	// IoforMem.scala:62:26, :74:29
       jump_data <= 64'h0;	// IoforMem.scala:56:32, :77:28
-      jump_mask <= 8'h0;	// <stdin>:9343:13, IoforMem.scala:78:28
+      jump_mask <= 8'h0;	// <stdin>:9345:13, IoforMem.scala:78:28
       jump_addr <= 32'h0;	// IoforMem.scala:69:28, :79:28
     end
     else begin
@@ -8245,17 +8245,17 @@ module IoforMem(	// <stdin>:9323:10
       if (_T) begin	// IoforMem.scala:106:18
         if (_T_6 & _T_9) begin	// IoforMem.scala:62:26, :114:{71,130}, :116:{48,84}
           if (_T_11)	// IoforMem.scala:119:41
-            r_count <= r_count + 4'h1;	// <stdin>:9570:13, IoforMem.scala:62:26, :126:48
+            r_count <= r_count + 4'h1;	// <stdin>:9572:13, IoforMem.scala:62:26, :126:48
           else if (_T_23)	// IoforMem.scala:119:41, :145:54
-            r_count <= r_count + 4'h1;	// <stdin>:9570:13, IoforMem.scala:62:26, :152:52
+            r_count <= r_count + 4'h1;	// <stdin>:9572:13, IoforMem.scala:62:26, :152:52
         end
         if (~_T_6 | ~_T_9 | _T_11) begin	// IoforMem.scala:69:28, :71:30, :114:{71,130}, :116:{48,84}, :119:{41,76}
           if (begin_flag)	// IoforMem.scala:70:29
-            wait_cycle <= wait_cycle + 4'h1;	// <stdin>:9570:13, IoforMem.scala:74:29, :109:46
+            wait_cycle <= wait_cycle + 4'h1;	// <stdin>:9572:13, IoforMem.scala:74:29, :109:46
         end
         else begin	// IoforMem.scala:69:28, :71:30, :114:{71,130}, :116:{48,84}, :119:{41,76}
           last_addr <= io_excute_waddr + 32'h8;	// IoforMem.scala:69:28, :141:58
-          data_count <= data_count + 4'h1;	// <stdin>:9570:13, IoforMem.scala:73:29, :142:54
+          data_count <= data_count + 4'h1;	// <stdin>:9572:13, IoforMem.scala:73:29, :142:54
           wait_cycle <= 4'h0;	// IoforMem.scala:62:26, :74:29
         end
         begin_flag <= _GEN_1 | begin_flag;	// IoforMem.scala:70:29, :114:130, :116:84
@@ -8268,7 +8268,7 @@ module IoforMem(	// <stdin>:9323:10
         else if (io_axi_resp_valid)	// IoforMem.scala:62:26, :70:29, :106:18, :188:36
           r_count <= 4'h0;	// IoforMem.scala:62:26
         else	// IoforMem.scala:62:26, :70:29, :106:18, :188:36
-          r_count <= r_count + 4'h1;	// <stdin>:9570:13, IoforMem.scala:62:26, :216:36
+          r_count <= r_count + 4'h1;	// <stdin>:9572:13, IoforMem.scala:62:26, :216:36
         if (_T_24 | ~(_T_25 & io_axi_resp_valid & (|jump_addr))) begin	// IoforMem.scala:69:28, :79:28, :106:18, :188:36, :202:32
         end
         else	// IoforMem.scala:69:28, :79:28, :106:18, :188:36, :202:32
@@ -8292,31 +8292,31 @@ module IoforMem(	// <stdin>:9323:10
       end
     end
   end // always @(posedge)
-  `ifndef SYNTHESIS	// <stdin>:9323:10
-    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:9323:10
-      `FIRRTL_BEFORE_INITIAL	// <stdin>:9323:10
+  `ifndef SYNTHESIS	// <stdin>:9325:10
+    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:9325:10
+      `FIRRTL_BEFORE_INITIAL	// <stdin>:9325:10
     `endif // FIRRTL_BEFORE_INITIAL
-    initial begin	// <stdin>:9323:10
-      automatic logic [31:0] _RANDOM_0;	// <stdin>:9323:10
-      automatic logic [31:0] _RANDOM_1;	// <stdin>:9323:10
-      automatic logic [31:0] _RANDOM_2;	// <stdin>:9323:10
-      automatic logic [31:0] _RANDOM_3;	// <stdin>:9323:10
-      automatic logic [31:0] _RANDOM_4;	// <stdin>:9323:10
-      automatic logic [31:0] _RANDOM_5;	// <stdin>:9323:10
-      automatic logic [31:0] _RANDOM_6;	// <stdin>:9323:10
-      automatic logic [31:0] _RANDOM_7;	// <stdin>:9323:10
-      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:9323:10
-        `INIT_RANDOM_PROLOG_	// <stdin>:9323:10
+    initial begin	// <stdin>:9325:10
+      automatic logic [31:0] _RANDOM_0;	// <stdin>:9325:10
+      automatic logic [31:0] _RANDOM_1;	// <stdin>:9325:10
+      automatic logic [31:0] _RANDOM_2;	// <stdin>:9325:10
+      automatic logic [31:0] _RANDOM_3;	// <stdin>:9325:10
+      automatic logic [31:0] _RANDOM_4;	// <stdin>:9325:10
+      automatic logic [31:0] _RANDOM_5;	// <stdin>:9325:10
+      automatic logic [31:0] _RANDOM_6;	// <stdin>:9325:10
+      automatic logic [31:0] _RANDOM_7;	// <stdin>:9325:10
+      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:9325:10
+        `INIT_RANDOM_PROLOG_	// <stdin>:9325:10
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// <stdin>:9323:10
-        _RANDOM_0 = `RANDOM;	// <stdin>:9323:10
-        _RANDOM_1 = `RANDOM;	// <stdin>:9323:10
-        _RANDOM_2 = `RANDOM;	// <stdin>:9323:10
-        _RANDOM_3 = `RANDOM;	// <stdin>:9323:10
-        _RANDOM_4 = `RANDOM;	// <stdin>:9323:10
-        _RANDOM_5 = `RANDOM;	// <stdin>:9323:10
-        _RANDOM_6 = `RANDOM;	// <stdin>:9323:10
-        _RANDOM_7 = `RANDOM;	// <stdin>:9323:10
+      `ifdef RANDOMIZE_REG_INIT	// <stdin>:9325:10
+        _RANDOM_0 = `RANDOM;	// <stdin>:9325:10
+        _RANDOM_1 = `RANDOM;	// <stdin>:9325:10
+        _RANDOM_2 = `RANDOM;	// <stdin>:9325:10
+        _RANDOM_3 = `RANDOM;	// <stdin>:9325:10
+        _RANDOM_4 = `RANDOM;	// <stdin>:9325:10
+        _RANDOM_5 = `RANDOM;	// <stdin>:9325:10
+        _RANDOM_6 = `RANDOM;	// <stdin>:9325:10
+        _RANDOM_7 = `RANDOM;	// <stdin>:9325:10
         state = _RANDOM_0[1:0];	// IoforMem.scala:53:24
         mem_data_valid = _RANDOM_0[2];	// IoforMem.scala:53:24, :55:33
         mem_data_bits = {_RANDOM_0[31:3], _RANDOM_1, _RANDOM_2[2:0]};	// IoforMem.scala:53:24, :56:32
@@ -8331,8 +8331,8 @@ module IoforMem(	// <stdin>:9323:10
         jump_addr = {_RANDOM_6[31:24], _RANDOM_7[23:0]};	// IoforMem.scala:77:28, :79:28
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:9323:10
-      `FIRRTL_AFTER_INITIAL	// <stdin>:9323:10
+    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:9325:10
+      `FIRRTL_AFTER_INITIAL	// <stdin>:9325:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   VmemBuffer_0_combMem VmemBuffer_0_ext (	// IoforMem.scala:59:33
@@ -8346,35 +8346,35 @@ module IoforMem(	// <stdin>:9323:10
     .W1_addr  (4'h8),	// IoforMem.scala:141:58
     .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
-    .W1_data  (8'h0),	// <stdin>:9343:13
-    .W2_addr  (4'h9),	// <stdin>:9658:47
+    .W1_data  (8'h0),	// <stdin>:9345:13
+    .W2_addr  (4'h9),	// <stdin>:9660:47
     .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
-    .W2_data  (8'h0),	// <stdin>:9343:13
-    .W3_addr  (4'hA),	// <stdin>:9669:47
+    .W2_data  (8'h0),	// <stdin>:9345:13
+    .W3_addr  (4'hA),	// <stdin>:9671:47
     .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
-    .W3_data  (8'h0),	// <stdin>:9343:13
-    .W4_addr  (4'hB),	// <stdin>:9680:47
+    .W3_data  (8'h0),	// <stdin>:9345:13
+    .W4_addr  (4'hB),	// <stdin>:9682:47
     .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
-    .W4_data  (8'h0),	// <stdin>:9343:13
-    .W5_addr  (4'hC),	// <stdin>:9691:47
+    .W4_data  (8'h0),	// <stdin>:9345:13
+    .W5_addr  (4'hC),	// <stdin>:9693:47
     .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
-    .W5_data  (8'h0),	// <stdin>:9343:13
-    .W6_addr  (4'hD),	// <stdin>:9702:47
+    .W5_data  (8'h0),	// <stdin>:9345:13
+    .W6_addr  (4'hD),	// <stdin>:9704:47
     .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
-    .W6_data  (8'h0),	// <stdin>:9343:13
-    .W7_addr  (4'hE),	// <stdin>:9713:47
+    .W6_data  (8'h0),	// <stdin>:9345:13
+    .W7_addr  (4'hE),	// <stdin>:9715:47
     .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
-    .W7_data  (8'h0),	// <stdin>:9343:13
+    .W7_data  (8'h0),	// <stdin>:9345:13
     .W8_addr  (4'hF),	// IoforMem.scala:145:45
     .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
-    .W8_data  (8'h0),	// <stdin>:9343:13
+    .W8_data  (8'h0),	// <stdin>:9345:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
     .W9_en    (_GEN & _T_27),	// IoforMem.scala:59:33, :106:18, :204:59
     .W9_clk   (clock),
@@ -8382,35 +8382,35 @@ module IoforMem(	// <stdin>:9323:10
     .W10_addr (4'h0),	// IoforMem.scala:62:26
     .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
-    .W10_data (8'h0),	// <stdin>:9343:13
-    .W11_addr (4'h1),	// <stdin>:9570:13
+    .W10_data (8'h0),	// <stdin>:9345:13
+    .W11_addr (4'h1),	// <stdin>:9572:13
     .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
-    .W11_data (8'h0),	// <stdin>:9343:13
-    .W12_addr (4'h2),	// <stdin>:9581:13
+    .W11_data (8'h0),	// <stdin>:9345:13
+    .W12_addr (4'h2),	// <stdin>:9583:13
     .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
-    .W12_data (8'h0),	// <stdin>:9343:13
-    .W13_addr (4'h3),	// <stdin>:9592:13
+    .W12_data (8'h0),	// <stdin>:9345:13
+    .W13_addr (4'h3),	// <stdin>:9594:13
     .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
-    .W13_data (8'h0),	// <stdin>:9343:13
-    .W14_addr (4'h4),	// <stdin>:9603:13
+    .W13_data (8'h0),	// <stdin>:9345:13
+    .W14_addr (4'h4),	// <stdin>:9605:13
     .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
-    .W14_data (8'h0),	// <stdin>:9343:13
-    .W15_addr (4'h5),	// <stdin>:9614:13
+    .W14_data (8'h0),	// <stdin>:9345:13
+    .W15_addr (4'h5),	// <stdin>:9616:13
     .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
-    .W15_data (8'h0),	// <stdin>:9343:13
-    .W16_addr (4'h6),	// <stdin>:9625:13
+    .W15_data (8'h0),	// <stdin>:9345:13
+    .W16_addr (4'h6),	// <stdin>:9627:13
     .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
-    .W16_data (8'h0),	// <stdin>:9343:13
-    .W17_addr (4'h7),	// <stdin>:9636:13
+    .W16_data (8'h0),	// <stdin>:9345:13
+    .W17_addr (4'h7),	// <stdin>:9638:13
     .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
-    .W17_data (8'h0),	// <stdin>:9343:13
+    .W17_data (8'h0),	// <stdin>:9345:13
     .R0_data  (_VmemBuffer_0_ext_R0_data)
   );
   VmemBuffer_0_combMem VmemBuffer_1_ext (	// IoforMem.scala:59:33
@@ -8424,35 +8424,35 @@ module IoforMem(	// <stdin>:9323:10
     .W1_addr  (4'h8),	// IoforMem.scala:141:58
     .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
-    .W1_data  (8'h0),	// <stdin>:9343:13
-    .W2_addr  (4'h9),	// <stdin>:9658:47
+    .W1_data  (8'h0),	// <stdin>:9345:13
+    .W2_addr  (4'h9),	// <stdin>:9660:47
     .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
-    .W2_data  (8'h0),	// <stdin>:9343:13
-    .W3_addr  (4'hA),	// <stdin>:9669:47
+    .W2_data  (8'h0),	// <stdin>:9345:13
+    .W3_addr  (4'hA),	// <stdin>:9671:47
     .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
-    .W3_data  (8'h0),	// <stdin>:9343:13
-    .W4_addr  (4'hB),	// <stdin>:9680:47
+    .W3_data  (8'h0),	// <stdin>:9345:13
+    .W4_addr  (4'hB),	// <stdin>:9682:47
     .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
-    .W4_data  (8'h0),	// <stdin>:9343:13
-    .W5_addr  (4'hC),	// <stdin>:9691:47
+    .W4_data  (8'h0),	// <stdin>:9345:13
+    .W5_addr  (4'hC),	// <stdin>:9693:47
     .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
-    .W5_data  (8'h0),	// <stdin>:9343:13
-    .W6_addr  (4'hD),	// <stdin>:9702:47
+    .W5_data  (8'h0),	// <stdin>:9345:13
+    .W6_addr  (4'hD),	// <stdin>:9704:47
     .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
-    .W6_data  (8'h0),	// <stdin>:9343:13
-    .W7_addr  (4'hE),	// <stdin>:9713:47
+    .W6_data  (8'h0),	// <stdin>:9345:13
+    .W7_addr  (4'hE),	// <stdin>:9715:47
     .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
-    .W7_data  (8'h0),	// <stdin>:9343:13
+    .W7_data  (8'h0),	// <stdin>:9345:13
     .W8_addr  (4'hF),	// IoforMem.scala:145:45
     .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
-    .W8_data  (8'h0),	// <stdin>:9343:13
+    .W8_data  (8'h0),	// <stdin>:9345:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
     .W9_en    (_GEN & _T_28),	// IoforMem.scala:59:33, :106:18, :204:59
     .W9_clk   (clock),
@@ -8460,35 +8460,35 @@ module IoforMem(	// <stdin>:9323:10
     .W10_addr (4'h0),	// IoforMem.scala:62:26
     .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
-    .W10_data (8'h0),	// <stdin>:9343:13
-    .W11_addr (4'h1),	// <stdin>:9570:13
+    .W10_data (8'h0),	// <stdin>:9345:13
+    .W11_addr (4'h1),	// <stdin>:9572:13
     .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
-    .W11_data (8'h0),	// <stdin>:9343:13
-    .W12_addr (4'h2),	// <stdin>:9581:13
+    .W11_data (8'h0),	// <stdin>:9345:13
+    .W12_addr (4'h2),	// <stdin>:9583:13
     .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
-    .W12_data (8'h0),	// <stdin>:9343:13
-    .W13_addr (4'h3),	// <stdin>:9592:13
+    .W12_data (8'h0),	// <stdin>:9345:13
+    .W13_addr (4'h3),	// <stdin>:9594:13
     .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
-    .W13_data (8'h0),	// <stdin>:9343:13
-    .W14_addr (4'h4),	// <stdin>:9603:13
+    .W13_data (8'h0),	// <stdin>:9345:13
+    .W14_addr (4'h4),	// <stdin>:9605:13
     .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
-    .W14_data (8'h0),	// <stdin>:9343:13
-    .W15_addr (4'h5),	// <stdin>:9614:13
+    .W14_data (8'h0),	// <stdin>:9345:13
+    .W15_addr (4'h5),	// <stdin>:9616:13
     .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
-    .W15_data (8'h0),	// <stdin>:9343:13
-    .W16_addr (4'h6),	// <stdin>:9625:13
+    .W15_data (8'h0),	// <stdin>:9345:13
+    .W16_addr (4'h6),	// <stdin>:9627:13
     .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
-    .W16_data (8'h0),	// <stdin>:9343:13
-    .W17_addr (4'h7),	// <stdin>:9636:13
+    .W16_data (8'h0),	// <stdin>:9345:13
+    .W17_addr (4'h7),	// <stdin>:9638:13
     .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
-    .W17_data (8'h0),	// <stdin>:9343:13
+    .W17_data (8'h0),	// <stdin>:9345:13
     .R0_data  (_VmemBuffer_1_ext_R0_data)
   );
   VmemBuffer_0_combMem VmemBuffer_2_ext (	// IoforMem.scala:59:33
@@ -8502,35 +8502,35 @@ module IoforMem(	// <stdin>:9323:10
     .W1_addr  (4'h8),	// IoforMem.scala:141:58
     .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
-    .W1_data  (8'h0),	// <stdin>:9343:13
-    .W2_addr  (4'h9),	// <stdin>:9658:47
+    .W1_data  (8'h0),	// <stdin>:9345:13
+    .W2_addr  (4'h9),	// <stdin>:9660:47
     .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
-    .W2_data  (8'h0),	// <stdin>:9343:13
-    .W3_addr  (4'hA),	// <stdin>:9669:47
+    .W2_data  (8'h0),	// <stdin>:9345:13
+    .W3_addr  (4'hA),	// <stdin>:9671:47
     .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
-    .W3_data  (8'h0),	// <stdin>:9343:13
-    .W4_addr  (4'hB),	// <stdin>:9680:47
+    .W3_data  (8'h0),	// <stdin>:9345:13
+    .W4_addr  (4'hB),	// <stdin>:9682:47
     .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
-    .W4_data  (8'h0),	// <stdin>:9343:13
-    .W5_addr  (4'hC),	// <stdin>:9691:47
+    .W4_data  (8'h0),	// <stdin>:9345:13
+    .W5_addr  (4'hC),	// <stdin>:9693:47
     .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
-    .W5_data  (8'h0),	// <stdin>:9343:13
-    .W6_addr  (4'hD),	// <stdin>:9702:47
+    .W5_data  (8'h0),	// <stdin>:9345:13
+    .W6_addr  (4'hD),	// <stdin>:9704:47
     .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
-    .W6_data  (8'h0),	// <stdin>:9343:13
-    .W7_addr  (4'hE),	// <stdin>:9713:47
+    .W6_data  (8'h0),	// <stdin>:9345:13
+    .W7_addr  (4'hE),	// <stdin>:9715:47
     .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
-    .W7_data  (8'h0),	// <stdin>:9343:13
+    .W7_data  (8'h0),	// <stdin>:9345:13
     .W8_addr  (4'hF),	// IoforMem.scala:145:45
     .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
-    .W8_data  (8'h0),	// <stdin>:9343:13
+    .W8_data  (8'h0),	// <stdin>:9345:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
     .W9_en    (_GEN & _T_29),	// IoforMem.scala:59:33, :106:18, :204:59
     .W9_clk   (clock),
@@ -8538,35 +8538,35 @@ module IoforMem(	// <stdin>:9323:10
     .W10_addr (4'h0),	// IoforMem.scala:62:26
     .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
-    .W10_data (8'h0),	// <stdin>:9343:13
-    .W11_addr (4'h1),	// <stdin>:9570:13
+    .W10_data (8'h0),	// <stdin>:9345:13
+    .W11_addr (4'h1),	// <stdin>:9572:13
     .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
-    .W11_data (8'h0),	// <stdin>:9343:13
-    .W12_addr (4'h2),	// <stdin>:9581:13
+    .W11_data (8'h0),	// <stdin>:9345:13
+    .W12_addr (4'h2),	// <stdin>:9583:13
     .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
-    .W12_data (8'h0),	// <stdin>:9343:13
-    .W13_addr (4'h3),	// <stdin>:9592:13
+    .W12_data (8'h0),	// <stdin>:9345:13
+    .W13_addr (4'h3),	// <stdin>:9594:13
     .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
-    .W13_data (8'h0),	// <stdin>:9343:13
-    .W14_addr (4'h4),	// <stdin>:9603:13
+    .W13_data (8'h0),	// <stdin>:9345:13
+    .W14_addr (4'h4),	// <stdin>:9605:13
     .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
-    .W14_data (8'h0),	// <stdin>:9343:13
-    .W15_addr (4'h5),	// <stdin>:9614:13
+    .W14_data (8'h0),	// <stdin>:9345:13
+    .W15_addr (4'h5),	// <stdin>:9616:13
     .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
-    .W15_data (8'h0),	// <stdin>:9343:13
-    .W16_addr (4'h6),	// <stdin>:9625:13
+    .W15_data (8'h0),	// <stdin>:9345:13
+    .W16_addr (4'h6),	// <stdin>:9627:13
     .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
-    .W16_data (8'h0),	// <stdin>:9343:13
-    .W17_addr (4'h7),	// <stdin>:9636:13
+    .W16_data (8'h0),	// <stdin>:9345:13
+    .W17_addr (4'h7),	// <stdin>:9638:13
     .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
-    .W17_data (8'h0),	// <stdin>:9343:13
+    .W17_data (8'h0),	// <stdin>:9345:13
     .R0_data  (_VmemBuffer_2_ext_R0_data)
   );
   VmemBuffer_0_combMem VmemBuffer_3_ext (	// IoforMem.scala:59:33
@@ -8580,35 +8580,35 @@ module IoforMem(	// <stdin>:9323:10
     .W1_addr  (4'h8),	// IoforMem.scala:141:58
     .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
-    .W1_data  (8'h0),	// <stdin>:9343:13
-    .W2_addr  (4'h9),	// <stdin>:9658:47
+    .W1_data  (8'h0),	// <stdin>:9345:13
+    .W2_addr  (4'h9),	// <stdin>:9660:47
     .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
-    .W2_data  (8'h0),	// <stdin>:9343:13
-    .W3_addr  (4'hA),	// <stdin>:9669:47
+    .W2_data  (8'h0),	// <stdin>:9345:13
+    .W3_addr  (4'hA),	// <stdin>:9671:47
     .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
-    .W3_data  (8'h0),	// <stdin>:9343:13
-    .W4_addr  (4'hB),	// <stdin>:9680:47
+    .W3_data  (8'h0),	// <stdin>:9345:13
+    .W4_addr  (4'hB),	// <stdin>:9682:47
     .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
-    .W4_data  (8'h0),	// <stdin>:9343:13
-    .W5_addr  (4'hC),	// <stdin>:9691:47
+    .W4_data  (8'h0),	// <stdin>:9345:13
+    .W5_addr  (4'hC),	// <stdin>:9693:47
     .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
-    .W5_data  (8'h0),	// <stdin>:9343:13
-    .W6_addr  (4'hD),	// <stdin>:9702:47
+    .W5_data  (8'h0),	// <stdin>:9345:13
+    .W6_addr  (4'hD),	// <stdin>:9704:47
     .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
-    .W6_data  (8'h0),	// <stdin>:9343:13
-    .W7_addr  (4'hE),	// <stdin>:9713:47
+    .W6_data  (8'h0),	// <stdin>:9345:13
+    .W7_addr  (4'hE),	// <stdin>:9715:47
     .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
-    .W7_data  (8'h0),	// <stdin>:9343:13
+    .W7_data  (8'h0),	// <stdin>:9345:13
     .W8_addr  (4'hF),	// IoforMem.scala:145:45
     .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
-    .W8_data  (8'h0),	// <stdin>:9343:13
+    .W8_data  (8'h0),	// <stdin>:9345:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
     .W9_en    (_GEN & _T_30),	// IoforMem.scala:59:33, :106:18, :204:59
     .W9_clk   (clock),
@@ -8616,35 +8616,35 @@ module IoforMem(	// <stdin>:9323:10
     .W10_addr (4'h0),	// IoforMem.scala:62:26
     .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
-    .W10_data (8'h0),	// <stdin>:9343:13
-    .W11_addr (4'h1),	// <stdin>:9570:13
+    .W10_data (8'h0),	// <stdin>:9345:13
+    .W11_addr (4'h1),	// <stdin>:9572:13
     .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
-    .W11_data (8'h0),	// <stdin>:9343:13
-    .W12_addr (4'h2),	// <stdin>:9581:13
+    .W11_data (8'h0),	// <stdin>:9345:13
+    .W12_addr (4'h2),	// <stdin>:9583:13
     .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
-    .W12_data (8'h0),	// <stdin>:9343:13
-    .W13_addr (4'h3),	// <stdin>:9592:13
+    .W12_data (8'h0),	// <stdin>:9345:13
+    .W13_addr (4'h3),	// <stdin>:9594:13
     .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
-    .W13_data (8'h0),	// <stdin>:9343:13
-    .W14_addr (4'h4),	// <stdin>:9603:13
+    .W13_data (8'h0),	// <stdin>:9345:13
+    .W14_addr (4'h4),	// <stdin>:9605:13
     .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
-    .W14_data (8'h0),	// <stdin>:9343:13
-    .W15_addr (4'h5),	// <stdin>:9614:13
+    .W14_data (8'h0),	// <stdin>:9345:13
+    .W15_addr (4'h5),	// <stdin>:9616:13
     .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
-    .W15_data (8'h0),	// <stdin>:9343:13
-    .W16_addr (4'h6),	// <stdin>:9625:13
+    .W15_data (8'h0),	// <stdin>:9345:13
+    .W16_addr (4'h6),	// <stdin>:9627:13
     .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
-    .W16_data (8'h0),	// <stdin>:9343:13
-    .W17_addr (4'h7),	// <stdin>:9636:13
+    .W16_data (8'h0),	// <stdin>:9345:13
+    .W17_addr (4'h7),	// <stdin>:9638:13
     .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
-    .W17_data (8'h0),	// <stdin>:9343:13
+    .W17_data (8'h0),	// <stdin>:9345:13
     .R0_data  (_VmemBuffer_3_ext_R0_data)
   );
   VmemBuffer_0_combMem VmemBuffer_4_ext (	// IoforMem.scala:59:33
@@ -8658,35 +8658,35 @@ module IoforMem(	// <stdin>:9323:10
     .W1_addr  (4'h8),	// IoforMem.scala:141:58
     .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
-    .W1_data  (8'h0),	// <stdin>:9343:13
-    .W2_addr  (4'h9),	// <stdin>:9658:47
+    .W1_data  (8'h0),	// <stdin>:9345:13
+    .W2_addr  (4'h9),	// <stdin>:9660:47
     .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
-    .W2_data  (8'h0),	// <stdin>:9343:13
-    .W3_addr  (4'hA),	// <stdin>:9669:47
+    .W2_data  (8'h0),	// <stdin>:9345:13
+    .W3_addr  (4'hA),	// <stdin>:9671:47
     .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
-    .W3_data  (8'h0),	// <stdin>:9343:13
-    .W4_addr  (4'hB),	// <stdin>:9680:47
+    .W3_data  (8'h0),	// <stdin>:9345:13
+    .W4_addr  (4'hB),	// <stdin>:9682:47
     .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
-    .W4_data  (8'h0),	// <stdin>:9343:13
-    .W5_addr  (4'hC),	// <stdin>:9691:47
+    .W4_data  (8'h0),	// <stdin>:9345:13
+    .W5_addr  (4'hC),	// <stdin>:9693:47
     .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
-    .W5_data  (8'h0),	// <stdin>:9343:13
-    .W6_addr  (4'hD),	// <stdin>:9702:47
+    .W5_data  (8'h0),	// <stdin>:9345:13
+    .W6_addr  (4'hD),	// <stdin>:9704:47
     .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
-    .W6_data  (8'h0),	// <stdin>:9343:13
-    .W7_addr  (4'hE),	// <stdin>:9713:47
+    .W6_data  (8'h0),	// <stdin>:9345:13
+    .W7_addr  (4'hE),	// <stdin>:9715:47
     .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
-    .W7_data  (8'h0),	// <stdin>:9343:13
+    .W7_data  (8'h0),	// <stdin>:9345:13
     .W8_addr  (4'hF),	// IoforMem.scala:145:45
     .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
-    .W8_data  (8'h0),	// <stdin>:9343:13
+    .W8_data  (8'h0),	// <stdin>:9345:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
     .W9_en    (_GEN & _T_31),	// IoforMem.scala:59:33, :106:18, :204:59
     .W9_clk   (clock),
@@ -8694,35 +8694,35 @@ module IoforMem(	// <stdin>:9323:10
     .W10_addr (4'h0),	// IoforMem.scala:62:26
     .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
-    .W10_data (8'h0),	// <stdin>:9343:13
-    .W11_addr (4'h1),	// <stdin>:9570:13
+    .W10_data (8'h0),	// <stdin>:9345:13
+    .W11_addr (4'h1),	// <stdin>:9572:13
     .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
-    .W11_data (8'h0),	// <stdin>:9343:13
-    .W12_addr (4'h2),	// <stdin>:9581:13
+    .W11_data (8'h0),	// <stdin>:9345:13
+    .W12_addr (4'h2),	// <stdin>:9583:13
     .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
-    .W12_data (8'h0),	// <stdin>:9343:13
-    .W13_addr (4'h3),	// <stdin>:9592:13
+    .W12_data (8'h0),	// <stdin>:9345:13
+    .W13_addr (4'h3),	// <stdin>:9594:13
     .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
-    .W13_data (8'h0),	// <stdin>:9343:13
-    .W14_addr (4'h4),	// <stdin>:9603:13
+    .W13_data (8'h0),	// <stdin>:9345:13
+    .W14_addr (4'h4),	// <stdin>:9605:13
     .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
-    .W14_data (8'h0),	// <stdin>:9343:13
-    .W15_addr (4'h5),	// <stdin>:9614:13
+    .W14_data (8'h0),	// <stdin>:9345:13
+    .W15_addr (4'h5),	// <stdin>:9616:13
     .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
-    .W15_data (8'h0),	// <stdin>:9343:13
-    .W16_addr (4'h6),	// <stdin>:9625:13
+    .W15_data (8'h0),	// <stdin>:9345:13
+    .W16_addr (4'h6),	// <stdin>:9627:13
     .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
-    .W16_data (8'h0),	// <stdin>:9343:13
-    .W17_addr (4'h7),	// <stdin>:9636:13
+    .W16_data (8'h0),	// <stdin>:9345:13
+    .W17_addr (4'h7),	// <stdin>:9638:13
     .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
-    .W17_data (8'h0),	// <stdin>:9343:13
+    .W17_data (8'h0),	// <stdin>:9345:13
     .R0_data  (_VmemBuffer_4_ext_R0_data)
   );
   VmemBuffer_0_combMem VmemBuffer_5_ext (	// IoforMem.scala:59:33
@@ -8736,35 +8736,35 @@ module IoforMem(	// <stdin>:9323:10
     .W1_addr  (4'h8),	// IoforMem.scala:141:58
     .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
-    .W1_data  (8'h0),	// <stdin>:9343:13
-    .W2_addr  (4'h9),	// <stdin>:9658:47
+    .W1_data  (8'h0),	// <stdin>:9345:13
+    .W2_addr  (4'h9),	// <stdin>:9660:47
     .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
-    .W2_data  (8'h0),	// <stdin>:9343:13
-    .W3_addr  (4'hA),	// <stdin>:9669:47
+    .W2_data  (8'h0),	// <stdin>:9345:13
+    .W3_addr  (4'hA),	// <stdin>:9671:47
     .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
-    .W3_data  (8'h0),	// <stdin>:9343:13
-    .W4_addr  (4'hB),	// <stdin>:9680:47
+    .W3_data  (8'h0),	// <stdin>:9345:13
+    .W4_addr  (4'hB),	// <stdin>:9682:47
     .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
-    .W4_data  (8'h0),	// <stdin>:9343:13
-    .W5_addr  (4'hC),	// <stdin>:9691:47
+    .W4_data  (8'h0),	// <stdin>:9345:13
+    .W5_addr  (4'hC),	// <stdin>:9693:47
     .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
-    .W5_data  (8'h0),	// <stdin>:9343:13
-    .W6_addr  (4'hD),	// <stdin>:9702:47
+    .W5_data  (8'h0),	// <stdin>:9345:13
+    .W6_addr  (4'hD),	// <stdin>:9704:47
     .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
-    .W6_data  (8'h0),	// <stdin>:9343:13
-    .W7_addr  (4'hE),	// <stdin>:9713:47
+    .W6_data  (8'h0),	// <stdin>:9345:13
+    .W7_addr  (4'hE),	// <stdin>:9715:47
     .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
-    .W7_data  (8'h0),	// <stdin>:9343:13
+    .W7_data  (8'h0),	// <stdin>:9345:13
     .W8_addr  (4'hF),	// IoforMem.scala:145:45
     .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
-    .W8_data  (8'h0),	// <stdin>:9343:13
+    .W8_data  (8'h0),	// <stdin>:9345:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
     .W9_en    (_GEN & _T_32),	// IoforMem.scala:59:33, :106:18, :204:59
     .W9_clk   (clock),
@@ -8772,35 +8772,35 @@ module IoforMem(	// <stdin>:9323:10
     .W10_addr (4'h0),	// IoforMem.scala:62:26
     .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
-    .W10_data (8'h0),	// <stdin>:9343:13
-    .W11_addr (4'h1),	// <stdin>:9570:13
+    .W10_data (8'h0),	// <stdin>:9345:13
+    .W11_addr (4'h1),	// <stdin>:9572:13
     .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
-    .W11_data (8'h0),	// <stdin>:9343:13
-    .W12_addr (4'h2),	// <stdin>:9581:13
+    .W11_data (8'h0),	// <stdin>:9345:13
+    .W12_addr (4'h2),	// <stdin>:9583:13
     .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
-    .W12_data (8'h0),	// <stdin>:9343:13
-    .W13_addr (4'h3),	// <stdin>:9592:13
+    .W12_data (8'h0),	// <stdin>:9345:13
+    .W13_addr (4'h3),	// <stdin>:9594:13
     .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
-    .W13_data (8'h0),	// <stdin>:9343:13
-    .W14_addr (4'h4),	// <stdin>:9603:13
+    .W13_data (8'h0),	// <stdin>:9345:13
+    .W14_addr (4'h4),	// <stdin>:9605:13
     .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
-    .W14_data (8'h0),	// <stdin>:9343:13
-    .W15_addr (4'h5),	// <stdin>:9614:13
+    .W14_data (8'h0),	// <stdin>:9345:13
+    .W15_addr (4'h5),	// <stdin>:9616:13
     .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
-    .W15_data (8'h0),	// <stdin>:9343:13
-    .W16_addr (4'h6),	// <stdin>:9625:13
+    .W15_data (8'h0),	// <stdin>:9345:13
+    .W16_addr (4'h6),	// <stdin>:9627:13
     .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
-    .W16_data (8'h0),	// <stdin>:9343:13
-    .W17_addr (4'h7),	// <stdin>:9636:13
+    .W16_data (8'h0),	// <stdin>:9345:13
+    .W17_addr (4'h7),	// <stdin>:9638:13
     .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
-    .W17_data (8'h0),	// <stdin>:9343:13
+    .W17_data (8'h0),	// <stdin>:9345:13
     .R0_data  (_VmemBuffer_5_ext_R0_data)
   );
   VmemBuffer_0_combMem VmemBuffer_6_ext (	// IoforMem.scala:59:33
@@ -8814,35 +8814,35 @@ module IoforMem(	// <stdin>:9323:10
     .W1_addr  (4'h8),	// IoforMem.scala:141:58
     .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
-    .W1_data  (8'h0),	// <stdin>:9343:13
-    .W2_addr  (4'h9),	// <stdin>:9658:47
+    .W1_data  (8'h0),	// <stdin>:9345:13
+    .W2_addr  (4'h9),	// <stdin>:9660:47
     .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
-    .W2_data  (8'h0),	// <stdin>:9343:13
-    .W3_addr  (4'hA),	// <stdin>:9669:47
+    .W2_data  (8'h0),	// <stdin>:9345:13
+    .W3_addr  (4'hA),	// <stdin>:9671:47
     .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
-    .W3_data  (8'h0),	// <stdin>:9343:13
-    .W4_addr  (4'hB),	// <stdin>:9680:47
+    .W3_data  (8'h0),	// <stdin>:9345:13
+    .W4_addr  (4'hB),	// <stdin>:9682:47
     .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
-    .W4_data  (8'h0),	// <stdin>:9343:13
-    .W5_addr  (4'hC),	// <stdin>:9691:47
+    .W4_data  (8'h0),	// <stdin>:9345:13
+    .W5_addr  (4'hC),	// <stdin>:9693:47
     .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
-    .W5_data  (8'h0),	// <stdin>:9343:13
-    .W6_addr  (4'hD),	// <stdin>:9702:47
+    .W5_data  (8'h0),	// <stdin>:9345:13
+    .W6_addr  (4'hD),	// <stdin>:9704:47
     .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
-    .W6_data  (8'h0),	// <stdin>:9343:13
-    .W7_addr  (4'hE),	// <stdin>:9713:47
+    .W6_data  (8'h0),	// <stdin>:9345:13
+    .W7_addr  (4'hE),	// <stdin>:9715:47
     .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
-    .W7_data  (8'h0),	// <stdin>:9343:13
+    .W7_data  (8'h0),	// <stdin>:9345:13
     .W8_addr  (4'hF),	// IoforMem.scala:145:45
     .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
-    .W8_data  (8'h0),	// <stdin>:9343:13
+    .W8_data  (8'h0),	// <stdin>:9345:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
     .W9_en    (_GEN & _T_33),	// IoforMem.scala:59:33, :106:18, :204:59
     .W9_clk   (clock),
@@ -8850,35 +8850,35 @@ module IoforMem(	// <stdin>:9323:10
     .W10_addr (4'h0),	// IoforMem.scala:62:26
     .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
-    .W10_data (8'h0),	// <stdin>:9343:13
-    .W11_addr (4'h1),	// <stdin>:9570:13
+    .W10_data (8'h0),	// <stdin>:9345:13
+    .W11_addr (4'h1),	// <stdin>:9572:13
     .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
-    .W11_data (8'h0),	// <stdin>:9343:13
-    .W12_addr (4'h2),	// <stdin>:9581:13
+    .W11_data (8'h0),	// <stdin>:9345:13
+    .W12_addr (4'h2),	// <stdin>:9583:13
     .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
-    .W12_data (8'h0),	// <stdin>:9343:13
-    .W13_addr (4'h3),	// <stdin>:9592:13
+    .W12_data (8'h0),	// <stdin>:9345:13
+    .W13_addr (4'h3),	// <stdin>:9594:13
     .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
-    .W13_data (8'h0),	// <stdin>:9343:13
-    .W14_addr (4'h4),	// <stdin>:9603:13
+    .W13_data (8'h0),	// <stdin>:9345:13
+    .W14_addr (4'h4),	// <stdin>:9605:13
     .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
-    .W14_data (8'h0),	// <stdin>:9343:13
-    .W15_addr (4'h5),	// <stdin>:9614:13
+    .W14_data (8'h0),	// <stdin>:9345:13
+    .W15_addr (4'h5),	// <stdin>:9616:13
     .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
-    .W15_data (8'h0),	// <stdin>:9343:13
-    .W16_addr (4'h6),	// <stdin>:9625:13
+    .W15_data (8'h0),	// <stdin>:9345:13
+    .W16_addr (4'h6),	// <stdin>:9627:13
     .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
-    .W16_data (8'h0),	// <stdin>:9343:13
-    .W17_addr (4'h7),	// <stdin>:9636:13
+    .W16_data (8'h0),	// <stdin>:9345:13
+    .W17_addr (4'h7),	// <stdin>:9638:13
     .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
-    .W17_data (8'h0),	// <stdin>:9343:13
+    .W17_data (8'h0),	// <stdin>:9345:13
     .R0_data  (_VmemBuffer_6_ext_R0_data)
   );
   VmemBuffer_0_combMem VmemBuffer_7_ext (	// IoforMem.scala:59:33
@@ -8892,35 +8892,35 @@ module IoforMem(	// <stdin>:9323:10
     .W1_addr  (4'h8),	// IoforMem.scala:141:58
     .W1_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W1_clk   (clock),
-    .W1_data  (8'h0),	// <stdin>:9343:13
-    .W2_addr  (4'h9),	// <stdin>:9658:47
+    .W1_data  (8'h0),	// <stdin>:9345:13
+    .W2_addr  (4'h9),	// <stdin>:9660:47
     .W2_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W2_clk   (clock),
-    .W2_data  (8'h0),	// <stdin>:9343:13
-    .W3_addr  (4'hA),	// <stdin>:9669:47
+    .W2_data  (8'h0),	// <stdin>:9345:13
+    .W3_addr  (4'hA),	// <stdin>:9671:47
     .W3_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W3_clk   (clock),
-    .W3_data  (8'h0),	// <stdin>:9343:13
-    .W4_addr  (4'hB),	// <stdin>:9680:47
+    .W3_data  (8'h0),	// <stdin>:9345:13
+    .W4_addr  (4'hB),	// <stdin>:9682:47
     .W4_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W4_clk   (clock),
-    .W4_data  (8'h0),	// <stdin>:9343:13
-    .W5_addr  (4'hC),	// <stdin>:9691:47
+    .W4_data  (8'h0),	// <stdin>:9345:13
+    .W5_addr  (4'hC),	// <stdin>:9693:47
     .W5_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W5_clk   (clock),
-    .W5_data  (8'h0),	// <stdin>:9343:13
-    .W6_addr  (4'hD),	// <stdin>:9702:47
+    .W5_data  (8'h0),	// <stdin>:9345:13
+    .W6_addr  (4'hD),	// <stdin>:9704:47
     .W6_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W6_clk   (clock),
-    .W6_data  (8'h0),	// <stdin>:9343:13
-    .W7_addr  (4'hE),	// <stdin>:9713:47
+    .W6_data  (8'h0),	// <stdin>:9345:13
+    .W7_addr  (4'hE),	// <stdin>:9715:47
     .W7_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W7_clk   (clock),
-    .W7_data  (8'h0),	// <stdin>:9343:13
+    .W7_data  (8'h0),	// <stdin>:9345:13
     .W8_addr  (4'hF),	// IoforMem.scala:145:45
     .W8_en    (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W8_clk   (clock),
-    .W8_data  (8'h0),	// <stdin>:9343:13
+    .W8_data  (8'h0),	// <stdin>:9345:13
     .W9_addr  (4'h0),	// IoforMem.scala:62:26
     .W9_en    (_GEN & _T_34),	// IoforMem.scala:59:33, :106:18, :204:59
     .W9_clk   (clock),
@@ -8928,35 +8928,35 @@ module IoforMem(	// <stdin>:9323:10
     .W10_addr (4'h0),	// IoforMem.scala:62:26
     .W10_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W10_clk  (clock),
-    .W10_data (8'h0),	// <stdin>:9343:13
-    .W11_addr (4'h1),	// <stdin>:9570:13
+    .W10_data (8'h0),	// <stdin>:9345:13
+    .W11_addr (4'h1),	// <stdin>:9572:13
     .W11_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W11_clk  (clock),
-    .W11_data (8'h0),	// <stdin>:9343:13
-    .W12_addr (4'h2),	// <stdin>:9581:13
+    .W11_data (8'h0),	// <stdin>:9345:13
+    .W12_addr (4'h2),	// <stdin>:9583:13
     .W12_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W12_clk  (clock),
-    .W12_data (8'h0),	// <stdin>:9343:13
-    .W13_addr (4'h3),	// <stdin>:9592:13
+    .W12_data (8'h0),	// <stdin>:9345:13
+    .W13_addr (4'h3),	// <stdin>:9594:13
     .W13_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W13_clk  (clock),
-    .W13_data (8'h0),	// <stdin>:9343:13
-    .W14_addr (4'h4),	// <stdin>:9603:13
+    .W13_data (8'h0),	// <stdin>:9345:13
+    .W14_addr (4'h4),	// <stdin>:9605:13
     .W14_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W14_clk  (clock),
-    .W14_data (8'h0),	// <stdin>:9343:13
-    .W15_addr (4'h5),	// <stdin>:9614:13
+    .W14_data (8'h0),	// <stdin>:9345:13
+    .W15_addr (4'h5),	// <stdin>:9616:13
     .W15_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W15_clk  (clock),
-    .W15_data (8'h0),	// <stdin>:9343:13
-    .W16_addr (4'h6),	// <stdin>:9625:13
+    .W15_data (8'h0),	// <stdin>:9345:13
+    .W16_addr (4'h6),	// <stdin>:9627:13
     .W16_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W16_clk  (clock),
-    .W16_data (8'h0),	// <stdin>:9343:13
-    .W17_addr (4'h7),	// <stdin>:9636:13
+    .W16_data (8'h0),	// <stdin>:9345:13
+    .W17_addr (4'h7),	// <stdin>:9638:13
     .W17_en   (_GEN_4),	// IoforMem.scala:59:33, :106:18
     .W17_clk  (clock),
-    .W17_data (8'h0),	// <stdin>:9343:13
+    .W17_data (8'h0),	// <stdin>:9345:13
     .R0_data  (_VmemBuffer_7_ext_R0_data)
   );
   maskbuffer_combMem maskbuffer_ext (	// IoforMem.scala:60:33
@@ -8973,30 +8973,30 @@ module IoforMem(	// <stdin>:9323:10
     .W1_data (jump_mask),	// IoforMem.scala:78:28
     .R0_data (mask)
   );
-  assign io_axi_req_valid = _T ? _T_6 & (~_T_9 | _GEN_2) : (_T_24 | _T_25) & ~io_axi_resp_valid;	// <stdin>:9323:10, IoforMem.scala:71:30, :87:22, :106:18, :114:{71,130}, :116:{48,84}, :119:76, :120:35, :145:77, :159:42, :168:36, :180:34
+  assign io_axi_req_valid = _T ? _T_6 & (~_T_9 | _GEN_2) : (_T_24 | _T_25) & ~io_axi_resp_valid;	// <stdin>:9325:10, IoforMem.scala:71:30, :87:22, :106:18, :114:{71,130}, :116:{48,84}, :119:76, :120:35, :145:77, :159:42, :168:36, :180:34
   assign io_axi_req_bits_rw = _T ? _T_6 & ~_T_9 & (|io_excute_ld_type) : _T_24 & ~io_axi_resp_valid &
-                (|io_excute_ld_type);	// <stdin>:9323:10, IoforMem.scala:71:30, :87:22, :91:24, :98:37, :106:18, :114:{71,130}, :116:{48,84}, :119:76, :168:36, :180:34
+                (|io_excute_ld_type);	// <stdin>:9325:10, IoforMem.scala:71:30, :87:22, :91:24, :98:37, :106:18, :114:{71,130}, :116:{48,84}, :119:76, :168:36, :180:34
   assign io_axi_req_bits_addr = _T ? (_T_6 ? (_T_9 ? (_T_11 ? {begin_waddr[31:3], 3'h0} : _T_23 ? {begin_waddr[31:3], 3'h0}
                 : 32'h0) : {io_excute_waddr[31:3] | io_excute_raddr[31:3], 3'h0}) : 32'h0) : ~_T_24 |
-                io_axi_resp_valid ? 32'h0 : {io_excute_waddr[31:3] | io_excute_raddr[31:3], 3'h0};	// <stdin>:9323:10, Cat.scala:33:92, IoforMem.scala:69:28, :71:30, :88:26, :106:18, :114:{71,130}, :116:{48,84}, :119:{41,76}, :122:{50,68}, :145:{54,77}, :148:{54,72}, :160:{46,70,77,94}, :168:36, :181:{62,69,86}
+                io_axi_resp_valid ? 32'h0 : {io_excute_waddr[31:3] | io_excute_raddr[31:3], 3'h0};	// <stdin>:9325:10, Cat.scala:33:92, IoforMem.scala:69:28, :71:30, :88:26, :106:18, :114:{71,130}, :116:{48,84}, :119:{41,76}, :122:{50,68}, :145:{54,77}, :148:{54,72}, :160:{46,70,77,94}, :168:36, :181:{62,69,86}
   assign io_axi_req_bits_data = _T ? (_GEN_3 ? 64'h0 : io_excute_wdata) : _T_24 ? (io_axi_resp_valid ? 64'h0 :
-                io_excute_wdata) : _GEN_5 ? 64'h0 : read;	// <stdin>:9323:10, IoforMem.scala:56:32, :89:26, :106:18, :114:130, :116:84, :168:36, :182:38, :188:36, :211:38
+                io_excute_wdata) : _GEN_5 ? 64'h0 : read;	// <stdin>:9325:10, IoforMem.scala:56:32, :89:26, :106:18, :114:130, :116:84, :168:36, :182:38, :188:36, :211:38
   assign io_axi_req_bits_mask = _T ? (_GEN_3 ? 8'h0 : io_excute_wmask) : _T_24 ? (io_axi_resp_valid ? 8'h0 :
-                io_excute_wmask) : _GEN_5 ? 8'h0 : mask;	// <stdin>:9323:10, :9343:13, IoforMem.scala:89:26, :90:26, :106:18, :114:130, :116:84, :168:36, :183:38, :188:36, :212:38
-  assign io_mem_data_valid = mem_data_valid;	// <stdin>:9323:10, IoforMem.scala:55:33
-  assign io_mem_data_bits = mem_data_bits;	// <stdin>:9323:10, IoforMem.scala:56:32
-  assign io_fc_req = ((|io_excute_ld_type) | (|io_excute_sd_type)) & _T_4 > 32'h9FFFFFFF;	// <stdin>:9323:10, IoforMem.scala:98:{37,41,61,66,87,106}
-  assign io_fc_state = state;	// <stdin>:9323:10, IoforMem.scala:53:24
-  assign io_fc_valid = io_axi_resp_valid;	// <stdin>:9323:10
-  assign io_fc_vmem_range = _T & _T_6 & _T_9;	// <stdin>:9323:10, IoforMem.scala:101:22, :106:18, :114:{71,130}, :116:48
-  assign io_multiwrite = ren;	// <stdin>:9323:10, :9336:5
+                io_excute_wmask) : _GEN_5 ? 8'h0 : mask;	// <stdin>:9325:10, :9345:13, IoforMem.scala:89:26, :90:26, :106:18, :114:130, :116:84, :168:36, :183:38, :188:36, :212:38
+  assign io_mem_data_valid = mem_data_valid;	// <stdin>:9325:10, IoforMem.scala:55:33
+  assign io_mem_data_bits = mem_data_bits;	// <stdin>:9325:10, IoforMem.scala:56:32
+  assign io_fc_req = ((|io_excute_ld_type) | (|io_excute_sd_type)) & _T_4 > 32'h9FFFFFFF;	// <stdin>:9325:10, IoforMem.scala:98:{37,41,61,66,87,106}
+  assign io_fc_state = state;	// <stdin>:9325:10, IoforMem.scala:53:24
+  assign io_fc_valid = io_axi_resp_valid;	// <stdin>:9325:10
+  assign io_fc_vmem_range = _T & _T_6 & _T_9;	// <stdin>:9325:10, IoforMem.scala:101:22, :106:18, :114:{71,130}, :116:48
+  assign io_multiwrite = ren;	// <stdin>:9325:10, :9338:5
 endmodule
 
 // external module DebugInterface
 
 // external module Interact
 
-module Core(	// <stdin>:9833:10
+module Core(	// <stdin>:9835:10
   input         clock,
                 reset,
                 io_AXI_Interface_aw_ready,
@@ -9209,35 +9209,35 @@ module Core(	// <stdin>:9833:10
   wire [63:0] _DI_io_mem_addr_T = _excute_io_waddr | _excute_io_raddr;	// Core.scala:27:24, :459:93
   always @(posedge clock) begin
     if (reset) begin
-      fdreg_pc <= 32'h80000000;	// <stdin>:9854:23, Core.scala:33:24
+      fdreg_pc <= 32'h80000000;	// <stdin>:9856:23, Core.scala:33:24
       dereg_op_a <= 64'h0;	// Core.scala:39:24, :437:36
       dereg_op_b <= 64'h0;	// Core.scala:39:24, :437:36
-      dereg_reg_waddr <= 5'h0;	// <stdin>:9870:27, Core.scala:39:24
-      dereg_branch_type <= 1'h0;	// <stdin>:9833:10, Core.scala:39:24
+      dereg_reg_waddr <= 5'h0;	// <stdin>:9872:27, Core.scala:39:24
+      dereg_branch_type <= 1'h0;	// <stdin>:9835:10, Core.scala:39:24
       dereg_branch_addr <= 64'h0;	// Core.scala:39:24, :437:36
-      dereg_alu_op <= 6'h3F;	// <stdin>:9867:27, Core.scala:39:24
-      dereg_shamt <= 6'h0;	// <stdin>:9866:23, Core.scala:39:24
-      dereg_wb_type <= 2'h0;	// <stdin>:9865:25, Core.scala:39:24
-      dereg_sd_type <= 3'h0;	// <stdin>:9833:10, Core.scala:39:24
+      dereg_alu_op <= 6'h3F;	// <stdin>:9869:27, Core.scala:39:24
+      dereg_shamt <= 6'h0;	// <stdin>:9868:23, Core.scala:39:24
+      dereg_wb_type <= 2'h0;	// <stdin>:9867:25, Core.scala:39:24
+      dereg_sd_type <= 3'h0;	// <stdin>:9835:10, Core.scala:39:24
       dereg_reg2_rdata <= 64'h0;	// Core.scala:39:24, :437:36
-      dereg_ld_type <= 3'h0;	// <stdin>:9833:10, Core.scala:39:24
+      dereg_ld_type <= 3'h0;	// <stdin>:9835:10, Core.scala:39:24
       dereg_csr_t <= 64'h0;	// Core.scala:39:24, :437:36
-      dereg_csr_waddr <= 12'h0;	// <stdin>:9860:27, Core.scala:39:24
-      dereg_csr_wen <= 1'h0;	// <stdin>:9833:10, Core.scala:39:24
+      dereg_csr_waddr <= 12'h0;	// <stdin>:9862:27, Core.scala:39:24
+      dereg_csr_wen <= 1'h0;	// <stdin>:9835:10, Core.scala:39:24
       emreg_reg_wdata <= 64'h0;	// Core.scala:57:24, :437:36
-      emreg_reg_waddr <= 5'h0;	// <stdin>:9870:27, Core.scala:57:24
-      emreg_wb_type <= 2'h0;	// <stdin>:9865:25, Core.scala:57:24
-      emreg_ld_type <= 3'h0;	// <stdin>:9833:10, Core.scala:57:24
-      emreg_ld_addr_lowbit <= 3'h0;	// <stdin>:9833:10, Core.scala:57:24
+      emreg_reg_waddr <= 5'h0;	// <stdin>:9872:27, Core.scala:57:24
+      emreg_wb_type <= 2'h0;	// <stdin>:9867:25, Core.scala:57:24
+      emreg_ld_type <= 3'h0;	// <stdin>:9835:10, Core.scala:57:24
+      emreg_ld_addr_lowbit <= 3'h0;	// <stdin>:9835:10, Core.scala:57:24
       emreg_csr_wdata <= 64'h0;	// Core.scala:57:24, :437:36
-      emreg_csr_wen <= 1'h0;	// <stdin>:9833:10, Core.scala:57:24
-      emreg_csr_waddr <= 12'h0;	// <stdin>:9860:27, Core.scala:57:24
+      emreg_csr_wen <= 1'h0;	// <stdin>:9835:10, Core.scala:57:24
+      emreg_csr_waddr <= 12'h0;	// <stdin>:9862:27, Core.scala:57:24
       mwreg_reg_wdata <= 64'h0;	// Core.scala:71:24, :437:36
-      mwreg_reg_waddr <= 5'h0;	// <stdin>:9870:27, Core.scala:71:24
-      mwreg_wb_type <= 2'h0;	// <stdin>:9865:25, Core.scala:71:24
+      mwreg_reg_waddr <= 5'h0;	// <stdin>:9872:27, Core.scala:71:24
+      mwreg_wb_type <= 2'h0;	// <stdin>:9867:25, Core.scala:71:24
       mwreg_csr_wdata <= 64'h0;	// Core.scala:71:24, :437:36
-      mwreg_csr_wen <= 1'h0;	// <stdin>:9833:10, Core.scala:71:24
-      mwreg_csr_waddr <= 12'h0;	// <stdin>:9860:27, Core.scala:71:24
+      mwreg_csr_wen <= 1'h0;	// <stdin>:9835:10, Core.scala:71:24
+      mwreg_csr_waddr <= 12'h0;	// <stdin>:9862:27, Core.scala:71:24
     end
     else begin
       fdreg_pc <= _fetch_io_fdio_pc;	// Core.scala:25:23, :33:24
@@ -9247,16 +9247,16 @@ module Core(	// <stdin>:9833:10
         if (_fc_io_fcde_flush) begin	// Core.scala:92:20
           dereg_op_a <= 64'h0;	// Core.scala:39:24, :437:36
           dereg_op_b <= 64'h0;	// Core.scala:39:24, :437:36
-          dereg_reg_waddr <= 5'h0;	// <stdin>:9870:27, Core.scala:39:24
+          dereg_reg_waddr <= 5'h0;	// <stdin>:9872:27, Core.scala:39:24
           dereg_branch_addr <= 64'h0;	// Core.scala:39:24, :437:36
-          dereg_alu_op <= 6'h0;	// <stdin>:9866:23, Core.scala:39:24
-          dereg_shamt <= 6'h0;	// <stdin>:9866:23, Core.scala:39:24
-          dereg_wb_type <= 2'h0;	// <stdin>:9865:25, Core.scala:39:24
-          dereg_sd_type <= 3'h0;	// <stdin>:9833:10, Core.scala:39:24
+          dereg_alu_op <= 6'h0;	// <stdin>:9868:23, Core.scala:39:24
+          dereg_shamt <= 6'h0;	// <stdin>:9868:23, Core.scala:39:24
+          dereg_wb_type <= 2'h0;	// <stdin>:9867:25, Core.scala:39:24
+          dereg_sd_type <= 3'h0;	// <stdin>:9835:10, Core.scala:39:24
           dereg_reg2_rdata <= 64'h0;	// Core.scala:39:24, :437:36
-          dereg_ld_type <= 3'h0;	// <stdin>:9833:10, Core.scala:39:24
+          dereg_ld_type <= 3'h0;	// <stdin>:9835:10, Core.scala:39:24
           dereg_csr_t <= 64'h0;	// Core.scala:39:24, :437:36
-          dereg_csr_waddr <= 12'h0;	// <stdin>:9860:27, Core.scala:39:24
+          dereg_csr_waddr <= 12'h0;	// <stdin>:9862:27, Core.scala:39:24
         end
         else begin	// Core.scala:92:20
           dereg_op_a <= _decode_io_deio_op_a;	// Core.scala:26:24, :39:24
@@ -9311,59 +9311,59 @@ module Core(	// <stdin>:9833:10
     else	// Core.scala:92:20
       mwreg_has_inst <= _mem_io_mwio_has_inst;	// Core.scala:29:21, :71:24
   end // always @(posedge)
-  `ifndef SYNTHESIS	// <stdin>:9833:10
-    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:9833:10
-      `FIRRTL_BEFORE_INITIAL	// <stdin>:9833:10
+  `ifndef SYNTHESIS	// <stdin>:9835:10
+    `ifdef FIRRTL_BEFORE_INITIAL	// <stdin>:9835:10
+      `FIRRTL_BEFORE_INITIAL	// <stdin>:9835:10
     `endif // FIRRTL_BEFORE_INITIAL
-    initial begin	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_0;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_1;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_2;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_3;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_4;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_5;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_6;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_7;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_8;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_9;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_10;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_11;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_12;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_13;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_14;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_15;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_16;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_17;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_18;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_19;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_20;	// <stdin>:9833:10
-      automatic logic [31:0] _RANDOM_21;	// <stdin>:9833:10
-      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:9833:10
-        `INIT_RANDOM_PROLOG_	// <stdin>:9833:10
+    initial begin	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_0;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_1;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_2;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_3;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_4;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_5;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_6;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_7;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_8;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_9;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_10;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_11;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_12;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_13;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_14;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_15;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_16;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_17;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_18;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_19;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_20;	// <stdin>:9835:10
+      automatic logic [31:0] _RANDOM_21;	// <stdin>:9835:10
+      `ifdef INIT_RANDOM_PROLOG_	// <stdin>:9835:10
+        `INIT_RANDOM_PROLOG_	// <stdin>:9835:10
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// <stdin>:9833:10
-        _RANDOM_0 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_1 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_2 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_3 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_4 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_5 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_6 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_7 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_8 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_9 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_10 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_11 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_12 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_13 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_14 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_15 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_16 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_17 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_18 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_19 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_20 = `RANDOM;	// <stdin>:9833:10
-        _RANDOM_21 = `RANDOM;	// <stdin>:9833:10
+      `ifdef RANDOMIZE_REG_INIT	// <stdin>:9835:10
+        _RANDOM_0 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_1 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_2 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_3 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_4 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_5 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_6 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_7 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_8 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_9 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_10 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_11 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_12 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_13 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_14 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_15 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_16 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_17 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_18 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_19 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_20 = `RANDOM;	// <stdin>:9835:10
+        _RANDOM_21 = `RANDOM;	// <stdin>:9835:10
         fdreg_pc = _RANDOM_0;	// Core.scala:33:24
         dereg_op_a = {_RANDOM_1, _RANDOM_2};	// Core.scala:39:24
         dereg_op_b = {_RANDOM_3, _RANDOM_4};	// Core.scala:39:24
@@ -9398,8 +9398,8 @@ module Core(	// <stdin>:9833:10
         mwreg_has_inst = _RANDOM_21[23];	// Core.scala:71:24
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:9833:10
-      `FIRRTL_AFTER_INITIAL	// <stdin>:9833:10
+    `ifdef FIRRTL_AFTER_INITIAL	// <stdin>:9835:10
+      `FIRRTL_AFTER_INITIAL	// <stdin>:9835:10
     `endif // FIRRTL_AFTER_INITIAL
   `endif // not def SYNTHESIS
   Fetch fetch (	// Core.scala:25:23
@@ -9836,7 +9836,7 @@ endmodule
 
 // external module Sram
 
-module Soc(	// <stdin>:10284:10
+module Soc(	// <stdin>:10286:10
   input clock,
         reset);
 

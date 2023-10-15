@@ -216,10 +216,10 @@ class Cache extends Module{
     )
 
     //立即判断
-    hit0 := valid(way0) && rtag0 === tag
-    hit1 := valid(way1) && rtag1 === tag
-    hit2 := valid(way2) && rtag2 === tag
-    hit3 := valid(way3) && rtag3 === tag
+    hit0 := valid(way0) && rtag0 === tag && is_idle  //不能让其他周期的命中影响当前cache状态机进行
+    hit1 := valid(way1) && rtag1 === tag && is_idle
+    hit2 := valid(way2) && rtag2 === tag && is_idle
+    hit3 := valid(way3) && rtag3 === tag && is_idle
 
     hit := hit0 | hit1 | hit2 | hit3
 

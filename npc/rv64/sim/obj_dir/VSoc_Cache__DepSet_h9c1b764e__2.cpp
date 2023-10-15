@@ -3727,7 +3727,8 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
                                                : 0U)));
     vlSelf->__PVT__is_alloc = ((4U == (IData)(vlSelf->__PVT__state)) 
                                & (0xfU == (IData)(vlSelf->__PVT__r_count)));
-    vlSelf->io_cpu_resp_valid = ((IData)(vlSelf->__PVT__hit_reg) 
+    vlSelf->io_cpu_resp_valid = (((IData)(vlSelf->__PVT__hit_reg) 
+                                  & (0U == (IData)(vlSelf->__PVT__state))) 
                                  | (((~ (IData)((0U 
                                                  != (IData)(vlSelf->__PVT__cpu_mask)))) 
                                      & (IData)(vlSelf->__PVT__is_alloc_reg)) 

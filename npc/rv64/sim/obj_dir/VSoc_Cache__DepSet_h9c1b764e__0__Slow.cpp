@@ -170,7 +170,8 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__0(
                                                : 0U)));
     vlSelf->__PVT__is_alloc = ((4U == (IData)(vlSelf->__PVT__state)) 
                                & (0xfU == (IData)(vlSelf->__PVT__r_count)));
-    vlSelf->io_cpu_resp_valid = ((IData)(vlSelf->__PVT__hit_reg) 
+    vlSelf->io_cpu_resp_valid = (((IData)(vlSelf->__PVT__hit_reg) 
+                                  & (0U == (IData)(vlSelf->__PVT__state))) 
                                  | (((~ (IData)((0U 
                                                  != (IData)(vlSelf->__PVT__cpu_mask)))) 
                                      & (IData)(vlSelf->__PVT__is_alloc_reg)) 
@@ -4174,7 +4175,8 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
                                                : 0U)));
     vlSelf->__PVT__is_alloc = ((4U == (IData)(vlSelf->__PVT__state)) 
                                & (0xfU == (IData)(vlSelf->__PVT__r_count)));
-    vlSelf->io_cpu_resp_valid = ((IData)(vlSelf->__PVT__hit_reg) 
+    vlSelf->io_cpu_resp_valid = (((IData)(vlSelf->__PVT__hit_reg) 
+                                  & (0U == (IData)(vlSelf->__PVT__state))) 
                                  | (((~ (IData)((0U 
                                                  != (IData)(vlSelf->__PVT__cpu_mask)))) 
                                      & (IData)(vlSelf->__PVT__is_alloc_reg)) 
