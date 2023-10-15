@@ -285,7 +285,7 @@ class Cache extends Module{
     dontTouch(wmask)
 
     val wdata = Mux(
-        is_idle, Fill(nWords, io.cpu.req.bits.mask),  //写命中
+        is_idle, Fill(nWords, io.cpu.req.bits.data),  //写命中
         Mux(
             is_alloc, Cat(io.axi.resp.bits.data, Cat(refill_buffer.init.reverse)),  //注意init.reverse
             Fill(nWords, cpu_data)   //写不命中，写入Cache

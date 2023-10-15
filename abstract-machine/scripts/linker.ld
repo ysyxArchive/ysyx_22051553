@@ -14,6 +14,7 @@ SECTIONS {
     *(.rodata*)
   }
 
+  /* 对齐CacheLine */
   .data ALIGN(0x80): {
     *(.data)
   } : data

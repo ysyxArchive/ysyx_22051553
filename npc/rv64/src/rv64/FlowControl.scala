@@ -138,7 +138,7 @@ class FlowControl extends Module{
     dontTouch(MULDIV_stall)
 
 
-    when(io.fcIcache.state =/= 0.U){
+    when(io.fcIcache.state =/= 0.U){  //为解决combination circuit做出妥协
         Icache_stall := 1.B
     }.otherwise{
         Icache_stall := 0.B
