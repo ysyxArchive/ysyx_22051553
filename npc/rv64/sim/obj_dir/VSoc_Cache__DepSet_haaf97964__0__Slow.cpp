@@ -100,26 +100,28 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__PVT__dirty3 = VL_RAND_RESET_I(1);
     VL_RAND_RESET_W(136, vlSelf->__PVT__wmask);
     VL_RAND_RESET_W(1024, vlSelf->__PVT__wdata);
-    vlSelf->__PVT___T_194 = VL_RAND_RESET_I(5);
-    vlSelf->__PVT___GEN_12 = VL_RAND_RESET_I(4);
+    vlSelf->__PVT__choose_dataway = VL_RAND_RESET_I(2);
+    vlSelf->__PVT___GEN_12 = VL_RAND_RESET_I(1);
+    vlSelf->__PVT___GEN_15 = VL_RAND_RESET_I(4);
     vlSelf->__PVT___io_axi_req_bits_addr_T_25 = VL_RAND_RESET_I(32);
-    vlSelf->__PVT___GEN_14 = VL_RAND_RESET_I(1);
+    vlSelf->__PVT___GEN_17 = VL_RAND_RESET_I(1);
     vlSelf->__PVT__unnamedblk1__DOT___dirty_T_28 = VL_RAND_RESET_Q(64);
     vlSelf->__PVT__unnamedblk1__DOT___dirty_T_34 = VL_RAND_RESET_Q(64);
     vlSelf->__PVT__unnamedblk1__DOT___dirty_T_40 = VL_RAND_RESET_Q(64);
     vlSelf->__PVT__unnamedblk1__DOT___dirty_T_46 = VL_RAND_RESET_Q(64);
-    vlSelf->__PVT__unnamedblk1__DOT___GEN_16 = VL_RAND_RESET_I(1);
-    vlSelf->__PVT__unnamedblk1__DOT___GEN_17 = VL_RAND_RESET_I(24);
-    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_18 = VL_RAND_RESET_Q(64);
-    VL_RAND_RESET_W(256, vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_19);
+    vlSelf->__PVT__unnamedblk1__DOT___GEN_19 = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__unnamedblk1__DOT___GEN_20 = VL_RAND_RESET_I(24);
+    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_21 = VL_RAND_RESET_Q(64);
+    VL_RAND_RESET_W(256, vlSelf->__PVT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_22);
     vlSelf->__PVT__unnamedblk1__DOT__unnamedblk3__DOT___dirty_T_18 = VL_RAND_RESET_Q(64);
     vlSelf->__PVT__unnamedblk1__DOT__unnamedblk3__DOT___dirty_T_12 = VL_RAND_RESET_Q(64);
     vlSelf->__PVT__unnamedblk1__DOT__unnamedblk3__DOT___dirty_T_6 = VL_RAND_RESET_Q(64);
     vlSelf->__PVT__unnamedblk1__DOT__unnamedblk3__DOT___dirty_T = VL_RAND_RESET_Q(64);
-    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_20 = VL_RAND_RESET_Q(64);
-    VL_RAND_RESET_W(256, vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_21);
+    vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_23 = VL_RAND_RESET_Q(64);
+    VL_RAND_RESET_W(256, vlSelf->__PVT__unnamedblk1__DOT__unnamedblk4__DOT___GEN_24);
     vlSelf->__VdfgTmp_h661b8699__0 = 0;
     VL_ZERO_RESET_W(960, vlSelf->__VdfgTmp_h25305f44__0);
+    vlSelf->__VdfgTmp_h7dd49ee2__0 = 0;
     for (int __Vi0 = 0; __Vi0 < 32; ++__Vi0) {
         vlSelf->__PVT__replace_ext__DOT__Memory[__Vi0] = VL_RAND_RESET_I(2);
     }
