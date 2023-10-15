@@ -109,13 +109,13 @@ class Cache extends Module{
     val hit1 = Wire(Bool())
     val hit2 = Wire(Bool())
     val hit3 = Wire(Bool())
+    val hit = Wire(Bool())
     dontTouch(hit0)
     dontTouch(hit1)
     dontTouch(hit2)
     dontTouch(hit3)
 
-
-
+    
     val wen = (is_idle && hit && w_req) || (is_alloc) || (is_alloc_reg && cpu_mask.orR)
     // 1.写命中
     // 2.从AXI读出，一定需要写
@@ -208,14 +208,14 @@ class Cache extends Module{
         )
     )
 
-    
     //立即判断
     hit0 := valid(way0) && rtag0 === tag
     hit1 := valid(way1) && rtag1 === tag
     hit2 := valid(way2) && rtag2 === tag
     hit3 := valid(way3) && rtag3 === tag
 
-    val hit = hit0 | hit1 | hit2 | hit3
+    hit := hit0 | hit1 | hit2 | hit3
+
 
     //读出
     io.cpu.resp.bits.data := Mux(
