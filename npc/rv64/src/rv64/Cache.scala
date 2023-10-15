@@ -109,6 +109,12 @@ class Cache extends Module{
     val hit1 = Wire(Bool())
     val hit2 = Wire(Bool())
     val hit3 = Wire(Bool())
+    val hit0_reg = RegNext(hit0)
+    val hit1_reg = RegNext(hit1)
+    val hit2_reg = RegNext(hit2)
+    val hit3_reg = RegNext(hit3)
+
+
     val hit = Wire(Bool())
     dontTouch(hit0)
     dontTouch(hit1)
@@ -187,10 +193,10 @@ class Cache extends Module{
         Mux(ren_reg,   
             MuxCase(0.B,  //读命中
                 Seq(
-                    (hit0) -> rdata0,
-                    (hit1) -> rdata1,
-                    (hit2) -> rdata2,
-                    (hit3) -> rdata3,
+                    (hit0_reg) -> rdata0,
+                    (hit1_reg) -> rdata1,
+                    (hit2_reg) -> rdata2,
+                    (hit3_reg) -> rdata3,
                 )
             ),
             MuxLookup(victim, 0.U,  //写回的数据
