@@ -137,24 +137,19 @@ class FlowControl extends Module{
     dontTouch(IO_stall)
     dontTouch(MULDIV_stall)
 
-    // when(io.fcIcache.state === 0.U && io.fcIcache.req && !io.fcIcache.hit){
-    //     Icache_stall := 1.B
-    // }.elsewhen(io.fcIcache.state =/= 0.U){
-    //     Icache_stall := 1.B
-    // }.otherwise{
-    //     Icache_stall := 0.B
-    // }
-    // 这种判断，第一项会导致combination
 
-
-    when(io.fcIcache.state =/= 0.U){
+    when(io.fcIcache.state === 0.U && io.fcIcache.req && !io.fcIcache.hit){
+        Icache_stall := 1.B
+    }.elsewhen(io.fcIcache.state =/= 0.U){
         Icache_stall := 1.B
     }.otherwise{
         Icache_stall := 0.B
     }
 
     
-    when(io.fcDcache.state =/= 0.U){ 
+    when(io.fcDcache.state === 0.U && io.fcDcache.req && !io.fcDcache.hit){
+        Dcache_stall := 1.B
+    }.elsewhen(io.fcDcache.state =/= 0.U){ 
         Dcache_stall := 1.B
     }.otherwise{
         Dcache_stall := 0.B
