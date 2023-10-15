@@ -64,6 +64,16 @@ void event_update(){
   if (now - last < 100000000 / 60) {
     return;
   }
+  double Icache_hitrate = 1 - ((double)(Icache_req_num - Icache_hit_num) / (double)Icache_req_num);
+      double Dcache_hitrate = 1 - ((double)(Dcache_req_num - Dcache_hit_num) / (double)Dcache_req_num);
+
+
+      printf("Icache------\n");
+      printf("access num:%d, hit num:%d, hit rate:%0.4f\n", Icache_req_num, Icache_hit_num, Icache_hitrate);
+      printf("Dcache------\n");
+      printf("access num:%d, hit num:%d, hit rate:%0.4f\n", Dcache_req_num, Dcache_hit_num, Dcache_hitrate);
+
+
   last = now;
 
   SDL_Event event;
