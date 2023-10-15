@@ -4088,6 +4088,10 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
         __Vdlyvdim0__DataArray_0_0_ext__DOT__Memory__v1 
             = vlSelf->__PVT___T_182;
     }
+    vlSelf->__PVT__rtag3_buf = vlSelf->__PVT___TagArray_ext_R1_data;
+    vlSelf->__PVT__rtag2_buf = vlSelf->__PVT___TagArray_ext_R0_data;
+    vlSelf->__PVT__rtag1_buf = vlSelf->__PVT___TagArray_ext_R1_data;
+    vlSelf->__PVT__rtag0_buf = vlSelf->__PVT___TagArray_ext_R0_data;
     if (vlSelf->__PVT___T) {
         vlSelf->__PVT__cpu_data = 0ULL;
     } else if (((~ (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__fetch__DOT__started)) 

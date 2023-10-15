@@ -1140,6 +1140,10 @@ class VSoc_Cache final : public VerilatedModule {
         IData/*31:0*/ __PVT__addr_buf;
         IData/*31:0*/ __PVT__valid;
         IData/*31:0*/ __PVT__dirty;
+        IData/*21:0*/ __PVT__rtag0_buf;
+        IData/*21:0*/ __PVT__rtag1_buf;
+        IData/*21:0*/ __PVT__rtag2_buf;
+        IData/*21:0*/ __PVT__rtag3_buf;
         VlWide<32>/*1023:0*/ __PVT__rdata0;
         VlWide<32>/*1023:0*/ __PVT__rdata1;
         VlWide<32>/*1023:0*/ __PVT__rdata2;
@@ -1197,12 +1201,12 @@ class VSoc_Cache final : public VerilatedModule {
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_0_5_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_0_6_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_0_7_ext__DOT__Memory;
+    };
+    struct {
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_1_0_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_1_1_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_1_2_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_1_3_ext__DOT__Memory;
-    };
-    struct {
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_1_4_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_1_5_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_1_6_ext__DOT__Memory;
@@ -1263,12 +1267,12 @@ class VSoc_Cache final : public VerilatedModule {
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_8_5_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_8_6_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_8_7_ext__DOT__Memory;
+    };
+    struct {
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_9_0_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_9_1_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_9_2_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_9_3_ext__DOT__Memory;
-    };
-    struct {
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_9_4_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_9_5_ext__DOT__Memory;
         VlUnpacked<CData/*7:0*/, 32> __PVT__DataArray_9_6_ext__DOT__Memory;

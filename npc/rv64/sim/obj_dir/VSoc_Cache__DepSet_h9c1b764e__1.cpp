@@ -22,6 +22,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__1
     VlWide<64>/*2047:0*/ __Vtemp_hb4c67e49__0;
     VlWide<96>/*3071:0*/ __Vtemp_hb84eee09__0;
     VlWide<128>/*4095:0*/ __Vtemp_h2b62cddf__0;
+    VlWide<3>/*95:0*/ __Vtemp_hf1bb6a44__0;
     VlWide<5>/*159:0*/ __Vtemp_hfe7561f7__0;
     VlWide<5>/*159:0*/ __Vtemp_h33bc51d6__0;
     // Body
@@ -3632,6 +3633,92 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__1
                                      & (IData)(vlSelf->__PVT__is_alloc_reg)) 
                                     | ((0U == (IData)(vlSelf->__PVT__state)) 
                                        & (0U != (IData)(vlSelf->__PVT__cpu_mask)))));
+    __Vtemp_hf1bb6a44__0[0U] = (IData)((((QData)((IData)(
+                                                         (0x3fffffU 
+                                                          & ((IData)(vlSelf->__PVT__dirty1)
+                                                              ? vlSelf->__PVT__rtag1_buf
+                                                              : 
+                                                             (vlSelf->__PVT__addr_reg 
+                                                              >> 0xaU))))) 
+                                         << 0x16U) 
+                                        | (QData)((IData)(
+                                                          (0x3fffffU 
+                                                           & ((IData)(vlSelf->__PVT__dirty0)
+                                                               ? vlSelf->__PVT__rtag0_buf
+                                                               : 
+                                                              (vlSelf->__PVT__addr_reg 
+                                                               >> 0xaU)))))));
+    __Vtemp_hf1bb6a44__0[1U] = ((((IData)(vlSelf->__PVT__dirty2)
+                                   ? vlSelf->__PVT__rtag2_buf
+                                   : (vlSelf->__PVT__addr_reg 
+                                      >> 0xaU)) << 0xcU) 
+                                | (IData)(((((QData)((IData)(
+                                                             (0x3fffffU 
+                                                              & ((IData)(vlSelf->__PVT__dirty1)
+                                                                  ? vlSelf->__PVT__rtag1_buf
+                                                                  : 
+                                                                 (vlSelf->__PVT__addr_reg 
+                                                                  >> 0xaU))))) 
+                                             << 0x16U) 
+                                            | (QData)((IData)(
+                                                              (0x3fffffU 
+                                                               & ((IData)(vlSelf->__PVT__dirty0)
+                                                                   ? vlSelf->__PVT__rtag0_buf
+                                                                   : 
+                                                                  (vlSelf->__PVT__addr_reg 
+                                                                   >> 0xaU)))))) 
+                                           >> 0x20U)));
+    __Vtemp_hf1bb6a44__0[2U] = ((0xfffffcU & (((IData)(vlSelf->__PVT__dirty3)
+                                                ? vlSelf->__PVT__rtag3_buf
+                                                : (vlSelf->__PVT__addr_reg 
+                                                   >> 0xaU)) 
+                                              << 2U)) 
+                                | (3U & (((IData)(vlSelf->__PVT__dirty2)
+                                           ? vlSelf->__PVT__rtag2_buf
+                                           : (vlSelf->__PVT__addr_reg 
+                                              >> 0xaU)) 
+                                         >> 0x14U)));
+    vlSelf->__PVT___io_axi_req_bits_addr_T_25 = (((
+                                                   (0x57U 
+                                                    >= 
+                                                    (0x7fU 
+                                                     & ((IData)(0x16U) 
+                                                        * (IData)(vlSelf->__PVT__victim))))
+                                                    ? 
+                                                   (0x3fffffU 
+                                                    & (((0U 
+                                                         == 
+                                                         (0x1fU 
+                                                          & ((IData)(0x16U) 
+                                                             * (IData)(vlSelf->__PVT__victim))))
+                                                         ? 0U
+                                                         : 
+                                                        (__Vtemp_hf1bb6a44__0[
+                                                         (((IData)(0x15U) 
+                                                           + 
+                                                           (0x7fU 
+                                                            & ((IData)(0x16U) 
+                                                               * (IData)(vlSelf->__PVT__victim)))) 
+                                                          >> 5U)] 
+                                                         << 
+                                                         ((IData)(0x20U) 
+                                                          - 
+                                                          (0x1fU 
+                                                           & ((IData)(0x16U) 
+                                                              * (IData)(vlSelf->__PVT__victim)))))) 
+                                                       | (__Vtemp_hf1bb6a44__0[
+                                                          (3U 
+                                                           & (((IData)(0x16U) 
+                                                               * (IData)(vlSelf->__PVT__victim)) 
+                                                              >> 5U))] 
+                                                          >> 
+                                                          (0x1fU 
+                                                           & ((IData)(0x16U) 
+                                                              * (IData)(vlSelf->__PVT__victim))))))
+                                                    : 0U) 
+                                                  << 0xaU) 
+                                                 | (0x380U 
+                                                    & vlSelf->__PVT__addr_reg));
     vlSelf->__PVT___GEN_12 = ((8U & ((~ (IData)(vlSelf->__PVT__dirty3)) 
                                      << 3U)) | (7U 
                                                 & (~ 
@@ -3697,7 +3784,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_comb__TOP__Soc__DOT__core__DOT__Icache__0(VS
     __VdfgTmp_h32233c1c__0 = 0;
     CData/*0:0*/ __VdfgTmp_h285ecfef__0;
     __VdfgTmp_h285ecfef__0 = 0;
-    VlWide<3>/*95:0*/ __Vtemp_h80e6ca2c__0;
     // Body
     if ((0U == (IData)(vlSelf->__PVT__state))) {
         vlSelf->__PVT__wdata[0U] = VSoc__ConstPool__CONST_hd6b7ba52_0[0U];
@@ -3858,92 +3944,6 @@ VL_INLINE_OPT void VSoc_Cache___nba_comb__TOP__Soc__DOT__core__DOT__Icache__0(VS
     __VdfgTmp_h32233c1c__0 = (vlSelf->__PVT___TagArray_ext_R0_data 
                               == (vlSymsp->TOP.Soc__DOT__core__DOT___fetch_io_fdio_pc 
                                   >> 0xaU));
-    __Vtemp_h80e6ca2c__0[0U] = (IData)((((QData)((IData)(
-                                                         (0x3fffffU 
-                                                          & ((IData)(vlSelf->__PVT__dirty1)
-                                                              ? vlSelf->__PVT___TagArray_ext_R1_data
-                                                              : 
-                                                             (vlSelf->__PVT__addr_reg 
-                                                              >> 0xaU))))) 
-                                         << 0x16U) 
-                                        | (QData)((IData)(
-                                                          (0x3fffffU 
-                                                           & ((IData)(vlSelf->__PVT__dirty0)
-                                                               ? vlSelf->__PVT___TagArray_ext_R0_data
-                                                               : 
-                                                              (vlSelf->__PVT__addr_reg 
-                                                               >> 0xaU)))))));
-    __Vtemp_h80e6ca2c__0[1U] = ((((IData)(vlSelf->__PVT__dirty2)
-                                   ? vlSelf->__PVT___TagArray_ext_R0_data
-                                   : (vlSelf->__PVT__addr_reg 
-                                      >> 0xaU)) << 0xcU) 
-                                | (IData)(((((QData)((IData)(
-                                                             (0x3fffffU 
-                                                              & ((IData)(vlSelf->__PVT__dirty1)
-                                                                  ? vlSelf->__PVT___TagArray_ext_R1_data
-                                                                  : 
-                                                                 (vlSelf->__PVT__addr_reg 
-                                                                  >> 0xaU))))) 
-                                             << 0x16U) 
-                                            | (QData)((IData)(
-                                                              (0x3fffffU 
-                                                               & ((IData)(vlSelf->__PVT__dirty0)
-                                                                   ? vlSelf->__PVT___TagArray_ext_R0_data
-                                                                   : 
-                                                                  (vlSelf->__PVT__addr_reg 
-                                                                   >> 0xaU)))))) 
-                                           >> 0x20U)));
-    __Vtemp_h80e6ca2c__0[2U] = ((0xfffffcU & (((IData)(vlSelf->__PVT__dirty3)
-                                                ? vlSelf->__PVT___TagArray_ext_R1_data
-                                                : (vlSelf->__PVT__addr_reg 
-                                                   >> 0xaU)) 
-                                              << 2U)) 
-                                | (3U & (((IData)(vlSelf->__PVT__dirty2)
-                                           ? vlSelf->__PVT___TagArray_ext_R0_data
-                                           : (vlSelf->__PVT__addr_reg 
-                                              >> 0xaU)) 
-                                         >> 0x14U)));
-    vlSelf->__PVT___io_axi_req_bits_addr_T_25 = (((
-                                                   (0x57U 
-                                                    >= 
-                                                    (0x7fU 
-                                                     & ((IData)(0x16U) 
-                                                        * (IData)(vlSelf->__PVT__victim))))
-                                                    ? 
-                                                   (0x3fffffU 
-                                                    & (((0U 
-                                                         == 
-                                                         (0x1fU 
-                                                          & ((IData)(0x16U) 
-                                                             * (IData)(vlSelf->__PVT__victim))))
-                                                         ? 0U
-                                                         : 
-                                                        (__Vtemp_h80e6ca2c__0[
-                                                         (((IData)(0x15U) 
-                                                           + 
-                                                           (0x7fU 
-                                                            & ((IData)(0x16U) 
-                                                               * (IData)(vlSelf->__PVT__victim)))) 
-                                                          >> 5U)] 
-                                                         << 
-                                                         ((IData)(0x20U) 
-                                                          - 
-                                                          (0x1fU 
-                                                           & ((IData)(0x16U) 
-                                                              * (IData)(vlSelf->__PVT__victim)))))) 
-                                                       | (__Vtemp_h80e6ca2c__0[
-                                                          (3U 
-                                                           & (((IData)(0x16U) 
-                                                               * (IData)(vlSelf->__PVT__victim)) 
-                                                              >> 5U))] 
-                                                          >> 
-                                                          (0x1fU 
-                                                           & ((IData)(0x16U) 
-                                                              * (IData)(vlSelf->__PVT__victim))))))
-                                                    : 0U) 
-                                                  << 0xaU) 
-                                                 | (0x380U 
-                                                    & vlSelf->__PVT__addr_reg));
     __VdfgTmp_h285ecfef__0 = (vlSelf->__PVT___TagArray_ext_R1_data 
                               == (vlSymsp->TOP.Soc__DOT__core__DOT___fetch_io_fdio_pc 
                                   >> 0xaU));
@@ -8120,6 +8120,10 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__0
         __Vdlyvdim0__DataArray_0_0_ext__DOT__Memory__v1 
             = vlSelf->__PVT___T_182;
     }
+    vlSelf->__PVT__rtag3_buf = vlSelf->__PVT___TagArray_ext_R1_data;
+    vlSelf->__PVT__rtag2_buf = vlSelf->__PVT___TagArray_ext_R0_data;
+    vlSelf->__PVT__rtag1_buf = vlSelf->__PVT___TagArray_ext_R1_data;
+    vlSelf->__PVT__rtag0_buf = vlSelf->__PVT___TagArray_ext_R0_data;
     vlSelf->__PVT__hit_reg = vlSelf->io_fccache_hit;
     vlSelf->__PVT__hit1_reg = vlSelf->__PVT__hit1;
     vlSelf->__PVT__hit0_reg = vlSelf->__PVT__hit0;

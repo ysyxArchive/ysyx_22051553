@@ -310,10 +310,14 @@ class Cache extends Module{
                 )
             )
             //-----------------replace
-            replace(way0) := Mux(hit0, 0.U, replace(way0) + 1.U)  //可以这么写吗
-            replace(way1) := Mux(hit1, 0.U, replace(way1) + 1.U)
-            replace(way2) := Mux(hit2, 0.U, replace(way2) + 1.U)
-            replace(way3) := Mux(hit3, 0.U, replace(way3) + 1.U)
+            replace(way0) := Mux(hit0, 0.U, Mux(
+                replace(way0) === 3.U, 3.U, replace(way0) + 1.U))  //可以这么写吗 --可以
+            replace(way1) := Mux(hit1, 0.U, Mux(
+                replace(way1) === 3.U, 3.U, replace(way1) + 1.U))  
+            replace(way2) := Mux(hit2, 0.U, Mux(
+                replace(way2) === 3.U, 3.U, replace(way2) + 1.U))  
+            replace(way3) := Mux(hit3, 0.U, Mux(
+                replace(way3) === 3.U, 3.U, replace(way3) + 1.U))  
             //-----------data
             val choose_dataway = MuxCase(0.U,
                 Seq(
@@ -349,10 +353,15 @@ class Cache extends Module{
                 )
             )
             //--------------replace
-            replace(way0_buf) := Mux(victim === 0.U, 0.U, replace(way0_buf) + 1.U)  //可以这么写吗
-            replace(way1_buf) := Mux(victim === 1.U, 0.U, replace(way1_buf) + 1.U)
-            replace(way2_buf) := Mux(victim === 2.U, 0.U, replace(way2_buf) + 1.U)
-            replace(way3_buf) := Mux(victim === 3.U, 0.U, replace(way3_buf) + 1.U)
+            replace(way0_buf) := Mux(victim === 0.U, 0.U, Mux(
+                replace(way0_buf) === 3.U, 3.U, replace(way0_buf) + 1.U))  //可以这么写吗 --可以
+            replace(way1_buf) := Mux(victim === 1.U, 0.U, Mux(
+                replace(way1_buf) === 3.U, 3.U, replace(way1_buf) + 1.U))
+            replace(way2_buf) := Mux(victim === 2.U, 0.U, Mux(
+                replace(way2_buf) === 3.U, 3.U, replace(way2_buf) + 1.U))
+            replace(way3_buf) := Mux(victim === 3.U, 0.U, Mux(
+                replace(way3_buf) === 3.U, 3.U, replace(way3_buf) + 1.U))
+            
             //-------------Tag
             val choose_tagway = MuxLookup(0.U, victim,
                 Seq(
