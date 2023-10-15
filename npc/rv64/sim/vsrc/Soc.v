@@ -3635,11 +3635,11 @@ module Cache(	// <stdin>:3153:10, :6217:10
   wire [135:0]       wmask = is_idle ? {{128{io_cpu_req_bits_mask[7]}}, io_cpu_req_bits_mask} : is_alloc ?
                 136'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF : {1'h0, {127'h0, cpu_mask} << {128'h0, off_reg,
                 3'h0}};	// <stdin>:3153:10, :6217:10, Cache.scala:72:24, :74:25, :75:39, :82:23, :149:27, :277:20, :279:12, :281:{23,63}
-  wire [1023:0]      wdata = is_idle ? {896'h0, {2{{2{{2{{2{io_cpu_req_bits_mask}}}}}}}}} : is_alloc ?
-                {io_axi_resp_bits_data, refill_buffer_14, refill_buffer_13, refill_buffer_12,
-                refill_buffer_11, refill_buffer_10, refill_buffer_9, refill_buffer_8, refill_buffer_7,
-                refill_buffer_6, refill_buffer_5, refill_buffer_4, refill_buffer_3, refill_buffer_2,
-                refill_buffer_1, refill_buffer_0} : {2{{2{{2{{2{cpu_data}}}}}}}};	// Cache.scala:74:25, :75:39, :81:23, :189:28, :287:20, :289:12, Cat.scala:33:92
+  wire [1023:0]      wdata = is_idle ? {2{{2{{2{{2{io_cpu_req_bits_data}}}}}}}} : is_alloc ? {io_axi_resp_bits_data,
+                refill_buffer_14, refill_buffer_13, refill_buffer_12, refill_buffer_11, refill_buffer_10,
+                refill_buffer_9, refill_buffer_8, refill_buffer_7, refill_buffer_6, refill_buffer_5,
+                refill_buffer_4, refill_buffer_3, refill_buffer_2, refill_buffer_1, refill_buffer_0} :
+                {2{{2{{2{{2{cpu_data}}}}}}}};	// Cache.scala:74:25, :75:39, :81:23, :189:28, :287:20, :289:12, Cat.scala:33:92
   assign _GEN_0 = wen & _hit_T_2;	// Cache.scala:90:22, :125:55, :219:31, :295:14, :296:18
   wire [4:0]         _T_182 = hit0 ? way0[4:0] : hit1 ? way1[4:0] : hit2 ? way2[4:0] : hit3 ? way3[4:0] : 5'h0;	// Cache.scala:112:27, :113:27, :114:27, :115:27, :157:23, :158:28, :159:28, :160:28, Mux.scala:101:16
   assign _T_24 = wmask[0];	// Cache.scala:277:20, :325:93

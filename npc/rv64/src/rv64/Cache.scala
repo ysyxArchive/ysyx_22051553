@@ -143,6 +143,7 @@ class Cache extends Module{
     val addr = io.cpu.req.bits.addr
     val idx = addr(slen+blen-1,blen)
     val tag = addr(ADDRWIDTH-1,slen+blen)
+    val off = addr(blen-1, byteOffsetBits)
 
     val tag_reg = addr_reg(ADDRWIDTH-1,slen+blen)  //需要缓存吗
     val idx_reg = addr_reg(slen+blen-1, blen)
@@ -228,8 +229,9 @@ class Cache extends Module{
     val hit_reg = RegNext(hit)
     io.cpu.resp.valid := hit_reg || (is_alloc_reg && !cpu_mask.orR) || (is_idle && cpu_mask.orR)
     //1.读命中或写命中
-    //2.Refill后无需写入
-    //3.Refill后需要写入
+    //2.Refill后无需写入rv64/build/rv64/build/DebugInterface.v
+rv64/build/rv64/build/Interact.v
+rv64/build/rv64/build/Sram.v
     
 
 
@@ -275,7 +277,7 @@ class Cache extends Module{
     wtag := Mux(is_idle, tag, tag_reg)
 
     val wmask = Mux(
-        is_idle, io.cpu.req.bits.mask.asSInt, //写命中
+        is_idle, (io.cpu.req.bits.mask << Cat(off, 0.U(byteOffsetBits.W))).zext, //写命中
         Mux(
             is_alloc, (-1).S,   //从AXI读取完所有数据
             (cpu_mask << Cat(off_reg, 0.U(byteOffsetBits.W))).zext //写不命中，写入cache //off_reg用于选择Cacheline中某个对齐的8Byte

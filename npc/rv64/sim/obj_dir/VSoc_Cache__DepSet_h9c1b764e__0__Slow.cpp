@@ -6636,76 +6636,54 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
                                                 & ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
                                                    >> 7U)))) 
                                     >> 0x18U);
-        vlSelf->__PVT__wdata[0U] = (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                     << 0x18U) | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                   << 0x10U) 
-                                                  | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                      << 8U) 
-                                                     | (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask))));
-        vlSelf->__PVT__wdata[1U] = (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                     << 0x18U) | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                   << 0x10U) 
-                                                  | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                      << 8U) 
-                                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                        | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                            >> 8U) 
-                                                           | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                               >> 0x10U) 
-                                                              | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                                 >> 0x18U)))))));
-        vlSelf->__PVT__wdata[2U] = (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                     << 0x18U) | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                   << 0x10U) 
-                                                  | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                      << 8U) 
-                                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                        | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                            >> 8U) 
-                                                           | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                               >> 0x10U) 
-                                                              | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                                 >> 0x18U)))))));
-        vlSelf->__PVT__wdata[3U] = (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                     << 0x18U) | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                   << 0x10U) 
-                                                  | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                      << 8U) 
-                                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                        | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                            >> 8U) 
-                                                           | (((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                               >> 0x10U) 
-                                                              | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask) 
-                                                                 >> 0x18U)))))));
-        vlSelf->__PVT__wdata[4U] = 0U;
-        vlSelf->__PVT__wdata[5U] = 0U;
-        vlSelf->__PVT__wdata[6U] = 0U;
-        vlSelf->__PVT__wdata[7U] = 0U;
-        vlSelf->__PVT__wdata[8U] = 0U;
-        vlSelf->__PVT__wdata[9U] = 0U;
-        vlSelf->__PVT__wdata[0xaU] = 0U;
-        vlSelf->__PVT__wdata[0xbU] = 0U;
-        vlSelf->__PVT__wdata[0xcU] = 0U;
-        vlSelf->__PVT__wdata[0xdU] = 0U;
-        vlSelf->__PVT__wdata[0xeU] = 0U;
-        vlSelf->__PVT__wdata[0xfU] = 0U;
-        vlSelf->__PVT__wdata[0x10U] = 0U;
-        vlSelf->__PVT__wdata[0x11U] = 0U;
-        vlSelf->__PVT__wdata[0x12U] = 0U;
-        vlSelf->__PVT__wdata[0x13U] = 0U;
-        vlSelf->__PVT__wdata[0x14U] = 0U;
-        vlSelf->__PVT__wdata[0x15U] = 0U;
-        vlSelf->__PVT__wdata[0x16U] = 0U;
-        vlSelf->__PVT__wdata[0x17U] = 0U;
-        vlSelf->__PVT__wdata[0x18U] = 0U;
-        vlSelf->__PVT__wdata[0x19U] = 0U;
-        vlSelf->__PVT__wdata[0x1aU] = 0U;
-        vlSelf->__PVT__wdata[0x1bU] = 0U;
-        vlSelf->__PVT__wdata[0x1cU] = 0U;
-        vlSelf->__PVT__wdata[0x1dU] = 0U;
-        vlSelf->__PVT__wdata[0x1eU] = 0U;
-        vlSelf->__PVT__wdata[0x1fU] = 0U;
+        vlSelf->__PVT__wdata[0U] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[1U] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                            >> 0x20U));
+        vlSelf->__PVT__wdata[2U] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[3U] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                            >> 0x20U));
+        vlSelf->__PVT__wdata[4U] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[5U] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                            >> 0x20U));
+        vlSelf->__PVT__wdata[6U] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[7U] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                            >> 0x20U));
+        vlSelf->__PVT__wdata[8U] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[9U] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                            >> 0x20U));
+        vlSelf->__PVT__wdata[0xaU] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[0xbU] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                              >> 0x20U));
+        vlSelf->__PVT__wdata[0xcU] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[0xdU] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                              >> 0x20U));
+        vlSelf->__PVT__wdata[0xeU] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[0xfU] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                              >> 0x20U));
+        vlSelf->__PVT__wdata[0x10U] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[0x11U] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                               >> 0x20U));
+        vlSelf->__PVT__wdata[0x12U] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[0x13U] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                               >> 0x20U));
+        vlSelf->__PVT__wdata[0x14U] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[0x15U] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                               >> 0x20U));
+        vlSelf->__PVT__wdata[0x16U] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[0x17U] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                               >> 0x20U));
+        vlSelf->__PVT__wdata[0x18U] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[0x19U] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                               >> 0x20U));
+        vlSelf->__PVT__wdata[0x1aU] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[0x1bU] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                               >> 0x20U));
+        vlSelf->__PVT__wdata[0x1cU] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[0x1dU] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                               >> 0x20U));
+        vlSelf->__PVT__wdata[0x1eU] = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata);
+        vlSelf->__PVT__wdata[0x1fU] = (IData)((vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wdata 
+                                               >> 0x20U));
     } else if (vlSelf->__PVT__is_alloc) {
         vlSelf->__PVT__wmask[0U] = 0xffffffffU;
         vlSelf->__PVT__wmask[1U] = 0xffffffffU;
