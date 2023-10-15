@@ -17,7 +17,7 @@ import firrtl.bitWidth
 
 
 object CacheState { //有的会产生没必要的延迟周期，但是状态机更清晰
-    val s_Idle :: s_Choose  :: s_WriteBack :: s_RefillReady :: s_Refill :: s_WriteAfterRefill :: Nil = Enum(5)
+    val s_Idle :: s_Choose  :: s_WriteBack :: s_RefillReady :: s_Refill :: s_WriteAfterRefill :: Nil = Enum(6)
 //                                               等待AR的周期
 }
 
@@ -204,7 +204,24 @@ class Cache extends Module{
                     2.U -> rdata2_buf,
                     3.U -> rdata3_buf,
                 )
-            )
+            )    when((io.fcIcache.state =/= 0.U && !io.fcIcache.hit)){
+        Icache_stall := 1.B
+    }.elsewhen(io.fcIcache.state === CacheState.s_WriteBack | io.fcIcache.state === CacheState.s_RefillReady | io.fcIcache.state === CacheState.s_Refill){
+        Icache_stall := 1.B
+    }.otherwise{
+        Icache_stall := 0.B
+    }
+
+
+    
+    when(io.fcDcache.state =/= 0.U && !io.fcDcache.hit){
+        Dcache_stall := 1.B
+    }.elsewhen(io.fcDcache.state === CacheState.s_WriteBack | io.fcDcache.state === CacheState.s_RefillReady | io.fcDcache.state === CacheState.s_Refill){ //添加,防止下个ex hit
+        Dcache_stall := 1.B
+    }
+    .otherwise{
+        Dcache_stall := 0.B
+    }
         )
     )
 
