@@ -1493,14 +1493,14 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10942,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
-    tracep->declBus(c+11287,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+11288,"W0_data", false,-1, 7,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10943,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
-    tracep->declBus(c+11287,"W1_data", false,-1, 7,0);
+    tracep->declBus(c+11288,"W1_data", false,-1, 7,0);
     tracep->declBus(c+908,"R0_data", false,-1, 7,0);
     tracep->declBus(c+909,"R1_data", false,-1, 7,0);
     tracep->declBus(c+910,"R2_data", false,-1, 7,0);
@@ -1522,11 +1522,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10944,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11289,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10945,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11289,"W1_data", false,-1, 7,0);
@@ -1551,11 +1551,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10946,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11290,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10947,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11290,"W1_data", false,-1, 7,0);
@@ -1580,11 +1580,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10948,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11291,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10949,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11291,"W1_data", false,-1, 7,0);
@@ -1609,11 +1609,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10950,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11292,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10951,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11292,"W1_data", false,-1, 7,0);
@@ -1638,11 +1638,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10952,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11293,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10953,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11293,"W1_data", false,-1, 7,0);
@@ -1667,11 +1667,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10954,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11294,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10955,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11294,"W1_data", false,-1, 7,0);
@@ -1696,11 +1696,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10956,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11295,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10957,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11295,"W1_data", false,-1, 7,0);
@@ -1725,7 +1725,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10958,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11296,"W0_data", false,-1, 7,0);
@@ -1754,7 +1754,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10960,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11297,"W0_data", false,-1, 7,0);
@@ -1783,7 +1783,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10962,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11298,"W0_data", false,-1, 7,0);
@@ -1812,7 +1812,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10964,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11299,"W0_data", false,-1, 7,0);
@@ -1841,7 +1841,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10966,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11300,"W0_data", false,-1, 7,0);
@@ -1870,7 +1870,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10968,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11301,"W0_data", false,-1, 7,0);
@@ -1899,7 +1899,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10970,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11302,"W0_data", false,-1, 7,0);
@@ -1928,7 +1928,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10972,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11303,"W0_data", false,-1, 7,0);
@@ -1957,7 +1957,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10974,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11304,"W0_data", false,-1, 7,0);
@@ -1986,7 +1986,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10976,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11305,"W0_data", false,-1, 7,0);
@@ -2015,7 +2015,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10978,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11306,"W0_data", false,-1, 7,0);
@@ -2044,7 +2044,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10980,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11307,"W0_data", false,-1, 7,0);
@@ -2073,7 +2073,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10982,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11308,"W0_data", false,-1, 7,0);
@@ -2102,7 +2102,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10984,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11309,"W0_data", false,-1, 7,0);
@@ -2131,7 +2131,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10986,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11310,"W0_data", false,-1, 7,0);
@@ -2160,7 +2160,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10988,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11311,"W0_data", false,-1, 7,0);
@@ -2189,7 +2189,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10990,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11312,"W0_data", false,-1, 7,0);
@@ -2218,7 +2218,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10992,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11313,"W0_data", false,-1, 7,0);
@@ -2247,7 +2247,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10994,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11314,"W0_data", false,-1, 7,0);
@@ -2276,7 +2276,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10996,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11315,"W0_data", false,-1, 7,0);
@@ -2305,7 +2305,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10998,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11316,"W0_data", false,-1, 7,0);
@@ -2334,7 +2334,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11000,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11317,"W0_data", false,-1, 7,0);
@@ -2363,7 +2363,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11002,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11318,"W0_data", false,-1, 7,0);
@@ -2392,7 +2392,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11004,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11319,"W0_data", false,-1, 7,0);
@@ -2421,7 +2421,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11006,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11320,"W0_data", false,-1, 7,0);
@@ -2450,7 +2450,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11008,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11321,"W0_data", false,-1, 7,0);
@@ -2479,7 +2479,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11010,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11322,"W0_data", false,-1, 7,0);
@@ -2508,7 +2508,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11012,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11323,"W0_data", false,-1, 7,0);
@@ -2537,7 +2537,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11014,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11324,"W0_data", false,-1, 7,0);
@@ -2566,7 +2566,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11016,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11325,"W0_data", false,-1, 7,0);
@@ -2595,7 +2595,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11018,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11326,"W0_data", false,-1, 7,0);
@@ -2624,7 +2624,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11020,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11327,"W0_data", false,-1, 7,0);
@@ -2653,7 +2653,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11022,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11328,"W0_data", false,-1, 7,0);
@@ -2682,7 +2682,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11024,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11329,"W0_data", false,-1, 7,0);
@@ -2711,7 +2711,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11026,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11330,"W0_data", false,-1, 7,0);
@@ -2740,7 +2740,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11028,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11331,"W0_data", false,-1, 7,0);
@@ -2769,7 +2769,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11030,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11332,"W0_data", false,-1, 7,0);
@@ -2798,7 +2798,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11032,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11333,"W0_data", false,-1, 7,0);
@@ -2827,7 +2827,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11034,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11334,"W0_data", false,-1, 7,0);
@@ -2856,7 +2856,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11036,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11335,"W0_data", false,-1, 7,0);
@@ -2885,7 +2885,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11038,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11336,"W0_data", false,-1, 7,0);
@@ -2914,7 +2914,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11040,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11337,"W0_data", false,-1, 7,0);
@@ -2943,7 +2943,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11042,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11338,"W0_data", false,-1, 7,0);
@@ -2972,7 +2972,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11044,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11339,"W0_data", false,-1, 7,0);
@@ -3001,7 +3001,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11046,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11340,"W0_data", false,-1, 7,0);
@@ -3030,7 +3030,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11048,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11341,"W0_data", false,-1, 7,0);
@@ -3059,7 +3059,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11050,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11342,"W0_data", false,-1, 7,0);
@@ -3088,7 +3088,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11052,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11343,"W0_data", false,-1, 7,0);
@@ -3117,11 +3117,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11054,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11344,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+11055,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11344,"W1_data", false,-1, 7,0);
@@ -3146,11 +3146,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11056,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11345,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+11057,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11345,"W1_data", false,-1, 7,0);
@@ -3175,11 +3175,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11058,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11346,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+11059,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11346,"W1_data", false,-1, 7,0);
@@ -3204,11 +3204,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11060,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11347,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+11061,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11347,"W1_data", false,-1, 7,0);
@@ -3233,11 +3233,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11062,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11348,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+11063,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11348,"W1_data", false,-1, 7,0);
@@ -3262,11 +3262,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11064,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11349,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+11065,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11349,"W1_data", false,-1, 7,0);
@@ -3291,11 +3291,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11066,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11350,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+11067,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11350,"W1_data", false,-1, 7,0);
@@ -3320,11 +3320,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+907,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11068,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11351,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+11288,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+11069,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11351,"W1_data", false,-1, 7,0);
@@ -3349,7 +3349,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11070,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11352,"W0_data", false,-1, 7,0);
@@ -3378,7 +3378,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11072,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11353,"W0_data", false,-1, 7,0);
@@ -3407,7 +3407,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11074,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11354,"W0_data", false,-1, 7,0);
@@ -3436,7 +3436,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11076,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11355,"W0_data", false,-1, 7,0);
@@ -3465,7 +3465,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11078,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11356,"W0_data", false,-1, 7,0);
@@ -3494,7 +3494,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11080,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11357,"W0_data", false,-1, 7,0);
@@ -3523,7 +3523,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11082,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11358,"W0_data", false,-1, 7,0);
@@ -3552,7 +3552,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11084,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11359,"W0_data", false,-1, 7,0);
@@ -3581,7 +3581,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11086,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11360,"W0_data", false,-1, 7,0);
@@ -3610,7 +3610,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11088,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11361,"W0_data", false,-1, 7,0);
@@ -3639,7 +3639,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11090,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11362,"W0_data", false,-1, 7,0);
@@ -3668,7 +3668,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11092,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11363,"W0_data", false,-1, 7,0);
@@ -3697,7 +3697,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11094,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11364,"W0_data", false,-1, 7,0);
@@ -3726,7 +3726,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11096,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11365,"W0_data", false,-1, 7,0);
@@ -3755,7 +3755,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11098,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11366,"W0_data", false,-1, 7,0);
@@ -3784,7 +3784,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11100,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11367,"W0_data", false,-1, 7,0);
@@ -3813,7 +3813,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11102,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11368,"W0_data", false,-1, 7,0);
@@ -3842,7 +3842,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11104,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11369,"W0_data", false,-1, 7,0);
@@ -3871,7 +3871,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11106,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11370,"W0_data", false,-1, 7,0);
@@ -3900,7 +3900,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11108,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11371,"W0_data", false,-1, 7,0);
@@ -3929,7 +3929,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11110,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11372,"W0_data", false,-1, 7,0);
@@ -3958,7 +3958,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11112,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11373,"W0_data", false,-1, 7,0);
@@ -3987,7 +3987,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11114,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11374,"W0_data", false,-1, 7,0);
@@ -4016,7 +4016,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11116,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11375,"W0_data", false,-1, 7,0);
@@ -4045,7 +4045,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11118,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11376,"W0_data", false,-1, 7,0);
@@ -4074,7 +4074,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11120,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11377,"W0_data", false,-1, 7,0);
@@ -4103,7 +4103,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11122,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11378,"W0_data", false,-1, 7,0);
@@ -4132,7 +4132,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11124,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11379,"W0_data", false,-1, 7,0);
@@ -4161,7 +4161,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11126,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11380,"W0_data", false,-1, 7,0);
@@ -4190,7 +4190,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11128,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11381,"W0_data", false,-1, 7,0);
@@ -4219,7 +4219,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11130,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11382,"W0_data", false,-1, 7,0);
@@ -4248,7 +4248,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11132,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11383,"W0_data", false,-1, 7,0);
@@ -4277,7 +4277,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11134,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11384,"W0_data", false,-1, 7,0);
@@ -4306,7 +4306,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11136,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11385,"W0_data", false,-1, 7,0);
@@ -4335,7 +4335,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11138,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11386,"W0_data", false,-1, 7,0);
@@ -4364,7 +4364,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11140,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11387,"W0_data", false,-1, 7,0);
@@ -4393,7 +4393,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11142,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11388,"W0_data", false,-1, 7,0);
@@ -4422,7 +4422,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11144,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11389,"W0_data", false,-1, 7,0);
@@ -4451,7 +4451,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11146,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11390,"W0_data", false,-1, 7,0);
@@ -4480,7 +4480,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11148,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11391,"W0_data", false,-1, 7,0);
@@ -4509,7 +4509,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11150,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11392,"W0_data", false,-1, 7,0);
@@ -4538,7 +4538,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11152,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11393,"W0_data", false,-1, 7,0);
@@ -4567,7 +4567,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11154,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11394,"W0_data", false,-1, 7,0);
@@ -4596,7 +4596,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11156,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11395,"W0_data", false,-1, 7,0);
@@ -4625,7 +4625,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11158,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11396,"W0_data", false,-1, 7,0);
@@ -4654,7 +4654,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11160,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11397,"W0_data", false,-1, 7,0);
@@ -4683,7 +4683,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11162,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11398,"W0_data", false,-1, 7,0);
@@ -4712,7 +4712,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11164,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11399,"W0_data", false,-1, 7,0);
@@ -4741,7 +4741,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11166,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11400,"W0_data", false,-1, 7,0);
@@ -4770,7 +4770,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11168,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11401,"W0_data", false,-1, 7,0);
@@ -4799,7 +4799,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11170,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11402,"W0_data", false,-1, 7,0);
@@ -4828,7 +4828,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11172,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11403,"W0_data", false,-1, 7,0);
@@ -4857,7 +4857,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11174,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11404,"W0_data", false,-1, 7,0);
@@ -4886,7 +4886,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11176,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11405,"W0_data", false,-1, 7,0);
@@ -4915,7 +4915,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11178,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11406,"W0_data", false,-1, 7,0);
@@ -4944,7 +4944,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11180,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11407,"W0_data", false,-1, 7,0);
@@ -4973,7 +4973,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11182,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11408,"W0_data", false,-1, 7,0);
@@ -5002,7 +5002,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11184,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11409,"W0_data", false,-1, 7,0);
@@ -5031,7 +5031,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11186,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11410,"W0_data", false,-1, 7,0);
@@ -5060,7 +5060,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11188,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11411,"W0_data", false,-1, 7,0);
@@ -5089,7 +5089,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11190,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11412,"W0_data", false,-1, 7,0);
@@ -5118,7 +5118,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11192,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11413,"W0_data", false,-1, 7,0);
@@ -5147,7 +5147,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11194,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11414,"W0_data", false,-1, 7,0);
@@ -5176,7 +5176,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11286,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11244,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11288,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+11287,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11196,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11415,"W0_data", false,-1, 7,0);
@@ -5221,75 +5221,99 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBus(c+11283,"R0_addr", false,-1, 4,0);
     tracep->declBit(c+11419,"R0_en", false,-1);
     tracep->declBit(c+11595,"R0_clk", false,-1);
-    tracep->declBus(c+907,"R1_addr", false,-1, 4,0);
-    tracep->declBit(c+11416,"R1_en", false,-1);
+    tracep->declBus(c+11286,"R1_addr", false,-1, 4,0);
+    tracep->declBit(c+11419,"R1_en", false,-1);
     tracep->declBit(c+11595,"R1_clk", false,-1);
-    tracep->declBus(c+5548,"R2_addr", false,-1, 4,0);
-    tracep->declBit(c+11416,"R2_en", false,-1);
+    tracep->declBus(c+11286,"R2_addr", false,-1, 4,0);
+    tracep->declBit(c+11419,"R2_en", false,-1);
     tracep->declBit(c+11595,"R2_clk", false,-1);
-    tracep->declBus(c+5549,"R3_addr", false,-1, 4,0);
-    tracep->declBit(c+11416,"R3_en", false,-1);
+    tracep->declBus(c+11283,"R3_addr", false,-1, 4,0);
+    tracep->declBit(c+11419,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+11284,"R4_addr", false,-1, 4,0);
-    tracep->declBit(c+11419,"R4_en", false,-1);
+    tracep->declBus(c+907,"R4_addr", false,-1, 4,0);
+    tracep->declBit(c+11416,"R4_en", false,-1);
     tracep->declBit(c+11595,"R4_clk", false,-1);
-    tracep->declBus(c+5550,"R5_addr", false,-1, 4,0);
+    tracep->declBus(c+907,"R5_addr", false,-1, 4,0);
     tracep->declBit(c+11416,"R5_en", false,-1);
     tracep->declBit(c+11595,"R5_clk", false,-1);
-    tracep->declBus(c+11285,"R6_addr", false,-1, 4,0);
-    tracep->declBit(c+11419,"R6_en", false,-1);
+    tracep->declBus(c+5548,"R6_addr", false,-1, 4,0);
+    tracep->declBit(c+11416,"R6_en", false,-1);
     tracep->declBit(c+11595,"R6_clk", false,-1);
-    tracep->declBus(c+11286,"R7_addr", false,-1, 4,0);
-    tracep->declBit(c+11419,"R7_en", false,-1);
+    tracep->declBus(c+5548,"R7_addr", false,-1, 4,0);
+    tracep->declBit(c+11416,"R7_en", false,-1);
     tracep->declBit(c+11595,"R7_clk", false,-1);
-    tracep->declBus(c+11283,"R8_addr", false,-1, 4,0);
-    tracep->declBit(c+5551,"R8_en", false,-1);
+    tracep->declBus(c+5549,"R8_addr", false,-1, 4,0);
+    tracep->declBit(c+11416,"R8_en", false,-1);
     tracep->declBit(c+11595,"R8_clk", false,-1);
-    tracep->declBus(c+11284,"R9_addr", false,-1, 4,0);
-    tracep->declBit(c+5551,"R9_en", false,-1);
+    tracep->declBus(c+5549,"R9_addr", false,-1, 4,0);
+    tracep->declBit(c+11416,"R9_en", false,-1);
     tracep->declBit(c+11595,"R9_clk", false,-1);
-    tracep->declBus(c+11285,"R10_addr", false,-1, 4,0);
-    tracep->declBit(c+5551,"R10_en", false,-1);
+    tracep->declBus(c+5550,"R10_addr", false,-1, 4,0);
+    tracep->declBit(c+11416,"R10_en", false,-1);
     tracep->declBit(c+11595,"R10_clk", false,-1);
-    tracep->declBus(c+11286,"R11_addr", false,-1, 4,0);
-    tracep->declBit(c+5551,"R11_en", false,-1);
+    tracep->declBus(c+5550,"R11_addr", false,-1, 4,0);
+    tracep->declBit(c+11416,"R11_en", false,-1);
     tracep->declBit(c+11595,"R11_clk", false,-1);
-    tracep->declBus(c+11285,"R12_addr", false,-1, 4,0);
-    tracep->declBit(c+5551,"R12_en", false,-1);
+    tracep->declBus(c+11284,"R12_addr", false,-1, 4,0);
+    tracep->declBit(c+11419,"R12_en", false,-1);
     tracep->declBit(c+11595,"R12_clk", false,-1);
-    tracep->declBus(c+11286,"R13_addr", false,-1, 4,0);
-    tracep->declBit(c+5551,"R13_en", false,-1);
+    tracep->declBus(c+11284,"R13_addr", false,-1, 4,0);
+    tracep->declBit(c+11419,"R13_en", false,-1);
     tracep->declBit(c+11595,"R13_clk", false,-1);
-    tracep->declBus(c+11283,"R14_addr", false,-1, 4,0);
-    tracep->declBit(c+5551,"R14_en", false,-1);
+    tracep->declBus(c+11285,"R14_addr", false,-1, 4,0);
+    tracep->declBit(c+11419,"R14_en", false,-1);
     tracep->declBit(c+11595,"R14_clk", false,-1);
-    tracep->declBus(c+11284,"R15_addr", false,-1, 4,0);
-    tracep->declBit(c+5551,"R15_en", false,-1);
+    tracep->declBus(c+11285,"R15_addr", false,-1, 4,0);
+    tracep->declBit(c+11419,"R15_en", false,-1);
     tracep->declBit(c+11595,"R15_clk", false,-1);
-    tracep->declBus(c+11285,"R16_addr", false,-1, 4,0);
+    tracep->declBus(c+11283,"R16_addr", false,-1, 4,0);
     tracep->declBit(c+5551,"R16_en", false,-1);
     tracep->declBit(c+11595,"R16_clk", false,-1);
-    tracep->declBus(c+11286,"R17_addr", false,-1, 4,0);
+    tracep->declBus(c+11284,"R17_addr", false,-1, 4,0);
     tracep->declBit(c+5551,"R17_en", false,-1);
     tracep->declBit(c+11595,"R17_clk", false,-1);
-    tracep->declBus(c+11283,"R18_addr", false,-1, 4,0);
+    tracep->declBus(c+11285,"R18_addr", false,-1, 4,0);
     tracep->declBit(c+5551,"R18_en", false,-1);
     tracep->declBit(c+11595,"R18_clk", false,-1);
-    tracep->declBus(c+11284,"R19_addr", false,-1, 4,0);
+    tracep->declBus(c+11286,"R19_addr", false,-1, 4,0);
     tracep->declBit(c+5551,"R19_en", false,-1);
     tracep->declBit(c+11595,"R19_clk", false,-1);
+    tracep->declBus(c+11285,"R20_addr", false,-1, 4,0);
+    tracep->declBit(c+5551,"R20_en", false,-1);
+    tracep->declBit(c+11595,"R20_clk", false,-1);
+    tracep->declBus(c+11286,"R21_addr", false,-1, 4,0);
+    tracep->declBit(c+5551,"R21_en", false,-1);
+    tracep->declBit(c+11595,"R21_clk", false,-1);
+    tracep->declBus(c+11283,"R22_addr", false,-1, 4,0);
+    tracep->declBit(c+5551,"R22_en", false,-1);
+    tracep->declBit(c+11595,"R22_clk", false,-1);
+    tracep->declBus(c+11284,"R23_addr", false,-1, 4,0);
+    tracep->declBit(c+5551,"R23_en", false,-1);
+    tracep->declBit(c+11595,"R23_clk", false,-1);
+    tracep->declBus(c+11285,"R24_addr", false,-1, 4,0);
+    tracep->declBit(c+5551,"R24_en", false,-1);
+    tracep->declBit(c+11595,"R24_clk", false,-1);
+    tracep->declBus(c+11286,"R25_addr", false,-1, 4,0);
+    tracep->declBit(c+5551,"R25_en", false,-1);
+    tracep->declBit(c+11595,"R25_clk", false,-1);
+    tracep->declBus(c+11283,"R26_addr", false,-1, 4,0);
+    tracep->declBit(c+5551,"R26_en", false,-1);
+    tracep->declBit(c+11595,"R26_clk", false,-1);
+    tracep->declBus(c+11284,"R27_addr", false,-1, 4,0);
+    tracep->declBit(c+5551,"R27_en", false,-1);
+    tracep->declBit(c+11595,"R27_clk", false,-1);
     tracep->declBus(c+11283,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+11419,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11420,"W0_data", false,-1, 1,0);
-    tracep->declBus(c+11284,"W1_addr", false,-1, 4,0);
-    tracep->declBit(c+11419,"W1_en", false,-1);
+    tracep->declBus(c+907,"W1_addr", false,-1, 4,0);
+    tracep->declBit(c+11416,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
-    tracep->declBus(c+11421,"W1_data", false,-1, 1,0);
-    tracep->declBus(c+907,"W2_addr", false,-1, 4,0);
-    tracep->declBit(c+11416,"W2_en", false,-1);
+    tracep->declBus(c+11198,"W1_data", false,-1, 1,0);
+    tracep->declBus(c+11284,"W2_addr", false,-1, 4,0);
+    tracep->declBit(c+11419,"W2_en", false,-1);
     tracep->declBit(c+11595,"W2_clk", false,-1);
-    tracep->declBus(c+11198,"W2_data", false,-1, 1,0);
+    tracep->declBus(c+11421,"W2_data", false,-1, 1,0);
     tracep->declBus(c+5548,"W3_addr", false,-1, 4,0);
     tracep->declBit(c+11416,"W3_en", false,-1);
     tracep->declBit(c+11595,"W3_clk", false,-1);
@@ -5311,25 +5335,33 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Icac
     tracep->declBit(c+11595,"W7_clk", false,-1);
     tracep->declBus(c+11423,"W7_data", false,-1, 1,0);
     tracep->declBus(c+11424,"R0_data", false,-1, 1,0);
-    tracep->declBus(c+11202,"R1_data", false,-1, 1,0);
-    tracep->declBus(c+11203,"R2_data", false,-1, 1,0);
-    tracep->declBus(c+11204,"R3_data", false,-1, 1,0);
-    tracep->declBus(c+11425,"R4_data", false,-1, 1,0);
-    tracep->declBus(c+11205,"R5_data", false,-1, 1,0);
-    tracep->declBus(c+11426,"R6_data", false,-1, 1,0);
-    tracep->declBus(c+11427,"R7_data", false,-1, 1,0);
-    tracep->declBus(c+11428,"R8_data", false,-1, 1,0);
-    tracep->declBus(c+11429,"R9_data", false,-1, 1,0);
-    tracep->declBus(c+11430,"R10_data", false,-1, 1,0);
-    tracep->declBus(c+11431,"R11_data", false,-1, 1,0);
-    tracep->declBus(c+11430,"R12_data", false,-1, 1,0);
-    tracep->declBus(c+11431,"R13_data", false,-1, 1,0);
-    tracep->declBus(c+11428,"R14_data", false,-1, 1,0);
-    tracep->declBus(c+11429,"R15_data", false,-1, 1,0);
-    tracep->declBus(c+11430,"R16_data", false,-1, 1,0);
-    tracep->declBus(c+11431,"R17_data", false,-1, 1,0);
-    tracep->declBus(c+11428,"R18_data", false,-1, 1,0);
-    tracep->declBus(c+11429,"R19_data", false,-1, 1,0);
+    tracep->declBus(c+11425,"R1_data", false,-1, 1,0);
+    tracep->declBus(c+11425,"R2_data", false,-1, 1,0);
+    tracep->declBus(c+11424,"R3_data", false,-1, 1,0);
+    tracep->declBus(c+11202,"R4_data", false,-1, 1,0);
+    tracep->declBus(c+11202,"R5_data", false,-1, 1,0);
+    tracep->declBus(c+11203,"R6_data", false,-1, 1,0);
+    tracep->declBus(c+11203,"R7_data", false,-1, 1,0);
+    tracep->declBus(c+11204,"R8_data", false,-1, 1,0);
+    tracep->declBus(c+11204,"R9_data", false,-1, 1,0);
+    tracep->declBus(c+11205,"R10_data", false,-1, 1,0);
+    tracep->declBus(c+11205,"R11_data", false,-1, 1,0);
+    tracep->declBus(c+11426,"R12_data", false,-1, 1,0);
+    tracep->declBus(c+11426,"R13_data", false,-1, 1,0);
+    tracep->declBus(c+11427,"R14_data", false,-1, 1,0);
+    tracep->declBus(c+11427,"R15_data", false,-1, 1,0);
+    tracep->declBus(c+11428,"R16_data", false,-1, 1,0);
+    tracep->declBus(c+11429,"R17_data", false,-1, 1,0);
+    tracep->declBus(c+11430,"R18_data", false,-1, 1,0);
+    tracep->declBus(c+11431,"R19_data", false,-1, 1,0);
+    tracep->declBus(c+11430,"R20_data", false,-1, 1,0);
+    tracep->declBus(c+11431,"R21_data", false,-1, 1,0);
+    tracep->declBus(c+11428,"R22_data", false,-1, 1,0);
+    tracep->declBus(c+11429,"R23_data", false,-1, 1,0);
+    tracep->declBus(c+11430,"R24_data", false,-1, 1,0);
+    tracep->declBus(c+11431,"R25_data", false,-1, 1,0);
+    tracep->declBus(c+11428,"R26_data", false,-1, 1,0);
+    tracep->declBus(c+11429,"R27_data", false,-1, 1,0);
     for (int i = 0; i < 32; ++i) {
         tracep->declBus(c+5552+i*1,"Memory", true,(i+0), 1,0);
     }
@@ -5688,11 +5720,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6266,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11472,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6267,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11472,"W1_data", false,-1, 7,0);
@@ -5717,11 +5749,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6304,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11473,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6305,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11473,"W1_data", false,-1, 7,0);
@@ -5746,11 +5778,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6342,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11474,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6343,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11474,"W1_data", false,-1, 7,0);
@@ -5775,11 +5807,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6380,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11475,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6381,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11475,"W1_data", false,-1, 7,0);
@@ -5804,11 +5836,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6418,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11476,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6419,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11476,"W1_data", false,-1, 7,0);
@@ -5833,11 +5865,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6456,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11477,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6457,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11477,"W1_data", false,-1, 7,0);
@@ -5862,11 +5894,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6494,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11478,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6495,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11478,"W1_data", false,-1, 7,0);
@@ -5891,11 +5923,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6532,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11479,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6533,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11479,"W1_data", false,-1, 7,0);
@@ -5920,11 +5952,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6570,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11480,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6571,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11480,"W1_data", false,-1, 7,0);
@@ -5949,11 +5981,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6608,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11481,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6609,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11481,"W1_data", false,-1, 7,0);
@@ -5978,11 +6010,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6646,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11482,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6647,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11482,"W1_data", false,-1, 7,0);
@@ -6007,11 +6039,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6684,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11483,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6685,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11483,"W1_data", false,-1, 7,0);
@@ -6036,11 +6068,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6722,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11484,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6723,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11484,"W1_data", false,-1, 7,0);
@@ -6065,11 +6097,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6760,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11485,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6761,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11485,"W1_data", false,-1, 7,0);
@@ -6094,11 +6126,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6798,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11486,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6799,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11486,"W1_data", false,-1, 7,0);
@@ -6123,11 +6155,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6836,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11487,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6837,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11487,"W1_data", false,-1, 7,0);
@@ -6152,11 +6184,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6874,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11488,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6875,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11488,"W1_data", false,-1, 7,0);
@@ -6181,11 +6213,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6912,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11489,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6913,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11489,"W1_data", false,-1, 7,0);
@@ -6210,11 +6242,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6950,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11490,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6951,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11490,"W1_data", false,-1, 7,0);
@@ -6239,11 +6271,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+6988,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11491,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+6989,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11491,"W1_data", false,-1, 7,0);
@@ -6268,11 +6300,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7026,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11492,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7027,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11492,"W1_data", false,-1, 7,0);
@@ -6297,11 +6329,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7064,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11493,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7065,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11493,"W1_data", false,-1, 7,0);
@@ -6326,11 +6358,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7102,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11494,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7103,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11494,"W1_data", false,-1, 7,0);
@@ -6355,11 +6387,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7140,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11495,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7141,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11495,"W1_data", false,-1, 7,0);
@@ -6384,11 +6416,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7178,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11496,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7179,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11496,"W1_data", false,-1, 7,0);
@@ -6413,11 +6445,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7216,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11497,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7217,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11497,"W1_data", false,-1, 7,0);
@@ -6442,11 +6474,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7254,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11498,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7255,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11498,"W1_data", false,-1, 7,0);
@@ -6471,11 +6503,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7292,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11499,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7293,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11499,"W1_data", false,-1, 7,0);
@@ -6500,11 +6532,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7330,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11500,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7331,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11500,"W1_data", false,-1, 7,0);
@@ -6529,11 +6561,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7368,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11501,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7369,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11501,"W1_data", false,-1, 7,0);
@@ -6558,11 +6590,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7406,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11502,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7407,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11502,"W1_data", false,-1, 7,0);
@@ -6587,11 +6619,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7444,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11503,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7445,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11503,"W1_data", false,-1, 7,0);
@@ -6616,11 +6648,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7482,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11504,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7483,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11504,"W1_data", false,-1, 7,0);
@@ -6645,11 +6677,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7520,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11505,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7521,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11505,"W1_data", false,-1, 7,0);
@@ -6674,11 +6706,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7558,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11506,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7559,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11506,"W1_data", false,-1, 7,0);
@@ -6703,11 +6735,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7596,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11507,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7597,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11507,"W1_data", false,-1, 7,0);
@@ -6732,11 +6764,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7634,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11508,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7635,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11508,"W1_data", false,-1, 7,0);
@@ -6761,11 +6793,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7672,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11509,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7673,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11509,"W1_data", false,-1, 7,0);
@@ -6790,11 +6822,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7710,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11510,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7711,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11510,"W1_data", false,-1, 7,0);
@@ -6819,11 +6851,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7748,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11511,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7749,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11511,"W1_data", false,-1, 7,0);
@@ -6848,11 +6880,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7786,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11512,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7787,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11512,"W1_data", false,-1, 7,0);
@@ -6877,11 +6909,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7824,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11513,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7825,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11513,"W1_data", false,-1, 7,0);
@@ -6906,11 +6938,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7862,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11514,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7863,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11514,"W1_data", false,-1, 7,0);
@@ -6935,11 +6967,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7900,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11515,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7901,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11515,"W1_data", false,-1, 7,0);
@@ -6964,11 +6996,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7938,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11516,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7939,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11516,"W1_data", false,-1, 7,0);
@@ -6993,11 +7025,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+7976,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11517,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+7977,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11517,"W1_data", false,-1, 7,0);
@@ -7022,11 +7054,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8014,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11518,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8015,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11518,"W1_data", false,-1, 7,0);
@@ -7051,11 +7083,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8052,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11519,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8053,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11519,"W1_data", false,-1, 7,0);
@@ -7312,11 +7344,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8394,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11528,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8395,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11528,"W1_data", false,-1, 7,0);
@@ -7341,11 +7373,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8432,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11529,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8433,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11529,"W1_data", false,-1, 7,0);
@@ -7370,11 +7402,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8470,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11530,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8471,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11530,"W1_data", false,-1, 7,0);
@@ -7399,11 +7431,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8508,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11531,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8509,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11531,"W1_data", false,-1, 7,0);
@@ -7428,11 +7460,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8546,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11532,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8547,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11532,"W1_data", false,-1, 7,0);
@@ -7457,11 +7489,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8584,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11533,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8585,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11533,"W1_data", false,-1, 7,0);
@@ -7486,11 +7518,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8622,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11534,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8623,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11534,"W1_data", false,-1, 7,0);
@@ -7515,11 +7547,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8660,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11535,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8661,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11535,"W1_data", false,-1, 7,0);
@@ -7544,11 +7576,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8698,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11536,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8699,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11536,"W1_data", false,-1, 7,0);
@@ -7573,11 +7605,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8736,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11537,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8737,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11537,"W1_data", false,-1, 7,0);
@@ -7602,11 +7634,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8774,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11538,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8775,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11538,"W1_data", false,-1, 7,0);
@@ -7631,11 +7663,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8812,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11539,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8813,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11539,"W1_data", false,-1, 7,0);
@@ -7660,11 +7692,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8850,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11540,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8851,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11540,"W1_data", false,-1, 7,0);
@@ -7689,11 +7721,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8888,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11541,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8889,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11541,"W1_data", false,-1, 7,0);
@@ -7718,11 +7750,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8926,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11542,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8927,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11542,"W1_data", false,-1, 7,0);
@@ -7747,11 +7779,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+8964,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11543,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+8965,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11543,"W1_data", false,-1, 7,0);
@@ -7776,11 +7808,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9002,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11544,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9003,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11544,"W1_data", false,-1, 7,0);
@@ -7805,11 +7837,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9040,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11545,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9041,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11545,"W1_data", false,-1, 7,0);
@@ -7834,11 +7866,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9078,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11546,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9079,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11546,"W1_data", false,-1, 7,0);
@@ -7863,11 +7895,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9116,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11547,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9117,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11547,"W1_data", false,-1, 7,0);
@@ -7892,11 +7924,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9154,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11548,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9155,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11548,"W1_data", false,-1, 7,0);
@@ -7921,11 +7953,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9192,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11549,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9193,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11549,"W1_data", false,-1, 7,0);
@@ -7950,11 +7982,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9230,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11550,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9231,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11550,"W1_data", false,-1, 7,0);
@@ -7979,11 +8011,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9268,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11551,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9269,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11551,"W1_data", false,-1, 7,0);
@@ -8008,11 +8040,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9306,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11552,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9307,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11552,"W1_data", false,-1, 7,0);
@@ -8037,11 +8069,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9344,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11553,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9345,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11553,"W1_data", false,-1, 7,0);
@@ -8066,11 +8098,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9382,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11554,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9383,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11554,"W1_data", false,-1, 7,0);
@@ -8095,11 +8127,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9420,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11555,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9421,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11555,"W1_data", false,-1, 7,0);
@@ -8124,11 +8156,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9458,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11556,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9459,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11556,"W1_data", false,-1, 7,0);
@@ -8153,11 +8185,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9496,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11557,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9497,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11557,"W1_data", false,-1, 7,0);
@@ -8182,11 +8214,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9534,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11558,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9535,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11558,"W1_data", false,-1, 7,0);
@@ -8211,11 +8243,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9572,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11559,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9573,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11559,"W1_data", false,-1, 7,0);
@@ -8240,11 +8272,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9610,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11560,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9611,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11560,"W1_data", false,-1, 7,0);
@@ -8269,11 +8301,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9648,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11561,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9649,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11561,"W1_data", false,-1, 7,0);
@@ -8298,11 +8330,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9686,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11562,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9687,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11562,"W1_data", false,-1, 7,0);
@@ -8327,11 +8359,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9724,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11563,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9725,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11563,"W1_data", false,-1, 7,0);
@@ -8356,11 +8388,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9762,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11564,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9763,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11564,"W1_data", false,-1, 7,0);
@@ -8385,11 +8417,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9800,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11565,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9801,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11565,"W1_data", false,-1, 7,0);
@@ -8414,11 +8446,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9838,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11566,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9839,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11566,"W1_data", false,-1, 7,0);
@@ -8443,11 +8475,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9876,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11567,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9877,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11567,"W1_data", false,-1, 7,0);
@@ -8472,11 +8504,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9914,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11568,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9915,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11568,"W1_data", false,-1, 7,0);
@@ -8501,11 +8533,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9952,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11569,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9953,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11569,"W1_data", false,-1, 7,0);
@@ -8530,11 +8562,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+9990,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11570,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+9991,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11570,"W1_data", false,-1, 7,0);
@@ -8559,11 +8591,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10028,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11571,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10029,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11571,"W1_data", false,-1, 7,0);
@@ -8588,11 +8620,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10066,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11572,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10067,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11572,"W1_data", false,-1, 7,0);
@@ -8617,11 +8649,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10104,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11573,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10105,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11573,"W1_data", false,-1, 7,0);
@@ -8646,11 +8678,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10142,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11574,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10143,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11574,"W1_data", false,-1, 7,0);
@@ -8675,11 +8707,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10180,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11575,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10181,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11575,"W1_data", false,-1, 7,0);
@@ -8704,11 +8736,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10218,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11576,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10219,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11576,"W1_data", false,-1, 7,0);
@@ -8733,11 +8765,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10256,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11577,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10257,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11577,"W1_data", false,-1, 7,0);
@@ -8762,11 +8794,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10294,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11578,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10295,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11578,"W1_data", false,-1, 7,0);
@@ -8791,11 +8823,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10332,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11579,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10333,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11579,"W1_data", false,-1, 7,0);
@@ -8820,11 +8852,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10370,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11580,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10371,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11580,"W1_data", false,-1, 7,0);
@@ -8849,11 +8881,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10408,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11581,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10409,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11581,"W1_data", false,-1, 7,0);
@@ -8878,11 +8910,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10446,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11582,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10447,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11582,"W1_data", false,-1, 7,0);
@@ -8907,11 +8939,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10484,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11583,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10485,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11583,"W1_data", false,-1, 7,0);
@@ -8936,11 +8968,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10522,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11584,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10523,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11584,"W1_data", false,-1, 7,0);
@@ -8965,11 +8997,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10560,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11585,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10561,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11585,"W1_data", false,-1, 7,0);
@@ -8994,11 +9026,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10598,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11586,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10599,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11586,"W1_data", false,-1, 7,0);
@@ -9023,11 +9055,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10636,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11587,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10637,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11587,"W1_data", false,-1, 7,0);
@@ -9052,11 +9084,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10674,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11588,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10675,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11588,"W1_data", false,-1, 7,0);
@@ -9081,11 +9113,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10712,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11589,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10713,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11589,"W1_data", false,-1, 7,0);
@@ -9110,11 +9142,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10750,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11590,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10751,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11590,"W1_data", false,-1, 7,0);
@@ -9139,11 +9171,11 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5959,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+5608,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10788,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+11591,"W0_data", false,-1, 7,0);
-    tracep->declBus(c+5960,"W1_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
     tracep->declBit(c+10789,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+11591,"W1_data", false,-1, 7,0);
@@ -9168,7 +9200,7 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5957,"R3_addr", false,-1, 4,0);
     tracep->declBit(c+11600,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5960,"W0_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10826,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+5612,"W0_data", false,-1, 21,0);
@@ -9184,73 +9216,97 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+5956,"R0_addr", false,-1, 4,0);
     tracep->declBit(c+10861,"R0_en", false,-1);
     tracep->declBit(c+11595,"R0_clk", false,-1);
-    tracep->declBus(c+5960,"R1_addr", false,-1, 4,0);
-    tracep->declBit(c+10826,"R1_en", false,-1);
+    tracep->declBus(c+5959,"R1_addr", false,-1, 4,0);
+    tracep->declBit(c+10861,"R1_en", false,-1);
     tracep->declBit(c+11595,"R1_clk", false,-1);
-    tracep->declBus(c+10862,"R2_addr", false,-1, 4,0);
-    tracep->declBit(c+10826,"R2_en", false,-1);
+    tracep->declBus(c+5959,"R2_addr", false,-1, 4,0);
+    tracep->declBit(c+10861,"R2_en", false,-1);
     tracep->declBit(c+11595,"R2_clk", false,-1);
-    tracep->declBus(c+10863,"R3_addr", false,-1, 4,0);
-    tracep->declBit(c+10826,"R3_en", false,-1);
+    tracep->declBus(c+5956,"R3_addr", false,-1, 4,0);
+    tracep->declBit(c+10861,"R3_en", false,-1);
     tracep->declBit(c+11595,"R3_clk", false,-1);
-    tracep->declBus(c+5957,"R4_addr", false,-1, 4,0);
-    tracep->declBit(c+10861,"R4_en", false,-1);
+    tracep->declBus(c+5962,"R4_addr", false,-1, 4,0);
+    tracep->declBit(c+10826,"R4_en", false,-1);
     tracep->declBit(c+11595,"R4_clk", false,-1);
-    tracep->declBus(c+10864,"R5_addr", false,-1, 4,0);
+    tracep->declBus(c+5962,"R5_addr", false,-1, 4,0);
     tracep->declBit(c+10826,"R5_en", false,-1);
     tracep->declBit(c+11595,"R5_clk", false,-1);
-    tracep->declBus(c+5958,"R6_addr", false,-1, 4,0);
-    tracep->declBit(c+10861,"R6_en", false,-1);
+    tracep->declBus(c+10862,"R6_addr", false,-1, 4,0);
+    tracep->declBit(c+10826,"R6_en", false,-1);
     tracep->declBit(c+11595,"R6_clk", false,-1);
-    tracep->declBus(c+5959,"R7_addr", false,-1, 4,0);
-    tracep->declBit(c+10861,"R7_en", false,-1);
+    tracep->declBus(c+10862,"R7_addr", false,-1, 4,0);
+    tracep->declBit(c+10826,"R7_en", false,-1);
     tracep->declBit(c+11595,"R7_clk", false,-1);
-    tracep->declBus(c+5956,"R8_addr", false,-1, 4,0);
-    tracep->declBit(c+10865,"R8_en", false,-1);
+    tracep->declBus(c+10863,"R8_addr", false,-1, 4,0);
+    tracep->declBit(c+10826,"R8_en", false,-1);
     tracep->declBit(c+11595,"R8_clk", false,-1);
-    tracep->declBus(c+5957,"R9_addr", false,-1, 4,0);
-    tracep->declBit(c+10865,"R9_en", false,-1);
+    tracep->declBus(c+10863,"R9_addr", false,-1, 4,0);
+    tracep->declBit(c+10826,"R9_en", false,-1);
     tracep->declBit(c+11595,"R9_clk", false,-1);
-    tracep->declBus(c+5958,"R10_addr", false,-1, 4,0);
-    tracep->declBit(c+10865,"R10_en", false,-1);
+    tracep->declBus(c+10864,"R10_addr", false,-1, 4,0);
+    tracep->declBit(c+10826,"R10_en", false,-1);
     tracep->declBit(c+11595,"R10_clk", false,-1);
-    tracep->declBus(c+5959,"R11_addr", false,-1, 4,0);
-    tracep->declBit(c+10865,"R11_en", false,-1);
+    tracep->declBus(c+10864,"R11_addr", false,-1, 4,0);
+    tracep->declBit(c+10826,"R11_en", false,-1);
     tracep->declBit(c+11595,"R11_clk", false,-1);
-    tracep->declBus(c+5958,"R12_addr", false,-1, 4,0);
-    tracep->declBit(c+10865,"R12_en", false,-1);
+    tracep->declBus(c+5957,"R12_addr", false,-1, 4,0);
+    tracep->declBit(c+10861,"R12_en", false,-1);
     tracep->declBit(c+11595,"R12_clk", false,-1);
-    tracep->declBus(c+5959,"R13_addr", false,-1, 4,0);
-    tracep->declBit(c+10865,"R13_en", false,-1);
+    tracep->declBus(c+5957,"R13_addr", false,-1, 4,0);
+    tracep->declBit(c+10861,"R13_en", false,-1);
     tracep->declBit(c+11595,"R13_clk", false,-1);
-    tracep->declBus(c+5956,"R14_addr", false,-1, 4,0);
-    tracep->declBit(c+10865,"R14_en", false,-1);
+    tracep->declBus(c+5958,"R14_addr", false,-1, 4,0);
+    tracep->declBit(c+10861,"R14_en", false,-1);
     tracep->declBit(c+11595,"R14_clk", false,-1);
-    tracep->declBus(c+5957,"R15_addr", false,-1, 4,0);
-    tracep->declBit(c+10865,"R15_en", false,-1);
+    tracep->declBus(c+5958,"R15_addr", false,-1, 4,0);
+    tracep->declBit(c+10861,"R15_en", false,-1);
     tracep->declBit(c+11595,"R15_clk", false,-1);
-    tracep->declBus(c+5958,"R16_addr", false,-1, 4,0);
+    tracep->declBus(c+5956,"R16_addr", false,-1, 4,0);
     tracep->declBit(c+10865,"R16_en", false,-1);
     tracep->declBit(c+11595,"R16_clk", false,-1);
-    tracep->declBus(c+5959,"R17_addr", false,-1, 4,0);
+    tracep->declBus(c+5957,"R17_addr", false,-1, 4,0);
     tracep->declBit(c+10865,"R17_en", false,-1);
     tracep->declBit(c+11595,"R17_clk", false,-1);
-    tracep->declBus(c+5956,"R18_addr", false,-1, 4,0);
+    tracep->declBus(c+5958,"R18_addr", false,-1, 4,0);
     tracep->declBit(c+10865,"R18_en", false,-1);
     tracep->declBit(c+11595,"R18_clk", false,-1);
-    tracep->declBus(c+5957,"R19_addr", false,-1, 4,0);
+    tracep->declBus(c+5959,"R19_addr", false,-1, 4,0);
     tracep->declBit(c+10865,"R19_en", false,-1);
     tracep->declBit(c+11595,"R19_clk", false,-1);
+    tracep->declBus(c+5958,"R20_addr", false,-1, 4,0);
+    tracep->declBit(c+10865,"R20_en", false,-1);
+    tracep->declBit(c+11595,"R20_clk", false,-1);
+    tracep->declBus(c+5959,"R21_addr", false,-1, 4,0);
+    tracep->declBit(c+10865,"R21_en", false,-1);
+    tracep->declBit(c+11595,"R21_clk", false,-1);
+    tracep->declBus(c+5956,"R22_addr", false,-1, 4,0);
+    tracep->declBit(c+10865,"R22_en", false,-1);
+    tracep->declBit(c+11595,"R22_clk", false,-1);
+    tracep->declBus(c+5957,"R23_addr", false,-1, 4,0);
+    tracep->declBit(c+10865,"R23_en", false,-1);
+    tracep->declBit(c+11595,"R23_clk", false,-1);
+    tracep->declBus(c+5958,"R24_addr", false,-1, 4,0);
+    tracep->declBit(c+10865,"R24_en", false,-1);
+    tracep->declBit(c+11595,"R24_clk", false,-1);
+    tracep->declBus(c+5959,"R25_addr", false,-1, 4,0);
+    tracep->declBit(c+10865,"R25_en", false,-1);
+    tracep->declBit(c+11595,"R25_clk", false,-1);
+    tracep->declBus(c+5956,"R26_addr", false,-1, 4,0);
+    tracep->declBit(c+10865,"R26_en", false,-1);
+    tracep->declBit(c+11595,"R26_clk", false,-1);
+    tracep->declBus(c+5957,"R27_addr", false,-1, 4,0);
+    tracep->declBit(c+10865,"R27_en", false,-1);
+    tracep->declBit(c+11595,"R27_clk", false,-1);
     tracep->declBus(c+5956,"W0_addr", false,-1, 4,0);
     tracep->declBit(c+10861,"W0_en", false,-1);
     tracep->declBit(c+11595,"W0_clk", false,-1);
     tracep->declBus(c+10866,"W0_data", false,-1, 1,0);
-    tracep->declBus(c+5957,"W1_addr", false,-1, 4,0);
-    tracep->declBit(c+10861,"W1_en", false,-1);
+    tracep->declBus(c+5962,"W1_addr", false,-1, 4,0);
+    tracep->declBit(c+10826,"W1_en", false,-1);
     tracep->declBit(c+11595,"W1_clk", false,-1);
     tracep->declBus(c+10867,"W1_data", false,-1, 1,0);
-    tracep->declBus(c+5960,"W2_addr", false,-1, 4,0);
-    tracep->declBit(c+10826,"W2_en", false,-1);
+    tracep->declBus(c+5957,"W2_addr", false,-1, 4,0);
+    tracep->declBit(c+10861,"W2_en", false,-1);
     tracep->declBit(c+11595,"W2_clk", false,-1);
     tracep->declBus(c+10868,"W2_data", false,-1, 1,0);
     tracep->declBus(c+10862,"W3_addr", false,-1, 4,0);
@@ -9275,24 +9331,32 @@ VL_ATTR_COLD void VSoc___024root__trace_init_sub__TOP__Soc__DOT__core__DOT__Dcac
     tracep->declBus(c+10873,"W7_data", false,-1, 1,0);
     tracep->declBus(c+10874,"R0_data", false,-1, 1,0);
     tracep->declBus(c+10875,"R1_data", false,-1, 1,0);
-    tracep->declBus(c+10876,"R2_data", false,-1, 1,0);
-    tracep->declBus(c+10877,"R3_data", false,-1, 1,0);
-    tracep->declBus(c+10878,"R4_data", false,-1, 1,0);
-    tracep->declBus(c+10879,"R5_data", false,-1, 1,0);
-    tracep->declBus(c+10880,"R6_data", false,-1, 1,0);
-    tracep->declBus(c+10881,"R7_data", false,-1, 1,0);
-    tracep->declBus(c+10882,"R8_data", false,-1, 1,0);
-    tracep->declBus(c+10883,"R9_data", false,-1, 1,0);
-    tracep->declBus(c+10884,"R10_data", false,-1, 1,0);
-    tracep->declBus(c+10885,"R11_data", false,-1, 1,0);
-    tracep->declBus(c+10884,"R12_data", false,-1, 1,0);
-    tracep->declBus(c+10885,"R13_data", false,-1, 1,0);
-    tracep->declBus(c+10882,"R14_data", false,-1, 1,0);
-    tracep->declBus(c+10883,"R15_data", false,-1, 1,0);
-    tracep->declBus(c+10884,"R16_data", false,-1, 1,0);
-    tracep->declBus(c+10885,"R17_data", false,-1, 1,0);
-    tracep->declBus(c+10882,"R18_data", false,-1, 1,0);
-    tracep->declBus(c+10883,"R19_data", false,-1, 1,0);
+    tracep->declBus(c+10875,"R2_data", false,-1, 1,0);
+    tracep->declBus(c+10874,"R3_data", false,-1, 1,0);
+    tracep->declBus(c+10876,"R4_data", false,-1, 1,0);
+    tracep->declBus(c+10876,"R5_data", false,-1, 1,0);
+    tracep->declBus(c+10877,"R6_data", false,-1, 1,0);
+    tracep->declBus(c+10877,"R7_data", false,-1, 1,0);
+    tracep->declBus(c+10878,"R8_data", false,-1, 1,0);
+    tracep->declBus(c+10878,"R9_data", false,-1, 1,0);
+    tracep->declBus(c+10879,"R10_data", false,-1, 1,0);
+    tracep->declBus(c+10879,"R11_data", false,-1, 1,0);
+    tracep->declBus(c+10880,"R12_data", false,-1, 1,0);
+    tracep->declBus(c+10880,"R13_data", false,-1, 1,0);
+    tracep->declBus(c+10881,"R14_data", false,-1, 1,0);
+    tracep->declBus(c+10881,"R15_data", false,-1, 1,0);
+    tracep->declBus(c+10882,"R16_data", false,-1, 1,0);
+    tracep->declBus(c+10883,"R17_data", false,-1, 1,0);
+    tracep->declBus(c+10884,"R18_data", false,-1, 1,0);
+    tracep->declBus(c+10885,"R19_data", false,-1, 1,0);
+    tracep->declBus(c+10884,"R20_data", false,-1, 1,0);
+    tracep->declBus(c+10885,"R21_data", false,-1, 1,0);
+    tracep->declBus(c+10882,"R22_data", false,-1, 1,0);
+    tracep->declBus(c+10883,"R23_data", false,-1, 1,0);
+    tracep->declBus(c+10884,"R24_data", false,-1, 1,0);
+    tracep->declBus(c+10885,"R25_data", false,-1, 1,0);
+    tracep->declBus(c+10882,"R26_data", false,-1, 1,0);
+    tracep->declBus(c+10883,"R27_data", false,-1, 1,0);
     for (int i = 0; i < 32; ++i) {
         tracep->declBus(c+10886+i*1,"Memory", true,(i+0), 1,0);
     }
@@ -16795,12 +16859,12 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                      (vlSelf->Soc__DOT__core__DOT___DI_io_mem_addr_T 
                                                       >> 7U)) 
                                              << 2U))))),5);
-    bufp->fullCData(oldp+5960,((0x1cU & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_reg 
-                                         >> 5U))),5);
-    bufp->fullBit(oldp+5961,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullCData(oldp+5960,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___T_194),5);
+    bufp->fullBit(oldp+5961,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U])));
-    bufp->fullCData(oldp+5962,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___T_182),5);
-    bufp->fullBit(oldp+5963,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullCData(oldp+5962,((0x1cU & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_reg 
+                                         >> 5U))),5);
+    bufp->fullBit(oldp+5963,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U])));
     bufp->fullCData(oldp+5964,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_0_ext__DOT___GEN)
                                  ? vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_0_ext__DOT__Memory
@@ -16850,10 +16914,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+5997,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_0_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+5998,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_0_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+5999,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_0_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+6000,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+6000,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 1U))));
-    bufp->fullBit(oldp+6001,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+6001,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 1U))));
     bufp->fullCData(oldp+6002,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_1_ext__DOT___GEN)
@@ -16904,10 +16968,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+6035,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_1_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+6036,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_1_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+6037,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_1_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+6038,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+6038,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 2U))));
-    bufp->fullBit(oldp+6039,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+6039,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 2U))));
     bufp->fullCData(oldp+6040,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_2_ext__DOT___GEN)
@@ -16958,10 +17022,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+6073,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_2_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+6074,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_2_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+6075,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_2_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+6076,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+6076,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 3U))));
-    bufp->fullBit(oldp+6077,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+6077,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 3U))));
     bufp->fullCData(oldp+6078,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_3_ext__DOT___GEN)
@@ -17012,10 +17076,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+6111,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_3_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+6112,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_3_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+6113,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_3_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+6114,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+6114,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 4U))));
-    bufp->fullBit(oldp+6115,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+6115,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 4U))));
     bufp->fullCData(oldp+6116,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_4_ext__DOT___GEN)
@@ -17066,10 +17130,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+6149,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_4_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+6150,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_4_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+6151,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_4_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+6152,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+6152,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 5U))));
-    bufp->fullBit(oldp+6153,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+6153,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 5U))));
     bufp->fullCData(oldp+6154,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_5_ext__DOT___GEN)
@@ -17120,10 +17184,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+6187,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_5_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+6188,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_5_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+6189,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_5_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+6190,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+6190,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 6U))));
-    bufp->fullBit(oldp+6191,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+6191,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 6U))));
     bufp->fullCData(oldp+6192,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_6_ext__DOT___GEN)
@@ -17174,10 +17238,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+6225,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_6_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+6226,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_6_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+6227,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_6_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+6228,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+6228,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 7U))));
-    bufp->fullBit(oldp+6229,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+6229,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 7U))));
     bufp->fullCData(oldp+6230,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_0_7_ext__DOT___GEN)
@@ -19818,10 +19882,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+8087,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_15_7_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+8088,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_15_7_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+8089,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_15_7_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+8090,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+8090,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 8U))));
-    bufp->fullBit(oldp+8091,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+8091,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 8U))));
     bufp->fullCData(oldp+8092,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_0_ext__DOT___GEN)
@@ -19872,10 +19936,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+8125,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_0_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+8126,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_0_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+8127,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_0_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+8128,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+8128,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 9U))));
-    bufp->fullBit(oldp+8129,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+8129,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 9U))));
     bufp->fullCData(oldp+8130,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_1_ext__DOT___GEN)
@@ -19926,10 +19990,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+8163,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_1_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+8164,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_1_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+8165,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_1_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+8166,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+8166,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 0xaU))));
-    bufp->fullBit(oldp+8167,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+8167,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 0xaU))));
     bufp->fullCData(oldp+8168,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_2_ext__DOT___GEN)
@@ -19980,10 +20044,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+8201,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_2_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+8202,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_2_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+8203,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_2_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+8204,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+8204,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 0xbU))));
-    bufp->fullBit(oldp+8205,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+8205,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 0xbU))));
     bufp->fullCData(oldp+8206,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_3_ext__DOT___GEN)
@@ -20034,10 +20098,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+8239,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_3_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+8240,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_3_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+8241,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_3_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+8242,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+8242,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 0xcU))));
-    bufp->fullBit(oldp+8243,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+8243,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 0xcU))));
     bufp->fullCData(oldp+8244,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_4_ext__DOT___GEN)
@@ -20088,10 +20152,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+8277,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_4_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+8278,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_4_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+8279,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_4_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+8280,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+8280,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 0xdU))));
-    bufp->fullBit(oldp+8281,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+8281,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 0xdU))));
     bufp->fullCData(oldp+8282,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_5_ext__DOT___GEN)
@@ -20142,10 +20206,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+8315,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_5_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+8316,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_5_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+8317,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_5_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+8318,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+8318,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 0xeU))));
-    bufp->fullBit(oldp+8319,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+8319,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 0xeU))));
     bufp->fullCData(oldp+8320,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_6_ext__DOT___GEN)
@@ -20196,10 +20260,10 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+8353,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_6_ext__DOT__Memory[29]),8);
     bufp->fullCData(oldp+8354,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_6_ext__DOT__Memory[30]),8);
     bufp->fullCData(oldp+8355,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_6_ext__DOT__Memory[31]),8);
-    bufp->fullBit(oldp+8356,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+    bufp->fullBit(oldp+8356,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 0xfU))));
-    bufp->fullBit(oldp+8357,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+8357,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wmask[0U] 
                                  >> 0xfU))));
     bufp->fullCData(oldp+8358,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__DataArray_1_7_ext__DOT___GEN)
@@ -23752,116 +23816,105 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                 >> 5U))))),5);
     bufp->fullBit(oldp+10865,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___T));
     bufp->fullCData(oldp+10866,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__hit0)
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
-                                                    ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hbcb5153c__0)
-                                                    : 0U))))),2);
-    bufp->fullCData(oldp+10867,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__hit1)
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
-                                                    ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hac5f0c6e__0)
-                                                    : 0U))))),2);
-    bufp->fullCData(oldp+10868,(((0U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__victim))
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
-                                                    ? 
-                                                   vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__replace_ext__DOT__Memory
-                                                   [
-                                                   (0x1cU 
-                                                    & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_reg 
-                                                       >> 5U))]
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hbcb5153c__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hbcb5153c__0)
+                                                        : 0U)))))),2);
+    bufp->fullCData(oldp+10867,(((0U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__victim))
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_h192795fc__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_h192795fc__0)
+                                                        : 0U)))))),2);
+    bufp->fullCData(oldp+10868,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__hit1)
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hac5f0c6e__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hac5f0c6e__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+10869,(((1U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__victim))
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
-                                                    ? 
-                                                   vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__replace_ext__DOT__Memory
-                                                   [
-                                                   (0x1fU 
-                                                    & ((IData)(1U) 
-                                                       + 
-                                                       (0x1cU 
-                                                        & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_reg 
-                                                           >> 5U))))]
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_h83e68c2e__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_h83e68c2e__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+10870,(((2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__victim))
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
-                                                    ? 
-                                                   vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__replace_ext__DOT__Memory
-                                                   [
-                                                   (0x1fU 
-                                                    & ((IData)(2U) 
-                                                       + 
-                                                       (0x1cU 
-                                                        & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_reg 
-                                                           >> 5U))))]
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_h816f05a9__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_h816f05a9__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+10871,(((3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__victim))
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
-                                                    ? 
-                                                   vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__replace_ext__DOT__Memory
-                                                   [
-                                                   (0x1fU 
-                                                    & ((IData)(3U) 
-                                                       + 
-                                                       (0x1cU 
-                                                        & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_reg 
-                                                           >> 5U))))]
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_h8165a582__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_h8165a582__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+10872,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__hit2)
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
-                                                    ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hae628669__0)
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hae628669__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hae628669__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+10873,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__hit3)
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
-                                                    ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hae672642__0)
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hae672642__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hae672642__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+10874,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
                                   ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hbcb5153c__0)
                                   : 0U)),2);
-    bufp->fullCData(oldp+10875,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
-                                  ? vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__replace_ext__DOT__Memory
-                                 [(0x1cU & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_reg 
-                                            >> 5U))]
-                                  : 0U)),2);
-    bufp->fullCData(oldp+10876,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
-                                  ? vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__replace_ext__DOT__Memory
-                                 [(0x1fU & ((IData)(1U) 
-                                            + (0x1cU 
-                                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_reg 
-                                                  >> 5U))))]
-                                  : 0U)),2);
-    bufp->fullCData(oldp+10877,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
-                                  ? vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__replace_ext__DOT__Memory
-                                 [(0x1fU & ((IData)(2U) 
-                                            + (0x1cU 
-                                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_reg 
-                                                  >> 5U))))]
-                                  : 0U)),2);
-    bufp->fullCData(oldp+10878,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
-                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hac5f0c6e__0)
-                                  : 0U)),2);
-    bufp->fullCData(oldp+10879,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
-                                  ? vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__replace_ext__DOT__Memory
-                                 [(0x1fU & ((IData)(3U) 
-                                            + (0x1cU 
-                                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__addr_reg 
-                                                  >> 5U))))]
-                                  : 0U)),2);
-    bufp->fullCData(oldp+10880,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
-                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hae628669__0)
-                                  : 0U)),2);
-    bufp->fullCData(oldp+10881,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
+    bufp->fullCData(oldp+10875,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
                                   ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hae672642__0)
                                   : 0U)),2);
-    bufp->fullCData(oldp+10882,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___replace_ext_R8_data),2);
-    bufp->fullCData(oldp+10883,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___replace_ext_R9_data),2);
-    bufp->fullCData(oldp+10884,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___replace_ext_R10_data),2);
-    bufp->fullCData(oldp+10885,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___replace_ext_R11_data),2);
+    bufp->fullCData(oldp+10876,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
+                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_h192795fc__0)
+                                  : 0U)),2);
+    bufp->fullCData(oldp+10877,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
+                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_h83e68c2e__0)
+                                  : 0U)),2);
+    bufp->fullCData(oldp+10878,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
+                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_h816f05a9__0)
+                                  : 0U)),2);
+    bufp->fullCData(oldp+10879,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN)
+                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_h8165a582__0)
+                                  : 0U)),2);
+    bufp->fullCData(oldp+10880,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
+                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hac5f0c6e__0)
+                                  : 0U)),2);
+    bufp->fullCData(oldp+10881,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___GEN_0)
+                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__VdfgTmp_hae628669__0)
+                                  : 0U)),2);
+    bufp->fullCData(oldp+10882,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___replace_ext_R16_data),2);
+    bufp->fullCData(oldp+10883,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___replace_ext_R17_data),2);
+    bufp->fullCData(oldp+10884,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___replace_ext_R18_data),2);
+    bufp->fullCData(oldp+10885,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT___replace_ext_R19_data),2);
     bufp->fullCData(oldp+10886,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__replace_ext__DOT__Memory[0]),2);
     bufp->fullCData(oldp+10887,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__replace_ext__DOT__Memory[1]),2);
     bufp->fullCData(oldp+10888,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__replace_ext__DOT__Memory[2]),2);
@@ -24080,50 +24133,50 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                   ? vlSelf->Soc__DOT__core__DOT__mwreg_reg_wdata
                                   : vlSelf->Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory
                                  [vlSelf->Soc__DOT__core__DOT__mwreg_reg_waddr])),64);
-    bufp->fullBit(oldp+10942,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+10942,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U])));
-    bufp->fullBit(oldp+10943,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+10943,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U])));
-    bufp->fullBit(oldp+10944,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+10944,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 1U))));
-    bufp->fullBit(oldp+10945,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+10945,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 1U))));
-    bufp->fullBit(oldp+10946,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+10946,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 2U))));
-    bufp->fullBit(oldp+10947,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+10947,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 2U))));
-    bufp->fullBit(oldp+10948,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+10948,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 3U))));
-    bufp->fullBit(oldp+10949,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+10949,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 3U))));
-    bufp->fullBit(oldp+10950,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+10950,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 4U))));
-    bufp->fullBit(oldp+10951,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+10951,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 4U))));
-    bufp->fullBit(oldp+10952,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+10952,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 5U))));
-    bufp->fullBit(oldp+10953,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+10953,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 5U))));
-    bufp->fullBit(oldp+10954,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+10954,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 6U))));
-    bufp->fullBit(oldp+10955,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+10955,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 6U))));
-    bufp->fullBit(oldp+10956,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+10956,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 7U))));
-    bufp->fullBit(oldp+10957,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+10957,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 7U))));
     bufp->fullBit(oldp+10958,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
@@ -24412,52 +24465,52 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullBit(oldp+11053,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[3U] 
                                   >> 0x1fU))));
-    bufp->fullBit(oldp+11054,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+11054,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 8U))));
-    bufp->fullBit(oldp+11055,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+11055,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 8U))));
-    bufp->fullBit(oldp+11056,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+11056,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 9U))));
-    bufp->fullBit(oldp+11057,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+11057,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 9U))));
-    bufp->fullBit(oldp+11058,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+11058,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 0xaU))));
-    bufp->fullBit(oldp+11059,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+11059,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 0xaU))));
-    bufp->fullBit(oldp+11060,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+11060,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 0xbU))));
-    bufp->fullBit(oldp+11061,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+11061,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 0xbU))));
-    bufp->fullBit(oldp+11062,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+11062,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 0xcU))));
-    bufp->fullBit(oldp+11063,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+11063,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 0xcU))));
-    bufp->fullBit(oldp+11064,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+11064,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 0xdU))));
-    bufp->fullBit(oldp+11065,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+11065,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 0xdU))));
-    bufp->fullBit(oldp+11066,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+11066,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 0xeU))));
-    bufp->fullBit(oldp+11067,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+11067,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 0xeU))));
-    bufp->fullBit(oldp+11068,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+    bufp->fullBit(oldp+11068,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 0xfU))));
-    bufp->fullBit(oldp+11069,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+    bufp->fullBit(oldp+11069,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[0U] 
                                   >> 0xfU))));
     bufp->fullBit(oldp+11070,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
@@ -24841,79 +24894,52 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wmask[2U] 
                                   >> 0xfU))));
     bufp->fullCData(oldp+11198,(((0U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__victim))
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN)
-                                                    ? 
-                                                   vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__replace_ext__DOT__Memory
-                                                   [
-                                                   (0x1cU 
-                                                    & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_reg 
-                                                       >> 5U))]
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_h192795fc__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_h192795fc__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+11199,(((1U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__victim))
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN)
-                                                    ? 
-                                                   vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__replace_ext__DOT__Memory
-                                                   [
-                                                   (0x1fU 
-                                                    & ((IData)(1U) 
-                                                       + 
-                                                       (0x1cU 
-                                                        & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_reg 
-                                                           >> 5U))))]
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_h83e68c2e__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_h83e68c2e__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+11200,(((2U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__victim))
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN)
-                                                    ? 
-                                                   vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__replace_ext__DOT__Memory
-                                                   [
-                                                   (0x1fU 
-                                                    & ((IData)(2U) 
-                                                       + 
-                                                       (0x1cU 
-                                                        & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_reg 
-                                                           >> 5U))))]
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_h816f05a9__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_h816f05a9__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+11201,(((3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__victim))
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN)
-                                                    ? 
-                                                   vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__replace_ext__DOT__Memory
-                                                   [
-                                                   (0x1fU 
-                                                    & ((IData)(3U) 
-                                                       + 
-                                                       (0x1cU 
-                                                        & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_reg 
-                                                           >> 5U))))]
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_h8165a582__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_h8165a582__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+11202,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN)
-                                  ? vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__replace_ext__DOT__Memory
-                                 [(0x1cU & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_reg 
-                                            >> 5U))]
+                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_h192795fc__0)
                                   : 0U)),2);
     bufp->fullCData(oldp+11203,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN)
-                                  ? vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__replace_ext__DOT__Memory
-                                 [(0x1fU & ((IData)(1U) 
-                                            + (0x1cU 
-                                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_reg 
-                                                  >> 5U))))]
+                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_h83e68c2e__0)
                                   : 0U)),2);
     bufp->fullCData(oldp+11204,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN)
-                                  ? vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__replace_ext__DOT__Memory
-                                 [(0x1fU & ((IData)(2U) 
-                                            + (0x1cU 
-                                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_reg 
-                                                  >> 5U))))]
+                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_h816f05a9__0)
                                   : 0U)),2);
     bufp->fullCData(oldp+11205,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN)
-                                  ? vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__replace_ext__DOT__Memory
-                                 [(0x1fU & ((IData)(3U) 
-                                            + (0x1cU 
-                                               & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_reg 
-                                                  >> 5U))))]
+                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_h8165a582__0)
                                   : 0U)),2);
     bufp->fullBit(oldp+11206,(vlSelf->Soc__DOT__sram__DOT__rvalid));
     bufp->fullQData(oldp+11207,(vlSelf->Soc__DOT__sram__DOT__rdata),64);
@@ -24984,8 +25010,8 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                           + (0x1cU 
                                              & (vlSelf->Soc__DOT__core__DOT___fetch_io_fdio_pc 
                                                 >> 5U))))),5);
-    bufp->fullCData(oldp+11287,((0xffU & vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wdata[0U])),8);
-    bufp->fullCData(oldp+11288,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___T_182),5);
+    bufp->fullCData(oldp+11287,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___T_194),5);
+    bufp->fullCData(oldp+11288,((0xffU & vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wdata[0U])),8);
     bufp->fullCData(oldp+11289,((0xffU & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wdata[0U] 
                                           >> 8U))),8);
     bufp->fullCData(oldp+11290,((0xffU & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__wdata[0U] 
@@ -25214,41 +25240,57 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullIData(oldp+11418,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___TagArray_ext_R1_data),22);
     bufp->fullBit(oldp+11419,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0));
     bufp->fullCData(oldp+11420,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__hit0)
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
-                                                    ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hbcb5153c__0)
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hbcb5153c__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hbcb5153c__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+11421,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__hit1)
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
-                                                    ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hac5f0c6e__0)
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hac5f0c6e__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hac5f0c6e__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+11422,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__hit2)
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
-                                                    ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hae628669__0)
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hae628669__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hae628669__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+11423,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__hit3)
-                                  ? 0U : (3U & ((IData)(1U) 
-                                                + ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
-                                                    ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hae672642__0)
-                                                    : 0U))))),2);
+                                  ? 0U : (((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0) 
+                                           & (3U == (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hae672642__0)))
+                                           ? 3U : (3U 
+                                                   & ((IData)(1U) 
+                                                      + 
+                                                      ((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
+                                                        ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hae672642__0)
+                                                        : 0U)))))),2);
     bufp->fullCData(oldp+11424,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
                                   ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hbcb5153c__0)
                                   : 0U)),2);
     bufp->fullCData(oldp+11425,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
-                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hac5f0c6e__0)
-                                  : 0U)),2);
-    bufp->fullCData(oldp+11426,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
-                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hae628669__0)
-                                  : 0U)),2);
-    bufp->fullCData(oldp+11427,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
                                   ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hae672642__0)
                                   : 0U)),2);
-    bufp->fullCData(oldp+11428,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___replace_ext_R8_data),2);
-    bufp->fullCData(oldp+11429,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___replace_ext_R9_data),2);
-    bufp->fullCData(oldp+11430,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___replace_ext_R10_data),2);
-    bufp->fullCData(oldp+11431,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___replace_ext_R11_data),2);
+    bufp->fullCData(oldp+11426,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
+                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hac5f0c6e__0)
+                                  : 0U)),2);
+    bufp->fullCData(oldp+11427,(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_0)
+                                  ? (IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__VdfgTmp_hae628669__0)
+                                  : 0U)),2);
+    bufp->fullCData(oldp+11428,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___replace_ext_R16_data),2);
+    bufp->fullCData(oldp+11429,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___replace_ext_R17_data),2);
+    bufp->fullCData(oldp+11430,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___replace_ext_R18_data),2);
+    bufp->fullCData(oldp+11431,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___replace_ext_R19_data),2);
     bufp->fullWData(oldp+11432,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wdata),1024);
     bufp->fullCData(oldp+11464,((0xffU & vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wdata[0U])),8);
     bufp->fullCData(oldp+11465,((0xffU & (vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__wdata[0U] 

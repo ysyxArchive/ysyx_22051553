@@ -297,6 +297,11 @@ class Cache extends Module{
         )
     )
 
+    val choose_tagway = Wire(chiselTypeOf(victim))
+    val choose_dataway = Wire(chiselTypeOf(victim))
+    dontTouch(choose_dataway)
+    dontTouch(choose_tagway)
+
     when(wen){
         when(hit){//1.写命中，不涉及写valid   2.写不命中，alloc后，写入
 
@@ -319,7 +324,7 @@ class Cache extends Module{
             replace(way3) := Mux(hit3, 0.U, Mux(
                 replace(way3) === 3.U, 3.U, replace(way3) + 1.U))  
             //-----------data
-            val choose_dataway = MuxCase(0.U,
+            choose_dataway := MuxCase(0.U,
                 Seq(
                     (hit0) -> way0,
                     (hit1) -> way1,
@@ -363,7 +368,7 @@ class Cache extends Module{
                 replace(way3_buf) === 3.U, 3.U, replace(way3_buf) + 1.U))
             
             //-------------Tag
-            val choose_tagway = MuxLookup(0.U, victim,
+            choose_tagway := MuxLookup(victim, 0.U,
                 Seq(
                     0.U -> way0_buf,
                     1.U -> way1_buf,
@@ -373,7 +378,7 @@ class Cache extends Module{
             )
             TagArray(choose_tagway) := tag_reg
             //------------data
-            val choose_dataway = MuxLookup(0.U, victim,
+            choose_dataway := MuxLookup(victim, 0.U,
                 Seq(
                     0.U -> way0_buf,
                     1.U -> way1_buf,

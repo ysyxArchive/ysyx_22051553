@@ -34,14 +34,10 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__PVT___GEN_0 = VL_RAND_RESET_I(1);
     vlSelf->__PVT___TagArray_ext_R0_data = VL_RAND_RESET_I(22);
     vlSelf->__PVT___TagArray_ext_R1_data = VL_RAND_RESET_I(22);
-    vlSelf->__PVT___replace_ext_R1_data = VL_RAND_RESET_I(2);
-    vlSelf->__PVT___replace_ext_R2_data = VL_RAND_RESET_I(2);
-    vlSelf->__PVT___replace_ext_R3_data = VL_RAND_RESET_I(2);
-    vlSelf->__PVT___replace_ext_R5_data = VL_RAND_RESET_I(2);
-    vlSelf->__PVT___replace_ext_R8_data = VL_RAND_RESET_I(2);
-    vlSelf->__PVT___replace_ext_R9_data = VL_RAND_RESET_I(2);
-    vlSelf->__PVT___replace_ext_R10_data = VL_RAND_RESET_I(2);
-    vlSelf->__PVT___replace_ext_R11_data = VL_RAND_RESET_I(2);
+    vlSelf->__PVT___replace_ext_R16_data = VL_RAND_RESET_I(2);
+    vlSelf->__PVT___replace_ext_R17_data = VL_RAND_RESET_I(2);
+    vlSelf->__PVT___replace_ext_R18_data = VL_RAND_RESET_I(2);
+    vlSelf->__PVT___replace_ext_R19_data = VL_RAND_RESET_I(2);
     vlSelf->__PVT__r_count = VL_RAND_RESET_I(4);
     vlSelf->__PVT__w_count = VL_RAND_RESET_I(4);
     vlSelf->__PVT__state = VL_RAND_RESET_I(3);
@@ -104,7 +100,7 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__PVT__dirty3 = VL_RAND_RESET_I(1);
     VL_RAND_RESET_W(136, vlSelf->__PVT__wmask);
     VL_RAND_RESET_W(1024, vlSelf->__PVT__wdata);
-    vlSelf->__PVT___T_182 = VL_RAND_RESET_I(5);
+    vlSelf->__PVT___T_194 = VL_RAND_RESET_I(5);
     vlSelf->__PVT___GEN_12 = VL_RAND_RESET_I(4);
     vlSelf->__PVT___io_axi_req_bits_addr_T_25 = VL_RAND_RESET_I(32);
     vlSelf->__PVT___GEN_14 = VL_RAND_RESET_I(1);
@@ -1542,6 +1538,10 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__VdfgTmp_hac5f0c6e__0 = 0;
     vlSelf->__VdfgTmp_hae628669__0 = 0;
     vlSelf->__VdfgTmp_hae672642__0 = 0;
+    vlSelf->__VdfgTmp_h192795fc__0 = 0;
+    vlSelf->__VdfgTmp_h83e68c2e__0 = 0;
+    vlSelf->__VdfgTmp_h816f05a9__0 = 0;
+    vlSelf->__VdfgTmp_h8165a582__0 = 0;
     vlSelf->__Vdly__state = VL_RAND_RESET_I(3);
     vlSelf->__Vdly__r_count = VL_RAND_RESET_I(4);
 }
