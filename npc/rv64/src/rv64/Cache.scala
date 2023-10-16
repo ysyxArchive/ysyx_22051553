@@ -117,6 +117,7 @@ class Cache extends Module{
 
 
     val hit = Wire(Bool())
+    val hit_reg = RegNext(hit)
     dontTouch(hit0)
     dontTouch(hit1)
     dontTouch(hit2)
@@ -224,6 +225,7 @@ class Cache extends Module{
                 )
             )
         )
+    )
 
     //立即判断
     hit0 := valid(way0) && rtag0 === tag && is_idle  //不能让其他周期的命中影响当前cache状态机进行
@@ -240,7 +242,7 @@ class Cache extends Module{
         VecInit.tabulate(nWords)(i => read((i + 1) * X_LEN - 1, i * X_LEN))(off_reg)  //命中
     )
         
-    val hit_reg = RegNext(hit)
+    
     io.cpu.resp.valid := (hit_reg && is_idle) || (is_alloc_reg && !cpu_mask.orR) || (is_idle && cpu_mask.orR)
     //1.读命中或写命中且此时在idle ----可能当前不在idle,新的dcache请求命中
     //2.Refill后无需写入
