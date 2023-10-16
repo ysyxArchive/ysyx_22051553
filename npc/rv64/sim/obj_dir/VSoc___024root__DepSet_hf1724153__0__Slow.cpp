@@ -1065,14 +1065,14 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__1(VSoc___024root* vlSelf) {
     vlSelf->Soc__DOT__core__DOT__decode__DOT____VdfgTmp_hd891a444__0 
         = ((4U & vlSelf->Soc__DOT__core__DOT__fdreg_pc)
             ? (IData)((((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__is_alloc_reg)
-                         ? (((QData)((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_3[
+                         ? (((QData)((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_4[
                                              (((IData)(0x3fU) 
                                                + (0x3c0U 
                                                   & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_reg 
                                                      << 3U))) 
                                               >> 5U)])) 
                              << 0x20U) | (QData)((IData)(
-                                                         vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_3[
+                                                         vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_4[
                                                          (0x1eU 
                                                           & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_reg 
                                                              >> 2U))])))
@@ -1089,7 +1089,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__1(VSoc___024root* vlSelf) {
                                                              >> 2U))])))) 
                        >> 0x20U)) : (IData)(((IData)(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__is_alloc_reg)
                                               ? (((QData)((IData)(
-                                                                  vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_3[
+                                                                  vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_4[
                                                                   (((IData)(0x3fU) 
                                                                     + 
                                                                     (0x3c0U 
@@ -1098,7 +1098,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__1(VSoc___024root* vlSelf) {
                                                                    >> 5U)])) 
                                                   << 0x20U) 
                                                  | (QData)((IData)(
-                                                                   vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_3[
+                                                                   vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT___GEN_4[
                                                                    (0x1eU 
                                                                     & (vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__addr_reg 
                                                                        >> 2U))])))

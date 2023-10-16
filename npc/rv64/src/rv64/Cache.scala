@@ -184,10 +184,22 @@ class Cache extends Module{
     dontTouch(rtag3)
 
 
-    val rdata0 = Cat((DataArray.map(_.read(way0,ren).asUInt)).reverse) //读出
-    val rdata1 = Cat((DataArray.map(_.read(way1,ren).asUInt)).reverse) //读出
-    val rdata2 = Cat((DataArray.map(_.read(way2,ren).asUInt)).reverse) //读出
-    val rdata3 = Cat((DataArray.map(_.read(way3,ren).asUInt)).reverse) //读出
+    val rdata0 = Mux(is_chooose, 
+        Cat((DataArray.map(_.read(way0_buf,ren).asUInt)).reverse), //写回的数据，需要用way0_buf
+        Cat((DataArray.map(_.read(way0,ren).asUInt)).reverse) //命中的数据
+    )   
+    val rdata1 = Mux(is_chooose, 
+        Cat((DataArray.map(_.read(way1_buf,ren).asUInt)).reverse), //写回的数据，需要用way1_buf
+        Cat((DataArray.map(_.read(way1,ren).asUInt)).reverse) //命中的数据
+    )
+    val rdata2 = Mux(is_chooose, 
+        Cat((DataArray.map(_.read(way2_buf,ren).asUInt)).reverse), //写回的数据，需要用way2_buf
+        Cat((DataArray.map(_.read(way2,ren).asUInt)).reverse) //命中的数据
+    )
+    val rdata3 = Mux(is_chooose, 
+        Cat((DataArray.map(_.read(way3_buf,ren).asUInt)).reverse), //写回的数据，需要用way3_buf
+        Cat((DataArray.map(_.read(way3,ren).asUInt)).reverse) //命中的数据
+    )
     val rdata0_buf = RegEnable(rdata0, ren_reg)
     val rdata1_buf = RegEnable(rdata1, ren_reg)
     val rdata2_buf = RegEnable(rdata2, ren_reg)
