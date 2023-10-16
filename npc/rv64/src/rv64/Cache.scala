@@ -72,6 +72,7 @@ class Cache extends Module{
     val state = RegInit(s_Idle)
 
     val is_idle = state === s_Idle
+    val is_chooose = state === s_Choose
     val is_alloc = state === s_Refill && r_count===15.U
     val is_alloc_reg = RegNext(is_alloc)
 
@@ -127,7 +128,7 @@ class Cache extends Module{
     // 2.从AXI读出，一定需要写
     // 3.Refill结束后，写入数据
     
-    val ren = !wen && (is_idle && hit && !w_req)
+    val ren = !wen && ( (is_idle && hit && !w_req) || (is_chooose) )
     // 1.保证单端口
     // 2.读命中
 
@@ -195,7 +196,7 @@ class Cache extends Module{
 
     val read = Mux(is_alloc_reg,   //已经全部Refill到Cacheline,且Refill_buf中是完整的数据 //读不命中
         refill_buffer.asUInt,
-        Mux(ren_reg,   
+        Mux(hit_reg,   //读命中
             MuxCase(0.B,  //读命中
                 Seq(
                     (hit0_reg) -> rdata0,
@@ -204,16 +205,25 @@ class Cache extends Module{
                     (hit3_reg) -> rdata3,
                 )
             ),
-            MuxLookup(victim, 0.U,  //写回的数据
-                Seq(
-                    0.U -> rdata0_buf,
-                    1.U -> rdata1_buf,
-                    2.U -> rdata2_buf,
-                    3.U -> rdata3_buf,
+            Mux(ren_reg,                      //写回数据
+                MuxLookup(victim, 0.U,  
+                    Seq(
+                        0.U -> rdata0,
+                        1.U -> rdata1,
+                        2.U -> rdata2,
+                        3.U -> rdata3,
+                    )
+                ),
+                MuxLookup(victim, 0.U,  
+                    Seq(
+                        0.U -> rdata0_buf,
+                        1.U -> rdata1_buf,
+                        2.U -> rdata2_buf,
+                        3.U -> rdata3_buf,
+                    )
                 )
             )
         )
-    )
 
     //立即判断
     hit0 := valid(way0) && rtag0 === tag && is_idle  //不能让其他周期的命中影响当前cache状态机进行
