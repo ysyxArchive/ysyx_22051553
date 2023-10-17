@@ -88,10 +88,18 @@ class Cache extends Module{
     val valid = RegInit(0.U((nWays*nSets).W))
     val dirty = RegInit(0.U((nWays*nSets).W))
 
-    val replace = Mem(nSets, UInt(3.W)) //Tree-PLRU算法
+    val replace = Mem(nWays*nSets, UInt(2.W)) //LRU算法，11 10 01 00
+    val rep0 = Wire(UInt(2.W))
+    val rep1 = Wire(UInt(2.W))
+    val rep2 = Wire(UInt(2.W))
+    val rep3 = Wire(UInt(2.W))
 
     val victim = RegInit(0.U(2.W))
     dontTouch(victim)
+    rep0 := 0.U
+    rep1 := 0.U
+    rep2 := 0.U
+    rep3 := 0.U
 
 
     val TagArray = Mem(nSets*nWays, UInt(tlen.W))
@@ -255,29 +263,25 @@ class Cache extends Module{
         cpu_data := io.cpu.req.bits.data
         cpu_mask := io.cpu.req.bits.mask
 
-        victim := MuxCase(
-            MuxLookup(replace(idx), 0.U,  //若无valid
-                Seq(
-                    "b000".U -> 0.U,
-                    "b001".U -> 0.U,
-                    "b010".U -> 1.U,
-                    "b011".U -> 1.U,
-                    "b100".U -> 2.U,
-                    "b101".U -> 3.U,
-                    "b110".U -> 2.U,
-                    "b111".U -> 3.U,
-                )
-            ),
-            Seq(  //若有valid
-                (!valid(way0)) -> 0.U,
-                (!valid(way1)) -> 1.U,
-                (!valid(way2)) -> 2.U,
-                (!valid(way3)) -> 3.U,
+        victim := MuxCase(0.U,  //优先选0   太复杂
+            Seq(
+                (replace(way0) === 3.U) -> 0.U,
+                (replace(way1) === 3.U) -> 1.U,
+                (replace(way2) === 3.U) -> 2.U,
+                (replace(way3) === 3.U) -> 3.U,
+                (replace(way0) === 2.U) -> 0.U,
+                (replace(way1) === 2.U) -> 1.U,
+                (replace(way2) === 2.U) -> 2.U,
+                (replace(way3) === 2.U) -> 3.U,
+                (replace(way0) === 1.U) -> 0.U,
+                (replace(way1) === 1.U) -> 1.U,
+                (replace(way2) === 1.U) -> 2.U,
+                (replace(way3) === 1.U) -> 3.U
             )
-
         )
-            
-            
+        
+
+
     }.elsewhen(!io.cpu.req.valid & is_idle){  //复位
         addr_reg := 0.U                                 
         cpu_data := 0.U
@@ -320,20 +324,6 @@ class Cache extends Module{
     dontTouch(choose_dataway)
     dontTouch(choose_tagway)
 
-
-    //读写hit都修改replace
-    when(hit){
-        replace(idx) := MuxCase(0.U,
-            Seq(
-                hit0 -> Cat(1.U, 1.U, replace(idx)(0)),  //竟然有这种语法
-                hit1 -> Cat(1.U, 0.U, replace(idx)(0)),
-                hit2 -> Cat(0.U, replace(idx)(1), 1.U),
-                hit3 -> Cat(0.U, replace(idx)(1), 0.U),
-            )
-        )
-    }
-
-
     when(wen){
         when(hit){//1.写命中，不涉及写valid   2.写不命中，alloc后，写入
 
@@ -347,22 +337,14 @@ class Cache extends Module{
                 )
             )
             //-----------------replace
-            // replace(idx) := MuxCase(0.U,
-            //     Seq(
-            //         hit0 -> Cat(1.U, 1.U, replace(idx)(0)),
-            //         hit1 -> Cat(1.U, 0.U, replace(idx)(0)),
-            //         hit2 -> Cat(0.U, replace(idx)(1), 1.U),
-            //         hit3 -> Cat(0.U, replace(idx)(1), 0.U),
-            //     )
-            // )
-            // replace(way0) := Mux(hit0, 0.U, Mux(
-            //     replace(way0) === 3.U, 3.U, replace(way0) + 1.U))  //可以这么写吗 --可以
-            // replace(way1) := Mux(hit1, 0.U, Mux(
-            //     replace(way1) === 3.U, 3.U, replace(way1) + 1.U))  
-            // replace(way2) := Mux(hit2, 0.U, Mux(
-            //     replace(way2) === 3.U, 3.U, replace(way2) + 1.U))  
-            // replace(way3) := Mux(hit3, 0.U, Mux(
-            //     replace(way3) === 3.U, 3.U, replace(way3) + 1.U))  
+            replace(way0) := Mux(hit0, 0.U, Mux(
+                replace(way0) === 3.U, 3.U, replace(way0) + 1.U))  //可以这么写吗 --可以
+            replace(way1) := Mux(hit1, 0.U, Mux(
+                replace(way1) === 3.U, 3.U, replace(way1) + 1.U))  
+            replace(way2) := Mux(hit2, 0.U, Mux(
+                replace(way2) === 3.U, 3.U, replace(way2) + 1.U))  
+            replace(way3) := Mux(hit3, 0.U, Mux(
+                replace(way3) === 3.U, 3.U, replace(way3) + 1.U))  
             //-----------data
             choose_dataway := MuxCase(0.U,
                 Seq(
@@ -398,22 +380,14 @@ class Cache extends Module{
                 )
             )
             //--------------replace
-            replace(idx_reg) := MuxLookup(victim, 0.U,
-                Seq(
-                    0.U -> Cat(1.U, 1.U, replace(idx_reg)(0)),
-                    1.U -> Cat(1.U, 0.U, replace(idx_reg)(0)),
-                    2.U -> Cat(0.U, replace(idx_reg)(1), 1.U),
-                    3.U -> Cat(0.U, replace(idx_reg)(1), 0.U),
-                )
-            )
-            // replace(way0_buf) := Mux(victim === 0.U, 0.U, Mux(
-            //     replace(way0_buf) === 3.U, 3.U, replace(way0_buf) + 1.U))  //可以这么写吗 --可以
-            // replace(way1_buf) := Mux(victim === 1.U, 0.U, Mux(
-            //     replace(way1_buf) === 3.U, 3.U, replace(way1_buf) + 1.U))
-            // replace(way2_buf) := Mux(victim === 2.U, 0.U, Mux(
-            //     replace(way2_buf) === 3.U, 3.U, replace(way2_buf) + 1.U))
-            // replace(way3_buf) := Mux(victim === 3.U, 0.U, Mux(
-            //     replace(way3_buf) === 3.U, 3.U, replace(way3_buf) + 1.U))
+            replace(way0_buf) := Mux(victim === 0.U, 0.U, Mux(
+                replace(way0_buf) === 3.U, 3.U, replace(way0_buf) + 1.U))  //可以这么写吗 --可以
+            replace(way1_buf) := Mux(victim === 1.U, 0.U, Mux(
+                replace(way1_buf) === 3.U, 3.U, replace(way1_buf) + 1.U))
+            replace(way2_buf) := Mux(victim === 2.U, 0.U, Mux(
+                replace(way2_buf) === 3.U, 3.U, replace(way2_buf) + 1.U))
+            replace(way3_buf) := Mux(victim === 3.U, 0.U, Mux(
+                replace(way3_buf) === 3.U, 3.U, replace(way3_buf) + 1.U))
             
             //-------------Tag
             choose_tagway := MuxLookup(victim, 0.U,
