@@ -4514,10 +4514,10 @@ module Cache(	// <stdin>:3153:10, :6178:10
     .R1_addr (way1[4:0]),	// Cache.scala:153:28, :166:25
     .R1_en   (1'h1),	// <stdin>:3153:10, :6178:10
     .R1_clk  (clock),
-    .R2_addr (way0[4:0]),	// Cache.scala:152:23, :165:25
+    .R2_addr (way2[4:0]),	// Cache.scala:154:28, :167:25
     .R2_en   (1'h1),	// <stdin>:3153:10, :6178:10
     .R2_clk  (clock),
-    .R3_addr (way1[4:0]),	// Cache.scala:153:28, :166:25
+    .R3_addr (way3[4:0]),	// Cache.scala:155:28, :168:25
     .R3_en   (1'h1),	// <stdin>:3153:10, :6178:10
     .R3_clk  (clock),
     .W0_addr (choose_tagway),	// Cache.scala:337:14
@@ -10004,4 +10004,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
 

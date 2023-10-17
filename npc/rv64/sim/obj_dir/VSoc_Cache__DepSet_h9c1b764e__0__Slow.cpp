@@ -4724,10 +4724,6 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__1(
     // Init
     CData/*0:0*/ __PVT___ren_T_1;
     __PVT___ren_T_1 = 0;
-    CData/*0:0*/ __VdfgTmp_h98ce46f2__0;
-    __VdfgTmp_h98ce46f2__0 = 0;
-    CData/*0:0*/ __VdfgTmp_h189e2800__0;
-    __VdfgTmp_h189e2800__0 = 0;
     // Body
     if ((1U == (IData)(vlSelf->__PVT__state))) {
         vlSelf->__PVT__choose_way0 = (0x1cU & (vlSelf->__PVT__addr_reg 
@@ -4811,25 +4807,35 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__1(
     vlSelf->__PVT___TagArray_ext_R1_data = vlSelf->__PVT__TagArray_ext__DOT__Memory
         [(0x1fU & ((IData)(1U) + (0x1cU & (vlSymsp->TOP.Soc__DOT__core__DOT___fetch_io_fdio_pc 
                                            >> 5U))))];
+    vlSelf->__PVT___TagArray_ext_R2_data = vlSelf->__PVT__TagArray_ext__DOT__Memory
+        [(0x1fU & ((IData)(2U) + (0x1cU & (vlSymsp->TOP.Soc__DOT__core__DOT___fetch_io_fdio_pc 
+                                           >> 5U))))];
+    vlSelf->__PVT___TagArray_ext_R3_data = vlSelf->__PVT__TagArray_ext__DOT__Memory
+        [(0x1fU & ((IData)(3U) + (0x1cU & (vlSymsp->TOP.Soc__DOT__core__DOT___fetch_io_fdio_pc 
+                                           >> 5U))))];
     vlSelf->__PVT___replace_ext_R8_data = ((IData)(vlSelf->__PVT___T)
                                             ? (IData)(vlSelf->__VdfgTmp_h21147b65__0)
                                             : 0U);
-    __VdfgTmp_h98ce46f2__0 = ((vlSelf->__PVT___TagArray_ext_R0_data 
-                               == (vlSymsp->TOP.Soc__DOT__core__DOT___fetch_io_fdio_pc 
-                                   >> 0xaU)) & (0U 
-                                                == (IData)(vlSelf->__PVT__state)));
-    __VdfgTmp_h189e2800__0 = ((vlSelf->__PVT___TagArray_ext_R1_data 
-                               == (vlSymsp->TOP.Soc__DOT__core__DOT___fetch_io_fdio_pc 
-                                   >> 0xaU)) & (0U 
-                                                == (IData)(vlSelf->__PVT__state)));
     vlSelf->__PVT__hit0 = (vlSelf->__PVT___victim_T_14 
-                           & (IData)(__VdfgTmp_h98ce46f2__0));
-    vlSelf->__PVT__hit2 = (vlSelf->__PVT___victim_T_20 
-                           & (IData)(__VdfgTmp_h98ce46f2__0));
+                           & ((vlSelf->__PVT___TagArray_ext_R0_data 
+                               == (vlSymsp->TOP.Soc__DOT__core__DOT___fetch_io_fdio_pc 
+                                   >> 0xaU)) & (0U 
+                                                == (IData)(vlSelf->__PVT__state))));
     vlSelf->__PVT__hit1 = (vlSelf->__PVT___victim_T_17 
-                           & (IData)(__VdfgTmp_h189e2800__0));
+                           & ((vlSelf->__PVT___TagArray_ext_R1_data 
+                               == (vlSymsp->TOP.Soc__DOT__core__DOT___fetch_io_fdio_pc 
+                                   >> 0xaU)) & (0U 
+                                                == (IData)(vlSelf->__PVT__state))));
+    vlSelf->__PVT__hit2 = (vlSelf->__PVT___victim_T_20 
+                           & ((vlSelf->__PVT___TagArray_ext_R2_data 
+                               == (vlSymsp->TOP.Soc__DOT__core__DOT___fetch_io_fdio_pc 
+                                   >> 0xaU)) & (0U 
+                                                == (IData)(vlSelf->__PVT__state))));
     vlSelf->__PVT__hit3 = (vlSelf->__PVT___victim_T_23 
-                           & (IData)(__VdfgTmp_h189e2800__0));
+                           & ((vlSelf->__PVT___TagArray_ext_R3_data 
+                               == (vlSymsp->TOP.Soc__DOT__core__DOT___fetch_io_fdio_pc 
+                                   >> 0xaU)) & (0U 
+                                                == (IData)(vlSelf->__PVT__state))));
     vlSelf->io_fccache_hit = ((IData)(vlSelf->__PVT__hit0) 
                               | ((IData)(vlSelf->__PVT__hit1) 
                                  | ((IData)(vlSelf->__PVT__hit2) 
@@ -4838,10 +4844,10 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__1(
                                     | (IData)(vlSelf->io_fccache_hit)));
     vlSelf->__PVT___GEN_0 = ((IData)(vlSelf->__PVT__wen) 
                              & (IData)(vlSelf->io_fccache_hit));
-    vlSelf->__VdfgTmp_hb89d8694__0 = ((IData)(vlSelf->io_fccache_hit) 
+    vlSelf->__VdfgTmp_hd2781bae__0 = ((IData)(vlSelf->io_fccache_hit) 
                                       & ((IData)(vlSelf->__VdfgTmp_h21147b65__0) 
                                          >> 1U));
-    vlSelf->__VdfgTmp_hb8813039__0 = ((IData)(vlSelf->io_fccache_hit) 
+    vlSelf->__VdfgTmp_hd27cec45__0 = ((IData)(vlSelf->io_fccache_hit) 
                                       & (IData)(vlSelf->__VdfgTmp_h21147b65__0));
     __PVT___ren_T_1 = ((0U == (IData)(vlSelf->__PVT__state)) 
                        & (IData)(vlSelf->io_fccache_hit));
@@ -4887,9 +4893,9 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Icache__1(
     vlSelf->__PVT__ren = ((~ (IData)(vlSelf->__PVT__wen)) 
                           & ((IData)(__PVT___ren_T_1) 
                              | (1U == (IData)(vlSelf->__PVT__state))));
-    vlSelf->__VdfgTmp_h98904b1b__0 = ((IData)(vlSelf->__PVT___GEN) 
+    vlSelf->__VdfgTmp_ha75d29ad__0 = ((IData)(vlSelf->__PVT___GEN) 
                                       & (IData)(vlSelf->__VdfgTmp_h01e7ff2a__0));
-    vlSelf->__VdfgTmp_h988ca19c__0 = ((IData)(vlSelf->__PVT___GEN) 
+    vlSelf->__VdfgTmp_ha768d02e__0 = ((IData)(vlSelf->__PVT___GEN) 
                                       & ((IData)(vlSelf->__VdfgTmp_h01e7ff2a__0) 
                                          >> 1U));
 }
@@ -4903,10 +4909,6 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
     __PVT___ren_T_1 = 0;
     VlWide<32>/*1023:0*/ __PVT___GEN_4;
     VL_ZERO_W(1024, __PVT___GEN_4);
-    CData/*0:0*/ __VdfgTmp_h98ce46f2__0;
-    __VdfgTmp_h98ce46f2__0 = 0;
-    CData/*0:0*/ __VdfgTmp_h189e2800__0;
-    __VdfgTmp_h189e2800__0 = 0;
     VlWide<3>/*95:0*/ __Vtemp_h62b9ff92__0;
     VlWide<3>/*95:0*/ __Vtemp_h07b7b5e0__0;
     VlWide<3>/*95:0*/ __Vtemp_hb3ceea99__0;
@@ -7637,6 +7639,16 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
                                                    (vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T 
                                                     >> 7U)) 
                                            << 2U))))];
+    vlSelf->__PVT___TagArray_ext_R2_data = vlSelf->__PVT__TagArray_ext__DOT__Memory
+        [(0x1fU & ((IData)(2U) + (0x1cU & ((IData)(
+                                                   (vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T 
+                                                    >> 7U)) 
+                                           << 2U))))];
+    vlSelf->__PVT___TagArray_ext_R3_data = vlSelf->__PVT__TagArray_ext__DOT__Memory
+        [(0x1fU & ((IData)(3U) + (0x1cU & ((IData)(
+                                                   (vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T 
+                                                    >> 7U)) 
+                                           << 2U))))];
     vlSelf->__PVT___T = ((0U == (IData)(vlSelf->__PVT__state)) 
                          & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid));
     __Vtemp_hf1bb6a44__0[0U] = (IData)((((QData)((IData)(
@@ -7929,16 +7941,30 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
     __PVT___GEN_4[0x1eU] = (IData)(vlSelf->__PVT__refill_buffer_15);
     __PVT___GEN_4[0x1fU] = (IData)((vlSelf->__PVT__refill_buffer_15 
                                     >> 0x20U));
-    __VdfgTmp_h98ce46f2__0 = ((vlSelf->__PVT___TagArray_ext_R0_data 
+    vlSelf->__PVT__hit0 = (vlSelf->__PVT___victim_T_14 
+                           & ((vlSelf->__PVT___TagArray_ext_R0_data 
                                == (0x3fffffU & (IData)(
                                                        (vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T 
                                                         >> 0xaU)))) 
-                              & (0U == (IData)(vlSelf->__PVT__state)));
-    __VdfgTmp_h189e2800__0 = ((vlSelf->__PVT___TagArray_ext_R1_data 
+                              & (0U == (IData)(vlSelf->__PVT__state))));
+    vlSelf->__PVT__hit1 = (vlSelf->__PVT___victim_T_17 
+                           & ((vlSelf->__PVT___TagArray_ext_R1_data 
                                == (0x3fffffU & (IData)(
                                                        (vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T 
                                                         >> 0xaU)))) 
-                              & (0U == (IData)(vlSelf->__PVT__state)));
+                              & (0U == (IData)(vlSelf->__PVT__state))));
+    vlSelf->__PVT__hit2 = (vlSelf->__PVT___victim_T_20 
+                           & ((vlSelf->__PVT___TagArray_ext_R2_data 
+                               == (0x3fffffU & (IData)(
+                                                       (vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T 
+                                                        >> 0xaU)))) 
+                              & (0U == (IData)(vlSelf->__PVT__state))));
+    vlSelf->__PVT__hit3 = (vlSelf->__PVT___victim_T_23 
+                           & ((vlSelf->__PVT___TagArray_ext_R3_data 
+                               == (0x3fffffU & (IData)(
+                                                       (vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T 
+                                                        >> 0xaU)))) 
+                              & (0U == (IData)(vlSelf->__PVT__state))));
     vlSelf->__PVT___replace_ext_R8_data = ((IData)(vlSelf->__PVT___T)
                                             ? (IData)(vlSelf->__VdfgTmp_h21147b65__0)
                                             : 0U);
@@ -9779,22 +9805,14 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
                                                             & (vlSelf->__PVT__addr_reg 
                                                                >> 2U))])));
     }
-    vlSelf->__PVT__hit0 = (vlSelf->__PVT___victim_T_14 
-                           & (IData)(__VdfgTmp_h98ce46f2__0));
-    vlSelf->__PVT__hit2 = (vlSelf->__PVT___victim_T_20 
-                           & (IData)(__VdfgTmp_h98ce46f2__0));
-    vlSelf->__PVT__hit1 = (vlSelf->__PVT___victim_T_17 
-                           & (IData)(__VdfgTmp_h189e2800__0));
-    vlSelf->__PVT__hit3 = (vlSelf->__PVT___victim_T_23 
-                           & (IData)(__VdfgTmp_h189e2800__0));
     vlSelf->io_fccache_hit = ((IData)(vlSelf->__PVT__hit0) 
                               | ((IData)(vlSelf->__PVT__hit1) 
                                  | ((IData)(vlSelf->__PVT__hit2) 
                                     | (IData)(vlSelf->__PVT__hit3))));
-    vlSelf->__VdfgTmp_hb89d8694__0 = ((IData)(vlSelf->io_fccache_hit) 
+    vlSelf->__VdfgTmp_hd2781bae__0 = ((IData)(vlSelf->io_fccache_hit) 
                                       & ((IData)(vlSelf->__VdfgTmp_h21147b65__0) 
                                          >> 1U));
-    vlSelf->__VdfgTmp_hb8813039__0 = ((IData)(vlSelf->io_fccache_hit) 
+    vlSelf->__VdfgTmp_hd27cec45__0 = ((IData)(vlSelf->io_fccache_hit) 
                                       & (IData)(vlSelf->__VdfgTmp_h21147b65__0));
     __PVT___ren_T_1 = ((0U == (IData)(vlSelf->__PVT__state)) 
                        & (IData)(vlSelf->io_fccache_hit));
@@ -9858,9 +9876,9 @@ VL_ATTR_COLD void VSoc_Cache___stl_sequent__TOP__Soc__DOT__core__DOT__Dcache__0(
         vlSelf->__PVT__choose_dataway = 0U;
         vlSelf->__PVT___GEN = 0U;
     }
-    vlSelf->__VdfgTmp_h98904b1b__0 = ((IData)(vlSelf->__PVT___GEN) 
+    vlSelf->__VdfgTmp_ha75d29ad__0 = ((IData)(vlSelf->__PVT___GEN) 
                                       & (IData)(vlSelf->__VdfgTmp_h01e7ff2a__0));
-    vlSelf->__VdfgTmp_h988ca19c__0 = ((IData)(vlSelf->__PVT___GEN) 
+    vlSelf->__VdfgTmp_ha768d02e__0 = ((IData)(vlSelf->__PVT___GEN) 
                                       & ((IData)(vlSelf->__VdfgTmp_h01e7ff2a__0) 
                                          >> 1U));
 }

@@ -34,6 +34,8 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__PVT___GEN_0 = VL_RAND_RESET_I(1);
     vlSelf->__PVT___TagArray_ext_R0_data = VL_RAND_RESET_I(22);
     vlSelf->__PVT___TagArray_ext_R1_data = VL_RAND_RESET_I(22);
+    vlSelf->__PVT___TagArray_ext_R2_data = VL_RAND_RESET_I(22);
+    vlSelf->__PVT___TagArray_ext_R3_data = VL_RAND_RESET_I(22);
     vlSelf->__PVT___replace_ext_R8_data = VL_RAND_RESET_I(3);
     vlSelf->__PVT__r_count = VL_RAND_RESET_I(4);
     vlSelf->__PVT__w_count = VL_RAND_RESET_I(4);
@@ -1543,9 +1545,9 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__PVT__DataArray_15_7_ext__DOT___GEN_6 = VL_RAND_RESET_I(5);
     vlSelf->__VdfgTmp_h21147b65__0 = 0;
     vlSelf->__VdfgTmp_h01e7ff2a__0 = 0;
-    vlSelf->__VdfgTmp_h988ca19c__0 = 0;
-    vlSelf->__VdfgTmp_h98904b1b__0 = 0;
-    vlSelf->__VdfgTmp_hb8813039__0 = 0;
-    vlSelf->__VdfgTmp_hb89d8694__0 = 0;
+    vlSelf->__VdfgTmp_ha768d02e__0 = 0;
+    vlSelf->__VdfgTmp_ha75d29ad__0 = 0;
+    vlSelf->__VdfgTmp_hd27cec45__0 = 0;
+    vlSelf->__VdfgTmp_hd2781bae__0 = 0;
     vlSelf->__Vdly__state = VL_RAND_RESET_I(3);
 }
