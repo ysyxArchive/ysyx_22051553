@@ -60,12 +60,7 @@ class Decode extends Module {
     // inst_buffer := Mux(io.inst.valid, io.inst.bits.data, NOP)
 
 
-    inst := Mux(io.inst.valid, 
-        Mux(io.fdio.pc(2),
-            io.inst.bits.data(63,32),
-            io.inst.bits.data(31,0)
-        ),
-        NOP)
+    inst := Mux(io.inst.valid, io.inst.bits.data, NOP)
     csr_num := inst(31,20)
     rs1 := inst(19,15)
     rs2 := inst(24,20)

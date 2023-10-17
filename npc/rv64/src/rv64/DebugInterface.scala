@@ -47,15 +47,6 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
         //trap
         val trap_state = Input(UInt(3.W))
 
-        //Icache
-        val Icache_hit = Input(Bool())
-        val Icache_req = Input(Bool())
-        val fcfe_stall = Input(Bool())
-
-        //Dcache
-        val Dcache_hit = Input(Bool())
-        val Dcache_req = Input(Bool())
-        val fcex_stall = Input(Bool())
     })
 
     setInline("DebugInterface.v",
@@ -65,8 +56,7 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     |  input inst_valid, input load_use, input reg[63:0] op_a, input reg[63:0] op_b, input reg[63:0] result, 
     |   input br_yes, input reg mem_access, input [63:0] mem_addr,
     |   input reg[4:0] rd, input reg[63:0] reg_wdata,
-    |  input reg_wen, input csr_wen, input [63:0] csr_wdata, input [11:0] csr_waddr, input sdb_stall, input reg[2:0] trap_state,
-    |   input Icache_hit, input Icache_req, input fcfe_stall, input Dcache_hit, input Dcache_req, input fcex_stall);
+    |  input reg_wen, input csr_wen, input [63:0] csr_wdata, input [11:0] csr_waddr, input sdb_stall, input reg[2:0] trap_state);
     |
     |module DebugInterface(
     |                   input        clk,
@@ -102,17 +92,7 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     |
     |                   input   sdb_stall,
     |
-    |                   input [2:0]  trap_state,
-    |
-    |                   //Cache
-    |
-    |                   input Icache_hit,
-    |                   input Icache_req,
-    |                   input fcfe_stall,
-    |
-    |                   input Dcache_hit,
-    |                   input Dcache_req,
-    |                   input fcex_stall
+    |                   input [2:0]  trap_state
     |);
     |
     |
@@ -121,7 +101,7 @@ class DebugInterface extends BlackBox with HasBlackBoxInline{
     |always@(posedge clk)begin
     |   if(rst != 'd1)
     |       update_debuginfo(pc,pc_req,inst,inst_valid,load_use,op_a,op_b,result,br_yes, mem_access, mem_addr, rd,reg_wdata,reg_wen,
-    |       csr_wen,csr_wdata,csr_waddr,sdb_stall,trap_state,Icache_hit,Icache_req,fcfe_stall,Dcache_hit,Dcache_req,fcex_stall);
+    |       csr_wen,csr_wdata,csr_waddr,sdb_stall,trap_state);
     |end
     |
     |

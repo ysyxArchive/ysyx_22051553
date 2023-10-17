@@ -105,7 +105,7 @@ class Sram extends BlackBox with HasBlackBoxInline{
     |);
     |//internal reg
     |reg     [3:0]   w_count;
-    |reg     [7:0]   r_count;
+    |reg     [3:0]   r_count;
     |
     |//interface reg_def
     |reg     [1:0]   bresp;
@@ -194,27 +194,20 @@ class Sram extends BlackBox with HasBlackBoxInline{
     |//ar channel
     |reg [31:0] araddr;
     |reg need_read;
-    |reg [7:0] r_burst;
     |
     |always@(posedge ACLK or negedge ARESETn)begin
     |    if(!ARESETn)begin
     |        araddr <= 32'd0;
     |        need_read <= 1'b0;
-    |        r_burst <= 'd0;
     |    end
     |    else begin
-    |        if(S_AXI_ARVALID && S_AXI_ARREADY &&(S_AXI_ARLEN != 'd0))begin
+    |        if(S_AXI_ARVALID && S_AXI_ARREADY)begin
     |            araddr <= S_AXI_ARADDR;
     |            need_read <= 1'b1;
-    |            r_burst <= S_AXI_ARLEN;
     |        end
-    |        
-    |        
-    |       else if((r_count == r_burst))begin
+    |        else if(S_AXI_RLAST)begin
     |            need_read <= 1'b0;
-    |            r_burst <= 'd0;
-    |       end
-    |
+    |        end
     |    end
     |end
     |
@@ -231,24 +224,17 @@ class Sram extends BlackBox with HasBlackBoxInline{
     |        if(need_read || (S_AXI_ARVALID && S_AXI_ARREADY)) begin //严格最少延迟
     |            rvalid <= 1'b1;
     |            //rdata <= (S_AXI_ARVALID && S_AXI_ARREADY) ? pmem_read(S_AXI_ARADDR) : pmem_read(araddr+8*r_count);
-    |            if(S_AXI_ARVALID && S_AXI_ARREADY)begin
+    |            if(S_AXI_ARVALID && S_AXI_ARREADY)
     |               rdata <= pmem_read(S_AXI_ARADDR);
-    |               rlast <= (r_count == S_AXI_ARLEN) ? 1'd1 : 1'd0;
-    |            end
-    |            else begin
+    |            else
     |               rdata <= pmem_read(araddr+8*r_count);
-    |               rlast <= (r_count == r_burst) ? 1'd1 : 1'd0;
-    |            end
     |            rresp <= 2'b00;
-    |           
-    |           if(S_AXI_ARVALID && S_AXI_ARREADY &&(S_AXI_ARLEN == 'd0))
+    |            r_count <= r_count + 1'd1;  //传出第一个数据时,r_count为1
+    |            rlast <= (r_count == 'd15) ? 1'd1 : 1'd0;
+    |            if(rlast)begin
+    |               rvalid <= 1'b0;
     |               r_count <= 'd0;
-    |           else
-    |               r_count <= r_count + 1'd1;  
-    |        end
-    |        else begin
-    |            rvalid <= 1'b0;
-    |            r_count <= 'd0;
+    |            end
     |        end
     |    end 
     |end
