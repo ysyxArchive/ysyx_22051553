@@ -70,6 +70,8 @@ void* BMP_Load(const char *filename, int *width, int *height) {
 
     int w = hdr.width;
     int h = hdr.height;
+
+    
     // printf("offset is %d\n", hdr.offset);
     // printf("time0\n");
     uint32_t *pixels = malloc(w * h * sizeof(uint32_t));
@@ -90,7 +92,7 @@ void* BMP_Load(const char *filename, int *width, int *height) {
     // printf("total is %d\n", w*h*3);
 
     // fread(buf, w * h * 3 + 8, 1, fp); //修改
-    uint8_t * buf = malloc(w * h * sizeof(uint32_t));
+    uint8_t * buf = malloc(w * h * sizeof(uint32_t) + 8);
     fread(buf, w * h * 3, 1, fp); //修改
     
     uint8_t *buf_off = buf;
