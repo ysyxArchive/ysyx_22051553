@@ -93,6 +93,10 @@ VL_ATTR_COLD void VSoc_Cache___ctor_var_reset(VSoc_Cache* vlSelf) {
     vlSelf->__PVT__refill_buffer_14 = VL_RAND_RESET_Q(64);
     vlSelf->__PVT__refill_buffer_15 = VL_RAND_RESET_Q(64);
     VL_RAND_RESET_W(1024, vlSelf->__PVT__read);
+    vlSelf->__PVT___victim_T_14 = VL_RAND_RESET_I(32);
+    vlSelf->__PVT___victim_T_17 = VL_RAND_RESET_I(32);
+    vlSelf->__PVT___victim_T_20 = VL_RAND_RESET_I(32);
+    vlSelf->__PVT___victim_T_23 = VL_RAND_RESET_I(32);
     VL_RAND_RESET_W(1024, vlSelf->__PVT___GEN_4);
     vlSelf->__PVT___T = VL_RAND_RESET_I(1);
     vlSelf->__PVT__dirty0 = VL_RAND_RESET_I(1);

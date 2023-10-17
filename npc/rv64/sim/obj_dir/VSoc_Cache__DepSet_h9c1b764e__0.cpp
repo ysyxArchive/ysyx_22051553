@@ -5716,21 +5716,33 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Icache__0
                                                 + (IData)(vlSelf->__PVT__r_count))));
         }
         if (vlSelf->__PVT___T) {
-            vlSelf->__PVT__victim = ((7U == (IData)(vlSelf->__PVT___replace_ext_R8_data))
-                                      ? 3U : ((6U == (IData)(vlSelf->__PVT___replace_ext_R8_data))
-                                               ? 2U
-                                               : ((5U 
+            vlSelf->__PVT__victim = ((1U & vlSelf->__PVT___victim_T_14)
+                                      ? ((1U & vlSelf->__PVT___victim_T_17)
+                                          ? ((1U & vlSelf->__PVT___victim_T_20)
+                                              ? ((1U 
+                                                  & ((~ vlSelf->__PVT___victim_T_23) 
+                                                     | (7U 
+                                                        == (IData)(vlSelf->__PVT___replace_ext_R8_data))))
+                                                  ? 3U
+                                                  : 
+                                                 ((6U 
                                                    == (IData)(vlSelf->__PVT___replace_ext_R8_data))
-                                                   ? 3U
+                                                   ? 2U
                                                    : 
-                                                  ((4U 
+                                                  ((5U 
                                                     == (IData)(vlSelf->__PVT___replace_ext_R8_data))
-                                                    ? 2U
+                                                    ? 3U
                                                     : 
-                                                   ((3U 
-                                                     == (IData)(vlSelf->__PVT___replace_ext_R8_data)) 
-                                                    | (2U 
-                                                       == (IData)(vlSelf->__PVT___replace_ext_R8_data)))))));
+                                                   ((4U 
+                                                     == (IData)(vlSelf->__PVT___replace_ext_R8_data))
+                                                     ? 2U
+                                                     : 
+                                                    ((3U 
+                                                      == (IData)(vlSelf->__PVT___replace_ext_R8_data)) 
+                                                     | (2U 
+                                                        == (IData)(vlSelf->__PVT___replace_ext_R8_data)))))))
+                                              : 2U)
+                                          : 1U) : 0U);
         }
     }
     if (vlSelf->__PVT___T) {
