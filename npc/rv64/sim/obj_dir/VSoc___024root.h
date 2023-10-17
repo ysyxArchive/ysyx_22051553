@@ -165,9 +165,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT___SFBundle_T_14;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT__SFBundle_0;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT__SFBundle_1;
-        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_hc3ceced8__0;
-        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h23e7ec03__0;
+        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h84c28b24__0;
         CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h7bd08a2f__0;
+        CData/*0:0*/ Soc__DOT__core__DOT__fc__DOT____VdfgTmp_h5fc28a32__0;
         CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_1;
         CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_2;
         CData/*0:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T_3;
