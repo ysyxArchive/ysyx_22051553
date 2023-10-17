@@ -164,8 +164,8 @@ class Cache extends Module{
     dontTouch(way3)
     val rtag0 = TagArray(way0)
     val rtag1 = TagArray(way1)
-    val rtag2 = TagArray(way0)
-    val rtag3 = TagArray(way1)
+    val rtag2 = TagArray(way2)
+    val rtag3 = TagArray(way3)
     val rtag0_buf = RegNext(rtag0)
     val rtag1_buf = RegNext(rtag1)
     val rtag2_buf = RegNext(rtag2)
@@ -484,7 +484,7 @@ class Cache extends Module{
                 )
             )
 
-            io.axi.req.bits.rw := MuxLookup(victim, s_Idle,  
+            io.axi.req.bits.rw := MuxLookup(victim, 0.U,  
                 Seq(
                     0.U -> Mux(dirty0, 0.B, 1.B),
                     1.U -> Mux(dirty1, 0.B, 1.B),
@@ -493,7 +493,7 @@ class Cache extends Module{
                 )
             )
 
-            io.axi.req.bits.addr := MuxLookup(victim, s_Idle,  
+            io.axi.req.bits.addr := MuxLookup(victim, 0.U,  
                 Seq(
                     0.U -> Mux(dirty0, Cat(rtag0_buf, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
                     1.U -> Mux(dirty1, Cat(rtag1_buf, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
