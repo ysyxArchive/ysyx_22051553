@@ -64,14 +64,14 @@ void event_update(){
   if (now - last < 100000000 / 60) {
     return;
   }
-  double Icache_hitrate = 1 - ((double)(Icache_req_num - Icache_hit_num) / (double)Icache_req_num);
-      double Dcache_hitrate = 1 - ((double)(Dcache_req_num - Dcache_hit_num) / (double)Dcache_req_num);
+  // double Icache_hitrate = 1 - ((double)(Icache_req_num - Icache_hit_num) / (double)Icache_req_num);
+  //     double Dcache_hitrate = 1 - ((double)(Dcache_req_num - Dcache_hit_num) / (double)Dcache_req_num);
 
 
-      printf("Icache------\n");
-      printf("access num:%d, hit num:%d, hit rate:%0.4f\n", Icache_req_num, Icache_hit_num, Icache_hitrate);
-      printf("Dcache------\n");
-      printf("access num:%d, hit num:%d, hit rate:%0.4f\n", Dcache_req_num, Dcache_hit_num, Dcache_hitrate);
+  //     printf("Icache------\n");
+  //     printf("access num:%d, hit num:%d, hit rate:%0.4f\n", Icache_req_num, Icache_hit_num, Icache_hitrate);
+  //     printf("Dcache------\n");
+  //     printf("access num:%d, hit num:%d, hit rate:%0.4f\n", Dcache_req_num, Dcache_hit_num, Dcache_hitrate);
 
 
   last = now;
@@ -699,17 +699,17 @@ static int cmd_s(char *args){
 
       
     #ifdef SHOW_LIST
-    for(auto arg : fetch_list){
-      printf("pc:0x%lx\n", arg.pc);
-    }
+    // for(auto arg : fetch_list){
+    //   printf("pc:0x%lx\n", arg.pc);
+    // }
 
-    for(auto arg : decode_list){
-      printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
-    }
+    // for(auto arg : decode_list){
+    //   printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
+    // }
 
-    for(auto arg : execute_list){
-      printf("skip:%d\n", arg.skip_ref_one_inst);
-    }
+    // for(auto arg : execute_list){
+    //   printf("skip:%d\n", arg.skip_ref_one_inst);
+    // }
     #endif
 
     #ifdef ITRACE
@@ -753,7 +753,7 @@ static int cmd_s(char *args){
     disassemble(p, log_itrace + sizeof(log_itrace) - p, fetch_list.front().pc,
     (uint8_t *)(&decode_list.front().inst), ilen);
 
-    printf("%s\n", log_itrace);
+    // printf("%s\n", log_itrace);
 
     p = iringbuf[irb_pos];
     strcpy(p, "0x");
