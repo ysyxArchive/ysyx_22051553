@@ -48,8 +48,11 @@ static word_t pmem_read(paddr_t addr, int len) {
 }
 
 static void pmem_write(paddr_t addr, int len, word_t data) {
-  if(addr >= 0x83153e00 && addr <= 0x83153e80)
+  if(addr >= 0x83153e00 && addr <= 0x83153e80){
     printf("addr is 0x%x\n", addr);
+    printf("data is 0x%x\n", *(uint8_t*)guest_to_host(0x83153e60));
+  }
+    
   #ifdef CONFIG_MTRACE
     Log("write mem at " FMT_PADDR " for %d bytes",addr, len);
     // printf("write data is 0x%lx\n", data);
