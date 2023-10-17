@@ -31,7 +31,6 @@ VM_CLASSES_FAST += \
 	VSoc_Cache__DepSet_h9c1b764e__0 \
 	VSoc_Cache__DepSet_h9c1b764e__1 \
 	VSoc_Cache__DepSet_h9c1b764e__2 \
-	VSoc_Cache__DepSet_h9c1b764e__3 \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
 VM_CLASSES_SLOW += \
@@ -44,20 +43,16 @@ VM_CLASSES_SLOW += \
 	VSoc_Cache__Slow \
 	VSoc_Cache__DepSet_haaf97964__0__Slow \
 	VSoc_Cache__DepSet_h9c1b764e__0__Slow \
-	VSoc_Cache__DepSet_h9c1b764e__1__Slow \
 
 # Generated support classes, fast-path, compile with highest optimization
 VM_SUPPORT_FAST += \
 	VSoc__Dpi \
 	VSoc__Trace__0 \
-	VSoc__Trace__1 \
 
 # Generated support classes, non-fast-path, compile with low/medium optimization
 VM_SUPPORT_SLOW += \
 	VSoc__Syms \
 	VSoc__Trace__0__Slow \
-	VSoc__Trace__1__Slow \
-	VSoc__Trace__2__Slow \
 
 # Global classes, need linked once per executable, fast-path, compile with highest optimization
 VM_GLOBAL_FAST += \

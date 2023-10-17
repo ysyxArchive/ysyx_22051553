@@ -6,7 +6,7 @@
 //展示反汇编及错误时的上下指令
 #define ITRACE
 //开启批处理模式
-#define BATCH_MODE
+// #define BATCH_MODE
 //开启VCD跟踪
 #define VCD_ON
 //开启访存跟踪
