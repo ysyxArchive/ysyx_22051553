@@ -15,7 +15,6 @@ class VSoc__Syms;
 class VSoc___024root;
 class VerilatedVcdC;
 class VSoc___024unit;
-class VSoc_Cache;
 
 
 // This class is the main interface to the Verilated model
@@ -36,8 +35,6 @@ class VSoc VL_NOT_FINAL : public VerilatedModel {
     // Public to allow access to /* verilator public */ items.
     // Otherwise the application code can consider these internals.
     VSoc___024unit* const __PVT____024unit;
-    VSoc_Cache* const __PVT__Soc__DOT__core__DOT__Icache;
-    VSoc_Cache* const __PVT__Soc__DOT__core__DOT__Dcache;
 
     // Root instance pointer to allow access to model internals,
     // including inlined /* verilator public_flat_* */ items.

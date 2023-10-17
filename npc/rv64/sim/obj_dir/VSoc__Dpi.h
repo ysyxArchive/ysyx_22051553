@@ -16,12 +16,12 @@ extern "C" {
 
 
     // DPI IMPORTS
-    // DPI import at vsrc/Soc.v:9800:33
+    // DPI import at vsrc/Soc.v:4798:33
     extern long long pmem_read(const svLogicVecVal* raddr);
-    // DPI import at vsrc/Soc.v:9803:30
+    // DPI import at vsrc/Soc.v:4801:30
     extern void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask);
-    // DPI import at vsrc/Soc.v:9687:30
-    extern void update_debuginfo(const svLogicVecVal* pc, svLogic pc_req, const svLogicVecVal* inst, svLogic inst_valid, svLogic load_use, const svLogicVecVal* op_a, const svLogicVecVal* op_b, const svLogicVecVal* result, svLogic br_yes, svLogic mem_access, const svLogicVecVal* mem_addr, const svLogicVecVal* rd, const svLogicVecVal* reg_wdata, svLogic reg_wen, svLogic csr_wen, const svLogicVecVal* csr_wdata, const svLogicVecVal* csr_waddr, svLogic sdb_stall, const svLogicVecVal* trap_state, svLogic Icache_hit, svLogic Icache_req, svLogic fcfe_stall, svLogic Dcache_hit, svLogic Dcache_req, svLogic fcex_stall);
+    // DPI import at vsrc/Soc.v:4696:30
+    extern void update_debuginfo(const svLogicVecVal* pc, svLogic pc_req, const svLogicVecVal* inst, svLogic inst_valid, svLogic load_use, const svLogicVecVal* op_a, const svLogicVecVal* op_b, const svLogicVecVal* result, svLogic br_yes, svLogic mem_access, const svLogicVecVal* mem_addr, const svLogicVecVal* rd, const svLogicVecVal* reg_wdata, svLogic reg_wen, svLogic csr_wen, const svLogicVecVal* csr_wdata, const svLogicVecVal* csr_waddr, svLogic sdb_stall, const svLogicVecVal* trap_state);
 
 #ifdef __cplusplus
 }

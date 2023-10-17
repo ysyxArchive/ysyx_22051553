@@ -27,10 +27,8 @@ VM_CLASSES_FAST += \
 	VSoc___024root__DepSet_hf1724153__0 \
 	VSoc___024root__DepSet_hf1724153__1 \
 	VSoc___024root__DepSet_h37efcc4e__0 \
+	VSoc___024root__DepSet_h37efcc4e__1 \
 	VSoc___024unit__DepSet_h02486a38__0 \
-	VSoc_Cache__DepSet_h9c1b764e__0 \
-	VSoc_Cache__DepSet_h9c1b764e__1 \
-	VSoc_Cache__DepSet_h9c1b764e__2 \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
 VM_CLASSES_SLOW += \
@@ -38,11 +36,9 @@ VM_CLASSES_SLOW += \
 	VSoc___024root__Slow \
 	VSoc___024root__DepSet_hf1724153__0__Slow \
 	VSoc___024root__DepSet_h37efcc4e__0__Slow \
+	VSoc___024root__DepSet_h37efcc4e__1__Slow \
 	VSoc___024unit__Slow \
 	VSoc___024unit__DepSet_hcac5f3b5__0__Slow \
-	VSoc_Cache__Slow \
-	VSoc_Cache__DepSet_haaf97964__0__Slow \
-	VSoc_Cache__DepSet_h9c1b764e__0__Slow \
 
 # Generated support classes, fast-path, compile with highest optimization
 VM_SUPPORT_FAST += \
