@@ -13,7 +13,7 @@
 // #define MTRACE
 //开启差分测试  --DIFFTEST依赖于ITRACE
 // #define DIFFTEST
-#define FTRACE
+// #define FTRACE
 
 
 #endif
