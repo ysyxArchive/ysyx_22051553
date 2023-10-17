@@ -137,19 +137,9 @@ class FlowControl extends Module{
     dontTouch(IO_stall)
     dontTouch(MULDIV_stall)
 
-    when(io.fcIcache.cpu_valid){ //恢复
-        Icache_stall := 0.B
-    }.elsewhen(io.fcIcache.state === CacheState.s_hitWrite){ //写命中提前释放
-        Icache_stall := 0.B
-    }.elsewhen(io.fcIcache.state === CacheState.s_WriteAllocate && io.fcIcache.axi_valid){ //写分配提前释放
-        Icache_stall := 0.B
-    // }.elsewhen(io.fcIcache.state === CacheState.s_ReadAck && io.fcIcache.axi_valid){ //读提前释放
-    //     Icache_stall := 0.B
-    }.elsewhen(io.fcIcache.state =/= 0.U){
+    when((io.fcIcache.state =/= 0.U && !io.fcIcache.hit)){
         Icache_stall := 1.B
-    }.elsewhen(io.fcIcache.state === 0.U && io.fcIcache.req && io.fcIcache.mask.orR){ //写，一定需要stall
-        Icache_stall := 1.B
-    }.elsewhen(io.fcIcache.state === 0.U && io.fcIcache.req && !io.fcIcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
+    }.elsewhen(io.fcIcache.state === CacheState.s_WriteBack | io.fcIcache.state === CacheState.s_RefillReady | io.fcIcache.state === CacheState.s_Refill){
         Icache_stall := 1.B
     }.otherwise{
         Icache_stall := 0.B
@@ -157,35 +147,36 @@ class FlowControl extends Module{
 
 
     
-    when(io.fcDcache.state === CacheState.s_hitWrite){ //写命中提前一周期释放
-        Dcache_stall := 0.B
-    }.elsewhen(io.fcDcache.state === CacheState.s_WriteAllocate && io.fcDcache.axi_valid){ //写分配提前释放
-        Dcache_stall := 0.B
-    }.elsewhen(io.fcDcache.state === CacheState.s_ReadAck && io.fcDcache.axi_valid){ //读提前释放
-        Dcache_stall := 0.B
-    }.elsewhen(io.fcDcache.state =/= 0.U){
+    when(io.fcDcache.state =/= 0.U && !io.fcDcache.hit){
         Dcache_stall := 1.B
-    }.elsewhen(io.fcDcache.state === 0.U && io.fcDcache.req && io.fcDcache.mask.orR){ //写，一定需要stall
+    }.elsewhen(io.fcDcache.state === CacheState.s_WriteBack | io.fcDcache.state === CacheState.s_RefillReady | io.fcDcache.state === CacheState.s_Refill){ //添加,防止下个ex hit
         Dcache_stall := 1.B
-    }.elsewhen(io.fcDcache.state === 0.U && io.fcDcache.req && !io.fcDcache.mask.orR && !io.fcDcache.hit){ //读，且没有命中，一定需要stall
-        Dcache_stall := 1.B
-    }.elsewhen(io.fcDcache.cpu_valid){ //恢复  优先级低于上面
-        Dcache_stall := 0.B
     }
     .otherwise{
         Dcache_stall := 0.B
     }
 
     
-    when(io.fcio.req && io.fcio.state === IoforMem.s_Idle){
+    // when(io.fcio.req && io.fcio.state === IoforMem.s_Idle){
+    //     IO_stall := 1.B
+    // }.elsewhen(io.fcio.state === IoforMem.s_req){
+    //     IO_stall := 1.B
+    // }.elsewhen(io.fcio.stall === IoforMem.s_wait){
+    //     IO_stall := 0.B
+    // }.otherwise{
+    //     IO_stall := 0.B
+    // } 调整到下一周期stall
+    when((io.fcio.state === IoforMem.s_singlereq | io.fcio.state === IoforMem.s_multireq) && (!io.fcio.valid)){
         IO_stall := 1.B
-    }.elsewhen(io.fcio.state === IoforMem.s_req){
+    }.elsewhen(io.fcio.state === IoforMem.s_Idle && io.fcio.req && !(io.fcio.vmem_range)){
         IO_stall := 1.B
-    }.elsewhen(io.fcio.stall === IoforMem.s_wait){
+    }
+    .elsewhen(io.fcio.state === IoforMem.s_wait){
         IO_stall := 0.B
     }.otherwise{
         IO_stall := 0.B
     }
+
 
     when(io.fcex.mul_div_valid){
         MULDIV_stall := 0.B
@@ -207,8 +198,8 @@ class FlowControl extends Module{
                 -> FlowControl.TrapWait_SFBundle,
             (io.fctr.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
             (io.fcex.jump_flag === 1.B) -> FlowControl.BRANCH_SFBundle,
+            MULDIV_stall -> FlowControl.MULDIV_SFBundle,
             (io.fcde.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
-            MULDIV_stall -> FlowControl.MULDIV_SFBundle
         )
     )
 

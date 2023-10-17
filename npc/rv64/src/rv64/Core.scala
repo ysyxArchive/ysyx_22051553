@@ -13,7 +13,7 @@ import circt.stage.CLI
 
 class Core extends Module{
     val io = IO(new Bundle {
-        val AXI_Interface = new AXILiteMasterIf
+        val AXI_Interface = new AXIMasterIf
     })
     
 
@@ -413,7 +413,12 @@ class Core extends Module{
 
     trap.io.csrtr <> csrs.io.CSRTr
 
-    trap.io.inst := Mux(Icache.io.cpu.resp.valid, Icache.io.cpu.resp.bits.data, NOP) //修改后
+    trap.io.inst := Mux(Icache.io.cpu.resp.valid, 
+        Mux(fdreg.pc(2),
+            Icache.io.cpu.resp.bits.data(63,32),
+            Icache.io.cpu.resp.bits.data(31,0)
+        )
+    , NOP)
 
     trap.io.pc := fetch.io.pc.bits
 
@@ -445,7 +450,6 @@ class Core extends Module{
     Icache.io.cpu.req.bits.addr := fetch.io.pc.bits
     Icache.io.cpu.req.bits.data := DontCare
     Icache.io.cpu.req.bits.mask := DontCare
-    Icache.io.cpu.req.bits.inst_type := 1.B
 
     Icache.io.cpu.resp <> decode.io.inst
 
@@ -456,7 +460,6 @@ class Core extends Module{
     Dcache.io.cpu.req.bits.addr := excute.io.waddr | excute.io.raddr
     Dcache.io.cpu.req.bits.data := excute.io.wdata
     Dcache.io.cpu.req.bits.mask := excute.io.wmask
-    Dcache.io.cpu.req.bits.inst_type := 0.B
 
     Dcache.io.cpu.resp <> mem.io.rdata
 
@@ -466,8 +469,8 @@ class Core extends Module{
     ioformem.io.excute.raddr := excute.io.raddr
     ioformem.io.excute.wdata := excute.io.wdata
     ioformem.io.excute.wmask := excute.io.wmask
-    ioformem.io.excute.load := excute.io.deio.ld_type.orR
-    ioformem.io.excute.store := excute.io.deio.sd_type.orR
+    ioformem.io.excute.ld_type := excute.io.deio.ld_type
+    ioformem.io.excute.sd_type := excute.io.deio.sd_type
 
     ioformem.io.fc <> fc.io.fcio
     ioformem.io.mem <> mem.io.rdata_io
@@ -476,7 +479,7 @@ class Core extends Module{
     arbitor.io.master0 <> ioformem.io.axi
     arbitor.io.master1 <> Dcache.io.axi //先让在允许的指令获得运行数据
     arbitor.io.master2 <> Icache.io.axi
-
+    arbitor.io.multiwrite := ioformem.io.multiwrite
     
 
     
@@ -487,8 +490,13 @@ class Core extends Module{
     DI.io.rst := reset
     DI.io.pc := fetch.io.pc.bits
     DI.io.pc_req := fetch.io.pc.valid
-    DI.io.inst := Mux(Icache.io.cpu.resp.valid, Icache.io.cpu.resp.bits.data, NOP)
-    DI.io.inst_valid := Icache.io.cpu.resp.valid && fc.io.fcde.flush =/= 1.B  ////不计入flush的指令
+    DI.io.inst := Mux(Icache.io.cpu.resp.valid, 
+        Mux(fdreg.pc(2),
+            Icache.io.cpu.resp.bits.data(63,32),
+            Icache.io.cpu.resp.bits.data(31,0)
+        )
+    , NOP)
+    DI.io.inst_valid := Icache.io.cpu.resp.valid && fc.io.fcde.flush =/= 1.B  //不计入flush的指令
     DI.io.load_use := decode.io.load_use
     DI.io.op_a  := dereg.op_a
     DI.io.op_b  := dereg.op_b
@@ -504,10 +512,22 @@ class Core extends Module{
     DI.io.csr_wen := wb.io.csrs.csr_wen
     DI.io.sdb_stall := fc.io.sdb_stall
     DI.io.trap_state := trap.io.fctr.trap_state
+    DI.io.Icache_hit := Icache.io.fccache.hit
+    DI.io.Icache_req := Icache.io.fccache.req
+    DI.io.fcfe_stall := fc.io.fcfe.stall
+    DI.io.Dcache_hit := Dcache.io.fccache.hit
+    DI.io.Dcache_req := Dcache.io.fccache.req
+    DI.io.fcex_stall := fc.io.fcex.stall
+
 
     //interact
     val interact = Module(new Interact)
-    interact.io.inst := Mux(Icache.io.cpu.resp.valid && fc.io.fcde.flush =/= 1.B, Icache.io.cpu.resp.bits.data(31,0), 0.U);  //不计入flush的指令
+    interact.io.inst := Mux(Icache.io.cpu.resp.valid && fc.io.fcde.flush =/= 1.B, 
+        Mux(fdreg.pc(2),
+            Icache.io.cpu.resp.bits.data(63,32),
+            Icache.io.cpu.resp.bits.data(31,0)
+        ),
+    0.U);  //不计入flush的指令
     interact.io.clk := clock   //可以直接显式使用clock
     interact.io.rst := reset
 

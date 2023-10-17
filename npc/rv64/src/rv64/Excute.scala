@@ -102,13 +102,15 @@ class Excute extends Module{
     //to TM
     io.raddr := Mux( (io.deio.ld_type =/= 0.U) && (CLINT_type === 0.B) , alu.io.result, 0.U)   //load/store不涉及乘除相关操作
     
+
+    val woffset = Cat(alu.io.result(2,0), 0.U(3.W))
     io.waddr := Mux((io.deio.sd_type =/= 0.U) && (CLINT_type === 0.B) , alu.io.result, 0.U)
-    io.wdata := io.deio.reg2_rdata
+    io.wdata := io.deio.reg2_rdata << woffset
     io.wmask := MuxLookup(io.deio.sd_type, 0.U,
         Seq(
-            SD_SB -> "b00000001".U,
-            SD_SH -> "b00000011".U,
-            SD_SW -> "b00001111".U,
+            SD_SB -> ("b00000001".U << alu.io.result(2,0)),
+            SD_SH -> ("b00000011".U << alu.io.result(2,0)),
+            SD_SW -> ("b00001111".U << alu.io.result(2,0)),
             SD_SD -> "b11111111".U
         )
     )
@@ -122,7 +124,7 @@ class Excute extends Module{
 
     io.clex.sd_type := io.deio.sd_type
     io.clex.waddr := alu.io.result
-    io.clex.wmask := MuxLookup(io.deio.sd_type, 0.U,
+    io.clex.wmask := MuxLookup(io.deio.sd_type, 0.U,  //暂且不管
         Seq(
             SD_SB -> "b00000001".U,
             SD_SH -> "b00000011".U,
