@@ -3,7 +3,7 @@
 //Cache Memory Mapping:| Tag | Index |   Offset | --但是8字节对齐
 //                       21      4          7  
 //Tag Unit:|Valid|Replace|Tag|
-//            1      1    25
+//            1      2    21
 //Get 4 Btye for each time
 
 
@@ -17,12 +17,12 @@ import firrtl.bitWidth
 
 
 object CacheState { //有的会产生没必要的延迟周期，但是状态机更清晰
-    val s_Idle :: s_ReadCache :: s_WriteCache :: s_WriteBack :: s_RefillReady :: s_Refill :: Nil = Enum(6)
-//                                                              等待AR的周期
+    val s_Idle :: s_Choose  :: s_WriteBack :: s_RefillReady :: s_Refill :: s_WriteAfterRefill :: Nil = Enum(6)
+//                                               等待AR的周期
 }
 
 object Cache{
-    val nWays = 2
+    val nWays = 4
     val nSets = 8
     val bBytes = 128 //Cacheline长度
     val bBits = bBytes << 3
@@ -36,7 +36,6 @@ object Cache{
 }
 
 class CacheReq extends Bundle{  //来自CPU
-    // val inst_type = Bool() //对于Icache,每次都读4字节，对于普通读取，每次都读8字节(XLEN)
     val addr = UInt(ADDRWIDTH.W)
     val data = UInt(X_LEN.W)
     val mask = UInt((X_LEN/8).W)
@@ -73,8 +72,7 @@ class Cache extends Module{
     val state = RegInit(s_Idle)
 
     val is_idle = state === s_Idle
-    val is_read = state === s_ReadCache
-    val is_write = state === s_WriteCache
+    val is_chooose = state === s_Choose
     val is_alloc = state === s_Refill && r_count===15.U
     val is_alloc_reg = RegNext(is_alloc)
 
@@ -89,28 +87,44 @@ class Cache extends Module{
     //标记项
     val valid = RegInit(0.U((nWays*nSets).W))
     val dirty = RegInit(0.U((nWays*nSets).W))
-    val replace = RegInit(0.U((nWays*nSets).W))  //LRU算法，0新1旧
-    val rep0 = Wire(UInt((nWays*nSets).W))
-    val rep1 = Wire(UInt((nWays*nSets).W))
-    rep0 := 0.U
-    rep1 := 0.U
-    
-    val TagArray = SyncReadMem(nSets*nWays, UInt(tlen.W))
+
+    val replace = Mem(nSets, UInt(3.W)) //Tree-PLRU算法
+
+    val victim = RegInit(0.U(2.W))
+    dontTouch(victim)
+
+
+    val TagArray = Mem(nSets*nWays, UInt(tlen.W))
     val DataArray = Seq.fill(nWords)(SyncReadMem(nWays*nSets, Vec(wBytes, UInt(8.W))))
 
     //控制信号
     val hit0 = Wire(Bool())
     val hit1 = Wire(Bool())
+    val hit2 = Wire(Bool())
+    val hit3 = Wire(Bool())
+    val hit0_reg = RegNext(hit0)
+    val hit1_reg = RegNext(hit1)
+    val hit2_reg = RegNext(hit2)
+    val hit3_reg = RegNext(hit3)
+
+
+    val hit = Wire(Bool())
+    val hit_reg = RegNext(hit)
     dontTouch(hit0)
     dontTouch(hit1)
-    val wen = is_write && (hit0 || hit1) || is_alloc || (is_alloc_reg && is_write) //is_alloc用于refill,is_alloc_reg用于写不命中
-    /*
-    1.写命中,需要写入
-    2.写分配最后一周期,需要写入
-    */
-    // val ren = (is_idle || is_read || is_write) && io.cpu.req.valid   //cpu申请读出 Tag和Data
-    //修改,并不是随时都ren,ren会修改rtag
-    val ren = (is_idle || (is_read & (hit0 | hit1)) || (is_write & ((hit0 | hit1) | is_alloc_reg))) && io.cpu.req.valid   //cpu申请读出 Tag和Data
+    dontTouch(hit2)
+    dontTouch(hit3)
+
+    val w_req = io.cpu.req.bits.mask.orR
+    val wen = (is_idle && hit && w_req) || (is_alloc) || (is_alloc_reg && cpu_mask.orR)
+    // 1.写命中
+    // 2.从AXI读出，一定需要写
+    // 3.Refill结束后，写入数据
+    
+    val ren = !wen && ( (is_idle && hit && !w_req) || (is_chooose) )
+    // 1.保证单端口
+    // 2.读命中
+
     val ren_reg = RegNext(ren)
     
     /*
@@ -122,182 +136,314 @@ class Cache extends Module{
 
     val addr = io.cpu.req.bits.addr
     val idx = addr(slen+blen-1,blen)
-    val tag_reg = addr_reg(ADDRWIDTH-1,slen+blen)
+    val tag = addr(ADDRWIDTH-1,slen+blen)
+    val off = addr(blen-1, byteOffsetBits)
+
+    val tag_reg = addr_reg(ADDRWIDTH-1,slen+blen)  //需要缓存吗
     val idx_reg = addr_reg(slen+blen-1, blen)
     val off_reg = addr_reg(blen-1, byteOffsetBits) //选择某个XLEN,某个8Byte对齐的数据
     dontTouch(addr)
     dontTouch(idx)
+    dontTouch(tag)
     dontTouch(tag_reg)
     dontTouch(idx_reg)
     dontTouch(off_reg)
 
-
     val way0 = nWays.U*idx
     val way1 = nWays.U*idx + 1.U
-    val way0_buf = nWays.U*idx_reg
+    val way2 = nWays.U*idx + 2.U
+    val way3 = nWays.U*idx + 3.U
+    val way0_buf = nWays.U*idx_reg   
     val way1_buf = nWays.U*idx_reg + 1.U
+    val way2_buf = nWays.U*idx_reg + 2.U
+    val way3_buf = nWays.U*idx_reg + 3.U
+
     dontTouch(way0)
     dontTouch(way1)
-    val rtag0 = TagArray.read(way0,ren)
-    val rtag1 = TagArray.read(way1,ren)
-    val rtag0_buf = RegEnable(rtag0, ren_reg)  //增加作为缓存
-    val rtag1_buf = RegEnable(rtag1, ren_reg)
-    val rtag0_choose = Mux(ren_reg, rtag0, rtag0_buf)
-    val rtag1_choose = Mux(ren_reg, rtag1, rtag1_buf)
+    dontTouch(way2)
+    dontTouch(way3)
+    val rtag0 = TagArray(way0)
+    val rtag1 = TagArray(way1)
+    val rtag2 = TagArray(way2)
+    val rtag3 = TagArray(way3)
+    val rtag0_buf = RegNext(rtag0)
+    val rtag1_buf = RegNext(rtag1)
+    val rtag2_buf = RegNext(rtag2)
+    val rtag3_buf = RegNext(rtag3)
+    dontTouch(rtag0)
+    dontTouch(rtag1)
+    dontTouch(rtag2)
+    dontTouch(rtag3)
 
+    val choose_way0 = Mux(is_chooose, way0_buf, way0)
+    val choose_way1 = Mux(is_chooose, way1_buf, way1)
+    val choose_way2 = Mux(is_chooose, way2_buf, way2)
+    val choose_way3 = Mux(is_chooose, way3_buf, way3)
+    dontTouch(choose_way0)
+    dontTouch(choose_way1)
+    dontTouch(choose_way2)
+    dontTouch(choose_way3)
 
-    val rdata0 = Cat((DataArray.map(_.read(way0,ren).asUInt)).reverse) //读出
-    val rdata1 = Cat((DataArray.map(_.read(way1,ren).asUInt)).reverse) //读出
+    val rdata0 = Cat((DataArray.map(_.read(choose_way0,ren).asUInt)).reverse) 
+    val rdata1 = Cat((DataArray.map(_.read(choose_way1,ren).asUInt)).reverse) 
+    val rdata2 = Cat((DataArray.map(_.read(choose_way2,ren).asUInt)).reverse) 
+    val rdata3 = Cat((DataArray.map(_.read(choose_way3,ren).asUInt)).reverse) 
     val rdata0_buf = RegEnable(rdata0, ren_reg)
     val rdata1_buf = RegEnable(rdata1, ren_reg)
+    val rdata2_buf = RegEnable(rdata2, ren_reg)
+    val rdata3_buf = RegEnable(rdata3, ren_reg)
+    //refill
     val refill_buffer = Reg(Vec(dataBeats, UInt(X_LEN.W)))
-    
-    val read = Mux(is_alloc_reg,   //已经全部Refill到Cacheline,且Refill_buf中是完整的数据
+
+    val read = Mux(is_alloc_reg,   //已经全部Refill到Cacheline,且Refill_buf中是完整的数据 //读不命中
         refill_buffer.asUInt,
-        Mux(ren_reg, //ren_reg有效时,rdata有效,ren_reg无效时,rdata已经存入rdata_buf中
-            Mux(rtag0_choose === tag_reg, rdata0, rdata1),
-            Mux(rtag0_choose === tag_reg, rdata0_buf, rdata1_buf)
+        Mux(hit_reg,   //读命中
+            MuxCase(0.B,  //读命中
+                Seq(
+                    (hit0_reg) -> rdata0,
+                    (hit1_reg) -> rdata1,
+                    (hit2_reg) -> rdata2,
+                    (hit3_reg) -> rdata3,
+                )
+            ),
+            Mux(ren_reg,                      //写回数据
+                MuxLookup(victim, 0.U,  
+                    Seq(
+                        0.U -> rdata0,
+                        1.U -> rdata1,
+                        2.U -> rdata2,
+                        3.U -> rdata3,
+                    )
+                ),
+                MuxLookup(victim, 0.U,  
+                    Seq(
+                        0.U -> rdata0_buf,
+                        1.U -> rdata1_buf,
+                        2.U -> rdata2_buf,
+                        3.U -> rdata3_buf,
+                    )
+                )
+            )
         )
     )
-        
-    hit0 := valid(way0_buf) && rtag0_choose === tag_reg
-    hit1 := valid(way1_buf) && rtag1_choose === tag_reg
+
+    //立即判断
+    hit0 := valid(way0) && rtag0 === tag && is_idle  //不能让其他周期的命中影响当前cache状态机进行
+    hit1 := valid(way1) && rtag1 === tag && is_idle
+    hit2 := valid(way2) && rtag2 === tag && is_idle
+    hit3 := valid(way3) && rtag3 === tag && is_idle
+
+    hit := hit0 | hit1 | hit2 | hit3
+
 
     //读出
-    io.cpu.resp.bits.data := VecInit.tabulate(nWords)(i => read((i + 1) * X_LEN - 1, i * X_LEN))(off_reg)
-    io.cpu.resp.valid := (hit0 || hit1) || is_alloc_reg && !cpu_mask.orR
-    /*
-    1.读命中
-    2.写命中
-    3.写分配完成
-    */
-    when( (is_idle & io.cpu.req.valid) | ((is_write | is_read) & io.cpu.req.valid & (!io.axi.req.valid))){ //在read,write中,只有不转移到更深的状态才能更改addr_reg
-        addr_reg := addr                                                                             //否则需要保持addr_reg进行refill等操作
+    io.cpu.resp.bits.data := Mux(
+        is_alloc_reg, refill_buffer(off_reg),
+        VecInit.tabulate(nWords)(i => read((i + 1) * X_LEN - 1, i * X_LEN))(off_reg)  //命中
+    )
+        
+    
+    io.cpu.resp.valid := (hit_reg && is_idle) || (is_alloc_reg && !cpu_mask.orR) || (is_idle && cpu_mask.orR)
+    //1.读命中或写命中且此时在idle ----可能当前不在idle,新的dcache请求命中
+    //2.Refill后无需写入
+    //3.Refill后写入
+    
+
+
+    when(is_idle & io.cpu.req.valid){ //1.未命中
+        addr_reg := addr                 
         cpu_data := io.cpu.req.bits.data
         cpu_mask := io.cpu.req.bits.mask
-    }.elsewhen(!io.cpu.req.valid & is_idle){  //需要复位 -否则总是hit
+
+        victim := MuxCase(
+            MuxLookup(replace(idx), 0.U,  //若无valid
+                Seq(
+                    "b000".U -> 0.U,
+                    "b001".U -> 0.U,
+                    "b010".U -> 1.U,
+                    "b011".U -> 1.U,
+                    "b100".U -> 2.U,
+                    "b101".U -> 3.U,
+                    "b110".U -> 2.U,
+                    "b111".U -> 3.U,
+                )
+            ),
+            Seq(  //若有valid
+                (!valid(way0)) -> 0.U,
+                (!valid(way1)) -> 1.U,
+                (!valid(way2)) -> 2.U,
+                (!valid(way3)) -> 3.U,
+            )
+
+        )
+            
+            
+    }.elsewhen(!io.cpu.req.valid & is_idle){  //复位
         addr_reg := 0.U                                 
         cpu_data := 0.U
         cpu_mask := 0.U
     }
 
-
+    //在写回阶段判定
     val dirty0 = valid(way0_buf) && dirty(way0_buf)
     val dirty1 = valid(way1_buf) && dirty(way1_buf)
-    //选择替代，00选0,01选0,10选1   --根据replace选择，若选择的是dirty,则需要写回
-    val replace_wire = Mux(replace(way1_buf), 1.B, 0.B)  //不管是否为脏,replace_wire选择的就是真正选择的
-    val replace_buf = RegNext(replace_wire) //因为在alloc阶段,replace会被改变,而下一周期的写不命中同样依赖于之前的replace
-    dontTouch(replace_wire)
+    val dirty2 = valid(way2_buf) && dirty(way2_buf)
+    val dirty3 = valid(way3_buf) && dirty(way3_buf)
+
 
     //写入-----------
     val wtag = Wire(UInt(tlen.W))
-    wtag := tag_reg
+    wtag := Mux(is_idle, tag, tag_reg)
 
+    val wmask = Mux(
+        is_idle, (io.cpu.req.bits.mask << Cat(off, 0.U(byteOffsetBits.W))).zext, //写命中
+        Mux(
+            is_alloc, (-1).S,   //从AXI读取完所有数据
+            (cpu_mask << Cat(off_reg, 0.U(byteOffsetBits.W))).zext //写不命中，写入cache //off_reg用于选择Cacheline中某个对齐的8Byte
+        )
+    )
     
-    val wmask = Mux(!is_alloc, (cpu_mask << Cat(off_reg, 0.U(byteOffsetBits.W))).zext, (-1).S)  //off_reg用于选择Cacheline中某个对齐的8Byte
     dontTouch(wmask)
+
     val wdata = Mux(
-        !is_alloc, //is_alloc为0->写命中, is_alloc为1->写分配
-        Fill(nWords, cpu_data),
-        Cat(io.axi.resp.bits.data, Cat(refill_buffer.init.reverse))
+        is_idle, Fill(nWords, io.cpu.req.bits.data),  //写命中
+        Mux(
+            is_alloc, Cat(io.axi.resp.bits.data, Cat(refill_buffer.init.reverse)),  //注意init.reverse
+            Fill(nWords, cpu_data)   //写不命中，写入Cache
+        )
     )
 
-    when(wen){
-        when(hit0 | hit1){ //命中就不涉及写valid等
-            when(hit0){
-                dirty := dirty.bitSet(way0_buf, 1.B) //写命中为脏,写分配为不脏
-
-                rep0 := replace.bitSet(way0_buf, 0.B)
-                rep1 := replace.bitSet(way1_buf, 1.B)
-                replace := rep0 | rep1
-
-                DataArray.zipWithIndex.foreach{
-                case(mem, i) =>
-                    val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
-                    mem.write(way0_buf, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
-                }
-            }.otherwise{
-                dirty := dirty.bitSet(way1_buf, 1.B) //写命中为脏,写分配为不脏
-
-                rep0 := replace.bitSet(way0_buf, 1.B)
-                rep1 := replace.bitSet(way1_buf, 0.B)
-                replace := rep0 | rep1
-
-                DataArray.zipWithIndex.foreach{
-                case(mem, i) =>
-                    val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
-                    mem.write(way1_buf, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
-                }
-            }
-        }.otherwise{ //alloc
-
-            when((!replace_wire&is_alloc) | (!replace_buf&is_alloc_reg)){ //alloc看!replace_wire&is_alloc,写不命中看!replace_buf&is_alloc_reg
-                
-
-                when(is_alloc){ //只有写分配才改变valid
-                    valid := valid.bitSet(way0_buf, 1.B)
-                    dirty := dirty.bitSet(way0_buf, 0.B) //写命中为脏,写分配为不脏
-
-                    rep0 := replace.bitSet(way0_buf, 0.B)
-                    rep1 := replace.bitSet(way1_buf, 1.B)
-                    replace := rep0 | rep1
-
-                    TagArray.write(way0_buf, tag_reg)
-                }.otherwise{ //alloc_reg
-                    dirty := dirty.bitSet(way0_buf, 1.B)   //写不命中,到写阶段,并不需要再改变replace,因为和写分配时一致
-                }
-
-                DataArray.zipWithIndex.foreach{
-                    case(mem, i) =>
-                        val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
-                        mem.write(way0_buf, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
-                }
-                /*
-                对DataArray取索引,得到nWords个mem,每个mem都是nSets*nWays个wBytes,
-                应该写的位置是way0
-
-                val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8)) //字节序列,组成XLEN长度
-                i=0时,即nWords为0,取第0个XLEN(8字节对齐数据),
-                k从0增长到wBytes-1,
-                k=0时,data(0)为wdata(7,0);k=1时,data(1)为wdata(15,8)
-                i=1时,即nWords为1,取第1个XLEN(8字节对齐数据),
-                k从0增长到wBytes-1,
-                k=0时,data(0)为wdata(71,64);k=1时,data(1)为wdata(79,72)
-
-                mem.write(way0, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools())
-                选择way0,即对应的way中的set,写data(8字节),mask为wmask((i + 1) * wBytes - 1, i * wBytes).asBools()
-
-                对于is_alloc,mask全为1,即Cacheline全部需要写
-                对于写命中,mask为cpu_mask << Cat(off_reg, 0.U(byteOffsetBits.W)),
-                例:cpu_mask为0000_0001 off_reg(选择某个XLEN)为1 ->(off_reg为1时,需要写(127,64))
-                则,wmask为1 << 1000即为8,即写第8字节(71,64)
-                */
-            }.otherwise{
-
-                when(is_alloc){
-                    TagArray.write(way1_buf, tag_reg)
-                    valid := valid.bitSet(way1_buf, 1.B)
-                    dirty := dirty.bitSet(way1_buf, 0.B) //写命中为脏,写分配为不脏
+    val choose_tagway = Wire(UInt(5.W))
+    val choose_dataway = Wire(UInt(5.W))
+    choose_dataway := 0.U
+    choose_tagway := 0.U
+    dontTouch(choose_dataway)
+    dontTouch(choose_tagway)
 
 
-                    rep0 := replace.bitSet(way0_buf, 1.B)
-                    rep1 := replace.bitSet(way1_buf, 0.B)
-                    replace := rep0 | rep1
-                }.otherwise{
-                    dirty := dirty.bitSet(way1_buf, 1.B)
-                }
-
-
-                DataArray.zipWithIndex.foreach{
-                    case(mem, i) =>
-                        val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
-                        mem.write(way1_buf, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
-                }
-            }
-
-        }
-
+    //读写hit都修改replace
+    when(hit){
+        replace(idx) := MuxCase(0.U,
+            Seq(
+                hit0 -> Cat(1.U, 1.U, replace(idx)(0)),  //竟然有这种语法
+                hit1 -> Cat(1.U, 0.U, replace(idx)(0)),
+                hit2 -> Cat(0.U, replace(idx)(1), 1.U),
+                hit3 -> Cat(0.U, replace(idx)(1), 0.U),
+            )
+        )
     }
+
+
+    when(wen){
+        when(hit){//1.写命中，不涉及写valid   2.写不命中，alloc后，写入
+
+            //dirty---------------
+            dirty := MuxCase(0.B, 
+                Seq(
+                    (hit0) -> dirty.bitSet(way0, 1.B),
+                    (hit1) -> dirty.bitSet(way1, 1.B),
+                    (hit2) -> dirty.bitSet(way2, 1.B),
+                    (hit3) -> dirty.bitSet(way3, 1.B), 
+                )
+            )
+            //-----------------replace
+            // replace(idx) := MuxCase(0.U,
+            //     Seq(
+            //         hit0 -> Cat(1.U, 1.U, replace(idx)(0)),
+            //         hit1 -> Cat(1.U, 0.U, replace(idx)(0)),
+            //         hit2 -> Cat(0.U, replace(idx)(1), 1.U),
+            //         hit3 -> Cat(0.U, replace(idx)(1), 0.U),
+            //     )
+            // )
+            // replace(way0) := Mux(hit0, 0.U, Mux(
+            //     replace(way0) === 3.U, 3.U, replace(way0) + 1.U))  //可以这么写吗 --可以
+            // replace(way1) := Mux(hit1, 0.U, Mux(
+            //     replace(way1) === 3.U, 3.U, replace(way1) + 1.U))  
+            // replace(way2) := Mux(hit2, 0.U, Mux(
+            //     replace(way2) === 3.U, 3.U, replace(way2) + 1.U))  
+            // replace(way3) := Mux(hit3, 0.U, Mux(
+            //     replace(way3) === 3.U, 3.U, replace(way3) + 1.U))  
+            //-----------data
+            choose_dataway := MuxCase(0.U,
+                Seq(
+                    (hit0) -> way0,
+                    (hit1) -> way1,
+                    (hit2) -> way2,
+                    (hit3) -> way3, 
+                )
+            )
+
+            DataArray.zipWithIndex.foreach{
+                case(mem, i) => 
+                    val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
+                    mem.write(choose_dataway, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
+            }
+        }.otherwise{  //alloc
+            //--------------valid
+            valid := MuxLookup(victim, valid,
+                Seq(
+                    0.U -> valid.bitSet(way0_buf, 1.B),
+                    1.U -> valid.bitSet(way1_buf, 1.B),
+                    2.U -> valid.bitSet(way2_buf, 1.B),
+                    3.U -> valid.bitSet(way3_buf, 1.B),
+                )
+            )
+            //--------------dirty
+            dirty := MuxLookup(victim, dirty,
+                Seq(
+                    0.U -> valid.bitSet(way0_buf, 0.B),
+                    1.U -> valid.bitSet(way1_buf, 0.B),
+                    2.U -> valid.bitSet(way2_buf, 0.B),
+                    3.U -> valid.bitSet(way3_buf, 0.B),
+                )
+            )
+            //--------------replace
+            replace(idx_reg) := MuxLookup(victim, 0.U,
+                Seq(
+                    0.U -> Cat(1.U, 1.U, replace(idx_reg)(0)),
+                    1.U -> Cat(1.U, 0.U, replace(idx_reg)(0)),
+                    2.U -> Cat(0.U, replace(idx_reg)(1), 1.U),
+                    3.U -> Cat(0.U, replace(idx_reg)(1), 0.U),
+                )
+            )
+            // replace(way0_buf) := Mux(victim === 0.U, 0.U, Mux(
+            //     replace(way0_buf) === 3.U, 3.U, replace(way0_buf) + 1.U))  //可以这么写吗 --可以
+            // replace(way1_buf) := Mux(victim === 1.U, 0.U, Mux(
+            //     replace(way1_buf) === 3.U, 3.U, replace(way1_buf) + 1.U))
+            // replace(way2_buf) := Mux(victim === 2.U, 0.U, Mux(
+            //     replace(way2_buf) === 3.U, 3.U, replace(way2_buf) + 1.U))
+            // replace(way3_buf) := Mux(victim === 3.U, 0.U, Mux(
+            //     replace(way3_buf) === 3.U, 3.U, replace(way3_buf) + 1.U))
+            
+            //-------------Tag
+            choose_tagway := MuxLookup(victim, 0.U,
+                Seq(
+                    0.U -> way0_buf,
+                    1.U -> way1_buf,
+                    2.U -> way2_buf,
+                    3.U -> way3_buf,
+                )
+            )
+            TagArray(choose_tagway) := tag_reg
+            //------------data
+            choose_dataway := MuxLookup(victim, 0.U,
+                Seq(
+                    0.U -> way0_buf,
+                    1.U -> way1_buf,
+                    2.U -> way2_buf,
+                    3.U -> way3_buf,
+                )
+            )
+            DataArray.zipWithIndex.foreach{
+                case(mem, i) => 
+                    val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
+                    mem.write(choose_dataway, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
+            }
+        }
+    }
+
+
+
     //-------------------------------------------------------------------
 
     //顶层
@@ -307,7 +453,7 @@ class Cache extends Module{
     io.axi.req.bits.addr := 0.U
     io.axi.req.bits.mask := "b11111111".U
 
-    io.fccache.hit := hit0 | hit1
+    io.fccache.hit := hit
     io.fccache.mask := io.cpu.req.bits.mask
     io.fccache.cpu_valid := io.cpu.resp.valid
     io.fccache.req := io.cpu.req.valid
@@ -316,82 +462,48 @@ class Cache extends Module{
 
 
     switch(state){
-        is(s_Idle){
+        is(s_Idle){  //判断读写是否hit
             when(io.cpu.req.valid){
-                state := Mux(io.cpu.req.bits.mask.orR, s_WriteCache, s_ReadCache)
-            }
-        }
-        is(s_ReadCache){
-            when(hit0 | hit1){ //命中即读出
-                when(io.cpu.req.valid){  //应对连续申请
-                    state := Mux(io.cpu.req.bits.mask.orR, s_WriteCache, s_ReadCache) //需要判断是否需要转到写
-                }
-                .otherwise{
+                when(hit){
                     state := s_Idle
-                }
-            }.otherwise{ //未命中
-                io.axi.req.valid := 1.B
-                
-                when( (~replace_wire && dirty0) | (replace_wire && dirty1)){ //写回
-                    state := s_WriteBack
-                    io.axi.req.bits.rw := 0.B
-                    // when(dirty0){
-                    //     io.axi.req.bits.addr := (Cat(rtag0_choose, idx_reg) << blen.U).asUInt //tag0为原来way0中存在的有效tag
-                    // }.otherwise{
-                    //     io.axi.req.bits.addr := (Cat(rtag1_choose, idx_reg) << blen.U).asUInt
-                    // }
-                    io.axi.req.bits.addr := Mux(replace_wire,
-                        (Cat(rtag1_choose, idx_reg) << blen.U).asUInt,
-                        (Cat(rtag0_choose, idx_reg) << blen.U).asUInt
-                    )
-                    
-                    addr_buf := io.axi.req.bits.addr
-                    rw_buf := io.axi.req.bits.rw
-                }.otherwise{ //直接读Ram
-                    state := s_RefillReady
-                    io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
-                    io.axi.req.bits.rw := 1.B
-
-                    addr_buf := io.axi.req.bits.addr
-                    rw_buf := io.axi.req.bits.rw
-                }
-            }
-        }
-        is(s_WriteCache){
-            when((hit0 | hit1) || is_alloc_reg){ //1.命中 2.刚从Refill转移(写分配)过来  //需要is_alloc_reg转到这?
-                when(io.cpu.req.valid){ //应对连续申请,避免每次转到idle,耽误一周期
-                    state := Mux(io.cpu.req.bits.mask.orR, s_WriteCache, s_ReadCache) //需要判断是否需要转到读
                 }.otherwise{
-                    state := s_Idle
-                }
-            }.otherwise{
-                io.axi.req.valid := 1.B
-                when( (~replace_wire & dirty0) | (replace_wire & dirty1)){ //写回  replace是谁就选谁
-                    state := s_WriteBack
-                    io.axi.req.bits.rw := 0.B
-                    // when(~replace_wire){  //从dirty0改为~replace
-                    //     io.axi.req.bits.addr := (Cat(rtag0_choose, idx_reg) << blen.U).asUInt //tag0为原来way0中存在的有效tag
-                    // }.otherwise{
-                    //     io.axi.req.bits.addr := (Cat(rtag1_choose, idx_reg) << blen.U).asUInt
-                    // }
-
-                    io.axi.req.bits.addr := Mux(replace_wire,
-                        (Cat(rtag1_choose, idx_reg) << blen.U).asUInt,
-                        (Cat(rtag0_choose, idx_reg) << blen.U).asUInt
-                    )
-
-                    addr_buf := io.axi.req.bits.addr
-                    rw_buf := io.axi.req.bits.rw
-
-                }.otherwise{ //直接读Ram
-                    state := s_RefillReady
-                    io.axi.req.bits.addr := (Cat(tag_reg, idx_reg) << blen.U).asUInt
-                    io.axi.req.bits.rw := 1.B
-
-                    addr_buf := io.axi.req.bits.addr
-                    rw_buf := io.axi.req.bits.rw
+                    state := s_Choose
                 }
             }
+        }
+        is(s_Choose){  //判断是否需要写回
+            //未命中
+            io.axi.req.valid := 1.B
+            
+            state := MuxLookup(victim, s_Idle,   //victim为脏时需要写回
+                Seq(
+                    0.U -> Mux(dirty0, s_WriteBack, s_RefillReady),
+                    1.U -> Mux(dirty1, s_WriteBack, s_RefillReady),
+                    2.U -> Mux(dirty2, s_WriteBack, s_RefillReady),
+                    3.U -> Mux(dirty3, s_WriteBack, s_RefillReady),
+                )
+            )
+
+            io.axi.req.bits.rw := MuxLookup(victim, 0.U,  
+                Seq(
+                    0.U -> Mux(dirty0, 0.B, 1.B),
+                    1.U -> Mux(dirty1, 0.B, 1.B),
+                    2.U -> Mux(dirty2, 0.B, 1.B),
+                    3.U -> Mux(dirty3, 0.B, 1.B),
+                )
+            )
+
+            io.axi.req.bits.addr := MuxLookup(victim, 0.U,  
+                Seq(
+                    0.U -> Mux(dirty0, Cat(rtag0_buf, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
+                    1.U -> Mux(dirty1, Cat(rtag1_buf, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
+                    2.U -> Mux(dirty2, Cat(rtag2_buf, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
+                    3.U -> Mux(dirty3, Cat(rtag3_buf, idx_reg) << blen.U  , Cat(tag_reg, idx_reg) << blen.U),
+                )
+            )
+
+            addr_buf := io.axi.req.bits.addr
+            rw_buf := io.axi.req.bits.rw
         }
         is(s_WriteBack){
             io.axi.req.valid := 1.B //写回的最后一周期仍然为高,进入refill写地址
@@ -433,7 +545,7 @@ class Cache extends Module{
                     io.axi.req.valid := 0.B
                     r_count := 0.U
                     refill_buffer(15) := io.axi.resp.bits.data
-                    state := Mux(cpu_mask.orR, s_WriteCache, s_Idle)
+                    state := Mux(cpu_mask.orR, s_WriteAfterRefill, s_Idle)
                 }.otherwise{
                     r_count := r_count + 1.U
                     refill_buffer(r_count) := io.axi.resp.bits.data
@@ -442,7 +554,9 @@ class Cache extends Module{
                 state := state
                 r_count := r_count
             }
-            
+        }
+        is(s_WriteAfterRefill){
+            state := s_Idle
         }
 
     }
