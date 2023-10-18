@@ -101,6 +101,7 @@ class IoforMem extends Module{
     io.multiwrite := 0.B
 
     val dflag = RegInit(0.U)
+    dontTouch(dflag)
 
     switch(state){
         is(s_Idle){

@@ -220,11 +220,11 @@ class VSoc___024root final : public VerilatedModule {
         CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__jump_mask;
     };
     struct {
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_6;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_9;
+        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_8;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_11;
+        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_13;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_1;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_23;
+        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_25;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_2;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_3;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_4;
