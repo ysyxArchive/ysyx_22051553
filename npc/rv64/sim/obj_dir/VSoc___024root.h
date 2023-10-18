@@ -214,13 +214,12 @@ class VSoc___024root final : public VerilatedModule {
         CData/*1:0*/ Soc__DOT__core__DOT__ioformem__DOT__state;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid;
         CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__r_count;
-        CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__mask;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__begin_flag;
         CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__data_count;
         CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__wait_cycle;
+        CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__jump_mask;
     };
     struct {
-        CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__jump_mask;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_6;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_9;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_11;
@@ -229,8 +228,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_2;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_3;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_4;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_5;
-        CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_6;
+        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_5;
+        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_6;
+        CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_7;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_hd1afc83c__0;
         CData/*0:0*/ Soc__DOT__core__DOT__interact__DOT__ebreak_flag;
         CData/*5:0*/ Soc__DOT__core__DOT__interact__DOT__over_count;
@@ -373,7 +373,6 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSCRATCH;
         QData/*63:0*/ Soc__DOT__core__DOT__trap__DOT__cause;
         QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits;
-        QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__read;
         QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__jump_data;
         QData/*63:0*/ Soc__DOT__sram__DOT__rdata;
         VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
