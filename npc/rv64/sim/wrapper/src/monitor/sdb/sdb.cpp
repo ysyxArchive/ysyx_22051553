@@ -354,7 +354,7 @@ void update_debuginfo(
   }
   #endif
 
-  if((unsigned long)pc[0].aval == 0x83000160){
+  if((unsigned long)pc[0].aval == 0x830332a4){
     vcd_flag = 1;
   }
 
