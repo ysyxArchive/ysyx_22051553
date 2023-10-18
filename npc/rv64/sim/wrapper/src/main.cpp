@@ -12,6 +12,8 @@
 
 static VSoc dut;
 
+bool vcd_flag = 0;
+
 #ifdef VCD_ON
 vluint64_t sim_time = 0;
 VerilatedVcdC * vcd = new VerilatedVcdC;
@@ -32,14 +34,19 @@ void init_keymap();
 void single_cycle() {  //clock总是为1
   dut.clock = 0; dut.eval();
   #ifdef VCD_ON
-  vcd->dump(sim_time);
-  sim_time ++;
+  if(vcd_flag){
+    vcd->dump(sim_time); //将发生的变化记录到sim_time节点
+    sim_time ++;
+  }
+  
   #endif
   dut.clock = 1; dut.eval();
 
   #ifdef VCD_ON
-  vcd->dump(sim_time);              //将发生的变化记录到sim_time节点
-  sim_time ++;
+  if(vcd_flag){
+    vcd->dump(sim_time); //将发生的变化记录到sim_time节点
+    sim_time ++;
+  }
   #endif
 }
 

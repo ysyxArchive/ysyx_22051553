@@ -19,6 +19,8 @@
 #include <display.hpp>
 #include <SDL2/SDL.h>
 
+extern bool vcd_flag;
+
 //性能
 uint64_t start_time = 0;
 uint64_t end_time = 0;
@@ -352,6 +354,9 @@ void update_debuginfo(
   }
   #endif
 
+  if((unsigned long)pc[0].aval == 0x83000160){
+    vcd_flag = 1;
+  }
 
 
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
@@ -371,7 +376,7 @@ long long pmem_read(const svLogicVecVal* raddr){
   }
 
     // #ifdef MTRACE
-    printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr[0].aval, 8);
+    // printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr[0].aval, 8);
     // #endif
 
   if( ((unsigned long)raddr[0].aval) == RTC_BASE){
@@ -400,15 +405,15 @@ long long pmem_read(const svLogicVecVal* raddr){
   void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask){
 
     // #ifdef MTRACE
-    printf("wmask is 0x%x\n", (uint8_t)wmask);
-    printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),(waddr[0].aval), 
-    ((uint8_t)wmask == 0xff) ? 8 : 
-    ((uint8_t)wmask == 0x0f) ? 4 : 
-    ((uint8_t)wmask == 0x03) ? 2 : 
-    ((uint8_t)wmask == 0x01) ? 1 : 0
-    );
+    // printf("wmask is 0x%x\n", (uint8_t)wmask);
+    // printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),(waddr[0].aval), 
+    // ((uint8_t)wmask == 0xff) ? 8 : 
+    // ((uint8_t)wmask == 0x0f) ? 4 : 
+    // ((uint8_t)wmask == 0x03) ? 2 : 
+    // ((uint8_t)wmask == 0x01) ? 1 : 0
+    // );
 
-    printf("write data is 0x%lx\n", (unsigned long)wdata[1].aval << 32 | wdata[0].aval);
+    // printf("write data is 0x%lx\n", (unsigned long)wdata[1].aval << 32 | wdata[0].aval);
     // #endif
 
 
@@ -757,7 +762,7 @@ static int cmd_s(char *args){
     disassemble(p, log_itrace + sizeof(log_itrace) - p, fetch_list.front().pc,
     (uint8_t *)(&decode_list.front().inst), ilen);
 
-    printf("%s\n", log_itrace);
+    // printf("%s\n", log_itrace);
 
     p = iringbuf[irb_pos];
     strcpy(p, "0x");
