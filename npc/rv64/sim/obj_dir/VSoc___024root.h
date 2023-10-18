@@ -220,6 +220,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__jump_mask;
     };
     struct {
+        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__dflag;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_8;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_11;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___T_13;
@@ -283,9 +284,9 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_78;
         VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_81;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_87;
-        IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_92;
     };
     struct {
+        IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_92;
         VlWide<3>/*66:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__multiplierReg;
         VlWide<5>/*131:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__multiplicandReg;
         VlWide<5>/*131:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__resultReg;
@@ -349,9 +350,9 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__result_lo;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__quotient;
         QData/*32:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__sub33;
-        QData/*33:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__temp_34;
     };
     struct {
+        QData/*33:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__temp_34;
         VlWide<8>/*255:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__unnamedblk1__DOT___GEN_0;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_2;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__unnamedblk1__DOT__unnamedblk3__DOT___GEN_3;

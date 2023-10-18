@@ -100,8 +100,6 @@ class IoforMem extends Module{
 
     io.multiwrite := 0.B
 
-    val dflag = RegInit(0.U)
-    dontTouch(dflag)
 
     switch(state){
         is(s_Idle){
@@ -110,9 +108,17 @@ class IoforMem extends Module{
                 }
 
                 when(begin_flag && wait_cycle === 15.U){
-                    dflag := 1.U
-                }.otherwise{
-                    dflag := 0.U
+                    when(io.fc.stall === 1.B){
+                        wait_cycle := 15.U
+                    }.otherwise{
+                        state := s_multireq
+                        io.axi.req.valid := 1.B 
+                        io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
+                        io.axi.req.bits.rw := 0.B
+                        io.multiwrite := 1.B
+                        data_count := data_count - 1.U
+                        wait_cycle := 0.U
+                    }
                 }
 
                 mem_data_valid := 0.B 
