@@ -100,11 +100,18 @@ class IoforMem extends Module{
 
     io.multiwrite := 0.B
 
+    val dflag = RegInit(0.U)
 
     switch(state){
         is(s_Idle){
                 when(begin_flag){ //记时16个周期后，申请写入vmem
                     wait_cycle := wait_cycle + 1.U
+                }
+
+                when(begin_flag && wait_cycle === 15.U){
+                    dflag := 1.U
+                }.otherwise{
+                    dflag := 0.U
                 }
 
                 mem_data_valid := 0.B 
