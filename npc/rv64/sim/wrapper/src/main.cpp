@@ -69,7 +69,7 @@ int main(int argc, char **argv) {
   #endif
 
   uint64_t size = pmem.mem_loader("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
-  printf("in sdb, data is 0x%x\n", pmem.mem_readbylen(0x83153e62, 1));
+  // printf("in sdb, data is 0x%x\n", pmem.mem_readbylen(0x83153e62, 1));
 
   #ifdef FTRACE
   getelf("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");

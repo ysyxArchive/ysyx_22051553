@@ -15,6 +15,10 @@ uint8_t* memory::get_mem(){
 }
 
 uint64_t memory::mem_read(uint32_t raddr){ //用于rtl
+    if(raddr >= 0x83153e00 && raddr <= 0x83153e80){
+        printf("read this addr 0x%x\n", raddr);
+    }
+
     // uint32_t addr = (pmem.mem + raddr - CONFIG_MBASE) & ~0x7ul; //错误
 
     uint64_t addr = (uint64_t)(pmem.mem + raddr - CONFIG_MBASE) & ~0x7ull; 
@@ -38,6 +42,9 @@ uint64_t memory::mem_readbylen(uint32_t raddr, int len){ //用于仿真
 }
 
 void memory::mem_write(uint32_t waddr, uint64_t wdata, uint8_t wmask){
+    if(waddr >= 0x83153e00 && waddr <= 0x83153e80){
+        printf("write this addr 0x%x\n", waddr);
+    }
 
     // #ifdef MTRACE
     // printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),waddr, 
