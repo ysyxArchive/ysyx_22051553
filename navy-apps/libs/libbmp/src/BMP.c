@@ -69,7 +69,7 @@ void* BMP_Load(const char *filename, int *width, int *height) {
     }
 
     int w = hdr.width;
-    int h = 2;
+    int h = hdr.height;
 
     
     // printf("offset is %d\n", hdr.offset);
