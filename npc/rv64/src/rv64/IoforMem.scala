@@ -56,15 +56,14 @@ class IoforMem extends Module{
     val mem_data_bits = RegInit(0.U(X_LEN.W))
 
     //Vmem缓冲
-    val VmemBuffer = SyncReadMem(16, Vec(8, UInt(8.W)))  //128Bytes
-    val maskbuffer = SyncReadMem(16, UInt(8.W))
-    val ren = WireInit(0.B)
+    val VmemBuffer = Mem(16, Vec(8, UInt(8.W)))  //128Bytes
+    val maskbuffer = Mem(16, UInt(8.W))
+
     val r_count = RegInit(0.U(4.W))
     val read = WireInit(0.U(X_LEN.W))
     val mask = WireInit(0.U(8.W))
     dontTouch(read)
     dontTouch(mask)
-    dontTouch(ren)
 
     val last_addr = RegInit(0.U(ADDRWIDTH.W))
     val begin_flag = RegInit(0.B)  //代表是否有第一个数据已经写入buffer
@@ -79,10 +78,9 @@ class IoforMem extends Module{
     val jump_addr = RegInit(0.U(ADDRWIDTH.W))  //记录跳跃地址
 
 
-    read := VmemBuffer.read(r_count, ren).asUInt //Vec转为UInt
-    mask := maskbuffer.read(r_count, ren)
+    read := VmemBuffer.read(r_count).asUInt //Vec转为UInt
+    mask := maskbuffer.read(r_count)
 
-    ren := 0.B
 
     io.axi.req.valid := 0.B
     io.axi.req.bits.addr := 0.U
@@ -119,10 +117,11 @@ class IoforMem extends Module{
                         when(begin_flag && (last_addr =/= io.excute.waddr)){ //data_in_buffer代表第一个数据已经写入buffer
                             state := s_multireq
                             io.axi.req.valid := 1.B 
+                            io.axi.req.bits.data := read
+                            io.axi.req.bits.mask := mask
                             io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
                             io.axi.req.bits.rw := 0.B
                             io.multiwrite := 1.B
-                            ren := 1.U
                             r_count := r_count + 1.U
 
                             jump_data := io.excute.wdata
@@ -145,10 +144,11 @@ class IoforMem extends Module{
                             when(wait_cycle === 15.U || data_count === 15.U){
                                 state := s_multireq
                                 io.axi.req.valid := 1.B 
+                                io.axi.req.bits.data := read
+                                io.axi.req.bits.mask := mask
                                 io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
                                 io.axi.req.bits.rw := 0.B
                                 io.multiwrite := 1.B
-                                ren := 1.U
                                 r_count := r_count + 1.U  //重要
                             }
                         }
@@ -211,7 +211,6 @@ class IoforMem extends Module{
                 io.axi.req.bits.data := read
                 io.axi.req.bits.mask := mask
 
-                ren := 1.B
                 io.multiwrite := 1.B
                 r_count := r_count + 1.U
             }
