@@ -708,17 +708,17 @@ static int cmd_s(char *args){
 
       
     #ifdef SHOW_LIST
-    for(auto arg : fetch_list){
-      printf("pc:0x%lx\n", arg.pc);
-    }
+    // for(auto arg : fetch_list){
+    //   printf("pc:0x%lx\n", arg.pc);
+    // }
 
-    for(auto arg : decode_list){
-      printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
-    }
+    // for(auto arg : decode_list){
+    //   printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
+    // }
 
-    for(auto arg : execute_list){
-      printf("skip:%d\n", arg.skip_ref_one_inst);
-    }
+    // for(auto arg : execute_list){
+    //   printf("skip:%d\n", arg.skip_ref_one_inst);
+    // }
     #endif
 
     #ifdef ITRACE
