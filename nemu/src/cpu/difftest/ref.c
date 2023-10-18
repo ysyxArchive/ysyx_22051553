@@ -47,11 +47,12 @@ static void get_regs(void* diff_context){  //设置npc的寄存器
 __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {  //这里的addr是0x80000000
   
   char* dut_mem = (char *)buf;
-  
+    printf("in data is 0x%x\n", *(uint8_t*)guest_to_host(0x83153e62));
+
   for(int i = 0; i < n; i++){
     paddr_write(addr+i, 1, *(dut_mem+i));
   }
-    printf("data is 0x%x\n", *(uint8_t*)guest_to_host(0x83153e62));
+    printf("out data is 0x%x\n", *(uint8_t*)guest_to_host(0x83153e62));
   
 }
 

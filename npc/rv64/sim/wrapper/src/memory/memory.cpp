@@ -29,7 +29,7 @@ uint64_t memory::mem_read(uint32_t raddr){ //用于rtl
 uint64_t memory::mem_readbylen(uint32_t raddr, int len){ //用于仿真
     // uint32_t addr = (pmem.mem + raddr - CONFIG_MBASE) & ~0x7ul; //错误
     switch (len) {
-        case 1: return *(uint8_t  *)(pmem.mem + raddr - CONFIG_MBASE);
+        case 1: return *(uint8_t  *)(((uint64_t)(pmem.mem) + raddr - CONFIG_MBASE));
         case 2: return *(uint16_t *)(pmem.mem + raddr - CONFIG_MBASE);
         case 4: return *(uint32_t *)(pmem.mem + raddr - CONFIG_MBASE);
     }
