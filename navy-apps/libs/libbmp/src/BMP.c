@@ -69,7 +69,7 @@ void* BMP_Load(const char *filename, int *width, int *height) {
     }
 
     int w = hdr.width;
-    int h = hdr.height;
+    int h = 10;
 
     
     // printf("offset is %d\n", hdr.offset);
@@ -92,13 +92,13 @@ void* BMP_Load(const char *filename, int *width, int *height) {
     // printf("total is %d\n", w*h*3);
 
     // fread(buf, w * h * 3 + 8, 1, fp); //修改
-    uint8_t * buf = malloc(w * h * sizeof(uint32_t) + 8);
+    uint8_t * buf = malloc(w * h * sizeof(uint32_t));
     fread(buf, w * h * 3, 1, fp); //修改
     
-    uint8_t *buf_off = buf;
-    while(*buf_off == 0){
-      buf_off ++;
-    }
+    // uint8_t *buf_off = buf;
+    // while(*buf_off == 0){
+    //   buf_off ++;
+    // }
     // printf("buf_off is %p\n", buf_off);
     printf("time3\n");
     fclose(fp); 
@@ -109,9 +109,9 @@ void* BMP_Load(const char *filename, int *width, int *height) {
          int index_base = (h-1-i)*w;
          for (int j = 0; j < w; j++) {
               int index = (index_base + j)*3;
-              uint8_t r = buf_off[index + 2]; //改成内存操作
-              uint8_t g = buf_off[index + 1];
-              uint8_t b = buf_off[index];
+              uint8_t r = buf[index + 2]; //改成内存操作
+              uint8_t g = buf[index + 1];
+              uint8_t b = buf[index];
               pixels[i * w + j] = (r << 16) | (g << 8) | b;
          }
     }

@@ -120,6 +120,7 @@ class IoforMem extends Module{
                             io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
                             io.axi.req.bits.rw := 0.B
                             io.multiwrite := 1.B
+                            data_count := data_count
 
                             jump_data := io.excute.wdata
                             jump_addr := io.excute.waddr
@@ -144,6 +145,7 @@ class IoforMem extends Module{
                                 io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
                                 io.axi.req.bits.rw := 0.B
                                 io.multiwrite := 1.B
+                                data_count := data_count
                             }
                         }
 
@@ -199,11 +201,14 @@ class IoforMem extends Module{
                     maskbuffer.write(0.U, jump_mask)
                     last_addr := jump_addr + 8.U
                     data_count := 1.U
+
+                    begin_flag := 1.B
+                    begin_waddr := jump_addr
                 }
             }.otherwise{
                 io.axi.req.valid := 1.B
                 io.axi.req.bits.data := read
-                io.axi.req.bits.mask := mask
+                io.axi.req.bits.mask := Mux(r_count <= data_count, mask, 0.U)   //因为没有清空mask的操作
 
                 io.multiwrite := 1.B
                 r_count := r_count + 1.U
