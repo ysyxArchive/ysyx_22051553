@@ -376,7 +376,7 @@ long long pmem_read(const svLogicVecVal* raddr){
   }
 
     // #ifdef MTRACE
-    printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr[0].aval, 8);
+    // printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr[0].aval, 8);
     // #endif
 
   if( ((unsigned long)raddr[0].aval) == RTC_BASE){
@@ -405,15 +405,15 @@ long long pmem_read(const svLogicVecVal* raddr){
   void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask){
 
     // #ifdef MTRACE
-    printf("wmask is 0x%x\n", (uint8_t)wmask);
-    printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),(waddr[0].aval), 
-    ((uint8_t)wmask == 0xff) ? 8 : 
-    ((uint8_t)wmask == 0x0f) ? 4 : 
-    ((uint8_t)wmask == 0x03) ? 2 : 
-    ((uint8_t)wmask == 0x01) ? 1 : 0
-    );
+    // printf("wmask is 0x%x\n", (uint8_t)wmask);
+    // printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),(waddr[0].aval), 
+    // ((uint8_t)wmask == 0xff) ? 8 : 
+    // ((uint8_t)wmask == 0x0f) ? 4 : 
+    // ((uint8_t)wmask == 0x03) ? 2 : 
+    // ((uint8_t)wmask == 0x01) ? 1 : 0
+    // );
 
-    printf("write data is 0x%lx\n", (unsigned long)wdata[1].aval << 32 | wdata[0].aval);
+    // printf("write data is 0x%lx\n", (unsigned long)wdata[1].aval << 32 | wdata[0].aval);
     // #endif
 
 
@@ -708,17 +708,17 @@ static int cmd_s(char *args){
 
       
     #ifdef SHOW_LIST
-    for(auto arg : fetch_list){
-      printf("pc:0x%lx\n", arg.pc);
-    }
+    // for(auto arg : fetch_list){
+    //   printf("pc:0x%lx\n", arg.pc);
+    // }
 
-    for(auto arg : decode_list){
-      printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
-    }
+    // for(auto arg : decode_list){
+    //   printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
+    // }
 
-    for(auto arg : execute_list){
-      printf("skip:%d\n", arg.skip_ref_one_inst);
-    }
+    // for(auto arg : execute_list){
+    //   printf("skip:%d\n", arg.skip_ref_one_inst);
+    // }
     #endif
 
     #ifdef ITRACE
@@ -762,7 +762,7 @@ static int cmd_s(char *args){
     disassemble(p, log_itrace + sizeof(log_itrace) - p, fetch_list.front().pc,
     (uint8_t *)(&decode_list.front().inst), ilen);
 
-    printf("%s\n", log_itrace);
+    // printf("%s\n", log_itrace);
 
     p = iringbuf[irb_pos];
     strcpy(p, "0x");
