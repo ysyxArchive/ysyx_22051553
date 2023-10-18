@@ -114,6 +114,7 @@ class IoforMem extends Module{
                     io.axi.req.bits.rw := 0.B
                     io.multiwrite := 1.B
                     data_count := data_count - 1.U
+                    wait_cycle := 0.U
                 }
 
                 mem_data_valid := 0.B 

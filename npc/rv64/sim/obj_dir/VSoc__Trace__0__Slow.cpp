@@ -9825,7 +9825,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                     : 0U))),32);
     bufp->fullCData(oldp+235,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__state),3);
     bufp->fullCData(oldp+236,(vlSymsp->TOP__Soc__DOT__core__DOT__Dcache.__PVT__state),3);
-    bufp->fullBit(oldp+237,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_6));
+    bufp->fullBit(oldp+237,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_8));
     bufp->fullCData(oldp+238,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state),2);
     bufp->fullBit(oldp+239,(((0U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state)) 
                              & (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_hd1afc83c__0))));
@@ -23592,36 +23592,37 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullBit(oldp+10860,(((~ (IData)(vlSelf->Soc__DOT__core__DOT__fc__DOT__SFBundle_1)) 
                                & (0U != (IData)(vlSelf->Soc__DOT__core__DOT__mwreg_wb_type)))));
     bufp->fullBit(oldp+10861,(((0U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state))
-                                ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_6) 
-                                   & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_9)) 
-                                      | (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_2)))
+                                ? (((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_8) 
+                                    & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_11)) 
+                                       | (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_3))) 
+                                   | (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_2))
                                 : (IData)(vlSelf->__VdfgTmp_hc42be29e__0))));
     bufp->fullBit(oldp+10862,(((0U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state))
-                                ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_6) 
-                                   & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_9)) 
+                                ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_8) 
+                                   & ((~ (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_11)) 
                                       & (0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type))))
                                 : ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state)) 
                                    & ((~ (IData)(vlSelf->Soc__DOT__core__DOT___ioformem_io_fc_valid)) 
                                       & (0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_ld_type)))))));
     bufp->fullIData(oldp+10863,(((0U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state))
-                                  ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_6)
-                                      ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_9)
-                                          ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_11)
+                                  ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_8)
+                                      ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_11)
+                                          ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_13)
                                               ? (0xfffffff8U 
                                                  & vlSelf->Soc__DOT__core__DOT__ioformem__DOT__begin_waddr)
-                                              : ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_23)
+                                              : ((0xfU 
+                                                  == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__data_count))
                                                   ? 
                                                  (0xfffffff8U 
                                                   & vlSelf->Soc__DOT__core__DOT__ioformem__DOT__begin_waddr)
-                                                  : 0U))
+                                                  : vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_1))
                                           : vlSelf->Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_he4e20366__0)
-                                      : 0U) : (((1U 
-                                                 != (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state)) 
-                                                | (IData)(vlSelf->Soc__DOT__core__DOT___ioformem_io_fc_valid))
-                                                ? 0U
-                                                : vlSelf->Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_he4e20366__0))),32);
+                                      : vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_1)
+                                  : (((1U != (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state)) 
+                                      | (IData)(vlSelf->Soc__DOT__core__DOT___ioformem_io_fc_valid))
+                                      ? 0U : vlSelf->Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_he4e20366__0))),32);
     bufp->fullQData(oldp+10864,(((0U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state))
-                                  ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_3)
+                                  ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_4)
                                       ? 0ULL : vlSelf->Soc__DOT__core__DOT___excute_io_wdata)
                                   : ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state))
                                       ? ((IData)(vlSelf->Soc__DOT__core__DOT___ioformem_io_fc_valid)
@@ -23657,7 +23658,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                                                             | vlSelf->Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_0_ext__DOT__Memory
                                                                             [vlSelf->Soc__DOT__core__DOT__ioformem__DOT__r_count]))))))))))))),64);
     bufp->fullCData(oldp+10866,(((0U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state))
-                                  ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_3)
+                                  ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_4)
                                       ? 0U : (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_wmask))
                                   : ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state))
                                       ? ((IData)(vlSelf->Soc__DOT__core__DOT___ioformem_io_fc_valid)
@@ -23668,8 +23669,9 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
                                           ? 0U : vlSelf->Soc__DOT__core__DOT__ioformem__DOT__maskbuffer_ext__DOT__Memory
                                          [vlSelf->Soc__DOT__core__DOT__ioformem__DOT__r_count])))),8);
     bufp->fullBit(oldp+10867,(((0U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state))
-                                ? ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_hd1afc83c__0) 
-                                   & (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_2))
+                                ? (((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_hd1afc83c__0) 
+                                    & (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_3)) 
+                                   | (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___T_2))
                                 : ((1U != (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state)) 
                                    & ((~ (IData)(vlSelf->Soc__DOT__core__DOT___ioformem_io_fc_valid)) 
                                       & (2U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state)))))));
@@ -24560,7 +24562,7 @@ VL_ATTR_COLD void VSoc___024root__trace_full_sub_0(VSoc___024root* vlSelf, Veril
     bufp->fullCData(oldp+11170,(vlSelf->Soc__DOT__core__DOT__arbitor__DOT__master_choose),4);
     bufp->fullBit(oldp+11171,(vlSelf->Soc__DOT__core__DOT___fc_io_fcde_flush));
     bufp->fullBit(oldp+11172,(vlSelf->Soc__DOT__core__DOT__fc__DOT__IO_stall));
-    bufp->fullBit(oldp+11173,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_4));
+    bufp->fullBit(oldp+11173,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_5));
     bufp->fullBit(oldp+11174,(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN));
     bufp->fullIData(oldp+11175,(vlSelf->Soc__DOT__sram__DOT__awaddr),32);
     bufp->fullBit(oldp+11176,(vlSymsp->TOP__Soc__DOT__core__DOT__Icache.__PVT__hit0));
