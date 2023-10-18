@@ -120,7 +120,7 @@ class IoforMem extends Module{
                             io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
                             io.axi.req.bits.rw := 0.B
                             io.multiwrite := 1.B
-                            data_count := data_count
+                            data_count := data_count - 1.U
 
                             jump_data := io.excute.wdata
                             jump_addr := io.excute.waddr
@@ -186,9 +186,9 @@ class IoforMem extends Module{
 
                 io.axi.req.valid := 0.B
 
-                for(i <- 0 until 16)yield{
-                    VmemBuffer.write(i.U, VecInit.fill(8)(0.U))
-                }
+                // for(i <- 0 until 16)yield{
+                //     VmemBuffer.write(i.U, VecInit.fill(8)(0.U))
+                // }
                 r_count := 0.U
                 begin_flag := 0.B
                 data_count := 0.U
@@ -204,7 +204,13 @@ class IoforMem extends Module{
 
                     begin_flag := 1.B
                     begin_waddr := jump_addr
+                }.otherwise{
+                    for(i <- 0 until 16)yield{
+                        VmemBuffer.write(i.U, VecInit.fill(8)(0.U))
+                    }
                 }
+
+
             }.otherwise{
                 io.axi.req.valid := 1.B
                 io.axi.req.bits.data := read

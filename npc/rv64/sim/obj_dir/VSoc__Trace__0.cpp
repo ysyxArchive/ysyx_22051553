@@ -14452,7 +14452,7 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                          ? ((IData)(vlSelf->Soc__DOT__core__DOT___ioformem_io_fc_valid)
                                              ? 0ULL
                                              : vlSelf->Soc__DOT__core__DOT___excute_io_wdata)
-                                         : ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_5)
+                                         : ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_h9d034845__0)
                                              ? 0ULL
                                              : (((QData)((IData)(
                                                                  vlSelf->Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_7_ext__DOT__Memory
@@ -14488,7 +14488,9 @@ void VSoc___024root__trace_chg_sub_0(VSoc___024root* vlSelf, VerilatedVcd::Buffe
                                      : ((1U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state))
                                          ? ((IData)(vlSelf->Soc__DOT__core__DOT___ioformem_io_fc_valid)
                                              ? 0U : (IData)(vlSelf->Soc__DOT__core__DOT___excute_io_wmask))
-                                         : ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_5)
+                                         : (((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_h9d034845__0) 
+                                             | ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__r_count) 
+                                                > (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__data_count)))
                                              ? 0U : 
                                             vlSelf->Soc__DOT__core__DOT__ioformem__DOT__maskbuffer_ext__DOT__Memory
                                             [vlSelf->Soc__DOT__core__DOT__ioformem__DOT__r_count])))),8);

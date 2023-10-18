@@ -228,9 +228,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_2;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_3;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_4;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_5;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_6;
-        CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_7;
+        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_5;
+        CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_6;
+        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_h9d034845__0;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_hd1afc83c__0;
         CData/*0:0*/ Soc__DOT__core__DOT__interact__DOT__ebreak_flag;
         CData/*5:0*/ Soc__DOT__core__DOT__interact__DOT__over_count;
