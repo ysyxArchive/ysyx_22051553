@@ -40,6 +40,8 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_haaad1b39__0 = 0;
     CData/*0:0*/ Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h8a5bb8da__0;
     Soc__DOT__core__DOT__arbitor__DOT____VdfgTmp_h8a5bb8da__0 = 0;
+    CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_hd23ed92e__0;
+    Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_hd23ed92e__0 = 0;
     VlWide<3>/*95:0*/ __Vtemp_h5ee83ed9__0;
     VlWide<3>/*95:0*/ __Vtemp_hbe1b9e8a__0;
     VlWide<3>/*95:0*/ __Vtemp_h68469746__0;
@@ -914,7 +916,7 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
             | (0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type))) 
            & ((0U != (vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result 
                       >> 0x19U)) & (0x200c000ULL > vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result)));
-    vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_4 
+    Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_hd23ed92e__0 
         = ((0U != (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state)) 
            & ((1U != (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state)) 
               & ((2U == (IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT__state)) 
@@ -941,8 +943,11 @@ VL_ATTR_COLD void VSoc___024root___stl_sequent__TOP__0(VSoc___024root* vlSelf) {
     vlSelf->__VdfgTmp_h9d5684c6__0 = ((~ (IData)(vlSelf->Soc__DOT__core__DOT__excute__DOT___CLINT_type_T_6)) 
                                       & (0U != (IData)(vlSelf->Soc__DOT__core__DOT__dereg_sd_type)));
     vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN 
-        = ((IData)(vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_4) 
+        = ((IData)(Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_hd23ed92e__0) 
            & (0U != vlSelf->Soc__DOT__core__DOT__ioformem__DOT__jump_addr));
+    vlSelf->Soc__DOT__core__DOT__ioformem__DOT___GEN_4 
+        = ((~ (IData)((0U != vlSelf->Soc__DOT__core__DOT__ioformem__DOT__jump_addr))) 
+           & (IData)(Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_hd23ed92e__0));
     vlSelf->Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_he4e20366__0 
         = ((((IData)(vlSelf->__VdfgTmp_h9d5684c6__0)
               ? (IData)((vlSelf->Soc__DOT__core__DOT__excute__DOT___alu_io_result 
