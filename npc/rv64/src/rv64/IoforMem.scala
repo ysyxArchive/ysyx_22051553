@@ -107,16 +107,6 @@ class IoforMem extends Module{
                     wait_cycle := wait_cycle + 1.U
                 }
 
-                when(begin_flag && wait_cycle === 15.U){
-                    state := s_multireq
-                    io.axi.req.valid := 1.B 
-                    io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
-                    io.axi.req.bits.rw := 0.B
-                    io.multiwrite := 1.B
-                    data_count := data_count - 1.U
-                    wait_cycle := 0.U
-                }
-
                 mem_data_valid := 0.B 
 
                 when( (io.excute.ld_type.orR | io.excute.sd_type.orR) && ((io.excute.waddr | io.excute.raddr) >= "ha0000000".U) ){
@@ -149,7 +139,7 @@ class IoforMem extends Module{
                             data_count := data_count + 1.U
                             wait_cycle := 0.U //若有写，则重新计数
                             
-                            when(data_count === 15.U){
+                            when(wait_cycle === 15.U || data_count === 15.U){
                                 state := s_multireq
                                 io.axi.req.valid := 1.B 
                                 io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
@@ -214,7 +204,7 @@ class IoforMem extends Module{
 
                     begin_flag := 1.B
                     begin_waddr := jump_addr
-                }.otherwise{   //上面的写法会产生冲突，两个请求写同第一个地址
+                }.otherwise{   //上面的写法会产生冲突，两个操作写同第一个地址
                     for(i <- 0 until 16)yield{
                         VmemBuffer.write(i.U, VecInit.fill(8)(0.U))
                     }

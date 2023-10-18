@@ -233,6 +233,7 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_5;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_6;
         CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_7;
+        CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT__unnamedblk2__DOT___wait_cycle_T_1;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_h9d034845__0;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_hd1afc83c__0;
         CData/*0:0*/ Soc__DOT__core__DOT__interact__DOT__ebreak_flag;
@@ -283,9 +284,9 @@ class VSoc___024root final : public VerilatedModule {
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_58;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_65;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_69;
-        IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_78;
     };
     struct {
+        IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_78;
         VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_81;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_87;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_92;
@@ -349,9 +350,9 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT____Vcellinp__BM__io_multiplicand;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT____Vcellinp__DIV__io_divisor;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT____Vcellinp__DIV__io_dividend;
-        QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__result_hi;
     };
     struct {
+        QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__result_hi;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__result_lo;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__quotient;
         QData/*32:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__sub33;
