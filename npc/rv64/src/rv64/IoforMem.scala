@@ -117,12 +117,9 @@ class IoforMem extends Module{
                         when(begin_flag && (last_addr =/= io.excute.waddr)){ //data_in_buffer代表第一个数据已经写入buffer
                             state := s_multireq
                             io.axi.req.valid := 1.B 
-                            io.axi.req.bits.data := read
-                            io.axi.req.bits.mask := mask
                             io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
                             io.axi.req.bits.rw := 0.B
                             io.multiwrite := 1.B
-                            r_count := r_count + 1.U
 
                             jump_data := io.excute.wdata
                             jump_addr := io.excute.waddr
@@ -144,12 +141,9 @@ class IoforMem extends Module{
                             when(wait_cycle === 15.U || data_count === 15.U){
                                 state := s_multireq
                                 io.axi.req.valid := 1.B 
-                                io.axi.req.bits.data := read
-                                io.axi.req.bits.mask := mask
                                 io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
                                 io.axi.req.bits.rw := 0.B
                                 io.multiwrite := 1.B
-                                r_count := r_count + 1.U  //重要
                             }
                         }
 

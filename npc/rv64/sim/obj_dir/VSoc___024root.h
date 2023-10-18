@@ -213,8 +213,8 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_0;
         CData/*1:0*/ Soc__DOT__core__DOT__ioformem__DOT__state;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__mem_data_valid;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__ren;
         CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__r_count;
+        CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__mask;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__begin_flag;
         CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__data_count;
         CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__wait_cycle;
@@ -229,28 +229,9 @@ class VSoc___024root final : public VerilatedModule {
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_2;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_3;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_4;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT___GEN_5;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_6;
-        CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_7;
+        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_5;
+        CData/*7:0*/ Soc__DOT__core__DOT__ioformem__DOT__unnamedblk1__DOT___GEN_6;
         CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT____VdfgTmp_hd1afc83c__0;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_0_ext__DOT___GEN;
-        CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_0_ext__DOT___GEN_0;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_1_ext__DOT___GEN;
-        CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_1_ext__DOT___GEN_0;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_2_ext__DOT___GEN;
-        CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_2_ext__DOT___GEN_0;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_3_ext__DOT___GEN;
-        CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_3_ext__DOT___GEN_0;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_4_ext__DOT___GEN;
-        CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_4_ext__DOT___GEN_0;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_5_ext__DOT___GEN;
-        CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_5_ext__DOT___GEN_0;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_6_ext__DOT___GEN;
-        CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_6_ext__DOT___GEN_0;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_7_ext__DOT___GEN;
-        CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__VmemBuffer_7_ext__DOT___GEN_0;
-        CData/*0:0*/ Soc__DOT__core__DOT__ioformem__DOT__maskbuffer_ext__DOT___GEN;
-        CData/*3:0*/ Soc__DOT__core__DOT__ioformem__DOT__maskbuffer_ext__DOT___GEN_0;
         CData/*0:0*/ Soc__DOT__core__DOT__interact__DOT__ebreak_flag;
         CData/*5:0*/ Soc__DOT__core__DOT__interact__DOT__over_count;
         CData/*3:0*/ Soc__DOT__sram__DOT__w_count;
@@ -284,8 +265,6 @@ class VSoc___024root final : public VerilatedModule {
         SData/*9:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN;
         SData/*15:0*/ Soc__DOT__core__DOT__decode__DOT__cu__DOT___GEN_0;
         SData/*11:0*/ Soc__DOT__core__DOT__csrs__DOT__unnamedblk1__DOT___T;
-    };
-    struct {
         IData/*31:0*/ Soc__DOT___core_io_AXI_Interface_aw_bits_addr;
         IData/*31:0*/ Soc__DOT___core_io_AXI_Interface_ar_bits_addr;
         IData/*31:0*/ Soc__DOT__core__DOT___fc_io_fcfe_jump_pc;
@@ -305,6 +284,8 @@ class VSoc___024root final : public VerilatedModule {
         VlWide<4>/*126:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_81;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_87;
         IData/*31:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT___res_T_92;
+    };
+    struct {
         VlWide<3>/*66:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__multiplierReg;
         VlWide<5>/*131:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__multiplicandReg;
         VlWide<5>/*131:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__BM__DOT__resultReg;
@@ -350,8 +331,6 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___io_jump_pc_T_4;
         QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___io_deio_reg2_rdata_T;
         QData/*63:0*/ Soc__DOT__core__DOT__decode__DOT___io_deio_csr_t_T;
-    };
-    struct {
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT___alu_io_result;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu_buffer;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT____VdfgTmp_h7d5adbc1__0;
@@ -371,6 +350,8 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__quotient;
         QData/*32:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__sub33;
         QData/*33:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__temp_34;
+    };
+    struct {
         VlWide<8>/*255:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__unnamedblk1__DOT___GEN_0;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__unnamedblk1__DOT__unnamedblk2__DOT___GEN_2;
         QData/*63:0*/ Soc__DOT__core__DOT__excute__DOT__alu__DOT__DIV__DOT__unnamedblk1__DOT__unnamedblk3__DOT___GEN_3;
@@ -392,6 +373,7 @@ class VSoc___024root final : public VerilatedModule {
         QData/*63:0*/ Soc__DOT__core__DOT__csrs__DOT__MSCRATCH;
         QData/*63:0*/ Soc__DOT__core__DOT__trap__DOT__cause;
         QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__mem_data_bits;
+        QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__read;
         QData/*63:0*/ Soc__DOT__core__DOT__ioformem__DOT__jump_data;
         QData/*63:0*/ Soc__DOT__sram__DOT__rdata;
         VlUnpacked<QData/*63:0*/, 32> Soc__DOT__core__DOT__regfile__DOT__regs_ext__DOT__Memory;
