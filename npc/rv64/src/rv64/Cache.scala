@@ -75,6 +75,7 @@ class Cache extends Module{
     val is_chooose = state === s_Choose
     val is_alloc = state === s_Refill && r_count===15.U
     val is_alloc_reg = RegNext(is_alloc)
+    val is_war = state === s_WriteAfterRefill
 
 
     //缓存地址
@@ -335,7 +336,7 @@ class Cache extends Module{
 
 
     when(wen){
-        when(hit){//1.写命中，不涉及写valid   2.写不命中，alloc后，写入
+        when(hit){//1.写命中，不涉及写valid   
 
             //dirty---------------
             dirty := MuxCase(0.B, 
@@ -378,7 +379,33 @@ class Cache extends Module{
                     val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
                     mem.write(choose_dataway, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
             }
-        }.otherwise{  //alloc
+        }.elsewhen(is_war){ //2.写不命中，alloc后，写入  --修改后
+            dirty := MuxLookup(victim, dirty,        //修改dirty位
+                Seq(
+                    0.U -> valid.bitSet(way0_buf, 1.B),
+                    1.U -> valid.bitSet(way1_buf, 1.B),
+                    2.U -> valid.bitSet(way2_buf, 1.B),
+                    3.U -> valid.bitSet(way3_buf, 1.B),
+                )
+            )
+
+            choose_dataway := MuxLookup(victim, 0.U,
+                Seq(
+                    0.U -> way0_buf,
+                    1.U -> way1_buf,
+                    2.U -> way2_buf,
+                    3.U -> way3_buf,
+                )
+            )
+
+            DataArray.zipWithIndex.foreach{
+                case(mem, i) => 
+                    val data = VecInit.tabulate(wBytes)(k => wdata(i * X_LEN + (k + 1) * 8 - 1, i * X_LEN + k * 8))
+                    mem.write(choose_dataway, data, wmask((i + 1) * wBytes - 1, i * wBytes).asBools)
+            }
+
+        }
+        .otherwise{  //alloc
             //--------------valid
             valid := MuxLookup(victim, valid,
                 Seq(
@@ -398,7 +425,7 @@ class Cache extends Module{
                 )
             )
             //--------------replace
-            replace(idx_reg) := MuxLookup(victim, 0.U,
+            replace(idx_reg) := MuxLookup(victim, 0.U,  //可以这么写
                 Seq(
                     0.U -> Cat(1.U, 1.U, replace(idx_reg)(0)),
                     1.U -> Cat(1.U, 0.U, replace(idx_reg)(0)),
