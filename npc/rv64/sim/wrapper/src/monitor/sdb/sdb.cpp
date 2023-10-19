@@ -354,9 +354,9 @@ void update_debuginfo(
   }
   #endif
 
-  if((unsigned long)pc[0].aval == 0x830332a4){
-    vcd_flag = 1;
-  }
+  // if((unsigned long)pc[0].aval == 0x8303381c){
+  //   vcd_flag = 1;
+  // }
 
 
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
@@ -370,10 +370,6 @@ void update_debuginfo(
 }
 
 long long pmem_read(const svLogicVecVal* raddr){
-
-  if(((unsigned long)raddr[0].aval) == 0x00000080){
-    return 0;
-  }
 
     // #ifdef MTRACE
     // printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr[0].aval, 8);
