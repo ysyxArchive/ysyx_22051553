@@ -79,7 +79,7 @@ void event_update(){
   last = now;
 
   SDL_Event event;
-  while(SDL_PollEvent(&event)){
+  while(SDL_PollEvent(&event)){  //while改成了if 只识别一次
     switch (event.type)
     {
       case SDL_QUIT:
