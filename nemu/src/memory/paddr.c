@@ -93,10 +93,13 @@ word_t paddr_read(paddr_t addr, int len) {
 
 void paddr_write(paddr_t addr, int len, word_t data) {
 
+  static int flag = 1;
+
   if (likely(in_pmem(addr))) { pmem_write(addr, len, data); 
-    if( *(uint16_t *)guest_to_host(0x802994ee) == 0x0d11){
+    if( *(uint16_t *)guest_to_host(0x802994ee) == 0x0d11 && flag == 1){
     printf("pc is 0x%lx\n", cpu.pc);
     printf("addr is 0x%x, data is 0x%lx, len is %d\n", addr, data, len);
+    flag = 0;
   }
   
   return; }
