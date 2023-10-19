@@ -15,8 +15,9 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
     VSoc__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+          VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1\n"); );
     // Init
-    VlWide<32>/*1023:0*/ __PVT___GEN_4;
-    VL_ZERO_W(1024, __PVT___GEN_4);
+    VlWide<32>/*1023:0*/ __PVT___GEN_5;
+    VL_ZERO_W(1024, __PVT___GEN_5);
+    VlWide<3>/*95:0*/ __Vtemp_hf7ae5517__0;
     VlWide<3>/*95:0*/ __Vtemp_hb3ceea99__0;
     VlWide<3>/*95:0*/ __Vtemp_h07b7b5e0__0;
     VlWide<3>/*95:0*/ __Vtemp_h62b9ff92__0;
@@ -29,6 +30,774 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
     VlWide<32>/*1023:0*/ __Vtemp_h643f1f89__0;
     VlWide<3>/*95:0*/ __Vtemp_hf1bb6a44__0;
     // Body
+    if (vlSelf->__Vdlyvset__DataArray_1_2_ext__DOT__Memory__v1) {
+        vlSelf->__PVT__DataArray_1_2_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_1_2_ext__DOT__Memory__v1] 
+            = vlSelf->__Vdlyvval__DataArray_1_2_ext__DOT__Memory__v1;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_1_2_ext__DOT__Memory__v2) {
+        vlSelf->__PVT__DataArray_1_2_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_1_2_ext__DOT__Memory__v2] 
+            = vlSelf->__Vdlyvval__DataArray_1_2_ext__DOT__Memory__v2;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_1_1_ext__DOT__Memory__v0) {
+        vlSelf->__PVT__DataArray_1_1_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_1_1_ext__DOT__Memory__v0] 
+            = vlSelf->__Vdlyvval__DataArray_1_1_ext__DOT__Memory__v0;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_1_1_ext__DOT__Memory__v1) {
+        vlSelf->__PVT__DataArray_1_1_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_1_1_ext__DOT__Memory__v1] 
+            = vlSelf->__Vdlyvval__DataArray_1_1_ext__DOT__Memory__v1;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_1_1_ext__DOT__Memory__v2) {
+        vlSelf->__PVT__DataArray_1_1_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_1_1_ext__DOT__Memory__v2] 
+            = vlSelf->__Vdlyvval__DataArray_1_1_ext__DOT__Memory__v2;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_1_0_ext__DOT__Memory__v0) {
+        vlSelf->__PVT__DataArray_1_0_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_1_0_ext__DOT__Memory__v0] 
+            = vlSelf->__Vdlyvval__DataArray_1_0_ext__DOT__Memory__v0;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_1_0_ext__DOT__Memory__v1) {
+        vlSelf->__PVT__DataArray_1_0_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_1_0_ext__DOT__Memory__v1] 
+            = vlSelf->__Vdlyvval__DataArray_1_0_ext__DOT__Memory__v1;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_1_0_ext__DOT__Memory__v2) {
+        vlSelf->__PVT__DataArray_1_0_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_1_0_ext__DOT__Memory__v2] 
+            = vlSelf->__Vdlyvval__DataArray_1_0_ext__DOT__Memory__v2;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_7_ext__DOT__Memory__v0) {
+        vlSelf->__PVT__DataArray_0_7_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_7_ext__DOT__Memory__v0] 
+            = vlSelf->__Vdlyvval__DataArray_0_7_ext__DOT__Memory__v0;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_7_ext__DOT__Memory__v1) {
+        vlSelf->__PVT__DataArray_0_7_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_7_ext__DOT__Memory__v1] 
+            = vlSelf->__Vdlyvval__DataArray_0_7_ext__DOT__Memory__v1;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_7_ext__DOT__Memory__v2) {
+        vlSelf->__PVT__DataArray_0_7_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_7_ext__DOT__Memory__v2] 
+            = vlSelf->__Vdlyvval__DataArray_0_7_ext__DOT__Memory__v2;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_6_ext__DOT__Memory__v0) {
+        vlSelf->__PVT__DataArray_0_6_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_6_ext__DOT__Memory__v0] 
+            = vlSelf->__Vdlyvval__DataArray_0_6_ext__DOT__Memory__v0;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_6_ext__DOT__Memory__v1) {
+        vlSelf->__PVT__DataArray_0_6_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_6_ext__DOT__Memory__v1] 
+            = vlSelf->__Vdlyvval__DataArray_0_6_ext__DOT__Memory__v1;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_6_ext__DOT__Memory__v2) {
+        vlSelf->__PVT__DataArray_0_6_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_6_ext__DOT__Memory__v2] 
+            = vlSelf->__Vdlyvval__DataArray_0_6_ext__DOT__Memory__v2;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_5_ext__DOT__Memory__v0) {
+        vlSelf->__PVT__DataArray_0_5_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_5_ext__DOT__Memory__v0] 
+            = vlSelf->__Vdlyvval__DataArray_0_5_ext__DOT__Memory__v0;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_5_ext__DOT__Memory__v1) {
+        vlSelf->__PVT__DataArray_0_5_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_5_ext__DOT__Memory__v1] 
+            = vlSelf->__Vdlyvval__DataArray_0_5_ext__DOT__Memory__v1;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_5_ext__DOT__Memory__v2) {
+        vlSelf->__PVT__DataArray_0_5_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_5_ext__DOT__Memory__v2] 
+            = vlSelf->__Vdlyvval__DataArray_0_5_ext__DOT__Memory__v2;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_4_ext__DOT__Memory__v0) {
+        vlSelf->__PVT__DataArray_0_4_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_4_ext__DOT__Memory__v0] 
+            = vlSelf->__Vdlyvval__DataArray_0_4_ext__DOT__Memory__v0;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_4_ext__DOT__Memory__v1) {
+        vlSelf->__PVT__DataArray_0_4_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_4_ext__DOT__Memory__v1] 
+            = vlSelf->__Vdlyvval__DataArray_0_4_ext__DOT__Memory__v1;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_4_ext__DOT__Memory__v2) {
+        vlSelf->__PVT__DataArray_0_4_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_4_ext__DOT__Memory__v2] 
+            = vlSelf->__Vdlyvval__DataArray_0_4_ext__DOT__Memory__v2;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_3_ext__DOT__Memory__v0) {
+        vlSelf->__PVT__DataArray_0_3_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_3_ext__DOT__Memory__v0] 
+            = vlSelf->__Vdlyvval__DataArray_0_3_ext__DOT__Memory__v0;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_3_ext__DOT__Memory__v1) {
+        vlSelf->__PVT__DataArray_0_3_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_3_ext__DOT__Memory__v1] 
+            = vlSelf->__Vdlyvval__DataArray_0_3_ext__DOT__Memory__v1;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_3_ext__DOT__Memory__v2) {
+        vlSelf->__PVT__DataArray_0_3_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_3_ext__DOT__Memory__v2] 
+            = vlSelf->__Vdlyvval__DataArray_0_3_ext__DOT__Memory__v2;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_2_ext__DOT__Memory__v0) {
+        vlSelf->__PVT__DataArray_0_2_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_2_ext__DOT__Memory__v0] 
+            = vlSelf->__Vdlyvval__DataArray_0_2_ext__DOT__Memory__v0;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_2_ext__DOT__Memory__v1) {
+        vlSelf->__PVT__DataArray_0_2_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_2_ext__DOT__Memory__v1] 
+            = vlSelf->__Vdlyvval__DataArray_0_2_ext__DOT__Memory__v1;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_2_ext__DOT__Memory__v2) {
+        vlSelf->__PVT__DataArray_0_2_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_2_ext__DOT__Memory__v2] 
+            = vlSelf->__Vdlyvval__DataArray_0_2_ext__DOT__Memory__v2;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_1_ext__DOT__Memory__v0) {
+        vlSelf->__PVT__DataArray_0_1_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_1_ext__DOT__Memory__v0] 
+            = vlSelf->__Vdlyvval__DataArray_0_1_ext__DOT__Memory__v0;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_1_ext__DOT__Memory__v1) {
+        vlSelf->__PVT__DataArray_0_1_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_1_ext__DOT__Memory__v1] 
+            = vlSelf->__Vdlyvval__DataArray_0_1_ext__DOT__Memory__v1;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_1_ext__DOT__Memory__v2) {
+        vlSelf->__PVT__DataArray_0_1_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_1_ext__DOT__Memory__v2] 
+            = vlSelf->__Vdlyvval__DataArray_0_1_ext__DOT__Memory__v2;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_0_ext__DOT__Memory__v0) {
+        vlSelf->__PVT__DataArray_0_0_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_0_ext__DOT__Memory__v0] 
+            = vlSelf->__Vdlyvval__DataArray_0_0_ext__DOT__Memory__v0;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_0_ext__DOT__Memory__v1) {
+        vlSelf->__PVT__DataArray_0_0_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_0_ext__DOT__Memory__v1] 
+            = vlSelf->__Vdlyvval__DataArray_0_0_ext__DOT__Memory__v1;
+    }
+    if (vlSelf->__Vdlyvset__DataArray_0_0_ext__DOT__Memory__v2) {
+        vlSelf->__PVT__DataArray_0_0_ext__DOT__Memory[vlSelf->__Vdlyvdim0__DataArray_0_0_ext__DOT__Memory__v2] 
+            = vlSelf->__Vdlyvval__DataArray_0_0_ext__DOT__Memory__v2;
+    }
+    vlSelf->__PVT__r_count = vlSelf->__Vdly__r_count;
+    if (vlSymsp->TOP.reset) {
+        vlSelf->__PVT__victim = 0U;
+    } else if (vlSelf->__PVT___T) {
+        vlSelf->__PVT__victim = ((1U & vlSelf->__PVT___victim_T_14)
+                                  ? ((1U & vlSelf->__PVT___victim_T_17)
+                                      ? ((1U & vlSelf->__PVT___victim_T_20)
+                                          ? ((1U & 
+                                              ((~ vlSelf->__PVT___victim_T_23) 
+                                               | (7U 
+                                                  == (IData)(vlSelf->__PVT___replace_ext_R8_data))))
+                                              ? 3U : 
+                                             ((6U == (IData)(vlSelf->__PVT___replace_ext_R8_data))
+                                               ? 2U
+                                               : ((5U 
+                                                   == (IData)(vlSelf->__PVT___replace_ext_R8_data))
+                                                   ? 3U
+                                                   : 
+                                                  ((4U 
+                                                    == (IData)(vlSelf->__PVT___replace_ext_R8_data))
+                                                    ? 2U
+                                                    : 
+                                                   ((3U 
+                                                     == (IData)(vlSelf->__PVT___replace_ext_R8_data)) 
+                                                    | (2U 
+                                                       == (IData)(vlSelf->__PVT___replace_ext_R8_data)))))))
+                                          : 2U) : 1U)
+                                  : 0U);
+    }
+    if (vlSelf->__PVT___T) {
+        vlSelf->__PVT__cpu_mask = vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask;
+        vlSelf->__PVT__addr_reg = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T);
+    } else if (((~ (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid)) 
+                & (0U == (IData)(vlSelf->__PVT__state)))) {
+        vlSelf->__PVT__cpu_mask = 0U;
+        vlSelf->__PVT__addr_reg = 0U;
+    }
+    __Vtemp_hf7ae5517__0[0U] = (IData)((((QData)((IData)(
+                                                         ((IData)(vlSelf->__PVT__DataArray_0_7_ext__DOT___GEN_5)
+                                                           ? 
+                                                          vlSelf->__PVT__DataArray_0_7_ext__DOT__Memory
+                                                          [vlSelf->__PVT__DataArray_0_7_ext__DOT___GEN_6]
+                                                           : 0U))) 
+                                         << 0x38U) 
+                                        | (((QData)((IData)(
+                                                            ((IData)(vlSelf->__PVT__DataArray_0_6_ext__DOT___GEN_5)
+                                                              ? 
+                                                             vlSelf->__PVT__DataArray_0_6_ext__DOT__Memory
+                                                             [vlSelf->__PVT__DataArray_0_6_ext__DOT___GEN_6]
+                                                              : 0U))) 
+                                            << 0x30U) 
+                                           | (((QData)((IData)(
+                                                               ((IData)(vlSelf->__PVT__DataArray_0_5_ext__DOT___GEN_5)
+                                                                 ? 
+                                                                vlSelf->__PVT__DataArray_0_5_ext__DOT__Memory
+                                                                [vlSelf->__PVT__DataArray_0_5_ext__DOT___GEN_6]
+                                                                 : 0U))) 
+                                               << 0x28U) 
+                                              | (((QData)((IData)(
+                                                                  ((IData)(vlSelf->__PVT__DataArray_0_4_ext__DOT___GEN_5)
+                                                                    ? 
+                                                                   vlSelf->__PVT__DataArray_0_4_ext__DOT__Memory
+                                                                   [vlSelf->__PVT__DataArray_0_4_ext__DOT___GEN_6]
+                                                                    : 0U))) 
+                                                  << 0x20U) 
+                                                 | (QData)((IData)(
+                                                                   ((((IData)(vlSelf->__PVT__DataArray_0_3_ext__DOT___GEN_5)
+                                                                       ? 
+                                                                      vlSelf->__PVT__DataArray_0_3_ext__DOT__Memory
+                                                                      [vlSelf->__PVT__DataArray_0_3_ext__DOT___GEN_6]
+                                                                       : 0U) 
+                                                                     << 0x18U) 
+                                                                    | ((((IData)(vlSelf->__PVT__DataArray_0_2_ext__DOT___GEN_5)
+                                                                          ? 
+                                                                         vlSelf->__PVT__DataArray_0_2_ext__DOT__Memory
+                                                                         [vlSelf->__PVT__DataArray_0_2_ext__DOT___GEN_6]
+                                                                          : 0U) 
+                                                                        << 0x10U) 
+                                                                       | ((((IData)(vlSelf->__PVT__DataArray_0_1_ext__DOT___GEN_5)
+                                                                             ? 
+                                                                            vlSelf->__PVT__DataArray_0_1_ext__DOT__Memory
+                                                                            [vlSelf->__PVT__DataArray_0_1_ext__DOT___GEN_6]
+                                                                             : 0U) 
+                                                                           << 8U) 
+                                                                          | ((IData)(vlSelf->__PVT__DataArray_0_0_ext__DOT___GEN_5)
+                                                                              ? 
+                                                                             vlSelf->__PVT__DataArray_0_0_ext__DOT__Memory
+                                                                             [vlSelf->__PVT__DataArray_0_0_ext__DOT___GEN_6]
+                                                                              : 0U)))))))))));
+    __Vtemp_hf7ae5517__0[1U] = (IData)(((((QData)((IData)(
+                                                          ((IData)(vlSelf->__PVT__DataArray_0_7_ext__DOT___GEN_5)
+                                                            ? 
+                                                           vlSelf->__PVT__DataArray_0_7_ext__DOT__Memory
+                                                           [vlSelf->__PVT__DataArray_0_7_ext__DOT___GEN_6]
+                                                            : 0U))) 
+                                          << 0x38U) 
+                                         | (((QData)((IData)(
+                                                             ((IData)(vlSelf->__PVT__DataArray_0_6_ext__DOT___GEN_5)
+                                                               ? 
+                                                              vlSelf->__PVT__DataArray_0_6_ext__DOT__Memory
+                                                              [vlSelf->__PVT__DataArray_0_6_ext__DOT___GEN_6]
+                                                               : 0U))) 
+                                             << 0x30U) 
+                                            | (((QData)((IData)(
+                                                                ((IData)(vlSelf->__PVT__DataArray_0_5_ext__DOT___GEN_5)
+                                                                  ? 
+                                                                 vlSelf->__PVT__DataArray_0_5_ext__DOT__Memory
+                                                                 [vlSelf->__PVT__DataArray_0_5_ext__DOT___GEN_6]
+                                                                  : 0U))) 
+                                                << 0x28U) 
+                                               | (((QData)((IData)(
+                                                                   ((IData)(vlSelf->__PVT__DataArray_0_4_ext__DOT___GEN_5)
+                                                                     ? 
+                                                                    vlSelf->__PVT__DataArray_0_4_ext__DOT__Memory
+                                                                    [vlSelf->__PVT__DataArray_0_4_ext__DOT___GEN_6]
+                                                                     : 0U))) 
+                                                   << 0x20U) 
+                                                  | (QData)((IData)(
+                                                                    ((((IData)(vlSelf->__PVT__DataArray_0_3_ext__DOT___GEN_5)
+                                                                        ? 
+                                                                       vlSelf->__PVT__DataArray_0_3_ext__DOT__Memory
+                                                                       [vlSelf->__PVT__DataArray_0_3_ext__DOT___GEN_6]
+                                                                        : 0U) 
+                                                                      << 0x18U) 
+                                                                     | ((((IData)(vlSelf->__PVT__DataArray_0_2_ext__DOT___GEN_5)
+                                                                           ? 
+                                                                          vlSelf->__PVT__DataArray_0_2_ext__DOT__Memory
+                                                                          [vlSelf->__PVT__DataArray_0_2_ext__DOT___GEN_6]
+                                                                           : 0U) 
+                                                                         << 0x10U) 
+                                                                        | ((((IData)(vlSelf->__PVT__DataArray_0_1_ext__DOT___GEN_5)
+                                                                              ? 
+                                                                             vlSelf->__PVT__DataArray_0_1_ext__DOT__Memory
+                                                                             [vlSelf->__PVT__DataArray_0_1_ext__DOT___GEN_6]
+                                                                              : 0U) 
+                                                                            << 8U) 
+                                                                           | ((IData)(vlSelf->__PVT__DataArray_0_0_ext__DOT___GEN_5)
+                                                                               ? 
+                                                                              vlSelf->__PVT__DataArray_0_0_ext__DOT__Memory
+                                                                              [vlSelf->__PVT__DataArray_0_0_ext__DOT___GEN_6]
+                                                                               : 0U)))))))))) 
+                                        >> 0x20U));
+    vlSelf->__PVT__rdata3[0U] = __Vtemp_hf7ae5517__0[0U];
+    vlSelf->__PVT__rdata3[1U] = __Vtemp_hf7ae5517__0[1U];
+    vlSelf->__PVT__rdata3[2U] = ((((IData)(vlSelf->__PVT__DataArray_1_3_ext__DOT___GEN_5)
+                                    ? vlSelf->__PVT__DataArray_1_3_ext__DOT__Memory
+                                   [vlSelf->__PVT__DataArray_1_3_ext__DOT___GEN_6]
+                                    : 0U) << 0x18U) 
+                                 | ((((IData)(vlSelf->__PVT__DataArray_1_2_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_1_2_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_1_2_ext__DOT___GEN_6]
+                                       : 0U) << 0x10U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_1_1_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_1_1_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_1_1_ext__DOT___GEN_6]
+                                          : 0U) << 8U) 
+                                       | ((IData)(vlSelf->__PVT__DataArray_1_0_ext__DOT___GEN_5)
+                                           ? vlSelf->__PVT__DataArray_1_0_ext__DOT__Memory
+                                          [vlSelf->__PVT__DataArray_1_0_ext__DOT___GEN_6]
+                                           : 0U))));
+    vlSelf->__PVT__rdata3[3U] = ((((IData)(vlSelf->__PVT__DataArray_1_7_ext__DOT___GEN_5)
+                                    ? vlSelf->__PVT__DataArray_1_7_ext__DOT__Memory
+                                   [vlSelf->__PVT__DataArray_1_7_ext__DOT___GEN_6]
+                                    : 0U) << 0x18U) 
+                                 | ((((IData)(vlSelf->__PVT__DataArray_1_6_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_1_6_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_1_6_ext__DOT___GEN_6]
+                                       : 0U) << 0x10U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_1_5_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_1_5_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_1_5_ext__DOT___GEN_6]
+                                          : 0U) << 8U) 
+                                       | ((IData)(vlSelf->__PVT__DataArray_1_4_ext__DOT___GEN_5)
+                                           ? vlSelf->__PVT__DataArray_1_4_ext__DOT__Memory
+                                          [vlSelf->__PVT__DataArray_1_4_ext__DOT___GEN_6]
+                                           : 0U))));
+    vlSelf->__PVT__rdata3[4U] = ((((IData)(vlSelf->__PVT__DataArray_2_3_ext__DOT___GEN_5)
+                                    ? vlSelf->__PVT__DataArray_2_3_ext__DOT__Memory
+                                   [vlSelf->__PVT__DataArray_2_3_ext__DOT___GEN_6]
+                                    : 0U) << 0x18U) 
+                                 | ((((IData)(vlSelf->__PVT__DataArray_2_2_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_2_2_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_2_2_ext__DOT___GEN_6]
+                                       : 0U) << 0x10U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_2_1_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_2_1_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_2_1_ext__DOT___GEN_6]
+                                          : 0U) << 8U) 
+                                       | ((IData)(vlSelf->__PVT__DataArray_2_0_ext__DOT___GEN_5)
+                                           ? vlSelf->__PVT__DataArray_2_0_ext__DOT__Memory
+                                          [vlSelf->__PVT__DataArray_2_0_ext__DOT___GEN_6]
+                                           : 0U))));
+    vlSelf->__PVT__rdata3[5U] = ((((IData)(vlSelf->__PVT__DataArray_2_7_ext__DOT___GEN_5)
+                                    ? vlSelf->__PVT__DataArray_2_7_ext__DOT__Memory
+                                   [vlSelf->__PVT__DataArray_2_7_ext__DOT___GEN_6]
+                                    : 0U) << 0x18U) 
+                                 | ((((IData)(vlSelf->__PVT__DataArray_2_6_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_2_6_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_2_6_ext__DOT___GEN_6]
+                                       : 0U) << 0x10U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_2_5_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_2_5_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_2_5_ext__DOT___GEN_6]
+                                          : 0U) << 8U) 
+                                       | ((IData)(vlSelf->__PVT__DataArray_2_4_ext__DOT___GEN_5)
+                                           ? vlSelf->__PVT__DataArray_2_4_ext__DOT__Memory
+                                          [vlSelf->__PVT__DataArray_2_4_ext__DOT___GEN_6]
+                                           : 0U))));
+    vlSelf->__PVT__rdata3[6U] = ((((IData)(vlSelf->__PVT__DataArray_3_3_ext__DOT___GEN_5)
+                                    ? vlSelf->__PVT__DataArray_3_3_ext__DOT__Memory
+                                   [vlSelf->__PVT__DataArray_3_3_ext__DOT___GEN_6]
+                                    : 0U) << 0x18U) 
+                                 | ((((IData)(vlSelf->__PVT__DataArray_3_2_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_3_2_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_3_2_ext__DOT___GEN_6]
+                                       : 0U) << 0x10U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_3_1_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_3_1_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_3_1_ext__DOT___GEN_6]
+                                          : 0U) << 8U) 
+                                       | ((IData)(vlSelf->__PVT__DataArray_3_0_ext__DOT___GEN_5)
+                                           ? vlSelf->__PVT__DataArray_3_0_ext__DOT__Memory
+                                          [vlSelf->__PVT__DataArray_3_0_ext__DOT___GEN_6]
+                                           : 0U))));
+    vlSelf->__PVT__rdata3[7U] = ((((IData)(vlSelf->__PVT__DataArray_3_7_ext__DOT___GEN_5)
+                                    ? vlSelf->__PVT__DataArray_3_7_ext__DOT__Memory
+                                   [vlSelf->__PVT__DataArray_3_7_ext__DOT___GEN_6]
+                                    : 0U) << 0x18U) 
+                                 | ((((IData)(vlSelf->__PVT__DataArray_3_6_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_3_6_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_3_6_ext__DOT___GEN_6]
+                                       : 0U) << 0x10U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_3_5_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_3_5_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_3_5_ext__DOT___GEN_6]
+                                          : 0U) << 8U) 
+                                       | ((IData)(vlSelf->__PVT__DataArray_3_4_ext__DOT___GEN_5)
+                                           ? vlSelf->__PVT__DataArray_3_4_ext__DOT__Memory
+                                          [vlSelf->__PVT__DataArray_3_4_ext__DOT___GEN_6]
+                                           : 0U))));
+    vlSelf->__PVT__rdata3[8U] = ((((IData)(vlSelf->__PVT__DataArray_4_3_ext__DOT___GEN_5)
+                                    ? vlSelf->__PVT__DataArray_4_3_ext__DOT__Memory
+                                   [vlSelf->__PVT__DataArray_4_3_ext__DOT___GEN_6]
+                                    : 0U) << 0x18U) 
+                                 | ((((IData)(vlSelf->__PVT__DataArray_4_2_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_4_2_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_4_2_ext__DOT___GEN_6]
+                                       : 0U) << 0x10U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_4_1_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_4_1_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_4_1_ext__DOT___GEN_6]
+                                          : 0U) << 8U) 
+                                       | ((IData)(vlSelf->__PVT__DataArray_4_0_ext__DOT___GEN_5)
+                                           ? vlSelf->__PVT__DataArray_4_0_ext__DOT__Memory
+                                          [vlSelf->__PVT__DataArray_4_0_ext__DOT___GEN_6]
+                                           : 0U))));
+    vlSelf->__PVT__rdata3[9U] = ((((IData)(vlSelf->__PVT__DataArray_4_7_ext__DOT___GEN_5)
+                                    ? vlSelf->__PVT__DataArray_4_7_ext__DOT__Memory
+                                   [vlSelf->__PVT__DataArray_4_7_ext__DOT___GEN_6]
+                                    : 0U) << 0x18U) 
+                                 | ((((IData)(vlSelf->__PVT__DataArray_4_6_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_4_6_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_4_6_ext__DOT___GEN_6]
+                                       : 0U) << 0x10U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_4_5_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_4_5_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_4_5_ext__DOT___GEN_6]
+                                          : 0U) << 8U) 
+                                       | ((IData)(vlSelf->__PVT__DataArray_4_4_ext__DOT___GEN_5)
+                                           ? vlSelf->__PVT__DataArray_4_4_ext__DOT__Memory
+                                          [vlSelf->__PVT__DataArray_4_4_ext__DOT___GEN_6]
+                                           : 0U))));
+    vlSelf->__PVT__rdata3[0xaU] = ((((IData)(vlSelf->__PVT__DataArray_5_3_ext__DOT___GEN_5)
+                                      ? vlSelf->__PVT__DataArray_5_3_ext__DOT__Memory
+                                     [vlSelf->__PVT__DataArray_5_3_ext__DOT___GEN_6]
+                                      : 0U) << 0x18U) 
+                                   | ((((IData)(vlSelf->__PVT__DataArray_5_2_ext__DOT___GEN_5)
+                                         ? vlSelf->__PVT__DataArray_5_2_ext__DOT__Memory
+                                        [vlSelf->__PVT__DataArray_5_2_ext__DOT___GEN_6]
+                                         : 0U) << 0x10U) 
+                                      | ((((IData)(vlSelf->__PVT__DataArray_5_1_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_5_1_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_5_1_ext__DOT___GEN_6]
+                                            : 0U) << 8U) 
+                                         | ((IData)(vlSelf->__PVT__DataArray_5_0_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_5_0_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_5_0_ext__DOT___GEN_6]
+                                             : 0U))));
+    vlSelf->__PVT__rdata3[0xbU] = ((((IData)(vlSelf->__PVT__DataArray_5_7_ext__DOT___GEN_5)
+                                      ? vlSelf->__PVT__DataArray_5_7_ext__DOT__Memory
+                                     [vlSelf->__PVT__DataArray_5_7_ext__DOT___GEN_6]
+                                      : 0U) << 0x18U) 
+                                   | ((((IData)(vlSelf->__PVT__DataArray_5_6_ext__DOT___GEN_5)
+                                         ? vlSelf->__PVT__DataArray_5_6_ext__DOT__Memory
+                                        [vlSelf->__PVT__DataArray_5_6_ext__DOT___GEN_6]
+                                         : 0U) << 0x10U) 
+                                      | ((((IData)(vlSelf->__PVT__DataArray_5_5_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_5_5_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_5_5_ext__DOT___GEN_6]
+                                            : 0U) << 8U) 
+                                         | ((IData)(vlSelf->__PVT__DataArray_5_4_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_5_4_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_5_4_ext__DOT___GEN_6]
+                                             : 0U))));
+    vlSelf->__PVT__rdata3[0xcU] = ((((IData)(vlSelf->__PVT__DataArray_6_3_ext__DOT___GEN_5)
+                                      ? vlSelf->__PVT__DataArray_6_3_ext__DOT__Memory
+                                     [vlSelf->__PVT__DataArray_6_3_ext__DOT___GEN_6]
+                                      : 0U) << 0x18U) 
+                                   | ((((IData)(vlSelf->__PVT__DataArray_6_2_ext__DOT___GEN_5)
+                                         ? vlSelf->__PVT__DataArray_6_2_ext__DOT__Memory
+                                        [vlSelf->__PVT__DataArray_6_2_ext__DOT___GEN_6]
+                                         : 0U) << 0x10U) 
+                                      | ((((IData)(vlSelf->__PVT__DataArray_6_1_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_6_1_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_6_1_ext__DOT___GEN_6]
+                                            : 0U) << 8U) 
+                                         | ((IData)(vlSelf->__PVT__DataArray_6_0_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_6_0_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_6_0_ext__DOT___GEN_6]
+                                             : 0U))));
+    vlSelf->__PVT__rdata3[0xdU] = ((((IData)(vlSelf->__PVT__DataArray_6_7_ext__DOT___GEN_5)
+                                      ? vlSelf->__PVT__DataArray_6_7_ext__DOT__Memory
+                                     [vlSelf->__PVT__DataArray_6_7_ext__DOT___GEN_6]
+                                      : 0U) << 0x18U) 
+                                   | ((((IData)(vlSelf->__PVT__DataArray_6_6_ext__DOT___GEN_5)
+                                         ? vlSelf->__PVT__DataArray_6_6_ext__DOT__Memory
+                                        [vlSelf->__PVT__DataArray_6_6_ext__DOT___GEN_6]
+                                         : 0U) << 0x10U) 
+                                      | ((((IData)(vlSelf->__PVT__DataArray_6_5_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_6_5_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_6_5_ext__DOT___GEN_6]
+                                            : 0U) << 8U) 
+                                         | ((IData)(vlSelf->__PVT__DataArray_6_4_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_6_4_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_6_4_ext__DOT___GEN_6]
+                                             : 0U))));
+    vlSelf->__PVT__rdata3[0xeU] = ((((IData)(vlSelf->__PVT__DataArray_7_3_ext__DOT___GEN_5)
+                                      ? vlSelf->__PVT__DataArray_7_3_ext__DOT__Memory
+                                     [vlSelf->__PVT__DataArray_7_3_ext__DOT___GEN_6]
+                                      : 0U) << 0x18U) 
+                                   | ((((IData)(vlSelf->__PVT__DataArray_7_2_ext__DOT___GEN_5)
+                                         ? vlSelf->__PVT__DataArray_7_2_ext__DOT__Memory
+                                        [vlSelf->__PVT__DataArray_7_2_ext__DOT___GEN_6]
+                                         : 0U) << 0x10U) 
+                                      | ((((IData)(vlSelf->__PVT__DataArray_7_1_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_7_1_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_7_1_ext__DOT___GEN_6]
+                                            : 0U) << 8U) 
+                                         | ((IData)(vlSelf->__PVT__DataArray_7_0_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_7_0_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_7_0_ext__DOT___GEN_6]
+                                             : 0U))));
+    vlSelf->__PVT__rdata3[0xfU] = ((((IData)(vlSelf->__PVT__DataArray_7_7_ext__DOT___GEN_5)
+                                      ? vlSelf->__PVT__DataArray_7_7_ext__DOT__Memory
+                                     [vlSelf->__PVT__DataArray_7_7_ext__DOT___GEN_6]
+                                      : 0U) << 0x18U) 
+                                   | ((((IData)(vlSelf->__PVT__DataArray_7_6_ext__DOT___GEN_5)
+                                         ? vlSelf->__PVT__DataArray_7_6_ext__DOT__Memory
+                                        [vlSelf->__PVT__DataArray_7_6_ext__DOT___GEN_6]
+                                         : 0U) << 0x10U) 
+                                      | ((((IData)(vlSelf->__PVT__DataArray_7_5_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_7_5_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_7_5_ext__DOT___GEN_6]
+                                            : 0U) << 8U) 
+                                         | ((IData)(vlSelf->__PVT__DataArray_7_4_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_7_4_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_7_4_ext__DOT___GEN_6]
+                                             : 0U))));
+    vlSelf->__PVT__rdata3[0x10U] = ((((IData)(vlSelf->__PVT__DataArray_8_3_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_8_3_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_8_3_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_8_2_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_8_2_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_8_2_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_8_1_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_8_1_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_8_1_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_8_0_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_8_0_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_8_0_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x11U] = ((((IData)(vlSelf->__PVT__DataArray_8_7_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_8_7_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_8_7_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_8_6_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_8_6_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_8_6_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_8_5_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_8_5_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_8_5_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_8_4_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_8_4_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_8_4_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x12U] = ((((IData)(vlSelf->__PVT__DataArray_9_3_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_9_3_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_9_3_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_9_2_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_9_2_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_9_2_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_9_1_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_9_1_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_9_1_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_9_0_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_9_0_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_9_0_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x13U] = ((((IData)(vlSelf->__PVT__DataArray_9_7_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_9_7_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_9_7_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_9_6_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_9_6_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_9_6_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_9_5_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_9_5_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_9_5_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_9_4_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_9_4_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_9_4_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x14U] = ((((IData)(vlSelf->__PVT__DataArray_10_3_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_10_3_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_10_3_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_10_2_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_10_2_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_10_2_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_10_1_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_10_1_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_10_1_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_10_0_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_10_0_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_10_0_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x15U] = ((((IData)(vlSelf->__PVT__DataArray_10_7_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_10_7_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_10_7_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_10_6_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_10_6_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_10_6_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_10_5_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_10_5_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_10_5_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_10_4_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_10_4_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_10_4_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x16U] = ((((IData)(vlSelf->__PVT__DataArray_11_3_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_11_3_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_11_3_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_11_2_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_11_2_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_11_2_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_11_1_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_11_1_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_11_1_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_11_0_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_11_0_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_11_0_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x17U] = ((((IData)(vlSelf->__PVT__DataArray_11_7_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_11_7_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_11_7_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_11_6_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_11_6_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_11_6_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_11_5_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_11_5_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_11_5_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_11_4_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_11_4_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_11_4_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x18U] = ((((IData)(vlSelf->__PVT__DataArray_12_3_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_12_3_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_12_3_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_12_2_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_12_2_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_12_2_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_12_1_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_12_1_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_12_1_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_12_0_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_12_0_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_12_0_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x19U] = ((((IData)(vlSelf->__PVT__DataArray_12_7_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_12_7_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_12_7_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_12_6_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_12_6_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_12_6_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_12_5_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_12_5_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_12_5_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_12_4_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_12_4_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_12_4_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x1aU] = ((((IData)(vlSelf->__PVT__DataArray_13_3_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_13_3_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_13_3_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_13_2_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_13_2_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_13_2_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_13_1_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_13_1_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_13_1_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_13_0_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_13_0_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_13_0_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x1bU] = ((((IData)(vlSelf->__PVT__DataArray_13_7_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_13_7_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_13_7_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_13_6_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_13_6_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_13_6_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_13_5_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_13_5_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_13_5_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_13_4_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_13_4_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_13_4_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x1cU] = ((((IData)(vlSelf->__PVT__DataArray_14_3_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_14_3_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_14_3_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_14_2_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_14_2_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_14_2_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_14_1_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_14_1_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_14_1_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_14_0_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_14_0_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_14_0_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x1dU] = ((((IData)(vlSelf->__PVT__DataArray_14_7_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_14_7_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_14_7_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_14_6_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_14_6_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_14_6_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_14_5_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_14_5_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_14_5_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_14_4_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_14_4_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_14_4_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x1eU] = ((((IData)(vlSelf->__PVT__DataArray_15_3_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_15_3_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_15_3_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_15_2_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_15_2_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_15_2_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_15_1_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_15_1_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_15_1_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_15_0_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_15_0_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_15_0_ext__DOT___GEN_6]
+                                            : 0U))));
+    vlSelf->__PVT__rdata3[0x1fU] = ((((IData)(vlSelf->__PVT__DataArray_15_7_ext__DOT___GEN_5)
+                                       ? vlSelf->__PVT__DataArray_15_7_ext__DOT__Memory
+                                      [vlSelf->__PVT__DataArray_15_7_ext__DOT___GEN_6]
+                                       : 0U) << 0x18U) 
+                                    | ((((IData)(vlSelf->__PVT__DataArray_15_6_ext__DOT___GEN_5)
+                                          ? vlSelf->__PVT__DataArray_15_6_ext__DOT__Memory
+                                         [vlSelf->__PVT__DataArray_15_6_ext__DOT___GEN_6]
+                                          : 0U) << 0x10U) 
+                                       | ((((IData)(vlSelf->__PVT__DataArray_15_5_ext__DOT___GEN_5)
+                                             ? vlSelf->__PVT__DataArray_15_5_ext__DOT__Memory
+                                            [vlSelf->__PVT__DataArray_15_5_ext__DOT___GEN_6]
+                                             : 0U) 
+                                           << 8U) | 
+                                          ((IData)(vlSelf->__PVT__DataArray_15_4_ext__DOT___GEN_5)
+                                            ? vlSelf->__PVT__DataArray_15_4_ext__DOT__Memory
+                                           [vlSelf->__PVT__DataArray_15_4_ext__DOT___GEN_6]
+                                            : 0U))));
     __Vtemp_hb3ceea99__0[0U] = (IData)((((QData)((IData)(
                                                          ((IData)(vlSelf->__PVT__DataArray_0_7_ext__DOT___GEN_3)
                                                            ? 
@@ -1894,44 +2663,38 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
     vlSelf->__VdfgTmp_h25305f44__0[0x1dU] = (IData)(
                                                     (vlSelf->__PVT__refill_buffer_14 
                                                      >> 0x20U));
-    if (vlSelf->__PVT___T) {
-        vlSelf->__PVT__addr_reg = (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T);
-    } else if (((~ (IData)(vlSymsp->TOP.Soc__DOT__core__DOT____Vcellinp__Dcache__io_cpu_req_valid)) 
-                & (0U == (IData)(vlSelf->__PVT__state)))) {
-        vlSelf->__PVT__addr_reg = 0U;
-    }
-    __PVT___GEN_4[0U] = vlSelf->__VdfgTmp_h25305f44__0[0U];
-    __PVT___GEN_4[1U] = vlSelf->__VdfgTmp_h25305f44__0[1U];
-    __PVT___GEN_4[2U] = vlSelf->__VdfgTmp_h25305f44__0[2U];
-    __PVT___GEN_4[3U] = vlSelf->__VdfgTmp_h25305f44__0[3U];
-    __PVT___GEN_4[4U] = vlSelf->__VdfgTmp_h25305f44__0[4U];
-    __PVT___GEN_4[5U] = vlSelf->__VdfgTmp_h25305f44__0[5U];
-    __PVT___GEN_4[6U] = vlSelf->__VdfgTmp_h25305f44__0[6U];
-    __PVT___GEN_4[7U] = vlSelf->__VdfgTmp_h25305f44__0[7U];
-    __PVT___GEN_4[8U] = vlSelf->__VdfgTmp_h25305f44__0[8U];
-    __PVT___GEN_4[9U] = vlSelf->__VdfgTmp_h25305f44__0[9U];
-    __PVT___GEN_4[0xaU] = vlSelf->__VdfgTmp_h25305f44__0[0xaU];
-    __PVT___GEN_4[0xbU] = vlSelf->__VdfgTmp_h25305f44__0[0xbU];
-    __PVT___GEN_4[0xcU] = vlSelf->__VdfgTmp_h25305f44__0[0xcU];
-    __PVT___GEN_4[0xdU] = vlSelf->__VdfgTmp_h25305f44__0[0xdU];
-    __PVT___GEN_4[0xeU] = vlSelf->__VdfgTmp_h25305f44__0[0xeU];
-    __PVT___GEN_4[0xfU] = vlSelf->__VdfgTmp_h25305f44__0[0xfU];
-    __PVT___GEN_4[0x10U] = vlSelf->__VdfgTmp_h25305f44__0[0x10U];
-    __PVT___GEN_4[0x11U] = vlSelf->__VdfgTmp_h25305f44__0[0x11U];
-    __PVT___GEN_4[0x12U] = vlSelf->__VdfgTmp_h25305f44__0[0x12U];
-    __PVT___GEN_4[0x13U] = vlSelf->__VdfgTmp_h25305f44__0[0x13U];
-    __PVT___GEN_4[0x14U] = vlSelf->__VdfgTmp_h25305f44__0[0x14U];
-    __PVT___GEN_4[0x15U] = vlSelf->__VdfgTmp_h25305f44__0[0x15U];
-    __PVT___GEN_4[0x16U] = vlSelf->__VdfgTmp_h25305f44__0[0x16U];
-    __PVT___GEN_4[0x17U] = vlSelf->__VdfgTmp_h25305f44__0[0x17U];
-    __PVT___GEN_4[0x18U] = vlSelf->__VdfgTmp_h25305f44__0[0x18U];
-    __PVT___GEN_4[0x19U] = vlSelf->__VdfgTmp_h25305f44__0[0x19U];
-    __PVT___GEN_4[0x1aU] = vlSelf->__VdfgTmp_h25305f44__0[0x1aU];
-    __PVT___GEN_4[0x1bU] = vlSelf->__VdfgTmp_h25305f44__0[0x1bU];
-    __PVT___GEN_4[0x1cU] = vlSelf->__VdfgTmp_h25305f44__0[0x1cU];
-    __PVT___GEN_4[0x1dU] = vlSelf->__VdfgTmp_h25305f44__0[0x1dU];
-    __PVT___GEN_4[0x1eU] = (IData)(vlSelf->__PVT__refill_buffer_15);
-    __PVT___GEN_4[0x1fU] = (IData)((vlSelf->__PVT__refill_buffer_15 
+    __PVT___GEN_5[0U] = vlSelf->__VdfgTmp_h25305f44__0[0U];
+    __PVT___GEN_5[1U] = vlSelf->__VdfgTmp_h25305f44__0[1U];
+    __PVT___GEN_5[2U] = vlSelf->__VdfgTmp_h25305f44__0[2U];
+    __PVT___GEN_5[3U] = vlSelf->__VdfgTmp_h25305f44__0[3U];
+    __PVT___GEN_5[4U] = vlSelf->__VdfgTmp_h25305f44__0[4U];
+    __PVT___GEN_5[5U] = vlSelf->__VdfgTmp_h25305f44__0[5U];
+    __PVT___GEN_5[6U] = vlSelf->__VdfgTmp_h25305f44__0[6U];
+    __PVT___GEN_5[7U] = vlSelf->__VdfgTmp_h25305f44__0[7U];
+    __PVT___GEN_5[8U] = vlSelf->__VdfgTmp_h25305f44__0[8U];
+    __PVT___GEN_5[9U] = vlSelf->__VdfgTmp_h25305f44__0[9U];
+    __PVT___GEN_5[0xaU] = vlSelf->__VdfgTmp_h25305f44__0[0xaU];
+    __PVT___GEN_5[0xbU] = vlSelf->__VdfgTmp_h25305f44__0[0xbU];
+    __PVT___GEN_5[0xcU] = vlSelf->__VdfgTmp_h25305f44__0[0xcU];
+    __PVT___GEN_5[0xdU] = vlSelf->__VdfgTmp_h25305f44__0[0xdU];
+    __PVT___GEN_5[0xeU] = vlSelf->__VdfgTmp_h25305f44__0[0xeU];
+    __PVT___GEN_5[0xfU] = vlSelf->__VdfgTmp_h25305f44__0[0xfU];
+    __PVT___GEN_5[0x10U] = vlSelf->__VdfgTmp_h25305f44__0[0x10U];
+    __PVT___GEN_5[0x11U] = vlSelf->__VdfgTmp_h25305f44__0[0x11U];
+    __PVT___GEN_5[0x12U] = vlSelf->__VdfgTmp_h25305f44__0[0x12U];
+    __PVT___GEN_5[0x13U] = vlSelf->__VdfgTmp_h25305f44__0[0x13U];
+    __PVT___GEN_5[0x14U] = vlSelf->__VdfgTmp_h25305f44__0[0x14U];
+    __PVT___GEN_5[0x15U] = vlSelf->__VdfgTmp_h25305f44__0[0x15U];
+    __PVT___GEN_5[0x16U] = vlSelf->__VdfgTmp_h25305f44__0[0x16U];
+    __PVT___GEN_5[0x17U] = vlSelf->__VdfgTmp_h25305f44__0[0x17U];
+    __PVT___GEN_5[0x18U] = vlSelf->__VdfgTmp_h25305f44__0[0x18U];
+    __PVT___GEN_5[0x19U] = vlSelf->__VdfgTmp_h25305f44__0[0x19U];
+    __PVT___GEN_5[0x1aU] = vlSelf->__VdfgTmp_h25305f44__0[0x1aU];
+    __PVT___GEN_5[0x1bU] = vlSelf->__VdfgTmp_h25305f44__0[0x1bU];
+    __PVT___GEN_5[0x1cU] = vlSelf->__VdfgTmp_h25305f44__0[0x1cU];
+    __PVT___GEN_5[0x1dU] = vlSelf->__VdfgTmp_h25305f44__0[0x1dU];
+    __PVT___GEN_5[0x1eU] = (IData)(vlSelf->__PVT__refill_buffer_15);
+    __PVT___GEN_5[0x1fU] = (IData)((vlSelf->__PVT__refill_buffer_15 
                                     >> 0x20U));
     vlSelf->__PVT__state = vlSelf->__Vdly__state;
     __Vtemp_hdcae5ce7__0[0U] = vlSelf->__PVT__rdata2[0U];
@@ -3498,40 +4261,40 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
                                                  << 0xaU))));
     }
     if (vlSelf->__PVT__is_alloc_reg) {
-        vlSelf->__PVT__read[0U] = __PVT___GEN_4[0U];
-        vlSelf->__PVT__read[1U] = __PVT___GEN_4[1U];
-        vlSelf->__PVT__read[2U] = __PVT___GEN_4[2U];
-        vlSelf->__PVT__read[3U] = __PVT___GEN_4[3U];
-        vlSelf->__PVT__read[4U] = __PVT___GEN_4[4U];
-        vlSelf->__PVT__read[5U] = __PVT___GEN_4[5U];
-        vlSelf->__PVT__read[6U] = __PVT___GEN_4[6U];
-        vlSelf->__PVT__read[7U] = __PVT___GEN_4[7U];
-        vlSelf->__PVT__read[8U] = __PVT___GEN_4[8U];
-        vlSelf->__PVT__read[9U] = __PVT___GEN_4[9U];
-        vlSelf->__PVT__read[0xaU] = __PVT___GEN_4[0xaU];
-        vlSelf->__PVT__read[0xbU] = __PVT___GEN_4[0xbU];
-        vlSelf->__PVT__read[0xcU] = __PVT___GEN_4[0xcU];
-        vlSelf->__PVT__read[0xdU] = __PVT___GEN_4[0xdU];
-        vlSelf->__PVT__read[0xeU] = __PVT___GEN_4[0xeU];
-        vlSelf->__PVT__read[0xfU] = __PVT___GEN_4[0xfU];
-        vlSelf->__PVT__read[0x10U] = __PVT___GEN_4[0x10U];
-        vlSelf->__PVT__read[0x11U] = __PVT___GEN_4[0x11U];
-        vlSelf->__PVT__read[0x12U] = __PVT___GEN_4[0x12U];
-        vlSelf->__PVT__read[0x13U] = __PVT___GEN_4[0x13U];
-        vlSelf->__PVT__read[0x14U] = __PVT___GEN_4[0x14U];
-        vlSelf->__PVT__read[0x15U] = __PVT___GEN_4[0x15U];
-        vlSelf->__PVT__read[0x16U] = __PVT___GEN_4[0x16U];
-        vlSelf->__PVT__read[0x17U] = __PVT___GEN_4[0x17U];
-        vlSelf->__PVT__read[0x18U] = __PVT___GEN_4[0x18U];
-        vlSelf->__PVT__read[0x19U] = __PVT___GEN_4[0x19U];
-        vlSelf->__PVT__read[0x1aU] = __PVT___GEN_4[0x1aU];
-        vlSelf->__PVT__read[0x1bU] = __PVT___GEN_4[0x1bU];
-        vlSelf->__PVT__read[0x1cU] = __PVT___GEN_4[0x1cU];
-        vlSelf->__PVT__read[0x1dU] = __PVT___GEN_4[0x1dU];
-        vlSelf->__PVT__read[0x1eU] = __PVT___GEN_4[0x1eU];
-        vlSelf->__PVT__read[0x1fU] = __PVT___GEN_4[0x1fU];
+        vlSelf->__PVT__read[0U] = __PVT___GEN_5[0U];
+        vlSelf->__PVT__read[1U] = __PVT___GEN_5[1U];
+        vlSelf->__PVT__read[2U] = __PVT___GEN_5[2U];
+        vlSelf->__PVT__read[3U] = __PVT___GEN_5[3U];
+        vlSelf->__PVT__read[4U] = __PVT___GEN_5[4U];
+        vlSelf->__PVT__read[5U] = __PVT___GEN_5[5U];
+        vlSelf->__PVT__read[6U] = __PVT___GEN_5[6U];
+        vlSelf->__PVT__read[7U] = __PVT___GEN_5[7U];
+        vlSelf->__PVT__read[8U] = __PVT___GEN_5[8U];
+        vlSelf->__PVT__read[9U] = __PVT___GEN_5[9U];
+        vlSelf->__PVT__read[0xaU] = __PVT___GEN_5[0xaU];
+        vlSelf->__PVT__read[0xbU] = __PVT___GEN_5[0xbU];
+        vlSelf->__PVT__read[0xcU] = __PVT___GEN_5[0xcU];
+        vlSelf->__PVT__read[0xdU] = __PVT___GEN_5[0xdU];
+        vlSelf->__PVT__read[0xeU] = __PVT___GEN_5[0xeU];
+        vlSelf->__PVT__read[0xfU] = __PVT___GEN_5[0xfU];
+        vlSelf->__PVT__read[0x10U] = __PVT___GEN_5[0x10U];
+        vlSelf->__PVT__read[0x11U] = __PVT___GEN_5[0x11U];
+        vlSelf->__PVT__read[0x12U] = __PVT___GEN_5[0x12U];
+        vlSelf->__PVT__read[0x13U] = __PVT___GEN_5[0x13U];
+        vlSelf->__PVT__read[0x14U] = __PVT___GEN_5[0x14U];
+        vlSelf->__PVT__read[0x15U] = __PVT___GEN_5[0x15U];
+        vlSelf->__PVT__read[0x16U] = __PVT___GEN_5[0x16U];
+        vlSelf->__PVT__read[0x17U] = __PVT___GEN_5[0x17U];
+        vlSelf->__PVT__read[0x18U] = __PVT___GEN_5[0x18U];
+        vlSelf->__PVT__read[0x19U] = __PVT___GEN_5[0x19U];
+        vlSelf->__PVT__read[0x1aU] = __PVT___GEN_5[0x1aU];
+        vlSelf->__PVT__read[0x1bU] = __PVT___GEN_5[0x1bU];
+        vlSelf->__PVT__read[0x1cU] = __PVT___GEN_5[0x1cU];
+        vlSelf->__PVT__read[0x1dU] = __PVT___GEN_5[0x1dU];
+        vlSelf->__PVT__read[0x1eU] = __PVT___GEN_5[0x1eU];
+        vlSelf->__PVT__read[0x1fU] = __PVT___GEN_5[0x1fU];
         vlSelf->io_cpu_resp_bits_data = (((QData)((IData)(
-                                                          __PVT___GEN_4[
+                                                          __PVT___GEN_5[
                                                           (((IData)(0x3fU) 
                                                             + 
                                                             (0x3c0U 
@@ -3540,7 +4303,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
                                                            >> 5U)])) 
                                           << 0x20U) 
                                          | (QData)((IData)(
-                                                           __PVT___GEN_4[
+                                                           __PVT___GEN_5[
                                                            (0x1eU 
                                                             & (vlSelf->__PVT__addr_reg 
                                                                >> 2U))])));
@@ -3886,6 +4649,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
                                                        & (vlSelf->__PVT__addr_reg 
                                                           >> 5U)))))
                                                : 0U)));
+    vlSelf->__PVT__is_war = (5U == (IData)(vlSelf->__PVT__state));
     vlSelf->__PVT__is_alloc = ((4U == (IData)(vlSelf->__PVT__state)) 
                                & (0xfU == (IData)(vlSelf->__PVT__r_count)));
     vlSelf->io_cpu_resp_valid = (((IData)(vlSelf->__PVT__hit_reg) 
@@ -3981,7 +4745,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__1
                                                   << 0xaU) 
                                                  | (0x380U 
                                                     & vlSelf->__PVT__addr_reg));
-    vlSelf->__PVT___GEN_16 = ((8U & ((~ (IData)(vlSelf->__PVT__dirty3)) 
+    vlSelf->__PVT___GEN_17 = ((8U & ((~ (IData)(vlSelf->__PVT__dirty3)) 
                                      << 3U)) | (7U 
                                                 & (~ 
                                                    (((IData)(vlSelf->__PVT__dirty2) 
@@ -3998,6 +4762,8 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2
     // Init
     CData/*0:0*/ __PVT___ren_T_1;
     __PVT___ren_T_1 = 0;
+    CData/*0:0*/ __VdfgTmp_ha65677bd__0;
+    __VdfgTmp_ha65677bd__0 = 0;
     VlWide<5>/*159:0*/ __Vtemp_h55fa3dca__0;
     VlWide<5>/*159:0*/ __Vtemp_h61d9b0a4__0;
     VlWide<5>/*159:0*/ __Vtemp_hfe7561f7__0;
@@ -4153,7 +4919,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2
                                                    (vlSymsp->TOP.Soc__DOT__core__DOT___DI_io_mem_addr_T 
                                                     >> 7U)) 
                                            << 2U))))];
-    vlSelf->__PVT___GEN_18 = (1U & ((3U != (IData)(vlSelf->__PVT__state)) 
+    vlSelf->__PVT___GEN_19 = (1U & ((3U != (IData)(vlSelf->__PVT__state)) 
                                     | ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
                                        >> 1U)));
     vlSelf->__VdfgTmp_h661b8699__0 = ((~ ((IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer) 
@@ -4204,10 +4970,11 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2
                           | ((IData)(vlSelf->__PVT__is_alloc) 
                              | ((IData)(vlSelf->__PVT__is_alloc_reg) 
                                 & (0U != (IData)(vlSelf->__PVT__cpu_mask)))));
-    vlSelf->__PVT___GEN_12 = (1U & ((~ (IData)(vlSelf->__PVT__wen)) 
-                                    | (IData)(vlSelf->io_fccache_hit)));
-    vlSelf->__PVT___GEN_0 = ((IData)(vlSelf->__PVT__wen) 
+    vlSelf->__PVT___GEN_1 = ((IData)(vlSelf->__PVT__wen) 
                              & (IData)(vlSelf->io_fccache_hit));
+    vlSelf->__PVT___GEN_14 = (1U & ((~ (IData)(vlSelf->__PVT__wen)) 
+                                    | ((IData)(vlSelf->io_fccache_hit) 
+                                       | (5U == (IData)(vlSelf->__PVT__state)))));
     vlSelf->__PVT__ren = ((~ (IData)(vlSelf->__PVT__wen)) 
                           & (((~ (IData)((0U != (IData)(vlSymsp->TOP.Soc__DOT__core__DOT___excute_io_wmask)))) 
                               & (IData)(__PVT___ren_T_1)) 
@@ -4254,14 +5021,18 @@ VL_INLINE_OPT void VSoc_Cache___nba_sequent__TOP__Soc__DOT__core__DOT__Dcache__2
                                                            << 2U)))
                                                        : 0U))))
                                                    : (IData)(vlSelf->__VdfgTmp_h41c8fb80__0)));
-        vlSelf->__PVT___GEN = (1U & (~ (IData)(vlSelf->io_fccache_hit)));
+        __VdfgTmp_ha65677bd__0 = (1U & (~ (IData)(vlSelf->io_fccache_hit)));
     } else {
         vlSelf->__PVT__choose_dataway = 0U;
-        vlSelf->__PVT___GEN = 0U;
+        __VdfgTmp_ha65677bd__0 = 0U;
     }
-    vlSelf->__VdfgTmp_ha75d29ad__0 = ((IData)(vlSelf->__PVT___GEN) 
+    vlSelf->__PVT___GEN_0 = ((IData)(__VdfgTmp_ha65677bd__0) 
+                             & (5U == (IData)(vlSelf->__PVT__state)));
+    vlSelf->__PVT___GEN = ((5U != (IData)(vlSelf->__PVT__state)) 
+                           & (IData)(__VdfgTmp_ha65677bd__0));
+    vlSelf->__VdfgTmp_h6b3aa9a8__0 = ((IData)(vlSelf->__PVT___GEN) 
                                       & (IData)(vlSelf->__VdfgTmp_h01e7ff2a__0));
-    vlSelf->__VdfgTmp_ha768d02e__0 = ((IData)(vlSelf->__PVT___GEN) 
+    vlSelf->__VdfgTmp_h6b2df72b__0 = ((IData)(vlSelf->__PVT___GEN) 
                                       & ((IData)(vlSelf->__VdfgTmp_h01e7ff2a__0) 
                                          >> 1U));
 }
@@ -4406,7 +5177,7 @@ VL_INLINE_OPT void VSoc_Cache___nba_comb__TOP__Soc__DOT__core__DOT__Dcache__0(VS
     }
     vlSelf->io_axi_req_bits_rw = ((0U != (IData)(vlSelf->__PVT__state)) 
                                   & ((1U == (IData)(vlSelf->__PVT__state))
-                                      ? ((IData)(vlSelf->__PVT___GEN_16) 
+                                      ? ((IData)(vlSelf->__PVT___GEN_17) 
                                          >> (IData)(vlSelf->__PVT__victim))
                                       : ((2U == (IData)(vlSelf->__PVT__state))
                                           ? ((2U & (IData)(vlSymsp->TOP.Soc__DOT__core__DOT__arbitor__DOT__choose_buffer))

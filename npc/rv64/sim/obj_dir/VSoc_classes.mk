@@ -48,6 +48,7 @@ VM_CLASSES_SLOW += \
 VM_SUPPORT_FAST += \
 	VSoc__Dpi \
 	VSoc__Trace__0 \
+	VSoc__Trace__1 \
 
 # Generated support classes, non-fast-path, compile with low/medium optimization
 VM_SUPPORT_SLOW += \
