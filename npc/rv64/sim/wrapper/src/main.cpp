@@ -71,6 +71,7 @@ int main(int argc, char **argv) {
   display.init_screen();
   init_keymap();
 
+
   #ifdef ITRACE
   init_disasm("riscv64" "-pc-linux-gnu");
   #endif
