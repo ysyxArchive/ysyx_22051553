@@ -82,9 +82,9 @@ void init_mem() {
 }
 
 word_t paddr_read(paddr_t addr, int len) {
-  // if(addr >= 0x80299480 && addr < 0x80299500){
-  //   printf("addr is 0x%x, len is %d\n", addr, len);
-  // }
+  if(addr >= 0x80299480 && addr < 0x80299500){
+    printf("addr is 0x%x, len is %d\n", addr, len);
+  }
   if (likely(in_pmem(addr))) return pmem_read(addr, len);
   IFDEF(CONFIG_DEVICE, return mmio_read(addr, len));
   out_of_bound(addr);
