@@ -27,6 +27,7 @@ int SDL_PollEvent(SDL_Event *ev) {
   
   if(buf[0] == 'k'){    //键盘事件
     
+
     int n = 0;
     while(buf[n] != '\n'){
       n ++;
