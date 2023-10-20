@@ -28,16 +28,38 @@ size_t serial_write(const void *buf, size_t offset, size_t len) {
   return len;
 }
 
-size_t events_read(void *buf, size_t offset, size_t len) {
+// size_t events_read(void *buf, size_t offset, size_t len) { //只有键盘事件
+//   AM_INPUT_KEYBRD_T ev_keybrd = io_read(AM_INPUT_KEYBRD);
+
+//   if(ev_keybrd.keycode != AM_KEY_NONE){
+
+//       int ret = snprintf(&events[events_loc], len, "k%c %s\n", (ev_keybrd.keydown == true) ? 'd' : 'u',  keyname[ev_keybrd.keycode]);
+      
+//       events_loc += ret;
+
+//       events[events_loc] = '\0';
+//   }
+
+//   if(events_loc < 2)
+//     return 0;
+
+//   events_loc -= 2;  //到最后一个事件的\n前一个位置
+//   while(events[events_loc-1] != '\n' && events_loc != 0){ //到最后一个事件开始位置
+//     events_loc --;
+//   }
+
+//   strcpy(buf, &events[events_loc]);
+  
+//   events[events_loc] = '\0';
+
+//   return strlen(buf) - 1;   //返回不包含\n的长度， strlen本身不包含\0
+// }
+
+size_t events_read(void *buf, size_t offset, size_t len) { //只有键盘事件
   AM_INPUT_KEYBRD_T ev_keybrd = io_read(AM_INPUT_KEYBRD);
 
-  if(ev_keybrd.keycode != AM_KEY_NONE){
-
-      int ret = snprintf(&events[events_loc], len, "k%c %s\n", (ev_keybrd.keydown == true) ? 'd' : 'u',  keyname[ev_keybrd.keycode]);
-      
-      events_loc += ret;
-
-      events[events_loc] = '\0';
+  if(ev_keybrd.keycode != AM_KEY_NONE){ //直接返回，节省时间
+      return ev_keybrd.keydown ? 0x8000 | ev_keybrd.keycode : ev_keybrd.keycode;
   }
 
   if(events_loc < 2)
