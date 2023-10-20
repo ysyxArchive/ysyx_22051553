@@ -109,56 +109,101 @@ void SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcrect, SDL_Surface* dst, SDL_
     }
 }
 
-void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其中，dstrect的x,y是基于Surface左上角的//Surface可以看成画布
-  assert(dst);                                                            //pal没有使用该函数
+// void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其中，dstrect的x,y是基于Surface左上角的//Surface可以看成画布
+//   assert(dst);                                                            //pal没有使用该函数
 
   
-  if(dst->format->BitsPerPixel == 32){
-      if(dstrect == NULL){
-        // for(int i = 0; i < (dst->w * dst->h); i ++){        //i以像素点为单位，但是piexl是uint_8*类型
-        //   ((uint32_t *)(dst->pixels))[i] = color;        
-        // }                         
-        for(int i = 0; i < (dst->h); i ++){                          
-          for(int j = 0; j < (dst->w); j ++){
-            ((uint32_t *)(dst->pixels))[j+i*(dst->w)] = color;   
-          }                                           
-        }
-      }
-      else{
+//   if(dst->format->BitsPerPixel == 32){
+//       if(dstrect == NULL){
+//         // for(int i = 0; i < (dst->w * dst->h); i ++){        //i以像素点为单位，但是piexl是uint_8*类型
+//         //   ((uint32_t *)(dst->pixels))[i] = color;        
+//         // }                         
+//         for(int i = 0; i < (dst->h); i ++){                          
+//           for(int j = 0; j < (dst->w); j ++){
+//             ((uint32_t *)(dst->pixels))[j+i*(dst->w)] = color;   
+//           }                                           
+//         }
+//       }
+//       else{
         
-        for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
-          for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
-            *(((uint32_t *)(dst->pixels)) + dst->w * i + j) = color;
-          }
-        }
-      }
-  }else {
-    if(dstrect == NULL){
-        // for(int i = 0; i < (dst->w * dst->h); i ++){        //i以像素点为单位，但是piexl是uint_8*类型
-        //   ((uint32_t *)(dst->pixels))[i] = color;        
-        // }                         
-        for(int i = 0; i < (dst->h); i ++){                          
-          for(int j = 0; j < (dst->w); j ++){
-            ((dst->pixels))[j+i*(dst->w)] = color;   
-          }                                           
-        }
-      }
-      else{
+//         for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
+//           for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
+//             *(((uint32_t *)(dst->pixels)) + dst->w * i + j) = color;
+//           }
+//         }
+//       }
+//   }else {
+//     if(dstrect == NULL){
+//         // for(int i = 0; i < (dst->w * dst->h); i ++){        //i以像素点为单位，但是piexl是uint_8*类型
+//         //   ((uint32_t *)(dst->pixels))[i] = color;        
+//         // }                         
+//         for(int i = 0; i < (dst->h); i ++){                          
+//           for(int j = 0; j < (dst->w); j ++){
+//             ((dst->pixels))[j+i*(dst->w)] = color;   
+//           }                                           
+//         }
+//       }
+//       else{
         
-        for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
-          for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
-            *((dst->pixels) + dst->w * i + j) = color;
-          }
-        }
-      }
+//         for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
+//           for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
+//             *((dst->pixels) + dst->w * i + j) = color;
+//           }
+//         }
+//       }
     
+//   }
+
+
+
+
+//   return ;
+//   assert(0);
+// }
+
+uint32_t SDL_MapRGB(SDL_PixelFormat *fmt, uint8_t r, uint8_t g, uint8_t b) {
+  assert(fmt->BytesPerPixel == 4);
+  uint32_t p = (r << fmt->Rshift) | (g << fmt->Gshift) | (b << fmt->Bshift);
+  return p;
+}
+
+void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
+  assert(dst);
+  // 映射相应的颜色
+  color = SDL_MapRGB(dst->format, (color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF);
+
+  if (dst->format->BitsPerPixel == 32) {
+    if (dstrect == NULL) {
+      for (int i = 0; i < dst->h; i++) {
+        for (int j = 0; j < dst->w; j++) {
+          ((uint32_t *)dst->pixels)[j + i * dst->w] = color;
+        }
+      }
+    } else {
+      for (int i = dstrect->y; i < dstrect->y + dstrect->h; i++) {
+        for (int j = dstrect->x; j < dstrect->x + dstrect->w; j++) {
+          *((uint32_t *)dst->pixels + dst->w * i + j) = color;
+        }
+      }
+    }
+  } else if (dst->format->BitsPerPixel == 8) {
+    if (dstrect == NULL) {
+      for (int i = 0; i < dst->h; i++) {
+        for (int j = 0; j < dst->w; j++) {
+          ((uint8_t *)dst->pixels)[j + i * dst->w] = color;
+        }
+      }
+    } else {
+      for (int i = dstrect->y; i < dstrect->y + dstrect->h; i++) {
+        for (int j = dstrect->x; j < dstrect->x + dstrect->w; j++) {
+          *((uint8_t *)dst->pixels + dst->w * i + j) = color;
+        }
+      }
+    }
+  } else {
+    printf("Unsupported color depth: %d bit", dst->format->BitsPerPixel);
+    return;
   }
-
-
-
-
-  return ;
-  assert(0);
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
