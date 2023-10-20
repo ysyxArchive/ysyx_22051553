@@ -57,44 +57,58 @@
 //   return ;
 // }
 
-void SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcrect, SDL_Surface* dst, SDL_Rect* dstrect) {
-    if (!dst || !src) {
-        printf("Source or destination surface is NULL.\n");
-        return;
+void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect)
+{
+  // printf("dst->format->BitsPerPixe is %d\n",dst->format->BitsPerPixel);
+  // TODO();
+
+  assert(dst && src);
+  assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
+  // important:!!!uint32_t not int16_t, otherwise overflow, not learn
+  // the definition from SDL_Rect!, width * height is pretty large!!
+  uint32_t s_start_pos = 0;
+  uint32_t s_sf_row_num = src->h, s_sf_col_num = src->w,
+           s_rec_row_num = src->h, s_rec_col_num = src->w;
+  if (srcrect != NULL)
+  {
+    s_start_pos = srcrect->x + srcrect->y * src->w;
+    s_rec_row_num = srcrect->h;
+    s_rec_col_num = srcrect->w;
+  }
+
+  uint32_t d_start_pos = 0;
+  uint32_t d_sf_row_num = dst->h, d_sf_col_num = dst->w;
+  //  d_rec_row_num = dst->h, d_rec_col_num = dst->w;
+  // printf("x,y,w is %d-- %d-- %d",dstrect->x,dstrect->y,dst->w);
+  if (dstrect != NULL)
+  {
+    d_start_pos = dstrect->x + dstrect->y * dst->w;
+    // d_rec_row_num = (dstrect->h > 0)? dstrect->h : d_rec_row_num;
+    // d_rec_col_num = (dstrect->w > 0)? dstrect->w : d_rec_col_num;
+  }
+
+  // printf("dst x,y,w,h %d,%d,%d,%d\n", dstrect->x, dstrect->y, dstrect->w, dstrect->h);
+  // printf("src x,y,w,h %d,%d,%d,%d\n", srcrect->x, srcrect->y, srcrect->w, srcrect->h);
+  // printf("======================");
+  if (dst->format->BitsPerPixel == 32)
+  {
+    for (int row = 0; row < s_rec_row_num; ++row)
+    {
+      // printf("dst pos is  %d\n", d_sf_col_num);
+      // printf("copy %p, size %d to %p, size %d\n",  src->pixels + s_start_pos + row * s_sf_col_num ,s_rec_col_num, dst->pixels + d_start_pos + row * d_sf_col_num, d_rec_col_num);
+      memcpy((uint32_t *)dst->pixels + d_start_pos + row * d_sf_col_num, (uint32_t *)src->pixels + s_start_pos + row * s_sf_col_num, s_rec_col_num * sizeof(uint32_t));
     }
-
-    if (src->format->BitsPerPixel != dst->format->BitsPerPixel) {
-        printf("Source and destination surface bit depth do not match.\n");
-        return;
+  }
+  else if (dst->format->BitsPerPixel == 8)
+  {
+    for (int row = 0; row < s_rec_row_num; ++row)
+    {
+      // printf("copy %p, size %d to %p, size %d\n",  src->pixels + s_start_pos + row * s_sf_col_num ,s_rec_col_num, dst->pixels + d_start_pos + row * d_sf_col_num, d_rec_col_num);
+      memcpy((uint8_t *)dst->pixels + d_start_pos + row * d_sf_col_num, (uint8_t *)src->pixels + s_start_pos + row * s_sf_col_num, s_rec_col_num * sizeof(uint8_t));
     }
-
-    SDL_Rect valid_src_rect = srcrect ? *srcrect : (SDL_Rect){0, 0, src->w, src->h};
-    SDL_Rect valid_dst_rect = dstrect ? *dstrect : (SDL_Rect){0, 0, 0, 0};
-
-    int copy_width = valid_src_rect.w;
-    int copy_height = valid_src_rect.h;
-
-    for (int i = 0; i < copy_height; i++) {
-        for (int j = 0; j < copy_width; j++) {
-            int src_pixel_pos = (valid_src_rect.y + i) * src->w + valid_src_rect.x + j;
-            int dst_pixel_pos = (valid_dst_rect.y + i) * dst->w + valid_dst_rect.x + j;
-
-            switch (src->format->BitsPerPixel) {
-              case 8: {
-                  ((uint8_t*)dst->pixels)[dst_pixel_pos] = ((uint8_t*)src->pixels)[src_pixel_pos];
-                  break;
-              }
-              case 32: {
-                  ((uint32_t*)dst->pixels)[dst_pixel_pos] = ((uint32_t*)src->pixels)[src_pixel_pos];
-                  break;
-              }
-              default: {
-                  printf("Unsupported surface bit depth: %d\n", src->format->BitsPerPixel);
-                  return;
-              }
-            }
-        }
-    }
+  }
+  else
+    printf("unsupported pixel bites %d!\n", dst->format->BitsPerPixel);
 }
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其中，dstrect的x,y是基于Surface左上角的//Surface可以看成画布
