@@ -97,9 +97,6 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) { //NDL_DrawRect
   
   // write(fbdev, pixels, w*h);
   // write(fbsync, 0, 0);
-  if(x == 125 && y == 95){
-    return ;
-  }
   printf("x is %d, y is %d\n", x, y);
   printf("w is %d, h is %d\n", w, h);
   printf("disp_w is %d, disp_h is %d\n", disp_w, disp_h);
