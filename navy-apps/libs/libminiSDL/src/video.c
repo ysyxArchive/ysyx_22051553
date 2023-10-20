@@ -6,56 +6,107 @@
 
 static void ConvertPixelsARGB_ABGR(void *dst, void *src, int len);
 
-void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) { //pal使用了该函数
+// void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) { //pal使用了该函数
 
-  assert(dst && src);
-  assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
+//   assert(dst && src);
+//   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
 
 
-  //有效大小
-  SDL_Rect valid_srcrect = srcrect ? *srcrect : (SDL_Rect){0, 0, src->w, src->h};  //如果是空指针，则复制整个源面
-  SDL_Rect valid_dstrect = dstrect ? *dstrect : (SDL_Rect){0, 0, dst->w, dst->h};  //如果是空指针，则复制到目标面的左上角
-
-  
-
-  // if(valid_dstrect.w == 0 && valid_dstrect.h == 0){
-  //   valid_dstrect.w = src->w <= dst->w ? src->w : dst->w;
-  //   valid_dstrect.h = src->h <= dst->h ? src->h : dst->h;
-  // }
-
- 
-  //实际复制的宽和高   --有待修改
-  int copy_width = valid_dstrect.w; 
-  int copy_height = valid_dstrect.h;
+//   //有效大小
+//   SDL_Rect valid_srcrect = srcrect ? *srcrect : (SDL_Rect){0, 0, src->w, src->h};  //如果是空指针，则复制整个源面
+//   SDL_Rect valid_dstrect = dstrect ? *dstrect : (SDL_Rect){0, 0, dst->w, dst->h};  //如果是空指针，则复制到目标面的左上角
 
   
 
-  //复制位块
-  if(dst->format->BitsPerPixel == 8){
-    for (int i = 0; i < copy_height; i++) {
-      for (int j = 0; j < copy_width; j++) {
-        int src_pixel_pos = (valid_srcrect.y + i) * src->w + (valid_srcrect.x + j);
-        int dst_pixel_pos = (valid_dstrect.y + i) * dst->w + (valid_dstrect.x + j);
+//   if(valid_dstrect.w == 0 && valid_dstrect.h == 0){
+//     valid_dstrect.w = src->w <= dst->w ? src->w : dst->w;
+//     valid_dstrect.h = src->h <= dst->h ? src->h : dst->h;
+//   }
 
-        (dst->pixels)[dst_pixel_pos] = (src->pixels)[src_pixel_pos];
-    }
-  }
-  }
-  else if(dst->format->BitsPerPixel == 32){
+
+  
+//   //实际复制的宽和高   --有待修改
+//   int copy_width = valid_dstrect.w; 
+//   int copy_height = valid_dstrect.h;
+
+  
+
+//   //复制位块
+//   if(dst->format->BitsPerPixel == 8){
+//     for (int i = 0; i < copy_height; i++) {
+//       for (int j = 0; j < copy_width; j++) {
+//         int src_pixel_pos = (valid_srcrect.y + i) * src->w + (valid_srcrect.x + j);
+//         int dst_pixel_pos = (valid_dstrect.y + i) * dst->w + (valid_dstrect.x + j);
+
+//         (dst->pixels)[dst_pixel_pos] = (src->pixels)[src_pixel_pos];
+//     }
+//   }
+//   }
+//   else if(dst->format->BitsPerPixel == 32){
       
-      for (int i = 0; i < copy_height; ++i) {
-        for (int j = 0; j < copy_width; ++j) {
-          int src_pixel_pos = (valid_srcrect.y + i) * src->w + (valid_srcrect.x + j);
-          int dst_pixel_pos = (valid_dstrect.y + i) * dst->w + (valid_dstrect.x + j);
+//       for (int i = 0; i < copy_height; ++i) {
+//         for (int j = 0; j < copy_width; ++j) {
+//           int src_pixel_pos = (valid_srcrect.y + i) * src->w + (valid_srcrect.x + j);
+//           int dst_pixel_pos = (valid_dstrect.y + i) * dst->w + (valid_dstrect.x + j);
 
-          ((uint32_t*)dst->pixels)[dst_pixel_pos] = ((uint32_t*)src->pixels)[src_pixel_pos];
-        }
-      }
-  }
+//           ((uint32_t*)dst->pixels)[dst_pixel_pos] = ((uint32_t*)src->pixels)[src_pixel_pos];
+//         }
+//       }
+//   }
   
 
 
-  return ;
+//   return ;
+// }
+
+void SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcrect, SDL_Surface* dst, SDL_Rect* dstrect) {
+    if (!dst || !src) {
+        printf("Source or destination surface is NULL.\n");
+        return;
+    }
+
+    if (src->format->BitsPerPixel != dst->format->BitsPerPixel) {
+        printf("Source and destination surface bit depth do not match.\n");
+        return;
+    }
+
+    SDL_Rect valid_src_rect = srcrect ? *srcrect : (SDL_Rect){0, 0, src->w, src->h};
+    SDL_Rect valid_dst_rect = dstrect ? *dstrect : (SDL_Rect){0, 0, dst->w, dst->h};
+
+    int copy_width = valid_src_rect.w < valid_dst_rect.w ? valid_src_rect.w : valid_dst_rect.w;
+    int copy_height = valid_src_rect.h < valid_dst_rect.h ? valid_src_rect.h : valid_dst_rect.h;
+
+    if (copy_width > src->w || copy_height > src->h) {
+        printf("Blit Surface Size exceeds source surface size.\n");
+        return;
+    }
+
+    if (copy_width > dst->w || copy_height > dst->h) {
+        printf("Blit Surface size exceeds destination surface size.\n");
+        return;
+    }
+
+    for (int i = 0; i < copy_height; i++) {
+        for (int j = 0; j < copy_width; j++) {
+            int src_pixel_pos = (valid_src_rect.y + i) * src->w + valid_src_rect.x + j;
+            int dst_pixel_pos = (valid_dst_rect.y + i) * dst->w + valid_dst_rect.x + j;
+
+            switch (src->format->BitsPerPixel) {
+              case 8: {
+                  ((uint8_t*)dst->pixels)[dst_pixel_pos] = ((Uint8*)src->pixels)[src_pixel_pos];
+                  break;
+              }
+              case 32: {
+                  ((uint32_t*)dst->pixels)[dst_pixel_pos] = ((Uint32*)src->pixels)[src_pixel_pos];
+                  break;
+              }
+              default: {
+                  printf("Unsupported surface bit depth: %d\n", src->format->BitsPerPixel);
+                  return;
+              }
+            }
+        }
+    }
 }
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其中，dstrect的x,y是基于Surface左上角的//Surface可以看成画布
