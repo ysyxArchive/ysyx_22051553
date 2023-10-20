@@ -111,7 +111,6 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     return ;
   }
   else if(s->format->BitsPerPixel == 8){
-    printf("update begin\n");
     if(w == 0 && h == 0){
       w = s->w;
       h = s->h;
@@ -121,27 +120,22 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
     uint32_t *pixel_ptr = pixels;
     uint8_t * base_ptr = (s->pixels) + x + y*s->w;
+    SDL_Color * color = s->format->palette->colors;
 
     for(int i = 0; i < h; i++) {
         uint8_t* src_ptr = base_ptr + i * s->w;
         for(int j = 0; j < w; j++) {
-            *pixel_ptr = s->format->palette->colors[*src_ptr].val;
-            // printf("value is %08x\n", *pixel_ptr);
+            SDL_Color abgr_color = color[src_ptr[j]];
+            uint32_t temp = abgr_color.a << 24 | abgr_color.r << 16 | abgr_color.g << 8 | abgr_color.b;
+            *pixel_ptr = color[*src_ptr].val;  //底层使用lw,sw
             pixel_ptr++;
-            src_ptr++;
         }
         
     }
 
     // 浪费时间转换
-    uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
-    ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);
-    NDL_DrawRect(changerb_pixels, x, y, w, h);
-    // NDL_DrawRect(pixels, x, y, w, h);
+    NDL_DrawRect(pixels, x, y, w, h);
     free(pixels);
-    free(changerb_pixels);
-    
-    printf("update end\n");
     return ;
 
 
