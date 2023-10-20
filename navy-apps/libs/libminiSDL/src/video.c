@@ -4,8 +4,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-static void ConvertPixelsARGB_ABGR(void *dst, void *src, int len);
-
 // void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) { //pal使用了该函数
 
 //   assert(dst && src);
@@ -224,7 +222,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     printf("x is %d, y is %d, w is %d, h is %d, pitch is %d\n", x, y, w, h, s->pitch);
     uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
     uint32_t *pixel_ptr = pixels;
-    uint8_t * src_ptr = (s->pixels);
+    uint8_t * src_ptr = (s->pixels) + x + y * s->pitch;
 
     for(int i = 0; i < h; i++) {
         
@@ -238,12 +236,12 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
 
 
     // 浪费时间转换
-    uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
-    ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);
-    NDL_DrawRect(changerb_pixels, x, y, w, h);
+    // uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
+    // ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);
+    NDL_DrawRect(pixels, x, y, w, h);
     // NDL_DrawRect(pixels, x, y, w, h);
     free(pixels);
-    free(changerb_pixels);
+    // free(changerb_pixels);
     return ;
     }
   
