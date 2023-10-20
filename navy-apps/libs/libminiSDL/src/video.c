@@ -93,11 +93,11 @@ void SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcrect, SDL_Surface* dst, SDL_
 
             switch (src->format->BitsPerPixel) {
               case 8: {
-                  ((uint8_t*)dst->pixels)[dst_pixel_pos] = ((Uint8*)src->pixels)[src_pixel_pos];
+                  ((uint8_t*)dst->pixels)[dst_pixel_pos] = ((uint8_t*)src->pixels)[src_pixel_pos];
                   break;
               }
               case 32: {
-                  ((uint32_t*)dst->pixels)[dst_pixel_pos] = ((Uint32*)src->pixels)[src_pixel_pos];
+                  ((uint32_t*)dst->pixels)[dst_pixel_pos] = ((uint32_t*)src->pixels)[src_pixel_pos];
                   break;
               }
               default: {
