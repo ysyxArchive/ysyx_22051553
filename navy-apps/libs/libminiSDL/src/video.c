@@ -4,8 +4,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-static void ConvertPixelsARGB_ABGR(void *dst, void *src, int len);
-
 // void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) { //pal使用了该函数
 
 //   assert(dst && src);
@@ -302,7 +300,6 @@ SDL_Surface* SDL_CreateRGBSurfaceFrom(void *pixels, int width, int height, int d
     int pitch, uint32_t Rmask, uint32_t Gmask, uint32_t Bmask, uint32_t Amask) {
   SDL_Surface *s = SDL_CreateRGBSurface(SDL_PREALLOC, width, height, depth,
       Rmask, Gmask, Bmask, Amask);
-
   assert(pitch == s->pitch);
   s->pixels = pixels;
   return s;
@@ -333,12 +330,10 @@ void SDL_SoftStretch(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
   assert(dst->format->BitsPerPixel == 8);
 
-
   int x = (srcrect == NULL ? 0 : srcrect->x);
   int y = (srcrect == NULL ? 0 : srcrect->y);
   int w = (srcrect == NULL ? src->w : srcrect->w);
   int h = (srcrect == NULL ? src->h : srcrect->h);
-
 
   assert(dstrect);
   if(w == dstrect->w && h == dstrect->h) {
@@ -353,29 +348,7 @@ void SDL_SoftStretch(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
     SDL_BlitSurface(src, &rect, dst, dstrect);
   }
   else {
-    printf("soft no\n");
-    /* The source rectangle and the destination rectangle
-     * are of different sizes. We need to stretch the source
-     * image to fit the destination rectangle.
-     */
-    int dx, dy; /* The destination coordinates. */
-    for (dx = 0; dx < dstrect->w; dx++) {
-        for (dy = 0; dy < dstrect->h; dy++) {
-            int sx = x + dx * w / dstrect->w; /* The source coordinates. */
-            int sy = y + dy * h / dstrect->h;
-            
-            /* 
-             * Get the color of the source pixel and
-             * set the color of the destination pixel.
-             */
-
-            uint8_t* s_pixels = (uint8_t*)src->pixels;
-            uint8_t* d_pixels = (uint8_t*)dst->pixels;
-
-            uint8_t s_color = s_pixels[sy * src->pitch + sx];
-            d_pixels[dy * dst->pitch + dx] = s_color;
-        }
-    }
+    assert(0);
   }
 }
 
@@ -399,46 +372,32 @@ void SDL_SetPalette(SDL_Surface *s, int flags, SDL_Color *colors, int firstcolor
   }
 }
 
-// static void ConvertPixelsARGB_ABGR(void *dst, void *src, int len) {
-//   int i;
-//   uint8_t (*pdst)[4] = dst;
-//   uint8_t (*psrc)[4] = src;
-//   union {
-//     uint8_t val8[4];
-//     uint32_t val32;
-//   } tmp;
-//   int first = len & ~0xf;
-//   for (i = 0; i < first; i += 16) {
-// #define macro(i) \
-//     tmp.val32 = *((uint32_t *)psrc[i]); \
-//     *((uint32_t *)pdst[i]) = tmp.val32; \
-//     pdst[i][0] = tmp.val8[2]; \
-//     pdst[i][2] = tmp.val8[0];
+static void ConvertPixelsARGB_ABGR(void *dst, void *src, int len) {
+  int i;
+  uint8_t (*pdst)[4] = dst;
+  uint8_t (*psrc)[4] = src;
+  union {
+    uint8_t val8[4];
+    uint32_t val32;
+  } tmp;
+  int first = len & ~0xf;
+  for (i = 0; i < first; i += 16) {
+#define macro(i) \
+    tmp.val32 = *((uint32_t *)psrc[i]); \
+    *((uint32_t *)pdst[i]) = tmp.val32; \
+    pdst[i][0] = tmp.val8[2]; \
+    pdst[i][2] = tmp.val8[0];
 
-//     macro(i + 0); macro(i + 1); macro(i + 2); macro(i + 3);
-//     macro(i + 4); macro(i + 5); macro(i + 6); macro(i + 7);
-//     macro(i + 8); macro(i + 9); macro(i +10); macro(i +11);
-//     macro(i +12); macro(i +13); macro(i +14); macro(i +15);
-//   }
+    macro(i + 0); macro(i + 1); macro(i + 2); macro(i + 3);
+    macro(i + 4); macro(i + 5); macro(i + 6); macro(i + 7);
+    macro(i + 8); macro(i + 9); macro(i +10); macro(i +11);
+    macro(i +12); macro(i +13); macro(i +14); macro(i +15);
+  }
 
-//   for (; i < len; i ++) {
-//     macro(i);
-//   }
-// }
-
-static uint32_t swap_red_blue(uint32_t v){
-    return (v & 0xff00ff00) | ((v & 0xff0000) >> 16) | ((v & 0xff) << 16);
+  for (; i < len; i ++) {
+    macro(i);
+  }
 }
-
-void ConvertPixelsARGB_ABGR(void *dst, void *src, int len) {
-    uint32_t *pdst = (uint32_t*)dst;
-    uint32_t *psrc = (uint32_t*)src;
-    for (int i = 0; i < len; i++){
-        pdst[i] = swap_red_blue(psrc[i]);
-    }
-}
-
-
 
 SDL_Surface *SDL_ConvertSurface(SDL_Surface *src, SDL_PixelFormat *fmt, uint32_t flags) {
   assert(src->format->BitsPerPixel == 32);
@@ -463,11 +422,8 @@ uint32_t SDL_MapRGBA(SDL_PixelFormat *fmt, uint8_t r, uint8_t g, uint8_t b, uint
 }
 
 int SDL_LockSurface(SDL_Surface *s) {
-  printf("in lock\n");
   return 0;
 }
 
 void SDL_UnlockSurface(SDL_Surface *s) {
-  printf("in unlock\n");
-
 }
