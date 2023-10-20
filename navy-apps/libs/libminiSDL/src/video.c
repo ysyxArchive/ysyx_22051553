@@ -6,58 +6,6 @@
 
 static void ConvertPixelsARGB_ABGR(void *dst, void *src, int len);
 
-// void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) { //pal使用了该函数
-
-//   assert(dst && src);
-//   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
-
-
-//   //有效大小
-//   SDL_Rect valid_srcrect = srcrect ? *srcrect : (SDL_Rect){0, 0, src->w, src->h};  //如果是空指针，则复制整个源面
-//   SDL_Rect valid_dstrect = dstrect ? *dstrect : (SDL_Rect){0, 0, dst->w, dst->h};  //如果是空指针，则复制到目标面的左上角
-
-  
-
-//   if(valid_dstrect.w == 0 && valid_dstrect.h == 0){
-//     valid_dstrect.w = src->w <= dst->w ? src->w : dst->w;
-//     valid_dstrect.h = src->h <= dst->h ? src->h : dst->h;
-//   }
-
-
-  
-//   //实际复制的宽和高   --有待修改
-//   int copy_width = valid_dstrect.w; 
-//   int copy_height = valid_dstrect.h;
-
-  
-
-//   //复制位块
-//   if(dst->format->BitsPerPixel == 8){
-//     for (int i = 0; i < copy_height; i++) {
-//       for (int j = 0; j < copy_width; j++) {
-//         int src_pixel_pos = (valid_srcrect.y + i) * src->w + (valid_srcrect.x + j);
-//         int dst_pixel_pos = (valid_dstrect.y + i) * dst->w + (valid_dstrect.x + j);
-
-//         (dst->pixels)[dst_pixel_pos] = (src->pixels)[src_pixel_pos];
-//     }
-//   }
-//   }
-//   else if(dst->format->BitsPerPixel == 32){
-      
-//       for (int i = 0; i < copy_height; ++i) {
-//         for (int j = 0; j < copy_width; ++j) {
-//           int src_pixel_pos = (valid_srcrect.y + i) * src->w + (valid_srcrect.x + j);
-//           int dst_pixel_pos = (valid_dstrect.y + i) * dst->w + (valid_dstrect.x + j);
-
-//           ((uint32_t*)dst->pixels)[dst_pixel_pos] = ((uint32_t*)src->pixels)[src_pixel_pos];
-//         }
-//       }
-//   }
-  
-
-
-//   return ;
-// }
 
 void SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcrect, SDL_Surface* dst, SDL_Rect* dstrect) {
     if (!dst || !src) {
@@ -152,50 +100,6 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其�
   assert(0);
 }
 
-// uint32_t SDL_MapRGB(SDL_PixelFormat *fmt, uint8_t r, uint8_t g, uint8_t b) {
-//   assert(fmt->BytesPerPixel == 4);
-//   uint32_t p = (r << fmt->Rshift) | (g << fmt->Gshift) | (b << fmt->Bshift);
-//   return p;
-// }
-
-// void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
-//   assert(dst);
-//   // 映射相应的颜色
-//   color = SDL_MapRGB(dst->format, (color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF);
-
-//   if (dst->format->BitsPerPixel == 32) {
-//     if (dstrect == NULL) {
-//       for (int i = 0; i < dst->h; i++) {
-//         for (int j = 0; j < dst->w; j++) {
-//           ((uint32_t *)dst->pixels)[j + i * dst->w] = color;
-//         }
-//       }
-//     } else {
-//       for (int i = dstrect->y; i < dstrect->y + dstrect->h; i++) {
-//         for (int j = dstrect->x; j < dstrect->x + dstrect->w; j++) {
-//           *((uint32_t *)dst->pixels + dst->w * i + j) = color;
-//         }
-//       }
-//     }
-//   } else if (dst->format->BitsPerPixel == 8) {
-//     if (dstrect == NULL) {
-//       for (int i = 0; i < dst->h; i++) {
-//         for (int j = 0; j < dst->w; j++) {
-//           ((uint8_t *)dst->pixels)[j + i * dst->w] = color;
-//         }
-//       }
-//     } else {
-//       for (int i = dstrect->y; i < dstrect->y + dstrect->h; i++) {
-//         for (int j = dstrect->x; j < dstrect->x + dstrect->w; j++) {
-//           *((uint8_t *)dst->pixels + dst->w * i + j) = color;
-//         }
-//       }
-//     }
-//   } else {
-//     printf("Unsupported color depth: %d bit", dst->format->BitsPerPixel);
-//     return;
-//   }
-// }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
   if(s->format->BitsPerPixel == 32){
@@ -207,6 +111,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     return ;
   }
   else if(s->format->BitsPerPixel == 8){
+    printf("update begin\n");
     if(w == 0 && h == 0){
       w = s->w;
       h = s->h;
@@ -228,7 +133,6 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
         
     }
 
-
     // 浪费时间转换
     uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
     ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);
@@ -236,7 +140,11 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     // NDL_DrawRect(pixels, x, y, w, h);
     free(pixels);
     free(changerb_pixels);
+    
+    printf("update end\n");
     return ;
+
+
     }
   
   assert(0);
