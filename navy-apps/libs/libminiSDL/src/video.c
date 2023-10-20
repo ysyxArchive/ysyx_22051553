@@ -13,13 +13,17 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 
 
   //有效大小
-  SDL_Rect valid_srcrect = srcrect ? *srcrect : (SDL_Rect){0, 0, src->w, src->h};
-  SDL_Rect valid_dstrect = dstrect ? *dstrect : (SDL_Rect){0, 0, dst->w, dst->h};
+  SDL_Rect valid_srcrect = srcrect ? *srcrect : (SDL_Rect){0, 0, src->w, src->h};  //如果是空指针，则复制整个源面
+  SDL_Rect valid_dstrect = dstrect ? *dstrect : (SDL_Rect){0, 0, dst->w, dst->h};  //如果是空指针，则复制到目标面的左上角
+
+  
 
   if(valid_dstrect.w == 0 && valid_dstrect.h == 0){
     valid_dstrect.w = src->w <= dst->w ? src->w : dst->w;
     valid_dstrect.h = src->h <= dst->h ? src->h : dst->h;
   }
+
+  printf("dst w is %d, h is %d\n", valid_dstrect.w, valid_dstrect.h);
 
   // if(valid_srcrect.w == 0 && valid_srcrect.h == 0){
   //   valid_srcrect.w = src->w;
@@ -114,7 +118,6 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其�
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
-  printf("time6\n");
   if(s->format->BitsPerPixel == 32){
     if(w == 0 && h == 0){
       NDL_DrawRect((uint32_t *)(s->pixels), x, y, s->w, s->h);
