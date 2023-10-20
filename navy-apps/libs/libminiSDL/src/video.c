@@ -222,7 +222,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     printf("x is %d, y is %d, w is %d, h is %d, pitch is %d\n", x, y, w, h, s->pitch);
     uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
     uint32_t *pixel_ptr = pixels;
-    uint8_t * src_ptr = (s->pixels) + x + y*s->pitch/8;
+    uint8_t * src_ptr = (s->pixels);
 
     for(int i = 0; i < h; i++) {
         src_ptr = src_ptr + h * s->pitch/8;
