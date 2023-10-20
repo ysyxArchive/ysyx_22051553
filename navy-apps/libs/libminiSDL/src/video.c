@@ -133,12 +133,12 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     }
 
     // 浪费时间转换
-    uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
-    ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);  //整体性能比单个性能好
-    NDL_DrawRect(changerb_pixels, x, y, w, h);
-    // NDL_DrawRect(pixels, x, y, w, h);
+    // uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
+    // ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);  //整体性能比单个性能好
+    // NDL_DrawRect(changerb_pixels, x, y, w, h);
+    NDL_DrawRect(pixels, x, y, w, h);
     free(pixels);
-    free(changerb_pixels);
+    // free(changerb_pixels);
     
     printf("update end\n");
     return ;
