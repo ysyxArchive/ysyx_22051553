@@ -18,19 +18,12 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
 
   
 
-  if(valid_dstrect.w == 0 && valid_dstrect.h == 0){
-    valid_dstrect.w = src->w <= dst->w ? src->w : dst->w;
-    valid_dstrect.h = src->h <= dst->h ? src->h : dst->h;
-  }
-
-  printf("dst w is %d, h is %d\n", valid_dstrect.w, valid_dstrect.h);
-
-  // if(valid_srcrect.w == 0 && valid_srcrect.h == 0){
-  //   valid_srcrect.w = src->w;
-  //   valid_srcrect.h = src->h;
+  // if(valid_dstrect.w == 0 && valid_dstrect.h == 0){
+  //   valid_dstrect.w = src->w <= dst->w ? src->w : dst->w;
+  //   valid_dstrect.h = src->h <= dst->h ? src->h : dst->h;
   // }
 
-  
+ 
   //实际复制的宽和高   --有待修改
   int copy_width = valid_dstrect.w; 
   int copy_height = valid_dstrect.h;
