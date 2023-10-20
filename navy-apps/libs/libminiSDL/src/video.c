@@ -69,14 +69,15 @@ void SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcrect, SDL_Surface* dst, SDL_
     }
 
     SDL_Rect valid_src_rect = srcrect ? *srcrect : (SDL_Rect){0, 0, src->w, src->h};
+    SDL_Rect valid_dst_rect = dstrect ? *dstrect : (SDL_Rect){0, 0, 0, 0};
 
     int copy_width = valid_src_rect.w;
     int copy_height = valid_src_rect.h;
 
     for (int i = 0; i < copy_height; i++) {
         for (int j = 0; j < copy_width; j++) {
-            int src_pixel_pos = (srcrect->y + i) * src->w + valid_src_rect.x + j;
-            int dst_pixel_pos = (dstrect->y + i) * dst->w + dstrect->x + j;
+            int src_pixel_pos = (valid_src_rect.y + i) * src->w + valid_src_rect.x + j;
+            int dst_pixel_pos = (valid_dst_rect.y + i) * dst->w + valid_dst_rect.x + j;
 
             switch (src->format->BitsPerPixel) {
               case 8: {
@@ -208,7 +209,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
       h = s->h;
     }
 
-    // printf("x is %d, y is %d, w is %d, h is %d, pitch is %d\n", x, y, w, h, s->pitch);
+    printf("x is %d, y is %d, w is %d, h is %d, pitch is %d\n", x, y, w, h, s->pitch);
     uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
     uint32_t *pixel_ptr = pixels;
     uint8_t * src_ptr = (s->pixels);
