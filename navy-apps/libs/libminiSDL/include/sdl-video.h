@@ -21,8 +21,8 @@ typedef struct {
 
 typedef union {
   struct {
-    uint8_t r, g, b, a; //修改了顺序
-	// uint8_t b, g, r, a;
+    uint8_t r, g, b, a; 
+	// uint8_t b, g, r, a; //修改了顺序
   };
   uint32_t val;
 } SDL_Color;
