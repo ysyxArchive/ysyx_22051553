@@ -215,33 +215,33 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     NDL_DrawRect((uint32_t *)(s->pixels), x, y, w, h);
     return ;
   }
-  // else if(s->format->BitsPerPixel == 8){
-  //   if(w == 0 && h == 0){
-  //     w = s->w;
-  //     h = s->h;
-  //   }
-  //   uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
-  //   uint32_t *pixel_ptr = pixels;
-  //   uint8_t * src_ptr = s->pixels;
+  else if(s->format->BitsPerPixel == 8){
+    if(w == 0 && h == 0){
+      w = s->w;
+      h = s->h;
+    }
+    uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
+    uint32_t *pixel_ptr = pixels;
+    uint8_t * src_ptr = s->pixels;
 
-  //   for(int i = 0; i < h; i++) {
-  //       for(int j = 0; j < w; j++) {
-  //           *pixel_ptr = s->format->palette->colors[*src_ptr].val;
-  //           pixel_ptr++;
-  //           src_ptr++;
-  //       }
-  //   }
+    for(int i = 0; i < h; i++) {
+        for(int j = 0; j < w; j++) {
+            *pixel_ptr = s->format->palette->colors[*src_ptr].val;
+            pixel_ptr++;
+            src_ptr++;
+        }
+    }
 
 
-  //   // 浪费时间转换
-  //   uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
-  //   ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);
-  //   NDL_DrawRect(changerb_pixels, x, y, w, h);
-  //   // NDL_DrawRect(pixels, x, y, w, h);
-  //   free(pixels);
-  //   free(changerb_pixels);
-  //   return ;
-  //   }
+    // 浪费时间转换
+    // uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
+    // ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);
+    NDL_DrawRect(pixels, x, y, w, h);
+    // NDL_DrawRect(pixels, x, y, w, h);
+    free(pixels);
+    // free(changerb_pixels);
+    return ;
+    }
   
   assert(0);
 }
