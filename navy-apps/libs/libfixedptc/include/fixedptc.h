@@ -94,7 +94,7 @@ typedef	__uint128_t fixedptud;
 
 #ifndef FIXEDPT_WBITS
 //修改24到22
-#define FIXEDPT_WBITS	22
+#define FIXEDPT_WBITS	23
 #endif
 
 #if FIXEDPT_WBITS >= FIXEDPT_BITS
