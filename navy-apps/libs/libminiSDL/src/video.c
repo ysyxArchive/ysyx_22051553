@@ -222,7 +222,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
             pixel_ptr++;
             src_ptr++;
         }
-        src_ptr = src_ptr + w - 1;
+        
     }
 
 
