@@ -109,102 +109,102 @@ void SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcrect, SDL_Surface* dst, SDL_
     }
 }
 
-// void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其中，dstrect的x,y是基于Surface左上角的//Surface可以看成画布
-//   assert(dst);                                                            //pal没有使用该函数
+void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其中，dstrect的x,y是基于Surface左上角的//Surface可以看成画布
+  assert(dst);                                                            //pal没有使用该函数
 
   
-//   if(dst->format->BitsPerPixel == 32){
-//       if(dstrect == NULL){
-//         // for(int i = 0; i < (dst->w * dst->h); i ++){        //i以像素点为单位，但是piexl是uint_8*类型
-//         //   ((uint32_t *)(dst->pixels))[i] = color;        
-//         // }                         
-//         for(int i = 0; i < (dst->h); i ++){                          
-//           for(int j = 0; j < (dst->w); j ++){
-//             ((uint32_t *)(dst->pixels))[j+i*(dst->w)] = color;   
-//           }                                           
-//         }
-//       }
-//       else{
+  if(dst->format->BitsPerPixel == 32){
+      if(dstrect == NULL){
+        // for(int i = 0; i < (dst->w * dst->h); i ++){        //i以像素点为单位，但是piexl是uint_8*类型
+        //   ((uint32_t *)(dst->pixels))[i] = color;        
+        // }                         
+        for(int i = 0; i < (dst->h); i ++){                          
+          for(int j = 0; j < (dst->w); j ++){
+            ((uint32_t *)(dst->pixels))[j+i*(dst->w)] = color;   
+          }                                           
+        }
+      }
+      else{
         
-//         for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
-//           for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
-//             *(((uint32_t *)(dst->pixels)) + dst->w * i + j) = color;
-//           }
-//         }
-//       }
-//   }else {
-//     if(dstrect == NULL){
-//         // for(int i = 0; i < (dst->w * dst->h); i ++){        //i以像素点为单位，但是piexl是uint_8*类型
-//         //   ((uint32_t *)(dst->pixels))[i] = color;        
-//         // }                         
-//         for(int i = 0; i < (dst->h); i ++){                          
-//           for(int j = 0; j < (dst->w); j ++){
-//             ((dst->pixels))[j+i*(dst->w)] = color;   
-//           }                                           
-//         }
-//       }
-//       else{
+        for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
+          for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
+            *(((uint32_t *)(dst->pixels)) + dst->w * i + j) = color;
+          }
+        }
+      }
+  }else {
+    if(dstrect == NULL){
+        // for(int i = 0; i < (dst->w * dst->h); i ++){        //i以像素点为单位，但是piexl是uint_8*类型
+        //   ((uint32_t *)(dst->pixels))[i] = color;        
+        // }                         
+        for(int i = 0; i < (dst->h); i ++){                          
+          for(int j = 0; j < (dst->w); j ++){
+            ((dst->pixels))[j+i*(dst->w)] = color;   
+          }                                           
+        }
+      }
+      else{
         
-//         for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
-//           for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
-//             *((dst->pixels) + dst->w * i + j) = color;
-//           }
-//         }
-//       }
+        for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
+          for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
+            *((dst->pixels) + dst->w * i + j) = color;
+          }
+        }
+      }
     
-//   }
+  }
 
 
 
 
-//   return ;
-//   assert(0);
+  return ;
+  assert(0);
+}
+
+// uint32_t SDL_MapRGB(SDL_PixelFormat *fmt, uint8_t r, uint8_t g, uint8_t b) {
+//   assert(fmt->BytesPerPixel == 4);
+//   uint32_t p = (r << fmt->Rshift) | (g << fmt->Gshift) | (b << fmt->Bshift);
+//   return p;
 // }
 
-uint32_t SDL_MapRGB(SDL_PixelFormat *fmt, uint8_t r, uint8_t g, uint8_t b) {
-  assert(fmt->BytesPerPixel == 4);
-  uint32_t p = (r << fmt->Rshift) | (g << fmt->Gshift) | (b << fmt->Bshift);
-  return p;
-}
+// void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
+//   assert(dst);
+//   // 映射相应的颜色
+//   color = SDL_MapRGB(dst->format, (color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF);
 
-void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
-  assert(dst);
-  // 映射相应的颜色
-  color = SDL_MapRGB(dst->format, (color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF);
-
-  if (dst->format->BitsPerPixel == 32) {
-    if (dstrect == NULL) {
-      for (int i = 0; i < dst->h; i++) {
-        for (int j = 0; j < dst->w; j++) {
-          ((uint32_t *)dst->pixels)[j + i * dst->w] = color;
-        }
-      }
-    } else {
-      for (int i = dstrect->y; i < dstrect->y + dstrect->h; i++) {
-        for (int j = dstrect->x; j < dstrect->x + dstrect->w; j++) {
-          *((uint32_t *)dst->pixels + dst->w * i + j) = color;
-        }
-      }
-    }
-  } else if (dst->format->BitsPerPixel == 8) {
-    if (dstrect == NULL) {
-      for (int i = 0; i < dst->h; i++) {
-        for (int j = 0; j < dst->w; j++) {
-          ((uint8_t *)dst->pixels)[j + i * dst->w] = color;
-        }
-      }
-    } else {
-      for (int i = dstrect->y; i < dstrect->y + dstrect->h; i++) {
-        for (int j = dstrect->x; j < dstrect->x + dstrect->w; j++) {
-          *((uint8_t *)dst->pixels + dst->w * i + j) = color;
-        }
-      }
-    }
-  } else {
-    printf("Unsupported color depth: %d bit", dst->format->BitsPerPixel);
-    return;
-  }
-}
+//   if (dst->format->BitsPerPixel == 32) {
+//     if (dstrect == NULL) {
+//       for (int i = 0; i < dst->h; i++) {
+//         for (int j = 0; j < dst->w; j++) {
+//           ((uint32_t *)dst->pixels)[j + i * dst->w] = color;
+//         }
+//       }
+//     } else {
+//       for (int i = dstrect->y; i < dstrect->y + dstrect->h; i++) {
+//         for (int j = dstrect->x; j < dstrect->x + dstrect->w; j++) {
+//           *((uint32_t *)dst->pixels + dst->w * i + j) = color;
+//         }
+//       }
+//     }
+//   } else if (dst->format->BitsPerPixel == 8) {
+//     if (dstrect == NULL) {
+//       for (int i = 0; i < dst->h; i++) {
+//         for (int j = 0; j < dst->w; j++) {
+//           ((uint8_t *)dst->pixels)[j + i * dst->w] = color;
+//         }
+//       }
+//     } else {
+//       for (int i = dstrect->y; i < dstrect->y + dstrect->h; i++) {
+//         for (int j = dstrect->x; j < dstrect->x + dstrect->w; j++) {
+//           *((uint8_t *)dst->pixels + dst->w * i + j) = color;
+//         }
+//       }
+//     }
+//   } else {
+//     printf("Unsupported color depth: %d bit", dst->format->BitsPerPixel);
+//     return;
+//   }
+// }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
   if(s->format->BitsPerPixel == 32){
@@ -215,33 +215,33 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     NDL_DrawRect((uint32_t *)(s->pixels), x, y, w, h);
     return ;
   }
-  else if(s->format->BitsPerPixel == 8){
-    if(w == 0 && h == 0){
-      w = s->w;
-      h = s->h;
-    }
-    uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
-    uint32_t *pixel_ptr = pixels;
-    uint8_t * src_ptr = s->pixels;
+  // else if(s->format->BitsPerPixel == 8){
+  //   if(w == 0 && h == 0){
+  //     w = s->w;
+  //     h = s->h;
+  //   }
+  //   uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
+  //   uint32_t *pixel_ptr = pixels;
+  //   uint8_t * src_ptr = s->pixels;
 
-    for(int i = 0; i < h; i++) {
-        for(int j = 0; j < w; j++) {
-            *pixel_ptr = s->format->palette->colors[*src_ptr].val;
-            pixel_ptr++;
-            src_ptr++;
-        }
-    }
+  //   for(int i = 0; i < h; i++) {
+  //       for(int j = 0; j < w; j++) {
+  //           *pixel_ptr = s->format->palette->colors[*src_ptr].val;
+  //           pixel_ptr++;
+  //           src_ptr++;
+  //       }
+  //   }
 
 
-    // 浪费时间转换
-    uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
-    ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);
-    NDL_DrawRect(changerb_pixels, x, y, w, h);
-    // NDL_DrawRect(pixels, x, y, w, h);
-    free(pixels);
-    free(changerb_pixels);
-    return ;
-    }
+  //   // 浪费时间转换
+  //   uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
+  //   ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);
+  //   NDL_DrawRect(changerb_pixels, x, y, w, h);
+  //   // NDL_DrawRect(pixels, x, y, w, h);
+  //   free(pixels);
+  //   free(changerb_pixels);
+  //   return ;
+  //   }
   
   assert(0);
 }
