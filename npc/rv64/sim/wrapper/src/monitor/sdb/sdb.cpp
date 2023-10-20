@@ -37,7 +37,6 @@ uint64_t Icache_req_num = 0;
 uint64_t Dcache_hit_num = 0;
 uint64_t Dcache_req_num = 0;
 
-int Dcache_req_buf = 0;
 //
 
 
@@ -337,14 +336,11 @@ void update_debuginfo(
 
 
   
-  if((bool)(Dcache_hit && Dcache_req_buf)){
+  if((bool)(Dcache_hit && !(bool)(fcex_stall))){
     Dcache_hit_num ++;
   }
   if((bool)(Dcache_req) && !(bool)(fcex_stall)){
     Dcache_req_num ++;
-    Dcache_req_buf = 1;
-  }else{
-    Dcache_req_buf = 0;
   }
 
   #ifdef FTRACE
@@ -354,9 +350,9 @@ void update_debuginfo(
   }
   #endif
 
-  // if((unsigned long)pc[0].aval == 0x83004fd0){
-  //   vcd_flag = 1;
-  // }
+  if((unsigned long)pc[0].aval == 0x83000120){
+    vcd_flag = 1;
+  }
 
 
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
