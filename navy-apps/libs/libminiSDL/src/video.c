@@ -224,9 +224,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
 
     for(int i = 0; i < h; i++) {
         for(int j = 0; j < w; j++) {
-            // *pixel_ptr = s->format->palette->colors[*src_ptr].val;
-            *pixel_ptr = SDL_MapRGBA(s->format, s->format->palette->colors[*src_ptr].r, s->format->palette->colors[*src_ptr].g,
-            s->format->palette->colors[*src_ptr].b, s->format->palette->colors[*src_ptr].a);
+            *pixel_ptr = s->format->palette->colors[*src_ptr].val;
             // printf("value is %08x\n", *pixel_ptr);
             pixel_ptr++;
             src_ptr++;
@@ -418,7 +416,7 @@ SDL_Surface *SDL_ConvertSurface(SDL_Surface *src, SDL_PixelFormat *fmt, uint32_t
 }
 
 uint32_t SDL_MapRGBA(SDL_PixelFormat *fmt, uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
-  // assert(fmt->BytesPerPixel == 4);
+  assert(fmt->BytesPerPixel == 4);
   uint32_t p = (r << fmt->Rshift) | (g << fmt->Gshift) | (b << fmt->Bshift);
   if (fmt->Amask) p |= (a << fmt->Ashift);
   return p;
