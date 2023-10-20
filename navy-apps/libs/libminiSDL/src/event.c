@@ -84,7 +84,6 @@ int SDL_PollEvent(SDL_Event *ev) {//只有键盘事件
     ev->type = type;
     ev->key.keysym.sym = code;
 
-    printf("type is %d, sym is %d\n", type, code);
     return 1;
   }
 
