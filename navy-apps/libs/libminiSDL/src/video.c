@@ -225,7 +225,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     uint8_t * src_ptr = (s->pixels);
 
     for(int i = 0; i < h; i++) {
-        src_ptr = src_ptr + h * w * 4;
+        src_ptr = src_ptr + h * w * 16;
         for(int j = 0; j < w; j++) {
             *pixel_ptr = s->format->palette->colors[*src_ptr].val;
             // printf("value is %08x\n", *pixel_ptr);
