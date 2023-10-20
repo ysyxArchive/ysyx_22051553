@@ -154,7 +154,8 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
         for(int j = 0; j < w; j++) {
             SDL_Color abgr_color = color[src_ptr[j]];
             uint32_t temp = abgr_color.a << 24 | abgr_color.r << 16 | abgr_color.g << 8 | abgr_color.b;
-            *pixel_ptr = color[*src_ptr].val;  //底层使用lw,sw
+            memcpy(pixel_ptr, &temp, 4);
+            // *pixel_ptr = color[*src_ptr].val;  //底层使用lw,sw
             pixel_ptr++;
         }
         src_ptr = src_ptr + s->w;
