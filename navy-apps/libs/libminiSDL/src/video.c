@@ -69,25 +69,14 @@ void SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcrect, SDL_Surface* dst, SDL_
     }
 
     SDL_Rect valid_src_rect = srcrect ? *srcrect : (SDL_Rect){0, 0, src->w, src->h};
-    SDL_Rect valid_dst_rect = dstrect ? *dstrect : (SDL_Rect){0, 0, dst->w, dst->h};
 
-    int copy_width = valid_src_rect.w < valid_dst_rect.w ? valid_src_rect.w : valid_dst_rect.w;
-    int copy_height = valid_src_rect.h < valid_dst_rect.h ? valid_src_rect.h : valid_dst_rect.h;
-
-    if (copy_width > src->w || copy_height > src->h) {
-        printf("Blit Surface Size exceeds source surface size.\n");
-        return;
-    }
-
-    if (copy_width > dst->w || copy_height > dst->h) {
-        printf("Blit Surface size exceeds destination surface size.\n");
-        return;
-    }
+    int copy_width = valid_src_rect.w;
+    int copy_height = valid_src_rect.h;
 
     for (int i = 0; i < copy_height; i++) {
         for (int j = 0; j < copy_width; j++) {
-            int src_pixel_pos = (valid_src_rect.y + i) * src->w + valid_src_rect.x + j;
-            int dst_pixel_pos = (valid_dst_rect.y + i) * dst->w + valid_dst_rect.x + j;
+            int src_pixel_pos = (srcrect->y + i) * src->w + valid_src_rect.x + j;
+            int dst_pixel_pos = (dstrect->y + i) * dst->w + dstrect->x + j;
 
             switch (src->format->BitsPerPixel) {
               case 8: {
@@ -206,7 +195,6 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //å…¶ä
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
   if(s->format->BitsPerPixel == 32){
-    printf("get hrear\n");
     if(w == 0 && h == 0){
       NDL_DrawRect((uint32_t *)(s->pixels), x, y, s->w, s->h);
       return ;
