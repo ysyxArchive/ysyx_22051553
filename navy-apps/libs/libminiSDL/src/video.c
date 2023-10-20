@@ -214,10 +214,10 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     return ;
   }
   else if(s->format->BitsPerPixel == 8){
-    // if(w == 0 && h == 0){
-    //   w = s->w;
-    //   h = s->h;
-    // }
+    if(w == 0 && h == 0){
+      w = s->w;
+      h = s->h;
+    }
     uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
     uint32_t *pixel_ptr = pixels;
     uint8_t * src_ptr = s->pixels;
@@ -234,7 +234,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     // 浪费时间转换
     // uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
     // ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);
-    NDL_DrawRect(pixels, x, y, w, h);
+    NDL_DrawRect(pixels, x, y, s->w, s->h);
     // NDL_DrawRect(pixels, x, y, w, h);
     free(pixels);
     // free(changerb_pixels);
