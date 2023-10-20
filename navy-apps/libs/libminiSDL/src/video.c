@@ -214,10 +214,10 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     return ;
   }
   else if(s->format->BitsPerPixel == 8){
-    if(w == 0 && h == 0){
-      w = s->w;
-      h = s->h;
-    }
+    // if(w == 0 && h == 0){
+    //   w = s->w;
+    //   h = s->h;
+    // }
     uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
     uint32_t *pixel_ptr = pixels;
     uint8_t * src_ptr = s->pixels;
