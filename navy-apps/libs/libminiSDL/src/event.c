@@ -72,9 +72,19 @@ int SDL_PollEvent(SDL_Event *ev) {//只有键盘事件
   int n = NDL_PollEvent(NULL, 0);
   
   if(n != 0){    //键盘事件
-    ev->type = (n & 0x8000);
-    ev->key.keysym.sym = n & 0x7fff;
+    bool type = (n & 0x8000);
+    int code = n & 0x7fff;
 
+    if(type){
+      keyState[code] = 1;
+    }else{
+      keyState[code] = 0;
+    }
+
+    ev->type = type;
+    ev->key.keysym.sym = code;
+
+    printf("type is %d, sym is %d\n", type, code);
     return 1;
   }
 
