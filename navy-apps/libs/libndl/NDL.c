@@ -115,6 +115,8 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) { //NDL_DrawRect
     .w = w,
     .h = h
   };
+  printf("two pixel is %x, %x\n", pixels[0], pixels[1]);
+
   write(fbdev, &buf_budle, w*h*sizeof(uint32_t));
 
   write(fbsync, 0, 0);
