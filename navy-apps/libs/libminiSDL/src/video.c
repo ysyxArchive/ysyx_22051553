@@ -220,7 +220,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
         for(int j = 0; j < w; j++) {
             SDL_Color change_color = s->format->palette->colors[s->pixels[base_pos + j]];
             pixels[pixel_num] = change_color.a << 24 | change_color.r << 16 | change_color.g << 8 | change_color.b;
-            i ++;
+            pixel_num ++;
         }
         base_pos += w;
     }
