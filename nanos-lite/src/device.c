@@ -94,7 +94,7 @@ size_t fb_write(const void *buf, size_t offset, size_t len) { //offset即文件�
   int sys_w = ev_gpuconf.width;
   const my_pixel * pixel_bundle = buf;
   // printf("x is %d, y is %d\n", (offset/4)%sys_w, (offset/4)/sys_w);
-  io_write(AM_GPU_FBDRAW, (offset)%sys_w, (offset)/sys_w, (void*)(pixel_bundle->pixel_budle), pixel_bundle->w, pixel_bundle->h, false);  //单位都是uint32，即以像素点为单位
+  io_write(AM_GPU_FBDRAW, (offset/4)%sys_w, (offset/4)/sys_w, (void*)(pixel_bundle->pixel_budle), pixel_bundle->w, pixel_bundle->h, false);  //单位都是uint32，即以像素点为单位
 
   return 0;
 }
