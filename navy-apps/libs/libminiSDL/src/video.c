@@ -211,7 +211,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
 
     printf("x is %d, y is %d, w is %d, h is %d, pitch is %d\n", x, y, w, h, s->pitch);
     uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
-    uint32_t base_pos = x + y * s->w;
+    uint32_t base_pos = x + y * w;
     uint32_t pixel_num = 0;
     
 
@@ -222,7 +222,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
             pixels[pixel_num] = change_color.a << 24 | change_color.r << 16 | change_color.g << 8 | change_color.b;
             i ++;
         }
-        base_pos += s->w;
+        base_pos += w;
     }
 
 
