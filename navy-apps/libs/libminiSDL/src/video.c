@@ -327,6 +327,7 @@ void SDL_SoftStretch(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
   assert(src && dst);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
   assert(dst->format->BitsPerPixel == 8);
+  printf("hhh\n");
 
   int x = (srcrect == NULL ? 0 : srcrect->x);
   int y = (srcrect == NULL ? 0 : srcrect->y);
