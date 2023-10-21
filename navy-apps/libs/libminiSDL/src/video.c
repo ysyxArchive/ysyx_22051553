@@ -89,16 +89,16 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //å…¶ä
       }
       else{
         printf("use here\n");
-        // for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
-        //   for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
-        //     *((dst->pixels) + dst->w * i + j) = color;
-        //   }
-        // }
+        for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
+          for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
+            *((dst->pixels) + dst->w * i + j) = color;
+          }
+        }
         uint16_t h_temp = dstrect->h;
         int base = dstrect->x + dstrect->y * dst->w;
-        while(h_temp >= 0){
+        while(h_temp > 0){
           memset(dst->pixels + base, (uint8_t)color, dstrect->w);
-          base += dst->w;
+          base = base + dst->w;
           h_temp -= 1;
         }
         // while(h_temp > 8){
