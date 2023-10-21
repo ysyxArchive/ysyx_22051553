@@ -144,7 +144,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     NDL_DrawRect((uint32_t *)(s->pixels), x, y, w, h);
     return ;
   }
-  else if(s->format->BitsPerPixel == 8){
+  else if(s->format->BitsPerPixel == 8){  //暂时不改这里，耗时短
     printf("in update\n");
     if(w == 0 && h == 0){
       w = s->w;
@@ -154,32 +154,23 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
 
     uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
     uint32_t *pixel_ptr = pixels;
-    uint64_t  base_ptr = (uint64_t)((s->pixels) + x + y*s->w);
+    uint8_t * base_ptr = (s->pixels) + x + y*s->w;
     SDL_Color * color = s->format->palette->colors;
-    
+    uint8_t* src_ptr = base_ptr;
 
-
-    int i = h;
-    // while(h > 0){
-      memcpy(pixel_ptr, color + base_ptr, w);
-    //   base_ptr += s->w;
-    //   i -= 1;
-    // }
-
-
-    // for(int i = 0; i < h; i++) {
-    //     for(int j = 0; j < w; j++) {
-    //         *pixel_ptr = color[src_ptr[j]].val;
-    //         pixel_ptr++;
-    //     }
-    //     src_ptr += s->w;
-    // }
+    for(int i = 0; i < h; i++) {
+        for(int j = 0; j < w; j++) {
+            *pixel_ptr = color[src_ptr[j]].val;
+            pixel_ptr++;
+        }
+        src_ptr += s->w;
+    }
 
     // 浪费时间转换
     // uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
     // ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);  //整体性能比单个性能好
     // NDL_DrawRect(changerb_pixels, x, y, w, h);
-
+    
 
     NDL_DrawRect(pixels, x, y, w, h);
     printf("out update\n");
