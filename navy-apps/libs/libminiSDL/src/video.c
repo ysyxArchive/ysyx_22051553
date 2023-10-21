@@ -167,14 +167,24 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     // }
 
     int i = h;
-    while(i > 0){
-      
+    while(i > 4){
       for(int j = 0; j < w; j++){
-        memcpy(pixel_ptr + j, &color[src_ptr[j]].val, 4); 
+        memcpy(pixel_ptr + j, &color[src_ptr[j]], 4); 
+        memcpy(pixel_ptr + j + w, &color[src_ptr[j+s->w]], 4); 
+        memcpy(pixel_ptr + j + w*2, &color[src_ptr[j+s->w*2]], 4); 
+        memcpy(pixel_ptr + j + w*3, &color[src_ptr[j+s->w*3]], 4); 
+      }
+      pixel_ptr += w * 4;
+      src_ptr += s->w *4;
+      i -= 4;
+    }
+
+    while(i > 0){
+      for(int j = 0; j < w; j++){
+        memcpy(pixel_ptr + j, &color[src_ptr[j]], 4); 
       }
       pixel_ptr += w;
       src_ptr += s->w;
-
       i -= 1;
     }
 
