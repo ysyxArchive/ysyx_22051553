@@ -42,6 +42,7 @@ uint64_t get_time() {
 uint32_t NDL_GetTicks() {  //1Tick->1ms
   
   uint64_t us = get_time();
+  printf("value is %ld\n", us);
   return (uint32_t)(us/1000);
 
 }
