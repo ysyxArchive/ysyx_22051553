@@ -61,8 +61,8 @@ uint64_t pc_buf = 0x80000000;
 
 void event_update(){
   static uint64_t last = 0;
-  uint64_t now = get_time();
-  if (now - last < 100000000 / 60) {
+  uint64_t now = inst_num;
+  if (now - last < 250) {
     return;
   }
   // double Icache_hitrate = 1 - ((double)(Icache_req_num - Icache_hit_num) / (double)Icache_req_num);
@@ -86,7 +86,6 @@ void event_update(){
         break;
       case SDL_KEYDOWN:
       case SDL_KEYUP:
-        printf("here\n");
         k = event.key.keysym.scancode;
         is_keydown = (event.key.type == SDL_KEYDOWN);
         send_key(k, is_keydown);
@@ -350,9 +349,9 @@ void update_debuginfo(
   }
   #endif
 
-  if((unsigned long)pc[0].aval == 0x83000120){
-    vcd_flag = 1;
-  }
+  // if((unsigned long)pc[0].aval == 0x83000120){
+  //   vcd_flag = 1;
+  // }
 
 
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
@@ -428,7 +427,7 @@ long long pmem_read(const svLogicVecVal* raddr){
       return ;
     }
     else if(((unsigned long)waddr[0].aval) == VGACTL_ADDR){  //实际上是+4
-      printf("update screen\n");
+      // printf("update screen\n");
       display.update_screen();
     }
     else {

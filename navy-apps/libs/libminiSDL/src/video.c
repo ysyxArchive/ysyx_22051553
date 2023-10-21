@@ -111,7 +111,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     return ;
   }
   else if(s->format->BitsPerPixel == 8){
-    
+    printf("in update\n");
     if(w == 0 && h == 0){
       w = s->w;
       h = s->h;
@@ -136,7 +136,9 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     // uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
     // ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);  //整体性能比单个性能好
     // NDL_DrawRect(changerb_pixels, x, y, w, h);
+    printf("in rect\n");
     NDL_DrawRect(pixels, x, y, w, h);
+    printf("out update\n");
     free(pixels);
     // free(changerb_pixels);
     
