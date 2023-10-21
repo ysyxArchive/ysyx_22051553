@@ -28,7 +28,7 @@ uint32_t NDL_GetTicks() {  //1Tick->1ms
   
   static struct timeval timeval;
   int ret = gettimeofday(&timeval, NULL);
-  printf("value is %ld\n", ret);
+  printf("value is %ld\n", timeval.tv_usec);
   return timeval.tv_usec / 1000;
 }
 
