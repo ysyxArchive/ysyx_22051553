@@ -158,12 +158,23 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     SDL_Color * color = s->format->palette->colors;
     uint8_t* src_ptr = base_ptr;
 
-    for(int i = 0; i < h; i++) {
-        for(int j = 0; j < w; j++) {
-            *pixel_ptr = color[src_ptr[j]].val;
-            pixel_ptr++;
-        }
-        src_ptr += s->w;
+    // for(int i = 0; i < h; i++) {
+    //     for(int j = 0; j < w; j++) {
+    //         *pixel_ptr = color[src_ptr[j]].val;
+    //         pixel_ptr++;
+    //     }
+    //     src_ptr += s->w;
+    // }
+
+    int i = h;
+    while(i > 0){
+      
+      for(int j = 0; j < w; j++){
+        memcpy(pixel_ptr + j, &color[src_ptr[j]], 4); 
+      }
+      src_ptr += s->w;
+
+      i -= 1;
     }
 
     // 浪费时间转换
