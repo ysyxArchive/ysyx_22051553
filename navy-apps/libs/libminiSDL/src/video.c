@@ -173,7 +173,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
       for(int j = 0; j < w; j ++){
         memcpy(color_bundle + j, (color + (uint64_t)(base_ptr + j)), 4);
       }
-      memcpy(pixels + base, color_bundle, w);
+      memcpy(pixels + base, color_bundle, w * 4);
       // base_ptr += s->w;
       // base += w;
       h -= 1;
