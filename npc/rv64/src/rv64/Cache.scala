@@ -23,7 +23,7 @@ object CacheState { //有的会产生没必要的延迟周期，但是状态机�
 
 object Cache{
     val nWays = 4
-    val nSets = 4  //从8降低到4
+    val nSets = 8  //从8降低到4
     val bBytes = 128 //Cacheline长度
     val bBits = bBytes << 3
     val blen = log2Ceil(bBytes) //offset位域7位
