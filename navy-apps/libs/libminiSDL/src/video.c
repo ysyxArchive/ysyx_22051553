@@ -179,6 +179,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     //   h -= 1;
     // }
 
+    printf("get hree\n");
     free(color_bundle);
 
 
