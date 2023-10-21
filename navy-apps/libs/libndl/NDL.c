@@ -29,7 +29,7 @@ uint32_t NDL_GetTicks() {  //1Tick->1ms
   static struct timeval timeval;
   int ret = gettimeofday(&timeval, NULL);
   printf("value is %ld\n", timeval.tv_usec);
-  return timeval.tv_usec / 1000;
+  return timeval.tv_sec*1000 + timeval.tv_usec / 1000;
 }
 
 int NDL_PollEvent(char *buf, int len) {   //轮询？
