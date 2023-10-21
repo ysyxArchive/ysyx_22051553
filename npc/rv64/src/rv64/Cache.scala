@@ -251,7 +251,7 @@ class Cache extends Module{
     
 
 
-    when(is_idle & io.cpu.req.valid){ //1.未命中
+    when(is_idle & io.cpu.req.valid){ //1.未命中，为之后的状态缓存 2.命中，在下一周期需要off_reg
         addr_reg := addr                 
         cpu_data := io.cpu.req.bits.data
         cpu_mask := io.cpu.req.bits.mask
@@ -382,10 +382,10 @@ class Cache extends Module{
         }.elsewhen(is_war){ //2.写不命中，alloc后，写入  --修改后
             dirty := MuxLookup(victim, dirty,        //修改dirty位
                 Seq(
-                    0.U -> valid.bitSet(way0_buf, 1.B),
-                    1.U -> valid.bitSet(way1_buf, 1.B),
-                    2.U -> valid.bitSet(way2_buf, 1.B),
-                    3.U -> valid.bitSet(way3_buf, 1.B),
+                    0.U -> dirty.bitSet(way0_buf, 1.B),
+                    1.U -> dirty.bitSet(way1_buf, 1.B),
+                    2.U -> dirty.bitSet(way2_buf, 1.B),
+                    3.U -> dirty.bitSet(way3_buf, 1.B),
                 )
             )
 
@@ -418,10 +418,10 @@ class Cache extends Module{
             //--------------dirty
             dirty := MuxLookup(victim, dirty,
                 Seq(
-                    0.U -> valid.bitSet(way0_buf, 0.B),
-                    1.U -> valid.bitSet(way1_buf, 0.B),
-                    2.U -> valid.bitSet(way2_buf, 0.B),
-                    3.U -> valid.bitSet(way3_buf, 0.B),
+                    0.U -> dirty.bitSet(way0_buf, 0.B),
+                    1.U -> dirty.bitSet(way1_buf, 0.B),
+                    2.U -> dirty.bitSet(way2_buf, 0.B),
+                    3.U -> dirty.bitSet(way3_buf, 0.B),
                 )
             )
             //--------------replace

@@ -349,9 +349,10 @@ void update_debuginfo(
   }
   #endif
 
-  // if((unsigned long)pc[0].aval == 0x83000120){
-  //   vcd_flag = 1;
-  // }
+  if((unsigned long)pc[0].aval == 0x83013ab0){
+    printf("begin vcd\n");
+    vcd_flag = 1;
+  }
 
 
   if((bool)reg_wen && ((unsigned int)rd[0].aval != 0)){
