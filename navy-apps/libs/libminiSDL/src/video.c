@@ -156,15 +156,26 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     uint32_t *pixel_ptr = pixels;
     uint8_t * base_ptr = (s->pixels) + x + y*s->w;
     SDL_Color * color = s->format->palette->colors;
-    uint8_t* src_ptr = base_ptr;
+    // uint8_t* src_ptr = base_ptr;
 
-    for(int i = 0; i < h; i++) {
-        for(int j = 0; j < w; j++) {
-            *pixel_ptr = color[src_ptr[j]].val;
-            pixel_ptr++;
-        }
-        src_ptr += s->w;
+    // for(int i = 0; i < h; i++) {
+    //     for(int j = 0; j < w; j++) {
+    //         *pixel_ptr = color[src_ptr[j]];
+    //         pixel_ptr++;
+    //     }
+    //     src_ptr += s->w;
+    // }
+
+    int i = h;
+    uint32_t * color_bundle = malloc(w * sizeof(uint32_t));
+    while(h > 0){
+      for(int j = 0; j < w; j ++){
+        memcpy(color_bundle + j, color + (uint64_t)(base_ptr + j), 4);
+      }
+      base_ptr += s->w;
     }
+
+
 
     // 浪费时间转换
     // uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
@@ -221,7 +232,7 @@ static inline int maskToShift(uint32_t mask) {
 }
 
 SDL_Surface* SDL_CreateRGBSurface(uint32_t flags, int width, int height, int depth,
-    uint32_t Rmask, uint32_t Gmask, uint32_t Bmask, uint32_t Amask) {
+    uint32_t Rmask, uint32_t Gmask, uint32_t Bmask, uint32_t Amask) {  //不需要优化
   assert(depth == 8 || depth == 32);
   SDL_Surface *s = malloc(sizeof(SDL_Surface));
   assert(s);
@@ -260,7 +271,7 @@ SDL_Surface* SDL_CreateRGBSurface(uint32_t flags, int width, int height, int dep
 }
 
 SDL_Surface* SDL_CreateRGBSurfaceFrom(void *pixels, int width, int height, int depth,
-    int pitch, uint32_t Rmask, uint32_t Gmask, uint32_t Bmask, uint32_t Amask) {
+    int pitch, uint32_t Rmask, uint32_t Gmask, uint32_t Bmask, uint32_t Amask) {  //不需要优化
   SDL_Surface *s = SDL_CreateRGBSurface(SDL_PREALLOC, width, height, depth,
       Rmask, Gmask, Bmask, Amask);
   assert(pitch == s->pitch);
@@ -268,7 +279,7 @@ SDL_Surface* SDL_CreateRGBSurfaceFrom(void *pixels, int width, int height, int d
   return s;
 }
 
-void SDL_FreeSurface(SDL_Surface *s) {
+void SDL_FreeSurface(SDL_Surface *s) { //不需要优化
   if (s != NULL) {
     if (s->format != NULL) {
       if (s->format->palette != NULL) {
@@ -282,7 +293,7 @@ void SDL_FreeSurface(SDL_Surface *s) {
   }
 }
 
-SDL_Surface* SDL_SetVideoMode(int width, int height, int bpp, uint32_t flags) {
+SDL_Surface* SDL_SetVideoMode(int width, int height, int bpp, uint32_t flags) { //不需要优化
   if (flags & SDL_HWSURFACE) NDL_OpenCanvas(&width, &height);
   return SDL_CreateRGBSurface(flags, width, height, bpp,
       DEFAULT_RMASK, DEFAULT_GMASK, DEFAULT_BMASK, DEFAULT_AMASK);
