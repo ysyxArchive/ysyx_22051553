@@ -24,25 +24,12 @@ static int screen_w = 0, screen_h = 0;
 static int disp_w = 0, disp_h = 0;
 
 
-static uint64_t boot_time = 0;
-
-static uint64_t get_time_internal() {
-  struct timeval now;
-  gettimeofday(&now, NULL);
-  uint64_t us = now.tv_sec * 1000000 + now.tv_usec;
-  return us;
-}
-
-uint64_t get_time() {
-  if (boot_time == 0) boot_time = get_time_internal();
-  uint64_t now = get_time_internal();
-  return now - boot_time;
-}
 
 uint32_t NDL_GetTicks() {  //1Tick->1ms
   
-  uint64_t us = get_time();
-  return (uint32_t)(us/1000);
+  static struct timeval timeval;
+  int ret = gettimeofday(&timeval, NULL);
+  return timeval.tv_usec / 1000;
 
 }
 

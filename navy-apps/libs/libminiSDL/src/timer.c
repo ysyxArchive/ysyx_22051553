@@ -11,7 +11,7 @@ int SDL_RemoveTimer(SDL_TimerID id) {
   return 1;
 }
 
-uint32_t SDL_GetTicks() {
+uint32_t SDL_GetTicks() {  //消耗时间不短
   return NDL_GetTicks();
 }
 

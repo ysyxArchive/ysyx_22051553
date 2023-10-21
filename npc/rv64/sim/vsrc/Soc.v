@@ -4079,25 +4079,23 @@ module Cache(	// <stdin>:3153:10, :6907:10
     end
     else begin
       automatic logic [63:0]     _GEN_21;	// Cache.scala:385:40
-      automatic logic [63:0]     _GEN_22;	// Cache.scala:385:40
-      automatic logic [63:0]     _GEN_23;	// Cache.scala:386:40
-      automatic logic [63:0]     _GEN_24;	// Cache.scala:387:40
-      automatic logic [63:0]     _GEN_25;	// Cache.scala:388:40
+      automatic logic [63:0]     _GEN_22;	// Cache.scala:386:40
+      automatic logic [63:0]     _GEN_23;	// Cache.scala:387:40
+      automatic logic [63:0]     _GEN_24;	// Cache.scala:388:40
       automatic logic [63:0]     _dirty_T_58;	// Cache.scala:412:40
       automatic logic [63:0]     _dirty_T_64;	// Cache.scala:413:40
       automatic logic [63:0]     _dirty_T_70;	// Cache.scala:414:40
       automatic logic [63:0]     _dirty_T_76;	// Cache.scala:415:40
-      automatic logic            _GEN_26 = io_axi_resp_bits_choose & io_axi_resp_valid;	// Cache.scala:72:24, :538:42, :539:40
-      automatic logic [7:0][2:0] _GEN_27;	// Cache.scala:72:24, :74:25, :75:28, :76:26, :78:24, :491:18, :493:35, :505:19, :538:42, :560:42, :570:42, :586:19
+      automatic logic            _GEN_25 = io_axi_resp_bits_choose & io_axi_resp_valid;	// Cache.scala:72:24, :538:42, :539:40
+      automatic logic [7:0][2:0] _GEN_26;	// Cache.scala:72:24, :74:25, :75:28, :76:26, :78:24, :491:18, :493:35, :505:19, :538:42, :560:42, :570:42, :586:19
       _GEN_21 = {59'h0, idx_reg, 2'h0};	// Cache.scala:94:25, :144:27, :385:40
-      _GEN_22 = {32'h0, valid};	// Cache.scala:86:27, :89:24, :385:40
-      _GEN_23 = {58'h0, way1_buf};	// Cache.scala:158:36, :344:43, :386:40
-      _GEN_24 = {58'h0, way2_buf};	// Cache.scala:159:36, :344:43, :387:40
-      _GEN_25 = {58'h0, way3_buf};	// Cache.scala:160:36, :344:43, :388:40
+      _GEN_22 = {58'h0, way1_buf};	// Cache.scala:158:36, :344:43, :386:40
+      _GEN_23 = {58'h0, way2_buf};	// Cache.scala:159:36, :344:43, :387:40
+      _GEN_24 = {58'h0, way3_buf};	// Cache.scala:160:36, :344:43, :388:40
       _dirty_T_58 = 64'h1 << _GEN_21;	// Cache.scala:344:43, :385:40, :412:40
-      _dirty_T_64 = 64'h1 << _GEN_23;	// Cache.scala:344:43, :386:40, :413:40
-      _dirty_T_70 = 64'h1 << _GEN_24;	// Cache.scala:344:43, :387:40, :414:40
-      _dirty_T_76 = 64'h1 << _GEN_25;	// Cache.scala:344:43, :388:40, :415:40
+      _dirty_T_64 = 64'h1 << _GEN_22;	// Cache.scala:344:43, :386:40, :413:40
+      _dirty_T_70 = 64'h1 << _GEN_23;	// Cache.scala:344:43, :387:40, :414:40
+      _dirty_T_76 = 64'h1 << _GEN_24;	// Cache.scala:344:43, :388:40, :415:40
       if (is_idle | is_chooose | _T_463 | _T_465 | ~(_T_466 & io_axi_resp_bits_choose)) begin	// Cache.scala:68:26, :74:25, :75:28, :76:26, :491:18, :570:42
       end
       else if (io_axi_resp_valid)	// Cache.scala:68:26, :74:25, :75:28, :76:26, :491:18, :570:42
@@ -4110,10 +4108,10 @@ module Cache(	// <stdin>:3153:10, :6907:10
         w_count <= 4'h0;	// Cache.scala:68:26, :69:26
       else if (w_count != 4'hF)	// Cache.scala:69:26, :74:25, :75:28, :76:49, :491:18, :538:42, :548:34
         w_count <= w_count + 4'h1;	// Cache.scala:69:26, :551:44, :578:44
-      _GEN_27 = {{state}, {state}, {3'h0}, {_GEN_26 ? ((|cpu_mask) ? 3'h5 : 3'h0) : state},
-                                                {io_axi_resp_bits_choose ? 3'h4 : state}, {_GEN_26 ? 3'h3 : state}, {{2'h1,
+      _GEN_26 = {{state}, {state}, {3'h0}, {_GEN_25 ? ((|cpu_mask) ? 3'h5 : 3'h0) : state},
+                                                {io_axi_resp_bits_choose ? 3'h4 : state}, {_GEN_25 ? 3'h3 : state}, {{2'h1,
                                                 _GEN_17[victim]}}, {io_cpu_req_valid ? {2'h0, ~_hit_T_2} : state}};	// Cache.scala:72:24, :74:25, :75:28, :76:26, :78:24, :84:23, :94:25, :99:49, :120:84, :237:31, :339:18, :382:27, :491:18, :493:35, :494:26, :495:27, :497:27, :505:19, :507:31, :538:42, :539:40, :560:42, :561:23, :570:42, :571:40, :575:33, :581:23, :586:19, Mux.scala:81:{58,61}, :101:16
-      state <= _GEN_27[state];	// Cache.scala:72:24, :74:25, :75:28, :76:26, :78:24, :491:18, :493:35, :505:19, :538:42, :560:42, :570:42, :586:19
+      state <= _GEN_26[state];	// Cache.scala:72:24, :74:25, :75:28, :76:26, :78:24, :491:18, :493:35, :505:19, :538:42, :560:42, :570:42, :586:19
       if (is_idle | ~(is_chooose | _T_463 & io_axi_resp_bits_choose & io_axi_resp_valid)) begin	// Cache.scala:74:25, :75:28, :86:27, :491:18, :532:22, :538:42
       end
       else begin	// Cache.scala:74:25, :75:28, :86:27, :491:18, :532:22, :538:42
@@ -4136,9 +4134,11 @@ module Cache(	// <stdin>:3153:10, :6907:10
       if (_GEN_14) begin	// Cache.scala:89:24, :338:14, :339:18
       end
       else begin	// Cache.scala:89:24, :338:14, :339:18
+        automatic logic [63:0]      _GEN_27;	// Cache.scala:412:40
         automatic logic [3:0][63:0] _GEN_28;	// Mux.scala:81:{58,61}
-        _GEN_28 = {{_GEN_22 | _dirty_T_76}, {_GEN_22 | _dirty_T_70}, {_GEN_22 | _dirty_T_64}, {_GEN_22 |
-                                                                _dirty_T_58}};	// Cache.scala:385:40, :412:40, :413:40, :414:40, :415:40, Mux.scala:81:{58,61}
+        _GEN_27 = {32'h0, valid};	// Cache.scala:86:27, :89:24, :412:40
+        _GEN_28 = {{_GEN_27 | _dirty_T_76}, {_GEN_27 | _dirty_T_70}, {_GEN_27 | _dirty_T_64}, {_GEN_27 |
+                                                                _dirty_T_58}};	// Cache.scala:412:40, :413:40, :414:40, :415:40, Mux.scala:81:{58,61}
         valid <= _GEN_28[victim][31:0];	// Cache.scala:89:24, :94:25, :410:19, Mux.scala:81:{58,61}
       end
       if (wen) begin	// Cache.scala:120:55
@@ -4151,18 +4151,20 @@ module Cache(	// <stdin>:3153:10, :6907:10
                                                                                 _dirty_T_12[31:0] : hit3 ? dirty | _dirty_T_18[31:0] : 32'h0;	// Cache.scala:86:27, :90:24, :106:27, :107:27, :108:27, :109:27, :344:43, :345:43, :346:43, :347:43, Mux.scala:101:16
         end
         else if (is_war) begin	// Cache.scala:78:24, :237:31
-          automatic logic [3:0][63:0] _GEN_29;	// Mux.scala:81:{58,61}
-          _GEN_29 = {{_GEN_22 | 64'h1 << _GEN_25}, {_GEN_22 | 64'h1 << _GEN_24}, {_GEN_22 | 64'h1 << _GEN_23},
-                                                                                {_GEN_22 | 64'h1 << _GEN_21}};	// Cache.scala:344:43, :385:40, :386:40, :387:40, :388:40, Mux.scala:81:{58,61}
-          dirty <= _GEN_29[victim][31:0];	// Cache.scala:90:24, :94:25, :383:19, Mux.scala:81:{58,61}
+          automatic logic [63:0]      _GEN_29;	// Cache.scala:344:43
+          automatic logic [3:0][63:0] _GEN_30;	// Mux.scala:81:{58,61}
+          _GEN_29 = {32'h0, dirty};	// Cache.scala:86:27, :90:24, :344:43
+          _GEN_30 = {{_GEN_29 | 64'h1 << _GEN_24}, {_GEN_29 | 64'h1 << _GEN_23}, {_GEN_29 | 64'h1 << _GEN_22},
+                                                                                {_GEN_29 | 64'h1 << _GEN_21}};	// Cache.scala:344:43, :385:40, :386:40, :387:40, :388:40, Mux.scala:81:{58,61}
+          dirty <= _GEN_30[victim][31:0];	// Cache.scala:90:24, :94:25, :383:19, Mux.scala:81:{58,61}
         end
         else begin	// Cache.scala:78:24, :237:31
-          automatic logic [63:0]      _GEN_30;	// Cache.scala:421:40
-          automatic logic [3:0][63:0] _GEN_31;	// Mux.scala:81:{58,61}
-          _GEN_30 = {32'h0, ~valid};	// Cache.scala:86:27, :89:24, :412:40, :421:40
-          _GEN_31 = {{~(_GEN_30 | _dirty_T_76)}, {~(_GEN_30 | _dirty_T_70)}, {~(_GEN_30 | _dirty_T_64)},
-                                                                                {~(_GEN_30 | _dirty_T_58)}};	// Cache.scala:412:40, :413:40, :414:40, :415:40, :421:40, :422:40, :423:40, :424:40, Mux.scala:81:{58,61}
-          dirty <= _GEN_31[victim][31:0];	// Cache.scala:90:24, :94:25, :419:19, Mux.scala:81:{58,61}
+          automatic logic [63:0]      _GEN_31;	// Cache.scala:421:40
+          automatic logic [3:0][63:0] _GEN_32;	// Mux.scala:81:{58,61}
+          _GEN_31 = {32'h0, ~dirty};	// Cache.scala:86:27, :90:24, :421:40
+          _GEN_32 = {{~(_GEN_31 | _dirty_T_76)}, {~(_GEN_31 | _dirty_T_70)}, {~(_GEN_31 | _dirty_T_64)},
+                                                                                {~(_GEN_31 | _dirty_T_58)}};	// Cache.scala:412:40, :413:40, :414:40, :415:40, :421:40, :422:40, :423:40, :424:40, Mux.scala:81:{58,61}
+          dirty <= _GEN_32[victim][31:0];	// Cache.scala:90:24, :94:25, :419:19, Mux.scala:81:{58,61}
         end
       end
       if (_T) begin	// Cache.scala:254:18
@@ -10775,3 +10777,5 @@ endmodule
     
 
 // ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
+
+
