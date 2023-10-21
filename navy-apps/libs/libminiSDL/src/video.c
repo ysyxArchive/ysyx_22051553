@@ -90,7 +90,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //å…¶ä
 
       }
       else{
-        
+        printf("use here\n");
         for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
           for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
             *((dst->pixels) + dst->w * i + j) = color;
