@@ -48,7 +48,7 @@ void SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcrect, SDL_Surface* dst, SDL_
     //     }
     // }
 
-    memcpy(dst->pixels, src->pixels, src->w*src->pitch*src->h);
+    memcpy(dst->pixels, src->pixels, src->w*src->h);
     return;
 }
 
