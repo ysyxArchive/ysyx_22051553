@@ -169,15 +169,15 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     int i = h;
     uint32_t * color_bundle = malloc(w * sizeof(uint32_t));
     int base = 0;
-    // while(h > 0){
-    //   for(int j = 0; j < w; j ++){
-        memcpy(color_bundle , (color + (uint64_t)(base_ptr)), 4);
-      // }
+    while(h > 0){
+      for(int j = 0; j < w; j ++){
+        memcpy(color_bundle , &color[base_ptr[j]], 4);
+      }
       memcpy(pixels + base, color_bundle, w * 4);
-      // base_ptr += s->w;
-      // base += w;
-    //   h -= 1;
-    // }
+      base_ptr += s->w;
+      base += w;
+      h -= 1;
+    }
 
     printf("get hree\n");
     free(color_bundle);
