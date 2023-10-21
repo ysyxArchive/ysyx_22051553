@@ -25,27 +25,31 @@ void SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcrect, SDL_Surface* dst, SDL_
     int copy_height = valid_src_rect.h;
 
 
-    for (int i = 0; i < copy_height; i++) {
-        for (int j = 0; j < copy_width; j++) {
-            int src_pixel_pos = (valid_src_rect.y + i) * src->w + valid_src_rect.x + j;
-            int dst_pixel_pos = (valid_dst_rect.y + i) * dst->w + valid_dst_rect.x + j;
 
-            switch (src->format->BitsPerPixel) {
-              case 8: {
-                  ((uint8_t*)dst->pixels)[dst_pixel_pos] = ((uint8_t*)src->pixels)[src_pixel_pos];
-                  break;
-              }
-              case 32: {
-                  ((uint32_t*)dst->pixels)[dst_pixel_pos] = ((uint32_t*)src->pixels)[src_pixel_pos];
-                  break;
-              }
-              default: {
-                  printf("Unsupported surface bit depth: %d\n", src->format->BitsPerPixel);
-                  return;
-              }
-            }
-        }
-    }
+    // for (int i = 0; i < copy_height; i++) {
+    //     for (int j = 0; j < copy_width; j++) {
+    //         int src_pixel_pos = (valid_src_rect.y + i) * src->w + valid_src_rect.x + j;
+    //         int dst_pixel_pos = (valid_dst_rect.y + i) * dst->w + valid_dst_rect.x + j;
+
+    //         switch (src->format->BitsPerPixel) {
+    //           case 8: {
+    //               ((uint8_t*)dst->pixels)[dst_pixel_pos] = ((uint8_t*)src->pixels)[src_pixel_pos];
+    //               break;
+    //           }
+    //           case 32: {
+    //               ((uint32_t*)dst->pixels)[dst_pixel_pos] = ((uint32_t*)src->pixels)[src_pixel_pos];
+    //               break;
+    //           }
+    //           default: {
+    //               printf("Unsupported surface bit depth: %d\n", src->format->BitsPerPixel);
+    //               return;
+    //           }
+    //         }
+    //     }
+    // }
+
+    memcpy(dst->pixels, src->pixels, src->w*src->pitch*src->h);
+    return;
 }
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其中，dstrect的x,y是基于Surface左上角的//Surface可以看成画布
