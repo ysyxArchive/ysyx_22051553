@@ -15,8 +15,6 @@ VSoc::VSoc(VerilatedContext* _vcontextp__, const char* _vcname__)
     , clock{vlSymsp->TOP.clock}
     , reset{vlSymsp->TOP.reset}
     , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
-    , __PVT__Soc__DOT__core__DOT__Icache{vlSymsp->TOP.__PVT__Soc__DOT__core__DOT__Icache}
-    , __PVT__Soc__DOT__core__DOT__Dcache{vlSymsp->TOP.__PVT__Soc__DOT__core__DOT__Dcache}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

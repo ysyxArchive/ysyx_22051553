@@ -12,12 +12,10 @@ LLVM_LIB := $(shell llvm-config --libs)
 build:
 	@-rm vsrc/*.v
 	@cp ../build/*.v vsrc/
-	@verilator -cc -trace vsrc/*.v -top-module Soc
+	@verilator -cc --x-assign fast --x-initial fast -O3 --noassert -trace vsrc/*.v -top-module Soc
 
 compile:
-	@verilator -cc -trace vsrc/*.v -CFLAGS "$(INCLUDE) $(LLVM_FLAGS)" -top-module Soc --exe $(SRCS) -LDFLAGS "-lreadline -lpcre $(LLVM_LIB) -lSDL2"
-build:
-#是需要在cflags里加include,而不是直接-Iinclude
+	@verilator -cc -trace vsrc/*.v -CFLAGS "$(INCLUDE) $(LLVM_FLAGS)" -top-module Soc --exe $(SRCS) -LDFLAGS "-lreadline -lpcre $(LLVM_LIB) -lSDL2" --x-assign fast --x-initial fast -O3 --noassert
 
 exe:
 	@make -C obj_dir/ -f $(Module).mk
