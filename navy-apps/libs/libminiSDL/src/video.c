@@ -171,11 +171,11 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     int base = 0;
     while(h > 0){
       for(int j = 0; j < w; j ++){
-        memcpy(color_bundle + j, color + (uint64_t)(base_ptr + j), 4);
+        memcpy(color_bundle + j, (color + (uint64_t)(base_ptr + j)), 4);
       }
       memcpy(pixels + base, color_bundle, w);
-      base_ptr += s->w;
-      base += w;
+      // base_ptr += s->w;
+      // base += w;
       h -= 1;
     }
 
