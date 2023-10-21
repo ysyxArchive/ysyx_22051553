@@ -48,13 +48,13 @@ void SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcrect, SDL_Surface* dst, SDL_
     //     }
     // }
 
-    memcpy(dst->pixels, src->pixels, src->w*src->h);
+    memcpy(dst->pixels, src->pixels, src->w*src->h);  //啊？？？？？？？
     return;
 }
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其中，dstrect的x,y是基于Surface左上角的//Surface可以看成画布
   assert(dst);                                                            //pal没有使用该函数
-
+  printf("use this\n");
   
   if(dst->format->BitsPerPixel == 32){
       if(dstrect == NULL){
