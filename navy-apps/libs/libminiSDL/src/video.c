@@ -105,6 +105,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //å…¶ä
           memset(dst->pixels + base + dst->w*5, (uint8_t)color, dst->w);
           memset(dst->pixels + base + dst->w*6, (uint8_t)color, dst->w);
           memset(dst->pixels + base + dst->w*7, (uint8_t)color, dst->w);
+          h_temp -= 8;
         }
         
 
