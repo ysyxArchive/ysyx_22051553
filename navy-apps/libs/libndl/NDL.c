@@ -24,12 +24,11 @@ static int screen_w = 0, screen_h = 0;
 static int disp_w = 0, disp_h = 0;
 
 
-
-
 uint32_t NDL_GetTicks() {  //1Tick->1ms
   
   static struct timeval timeval;
   int ret = gettimeofday(&timeval, NULL);
+  printf("value is %ld\n", ret);
   return timeval.tv_usec / 1000;
 }
 
