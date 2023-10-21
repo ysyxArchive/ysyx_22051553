@@ -158,51 +158,52 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     SDL_Color * color = s->format->palette->colors;
     uint8_t* src_ptr = base_ptr;
 
-    // for(int i = 0; i < h; i++) {
-    //     for(int j = 0; j < w; j++) {
-    //         *pixel_ptr = color[src_ptr[j]].val;
-    //         pixel_ptr++;
-    //     }
-    //     src_ptr += s->w;
+    for(int i = 0; i < h; i++) {
+        for(int j = 0; j < w; j++) {
+            pixel_ptr[j] = color[src_ptr[j]].val;
+            pixel_ptr += w;
+        }
+        src_ptr += s->w;
+    }
+
+    //反向优化
+    // int i = h;
+    // while(i > 8){
+    //   for(int j = 0; j < w; j++){
+    //     memcpy(pixel_ptr + j, &color[src_ptr[j]], 4); 
+    //     memcpy(pixel_ptr + j + w, &color[src_ptr[j+s->w]], 4); 
+    //     memcpy(pixel_ptr + j + w*2, &color[src_ptr[j+s->w*2]], 4); 
+    //     memcpy(pixel_ptr + j + w*3, &color[src_ptr[j+s->w*3]], 4); 
+    //     memcpy(pixel_ptr + j + w*4, &color[src_ptr[j+s->w*4]], 4); 
+    //     memcpy(pixel_ptr + j + w*5, &color[src_ptr[j+s->w*5]], 4); 
+    //     memcpy(pixel_ptr + j + w*6, &color[src_ptr[j+s->w*6]], 4); 
+    //     memcpy(pixel_ptr + j + w*7, &color[src_ptr[j+s->w*7]], 4); 
+    //   }
+    //   pixel_ptr += w * 8;
+    //   src_ptr += s->w *8;
+    //   i -= 8;
     // }
 
-    int i = h;
-    while(i > 8){
-      for(int j = 0; j < w; j++){
-        memcpy(pixel_ptr + j, &color[src_ptr[j]], 4); 
-        memcpy(pixel_ptr + j + w, &color[src_ptr[j+s->w]], 4); 
-        memcpy(pixel_ptr + j + w*2, &color[src_ptr[j+s->w*2]], 4); 
-        memcpy(pixel_ptr + j + w*3, &color[src_ptr[j+s->w*3]], 4); 
-        memcpy(pixel_ptr + j + w*4, &color[src_ptr[j+s->w*4]], 4); 
-        memcpy(pixel_ptr + j + w*5, &color[src_ptr[j+s->w*5]], 4); 
-        memcpy(pixel_ptr + j + w*6, &color[src_ptr[j+s->w*6]], 4); 
-        memcpy(pixel_ptr + j + w*7, &color[src_ptr[j+s->w*7]], 4); 
-      }
-      pixel_ptr += w * 8;
-      src_ptr += s->w *8;
-      i -= 8;
-    }
+    // while(i > 4){
+    //   for(int j = 0; j < w; j++){
+    //     memcpy(pixel_ptr + j, &color[src_ptr[j]], 4); 
+    //     memcpy(pixel_ptr + j + w, &color[src_ptr[j+s->w]], 4); 
+    //     memcpy(pixel_ptr + j + w*2, &color[src_ptr[j+s->w*2]], 4); 
+    //     memcpy(pixel_ptr + j + w*3, &color[src_ptr[j+s->w*3]], 4); 
+    //   }
+    //   pixel_ptr += w * 4;
+    //   src_ptr += s->w *4;
+    //   i -= 4;
+    // }
 
-    while(i > 4){
-      for(int j = 0; j < w; j++){
-        memcpy(pixel_ptr + j, &color[src_ptr[j]], 4); 
-        memcpy(pixel_ptr + j + w, &color[src_ptr[j+s->w]], 4); 
-        memcpy(pixel_ptr + j + w*2, &color[src_ptr[j+s->w*2]], 4); 
-        memcpy(pixel_ptr + j + w*3, &color[src_ptr[j+s->w*3]], 4); 
-      }
-      pixel_ptr += w * 4;
-      src_ptr += s->w *4;
-      i -= 4;
-    }
-
-    while(i > 0){
-      for(int j = 0; j < w; j++){
-        memcpy(pixel_ptr + j, &color[src_ptr[j]], 4); 
-      }
-      pixel_ptr += w;
-      src_ptr += s->w;
-      i -= 1;
-    }
+    // while(i > 0){
+    //   for(int j = 0; j < w; j++){
+    //     memcpy(pixel_ptr + j, &color[src_ptr[j]], 4); 
+    //   }
+    //   pixel_ptr += w;
+    //   src_ptr += s->w;
+    //   i -= 1;
+    // }
 
     // 浪费时间转换
     // uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
