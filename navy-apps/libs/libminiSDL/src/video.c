@@ -156,7 +156,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     uint32_t *pixel_ptr = pixels;
     uint8_t * base_ptr = (s->pixels) + x + y*s->w;
     SDL_Color * color = s->format->palette->colors;
-    // uint8_t* src_ptr = base_ptr;
+    uint8_t* src_ptr = base_ptr;
 
     // for(int i = 0; i < h; i++) {
     //     for(int j = 0; j < w; j++) {
@@ -167,23 +167,18 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     // }
 
     int i = h;
-    uint32_t * color_bundle = malloc(w * sizeof(uint32_t));
-    int base = 0;
-    while(h > 0){
-      for(int j = 0; j < w; j ++){
-        memcpy(color_bundle , &color[base_ptr[j]], 4);
+    while(i > 0){
+      
+      for(int j = 0; j < w; j++){
+        memcpy(pixel_ptr + j, &color[src_ptr[j]], 4);
+        
       }
-      memcpy(pixels + base, color_bundle, w * 4);
-      base_ptr += s->w;
-      base += w;
-      h -= 1;
+
+      i -= 1;
     }
 
     printf("get hree\n");
-    free(color_bundle);
-
-
-
+    
     // 浪费时间转换
     // uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
     // ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);  //整体性能比单个性能好
