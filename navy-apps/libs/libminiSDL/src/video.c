@@ -89,47 +89,45 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其�
       }
       else{
         
-        for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
-          for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
-            *((dst->pixels) + dst->w * i + j) = color;
-          }
+        // for(int i = dstrect->y; i < dstrect->y + dstrect->h; i++){
+        //   for(int j = dstrect->x; j < dstrect->x + dstrect->w; j++){
+        //     *((dst->pixels) + dst->w * i + j) = color;
+        //   }
+        // }
+        uint16_t h_temp = dstrect->h;
+        int base = dstrect->x + dstrect->y * dst->w;
+        while(h_temp > 8){
+          memset(dst->pixels + base, (uint8_t)color, dstrect->w);
+          memset(dst->pixels + base + dst->w, (uint8_t)color, dstrect->w);
+          memset(dst->pixels + base + dst->w * 2, (uint8_t)color, dstrect->w);
+          memset(dst->pixels + base + dst->w * 3, (uint8_t)color, dstrect->w);
+          memset(dst->pixels + base + dst->w * 4, (uint8_t)color, dstrect->w);
+          memset(dst->pixels + base + dst->w * 5, (uint8_t)color, dstrect->w);
+          memset(dst->pixels + base + dst->w * 6, (uint8_t)color, dstrect->w);
+          memset(dst->pixels + base + dst->w * 7, (uint8_t)color, dstrect->w);
+          base = base + dst->w * 8;
+          h_temp -= 8;
         }
-        // uint16_t h_temp = dstrect->h;
-        // int base = dstrect->x + dstrect->y * dst->w;
-        // while(h_temp > 8){
-        //   memset(dst->pixels + base, (uint8_t)color, dstrect->w);
-        //   memset(dst->pixels + base + dst->w, (uint8_t)color, dstrect->w);
-        //   memset(dst->pixels + base + dst->w * 2, (uint8_t)color, dstrect->w);
-        //   memset(dst->pixels + base + dst->w * 3, (uint8_t)color, dstrect->w);
-        //   memset(dst->pixels + base + dst->w * 4, (uint8_t)color, dstrect->w);
-        //   memset(dst->pixels + base + dst->w * 5, (uint8_t)color, dstrect->w);
-        //   memset(dst->pixels + base + dst->w * 6, (uint8_t)color, dstrect->w);
-        //   memset(dst->pixels + base + dst->w * 7, (uint8_t)color, dstrect->w);
-        //   base = base + dst->w * 8;
-        //   h_temp -= 8;
-        // }
         
         
-        // while(h_temp > 4){
-        //   memset(dst->pixels + base, (uint8_t)color, dstrect->w);
-        //   memset(dst->pixels + base + dst->w, (uint8_t)color, dstrect->w);
-        //   memset(dst->pixels + base + dst->w * 2, (uint8_t)color, dstrect->w);
-        //   memset(dst->pixels + base + dst->w * 3, (uint8_t)color, dstrect->w);
-        //   base = base + dst->w * 4;
-        //   h_temp -= 4;
-        // }
+        while(h_temp > 4){
+          memset(dst->pixels + base, (uint8_t)color, dstrect->w);
+          memset(dst->pixels + base + dst->w, (uint8_t)color, dstrect->w);
+          memset(dst->pixels + base + dst->w * 2, (uint8_t)color, dstrect->w);
+          memset(dst->pixels + base + dst->w * 3, (uint8_t)color, dstrect->w);
+          base = base + dst->w * 4;
+          h_temp -= 4;
+        }
         
-        // while(h_temp > 0){
-        //   memset(dst->pixels + base, (uint8_t)color, dstrect->w);
-        //   base = base + dst->w;
-        //   h_temp -= 1;
-        // }
+        while(h_temp > 0){
+          memset(dst->pixels + base, (uint8_t)color, dstrect->w);
+          base = base + dst->w;
+          h_temp -= 1;
+        }
 
       }
     
   }
-
-
 
 
   return ;
@@ -156,23 +154,33 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
 
     uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
     uint32_t *pixel_ptr = pixels;
-    uint8_t * base_ptr = (s->pixels) + x + y*s->w;
+    uint64_t  base_ptr = (uint64_t)((s->pixels) + x + y*s->w);
     SDL_Color * color = s->format->palette->colors;
-    uint8_t* src_ptr = base_ptr;
+    
 
-    for(int i = 0; i < h; i++) {
-        for(int j = 0; j < w; j++) {
-            *pixel_ptr = color[src_ptr[j]].val;
-            pixel_ptr++;
-        }
-        src_ptr += s->w;
+
+    int i = h;
+    while(h > 0){
+      memcpy(pixel_ptr, color + base_ptr, w);
+      base_ptr += s->w;
+      i -= 1;
     }
+
+
+    // for(int i = 0; i < h; i++) {
+    //     for(int j = 0; j < w; j++) {
+    //         *pixel_ptr = color[src_ptr[j]].val;
+    //         pixel_ptr++;
+    //     }
+    //     src_ptr += s->w;
+    // }
 
     // 浪费时间转换
     // uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
     // ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);  //整体性能比单个性能好
     // NDL_DrawRect(changerb_pixels, x, y, w, h);
-    printf("in rect\n");
+
+
     NDL_DrawRect(pixels, x, y, w, h);
     printf("out update\n");
     free(pixels);
