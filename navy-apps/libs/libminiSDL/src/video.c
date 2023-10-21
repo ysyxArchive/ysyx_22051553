@@ -48,13 +48,12 @@ void SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcrect, SDL_Surface* dst, SDL_
     //     }
     // }
 
-    memcpy(dst->pixels, src->pixels, src->w*src->h);  //啊？？？？？？？
+    memcpy(dst->pixels, src->pixels, src->w*src->h);  //啊？？？？？？？  仅针对pal
     return;
 }
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其中，dstrect的x,y是基于Surface左上角的//Surface可以看成画布
-  assert(dst);                                                            //pal没有使用该函数
-  printf("use this\n");
+  assert(dst);                                                            
   
   if(dst->format->BitsPerPixel == 32){
       if(dstrect == NULL){
@@ -80,11 +79,15 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其�
         // for(int i = 0; i < (dst->w * dst->h); i ++){        //i以像素点为单位，但是piexl是uint_8*类型
         //   ((uint32_t *)(dst->pixels))[i] = color;        
         // }                         
-        for(int i = 0; i < (dst->h); i ++){                          
-          for(int j = 0; j < (dst->w); j ++){
-            ((dst->pixels))[j+i*(dst->w)] = color;   
-          }                                           
-        }
+        // for(int i = 0; i < (dst->h); i ++){                          
+        //   for(int j = 0; j < (dst->w); j ++){
+        //     ((dst->pixels))[j+i*(dst->w)] = color;   
+        //   }                                           
+        // }
+
+        printf("use here\n");
+        memset(dst->pixels, (uint8_t)color, dst->h * dst->w);
+
       }
       else{
         
