@@ -79,12 +79,12 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其�
         // for(int i = 0; i < (dst->w * dst->h); i ++){        //i以像素点为单位，但是piexl是uint_8*类型
         //   ((uint32_t *)(dst->pixels))[i] = color;        
         // }                         
-        // for(int i = 0; i < (dst->h); i ++){                          
-        //   for(int j = 0; j < (dst->w); j ++){
-        //     ((dst->pixels))[j+i*(dst->w)] = color;   
-        //   }                                           
-        // }
-        memset(dst->pixels, (uint8_t)color, dst->h * dst->w);
+        for(int i = 0; i < (dst->h); i ++){                          
+          for(int j = 0; j < (dst->w); j ++){
+            ((dst->pixels))[j+i*(dst->w)] = color;   
+          }                                           
+        }
+        // memset(dst->pixels, (uint8_t)color, dst->h * dst->w);
 
       }
       else{
@@ -96,9 +96,9 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {  //其�
         // }
         uint16_t h_temp = dstrect->h;
         uint16_t base = dstrect->x + dstrect->y * dst->w;
-        while(h_temp > 0){
+        while(h_temp >= 0){
           memset(dst->pixels + base, (uint8_t)color, dstrect->w);
-          base += dstrect->w;
+          base += dst->w;
           h_temp -= 1;
         }
         // while(h_temp > 8){
