@@ -376,7 +376,8 @@ long long pmem_read(const svLogicVecVal* raddr){
   if( ((unsigned long)raddr[0].aval) == RTC_BASE){
         struct timespec now;
         clock_gettime(CLOCK_MONOTONIC_COARSE, &now);
-        rtc_time = now.tv_sec * 1000000 + now.tv_nsec / 1000;
+        // rtc_time = now.tv_sec * 1000000 + now.tv_nsec / 1000;
+        rtc_time = now.tv_sec * 1000;
 
         return  (long long) (rtc_time);
   }

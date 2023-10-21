@@ -66,19 +66,24 @@ static void sys_brk(Context *c){
 static void sys_gettimeofday(Context *c){
   
   __uint64_t time = 0;
-  time = io_read(AM_TIMER_UPTIME).us;
+  time = io_read(AM_TIMER_UPTIME).ms;
 
   struct timeval *tv = (void*)(c->GPR2);
-  struct timezone *tz = (void*)(c->GPR3);
+  // struct timezone *tz = (void*)(c->GPR3);
 
   if(tv != NULL){
-    tv->tv_sec = time/(1000000);
-    tv->tv_usec = time%(1000000);
+    tv->tv_sec = time;   //实际上是ms
   }
 
-  if(tz != NULL){
 
-  }
+  // if(tv != NULL){
+  //   tv->tv_sec = time/(1000000);
+  //   tv->tv_usec = time%(1000000);
+  // }
+
+  // if(tz != NULL){
+
+  // }
 
   c->GPRx = 0;
 
