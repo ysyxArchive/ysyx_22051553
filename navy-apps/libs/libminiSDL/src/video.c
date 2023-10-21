@@ -160,25 +160,12 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
 
     for(int i = 0; i < h; i++) {
         for(int j = 0; j < w; j++) {
-            *pixel_ptr = (uint32_t)color[src_ptr[j]];
+            *pixel_ptr = color[src_ptr[j]].val;
             pixel_ptr++;
         }
         src_ptr += s->w;
     }
 
-    // int i = h;
-    // while(i > 0){
-      
-    //   for(int j = 0; j < w; j++){
-    //     memcpy(pixel_ptr + j, &color[src_ptr[j]], 4); 
-    //   }
-    //   src_ptr += s->w;
-
-    //   i -= 1;
-    // }
-
-    printf("get hree\n");
-    
     // 浪费时间转换
     // uint32_t *changerb_pixels = malloc(w*h*sizeof(uint32_t));  //转换红蓝
     // ConvertPixelsARGB_ABGR(changerb_pixels, pixels, w*h);  //整体性能比单个性能好
@@ -295,7 +282,7 @@ void SDL_FreeSurface(SDL_Surface *s) { //不需要优化
   }
 }
 
-SDL_Surface* SDL_SetVideoMode(int width, int height, int bpp, uint32_t flags) { //不需要优化
+SDL_Surface* SDL_SetVideoMode(int width, int height, int bpp, uint32_t flags) {
   if (flags & SDL_HWSURFACE) NDL_OpenCanvas(&width, &height);
   return SDL_CreateRGBSurface(flags, width, height, bpp,
       DEFAULT_RMASK, DEFAULT_GMASK, DEFAULT_BMASK, DEFAULT_AMASK);
