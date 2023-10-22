@@ -152,19 +152,35 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     }
 
 
-    uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
-    uint32_t *pixel_ptr = pixels;
-    uint8_t * base_ptr = (s->pixels) + x + y*s->w;
-    SDL_Color * color = s->format->palette->colors;
-    uint8_t* src_ptr = base_ptr;
+    // uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
+    // uint32_t *pixel_ptr = pixels;
+    // uint8_t * base_ptr = (s->pixels) + x + y*s->w;
+    // SDL_Color * color = s->format->palette->colors;
+    // uint8_t* src_ptr = base_ptr;
 
+    // for(int i = 0; i < h; i++) {
+    //     for(int j = 0; j < w; j++) {
+    //         *pixel_ptr = color[src_ptr[j]].val;
+    //         pixel_ptr++;
+    //     }
+    //     src_ptr += s->w;
+    // }
+
+    uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
+    // Create a color lookup table to speed up pixel conversion.
+    uint32_t colorLookup[256];
+
+    memcpy(colorLookup, s->format->palette->colors, s->format->palette->ncolors * sizeof(uint32_t));
+    // Calculate base pointer only once.
+    uint8_t * base_ptr = (s->pixels) + x + y*s->w;
     for(int i = 0; i < h; i++) {
-        for(int j = 0; j < w; j++) {
-            pixel_ptr[j] = color[src_ptr[j]].val;
-            pixel_ptr += w;
-        }
-        src_ptr += s->w;
+      uint32_t *pixel_ptr = pixels + i * w;
+      uint8_t* src_ptr = base_ptr + i * s->w;
+      for(int j = 0; j < w; j++) {
+        *pixel_ptr++ = colorLookup[src_ptr[j]];
+      }
     }
+
 
     //反向优化
     // int i = h;
