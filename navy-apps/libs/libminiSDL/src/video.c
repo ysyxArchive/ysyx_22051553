@@ -169,11 +169,12 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     uint32_t *pixels = malloc(w*h*sizeof(uint32_t));
     // Create a color lookup table to speed up pixel conversion.
     uint32_t color_num = s->format->palette->ncolors;
-    uint32_t *colorLookup_base = malloc(color_num * sizeof(uint32_t) + 128);
-    uint32_t *colorLookup = colorLookup_base;
-    while((uint64_t)colorLookup & 0x80 != 0){
-      (uint64_t)colorLookup ++;
-    }
+    // uint32_t *colorLookup_base = malloc(color_num * sizeof(uint32_t) + 128);
+    // uint32_t *colorLookup = colorLookup_base;
+    // while((uint64_t)colorLookup & 0x80 != 0){  //128字节对齐
+    //   (uint64_t)colorLookup ++;
+    // }
+    uint32_t colorLookup[color_num] __attribute__((aligned(128)));
 
     memcpy(colorLookup, s->format->palette->colors, color_num * sizeof(uint32_t));
     // Calculate base pointer only once.
