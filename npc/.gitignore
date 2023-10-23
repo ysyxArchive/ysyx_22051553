@@ -16,7 +16,6 @@
 !README.md
 build/
 *.obj_dir/*
-!file
 
 # mill
 out/

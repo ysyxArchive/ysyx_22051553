@@ -350,10 +350,10 @@ void update_debuginfo(
   #endif
 
   #ifdef VCD_ON
-  if((unsigned long)pc[0].aval == 0x83013ab0){
-    printf("begin vcd\n");
-    vcd_flag = 1;
-  }
+//   if((unsigned long)pc[0].aval == 0x83013ab0){
+//     printf("begin vcd\n");
+//     vcd_flag = 1;
+//   }
   #endif
 
 
@@ -866,8 +866,6 @@ static int cmd_s(char *args){
 
 
       event_update();
-      // printf("time is %ld\n", get_time());
-
       n --;
     }
   }
