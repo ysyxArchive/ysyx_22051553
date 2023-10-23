@@ -13,7 +13,9 @@ SECTIONS {
   .rodata : {
     *(.rodata*)
   }
-  .data : {
+
+  /* 对齐CacheLine */
+  .data ALIGN(0x80): {
     *(.data)
   } : data
   edata = .;
@@ -25,9 +27,10 @@ SECTIONS {
     *(.scommon)
   }
   _stack_top = ALIGN(0x1000);
+  /*. = _stack_top + 0x8000;*/
   . = _stack_top + 0x8000;
   _stack_pointer = .;
   end = .;
-  _end = .;
+  _end = ALIGN(0x08);
   _heap_start = ALIGN(0x1000);
 }

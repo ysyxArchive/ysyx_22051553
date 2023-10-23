@@ -3,13 +3,40 @@
 
 #include <stdint.h>
 
+//系统调用号
+enum {                                
+  SYS_exit,
+  SYS_yield,
+  SYS_open,
+  SYS_read,
+  SYS_write,
+  SYS_kill,
+  SYS_getpid,
+  SYS_close,
+  SYS_lseek,
+  SYS_brk,
+  SYS_fstat,
+  SYS_time,
+  SYS_signal,
+  SYS_execve,
+  SYS_fork,
+  SYS_link,
+  SYS_unlink,
+  SYS_wait,
+  SYS_times,
+  SYS_gettimeofday
+};
+
+
 static inline uint8_t  inb(uintptr_t addr) { return *(volatile uint8_t  *)addr; }
 static inline uint16_t inw(uintptr_t addr) { return *(volatile uint16_t *)addr; }
 static inline uint32_t inl(uintptr_t addr) { return *(volatile uint32_t *)addr; }
+static inline uint64_t ind(uintptr_t addr) { return *(volatile uint64_t *)addr; } //增加
 
 static inline void outb(uintptr_t addr, uint8_t  data) { *(volatile uint8_t  *)addr = data; }
 static inline void outw(uintptr_t addr, uint16_t data) { *(volatile uint16_t *)addr = data; }
 static inline void outl(uintptr_t addr, uint32_t data) { *(volatile uint32_t *)addr = data; }
+static inline void outd(uintptr_t addr, uint64_t data) { *(volatile uint64_t *)addr = data; } //增加
 
 #define PTE_V 0x01
 #define PTE_R 0x02
@@ -19,7 +46,6 @@ static inline void outl(uintptr_t addr, uint32_t data) { *(volatile uint32_t *)a
 #define PTE_A 0x40
 #define PTE_D 0x80
 
-#define CONFIG_ETRACE
 
 
 enum { MODE_U, MODE_S, MODE_M = 3 };

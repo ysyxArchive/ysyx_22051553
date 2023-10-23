@@ -8,9 +8,40 @@
 char hex_char[16] = {'0', '1', '2', '3', '4', '5', 
 '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
+
+
+
 void uint2strx(unsigned int num, char* str){
   int length = 0;
   unsigned int temp = num;
+
+  while(temp){
+    length ++;
+    temp /= 16;
+  }
+
+  if(num == 0){
+    str[0] = '0';
+    str[1] = '\0';
+    return ;
+  }
+
+  temp = num;
+  
+  str[length] = '\0';
+  length --;
+  while(length >= 0){
+    str[length] = hex_char[temp%16];
+    temp /= 16;
+    length --;
+  }
+
+  return ;
+}
+
+void ulint2strx(unsigned long int num, char* str){
+  int length = 0;
+  unsigned long int temp = num;
 
   while(temp){
     length ++;
@@ -130,8 +161,15 @@ int printf(const char *fmt, ...) {
       total ++;
     }
     else{
-      char str[2000];
-      while(in[fmt_off+1] != 's' && in[fmt_off+1] != 'd' && in[fmt_off+1] != 'u' && in[fmt_off+1] != 'x'){  //若有其他选项，会报错
+      ctrl_off = 0;
+      for(int i = 0; i < 10; i ++){
+        control[i] = '\0';
+      }
+
+      char str[1500];
+      
+      while(in[fmt_off+1] != 's' && in[fmt_off+1] != 'd' && in[fmt_off+1] != 'u' 
+      && in[fmt_off+1] != 'x' && in[fmt_off+1] != 'p' && in[fmt_off+1] != 'c'){  //若有其他选项，会报错
         control[ctrl_off] = in[fmt_off+1];
         ctrl_off ++;
         fmt_off++;
@@ -167,7 +205,7 @@ int printf(const char *fmt, ...) {
               }
             }
             else{
-              while(len > 1){
+              while(len > 0){
                 maxvalue *= 10;
                 len --;
               }
@@ -202,7 +240,7 @@ int printf(const char *fmt, ...) {
               }
             }
             else{
-              while(len > 1){
+              while(len > 0){
                 maxvalue *= 16;
                 len --;
               }
@@ -236,7 +274,7 @@ int printf(const char *fmt, ...) {
               }
             }
             else{
-              while(len > 1){
+              while(len > 0){
                 maxvalue *= 10;
                 len --;
               }
@@ -255,6 +293,54 @@ int printf(const char *fmt, ...) {
           }
           fmt_off+=2;
           partial_off=0;
+          break;
+
+          case 'p':        //unsigned long int / void*
+          unsigned long int p_type = va_arg(valist,unsigned long int);
+          ulint2strx(p_type, str);
+
+          putch('0');
+          putch('x');
+
+          
+          if(control[0] == '0'){   //%02d
+            int len = control[1] - 48;
+            int maxvalue = 1;
+            if(p_type == 0){
+              while(len > 0){
+                putch('0');
+                len --;  
+              }
+            }
+            else{
+              while(len > 0){
+                maxvalue *= 10;
+                len --;
+              }
+            
+              for(int v = p_type; v < maxvalue; v*=10){
+                putch('0');
+              }
+            }
+          }
+
+
+          while(str[partial_off] != '\0'){
+            putch(str[partial_off]);
+            partial_off ++;
+            total ++;
+          }
+          fmt_off+=2;
+          partial_off=0;
+
+ 
+          break;
+        
+        case 'c':
+          char ch = va_arg(valist,int);
+          putch(ch);
+          total ++;
+          fmt_off+=2;
           break;
 
           
@@ -289,7 +375,7 @@ int sprintf(char *out, const char *fmt, ...) {
       fmt_off++;
     }
     else if(in[fmt_off] == '%'){
-      char str[20] = {};
+      char str[50] = {};
       switch(in[fmt_off+1]){
         case 's':
           strcpy(str,(const char*)(va_arg(valist,const char*)));
@@ -322,7 +408,68 @@ int sprintf(char *out, const char *fmt, ...) {
 }
 
 int snprintf(char *out, size_t n, const char *fmt, ...) {
-  panic("Not implemented");
+  const char *in = fmt;
+
+  va_list valist;
+  va_start(valist,fmt);
+
+  
+  int out_off = 0;
+  int partial_off = 0;
+  int fmt_off = 0;
+
+
+  while(in[fmt_off] != '\0' && (out_off < n)){
+    if(in[fmt_off] != '%'){
+      out[out_off] = in[fmt_off];
+      out_off++;
+      fmt_off++;
+    }
+    else if(in[fmt_off] == '%'){
+      char str[100] = {};
+      switch(in[fmt_off+1]){
+        case 's':
+          strcpy(str,(const char*)(va_arg(valist,const char*)));
+          while(str[partial_off] != '\0'){
+            if(out_off >= n)
+              break;
+
+            out[out_off] = str[partial_off];
+            out_off ++;
+            partial_off ++;
+          }
+          fmt_off+=2;
+          partial_off=0;
+          break;
+        case 'd':
+          int2str(va_arg(valist,int), str);
+          while(str[partial_off] != '\0'){
+            if(out_off >= n)
+              break;
+
+            out[out_off] = str[partial_off];
+            out_off ++;
+            partial_off ++;
+
+          }
+          fmt_off+=2;
+          partial_off=0;
+          break;
+        case 'c':
+          char ch = va_arg(valist,int);
+
+          out[out_off] = ch;
+          out_off ++;
+
+          fmt_off+=2;
+          break;
+        default:assert(0);break;
+      }
+    }
+  }
+  out[out_off] = '\0';
+
+  return out_off;
 }
 
 int vsnprintf(char *out, size_t n, const char *fmt, va_list ap) {

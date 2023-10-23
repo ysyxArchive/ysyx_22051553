@@ -40,14 +40,23 @@ paddr_t host_to_guest(uint8_t *haddr) { return haddr - pmem + CONFIG_MBASE; }
 static word_t pmem_read(paddr_t addr, int len) {
   #ifdef CONFIG_MTRACE
     Log("read mem at " FMT_PADDR " for %d bytes",addr, len);
+    
   #endif
   word_t ret = host_read(guest_to_host(addr), len);  //实际是读pmem[n]
+  // printf("ret data is 0x%lx\n", ret);
   return ret;
 }
 
 static void pmem_write(paddr_t addr, int len, word_t data) {
+  // printf("data is 0x%x\n", *(uint8_t*)guest_to_host(0x83153e62));
+  // if(addr >= 0x83153e00 && addr <= 0x83153e80){
+  //   Log("write mem at " FMT_PADDR " for %d bytes",addr, len);
+  //   printf("data is 0x%x\n", *(uint8_t*)guest_to_host(0x83153e62));
+  // }
+    
   #ifdef CONFIG_MTRACE
     Log("write mem at " FMT_PADDR " for %d bytes",addr, len);
+    // printf("write data is 0x%lx\n", data);
   #endif
   host_write(guest_to_host(addr), len, data);   //写pmem[n]
 }
@@ -63,16 +72,19 @@ void init_mem() {
   assert(pmem);
 #endif
 #ifdef CONFIG_MEM_RANDOM
-  uint32_t *p = (uint32_t *)pmem;
-  int i;
-  for (i = 0; i < (int) (CONFIG_MSIZE / sizeof(p[0])); i ++) {
-    p[i] = rand();
-  }
+  // uint32_t *p = (uint32_t *)pmem;
+  // int i;
+  // for (i = 0; i < (int) (CONFIG_MSIZE / sizeof(p[0])); i ++) {
+  //   p[i] = rand();
+  // }
 #endif
   Log("physical memory area [" FMT_PADDR ", " FMT_PADDR "]", PMEM_LEFT, PMEM_RIGHT);
 }
 
 word_t paddr_read(paddr_t addr, int len) {
+  // if(addr >= 0x80299480 && addr < 0x80299500){
+  //   printf("addr is 0x%x, len is %d\n", addr, len);
+  // }
   if (likely(in_pmem(addr))) return pmem_read(addr, len);
   IFDEF(CONFIG_DEVICE, return mmio_read(addr, len));
   out_of_bound(addr);
@@ -80,7 +92,17 @@ word_t paddr_read(paddr_t addr, int len) {
 }
 
 void paddr_write(paddr_t addr, int len, word_t data) {
-  if (likely(in_pmem(addr))) { pmem_write(addr, len, data); return; }
+
+  static int flag = 1;
+
+  if (likely(in_pmem(addr))) { pmem_write(addr, len, data); 
+    if( *(uint16_t *)guest_to_host(0x802994ee) == 0x0d11 && flag == 1){
+    printf("pc is 0x%lx\n", cpu.pc);
+    printf("addr is 0x%x, data is 0x%lx, len is %d\n", addr, data, len);
+    flag = 0;
+  }
+  
+  return; }
   IFDEF(CONFIG_DEVICE, mmio_write(addr, len, data); return);
   out_of_bound(addr);
 }

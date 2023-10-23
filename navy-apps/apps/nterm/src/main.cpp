@@ -21,6 +21,8 @@ int main(int argc, char *argv[]) {
 
   term = new Terminal(W, H);
 
+
+  setenv("PATH", "/bin", 0);
   if (argc < 2) { builtin_sh_run(); }
   else { extern_app_run(argv[1]); }
 
@@ -43,6 +45,8 @@ void refresh_terminal() {
         draw_ch(i * font->w, j * font->h, term->getch(i, j), term->foreground(i, j), term->background(i, j));
         needsync = 1;
       }
+
+      
   term->clear();
 
   static uint32_t last = 0;
@@ -58,6 +62,7 @@ void refresh_terminal() {
       last = now;
     }
   }
+  
 }
 
 #define ENTRY(KEYNAME, NOSHIFT, SHIFT) { SDLK_##KEYNAME, #KEYNAME, NOSHIFT, SHIFT }
@@ -119,7 +124,7 @@ static const struct {
   ENTRY(Z,            'z',  'Z'),
 };
 
-char handle_key(const char *buf) {
+char handle_key(const char *buf) {   //将"LSHIFT"映射到SDL的键值中
   char key[32];
   static int shift = 0;
   sscanf(buf + 2, "%s", key);

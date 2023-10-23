@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <SDL_bmp.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 
 #define W 400
@@ -12,7 +13,7 @@
 //   gg - first page
 
 // number of slides
-const int N = 10;
+const int N = 4;
 // slides path pattern (starts from 0)
 const char *path = "/share/slides/slides-%d.bmp";
 
@@ -20,13 +21,17 @@ static SDL_Surface *slide = NULL;
 static int cur = 0;
 
 void render() {
+  
   if (slide) {
     SDL_FreeSurface(slide);
   }
   char fname[256];
   sprintf(fname, path, cur);
+  
   slide = SDL_LoadBMP(fname);
   assert(slide);
+  // SDL_UpdateRect(slide, 0, 0, slide->w, slide->h);  //修改 原来是SDL_UpdateRect(slide, 0, 0, 0, 0);
+  printf("time5\n");
   SDL_UpdateRect(slide, 0, 0, 0, 0);
 }
 
@@ -49,13 +54,10 @@ int main() {
   SDL_Surface *screen = SDL_SetVideoMode(W, H, 32, SDL_HWSURFACE);
 
   int rep = 0, g = 0;
-
   render();
-
   while (1) {
     SDL_Event e;
     SDL_WaitEvent(&e);
-
     if (e.type == SDL_KEYDOWN) {
       switch(e.key.keysym.sym) {
         case SDLK_0: rep = rep * 10 + 0; break;
@@ -78,6 +80,8 @@ int main() {
             prev(100000);
             rep = 0; g = 0;
           }
+          break;
+        case SDLK_Q: exit(0);
           break;
       }
     }

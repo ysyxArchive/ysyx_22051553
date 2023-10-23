@@ -16,6 +16,29 @@ size_t ramdisk_read(void *buf, size_t offset, size_t len) {
   return len;
 }
 
+// size_t ramdisk_alignread(void *buf, size_t offset, size_t len) { //用不上了
+//   assert(offset + len <= RAMDISK_SIZE);
+//   size_t base_addr = (size_t)(&ramdisk_start + offset);
+
+//   // printf("base addr is 0x%lx\n", base_addr);
+//   unsigned int append_head = base_addr & 0x7;
+
+//   if(append_head != 0){
+//     uint64_t mask = (1ULL << (append_head * 8)) - 1;
+//     uint64_t first_word = ((*((uint64_t*)base_addr)) & mask) << (append_head*8);
+//     // printf("first_word is 0x%x\n", first_word);
+
+//     memcpy(buf, &first_word, 8);
+//     size_t remain_words = (base_addr - (base_addr & 0x7)) + 8;
+//     // printf("off and src addr is 0x%x\n", remain_words);
+//     memcpy(buf, (void*)(remain_words), len - (8-append_head));
+//   }else{
+//     memcpy(buf, (void*)(base_addr), len);
+//   }
+  
+//   return len;
+// }
+
 /* write `len' bytes starting from `buf' into the `offset' of ramdisk */
 size_t ramdisk_write(const void *buf, size_t offset, size_t len) {
   assert(offset + len <= RAMDISK_SIZE);

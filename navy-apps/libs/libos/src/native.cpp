@@ -1,3 +1,4 @@
+
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif
@@ -12,6 +13,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <SDL2/SDL.h>
+//native 优先使用<SDL2/SDL.h>,如果找不到，再使用minisdl
 #include <sys/mman.h>
 #include <sys/ioctl.h>
 
@@ -38,16 +40,22 @@ static SDL_Texture *texture = NULL;
 static int dummy_fd = -1;
 static int dispinfo_fd = -1;
 static int fb_memfd = -1;
+//--
+static int fbsync_memfd = -1;
 static int evt_fd = -1;
 static int sb_fifo[2] = {-1, -1};
 static int sbctl_fd = -1;
 static uint32_t *fb = NULL;
 static char fsimg_path[512] = "";
 
+
 static inline void get_fsimg_path(char *newpath, const char *path) {
   sprintf(newpath, "%s%s", fsimg_path, path);
 }
 
+
+
+//仙剑使用SDL_SCANCODE_UP等时，使用的是该值
 #define _KEYS(_) \
   _(ESCAPE) _(F1) _(F2) _(F3) _(F4) _(F5) _(F6) _(F7) _(F8) _(F9) _(F10) _(F11) _(F12) \
   _(GRAVE) _(1) _(2) _(3) _(4) _(5) _(6) _(7) _(8) _(9) _(0) _(MINUS) _(EQUALS) _(BACKSPACE) \
@@ -113,10 +121,15 @@ static void open_display() {
 #else
   SDL_CreateWindowAndRenderer(disp_w * 2, disp_h * 2, 0, &window, &renderer);
 #endif
+
   SDL_SetWindowTitle(window, "Simulated Nanos Application");
   SDL_CreateThread(event_thread, "event thread", nullptr);
   SDL_AddTimer(1000 / FPS, timer_handler, NULL);
   texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STATIC, disp_w, disp_h);
+  //---
+  fbsync_memfd = memfd_create("fb_sync", 0);
+  assert(fbsync_memfd != -1);
+
 
   fb_memfd = memfd_create("fb", 0);
   assert(fb_memfd != -1);
@@ -124,7 +137,13 @@ static void open_display() {
   assert(ret == 0);
   fb = (uint32_t *)mmap(NULL, FB_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fb_memfd, 0);
   assert(fb != (void *)-1);
-  memset(fb, 0, FB_SIZE);
+  // memset(fb, 0, FB_SIZE);  //填充黑色
+  for(int i = 0; i < FB_SIZE / 4; i++){  //填充白色
+    // memset(fb + i*4, 0xff, 4);
+    // memset(fb + i*4 + 3, 0x00, 1); //注意类型
+    memset((uint8_t*)fb + i*4, 0xff, 4);
+    memset((uint8_t*)fb + i*4 + 3, 0x00, 1); //注意类型
+  }
   lseek(fb_memfd, 0, SEEK_SET);
 }
 
@@ -143,7 +162,7 @@ static void open_audio() {
 static const char* redirect_path(char *newpath, const char *path) {
   get_fsimg_path(newpath, path);
   if (0 == access(newpath, 0)) {
-    fprintf(stderr, "Redirecting file open: %s -> %s\n", path, newpath);
+    // fprintf(stderr, "Redirecting file open: %s -> %s\n", path, newpath);
     return newpath;
   }
   return path;
@@ -175,6 +194,8 @@ int open(const char *path, int flags, ...) {
     return sb_fifo[1];
   } else if (strcmp(path, "/dev/sbctl") == 0) {
     return sbctl_fd;
+  } else if (strcmp(path, "/dev/fb_sync") == 0) {
+    return fbsync_memfd;
   } else {
     char newpath[512];
     return glibc_open(redirect_path(newpath, path), flags);
@@ -182,14 +203,17 @@ int open(const char *path, int flags, ...) {
 }
 
 ssize_t read(int fd, void *buf, size_t count) {
+
+
   if (fd == dispinfo_fd) {
     return snprintf((char *)buf, count, "WIDTH: %d\nHEIGHT: %d\n", disp_w, disp_h);
   } else if (fd == evt_fd) {
+
     int has_key = 0;
     SDL_Event ev = {};
     SDL_LockMutex(key_queue_lock);
     if (key_f != key_r) {
-      ev = key_queue[key_f];
+      ev = key_queue[key_f];  //出队
       key_f = (key_f + 1) % KEY_QUEUE_LEN;
       has_key = 1;
     }
@@ -202,8 +226,18 @@ ssize_t read(int fd, void *buf, size_t count) {
 
       const char *name = NULL;
       _KEYS(COND);
-      if (name) return snprintf((char *)buf, count, "k%c %s\n", keydown ? 'd' : 'u', name);
+      if (name) {
+        int n = snprintf((char *)buf, count, "k%c %s\n", keydown ? 'd' : 'u', name); 
+        return n;
+      }
     }
+
+    // //---------自加
+    // if(mmap_flag == 1){
+    //   mmap_flag = 0;
+    //   return snprintf((char *)buf, count, "%s", "mmap ok\n") - 1; //返回不包含\n的长度
+    // }
+    
     return 0;
   } else if (fd == sbctl_fd) {
     // return the free space of sb_fifo
@@ -212,10 +246,12 @@ ssize_t read(int fd, void *buf, size_t count) {
     int free = pipe_size - used;
     return snprintf((char *)buf, count, "%d", free);
   }
+
   return glibc_read(fd, buf, count);
 }
 
 ssize_t write(int fd, const void *buf, size_t count) {
+
   if (fd == sbctl_fd) {
     // open audio
     const int *args = (const int *)buf;
@@ -231,6 +267,31 @@ ssize_t write(int fd, const void *buf, size_t count) {
     SDL_PauseAudio(0);
     return count;
   }
+  //--添加
+  else if(fd == dispinfo_fd){
+    return 0;
+  }
+  // else if(fd == fb_memfd){   //其可以使用glibc_write,行为一致
+  //   printf("buf is 0x%x\n", *(uint32_t*)buf);
+  //   printf("fb is %p\n", fb);
+  //   printf("count is %d\n", count);
+  //   // memcpy(fb, buf, count);    //fb是一个固定的位置
+  //   glibc_write(fd, buf, count);
+
+  //   printf("fb[1] is 0x%08x\n", fb[1]);
+  //   return 0;
+  // }
+  else if(fd == fbsync_memfd){
+    // printf("fb[0] is 0x%x\n", fb[0]);
+    // update_screen();  压入事件而不是直接update，避免冲突
+    // printf("here in sync\n");
+    // SDL_Event event;
+    // event.type = SDL_USEREVENT;
+    // SDL_PushEvent(&event);
+    return 0;
+  }
+
+
   return glibc_write(fd, buf, count);
 }
 
@@ -242,6 +303,9 @@ int execve(const char *filename, char *const argv[], char *const envp[]) {
 
 struct Init {
   Init() {
+
+    
+
     glibc_fopen = (FILE*(*)(const char*, const char*))dlsym(RTLD_NEXT, "fopen");
     assert(glibc_fopen != NULL);
     glibc_open = (int(*)(const char*, int, ...))dlsym(RTLD_NEXT, "open");
@@ -266,8 +330,10 @@ struct Init {
     setenv("PATH", newpath, 1); // overwrite the current PATH
 
     SDL_Init(0);
+
+
     if (!getenv("NWM_APP")) {
-      open_display();
+      open_display();      //需要打开
       open_event();
     }
     open_audio();
