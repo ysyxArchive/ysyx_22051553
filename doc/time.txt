@@ -1,0 +1,2 @@
+npc 15min --需要修改battle.h中 BATTLE_FRAME_TIME为(100000 / BATTLE_FPS)才能打出数字
+nemu 小于20sec    --需要修改battle.h中 BATTLE_FRAME_TIME为(1000 / BATTLE_FPS)
