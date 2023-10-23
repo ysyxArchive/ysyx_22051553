@@ -8,5 +8,7 @@
 !.gitignore
 !README.md
 !Kconfig
+# 新增
+!tools/spike-diff/repo
 include/config
 include/generated

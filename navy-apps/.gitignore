@@ -4,12 +4,17 @@
 !Makefile
 !README.md
 !.gitignore
-!*.[cSh]
+!.gitkeep
+!*.[cSht]
+!*.cat
 !*.cpp
 !scripts/*.mk
 build/
-repo/
-libs/libc/
+# 新添加
+!/apps/pal/repo
+!/apps/bird/repo
+# repo/
+# libs/libc/
 !/fsimg/share/files/num
 !/fsimg/share/fonts/Courier-*.bdf
 !/fsimg/share/music/little-star.ogg
@@ -22,3 +27,4 @@ libs/libc/
 !/fsimg/share/music/rhythm/Si.ogg
 !/fsimg/share/music/rhythm/empty.ogg
 !/fsimg/share/pictures/projectn.bmp
+!/fsimg/share/games/

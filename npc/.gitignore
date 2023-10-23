@@ -8,11 +8,13 @@
 !*.v
 !*.cpp
 !*.cc
+!*.hpp
 !.gitignore
 !.scalafmt.conf
 !build.sc
 !README.md
 build/
+*.obj_dir/*
 
 # mill
 out/

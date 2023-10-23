@@ -1,16 +1,17 @@
 *.*
 *
 !*/
+!doc/*
 !/nemu/*
 !/nexus-am/*
 !/nanos-lite/*
 !/navy-apps/*
 !/npc/*
+!/am-kernels/*
 !Makefile
 !README.md
 !.gitignore
 !init.sh
 /nvboard
-/am-kernels
+# /am-kernels
 /fceux-am
-/npc/rv64/sim/obj_dir
