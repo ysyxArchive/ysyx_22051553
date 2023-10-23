@@ -8,6 +8,9 @@
 !*.cpp
 !scripts/*.mk
 build/
+# 新添加
+!/apps/pal/repo
+!/apps/bird/repo
 # repo/
 # libs/libc/
 !/fsimg/share/files/num
