@@ -76,11 +76,19 @@ int main(int argc, char **argv) {
   init_disasm("riscv64" "-pc-linux-gnu");
   #endif
 
-  uint64_t size = pmem.mem_loader("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
-  // printf("in sdb, data is 0x%x\n", pmem.mem_readbylen(0x83153e62, 1));
+  char *temp = getenv("NPC_HOME");
+  if(temp != NULL) {
+      char path[100];
+      snprintf(path, sizeof(path), "%s/rv64/sim/wrapper/files/file", temp);
+      // 此处替换为你的函数
+      uint64_t size = pmem.mem_loader(path);
+  } else {
+      printf("Environment variable 'NPC_HOME' is not set.\n");
+  }
+  
 
   #ifdef FTRACE
-  getelf("/home/shikye/ysyx-workbench/npc/rv64/sim/wrapper/files/file");
+  getelf(path);
   #endif
 
 
@@ -95,7 +103,9 @@ int main(int argc, char **argv) {
   // syn_diff();
   
   #ifdef DIFFTEST
-  init_difftest("/home/shikye/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so", size, 0);
+  temp = getenv("NEMU_HOME");
+  snprintf(path, sizeof(path), "%s/build/riscv64-nemu-interpreter-so", temp);
+  init_difftest(path, size, 0);
   #endif
 
   sdb_mainloop();

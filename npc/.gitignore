@@ -12,6 +12,7 @@
 !.gitignore
 !.scalafmt.conf
 !build.sc
+!utils/*
 !README.md
 build/
 *.obj_dir/*

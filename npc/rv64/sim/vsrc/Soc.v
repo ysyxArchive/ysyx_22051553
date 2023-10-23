@@ -10776,8 +10776,3 @@ end
 endmodule
     
 
-// ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----
-
-rv64/build/rv64/build/DebugInterface.v
-rv64/build/rv64/build/Interact.v
-rv64/build/rv64/build/Sram.v
