@@ -26,6 +26,7 @@ endif
 
 update:
 	$(MAKE) -s -C $(NAVY_HOME) ISA=$(ISA) ramdisk
+	@ln -sf -T $(NAVY_HOME)/apps/pal/repo/data $(NAVY_HOME)/fsimg/share/games/pal
 	@ln -sf $(NAVY_HOME)/build/ramdisk.img $(RAMDISK_FILE)
 	@ln -sf $(NAVY_HOME)/build/ramdisk.h src/files.h
 	@ln -sf $(NAVY_HOME)/libs/libos/src/syscall.h src/syscall.h
