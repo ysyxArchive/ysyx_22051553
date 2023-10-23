@@ -49,6 +49,8 @@ class CacheResp extends Bundle{
 class CacheIO extends Bundle{  //cpu<>cache
     val req = Flipped(ValidIO(new CacheReq))
     val resp = ValidIO(new CacheResp)
+
+    // val flush = Input(Bool())  //axi申请之后无法停下来
 }
 
 class CacheModuleIO extends Bundle{

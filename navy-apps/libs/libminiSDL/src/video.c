@@ -145,7 +145,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     return ;
   }
   else if(s->format->BitsPerPixel == 8){  //暂时不改这里，耗时短
-    printf("in update\n");
+    // printf("in update\n");
     if(w == 0 && h == 0){
       w = s->w;
       h = s->h;
@@ -249,7 +249,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     
 
     NDL_DrawRect(pixels, x, y, w, h);
-    printf("out update\n");
+    // printf("out update\n");
     free(pixels);
     // free(changerb_pixels);
     
