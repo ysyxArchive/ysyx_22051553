@@ -4,6 +4,7 @@
 !Makefile
 !README.md
 !.gitignore
+!.gitkeep
 !*.[cSh]
 !*.cpp
 !scripts/*.mk
