@@ -33,7 +33,8 @@ clean:
 
 .PHONY: test verilog help compile bsp reformat checkformat clean
 
-sim:
+sim: verilog
+	sed -i '/\/\/ ----- 8< ----- FILE "firrtl_black_box_resource_files.f" ----- 8< -----/,+4d' $(MODULE)/build/Soc.v
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	make run -C $(MODULE)/sim/ -f Makefile
 
