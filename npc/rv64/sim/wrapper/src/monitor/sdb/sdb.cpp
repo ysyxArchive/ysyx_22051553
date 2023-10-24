@@ -30,13 +30,11 @@ uint64_t stall_num = 0;
 uint64_t cycles = 0;
 
 
-
 uint64_t Icache_hit_num = 0;
 uint64_t Icache_req_num = 0;
 
 uint64_t Dcache_hit_num = 0;
 uint64_t Dcache_req_num = 0;
-
 //
 
 
@@ -78,7 +76,7 @@ void event_update(){
   last = now;
 
   SDL_Event event;
-  while(SDL_PollEvent(&event)){  //while改成了if 只识别一次
+  if(SDL_PollEvent(&event)){  //while改成了if 只识别一次
     switch (event.type)
     {
       case SDL_QUIT:
