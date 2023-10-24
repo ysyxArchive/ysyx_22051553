@@ -30,13 +30,11 @@ uint64_t stall_num = 0;
 uint64_t cycles = 0;
 
 
-
 uint64_t Icache_hit_num = 0;
 uint64_t Icache_req_num = 0;
 
 uint64_t Dcache_hit_num = 0;
 uint64_t Dcache_req_num = 0;
-
 //
 
 
@@ -78,7 +76,7 @@ void event_update(){
   last = now;
 
   SDL_Event event;
-  while(SDL_PollEvent(&event)){  //while改成了if 只识别一次
+  if(SDL_PollEvent(&event)){  //while改成了if 只识别一次
     switch (event.type)
     {
       case SDL_QUIT:
@@ -246,15 +244,6 @@ void update_debuginfo(
   execute ex_ins = {
     .skip_ref_one_inst = ((bool)mem_access) && ((((unsigned long)mem_addr[1].aval << 32 | mem_addr[0].aval) >= 0xa0000000 ) || (((unsigned long)mem_addr[1].aval << 32 | mem_addr[0].aval) <= 0x0200bfff))
   };
-
-
-  // printf("fe pc:0x%x\nde inst:0x%x\n", fe_ins.pc, de_ins.inst);
-
-  // if(de_ins.inst != 0x13 && (bool)inst_valid && de_ins.inst != 0 && !(bool)sdb_stall){
-  //   fetch_list.push_back(fe_ins);
-  //   decode_list.push_back(de_ins);
-  //   execute_list.push_back(ex_ins);
-  // }
   
 
   if(de_ins.inst == 0x73 && (unsigned int)trap_state[0].aval == 0){ //第一条ecall指令
@@ -305,17 +294,6 @@ void update_debuginfo(
     in_mret = 0;
   }
 
-  // if(decode_list.size() == 5){ 
-  //   sync_diff = true;
-  //   execute_list.pop_front();
-  //   execute_list.pop_front();
-  //   execute_list.pop_front();
-
-  //   decode_list.pop_front();
-  //   decode_list.pop_front();
-
-  //   fetch_list.pop_front();
-  // }
 
   #endif
   if((unsigned int)inst[0].aval == 0x13 || (unsigned int)inst[0].aval == 0 || (bool)sdb_stall){
@@ -369,51 +347,49 @@ void update_debuginfo(
 
 long long pmem_read(const svLogicVecVal* raddr){
 
-    // #ifdef MTRACE
-    // printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr[0].aval, 8);
-    // #endif
+    #ifdef MTRACE
+    printf(ANSI_FMT("read mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),raddr[0].aval, 8);
+    #endif
 
-  if( ((unsigned long)raddr[0].aval) == RTC_BASE){
+    if( ((unsigned long)raddr[0].aval) == RTC_BASE){
         struct timespec now;
         clock_gettime(CLOCK_MONOTONIC_COARSE, &now);
         // rtc_time = now.tv_sec * 1000000 + now.tv_nsec / 1000;
         rtc_time = now.tv_sec * 1000;
-
         return  (long long) (rtc_time);
-  }
-  else if(((unsigned long)raddr[0].aval) == VGACTL_ADDR){
+    }
+    else if(((unsigned long)raddr[0].aval) == VGACTL_ADDR){
       uint32_t vga_ctrl_bundle = SCREEN_W << 16 | SCREEN_H;
       return vga_ctrl_bundle;
-  }
-  else if(((unsigned long)raddr[0].aval) == KBD_ADDR){
+    }
+    else if(((unsigned long)raddr[0].aval) == KBD_ADDR){
       uint32_t key = key_dequeue();
       return key;
-  }
+    }
 
-  uint64_t value =  pmem.mem_read(
-    (unsigned long)raddr[0].aval
-  );
+    uint64_t value =  pmem.mem_read(
+        (unsigned long)raddr[0].aval
+    );
 
-  return (long long) value;
+    return (long long) value;
 }
 
   void pmem_write(const svLogicVecVal* waddr, const svLogicVecVal* wdata, char wmask){
 
-    // #ifdef MTRACE
-    // printf("wmask is 0x%x\n", (uint8_t)wmask);
-    // printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),(waddr[0].aval), 
-    // ((uint8_t)wmask == 0xff) ? 8 : 
-    // ((uint8_t)wmask == 0x0f) ? 4 : 
-    // ((uint8_t)wmask == 0x03) ? 2 : 
-    // ((uint8_t)wmask == 0x01) ? 1 : 0
-    // );
+    #ifdef MTRACE
+    printf("wmask is 0x%x\n", (uint8_t)wmask);
+    printf(ANSI_FMT("write mem at " "0x%016lx" " for %d bytes\n", ANSI_FG_YELLOW),(waddr[0].aval), 
+    ((uint8_t)wmask == 0xff) ? 8 : 
+    ((uint8_t)wmask == 0x0f) ? 4 : 
+    ((uint8_t)wmask == 0x03) ? 2 : 
+    ((uint8_t)wmask == 0x01) ? 1 : 0
+    );
 
-    // printf("write data is 0x%lx\n", (unsigned long)wdata[1].aval << 32 | wdata[0].aval);
-    // #endif
+    printf("write data is 0x%lx\n", (unsigned long)wdata[1].aval << 32 | wdata[0].aval);
+    #endif
 
 
-    if( ((unsigned long)waddr[0].aval) == SERIAL_PORT){
-      
+    if( ((unsigned long)waddr[0].aval) == SERIAL_PORT){  
       putchar((unsigned long)wdata[1].aval << 32 | wdata[0].aval);
       return ;
     }
@@ -422,7 +398,6 @@ long long pmem_read(const svLogicVecVal* raddr){
 
         // printf("write at 0x%x\n", (unsigned long)waddr[0].aval);
         // printf("write data is 0x%lx\n", (unsigned long)wdata[1].aval << 32 | wdata[0].aval);
-
       display.vmem_write(
         (unsigned long)waddr[0].aval,
         (unsigned long)wdata[1].aval << 32 | wdata[0].aval,
@@ -703,17 +678,17 @@ static int cmd_s(char *args){
 
       
     #ifdef SHOW_LIST
-    // for(auto arg : fetch_list){
-    //   printf("pc:0x%lx\n", arg.pc);
-    // }
+    for(auto arg : fetch_list){
+      printf("pc:0x%lx\n", arg.pc);
+    }
 
-    // for(auto arg : decode_list){
-    //   printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
-    // }
+    for(auto arg : decode_list){
+      printf("inst:0x%x, br:%d, load_use:%d\n", arg.inst, arg.branch, arg.load_use);
+    }
 
-    // for(auto arg : execute_list){
-    //   printf("skip:%d\n", arg.skip_ref_one_inst);
-    // }
+    for(auto arg : execute_list){
+      printf("skip:%d\n", arg.skip_ref_one_inst);
+    }
     #endif
 
     #ifdef ITRACE
@@ -757,7 +732,7 @@ static int cmd_s(char *args){
     disassemble(p, log_itrace + sizeof(log_itrace) - p, fetch_list.front().pc,
     (uint8_t *)(&decode_list.front().inst), ilen);
 
-    // printf("%s\n", log_itrace);
+    printf("%s\n", log_itrace);
 
     p = iringbuf[irb_pos];
     strcpy(p, "0x");
