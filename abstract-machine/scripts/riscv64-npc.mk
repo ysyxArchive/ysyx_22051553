@@ -27,7 +27,8 @@ image: $(IMAGE).elf
 
 
 run: image
-	cd $(NPC_HOME)/rv64/sim/wrapper && mkdir files
-	cp $(NEMU_HOME)/../nanos-lite/build/nanos-lite-riscv64-npc.elf $(NPC_HOME)/rv64/sim/wrapper/files/file
+	@rm $(NPC_HOME)/rv64/sim/wrapper/files -rf
+	@cd $(NPC_HOME)/rv64/sim/wrapper && mkdir files
+	@cp $(NEMU_HOME)/../nanos-lite/build/nanos-lite-riscv64-npc.elf $(NPC_HOME)/rv64/sim/wrapper/files/file
 	$(MAKE) -C $(NPC_HOME) MODULE=rv64 sim
     
