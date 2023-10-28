@@ -73,7 +73,7 @@ __EXPORT void difftest_skip_ref() {   //跳过一条指令，顺序到下一条�
 }
 
 __EXPORT void difftest_raise_intr(word_t NO) {
-    cpu.pc = isa_raise_intr(NO, cpu.pc-8);
+    cpu.pc = isa_raise_intr(NO, cpu.pc-8);  //-8和in_ecall执行的周期数有关，在in_ecall时，nemu中pc会增加
 }
 
 __EXPORT void difftest_mret() { 
