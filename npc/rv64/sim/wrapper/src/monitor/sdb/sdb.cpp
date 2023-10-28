@@ -570,7 +570,7 @@ static int cmd_s(char *args){
           if(clear_cnt > 0|| in_ecall || after_ecall || in_mret || after_mret){
             break;
           }
-        }  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成
+        }  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成，即执行了一条指令
       }
     #else
         single_cycle();   
@@ -589,7 +589,7 @@ static int cmd_s(char *args){
         }
         
 
-        ref_difftest_regcpy(&cpu_ins.regs_state,1);
+        // ref_difftest_regcpy(&cpu_ins.regs_state,1);  --似乎不需要复制一次
 
         while(decode_list.size() < 4){  //对齐dut和ref,并让dut执行一条指令,即mtvec的第一条指令
           
@@ -753,7 +753,7 @@ static int cmd_s(char *args){
           if(clear_cnt > 0|| in_ecall || after_ecall || in_mret || after_mret){
             break;
           }
-        }  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成
+        }  //跳过无效周期，decode_list.size()为4表示，wb段的指令被执行完成  --表示，填充list后，执行一条指令，通常情况下，decode_list的长度是3
       }
     #else
         single_cycle();   

@@ -1,5 +1,4 @@
-# 
-
+#include "stdio.h"
 #include "stdlib.h"
 #include <verilated_vcd_c.h>
 #include <verilated.h>
