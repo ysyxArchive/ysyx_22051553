@@ -6,6 +6,7 @@ import firrtl.ir._
 import firrtl.stage.Forms
 import firrtl.stage.TransformManager.TransformDependency
 import firrtl.transforms.DontTouchAnnotation
+import firrtl.renamemap.MutableRenameMap
 
 case class ModulePrefixAnnotation(prefix: String) extends NoTargetAnnotation
 
@@ -38,7 +39,8 @@ class AddModulePrefix extends Transform with DependencyAPIMigration {
     def rename(old: String): String = if (blacklist.map(_ == old).reduce(_ || _)) old
       else if(extModules.contains(old)) old else prefix + old
 
-    val renameMap = RenameMap()
+    // val renameMap = RenameMap()
+    val renameMap = MutableRenameMap()
 
     def onStmt(s: Statement): Statement = s match {
       case DefInstance(info, name, module, tpe) =>
