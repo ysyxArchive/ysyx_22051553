@@ -8,7 +8,7 @@ class Soc extends Module{
     val io = IO(new Bundle{
     })
 
-    val core = Module(new Core)
+    val core = Module(new ysyx_22051553)
     val sram = Module(new Sram)
 
     val rstn = Wire(Bool())
