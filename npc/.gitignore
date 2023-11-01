@@ -15,7 +15,8 @@
 !utils/*
 !README.md
 build/
-*.obj_dir/*
+**/obj_dir/*
+
 
 # mill
 out/

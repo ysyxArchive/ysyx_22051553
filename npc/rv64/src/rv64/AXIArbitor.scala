@@ -60,7 +60,7 @@ class AXIArbitor extends Module{
     )
     val choose_buffer = RegInit(0.U(4.W))
 
-    val rw = RegInit(0.B) //保持
+    val rw = RegInit(0.B) //保持  --多余了
     val rw_idle = WireInit(0.B)
     val addr = RegInit(0.U(ADDRWIDTH.W))  //保持
     val data = WireInit(0.U((16*X_LEN).W))

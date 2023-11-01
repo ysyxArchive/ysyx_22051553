@@ -200,7 +200,7 @@ class Cache extends Module{
 
     val read = Mux(is_alloc_reg,   //已经全部Refill到Cacheline,且Refill_buf中是完整的数据 //读不命中
         refill_buffer.asUInt,
-        Mux(hit_reg,   //读命中
+        Mux(hit_reg,   
             MuxCase(0.B,  //读命中
                 Seq(
                     (hit0_reg) -> rdata0,

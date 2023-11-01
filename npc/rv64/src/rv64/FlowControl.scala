@@ -78,7 +78,7 @@ class FcExIO extends Bundle{
     val jump_flag = Input(Bool())
     val jump_pc   = Input(UInt(PC_LEN.W))
     
-    val mul_div = Input(Bool())
+    val mul_div_busy = Input(Bool())
     val mul_div_valid = Input(Bool()) 
 
     val flush     = Output(Bool())
@@ -173,9 +173,12 @@ class FlowControl extends Module{
     }
 
 
-    when(io.fcex.mul_div_valid){
+    when(io.fcex.flush){
         MULDIV_stall := 0.B
-    }.elsewhen(io.fcex.mul_div){
+    }
+    .elsewhen(io.fcex.mul_div_valid){
+        MULDIV_stall := 0.B
+    }.elsewhen(io.fcex.mul_div_busy){
         MULDIV_stall := 1.B
     }.otherwise{
         MULDIV_stall := 0.B

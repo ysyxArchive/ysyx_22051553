@@ -96,7 +96,7 @@ class Excute extends Module{
     io.fcex.jump_flag := (io.deio.branch_type).asBool && (alu.io.result).orR
     io.fcex.jump_pc := io.deio.branch_addr
 
-    io.fcex.mul_div := mul_div_type
+    io.fcex.mul_div_busy := mul_div_type
     io.fcex.mul_div_valid := alu.io.mul_div_outvalid
 
     //to TM
