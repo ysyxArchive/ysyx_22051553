@@ -73,7 +73,27 @@ import CacheState._
 
 class Cache extends Module{
     val io = IO(new CacheModuleIO)
-
+    //顶层
+    io.cpu.sram0.addr := 0.U
+    io.cpu.sram0.cen := 1.U
+    io.cpu.sram0.wen := 1.U
+    io.cpu.sram0.wmask := 0.U
+    io.cpu.sram0.wdata := 0.U
+    io.cpu.sram1.addr := 0.U
+    io.cpu.sram1.cen := 1.U
+    io.cpu.sram1.wen := 1.U
+    io.cpu.sram1.wmask := 0.U
+    io.cpu.sram1.wdata := 0.U
+    io.cpu.sram2.addr := 0.U
+    io.cpu.sram2.cen := 1.U
+    io.cpu.sram2.wen := 1.U
+    io.cpu.sram2.wmask := 0.U
+    io.cpu.sram2.wdata := 0.U
+    io.cpu.sram3.addr := 0.U
+    io.cpu.sram3.cen := 1.U
+    io.cpu.sram3.wen := 1.U
+    io.cpu.sram3.wmask := 0.U
+    io.cpu.sram3.wdata := 0.U
     //Counters
     val r_count = RegInit(0.U(3.W))  //突发长度为8
     val w_count = RegInit(0.U(3.W))
@@ -524,6 +544,8 @@ class Cache extends Module{
     io.fccache.req := io.cpu.req.valid
     io.fccache.state := state
     io.fccache.axi_valid := is_alloc_reg
+
+    
 
 
     switch(state){
