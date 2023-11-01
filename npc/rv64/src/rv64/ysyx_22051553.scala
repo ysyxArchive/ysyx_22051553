@@ -11,7 +11,7 @@ import circt.stage.CLI
 //     val ramio = Flipped(new RamIO)
 // }
 
-class Core extends Module{
+class ysyx_22051553 extends Module{
     val io = IO(new Bundle {
         val AXI_Interface = new AXIMasterIf
     })
