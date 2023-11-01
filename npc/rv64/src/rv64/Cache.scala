@@ -54,7 +54,11 @@ class SramIO extends Bundle{
 class CacheIO extends Bundle{  //cpu<>cache
     val req = Flipped(ValidIO(new CacheReq))
     val resp = ValidIO(new CacheResp)
-    val srams = VecInit(Seq.fill(4)(new SramIO))
+    // val srams = VecInit(Seq.fill(4)(new SramIO))
+    val sram0 = new SramIO
+    val sram1 = new SramIO
+    val sram2 = new SramIO
+    val sram3 = new SramIO
 }
 
 class CacheModuleIO extends Bundle{
@@ -196,24 +200,29 @@ class Cache extends Module{
                 ),
                 idx
             )
-            for(i <- 0 to 3){              //---------可能有问题
-                io.cpu.srams(i).addr := addr_temp
-                io.cpu.srams(i).cen := 0.B
-            }
+            io.cpu.sram0.addr := addr_temp
+            io.cpu.sram0.cen := 0.B
+            io.cpu.sram1.addr := addr_temp
+            io.cpu.sram1.cen := 0.B 
+            io.cpu.sram2.addr := addr_temp
+            io.cpu.sram2.cen := 0.B
+            io.cpu.sram3.addr := addr_temp
+            io.cpu.sram3.cen := 0.B
         }.elsewhen(is_choose){ //可能需要写回
             val addr_temp = Cat(victim,idx)//---------可能有问题
-            for(i <- 0 to 3){ 
-                io.cpu.srams(i).addr := addr_temp
-                io.cpu.srams(i).cen := 0.B
-            }
+            io.cpu.sram0.addr := addr_temp
+            io.cpu.sram0.cen := 0.B
+            io.cpu.sram1.addr := addr_temp
+            io.cpu.sram1.cen := 0.B 
+            io.cpu.sram2.addr := addr_temp
+            io.cpu.sram2.cen := 0.B
+            io.cpu.sram3.addr := addr_temp
+            io.cpu.sram3.cen := 0.B
         }
     }
 
 
-    val rdata = Cat(VecInit.tabulate(4)( //---------可能有问题
-        i =>
-            io.cpu.srams(i).rdata
-    ))
+    val rdata = Cat(io.cpu.sram3.rdata, io.cpu.sram2.rdata, io.cpu.sram1.rdata, io.cpu.sram0.rdata)
     val rdata_buf = RegEnable(rdata, ren_reg)
 
     //refill
@@ -377,13 +386,27 @@ class Cache extends Module{
                 idx
             )
 
-            for(i <- 0 to 3){
-                io.cpu.srams(i).addr := addr_temp
-                io.cpu.srams(i).cen := 0.B
-                io.cpu.srams(i).wen := 0.B
-                io.cpu.srams(i).wmask := wmask((i+1)*128 - 1, i*128)
-                io.cpu.srams(i).wdata := wdata((i+1)*128 - 1, i*128)
-            }
+            io.cpu.sram0.addr := addr_temp
+            io.cpu.sram0.cen := 0.B
+            io.cpu.sram0.wen := 0.B
+            io.cpu.sram0.wmask := wmask(127, 0)
+            io.cpu.sram0.wdata := wdata(127, 0)
+            io.cpu.sram1.addr := addr_temp
+            io.cpu.sram1.cen := 0.B
+            io.cpu.sram1.wen := 0.B
+            io.cpu.sram1.wmask := wmask(255, 128)
+            io.cpu.sram1.wdata := wdata(255, 128)
+            io.cpu.sram2.addr := addr_temp
+            io.cpu.sram2.cen := 0.B
+            io.cpu.sram2.wen := 0.B
+            io.cpu.sram2.wmask := wmask(383, 256)
+            io.cpu.sram2.wdata := wdata(383, 256)
+            io.cpu.sram3.addr := addr_temp
+            io.cpu.sram3.cen := 0.B
+            io.cpu.sram3.wen := 0.B
+            io.cpu.sram3.wmask := wmask(511, 384)
+            io.cpu.sram3.wdata := wdata(511, 384)
+
 
         }.elsewhen(is_war){ //2.写不命中，alloc后，写入  --修改后
             dirty := MuxLookup(victim, dirty,        //修改dirty位
@@ -397,13 +420,26 @@ class Cache extends Module{
 
             val addr_temp = Cat(victim,idx) //------可能有问题
 
-            for(i <- 0 to 3){
-                io.cpu.srams(i).addr := addr_temp
-                io.cpu.srams(i).cen := 0.B
-                io.cpu.srams(i).wen := 0.B
-                io.cpu.srams(i).wmask := wmask((i+1)*128 - 1, i*128)
-                io.cpu.srams(i).wdata := wdata((i+1)*128 - 1, i*128)
-            }
+            io.cpu.sram0.addr := addr_temp
+            io.cpu.sram0.cen := 0.B
+            io.cpu.sram0.wen := 0.B
+            io.cpu.sram0.wmask := wmask(127, 0)
+            io.cpu.sram0.wdata := wdata(127, 0)
+            io.cpu.sram1.addr := addr_temp
+            io.cpu.sram1.cen := 0.B
+            io.cpu.sram1.wen := 0.B
+            io.cpu.sram1.wmask := wmask(255, 128)
+            io.cpu.sram1.wdata := wdata(255, 128)
+            io.cpu.sram2.addr := addr_temp
+            io.cpu.sram2.cen := 0.B
+            io.cpu.sram2.wen := 0.B
+            io.cpu.sram2.wmask := wmask(383, 256)
+            io.cpu.sram2.wdata := wdata(383, 256)
+            io.cpu.sram3.addr := addr_temp
+            io.cpu.sram3.cen := 0.B
+            io.cpu.sram3.wen := 0.B
+            io.cpu.sram3.wmask := wmask(511, 384)
+            io.cpu.sram3.wdata := wdata(511, 384)
 
         }
         .otherwise{  //alloc
@@ -448,13 +484,26 @@ class Cache extends Module{
             //------------data
             val addr_temp = Cat(victim,idx) //------可能有问题
 
-            for(i <- 0 to 3){
-                io.cpu.srams(i).addr := addr_temp
-                io.cpu.srams(i).cen := 0.B
-                io.cpu.srams(i).wen := 0.B
-                io.cpu.srams(i).wmask := wmask((i+1)*128 - 1, i*128)
-                io.cpu.srams(i).wdata := wdata((i+1)*128 - 1, i*128)
-            }
+            io.cpu.sram0.addr := addr_temp
+            io.cpu.sram0.cen := 0.B
+            io.cpu.sram0.wen := 0.B
+            io.cpu.sram0.wmask := wmask(127, 0)
+            io.cpu.sram0.wdata := wdata(127, 0)
+            io.cpu.sram1.addr := addr_temp
+            io.cpu.sram1.cen := 0.B
+            io.cpu.sram1.wen := 0.B
+            io.cpu.sram1.wmask := wmask(255, 128)
+            io.cpu.sram1.wdata := wdata(255, 128)
+            io.cpu.sram2.addr := addr_temp
+            io.cpu.sram2.cen := 0.B
+            io.cpu.sram2.wen := 0.B
+            io.cpu.sram2.wmask := wmask(383, 256)
+            io.cpu.sram2.wdata := wdata(383, 256)
+            io.cpu.sram3.addr := addr_temp
+            io.cpu.sram3.cen := 0.B
+            io.cpu.sram3.wen := 0.B
+            io.cpu.sram3.wmask := wmask(511, 384)
+            io.cpu.sram3.wdata := wdata(511, 384)
         }
     }
 
