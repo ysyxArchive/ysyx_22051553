@@ -133,8 +133,8 @@ class AXIArbitor extends Module{
                     15.U,
                     0.U
                 ),
-                master_choose(1) -> 15.U,
-                master_choose(2) -> 15.U,
+                master_choose(1) -> 7.U,
+                master_choose(2) -> 7.U,
             )
         )
     ,0.B)
