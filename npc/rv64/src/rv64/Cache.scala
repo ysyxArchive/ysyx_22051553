@@ -306,13 +306,13 @@ class Cache extends Module{
     val idle_mask = ~io.cpu.req.bits.mask //---------可能有问题
     val hit_mask = VecInit.tabulate(8)(  //64bit的mask,对某个block使用
         i => 
-        Mux(idle_mask(i) === 0.B, "b0000 0000".U, "b1111 1111".U) 
+        Mux(idle_mask(i) === 0.B, "b00000000".U, "b11111111".U) 
     )
 
     val after_alloc_mask = ~cpu_mask //---------可能有问题
     val aa_mask = VecInit.tabulate(8){
         i =>
-        Mux(after_alloc_mask(i) === 0.B, "b0000 0000".U, "b1111 1111".U)
+        Mux(after_alloc_mask(i) === 0.B, "b00000000".U, "b11111111".U)
     }
     // val hit_mask = VecInit.tabulate(8)(  //when不能直接返回值
     //     i => 
