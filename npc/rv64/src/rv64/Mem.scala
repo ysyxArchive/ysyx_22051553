@@ -92,7 +92,7 @@ class Mem extends Module{
             LD_LB -> lshift(7, 0).asSInt,
             LD_LH -> lshift(15, 0).asSInt,
             LD_LW -> lshift(31, 0).asSInt,
-            LD_LD -> lshift,
+            LD_LD -> lshift.asSInt,
             LD_LBU -> lshift(7,0).zext,
             LD_LHU -> lshift(15,0).zext,
             LD_LWU -> lshift(31,0).zext
