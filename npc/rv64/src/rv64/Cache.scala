@@ -127,7 +127,8 @@ class Cache extends Module{
     val victim = RegInit(0.U(2.W))
     dontTouch(victim)
 
-    val TagArray = RegInit(VecInit.tabulate(nSets)(i => VecInit.tabulate(nWays)(m => 0.U(tlen.W)))) //nSets*(nWasy*tlen)
+    // val TagArray = RegInit(VecInit.tabulate(nSets)(i => VecInit.tabulate(nWays)(m => 0.U(tlen.W)))) //nSets*(nWasy*tlen)
+    val TagArray = Seq.fill(nSets)(RegInit(VecInit.tabulate(nWays)(i => 0.U(tlen.W))))
 
     // val DataArray = Seq.fill(nWords)(SyncReadMem(nWays*nSets, Vec(wBytes, UInt(8.W))))
     //控制信号
