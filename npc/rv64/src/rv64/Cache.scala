@@ -127,7 +127,7 @@ class Cache extends Module{
     val victim = RegInit(0.U(2.W))
     dontTouch(victim)
 
-    val TagArray = RegInit(VecInit.tabulate(nSets)(i => 0.U((nWays*tlen).W)))
+    val TagArray = RegInit(VecInit.tabulate(nSets)(i => VecInit.tabulate(nWays)(m => 0.U(tlen.W)))) //nSets*(nWasy*tlen)
 
     // val DataArray = Seq.fill(nWords)(SyncReadMem(nWays*nSets, Vec(wBytes, UInt(8.W))))
     //控制信号
@@ -175,27 +175,13 @@ class Cache extends Module{
     dontTouch(idx_reg)
     dontTouch(off_reg)
 
-    val way0 = nWays.U*idx
-    val way1 = nWays.U*idx + 1.U
-    val way2 = nWays.U*idx + 2.U
-    val way3 = nWays.U*idx + 3.U
-    val way0_buf = nWays.U*idx_reg   
-    val way1_buf = nWays.U*idx_reg + 1.U
-    val way2_buf = nWays.U*idx_reg + 2.U
-    val way3_buf = nWays.U*idx_reg + 3.U
-
-    dontTouch(way0)
-    dontTouch(way1)
-    dontTouch(way2)
-    dontTouch(way3)
     val Tag_idx = TagArray(idx)
     val Tag_idxreg = TagArray(idx_reg)
 
-
-    val rtag0 = Tag_idx(tlen-1, 0)
-    val rtag1 = Tag_idx(2*tlen -1, tlen)
-    val rtag2 = Tag_idx(3*tlen -1, 2*tlen)
-    val rtag3 = Tag_idx(4*tlen -1, 3*tlen)
+    val rtag0 = Tag_idx(0)
+    val rtag1 = Tag_idx(1)
+    val rtag2 = Tag_idx(2)
+    val rtag3 = Tag_idx(3)
     val rtag0_buf = RegNext(rtag0, 0.U(tlen.W))
     val rtag1_buf = RegNext(rtag1, 0.U(tlen.W))
     val rtag2_buf = RegNext(rtag2, 0.U(tlen.W))
@@ -206,8 +192,8 @@ class Cache extends Module{
     dontTouch(rtag3)
 
     when(ren){ //读Cache逻辑
-        when(hit){ //读命中
-            val addr_temp = Cat(
+        val addr_temp = Mux(hit, 
+            Cat(
                 MuxCase(0.U(2.W),
                     Seq(
                         hit0 -> 0.U(2.W),
@@ -217,26 +203,18 @@ class Cache extends Module{
                     )
                 ),
                 idx
-            )
-            io.cpu.sram0.addr := addr_temp
-            io.cpu.sram0.cen := 0.B
-            io.cpu.sram1.addr := addr_temp
-            io.cpu.sram1.cen := 0.B 
-            io.cpu.sram2.addr := addr_temp
-            io.cpu.sram2.cen := 0.B
-            io.cpu.sram3.addr := addr_temp
-            io.cpu.sram3.cen := 0.B
-        }.elsewhen(is_choose){ //可能需要写回
-            val addr_temp = Cat(victim,idx)//---------可能有问题
-            io.cpu.sram0.addr := addr_temp
-            io.cpu.sram0.cen := 0.B
-            io.cpu.sram1.addr := addr_temp
-            io.cpu.sram1.cen := 0.B 
-            io.cpu.sram2.addr := addr_temp
-            io.cpu.sram2.cen := 0.B
-            io.cpu.sram3.addr := addr_temp
-            io.cpu.sram3.cen := 0.B
-        }
+            ),
+            Cat(victim, idx)
+        )
+            
+        io.cpu.sram0.addr := addr_temp
+        io.cpu.sram0.cen := 0.B
+        io.cpu.sram1.addr := addr_temp
+        io.cpu.sram1.cen := 0.B 
+        io.cpu.sram2.addr := addr_temp
+        io.cpu.sram2.cen := 0.B
+        io.cpu.sram3.addr := addr_temp
+        io.cpu.sram3.cen := 0.B
     }
 
 
@@ -386,27 +364,8 @@ class Cache extends Module{
 
 
     when(wen){
-        when(hit){//1.写命中，不涉及写valid   
-
-            //dirty---------------
-            // dirty := MuxCase(0.B, 
-            //     Seq(
-            //         (hit0) -> dirty.bitSet(way0, 1.B),
-            //         (hit1) -> dirty.bitSet(way1, 1.B),
-            //         (hit2) -> dirty.bitSet(way2, 1.B),
-            //         (hit3) -> dirty.bitSet(way3, 1.B), 
-            //     )
-            // )
-            dirty(idx) := MuxCase(dirty(idx), 
-                Seq(
-                    hit0 -> dirty(idx).bitSet(0.U, 1.B),
-                    hit1 -> dirty(idx).bitSet(1.U, 1.B),
-                    hit2 -> dirty(idx).bitSet(2.U, 1.B),
-                    hit3 -> dirty(idx).bitSet(3.U, 1.B)
-                )
-            )
-
-            val addr_temp = Cat( //---------可能有问题
+        val addr_temp = Mux(
+            hit, Cat( //---------可能有问题
                 MuxCase(0.U(2.W),
                     Seq(
                         hit0 -> 0.U(2.W),
@@ -416,40 +375,44 @@ class Cache extends Module{
                     )
                 ),
                 idx
+            ),
+            Cat(victim,idx)
+        )
+
+        io.cpu.sram0.addr := addr_temp
+        io.cpu.sram0.cen := 0.B
+        io.cpu.sram0.wen := 0.B
+        io.cpu.sram0.wmask := wmask(127, 0)
+        io.cpu.sram0.wdata := wdata(127, 0)
+        io.cpu.sram1.addr := addr_temp
+        io.cpu.sram1.cen := 0.B
+        io.cpu.sram1.wen := 0.B
+        io.cpu.sram1.wmask := wmask(255, 128)
+        io.cpu.sram1.wdata := wdata(255, 128)
+        io.cpu.sram2.addr := addr_temp
+        io.cpu.sram2.cen := 0.B
+        io.cpu.sram2.wen := 0.B
+        io.cpu.sram2.wmask := wmask(383, 256)
+        io.cpu.sram2.wdata := wdata(383, 256)
+        io.cpu.sram3.addr := addr_temp
+        io.cpu.sram3.cen := 0.B
+        io.cpu.sram3.wen := 0.B
+        io.cpu.sram3.wmask := wmask(511, 384)
+        io.cpu.sram3.wdata := wdata(511, 384)
+
+
+        when(hit){//1.写命中，不涉及写valid   
+
+            //dirty---------------
+            dirty(idx) := MuxCase(dirty(idx), 
+                Seq(
+                    hit0 -> dirty(idx).bitSet(0.U, 1.B),
+                    hit1 -> dirty(idx).bitSet(1.U, 1.B),
+                    hit2 -> dirty(idx).bitSet(2.U, 1.B),
+                    hit3 -> dirty(idx).bitSet(3.U, 1.B)
+                )
             )
-
-            io.cpu.sram0.addr := addr_temp
-            io.cpu.sram0.cen := 0.B
-            io.cpu.sram0.wen := 0.B
-            io.cpu.sram0.wmask := wmask(127, 0)
-            io.cpu.sram0.wdata := wdata(127, 0)
-            io.cpu.sram1.addr := addr_temp
-            io.cpu.sram1.cen := 0.B
-            io.cpu.sram1.wen := 0.B
-            io.cpu.sram1.wmask := wmask(255, 128)
-            io.cpu.sram1.wdata := wdata(255, 128)
-            io.cpu.sram2.addr := addr_temp
-            io.cpu.sram2.cen := 0.B
-            io.cpu.sram2.wen := 0.B
-            io.cpu.sram2.wmask := wmask(383, 256)
-            io.cpu.sram2.wdata := wdata(383, 256)
-            io.cpu.sram3.addr := addr_temp
-            io.cpu.sram3.cen := 0.B
-            io.cpu.sram3.wen := 0.B
-            io.cpu.sram3.wmask := wmask(511, 384)
-            io.cpu.sram3.wdata := wdata(511, 384)
-
-
         }.elsewhen(is_war){ //2.写不命中，alloc后，写入  --修改后
-            // dirty := MuxLookup(victim, dirty,        //修改dirty位
-            //     Seq(
-            //         0.U -> dirty.bitSet(way0_buf, 1.B),
-            //         1.U -> dirty.bitSet(way1_buf, 1.B),
-            //         2.U -> dirty.bitSet(way2_buf, 1.B),
-            //         3.U -> dirty.bitSet(way3_buf, 1.B),
-            //     )
-            // )
-
             dirty(idx_reg) := MuxLookup(victim, dirty(idx_reg),    //Mux实际上资源消耗挺大的，每一路都需要生成对应的电路
                 Seq(
                     0.U -> dirty(idx_reg).bitSet(0.U, 1.B),
@@ -458,43 +421,8 @@ class Cache extends Module{
                     3.U -> dirty(idx_reg).bitSet(3.U, 1.B)
                 )
             )
-
-
-
-            val addr_temp = Cat(victim,idx) //------可能有问题
-
-            io.cpu.sram0.addr := addr_temp
-            io.cpu.sram0.cen := 0.B
-            io.cpu.sram0.wen := 0.B
-            io.cpu.sram0.wmask := wmask(127, 0)
-            io.cpu.sram0.wdata := wdata(127, 0)
-            io.cpu.sram1.addr := addr_temp
-            io.cpu.sram1.cen := 0.B
-            io.cpu.sram1.wen := 0.B
-            io.cpu.sram1.wmask := wmask(255, 128)
-            io.cpu.sram1.wdata := wdata(255, 128)
-            io.cpu.sram2.addr := addr_temp
-            io.cpu.sram2.cen := 0.B
-            io.cpu.sram2.wen := 0.B
-            io.cpu.sram2.wmask := wmask(383, 256)
-            io.cpu.sram2.wdata := wdata(383, 256)
-            io.cpu.sram3.addr := addr_temp
-            io.cpu.sram3.cen := 0.B
-            io.cpu.sram3.wen := 0.B
-            io.cpu.sram3.wmask := wmask(511, 384)
-            io.cpu.sram3.wdata := wdata(511, 384)
-
         }
         .otherwise{  //alloc
-            //--------------valid
-            // valid := MuxLookup(victim, valid,
-            //     Seq(
-            //         0.U -> valid.bitSet(way0_buf, 1.B),
-            //         1.U -> valid.bitSet(way1_buf, 1.B),
-            //         2.U -> valid.bitSet(way2_buf, 1.B),
-            //         3.U -> valid.bitSet(way3_buf, 1.B),
-            //     )
-            // )
             valid(idx_reg) := MuxLookup(victim, valid(idx_reg),    //Mux实际上资源消耗挺大的，每一路都需要生成对应的电路
                 Seq(
                     0.U -> valid(idx_reg).bitSet(0.U, 1.B),
@@ -503,15 +431,7 @@ class Cache extends Module{
                     3.U -> valid(idx_reg).bitSet(3.U, 1.B)
                 )
             )
-            //--------------dirty
-            // dirty := MuxLookup(victim, dirty,
-            //     Seq(
-            //         0.U -> dirty.bitSet(way0_buf, 0.B),
-            //         1.U -> dirty.bitSet(way1_buf, 0.B),
-            //         2.U -> dirty.bitSet(way2_buf, 0.B),
-            //         3.U -> dirty.bitSet(way3_buf, 0.B),
-            //     )
-            // )
+
             dirty(idx_reg) := MuxLookup(victim, dirty(idx_reg),    //Mux实际上资源消耗挺大的，每一路都需要生成对应的电路
                 Seq(
                     0.U -> dirty(idx_reg).bitSet(0.U, 1.B),
@@ -531,44 +451,7 @@ class Cache extends Module{
             )
             
             //-------------Tag
-            switch(victim){
-                is(0.U){
-                    TagArray(idx_reg)(tlen-1, 0) := tag_reg
-                }    
-                is(1.U){
-                    TagArray(idx_reg)(2*tlen-1, tlen) := tag_reg
-                }
-                is(2.U){
-                    TagArray(idx_reg)(3*tlen-1, 2*tlen) := tag_reg
-                }
-                is(3.U){
-                    TagArray(idx_reg)(4*tlen-1, 3*tlen) := tag_reg
-                }
-            }
-
-            //------------data
-            val addr_temp = Cat(victim,idx) //------可能有问题
-
-            io.cpu.sram0.addr := addr_temp
-            io.cpu.sram0.cen := 0.B
-            io.cpu.sram0.wen := 0.B
-            io.cpu.sram0.wmask := wmask(127, 0)
-            io.cpu.sram0.wdata := wdata(127, 0)
-            io.cpu.sram1.addr := addr_temp
-            io.cpu.sram1.cen := 0.B
-            io.cpu.sram1.wen := 0.B
-            io.cpu.sram1.wmask := wmask(255, 128)
-            io.cpu.sram1.wdata := wdata(255, 128)
-            io.cpu.sram2.addr := addr_temp
-            io.cpu.sram2.cen := 0.B
-            io.cpu.sram2.wen := 0.B
-            io.cpu.sram2.wmask := wmask(383, 256)
-            io.cpu.sram2.wdata := wdata(383, 256)
-            io.cpu.sram3.addr := addr_temp
-            io.cpu.sram3.cen := 0.B
-            io.cpu.sram3.wen := 0.B
-            io.cpu.sram3.wmask := wmask(511, 384)
-            io.cpu.sram3.wdata := wdata(511, 384)
+            Tag_idxreg(victim) := tag_reg
         }
     }
 
