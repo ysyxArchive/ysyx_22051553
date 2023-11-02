@@ -127,8 +127,8 @@ class Cache extends Module{
     val victim = RegInit(0.U(2.W))
     dontTouch(victim)
 
+    val TagArray = RegInit(VecInit.tabulate(nSets)(i => 0.U((nWays*tlen).W)))
 
-    val TagArray = Mem(nSets*nWays, UInt(tlen.W))
     // val DataArray = Seq.fill(nWords)(SyncReadMem(nWays*nSets, Vec(wBytes, UInt(8.W))))
     //控制信号
     val hit0 = Wire(Bool())
@@ -188,10 +188,14 @@ class Cache extends Module{
     dontTouch(way1)
     dontTouch(way2)
     dontTouch(way3)
-    val rtag0 = TagArray(way0)
-    val rtag1 = TagArray(way1)
-    val rtag2 = TagArray(way2)
-    val rtag3 = TagArray(way3)
+    val Tag_idx = TagArray(idx)
+    val Tag_idxreg = TagArray(idx_reg)
+
+
+    val rtag0 = Tag_idx(tlen-1, 0)
+    val rtag1 = Tag_idx(2*tlen -1, tlen)
+    val rtag2 = Tag_idx(3*tlen -1, 2*tlen)
+    val rtag3 = Tag_idx(4*tlen -1, 3*tlen)
     val rtag0_buf = RegNext(rtag0, 0.U(tlen.W))
     val rtag1_buf = RegNext(rtag1, 0.U(tlen.W))
     val rtag2_buf = RegNext(rtag2, 0.U(tlen.W))
@@ -200,15 +204,6 @@ class Cache extends Module{
     dontTouch(rtag1)
     dontTouch(rtag2)
     dontTouch(rtag3)
-
-    val choose_way0 = Mux(is_choose, way0_buf, way0)
-    val choose_way1 = Mux(is_choose, way1_buf, way1)
-    val choose_way2 = Mux(is_choose, way2_buf, way2)
-    val choose_way3 = Mux(is_choose, way3_buf, way3)
-    dontTouch(choose_way0)
-    dontTouch(choose_way1)
-    dontTouch(choose_way2)
-    dontTouch(choose_way3)
 
     when(ren){ //读Cache逻辑
         when(hit){ //读命中
@@ -536,15 +531,21 @@ class Cache extends Module{
             )
             
             //-------------Tag
-            choose_tagway := MuxLookup(victim, 0.U,
-                Seq(
-                    0.U -> way0_buf,
-                    1.U -> way1_buf,
-                    2.U -> way2_buf,
-                    3.U -> way3_buf,
-                )
-            )
-            TagArray(choose_tagway) := tag_reg
+            switch(victim){
+                is(0.U){
+                    Tag_idxreg(tlen-1, 0) := tag_reg
+                }    
+                is(1.U){
+                    Tag_idxreg(2*tlen-1, tlen) := tag_reg
+                }
+                is(2.U){
+                    Tag_idxreg(3*tlen-1, 2*tlen) := tag_reg
+                }
+                is(3.U){
+                    Tag_idxreg(4*tlen-1, 3*tlen) := tag_reg
+                }
+            }
+
             //------------data
             val addr_temp = Cat(victim,idx) //------可能有问题
 
