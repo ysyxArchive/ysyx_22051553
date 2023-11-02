@@ -533,16 +533,16 @@ class Cache extends Module{
             //-------------Tag
             switch(victim){
                 is(0.U){
-                    Tag_idxreg(tlen-1, 0) := tag_reg
+                    TagArray(idx_reg)(tlen-1, 0) := tag_reg
                 }    
                 is(1.U){
-                    Tag_idxreg(2*tlen-1, tlen) := tag_reg
+                    TagArray(idx_reg)(2*tlen-1, tlen) := tag_reg
                 }
                 is(2.U){
-                    Tag_idxreg(3*tlen-1, 2*tlen) := tag_reg
+                    TagArray(idx_reg)(3*tlen-1, 2*tlen) := tag_reg
                 }
                 is(3.U){
-                    Tag_idxreg(4*tlen-1, 3*tlen) := tag_reg
+                    TagArray(idx_reg)(4*tlen-1, 3*tlen) := tag_reg
                 }
             }
 
