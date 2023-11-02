@@ -62,9 +62,7 @@ class IoforMem extends Module{
 
     val r_count = RegInit(0.U(4.W))
     val read = WireInit(0.U(X_LEN.W))
-    val mask = WireInit(0.U(8.W))
     dontTouch(read)
-    dontTouch(mask)
 
     val last_addr = RegInit(0.U(ADDRWIDTH.W))
     val begin_flag = RegInit(0.B)  //代表是否有第一个数据已经写入buffer
@@ -80,7 +78,6 @@ class IoforMem extends Module{
 
 
     read := VmemBuffer.read(r_count).asUInt //Vec转为UInt
-    mask := maskbuffer(r_count)
 
 
     io.axi.req.valid := 0.B
