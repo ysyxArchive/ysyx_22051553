@@ -15,6 +15,8 @@ class WbIO extends Bundle{
     val csrs = Flipped(new CSRWbIO)
 
     val stall = Input(Bool()) //为了difftest,wb在stall时，不写寄存器
+
+    val has_inst = Output(Bool())
 }
 
 class Wb extends Module{
@@ -22,8 +24,10 @@ class Wb extends Module{
     val io = IO(new WbIO)
 
     //内部逻辑
+
    
     //端口驱动
+    io.has_inst := io.mwio.has_inst
     //rfio
     io.rfio.rd := io.mwio.reg_waddr
     io.rfio.reg_wen := Mux(io.stall, 0.B, io.mwio.wb_type.orR)  //记录

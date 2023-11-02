@@ -188,6 +188,7 @@ class ysyx_22051553 extends Module{
     wb.io.csrs <> csrs.io.CSRWb
 
     wb.io.stall := fc.io.fcwb.stall
+    wb.io.has_inst := mwreg.has_inst
 
 
     //流水线寄存器
@@ -422,9 +423,9 @@ class ysyx_22051553 extends Module{
     fw.io.fwwb <> wb.io.fwwb
 
     //Trap
-    trap.io.ex_hasinst := excute.io.deio.has_inst
-    trap.io.mem_hasinst := mem.io.emio.has_inst
-    trap.io.wb_hasinst := wb.io.mwio.has_inst
+    trap.io.ex_hasinst := excute.io.has_inst
+    trap.io.mem_hasinst := mem.io.has_inst
+    trap.io.wb_hasinst := wb.io.has_inst
 
     trap.io.csrtr <> csrs.io.CSRTr
 

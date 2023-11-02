@@ -21,11 +21,14 @@ class MemIO extends Bundle{  //需要在这里落实lbu等，为了前向传递
 
     //stall
     val stall = Input(Bool())
+
+    val has_inst = Output(Bool())
 }
 
 class Mem extends Module{
     val io = IO(new MemIO)
 
+    io.has_inst := io.emio.has_inst
     
     val clmemvalid_buffer = RegInit(0.B)
     val rdatavalid_buffer = RegInit(0.B)

@@ -27,11 +27,17 @@ class ExcuteIO extends Bundle{
 
     //to CLINT
     val clex = Flipped(new ClExIO)
+
+    //
+    val has_inst = Output(Bool())
 }
 
 class Excute extends Module{
 
     val io = IO(new ExcuteIO)
+    //
+    io.has_inst := io.deio.has_inst
+
 
     val alu = Module(new Alu)
 
