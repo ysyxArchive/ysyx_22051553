@@ -81,11 +81,11 @@ class Mem extends Module{
     )
     
     
-    //大修改
-    val loffset = (io.emio.ld_addr_lowbit << 3.U).asUInt
+    //大修改!!!!
+    val loffset = (io.emio.ld_addr_lowbit << 3.U).asUInt     //重要
     val lshift = get_value >> loffset
 
-    val rvalue = Wire(SInt(X_LEN.W))                   //根据1.位宽进行扩展2.基地址偏移进行选择（总线上只能8字节对齐）
+    val rvalue = Wire(UInt(X_LEN.W))                   //根据1.位宽进行扩展2.基地址偏移进行选择（总线上只能8字节对齐）
     dontTouch(rvalue)
     rvalue := MuxLookup(io.emio.ld_type, 0.S, 
         Seq(
@@ -97,7 +97,7 @@ class Mem extends Module{
             LD_LHU -> lshift(15,0).zext,
             LD_LWU -> lshift(31,0).zext
         )
-    )
+    ).asUInt
 
     //端口驱动
     //mwio
@@ -106,7 +106,7 @@ class Mem extends Module{
     io.mwio.reg_wdata := MuxCase(0.U,
         Seq(
             (io.emio.wb_type === WB_ALU || io.emio.wb_type === WB_CSR) -> io.emio.reg_wdata,
-            (io.emio.wb_type === WB_MEM) -> rvalue.asUInt,
+            (io.emio.wb_type === WB_MEM) -> rvalue,
         )
     )
 
@@ -121,7 +121,7 @@ class Mem extends Module{
     io.fwmem.reg_wdata := MuxCase(0.U,
         Seq(
             (io.emio.wb_type === WB_ALU || io.emio.wb_type === WB_CSR) -> io.emio.reg_wdata,
-            (io.emio.wb_type === WB_MEM) -> rvalue.asUInt
+            (io.emio.wb_type === WB_MEM) -> rvalue
         )                    
     )
 
