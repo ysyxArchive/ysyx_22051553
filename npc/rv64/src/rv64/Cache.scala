@@ -345,13 +345,6 @@ class Cache extends Module{
         )
     )
 
-    val choose_tagway = Wire(UInt(5.W))
-    val choose_dataway = Wire(UInt(5.W))
-    choose_dataway := 0.U
-    choose_tagway := 0.U
-    dontTouch(choose_dataway)
-    dontTouch(choose_tagway)
-
 
     //读写hit都修改replace
     when(hit){

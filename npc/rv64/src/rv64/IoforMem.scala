@@ -57,7 +57,8 @@ class IoforMem extends Module{
 
     //Vmem缓冲
     val VmemBuffer = Mem(16, Vec(8, UInt(8.W)))  //128Bytes
-    val maskbuffer = Mem(16, UInt(8.W))
+    // val maskbuffer = Mem(16, UInt(8.W))
+    val maskbuffer = RegInit(VecInit.tabulate(16)(i => 0.U(8.W)))
 
     val r_count = RegInit(0.U(4.W))
     val read = WireInit(0.U(X_LEN.W))
@@ -79,7 +80,7 @@ class IoforMem extends Module{
 
 
     read := VmemBuffer.read(r_count).asUInt //Vec转为UInt
-    mask := maskbuffer.read(r_count)
+    mask := maskbuffer(r_count)
 
 
     io.axi.req.valid := 0.B
@@ -148,7 +149,7 @@ class IoforMem extends Module{
 
                             val data = VecInit.tabulate(8)(k => io.excute.wdata((k+1)*8 - 1, k*8))
                             VmemBuffer.write(data_count, data, io.excute.wmask.asBools)  //需要写成asBools成为Seq
-                            maskbuffer.write(data_count, io.excute.wmask)
+                            maskbuffer(data_count) :=  io.excute.wmask
                             last_addr := io.excute.waddr + 8.U
                             data_count := data_count + 1.U
                             wait_cycle := 0.U //若有写，则重新计数
@@ -212,7 +213,7 @@ class IoforMem extends Module{
                 when(jump_addr =/= 0.U){
                     val data = VecInit.tabulate(8)(k => jump_data((k+1)*8 - 1, k*8))
                     VmemBuffer.write(0.U, data, jump_mask.asBools)  //需要写成asBools成为Seq
-                    maskbuffer.write(0.U, jump_mask)
+                    maskbuffer(0) := jump_mask
                     last_addr := jump_addr + 8.U
                     data_count := 1.U
 
