@@ -22,9 +22,6 @@ class Wb extends Module{
     val io = IO(new WbIO)
 
     //内部逻辑
-    val has_inst = Wire(Bool())
-
-    has_inst := io.mwio.has_inst
    
     //端口驱动
     //rfio
