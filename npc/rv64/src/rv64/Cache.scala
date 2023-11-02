@@ -104,7 +104,7 @@ class Cache extends Module{
     val is_idle = state === s_Idle
     val is_choose = state === s_Choose
     val is_alloc = state === s_Refill && r_count===7.U
-    val is_alloc_reg = RegNext(is_alloc)
+    val is_alloc_reg = RegNext(is_alloc, 0.B)
     val is_war = state === s_WriteAfterRefill
 
 
@@ -132,14 +132,14 @@ class Cache extends Module{
     val hit1 = Wire(Bool())
     val hit2 = Wire(Bool())
     val hit3 = Wire(Bool())
-    val hit0_reg = RegNext(hit0)
-    val hit1_reg = RegNext(hit1)
-    val hit2_reg = RegNext(hit2)
-    val hit3_reg = RegNext(hit3)
+    val hit0_reg = RegNext(hit0, 0.B)
+    val hit1_reg = RegNext(hit1, 0.B)
+    val hit2_reg = RegNext(hit2, 0.B)
+    val hit3_reg = RegNext(hit3, 0.B)
 
 
     val hit = Wire(Bool())
-    val hit_reg = RegNext(hit)
+    val hit_reg = RegNext(hit, 0.B)
     dontTouch(hit0)
     dontTouch(hit1)
     dontTouch(hit2)
@@ -154,7 +154,7 @@ class Cache extends Module{
     // 1.保证单端口
     // 2.读命中
     // 3.写回判断
-    val ren_reg = RegNext(ren)
+    val ren_reg = RegNext(ren, 0.B)
     
 
     val addr = io.cpu.req.bits.addr
@@ -189,10 +189,10 @@ class Cache extends Module{
     val rtag1 = TagArray(way1)
     val rtag2 = TagArray(way2)
     val rtag3 = TagArray(way3)
-    val rtag0_buf = RegNext(rtag0)
-    val rtag1_buf = RegNext(rtag1)
-    val rtag2_buf = RegNext(rtag2)
-    val rtag3_buf = RegNext(rtag3)
+    val rtag0_buf = RegNext(rtag0, 0.U(tlen.W))
+    val rtag1_buf = RegNext(rtag1, 0.U(tlen.W))
+    val rtag2_buf = RegNext(rtag2, 0.U(tlen.W))
+    val rtag3_buf = RegNext(rtag3, 0.U(tlen.W))
     dontTouch(rtag0)
     dontTouch(rtag1)
     dontTouch(rtag2)
@@ -243,10 +243,11 @@ class Cache extends Module{
 
 
     val rdata = Cat(io.cpu.sram3.rdata, io.cpu.sram2.rdata, io.cpu.sram1.rdata, io.cpu.sram0.rdata)
-    val rdata_buf = RegEnable(rdata, ren_reg)
+    val rdata_buf = RegEnable(rdata, 0.U, ren_reg)
 
     //refill
-    val refill_buffer = Reg(Vec(dataBeats, UInt(X_LEN.W)))
+    // val refill_buffer = Reg(Vec(dataBeats, UInt(X_LEN.W)))
+    val refill_buffer = RegInit(Vec(dataBeats, 0.U(X_LEN.W)))
 
     //read中是一个Cacheline的数据
     val read = Mux(is_alloc_reg,   //已经全部Refill到Cacheline,且Refill_buf中是完整的数据 //读不命中

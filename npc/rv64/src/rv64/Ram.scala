@@ -19,7 +19,7 @@ class Ram extends Module{
     loadMemoryFromFileInline(SyncMem, "inst")
 
 
-    val inst_valid = RegNext(io.pc.valid)
+    val inst_valid = RegNext(io.pc.valid, 0.B)
     io.dataOut.valid := inst_valid
     
     //当io.pc.valid为0时，默认读出SyncMem[0]的数据
