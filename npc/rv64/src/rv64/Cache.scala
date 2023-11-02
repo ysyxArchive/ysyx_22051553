@@ -246,8 +246,8 @@ class Cache extends Module{
     val rdata_buf = RegEnable(rdata, 0.U, ren_reg)
 
     //refill
-    // val refill_buffer = Reg(Vec(dataBeats, UInt(X_LEN.W)))
-    val refill_buffer = RegInit(VecInit(Fill(dataBeats, 0.U(X_LEN.W))))
+    // val refill_buffer = Reg(Vec(dataBeats, UInt(X_LEN.W))) //vec中只能填chisel类型
+    val refill_buffer = RegInit(VecInit(0.U, 0.U, 0.U, 0.U, 0.U, 0.U, 0.U, 0.U))  //vecinit可以用字面量来初始化, 有更好的写法吗
 
     //read中是一个Cacheline的数据
     val read = Mux(is_alloc_reg,   //已经全部Refill到Cacheline,且Refill_buf中是完整的数据 //读不命中
