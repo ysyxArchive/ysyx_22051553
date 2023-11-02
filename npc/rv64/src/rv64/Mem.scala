@@ -87,7 +87,7 @@ class Mem extends Module{
 
     val rvalue = Wire(SInt(X_LEN.W))                   //根据1.位宽进行扩展2.基地址偏移进行选择（总线上只能8字节对齐）
     dontTouch(rvalue)
-    rvalue := MuxLookup(io.emio.ld_type, 0.U, 
+    rvalue := MuxLookup(io.emio.ld_type, 0.S, 
         Seq(
             LD_LB -> lshift(7, 0).asSInt,
             LD_LH -> lshift(15, 0).asSInt,
@@ -95,7 +95,7 @@ class Mem extends Module{
             LD_LD -> lshift,
             LD_LBU -> lshift(7,0).zext,
             LD_LHU -> lshift(15,0).zext,
-            LD_LWU -> lshift(31,0).zext,
+            LD_LWU -> lshift(31,0).zext
         )
     )
 
