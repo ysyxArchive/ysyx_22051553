@@ -22,8 +22,18 @@ class ysyx_22051553 extends Module{
         val sram6 = new SramIO
         val sram7 = new SramIO
     })
-    
-
+    //顶层
+    io.slave.awready := 0.B
+    io.slave.wready := 0.B
+    io.slave.bvalid := 0.B
+    io.slave.bid := 0.U
+    io.slave.bresp := 0.U
+    io.slave.arready := 0.B
+    io.slave.rvalid := 0.B
+    io.slave.rid := 0.U
+    io.slave.rresp := 0.U
+    io.slave.rdata := 0.U
+    io.slave.rlast := 0.B
     //DataPath -----------------------------------------
 
     //五级
