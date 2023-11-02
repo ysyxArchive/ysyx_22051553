@@ -128,7 +128,8 @@ class Cache extends Module{
     dontTouch(victim)
 
     // val TagArray = RegInit(VecInit.tabulate(nSets)(i => VecInit.tabulate(nWays)(m => 0.U(tlen.W)))) //nSets*(nWasy*tlen)
-    val TagArray = VecInit.tabulate(nSets)(i => VecInit.tabulate(nWays)(m => RegInit(0.U(tlen.W))))
+    // val TagArray = VecInit.tabulate(nSets)(i => VecInit.tabulate(nWays)(m => RegInit(0.U(tlen.W))))
+    val TagArray = RegInit(VecInit.tabulate(nSets)(i => RegInit(0.U((nWays*tlen).W))))
 
 
     // val DataArray = Seq.fill(nWords)(SyncReadMem(nWays*nSets, Vec(wBytes, UInt(8.W))))
@@ -180,10 +181,10 @@ class Cache extends Module{
     val Tag_idx = TagArray(idx)
     val Tag_idxreg = TagArray(idx_reg)
 
-    val rtag0 = Tag_idx(0.U)
-    val rtag1 = Tag_idx(1.U)
-    val rtag2 = Tag_idx(2.U)
-    val rtag3 = Tag_idx(3.U)
+    val rtag0 = Tag_idx(tlen - 1, 0)
+    val rtag1 = Tag_idx(2*tlen - 1, tlen)
+    val rtag2 = Tag_idx(3*tlen - 1, 2*tlen)
+    val rtag3 = Tag_idx(4*tlen - 1, 3*tlen)
     val rtag0_buf = RegNext(rtag0, 0.U(tlen.W))
     val rtag1_buf = RegNext(rtag1, 0.U(tlen.W))
     val rtag2_buf = RegNext(rtag2, 0.U(tlen.W))
@@ -453,7 +454,20 @@ class Cache extends Module{
             )
             
             //-------------Tag
-            Tag_idxreg(victim) := tag_reg
+            switch(victim){
+                is(0.U){
+                    Tag_idxreg := Cat(Tag_idxreg(4*tlen -1 , tlen), tag_reg)
+                }
+                is(1.U){
+                    Tag_idxreg := Cat(Tag_idxreg(4*tlen -1 , 2*tlen), tag_reg, Tag_idxreg(tlen - 1, 0))
+                }
+                is(2.U){
+                    Tag_idxreg := Cat(Tag_idxreg(4*tlen -1 , 2*tlen), tag_reg, Tag_idxreg(2*tlen - 1, tlen))
+                }
+                is(3.U){
+                    Tag_idxreg := Cat(tag_reg, Tag_idxreg(3*tlen - 1, 2*tlen))
+                }
+            }
         }
     }
 
