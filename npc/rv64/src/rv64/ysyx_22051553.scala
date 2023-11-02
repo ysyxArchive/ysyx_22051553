@@ -188,8 +188,6 @@ class ysyx_22051553 extends Module{
     wb.io.csrs <> csrs.io.CSRWb
 
     wb.io.stall := fc.io.fcwb.stall
-    wb.io.has_inst := mwreg.has_inst
-
 
     //流水线寄存器
     //fdreg
