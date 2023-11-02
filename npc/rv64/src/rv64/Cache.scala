@@ -109,17 +109,20 @@ class Cache extends Module{
 
 
     //缓存地址
-    val addr_reg = Reg(chiselTypeOf(io.cpu.req.bits.addr))
-    val cpu_data = Reg(chiselTypeOf(io.cpu.req.bits.data))
-    val cpu_mask = Reg(chiselTypeOf(io.cpu.req.bits.mask))
+    val addr_reg = RegInit(0.U(ADDRWIDTH.W))
+    val cpu_data = RegInit(0.U(X_LEN.W))
+    val cpu_mask = RegInit(0.U((X_LEN/8).W))
 
     val addr_buf = RegInit(0.U(ADDRWIDTH.W))
     val rw_buf = RegInit(0.B)
     //标记项
-    val valid = RegInit(0.U((nWays*nSets).W))
-    val dirty = RegInit(0.U((nWays*nSets).W))
+    // val valid = RegInit(0.U((nWays*nSets).W))
+    // val dirty = RegInit(0.U((nWays*nSets).W))
+    val valid = RegInit(VecInit.tabulate(nSets)(i => 0.U(nWays.W)))  //每次都会比较一个set的状态位
+    val dirty = RegInit(VecInit.tabulate(nSets)(i => 0.U(nWays.W)))
 
-    val replace = Mem(nSets, UInt(3.W)) //Tree-PLRU算法
+    // val replace = Mem(nSets, UInt(3.W)) //Tree-PLRU算法
+    val replace = RegInit(VecInit.tabulate(nSets)(i => 0.U(3.W)))
 
     val victim = RegInit(0.U(2.W))
     dontTouch(victim)
@@ -247,7 +250,7 @@ class Cache extends Module{
 
     //refill
     // val refill_buffer = Reg(Vec(dataBeats, UInt(X_LEN.W))) //vec中只能填chisel类型
-    val refill_buffer = RegInit(VecInit(0.U, 0.U, 0.U, 0.U, 0.U, 0.U, 0.U, 0.U))  //vecinit可以用字面量来初始化, 有更好的写法吗
+    val refill_buffer = RegInit(VecInit(0.U, 0.U, 0.U, 0.U, 0.U, 0.U, 0.U, 0.U))  //vecinit可以用字面量来初始化, 有更好的写法吗 --tabulate
 
     //read中是一个Cacheline的数据
     val read = Mux(is_alloc_reg,   //已经全部Refill到Cacheline,且Refill_buf中是完整的数据 //读不命中
@@ -262,13 +265,15 @@ class Cache extends Module{
     )
 
     //立即判断
-    hit0 := valid(way0) && rtag0 === tag && is_idle  //不能让其他周期的命中影响当前cache状态机进行
-    hit1 := valid(way1) && rtag1 === tag && is_idle
-    hit2 := valid(way2) && rtag2 === tag && is_idle
-    hit3 := valid(way3) && rtag3 === tag && is_idle
+    val valid_idx = valid(idx)
+    val dirty_idx = dirty(idx)
+
+    hit0 := valid_idx(0) && rtag0 === tag && is_idle  //不能让其他周期的命中影响当前cache状态机进行
+    hit1 := valid_idx(1) && rtag1 === tag && is_idle
+    hit2 := valid_idx(2) && rtag2 === tag && is_idle
+    hit3 := valid_idx(3) && rtag3 === tag && is_idle
 
     hit := hit0 | hit1 | hit2 | hit3
-
     //读出
     io.cpu.resp.bits.data := Mux(
         is_alloc_reg, refill_buffer(off_reg),
@@ -300,10 +305,10 @@ class Cache extends Module{
                 )
             ),
             Seq(  //若有valid
-                (!valid(way0)) -> 0.U,
-                (!valid(way1)) -> 1.U,
-                (!valid(way2)) -> 2.U,
-                (!valid(way3)) -> 3.U,
+                (!valid_idx(0)) -> 0.U,
+                (!valid_idx(1)) -> 1.U,
+                (!valid_idx(2)) -> 2.U,
+                (!valid_idx(3)) -> 3.U,
             )
         )
     }.elsewhen(!io.cpu.req.valid & is_idle){  //复位
@@ -313,10 +318,13 @@ class Cache extends Module{
     }
 
     //在写回阶段判定
-    val dirty0 = valid(way0_buf) && dirty(way0_buf)
-    val dirty1 = valid(way1_buf) && dirty(way1_buf)
-    val dirty2 = valid(way2_buf) && dirty(way2_buf)
-    val dirty3 = valid(way3_buf) && dirty(way3_buf)
+    val valid_idxreg = valid(idx_reg)
+    val dirty_idxreg = dirty(idx_reg)
+
+    val dirty0 = valid_idxreg(0) && dirty_idxreg(0)
+    val dirty1 = valid_idxreg(1) && dirty_idxreg(1)
+    val dirty2 = valid_idxreg(2) && dirty_idxreg(2)
+    val dirty3 = valid_idxreg(3) && dirty_idxreg(3)
 
 
     //写入-----------
@@ -386,15 +394,23 @@ class Cache extends Module{
         when(hit){//1.写命中，不涉及写valid   
 
             //dirty---------------
-            dirty := MuxCase(0.B, 
+            // dirty := MuxCase(0.B, 
+            //     Seq(
+            //         (hit0) -> dirty.bitSet(way0, 1.B),
+            //         (hit1) -> dirty.bitSet(way1, 1.B),
+            //         (hit2) -> dirty.bitSet(way2, 1.B),
+            //         (hit3) -> dirty.bitSet(way3, 1.B), 
+            //     )
+            // )
+            dirty(idx) := MuxCase(dirty(idx), 
                 Seq(
-                    (hit0) -> dirty.bitSet(way0, 1.B),
-                    (hit1) -> dirty.bitSet(way1, 1.B),
-                    (hit2) -> dirty.bitSet(way2, 1.B),
-                    (hit3) -> dirty.bitSet(way3, 1.B), 
+                    hit0 -> dirty(idx).bitSet(0.U, 1.B),
+                    hit1 -> dirty(idx).bitSet(1.U, 1.B),
+                    hit2 -> dirty(idx).bitSet(2.U, 1.B),
+                    hit3 -> dirty(idx).bitSet(3.U, 1.B)
                 )
             )
-            
+
             val addr_temp = Cat( //---------可能有问题
                 MuxCase(0.U(2.W),
                     Seq(
@@ -430,14 +446,25 @@ class Cache extends Module{
 
 
         }.elsewhen(is_war){ //2.写不命中，alloc后，写入  --修改后
-            dirty := MuxLookup(victim, dirty,        //修改dirty位
+            // dirty := MuxLookup(victim, dirty,        //修改dirty位
+            //     Seq(
+            //         0.U -> dirty.bitSet(way0_buf, 1.B),
+            //         1.U -> dirty.bitSet(way1_buf, 1.B),
+            //         2.U -> dirty.bitSet(way2_buf, 1.B),
+            //         3.U -> dirty.bitSet(way3_buf, 1.B),
+            //     )
+            // )
+
+            dirty(idx_reg) := MuxLookup(victim, dirty(idx_reg),    //Mux实际上资源消耗挺大的，每一路都需要生成对应的电路
                 Seq(
-                    0.U -> dirty.bitSet(way0_buf, 1.B),
-                    1.U -> dirty.bitSet(way1_buf, 1.B),
-                    2.U -> dirty.bitSet(way2_buf, 1.B),
-                    3.U -> dirty.bitSet(way3_buf, 1.B),
+                    0.U -> dirty(idx_reg).bitSet(0.U, 1.B),
+                    1.U -> dirty(idx_reg).bitSet(1.U, 1.B),
+                    2.U -> dirty(idx_reg).bitSet(2.U, 1.B),
+                    3.U -> dirty(idx_reg).bitSet(3.U, 1.B)
                 )
             )
+
+
 
             val addr_temp = Cat(victim,idx) //------可能有问题
 
@@ -465,21 +492,37 @@ class Cache extends Module{
         }
         .otherwise{  //alloc
             //--------------valid
-            valid := MuxLookup(victim, valid,
+            // valid := MuxLookup(victim, valid,
+            //     Seq(
+            //         0.U -> valid.bitSet(way0_buf, 1.B),
+            //         1.U -> valid.bitSet(way1_buf, 1.B),
+            //         2.U -> valid.bitSet(way2_buf, 1.B),
+            //         3.U -> valid.bitSet(way3_buf, 1.B),
+            //     )
+            // )
+            valid(idx_reg) := MuxLookup(victim, valid(idx_reg),    //Mux实际上资源消耗挺大的，每一路都需要生成对应的电路
                 Seq(
-                    0.U -> valid.bitSet(way0_buf, 1.B),
-                    1.U -> valid.bitSet(way1_buf, 1.B),
-                    2.U -> valid.bitSet(way2_buf, 1.B),
-                    3.U -> valid.bitSet(way3_buf, 1.B),
+                    0.U -> valid(idx_reg).bitSet(0.U, 1.B),
+                    1.U -> valid(idx_reg).bitSet(1.U, 1.B),
+                    2.U -> valid(idx_reg).bitSet(2.U, 1.B),
+                    3.U -> valid(idx_reg).bitSet(3.U, 1.B)
                 )
             )
             //--------------dirty
-            dirty := MuxLookup(victim, dirty,
+            // dirty := MuxLookup(victim, dirty,
+            //     Seq(
+            //         0.U -> dirty.bitSet(way0_buf, 0.B),
+            //         1.U -> dirty.bitSet(way1_buf, 0.B),
+            //         2.U -> dirty.bitSet(way2_buf, 0.B),
+            //         3.U -> dirty.bitSet(way3_buf, 0.B),
+            //     )
+            // )
+            dirty(idx_reg) := MuxLookup(victim, dirty(idx_reg),    //Mux实际上资源消耗挺大的，每一路都需要生成对应的电路
                 Seq(
-                    0.U -> dirty.bitSet(way0_buf, 0.B),
-                    1.U -> dirty.bitSet(way1_buf, 0.B),
-                    2.U -> dirty.bitSet(way2_buf, 0.B),
-                    3.U -> dirty.bitSet(way3_buf, 0.B),
+                    0.U -> dirty(idx_reg).bitSet(0.U, 1.B),
+                    1.U -> dirty(idx_reg).bitSet(1.U, 1.B),
+                    2.U -> dirty(idx_reg).bitSet(2.U, 1.B),
+                    3.U -> dirty(idx_reg).bitSet(3.U, 1.B)
                 )
             )
             //--------------replace

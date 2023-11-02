@@ -81,65 +81,21 @@ class Mem extends Module{
     )
     
     
+    //大修改
+    val loffset = (io.emio.ld_addr_lowbit << 3.U).asUInt
+    val lshift = get_value >> loffset
 
-
-    val rvalue = Wire(UInt(X_LEN.W))                   //根据1.位宽进行扩展2.基地址偏移进行选择（总线上只能8字节对齐）
+    val rvalue = Wire(SInt(X_LEN.W))                   //根据1.位宽进行扩展2.基地址偏移进行选择（总线上只能8字节对齐）
     dontTouch(rvalue)
     rvalue := MuxLookup(io.emio.ld_type, 0.U, 
         Seq(
-            LD_LB -> MuxLookup(io.emio.ld_addr_lowbit, 0.U,
-                Seq(
-                    0.U -> Cat(Fill(56, get_value(7)), get_value(7,0)),
-                    1.U -> Cat(Fill(56, get_value(15)), get_value(15,8)),
-                    2.U -> Cat(Fill(56, get_value(23)), get_value(23,16)),
-                    3.U -> Cat(Fill(56, get_value(31)), get_value(31,24)),
-                    4.U -> Cat(Fill(56, get_value(39)), get_value(39,32)),
-                    5.U -> Cat(Fill(56, get_value(47)), get_value(47,40)),
-                    6.U -> Cat(Fill(56, get_value(55)), get_value(55,48)),
-                    7.U -> Cat(Fill(56, get_value(63)), get_value(63,56)),
-                )
-            ),
-            LD_LH -> MuxLookup(io.emio.ld_addr_lowbit, 0.U,
-                Seq(
-                    0.U -> Cat(Fill(48, get_value(15)), get_value(15,0)),
-                    2.U -> Cat(Fill(48, get_value(31)), get_value(31,16)),
-                    4.U -> Cat(Fill(48, get_value(47)), get_value(47,32)),
-                    6.U -> Cat(Fill(48, get_value(63)), get_value(63,48)),
-                )
-            ),
-            LD_LW -> MuxLookup(io.emio.ld_addr_lowbit, 0.U,
-                Seq(
-                    0.U -> Cat(Fill(32, get_value(31)), get_value(31,0)),
-                    4.U -> Cat(Fill(32, get_value(63)), get_value(63,32)),
-                )
-            ),
-            LD_LD -> get_value,
-            LD_LBU -> MuxLookup(io.emio.ld_addr_lowbit, 0.U,
-                Seq(
-                    0.U -> Cat(Fill(56, 0.U), get_value(7,0)),
-                    1.U -> Cat(Fill(56, 0.U), get_value(15,8)),
-                    2.U -> Cat(Fill(56, 0.U), get_value(23,16)),
-                    3.U -> Cat(Fill(56, 0.U), get_value(31,24)),
-                    4.U -> Cat(Fill(56, 0.U), get_value(39,32)),
-                    5.U -> Cat(Fill(56, 0.U), get_value(47,40)),
-                    6.U -> Cat(Fill(56, 0.U), get_value(55,48)),
-                    7.U -> Cat(Fill(56, 0.U), get_value(63,56)),
-                )
-            ),
-            LD_LHU -> MuxLookup(io.emio.ld_addr_lowbit, 0.U,
-                Seq(
-                    0.U -> Cat(Fill(48, 0.U), get_value(15,0)),
-                    2.U -> Cat(Fill(48, 0.U), get_value(31,16)),
-                    4.U -> Cat(Fill(48, 0.U), get_value(47,32)),
-                    6.U -> Cat(Fill(48, 0.U), get_value(63,48)),
-                )
-            ),
-            LD_LWU -> MuxLookup(io.emio.ld_addr_lowbit, 0.U,
-                Seq(
-                    0.U -> Cat(Fill(32, 0.U), get_value(31,0)),
-                    4.U -> Cat(Fill(32, 0.U), get_value(63,32)),
-                )
-            ),
+            LD_LB -> lshift(7, 0).asSInt,
+            LD_LH -> lshift(15, 0).asSInt,
+            LD_LW -> lshift(31, 0).asSInt,
+            LD_LD -> lshift,
+            LD_LBU -> lshift(7,0).zext,
+            LD_LHU -> lshift(15,0).zext,
+            LD_LWU -> lshift(31,0).zext,
         )
     )
 
@@ -150,7 +106,7 @@ class Mem extends Module{
     io.mwio.reg_wdata := MuxCase(0.U,
         Seq(
             (io.emio.wb_type === WB_ALU || io.emio.wb_type === WB_CSR) -> io.emio.reg_wdata,
-            (io.emio.wb_type === WB_MEM) -> rvalue,
+            (io.emio.wb_type === WB_MEM) -> rvalue.asUInt,
         )
     )
 
@@ -165,7 +121,7 @@ class Mem extends Module{
     io.fwmem.reg_wdata := MuxCase(0.U,
         Seq(
             (io.emio.wb_type === WB_ALU || io.emio.wb_type === WB_CSR) -> io.emio.reg_wdata,
-            (io.emio.wb_type === WB_MEM) -> rvalue
+            (io.emio.wb_type === WB_MEM) -> rvalue.asUInt
         )                    
     )
 

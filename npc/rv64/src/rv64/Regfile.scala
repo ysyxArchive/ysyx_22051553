@@ -29,7 +29,7 @@ class Regfile extends Module {
 
     val io = IO(new RfIO)
 
-    val regs = Mem(32, UInt(X_LEN.W))
+    val regs = RegInit(VecInit.tabulate(32)(i => 0.U(X_LEN.W)))
 
     // val interface = Module(new RegsInterface)
 
