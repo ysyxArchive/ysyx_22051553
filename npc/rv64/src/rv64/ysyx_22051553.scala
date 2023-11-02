@@ -474,7 +474,7 @@ class ysyx_22051553 extends Module{
     Icache.io.cpu.sram2 <> io.sram2
     Icache.io.cpu.sram3 <> io.sram3
     //Dcache
-    Dcache.io.cpu.req.valid := (dereg.ld_type.orR | dereg.sd_type.orR) && ((excute.io.waddr | excute.io.raddr) < "ha0000000".U) && (!excute.io.cl_type)
+    Dcache.io.cpu.req.valid := (dereg.ld_type.orR | dereg.sd_type.orR) && ((excute.io.waddr | excute.io.raddr) > "h1bffffff".U)
     Dcache.io.cpu.req.bits.addr := excute.io.waddr | excute.io.raddr
     Dcache.io.cpu.req.bits.data := excute.io.wdata
     Dcache.io.cpu.req.bits.mask := excute.io.wmask

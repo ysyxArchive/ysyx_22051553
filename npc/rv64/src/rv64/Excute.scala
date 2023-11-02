@@ -73,7 +73,7 @@ class Excute extends Module{
     val CLINT_type = Wire(Bool())
 
     CLINT_type := (io.deio.ld_type =/= 0.U || io.deio.sd_type =/= 0.U) &&      //load/store不涉及乘除相关操作
-        (alu.io.result >= "h02000000".U) && (alu.io.result <= "h0200bfff".U)
+        (alu.io.result >= "h02000000".U) && (alu.io.result <= "h0200ffff".U)
     //驱动端口
     //顶层
     //emio

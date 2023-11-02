@@ -94,7 +94,7 @@ class IoforMem extends Module{
     io.mem.data.bits := mem_data_bits
 
     //顶层
-    io.fc.req := (io.excute.ld_type.orR | io.excute.sd_type.orR) && ((io.excute.waddr | io.excute.raddr) >= "ha0000000".U)
+    io.fc.req := (io.excute.ld_type.orR | io.excute.sd_type.orR) && ((io.excute.waddr | io.excute.raddr) < "h10005000".U)
     io.fc.state := state
     io.fc.valid := io.axi.resp.valid
     io.fc.vmem_range := 0.B
@@ -126,7 +126,7 @@ class IoforMem extends Module{
 
                 when( (io.excute.ld_type.orR | io.excute.sd_type.orR) && ((io.excute.waddr | io.excute.raddr) >= "ha0000000".U) ){
 
-                    when(io.excute.sd_type.orR && io.excute.waddr >= "ha1000000".U){ //vmem写请求，直到1.满、2.时间到达3.地址跳跃
+                    when(io.excute.sd_type.orR && io.excute.waddr >= "h1c000000".U && io.excute.waddr < "h30000000".U){ //vmem写请求，直到1.满、2.时间到达3.地址跳跃
                         io.fc.vmem_range := 1.B
 
                         when(begin_flag && (last_addr =/= io.excute.waddr)){ //data_in_buffer代表第一个数据已经写入buffer

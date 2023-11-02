@@ -5,7 +5,7 @@ import chisel3.util._
 
 object Define {
     val PC_LEN = 64
-    val PC_START = "h80000000".U
+    val PC_START = "h30000000".U
 
     val X_LEN = 64 //这就是word？
     val INST_LEN = 32
