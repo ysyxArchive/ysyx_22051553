@@ -137,13 +137,16 @@ class Decode extends Module {
 
     //to fc
     io.jump_flag := (cu.io.jump_type === ControlUnit.JUMP_JAL || cu.io.jump_type === ControlUnit.JUMP_JALR)
-    io.jump_pc := MuxCase(
+    
+    val jump_pc = MuxCase(
         "h80000000".U,
         Seq(
             (cu.io.jump_type === ControlUnit.JUMP_JAL) -> (io.fdio.pc + eximm.io.eximm),
             (cu.io.jump_type === ControlUnit.JUMP_JALR) -> ((Mux(io.fwde.fw_sel1, io.fwde.fw_data1, io.rfio.reg1_rdata) + eximm.io.eximm) & (~(1.U(64.W)))), 
         )
     )
+    io.jump_pc := jump_pc(31,0)
+
     io.load_use := load_use
 
 

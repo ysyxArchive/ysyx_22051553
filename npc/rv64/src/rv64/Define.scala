@@ -7,7 +7,7 @@ object Define {
     val PC_LEN = 32
     val PC_START = "h80000000".U
 
-    val X_LEN = 64
+    val X_LEN = 64 //这就是word？
     val INST_LEN = 32
 
     val ADDRWIDTH = 32
