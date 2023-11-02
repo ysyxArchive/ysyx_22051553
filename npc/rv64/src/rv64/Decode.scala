@@ -140,8 +140,8 @@ class Decode extends Module {
     io.jump_pc := MuxCase(
         "h80000000".U,
         Seq(
-            (cu.io.jump_type === ControlUnit.JUMP_JAL) -> (io.fdio.pc + eximm.io.eximm(31,0)),    //强行改成了32位
-            (cu.io.jump_type === ControlUnit.JUMP_JALR) -> ((Mux(io.fwde.fw_sel1, io.fwde.fw_data1(31,0), io.rfio.reg1_rdata(31,0)) + eximm.io.eximm(31,0)) & (~(1.U(32.W)))), 
+            (cu.io.jump_type === ControlUnit.JUMP_JAL) -> (io.fdio.pc + eximm.io.eximm),
+            (cu.io.jump_type === ControlUnit.JUMP_JALR) -> ((Mux(io.fwde.fw_sel1, io.fwde.fw_data1, io.rfio.reg1_rdata) + eximm.io.eximm) & (~(1.U(64.W)))), 
         )
     )
     io.load_use := load_use

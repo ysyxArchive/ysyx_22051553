@@ -462,7 +462,7 @@ class ysyx_22051553 extends Module{
     
     //Icache
     Icache.io.cpu.req.valid := fetch.io.pc.valid
-    Icache.io.cpu.req.bits.addr := fetch.io.pc.bits
+    Icache.io.cpu.req.bits.addr := fetch.io.pc.bits(31,0)
     Icache.io.cpu.req.bits.data := DontCare
     Icache.io.cpu.req.bits.mask := DontCare
 
