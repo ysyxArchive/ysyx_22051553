@@ -7,17 +7,22 @@ import Define._
 import circt.stage.CLI
 
 
-// class CoreIO extends Bundle {
-//     val ramio = Flipped(new RamIO)
-// }
-
 class ysyx_22051553 extends Module{
     val io = IO(new Bundle {
-        val AXI_Interface = new AXIMasterIf
+        val interrupt = Input(Bool())
+        val master = new AXIMasterIf
+        val slave = Flipped(new AXIMasterIf)
+
+        val sram0 = new SramIO
+        val sram1 = new SramIO
+        val sram2 = new SramIO
+        val sram3 = new SramIO
+        val sram4 = new SramIO
+        val sram5 = new SramIO
+        val sram6 = new SramIO
+        val sram7 = new SramIO
     })
     
-
-
 
     //DataPath -----------------------------------------
 
@@ -109,7 +114,7 @@ class ysyx_22051553 extends Module{
     
     //互联 -- 基本以被驱动方为标准
     //顶层
-    io.AXI_Interface <> arbitor.io.AXI_O
+    io.master <> arbitor.io.AXI_O
 
     //寄存器不是有单一方向的，不能用<>
     
@@ -455,6 +460,10 @@ class ysyx_22051553 extends Module{
 
     Icache.io.fccache <> fc.io.fcIcache
 
+    Icache.io.cpu.sram0 <> io.sram0
+    Icache.io.cpu.sram1 <> io.sram1
+    Icache.io.cpu.sram2 <> io.sram2
+    Icache.io.cpu.sram3 <> io.sram3
     //Dcache
     Dcache.io.cpu.req.valid := (dereg.ld_type.orR | dereg.sd_type.orR) && ((excute.io.waddr | excute.io.raddr) < "ha0000000".U) && (!excute.io.cl_type)
     Dcache.io.cpu.req.bits.addr := excute.io.waddr | excute.io.raddr
@@ -464,6 +473,11 @@ class ysyx_22051553 extends Module{
     Dcache.io.cpu.resp <> mem.io.rdata
 
     Dcache.io.fccache <> fc.io.fcDcache
+
+    Dcache.io.cpu.sram0 <> io.sram4
+    Dcache.io.cpu.sram1 <> io.sram5
+    Dcache.io.cpu.sram2 <> io.sram6
+    Dcache.io.cpu.sram3 <> io.sram7
     //io
     ioformem.io.excute.waddr := excute.io.waddr
     ioformem.io.excute.raddr := excute.io.raddr
