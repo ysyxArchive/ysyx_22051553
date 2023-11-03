@@ -159,6 +159,8 @@ class IoforMem extends Module{
     io.fc.vmem_range := 0.B 
 
 
+    val addr_buf = RegInit(0.U(ADDRWIDTH.W))
+    val rw_buf = RegInit(0.B)
 
     switch(state){
         is(s_Idle){
@@ -170,8 +172,14 @@ class IoforMem extends Module{
                     io.axi.req.bits.addr := Cat(fetch_addr(31,2), 0.U(2.W)).asUInt //修改后，对齐4字节，存疑
                     io.axi.req.bits.len := 0.U
                     io.axi.req.bits.size := "b10".U //存疑
+
+                    addr_buf := io.axi.req.bits.addr
+                    rw_buf := 1.B
                 }
                 .elsewhen(excute_req){
+                    addr_buf := io.axi.req.bits.addr
+                    rw_buf := io.axi.req.bits.rw
+
                     when(begin_flag){ //记时16个周期后，申请写入vmem
                         wait_cycle := wait_cycle + 1.U
                     }
@@ -259,10 +267,10 @@ class IoforMem extends Module{
                 }    
             }.otherwise{
                 io.axi.req.valid := 1.B 
-                io.axi.req.bits.addr := Cat(excute_addr(31,3), 0.U(3.W)).asUInt //修改后，对齐8字节
+                io.axi.req.bits.addr := addr_buf 
                 io.axi.req.bits.data := excute_data
                 io.axi.req.bits.mask := excute_mask
-                io.axi.req.bits.rw := excute_rw
+                io.axi.req.bits.rw := rw_buf
             }
         }
         is(s_multireq){
