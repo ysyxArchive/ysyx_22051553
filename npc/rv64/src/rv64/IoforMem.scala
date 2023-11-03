@@ -271,6 +271,10 @@ class IoforMem extends Module{
         }
         is(s_singlereq){
             when(io.axi.resp.valid){
+                mem_data_valid := 0.B
+                decode_inst_valid := 0.B
+
+
                 when(master_choose(0)){  //fetch_req
                     decode_inst_valid := 1.B
                     decode_inst := io.axi.resp.bits.data
