@@ -12,6 +12,10 @@ object IoforMem{
 }
 //s_multiready:与Cache一致，等待Arbitor写地址结束
 
+class IOde extends Bundle{
+    val inst = ValidIO(UInt(X_LEN.W))
+}
+
 
 class IOex extends Bundle{
     val req = Input(Bool())
@@ -43,6 +47,7 @@ class IomemIO extends Bundle{  //io访存模块
     val axi = Flipped(new AXIMasterIO)
     val excute = new IOex
     val fetch = new IOfe
+    val decode = new IOde
     val mem = new IOmem
 
     val fc = new IOfc //当外部还有stall时，保持valid
@@ -110,6 +115,8 @@ class IoforMem extends Module{
     val mem_data_valid = RegInit(0.B)
     val mem_data_bits = RegInit(0.U(X_LEN.W))
 
+    val decode_inst_valid = RegInit(0.B)
+    val decode_inst = RegInit(0.U(X_LEN.W))
 
     //Vmem缓冲
     val VmemBuffer = Mem(16, Vec(8, UInt(8.W)))  //128Bytes
@@ -152,6 +159,9 @@ class IoforMem extends Module{
     io.mem.data.valid := mem_data_valid
     io.mem.data.bits := mem_data_bits
 
+    io.decode.inst.valid := decode_inst_valid
+    io.decode.inst.bits := decode_inst
+
     //顶层
     io.fc.req := excute_req | fetch_req
     io.fc.state := state
@@ -164,6 +174,9 @@ class IoforMem extends Module{
 
     switch(state){
         is(s_Idle){
+
+                mem_data_valid := 0.B
+                decode_inst_valid := 0.B
 
                 when(fetch_req){
                     state := s_singlereq
@@ -198,7 +211,7 @@ class IoforMem extends Module{
                         }
                     }
 
-                    mem_data_valid := 0.B 
+                     
 
 
                     when(!excute_rw && excute_addr === "h00000000".U){ //vmem写请求，直到1.满、2.时间到达3.地址跳跃
@@ -255,15 +268,18 @@ class IoforMem extends Module{
         }
         is(s_singlereq){
             when(io.axi.resp.valid){
-                mem_data_valid := 1.B
-                mem_data_bits := io.axi.resp.bits.data
+                when(master_choose(0)){  //fetch_req
+                    decode_inst_valid := 1.B
+                    decode_inst := io.axi.resp.bits.data
+                }.otherwise{
+                    mem_data_valid := 1.B
+                    mem_data_bits := io.axi.resp.bits.data
+                }
 
                 when(io.fc.stall){
                     state := s_wait
-                    // axi_req_valid := 0.B  //停止申请总线，防止死锁
                 }.otherwise{
                     state := s_Idle
-                    // mem_data_valid := 0.B  //多stall一个周期
                 }    
             }.otherwise{
                 io.axi.req.valid := 1.B 
@@ -316,8 +332,10 @@ class IoforMem extends Module{
         is(s_wait){
             when(!io.fc.stall){
                 state := s_Idle
-                // mem_data_valid := 0.B //延长有效一个周期
 
+
+                mem_data_valid := 0.B
+                decode_inst_valid := 0.B
 
                 //如果有请求，直接进入下一次状态
                 when(fetch_req){
@@ -352,9 +370,6 @@ class IoforMem extends Module{
                             wait_cycle := 0.U
                         }
                     }
-
-                    mem_data_valid := 0.B 
-
 
                     when(!excute_rw && excute_addr === "h00000000".U){ //vmem写请求，直到1.满、2.时间到达3.地址跳跃
                         io.fc.vmem_range := 1.B

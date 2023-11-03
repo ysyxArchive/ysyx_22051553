@@ -7,8 +7,11 @@ import Define._
 
 
 class DecodeIO extends Bundle{
-    //TempMem
+    //Icache
     val inst = Flipped(ValidIO(new CacheResp))
+
+    //Iomem
+    val inst_io = Flipped(ValidIO(UInt(X_LEN.W)))
     
     //fd_reg
     val fdio   = Input(new FDRegIO)
@@ -65,7 +68,15 @@ class Decode extends Module {
             io.inst.bits.data(63,32),
             io.inst.bits.data(31,0)
         ),
-        NOP)
+        Mux(io.inst_io.valid,
+            io.inst_io.bits(31,0),
+            NOP
+        )
+    )
+
+    
+
+
     csr_num := inst(31,20)
     rs1 := inst(19,15)
     rs2 := inst(24,20)
