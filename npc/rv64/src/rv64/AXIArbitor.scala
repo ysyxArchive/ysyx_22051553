@@ -201,7 +201,7 @@ class AXIArbitor extends Module{
     io.AXI_O.arvalid := 0.B
 
     //--------------r
-    io.AXI_O.rready := 1.U  //减少延迟
+    io.AXI_O.rready := 0.U  //不一直为高
 
 
     switch(state){ //并不符合状态机，状态机中，左边都是reg类型
@@ -276,7 +276,6 @@ class AXIArbitor extends Module{
             ar_comp := Mux(io.AXI_O.arvalid && io.AXI_O.arready, 1.B, 0.B)  //常态保持不变
 
             when(ar_comp){
-                // io.AXI_O.arvalid := 0.B //重要，为了AXIbar协议
                 state := s_R
             }
         }
