@@ -63,9 +63,6 @@ class IoforMem extends Module{
 
     val fetch_req = io.fetch.req
     val fetch_addr = io.fetch.addr
-
-    val io_req = excute_req | fetch_req
-
     
     //仲裁逻辑：0.写外设等请求 1.fetch的读指令请求  --读取指令优先级如果比访问外设高，可能会一直读取，不写外设
     val master_choose = WireInit(0.U(2.W)) //10代表master0申请访问，0？代表无访问
@@ -156,7 +153,7 @@ class IoforMem extends Module{
     io.mem.data.bits := mem_data_bits
 
     //顶层
-    io.fc.req := io_req
+    io.fc.req := excute_req | fetch_req
     io.fc.state := state
     io.fc.valid := io.axi.resp.valid
     io.fc.vmem_range := 0.B
@@ -165,28 +162,39 @@ class IoforMem extends Module{
 
     switch(state){
         is(s_Idle){
-                when(begin_flag){ //记时16个周期后，申请写入vmem
-                    wait_cycle := wait_cycle + 1.U
-                }
 
-                when(begin_flag && wait_cycle === 15.U){
-                    when(io.fc.stall === 1.B){
-                        wait_cycle := 15.U
-                    }.otherwise{
-                        state := s_multireq
-                        io.axi.req.valid := 1.B 
-                        io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
-                        io.axi.req.bits.rw := 0.B
-                        io.axi.req.bits.len := 15.U
-                        data_count := data_count - 1.U
-                        wait_cycle := 0.U
+                when(fetch_req){
+                    state := s_singlereq
+                    io.axi.req.valid := 1.B 
+                    io.axi.req.bits.rw := excute_rw
+                    io.axi.req.bits.addr := Cat(excute_addr(31,2), 0.U(2.W)).asUInt //修改后，对齐4字节，存疑
+                    io.axi.req.bits.data := excute_data
+                    io.axi.req.bits.mask := excute_mask
+                    io.axi.req.bits.len := 0.U
+                    io.axi.req.bits.size := "b10".U //存疑
+                }
+                .elsewhen(excute_req){
+                    when(begin_flag){ //记时16个周期后，申请写入vmem
+                        wait_cycle := wait_cycle + 1.U
                     }
-                }
 
-                mem_data_valid := 0.B 
+                    when(begin_flag && wait_cycle === 15.U){
+                        when(io.fc.stall === 1.B){
+                            wait_cycle := 15.U
+                        }.otherwise{
+                            state := s_multireq
+                            io.axi.req.valid := 1.B 
+                            io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
+                            io.axi.req.bits.rw := 0.B
+                            io.axi.req.bits.len := 15.U
+                            data_count := data_count - 1.U
+                            wait_cycle := 0.U
+                        }
+                    }
 
-                when( io_req ){
-                                                                                                    //不知道什么时候可以使用
+                    mem_data_valid := 0.B 
+
+
                     when(!excute_rw && excute_addr === "h00000000".U){ //vmem写请求，直到1.满、2.时间到达3.地址跳跃
                         io.fc.vmem_range := 1.B
 
@@ -236,7 +244,8 @@ class IoforMem extends Module{
                         io.axi.req.bits.len := 0.U
                         io.axi.req.bits.size := "b10".U //存疑
                     }
-                }    
+
+                }
         }
         is(s_singlereq){
             when(io.axi.resp.valid){
