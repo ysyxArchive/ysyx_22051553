@@ -1,5 +1,5 @@
 //4-way 32-set 
-//Cache_line:32 Byte
+//Cache_line:64 Byte
 //Cache Memory Mapping:| Tag | Index | Word offset + Byte Offset | --但是8字节对齐
 //                       22      4          3             3
 //Tag Unit:|Valid|Replace|Tag|
@@ -474,6 +474,9 @@ class Cache extends Module{
     io.axi.req.bits.data := VecInit.tabulate(dataBeats)(i => read((i+1)*X_LEN-1, i*X_LEN))(w_count)
     io.axi.req.bits.addr := 0.U
     io.axi.req.bits.mask := "b11111111".U
+    io.axi.req.bits.len := 7.U //突发为8
+    io.axi.req.bits.size := 3.U   //  --8byte
+
 
     io.fccache.hit := hit
     io.fccache.mask := io.cpu.req.bits.mask

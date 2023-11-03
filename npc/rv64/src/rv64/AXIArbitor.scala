@@ -11,6 +11,9 @@ class AXIMasterReq extends Bundle{
     val addr = UInt(ADDRWIDTH.W)
     val data = UInt((X_LEN).W)
     val mask = UInt((X_LEN/8).W) //主要针对IO操作
+
+    val len = UInt(8.W)
+    val size = UInt(3.W)
 }
 
 class AXIMasterResp extends Bundle{
@@ -26,7 +29,6 @@ class AXIMasterIO extends Bundle{
 
 class AXIArbIO extends Bundle{
     val master0 = new AXIMasterIO
-    val multiwrite = Input(Bool())
     val master1 = new AXIMasterIO
     val master2 = new AXIMasterIO
 
@@ -65,7 +67,8 @@ class AXIArbitor extends Module{
     val addr = RegInit(0.U(ADDRWIDTH.W))  //保持
     val data = WireInit(0.U((X_LEN).W))
     val mask = WireInit(0.U((X_LEN/8).W)) 
-    val burst_len = RegInit(0.U(4.W)) //保持
+    val burst_len = RegInit(0.U(8.W)) //保持
+    val size = RegInit(0.U(3.W))
 
 
     rw_idle := Mux(master_choose(3), 
@@ -128,13 +131,20 @@ class AXIArbitor extends Module{
         MuxCase(
             0.B,
             Seq(
-                master_choose(0) -> Mux(
-                    io.multiwrite,
-                    15.U,
-                    0.U
-                ),
-                master_choose(1) -> 7.U,
-                master_choose(2) -> 7.U,
+                master_choose(0) -> io.master0.req.bits.len,
+                master_choose(1) -> io.master1.req.bits.len,
+                master_choose(2) -> io.master2.req.bits.len,
+            )
+        )
+    ,0.B)
+
+    size := Mux(master_choose(3), 
+        MuxCase(
+            0.B,
+            Seq(
+                master_choose(0) -> io.master0.req.bits.size,
+                master_choose(1) -> io.master1.req.bits.size,
+                master_choose(2) -> io.master2.req.bits.size,
             )
         )
     ,0.B)
@@ -170,7 +180,7 @@ class AXIArbitor extends Module{
     io.AXI_O.awid := 0.U  //固定
     io.AXI_O.awaddr := 0.U
     io.AXI_O.awlen := 0.U
-    io.AXI_O.awsize := 3.U //固定--8bytes
+    io.AXI_O.awsize := 0.U
     io.AXI_O.awburst := 1.U //固定 --incr
 
     io.AXI_O.awvalid := 0.B
@@ -185,7 +195,7 @@ class AXIArbitor extends Module{
     io.AXI_O.arid := 0.U  //固定
     io.AXI_O.araddr := 0.U
     io.AXI_O.arlen := 0.U
-    io.AXI_O.arsize := 3.U //固定--8bytes
+    io.AXI_O.arsize := 0.U
     io.AXI_O.arburst := 1.U //固定 --incr
 
     io.AXI_O.arvalid := 0.B
@@ -212,6 +222,8 @@ class AXIArbitor extends Module{
             //aw channel
             io.AXI_O.awaddr := addr
             io.AXI_O.awlen := burst_len  //长度为len+1
+            io.AXI_O.awsize := size
+
             io.AXI_O.awvalid := Mux(aw_comp, 0.B, 1.B)
             aw_comp := Mux(io.AXI_O.awvalid && io.AXI_O.awready, 1.B, aw_comp)
 
@@ -260,6 +272,7 @@ class AXIArbitor extends Module{
             io.AXI_O.arvalid := 1.B
             io.AXI_O.araddr := addr
             io.AXI_O.arlen := burst_len  //长度为len+1
+            io.AXI_O.arsize := size
             ar_comp := Mux(io.AXI_O.arvalid && io.AXI_O.arready, 1.B, 0.B)  //常态保持不变
 
             when(ar_comp){

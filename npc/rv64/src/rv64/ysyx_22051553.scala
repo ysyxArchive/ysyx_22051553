@@ -459,8 +459,20 @@ class ysyx_22051553 extends Module{
     fc.io.fcio.req := arbitor.io.master0.req.valid
     fc.io.fcio.valid := arbitor.io.master0.resp.valid | master0_resp_valid
     
+
+
+
+    //取指令从Icache(地址0x80000000)还是从Flash(地址从0x30000000到0x3fffffff)
+    val Icache_choose = Mux((fetch.io.pc.bits >> 30) > 0.U, 1.B, 0.B)  //1为访问chiplink的mem,0为访问flash
+
+    //读写数据是从Dcache(地址0x80000000)还是从其他外设(UART、Flash等)
+    val excute_addr = excute.io.waddr | excute.io.raddr
+    val Dcache_choose = Mux((excute_addr >> 30) > 0.U, 1.B, 0.B)
+
+
+
     //Icache
-    Icache.io.cpu.req.valid := fetch.io.pc.valid
+    Icache.io.cpu.req.valid := Mux(Icache_choose, fetch.io.pc.valid, 0.B)
     Icache.io.cpu.req.bits.addr := fetch.io.pc.bits(31,0)
     Icache.io.cpu.req.bits.data := DontCare
     Icache.io.cpu.req.bits.mask := DontCare
@@ -474,8 +486,8 @@ class ysyx_22051553 extends Module{
     Icache.io.cpu.sram2 <> io.sram2
     Icache.io.cpu.sram3 <> io.sram3
     //Dcache
-    Dcache.io.cpu.req.valid := (dereg.ld_type.orR | dereg.sd_type.orR) && ((excute.io.waddr | excute.io.raddr) > "h1bffffff".U)
-    Dcache.io.cpu.req.bits.addr := excute.io.waddr | excute.io.raddr
+    Dcache.io.cpu.req.valid := Dcache_choose
+    Dcache.io.cpu.req.bits.addr := excute_addr
     Dcache.io.cpu.req.bits.data := excute.io.wdata
     Dcache.io.cpu.req.bits.mask := excute.io.wmask
 
@@ -488,12 +500,13 @@ class ysyx_22051553 extends Module{
     Dcache.io.cpu.sram2 <> io.sram6
     Dcache.io.cpu.sram3 <> io.sram7
     //io
-    ioformem.io.excute.waddr := excute.io.waddr
-    ioformem.io.excute.raddr := excute.io.raddr
+    ioformem.io.excute.req := (!Dcache_choose && excute_addr =/= 0.U)
+    ioformem.io.excute.addr := excute_addr
     ioformem.io.excute.wdata := excute.io.wdata
     ioformem.io.excute.wmask := excute.io.wmask
-    ioformem.io.excute.ld_type := excute.io.deio.ld_type
-    ioformem.io.excute.sd_type := excute.io.deio.sd_type
+
+    ioformem.io.fetch.req := Mux(!Icache_choose, fetch.io.pc.valid, 0.B)
+    ioformem.io.fetch.addr := fetch.io.pc.bits(31,0)
 
     ioformem.io.fc <> fc.io.fcio
     ioformem.io.mem <> mem.io.rdata_io
