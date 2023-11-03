@@ -166,6 +166,9 @@ class IoforMem extends Module{
     io.fc.req := excute_req | fetch_req
     io.fc.state := state
     io.fc.valid := io.axi.resp.valid
+    dontTouch(io.fc.valid)
+
+
     io.fc.vmem_range := 0.B 
 
 
