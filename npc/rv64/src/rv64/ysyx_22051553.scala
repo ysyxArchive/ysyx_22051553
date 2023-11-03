@@ -511,6 +511,8 @@ class ysyx_22051553 extends Module{
     ioformem.io.fc <> fc.io.fcio
     ioformem.io.mem <> mem.io.rdata_io
 
+    ioformem.io.decode <> decode.io.inst_io
+
     //Arbitor
     arbitor.io.master0 <> ioformem.io.axi
     arbitor.io.master1 <> Dcache.io.axi //先让在允许的指令获得运行数据
