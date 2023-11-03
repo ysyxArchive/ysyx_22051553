@@ -25,7 +25,7 @@ class Fetch extends Module{
     val started = RegInit(false.B)        
     started := true.B
 
-    val pc = RegInit(PC_START)          //为什么不能用PC_START 
+    val pc = RegInit("h30000000".U(PC_LEN.W))          //为什么不能用PC_START 
     val old_pc = RegInit(0.U(PC_LEN.W))
 
     val next_pc = MuxCase(

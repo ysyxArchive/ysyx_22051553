@@ -166,10 +166,8 @@ class IoforMem extends Module{
                 when(fetch_req){
                     state := s_singlereq
                     io.axi.req.valid := 1.B 
-                    io.axi.req.bits.rw := excute_rw
-                    io.axi.req.bits.addr := Cat(excute_addr(31,2), 0.U(2.W)).asUInt //修改后，对齐4字节，存疑
-                    io.axi.req.bits.data := excute_data
-                    io.axi.req.bits.mask := excute_mask
+                    io.axi.req.bits.rw := 1.B
+                    io.axi.req.bits.addr := Cat(fetch_addr(31,2), 0.U(2.W)).asUInt //修改后，对齐4字节，存疑
                     io.axi.req.bits.len := 0.U
                     io.axi.req.bits.size := "b10".U //存疑
                 }
