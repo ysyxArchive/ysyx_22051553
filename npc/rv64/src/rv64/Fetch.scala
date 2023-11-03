@@ -33,7 +33,7 @@ class Fetch extends Module{
         Seq(
             // (started === 1.B) -> (pc+4.U),
             // (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> (io.fcfe.jump_pc+4.U)
-            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> (io.fcfe.jump_pc+4.U),
+            (io.fcfe.jump_flag === 1.B) -> (io.fcfe.jump_pc+4.U),
             (started === 1.B) -> (pc+4.U),
         )
     )
@@ -50,7 +50,7 @@ class Fetch extends Module{
         Seq(
             
             (io.fcfe.stall) -> old_pc,
-            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc, //优先级高于3    
+            (io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc, //优先级高于3    
             (pc === old_pc) -> next_pc,  //从stall恢复后，fdio.pc立即增长
             
         )
@@ -62,7 +62,7 @@ class Fetch extends Module{
         pc,
         Seq(
             (io.fcfe.stall) -> old_pc,
-            (io.fcfe.flush === 1.B && io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc,    //直接变寻址地址
+            (io.fcfe.jump_flag === 1.B) -> io.fcfe.jump_pc,    //直接变寻址地址
             (pc === old_pc) -> next_pc,
         )
     )
