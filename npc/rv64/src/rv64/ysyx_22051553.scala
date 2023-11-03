@@ -502,8 +502,8 @@ class ysyx_22051553 extends Module{
     //io
     ioformem.io.excute.req := (!Dcache_choose && excute_addr =/= 0.U)
     ioformem.io.excute.addr := excute_addr
-    ioformem.io.excute.wdata := excute.io.wdata
-    ioformem.io.excute.wmask := excute.io.wmask
+    ioformem.io.excute.data := excute.io.wdata
+    ioformem.io.excute.mask := excute.io.wmask
 
     ioformem.io.fetch.req := Mux(!Icache_choose, fetch.io.pc.valid, 0.B)
     ioformem.io.fetch.addr := fetch.io.pc.bits(31,0)
@@ -515,6 +515,5 @@ class ysyx_22051553 extends Module{
     arbitor.io.master0 <> ioformem.io.axi
     arbitor.io.master1 <> Dcache.io.axi //先让在允许的指令获得运行数据
     arbitor.io.master2 <> Icache.io.axi
-    arbitor.io.multiwrite := ioformem.io.multiwrite
     
 }
