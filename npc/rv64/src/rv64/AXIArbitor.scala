@@ -276,7 +276,7 @@ class AXIArbitor extends Module{
             ar_comp := Mux(io.AXI_O.arvalid && io.AXI_O.arready, 1.B, 0.B)  //常态保持不变
 
             when(ar_comp){
-                io.AXI_O.arvalid := 0.B //重要，为了AXIbar协议
+                // io.AXI_O.arvalid := 0.B //重要，为了AXIbar协议
                 state := s_R
             }
         }
