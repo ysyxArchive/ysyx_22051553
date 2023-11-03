@@ -393,11 +393,9 @@ class IoforMem extends Module{
                                 data_count := data_count
                             }
                         }
+                    }
+                }
             }
-
-
-
-
         }
     }
   
