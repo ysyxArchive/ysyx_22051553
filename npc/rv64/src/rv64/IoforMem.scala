@@ -335,6 +335,8 @@ class IoforMem extends Module{
                         io.axi.req.valid := 1.B 
                         io.axi.req.bits.rw := excute_rw
                         io.axi.req.bits.addr := excute_addr
+                        io.axi.req.bits.data := excute_data
+                        io.axi.req.bits.mask := excute_mask
                         io.axi.req.bits.len := 0.U
                         io.axi.req.bits.size := Mux(excute_rw,
                             MuxLookup(io.excute.sd_type, 0.U,
