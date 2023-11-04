@@ -14,6 +14,8 @@ object IoforMem{
 
 class IOde extends Bundle{
     val inst = ValidIO(UInt(X_LEN.W))
+
+    val load_use = Input(Bool())
 }
 
 
@@ -74,6 +76,14 @@ class IoforMem extends Module{
     //仲裁逻辑：0.写外设等请求 1.fetch的读指令请求  --读取指令优先级如果比访问外设高，可能会一直读取，不写外设
     val master_choose = WireInit(0.U(2.W)) //10代表master0申请访问，0？代表无访问
     val choose_buffer = RegInit(0.U(2.W))
+
+    val load_use_local = RegInit(0.B)
+    when(io.fc.stall){
+        load_use_local := load_use_local
+    }.otherwise{
+        load_use_local := io.decode.load_use
+    }
+
     
 
     dontTouch(master_choose)
@@ -164,7 +174,7 @@ class IoforMem extends Module{
     io.mem.data.valid := mem_data_valid
     io.mem.data.bits := mem_data_bits
 
-    io.decode.inst.valid := decode_inst_valid
+    io.decode.inst.valid := Mux(load_use_local, 1.B, decode_inst_valid)
     io.decode.inst.bits := decode_inst
 
     //顶层

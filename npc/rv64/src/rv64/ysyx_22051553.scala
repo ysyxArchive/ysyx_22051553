@@ -511,7 +511,7 @@ class ysyx_22051553 extends Module{
     ioformem.io.fc <> fc.io.fcio
     ioformem.io.mem <> mem.io.rdata_io
 
-    ioformem.io.decode.inst <> decode.io.inst_io
+    ioformem.io.decode <> decode.io.inst_io
 
     //Arbitor
     arbitor.io.master0 <> ioformem.io.axi
