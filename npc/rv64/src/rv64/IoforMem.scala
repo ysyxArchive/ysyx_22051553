@@ -320,12 +320,45 @@ class IoforMem extends Module{
                     decode_inst_valid := 1.B
                     decode_inst := io.axi.resp.bits.data
 
-                    state := s_Idle
+                    state := s_Idle  //excute_req结束后
                 }.otherwise{
                     mem_data_valid := 1.B
                     mem_data_bits := io.axi.resp.bits.data
 
-                    when(fetch_req){    //增加特殊情况
+
+                    when(excute_req){
+                        state := s_singlereq
+                        
+                        choose_buffer := "b10".U
+                        io.axi.req.valid := 1.B 
+                        io.axi.req.bits.rw := excute_rw
+                        io.axi.req.bits.addr := excute_addr
+                        io.axi.req.bits.len := 0.U
+                        io.axi.req.bits.size := Mux(excute_rw,
+                            MuxLookup(io.excute.sd_type, 0.U,
+                                        Seq(
+                                            SD_SB -> "b000".U,
+                                            SD_SH -> "b001".U,
+                                            SD_SW -> "b010".U,
+                                            SD_SD -> "b011".U
+                                        )
+                                    ),
+                            MuxLookup(io.excute.ld_type, 0.U,
+                                        Seq(
+                                            LD_LB -> "b000".U,
+                                            LD_LH -> "b001".U,
+                                            LD_LW -> "b010".U,
+                                            LD_LD -> "b011".U
+                                        )
+                                    )
+                        )
+
+                        addr_buf := excute_addr
+                        rw_buf := excute_rw
+
+
+                    }
+                    .elsewhen(fetch_req){    //增加特殊情况
                         state := s_singlereq
                         
                         choose_buffer := "b11".U
