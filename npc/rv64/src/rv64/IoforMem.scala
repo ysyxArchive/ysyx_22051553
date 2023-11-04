@@ -330,11 +330,7 @@ class IoforMem extends Module{
                     mem_data_valid := 1.B
                     mem_data_bits := io.axi.resp.bits.data
 
-
-                    when(excute_req){
-                        state := s_Idle
-                    }
-                    .elsewhen(fetch_req){    //增加特殊情况
+                    when(fetch_req){    //增加特殊情况  --优先级兑换
                         state := s_singlereq
                         
                         choose_buffer := "b11".U
@@ -348,6 +344,10 @@ class IoforMem extends Module{
                         rw_buf := 1.B
 
                     }
+                    .elsewhen(excute_req){
+                        state := s_Idle
+                    }
+                    
                 }
 
                 
