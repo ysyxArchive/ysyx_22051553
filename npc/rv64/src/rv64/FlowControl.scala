@@ -192,6 +192,7 @@ class FlowControl extends Module{
 
     val SFBundle = MuxCase(FlowControl.default,
         Seq(
+            MULDIV_stall -> FlowControl.MULDIV_SFBundle,
             IO_stall -> FlowControl.IOAXI_SFBundle,
             (io.fcIcache.state =/= 0.U) -> FlowControl.Icache_SFBundle,
             (io.fcDcache.state =/= 0.U) -> FlowControl.Dcache_SFBundle, //优先级高于load_use
@@ -202,7 +203,7 @@ class FlowControl extends Module{
                 -> FlowControl.TrapWait_SFBundle,
             (io.fctr.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
             (io.fcex.jump_flag === 1.B) -> FlowControl.BRANCH_SFBundle,
-            MULDIV_stall -> FlowControl.MULDIV_SFBundle,
+            
             (io.fcde.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
         )
     )
