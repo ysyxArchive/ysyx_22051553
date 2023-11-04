@@ -332,40 +332,7 @@ class IoforMem extends Module{
 
 
                     when(excute_req){
-                        state := s_singlereq
-
-                        io.fc.excute_interupt := 1.B
-                        
-                        choose_buffer := "b10".U
-                        io.axi.req.valid := 1.B 
-                        io.axi.req.bits.rw := excute_rw
-                        io.axi.req.bits.addr := excute_addr
-                        io.axi.req.bits.data := excute_data
-                        io.axi.req.bits.mask := excute_mask
-                        io.axi.req.bits.len := 0.U
-                        io.axi.req.bits.size := Mux(excute_rw,
-                            MuxLookup(io.excute.sd_type, 0.U,
-                                        Seq(
-                                            SD_SB -> "b000".U,
-                                            SD_SH -> "b001".U,
-                                            SD_SW -> "b010".U,
-                                            SD_SD -> "b011".U
-                                        )
-                                    ),
-                            MuxLookup(io.excute.ld_type, 0.U,
-                                        Seq(
-                                            LD_LB -> "b000".U,
-                                            LD_LH -> "b001".U,
-                                            LD_LW -> "b010".U,
-                                            LD_LD -> "b011".U
-                                        )
-                                    )
-                        )
-
-                        addr_buf := excute_addr
-                        rw_buf := excute_rw
-                        data_buf := excute_data
-                        mask_buf := excute_mask
+                        state := s_Idle
                     }
                     .elsewhen(fetch_req){    //增加特殊情况
                         state := s_singlereq
