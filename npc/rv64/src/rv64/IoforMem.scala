@@ -73,6 +73,9 @@ class IoforMem extends Module{
     
     //仲裁逻辑：0.写外设等请求 1.fetch的读指令请求  --读取指令优先级如果比访问外设高，可能会一直读取，不写外设
     val master_choose = WireInit(0.U(2.W)) //10代表master0申请访问，0？代表无访问
+    val choose_buffer = RegInit(0.U(2.W))
+    
+
     dontTouch(master_choose)
     master_choose := MuxCase(
         "b00".U,
@@ -183,6 +186,8 @@ class IoforMem extends Module{
 
                 
                 when(excute_req){
+                    choose_buffer := master_choose
+
                     addr_buf := io.axi.req.bits.addr
                     rw_buf := io.axi.req.bits.rw
 
@@ -258,6 +263,8 @@ class IoforMem extends Module{
                     }
 
                 }.elsewhen(fetch_req){
+                    choose_buffer := master_choose
+
                     state := s_singlereq
                     io.axi.req.valid := 1.B 
                     io.axi.req.bits.rw := 1.B
@@ -273,7 +280,7 @@ class IoforMem extends Module{
         }
         is(s_singlereq){
             when(io.axi.resp.valid){
-                when(master_choose(0)){  //fetch_req
+                when(choose_buffer(0)){  //fetch_req
                     decode_inst_valid := 1.B
                     decode_inst := io.axi.resp.bits.data
                 }.otherwise{
