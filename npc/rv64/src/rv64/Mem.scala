@@ -89,6 +89,19 @@ class Mem extends Module{
         )
     )
 
+    val get_value_io_range = Wire(UInt(X_LEN.W))
+    get_value_io_range := MuxLookup(io.emio.ld_type, 0.S,
+        Seq(
+            LD_LB -> get_value_io(7, 0).asSInt,
+            LD_LH -> get_value_io(15, 0).asSInt,
+            LD_LW -> get_value_io(31, 0).asSInt,
+            LD_LD -> get_value_io.asSInt,
+            LD_LBU -> get_value_io(7,0).zext,
+            LD_LHU -> get_value_io(15,0).zext,
+            LD_LWU -> get_value_io(31,0).zext
+        )
+    )
+
     
     
     //大修改!!!!
@@ -112,7 +125,7 @@ class Mem extends Module{
     ).asUInt
 
     val rvalue = Wire(UInt(X_LEN.W)) 
-    rvalue := get_value_io | shift_get_value
+    rvalue := get_value_io_range | shift_get_value
 
     //端口驱动
     //mwio
