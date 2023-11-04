@@ -181,18 +181,8 @@ class IoforMem extends Module{
                 mem_data_valid := 0.B
                 decode_inst_valid := 0.B
 
-                when(fetch_req){
-                    state := s_singlereq
-                    io.axi.req.valid := 1.B 
-                    io.axi.req.bits.rw := 1.B
-                    io.axi.req.bits.addr := Cat(fetch_addr(31,2), 0.U(2.W)).asUInt //修改后，对齐4字节，存疑
-                    io.axi.req.bits.len := 0.U
-                    io.axi.req.bits.size := "b10".U //存疑
-
-                    addr_buf := io.axi.req.bits.addr
-                    rw_buf := 1.B
-                }
-                .elsewhen(excute_req){
+                
+                when(excute_req){
                     addr_buf := io.axi.req.bits.addr
                     rw_buf := io.axi.req.bits.rw
 
@@ -267,7 +257,19 @@ class IoforMem extends Module{
                         io.axi.req.bits.size := "b10".U //存疑
                     }
 
+                }.elsewhen(fetch_req){
+                    state := s_singlereq
+                    io.axi.req.valid := 1.B 
+                    io.axi.req.bits.rw := 1.B
+                    io.axi.req.bits.addr := Cat(fetch_addr(31,2), 0.U(2.W)).asUInt //修改后，对齐4字节，存疑
+                    io.axi.req.bits.len := 0.U
+                    io.axi.req.bits.size := "b10".U //存疑
+
+                    addr_buf := io.axi.req.bits.addr
+                    rw_buf := 1.B
                 }
+
+
         }
         is(s_singlereq){
             when(io.axi.resp.valid){
@@ -338,18 +340,8 @@ class IoforMem extends Module{
 
 
                 //如果有请求，直接进入下一次状态
-                when(fetch_req){
-                    state := s_singlereq
-                    io.axi.req.valid := 1.B 
-                    io.axi.req.bits.rw := 1.B
-                    io.axi.req.bits.addr := Cat(fetch_addr(31,2), 0.U(2.W)).asUInt //修改后，对齐4字节，存疑
-                    io.axi.req.bits.len := 0.U
-                    io.axi.req.bits.size := "b10".U //存疑
-
-                    addr_buf := io.axi.req.bits.addr
-                    rw_buf := 1.B
-                }
-                .elsewhen(excute_req){
+                
+                when(excute_req){
                     addr_buf := io.axi.req.bits.addr
                     rw_buf := io.axi.req.bits.rw
 
@@ -409,6 +401,16 @@ class IoforMem extends Module{
                             }
                         }
                     }
+                }.elsewhen(fetch_req){
+                    state := s_singlereq
+                    io.axi.req.valid := 1.B 
+                    io.axi.req.bits.rw := 1.B
+                    io.axi.req.bits.addr := Cat(fetch_addr(31,2), 0.U(2.W)).asUInt //修改后，对齐4字节，存疑
+                    io.axi.req.bits.len := 0.U
+                    io.axi.req.bits.size := "b10".U //存疑
+
+                    addr_buf := io.axi.req.bits.addr
+                    rw_buf := 1.B
                 }
             }
         }
