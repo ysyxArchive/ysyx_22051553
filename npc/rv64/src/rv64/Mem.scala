@@ -100,7 +100,7 @@ class Mem extends Module{
             LD_LHU -> get_value_io(15,0).zext,
             LD_LWU -> get_value_io(31,0).zext
         )
-    )
+    ).asUInt
 
     
     
