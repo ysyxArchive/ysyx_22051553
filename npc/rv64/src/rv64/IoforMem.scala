@@ -298,9 +298,6 @@ class IoforMem extends Module{
 
                 io.axi.req.valid := 0.B
 
-                // for(i <- 0 until 16)yield{
-                //     VmemBuffer.write(i.U, VecInit.fill(8)(0.U))
-                // }
                 r_count := 0.U
                 begin_flag := 0.B
                 data_count := 0.U
