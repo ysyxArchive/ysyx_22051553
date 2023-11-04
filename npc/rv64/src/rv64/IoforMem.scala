@@ -293,12 +293,29 @@ class IoforMem extends Module{
                 when(choose_buffer(0)){  //fetch_req
                     decode_inst_valid := 1.B
                     decode_inst := io.axi.resp.bits.data
+
+                    state := s_Idle
                 }.otherwise{
                     mem_data_valid := 1.B
                     mem_data_bits := io.axi.resp.bits.data
+
+                    when(fetch_req){
+                        state := s_singlereq
+                        
+                        choose_buffer := "b11".U
+                        io.axi.req.valid := 1.B 
+                        io.axi.req.bits.rw := 1.B
+                        io.axi.req.bits.addr := Cat(fetch_addr(31,2), 0.U(2.W)).asUInt //修改后，对齐4字节，存疑
+                        io.axi.req.bits.len := 0.U
+                        io.axi.req.bits.size := "b10".U //存疑
+
+                        addr_buf := io.axi.req.bits.addr
+                        rw_buf := 1.B
+
+                    }
                 }
 
-                state := s_Idle
+                
 
             }.otherwise{
                 io.axi.req.valid := 1.B 
