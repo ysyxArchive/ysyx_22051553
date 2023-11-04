@@ -5,6 +5,7 @@ import chisel3._
 import chisel3.util._
 import Define._
 import dataclass.data
+import ControlUnit._
 
 
 object IoforMem{
@@ -20,10 +21,12 @@ class IOde extends Bundle{
 
 
 class IOex extends Bundle{
-    val req = Input(Bool())
     val addr = Input(UInt(ADDRWIDTH.W))
     val data = Input(UInt(X_LEN.W))
     val mask = Input(UInt((X_LEN/8).W))
+
+    val ld_type = Input(UInt(3.W))
+    val sd_type = Input(UInt(3.W))
 }
 
 class IOfe extends Bundle{
@@ -49,7 +52,11 @@ class IOfc extends Bundle{
 
 class IomemIO extends Bundle{  //io访存模块
     val axi = Flipped(new AXIMasterIO)
+
+    val ex_req = Input(Bool())
     val excute = new IOex
+
+
     val fetch = new IOfe
     val decode = new IOde
     val mem = new IOmem
@@ -64,7 +71,7 @@ class IoforMem extends Module{
     val state = RegInit(s_Idle)
 
 
-    val excute_req = io.excute.req
+    val excute_req = io.ex_req
     val excute_rw = !io.excute.mask.orR
     val excute_addr = Cat(io.excute.addr(31,2), 0.U(2.W))
     val excute_mask = io.excute.mask
@@ -265,20 +272,39 @@ class IoforMem extends Module{
                         state := s_singlereq
                         io.axi.req.valid := 1.B 
                         io.axi.req.bits.rw := excute_rw
-                        io.axi.req.bits.addr := Cat(excute_addr(31,2), 0.U(2.W)).asUInt //修改后，对齐4字节，存疑
+                        io.axi.req.bits.addr := excute_addr.asUInt 
                         io.axi.req.bits.data := excute_data
                         io.axi.req.bits.mask := excute_mask
                         io.axi.req.bits.len := 0.U
-                        io.axi.req.bits.size := "b10".U //存疑
+                        io.axi.req.bits.size := Mux(excute_rw,
+                            MuxLookup(io.excute.sd_type, 0.U,
+                                        Seq(
+                                            SD_SB -> "b000".U,
+                                            SD_SH -> "b001".U,
+                                            SD_SW -> "b010".U,
+                                            SD_SD -> "b011".U
+                                        )
+                                    ),
+                            MuxLookup(io.excute.ld_type, 0.U,
+                                        Seq(
+                                            LD_LB -> "b000".U,
+                                            LD_LH -> "b001".U,
+                                            LD_LW -> "b010".U,
+                                            LD_LD -> "b011".U
+                                        )
+                                    )
+                        )
+                            
+                            
                     }
 
-                }.elsewhen(fetch_req){
+                }.elsewhen(fetch_req){ //取指令，是对齐的
                     choose_buffer := master_choose
 
                     state := s_singlereq
                     io.axi.req.valid := 1.B 
                     io.axi.req.bits.rw := 1.B
-                    io.axi.req.bits.addr := Cat(fetch_addr(31,2), 0.U(2.W)).asUInt //修改后，对齐4字节，存疑
+                    io.axi.req.bits.addr := Cat(fetch_addr(31,2), 0.U(2.W)).asUInt
                     io.axi.req.bits.len := 0.U
                     io.axi.req.bits.size := "b10".U //存疑
 
@@ -299,7 +325,7 @@ class IoforMem extends Module{
                     mem_data_valid := 1.B
                     mem_data_bits := io.axi.resp.bits.data
 
-                    when(fetch_req){
+                    when(fetch_req){    //增加特殊情况
                         state := s_singlereq
                         
                         choose_buffer := "b11".U

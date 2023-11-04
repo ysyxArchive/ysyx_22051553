@@ -500,10 +500,10 @@ class ysyx_22051553 extends Module{
     Dcache.io.cpu.sram2 <> io.sram6
     Dcache.io.cpu.sram3 <> io.sram7
     //io
-    ioformem.io.excute.req := (!Dcache_choose && excute_addr =/= 0.U)
-    ioformem.io.excute.addr := excute_addr
-    ioformem.io.excute.data := excute.io.wdata
-    ioformem.io.excute.mask := excute.io.wmask
+    ioformem.io.ex_req := (!Dcache_choose && excute_addr =/= 0.U)
+    ioformem.io.excute <> excute.io.ioformem
+
+
 
     ioformem.io.fetch.req := Mux(!Icache_choose, fetch.io.pc.valid, 0.B)
     ioformem.io.fetch.addr := fetch.io.pc.bits(31,0)

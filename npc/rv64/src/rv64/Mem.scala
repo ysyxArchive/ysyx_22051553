@@ -66,28 +66,40 @@ class Mem extends Module{
     //     Mux(io.rdata_io.valid || rdataiovalid_buffer, io.rdata_io.bits.data,
     //     0.U)))
     
-    get_value := MuxCase(
+    get_value := MuxCase(  //来自内存
         0.U,
         Seq(
             clmemvalid_buffer -> clmem_buffer,
-            rdatavalid_buffer -> rdata_buffer,
-            rdataiovalid_buffer -> rdataio_buffer, //buffer优先，buffer表明在stall阶段，有需要处理的数据还未处理
+            rdatavalid_buffer -> rdata_buffer,//buffer优先，buffer表明在stall阶段，有需要处理的数据还未处理
+            // rdataiovalid_buffer -> rdataio_buffer, 
 
             io.clmem.Clrvalue.valid -> io.clmem.Clrvalue.bits,
             io.rdata.valid -> io.rdata.bits.data,
-            io.rdata_io.data.valid -> io.rdata_io.data.bits,
+            // io.rdata_io.data.valid -> io.rdata_io.data.bits,
             
         )
     )
+
+    val get_value_io = Wire(UInt(X_LEN.W))
+    get_value_io := MuxCase(  //来自io
+        0.U,
+        Seq(
+            rdataiovalid_buffer -> rdataio_buffer, 
+            io.rdata_io.data.valid -> io.rdata_io.data.bits,
+        )
+    )
+
     
     
     //大修改!!!!
-    val loffset = (io.emio.ld_addr_lowbit << 3.U).asUInt     //重要
+    val loffset = (io.emio.ld_addr_lowbit << 3.U).asUInt     //重要  --这是对8字节对齐的内存的操作
     val lshift = get_value >> loffset
 
-    val rvalue = Wire(UInt(X_LEN.W))                   //根据1.位宽进行扩展2.基地址偏移进行选择（总线上只能8字节对齐）
-    dontTouch(rvalue)
-    rvalue := MuxLookup(io.emio.ld_type, 0.S, 
+    val shift_get_value = Wire(UInt(X_LEN.W))                   //根据1.位宽进行扩展2.基地址偏移进行选择（总线上只能8字节对齐）
+    dontTouch(shift_get_value)
+
+
+    shift_get_value := MuxLookup(io.emio.ld_type, 0.S, 
         Seq(
             LD_LB -> lshift(7, 0).asSInt,
             LD_LH -> lshift(15, 0).asSInt,
@@ -98,6 +110,9 @@ class Mem extends Module{
             LD_LWU -> lshift(31,0).zext
         )
     ).asUInt
+
+    val rvalue = Wire(UInt(X_LEN.W)) 
+    rvalue := get_value_io | shift_get_value
 
     //端口驱动
     //mwio
