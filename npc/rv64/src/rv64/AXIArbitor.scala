@@ -239,7 +239,7 @@ class AXIArbitor extends Module{
                 
             w_comp := Mux(io.AXI_O.wvalid && io.AXI_O.wready && io.AXI_O.wlast, 1.B, w_comp)
 
-            w_count := Mux(io.AXI_O.wvalid, w_count + 1.U, w_count)
+            w_count := Mux(io.AXI_O.wvalid && io.AXI_O.wready, w_count + 1.U, w_count)
 
             //b_channel
             b_comp := Mux(io.AXI_O.bvalid && io.AXI_O.bready, 1.B, 0.B)
