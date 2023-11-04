@@ -175,7 +175,7 @@ class FlowControl extends Module{
     // }.otherwise{
     //     IO_stall := 0.B
     // }
-    when(io.fcio.state === IoforMem.s_singlereq && io.fcio.valid && io.fcio.excute_interupt){
+    when(io.fcio.state === IoforMem.s_singlereq && io.fcio.valid && io.fcio.excute_interupt){ //连续的excute需要给流水线执行的空余时间
         IO_stall := 0.B
     }
     .elsewhen((io.fcio.state === IoforMem.s_singlereq | io.fcio.state === IoforMem.s_multireq)){
@@ -195,8 +195,9 @@ class FlowControl extends Module{
 
     val SFBundle = MuxCase(FlowControl.default,
         Seq(
-            MULDIV_stall -> FlowControl.MULDIV_SFBundle,
+            
             IO_stall -> FlowControl.IOAXI_SFBundle,
+            MULDIV_stall -> FlowControl.MULDIV_SFBundle,
             (io.fcIcache.state =/= 0.U) -> FlowControl.Icache_SFBundle,
             (io.fcDcache.state =/= 0.U) -> FlowControl.Dcache_SFBundle, //优先级高于load_use
             (io.fcde.load_use === 1.B) -> FlowControl.LoadUse_SFBundle,
