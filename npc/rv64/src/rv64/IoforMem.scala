@@ -194,6 +194,10 @@ class IoforMem extends Module{
 
     val addr_buf = RegInit(0.U(ADDRWIDTH.W))
     val rw_buf = RegInit(0.B)
+    //对于io而言，需要保存，因为端口马上会被之后的指令占有
+    val data_buf = RegInit(0.U(X_LEN.W))
+    val mask_buf = RegInit(0.U((X_LEN/8).W))
+
 
     switch(state){
         is(s_Idle){
@@ -294,8 +298,9 @@ class IoforMem extends Module{
                                         )
                                     )
                         )
-                            
-                            
+
+                        data_buf := excute_data
+                        mask_buf := excute_mask
                     }
 
                 }.elsewhen(fetch_req){ //取指令，是对齐的
@@ -359,8 +364,8 @@ class IoforMem extends Module{
 
                         addr_buf := excute_addr
                         rw_buf := excute_rw
-
-
+                        data_buf := excute_data
+                        mask_buf := excute_mask
                     }
                     .elsewhen(fetch_req){    //增加特殊情况
                         state := s_singlereq
@@ -383,8 +388,8 @@ class IoforMem extends Module{
             }.otherwise{
                 io.axi.req.valid := 1.B 
                 io.axi.req.bits.addr := addr_buf 
-                io.axi.req.bits.data := excute_data
-                io.axi.req.bits.mask := excute_mask
+                io.axi.req.bits.data := data_buf
+                io.axi.req.bits.mask := mask_buf
                 io.axi.req.bits.rw := rw_buf
             }
         }
