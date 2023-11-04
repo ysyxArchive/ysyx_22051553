@@ -47,7 +47,7 @@ class IOfc extends Bundle{
 
     val vmem_range = Output(Bool())
 
-    val excute_keep = Output(Bool())
+    val excute_interupt = Output(Bool())
 }
 
 class IomemIO extends Bundle{  //io访存模块
@@ -189,7 +189,7 @@ class IoforMem extends Module{
     io.fc.state := state
     io.fc.valid := io.axi.resp.valid
     io.fc.vmem_range := 0.B 
-    io.fc.excute_keep := mem_data_valid
+    io.fc.excute_interupt := 0.B
 
 
     val addr_buf = RegInit(0.U(ADDRWIDTH.W))
@@ -328,6 +328,8 @@ class IoforMem extends Module{
 
                     when(excute_req){
                         state := s_singlereq
+
+                        io.fc.excute_interupt := 1.B
                         
                         choose_buffer := "b10".U
                         io.axi.req.valid := 1.B 

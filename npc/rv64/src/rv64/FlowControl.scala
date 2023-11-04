@@ -175,7 +175,7 @@ class FlowControl extends Module{
     // }.otherwise{
     //     IO_stall := 0.B
     // }
-    when(io.fcio.state === IoforMem.s_singlereq && io.fcio.valid){
+    when(io.fcio.state === IoforMem.s_singlereq && io.fcio.valid && io.fcio.excute_interupt){
         IO_stall := 0.B
     }
     .elsewhen((io.fcio.state === IoforMem.s_singlereq | io.fcio.state === IoforMem.s_multireq)){
