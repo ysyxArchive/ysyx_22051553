@@ -73,7 +73,7 @@ class IoforMem extends Module{
 
     val excute_req = io.ex_req
     val excute_rw = !io.excute.mask.orR
-    val excute_addr = Cat(io.excute.addr(31,2), 0.U(2.W))
+    val excute_addr = io.excute.addr
     val excute_mask = io.excute.mask
     val excute_data = io.excute.data
 
