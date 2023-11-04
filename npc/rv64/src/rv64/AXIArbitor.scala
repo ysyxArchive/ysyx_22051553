@@ -231,10 +231,15 @@ class AXIArbitor extends Module{
             io.AXI_O.wdata := data
             io.AXI_O.wstrb := mask
             io.AXI_O.wlast := Mux(burst_len === w_count, 1.B, 0.B)  
-            io.AXI_O.wvalid := Mux(w_comp, 0.B, 1.B)
+            io.AXI_O.wvalid := Mux(aw_comp, 
+                Mux(w_comp, 0.B, 1.B),
+                0.B
+            )
+                
+                
             w_comp := Mux(io.AXI_O.wvalid && io.AXI_O.wready && io.AXI_O.wlast, 1.B, w_comp)
 
-            w_count := w_count + 1.U
+            w_count := Mux(io.AXI_O.wvalid, w_count + 1.U, w_count)
 
             //b_channel
             b_comp := Mux(io.AXI_O.bvalid && io.AXI_O.bready, 1.B, 0.B)

@@ -185,7 +185,7 @@ class IoforMem extends Module{
                 decode_inst_valid := 0.B
 
                 
-                when(excute_req){
+                when(excute_req && !mem_data_valid){  //避免连续请求
                     choose_buffer := master_choose
 
                     addr_buf := io.axi.req.bits.addr
