@@ -175,10 +175,7 @@ class FlowControl extends Module{
     // }.otherwise{
     //     IO_stall := 0.B
     // }
-    when(io.fcio.state === IoforMem.s_singlereq && io.fcio.valid && io.fcio.excute_interupt){ //连续的excute需要给流水线执行的空余时间
-        IO_stall := 0.B
-    }
-    .elsewhen((io.fcio.state === IoforMem.s_singlereq | io.fcio.state === IoforMem.s_multireq)){
+    when((io.fcio.state === IoforMem.s_singlereq | io.fcio.state === IoforMem.s_multireq)){
         IO_stall := 1.B
     }.otherwise{
         IO_stall := 0.B
