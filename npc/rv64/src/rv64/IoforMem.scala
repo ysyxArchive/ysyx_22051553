@@ -8,7 +8,7 @@ import dataclass.data
 
 
 object IoforMem{
-    val s_Idle :: s_singlereq :: s_multireq :: s_wait :: Nil = Enum(4)
+    val s_Idle :: s_singlereq :: s_multireq :: Nil = Enum(3)
 }
 //s_multiready:与Cache一致，等待Arbitor写地址结束
 
@@ -281,11 +281,8 @@ class IoforMem extends Module{
                     mem_data_bits := io.axi.resp.bits.data
                 }
 
-                when(io.fc.stall){
-                    state := s_wait
-                }.otherwise{
-                    state := s_Idle
-                }    
+                state := s_Idle
+
             }.otherwise{
                 io.axi.req.valid := 1.B 
                 io.axi.req.bits.addr := addr_buf 
@@ -329,89 +326,6 @@ class IoforMem extends Module{
 
                 io.axi.req.bits.len := 15.U
                 r_count := r_count + 1.U
-            }
-        }
-        is(s_wait){
-            when(!io.fc.stall){
-                state := s_Idle
-
-                mem_data_valid := 0.B
-                decode_inst_valid := 0.B
-
-
-                //如果有请求，直接进入下一次状态
-                
-                when(excute_req){
-                    addr_buf := io.axi.req.bits.addr
-                    rw_buf := io.axi.req.bits.rw
-
-                    when(begin_flag){ //记时16个周期后，申请写入vmem
-                        wait_cycle := wait_cycle + 1.U
-                    }
-
-                    when(begin_flag && wait_cycle === 15.U){
-                        when(io.fc.stall === 1.B){
-                            wait_cycle := 15.U
-                        }.otherwise{
-                            state := s_multireq
-                            io.axi.req.valid := 1.B 
-                            io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
-                            io.axi.req.bits.rw := 0.B
-                            io.axi.req.bits.len := 15.U
-                            data_count := data_count - 1.U
-                            wait_cycle := 0.U
-                        }
-                    }
-
-                    when(!excute_rw && excute_addr === "h00000000".U){ //vmem写请求，直到1.满、2.时间到达3.地址跳跃
-                        io.fc.vmem_range := 1.B
-
-                        when(begin_flag && (last_addr =/= excute_addr)){ //data_in_buffer代表第一个数据已经写入buffer
-                            state := s_multireq
-                            io.axi.req.valid := 1.B 
-                            io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
-                            io.axi.req.bits.rw := 0.B
-                            io.axi.req.bits.len := 15.U
-                            data_count := data_count - 1.U
-
-                            jump_data := excute_data
-                            jump_addr := excute_addr
-                            jump_mask := excute_mask
-                        }.otherwise{
-
-                            when(begin_flag === 0.B){
-                                begin_waddr := excute_addr
-                                begin_flag := 1.B
-                            }
-
-                            val data = VecInit.tabulate(8)(k => excute_data((k+1)*8 - 1, k*8))
-                            VmemBuffer.write(data_count, data, excute_mask.asBools)  //需要写成asBools成为Seq
-                            maskbuffer(data_count) :=  excute_mask
-                            last_addr := excute_addr + 8.U
-                            data_count := data_count + 1.U
-                            wait_cycle := 0.U //若有写，则重新计数
-                            
-                            when(wait_cycle === 15.U || data_count === 15.U){
-                                state := s_multireq
-                                io.axi.req.valid := 1.B 
-                                io.axi.req.bits.addr := Cat(begin_waddr(31,3), 0.U(3.W) ).asUInt //修改后，对齐8字节
-                                io.axi.req.bits.rw := 0.B
-                                io.axi.req.bits.len := 15.U
-                                data_count := data_count
-                            }
-                        }
-                    }
-                }.elsewhen(fetch_req){
-                    state := s_singlereq
-                    io.axi.req.valid := 1.B 
-                    io.axi.req.bits.rw := 1.B
-                    io.axi.req.bits.addr := Cat(fetch_addr(31,2), 0.U(2.W)).asUInt //修改后，对齐4字节，存疑
-                    io.axi.req.bits.len := 0.U
-                    io.axi.req.bits.size := "b10".U //存疑
-
-                    addr_buf := io.axi.req.bits.addr
-                    rw_buf := 1.B
-                }
             }
         }
     }
