@@ -169,7 +169,7 @@ class IoforMem extends Module{
     io.fc.state := state
     io.fc.valid := io.axi.resp.valid
     io.fc.vmem_range := 0.B 
-    io.fc.excute_keep := excute_req
+    io.fc.excute_keep := mem_data_valid
 
 
     val addr_buf = RegInit(0.U(ADDRWIDTH.W))
