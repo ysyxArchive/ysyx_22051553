@@ -127,29 +127,31 @@ import TrIO._
 class FlowControl extends Module{
     val io = IO(new FCIO)
 
-    val Icache_stall = WireInit(0.B)
-    val Dcache_stall = WireInit(0.B)
+    // val Icache_stall = WireInit(0.B)
+    // val Dcache_stall = WireInit(0.B)
+
+
     val IO_stall = WireInit(0.B)
 
     val MULDIV_stall = WireInit(0.B)
-    dontTouch(Icache_stall)
-    dontTouch(Dcache_stall)
+    // dontTouch(Icache_stall)
+    // dontTouch(Dcache_stall)
     dontTouch(IO_stall)
     dontTouch(MULDIV_stall)
 
 
-    when(io.fcIcache.state =/= 0.U){  //为解决combination circuit做出妥协
-        Icache_stall := 1.B
-    }.otherwise{
-        Icache_stall := 0.B
-    }
+    // when(io.fcIcache.state =/= 0.U){  //为解决combination circuit做出妥协
+    //     Icache_stall := 1.B
+    // }.otherwise{
+    //     Icache_stall := 0.B
+    // }
 
     
-    when(io.fcDcache.state =/= 0.U){ 
-        Dcache_stall := 1.B
-    }.otherwise{
-        Dcache_stall := 0.B
-    }
+    // when(io.fcDcache.state =/= 0.U){ 
+    //     Dcache_stall := 1.B
+    // }.otherwise{
+    //     Dcache_stall := 0.B
+    // }
 
     
     // when(io.fcio.req && io.fcio.state === IoforMem.s_Idle){
@@ -161,13 +163,20 @@ class FlowControl extends Module{
     // }.otherwise{
     //     IO_stall := 0.B
     // } 调整到下一周期stall
-    when((io.fcio.state === IoforMem.s_singlereq | io.fcio.state === IoforMem.s_multireq) && (!io.fcio.valid)){
+
+
+    // when((io.fcio.state === IoforMem.s_singlereq | io.fcio.state === IoforMem.s_multireq) && (!io.fcio.valid)){ //为避免组合回环
+    //     IO_stall := 1.B
+    // }.elsewhen(io.fcio.state === IoforMem.s_Idle && io.fcio.req && !(io.fcio.vmem_range)){
+    //     IO_stall := 1.B
+    // }
+    // .elsewhen(io.fcio.state === IoforMem.s_wait){
+    //     IO_stall := 0.B
+    // }.otherwise{
+    //     IO_stall := 0.B
+    // }
+    when((io.fcio.state === IoforMem.s_singlereq | io.fcio.state === IoforMem.s_multireq)){
         IO_stall := 1.B
-    }.elsewhen(io.fcio.state === IoforMem.s_Idle && io.fcio.req && !(io.fcio.vmem_range)){
-        IO_stall := 1.B
-    }
-    .elsewhen(io.fcio.state === IoforMem.s_wait){
-        IO_stall := 0.B
     }.otherwise{
         IO_stall := 0.B
     }
@@ -183,9 +192,11 @@ class FlowControl extends Module{
 
     val SFBundle = MuxCase(FlowControl.default,
         Seq(
+            
             IO_stall -> FlowControl.IOAXI_SFBundle,
-            Icache_stall -> FlowControl.Icache_SFBundle,
-            Dcache_stall -> FlowControl.Dcache_SFBundle, //优先级高于load_use
+            MULDIV_stall -> FlowControl.MULDIV_SFBundle,
+            (io.fcIcache.state =/= 0.U) -> FlowControl.Icache_SFBundle,
+            (io.fcDcache.state =/= 0.U) -> FlowControl.Dcache_SFBundle, //优先级高于load_use
             (io.fcde.load_use === 1.B) -> FlowControl.LoadUse_SFBundle,
             (io.fctr.trap_state === s_MSTATUS || io.fctr.trap_state  === s_MRET) -> FlowControl.TrapJump_SFBundle,
             (io.fctr.pop_NOP === 1.B || io.fctr.trap_state === s_WAIT || io.fctr.trap_state === s_MEPC
@@ -193,7 +204,7 @@ class FlowControl extends Module{
                 -> FlowControl.TrapWait_SFBundle,
             (io.fctr.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
             (io.fcex.jump_flag === 1.B) -> FlowControl.BRANCH_SFBundle,
-            MULDIV_stall -> FlowControl.MULDIV_SFBundle,
+            
             (io.fcde.jump_flag === 1.B) -> FlowControl.JUMP_SFBundle,
         )
     )

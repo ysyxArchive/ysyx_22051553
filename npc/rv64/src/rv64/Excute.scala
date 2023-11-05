@@ -27,11 +27,20 @@ class ExcuteIO extends Bundle{
 
     //to CLINT
     val clex = Flipped(new ClExIO)
+
+    //
+    val has_inst = Output(Bool())
+
+    //ioformem
+    val ioformem = Flipped(new IOex)
 }
 
 class Excute extends Module{
 
     val io = IO(new ExcuteIO)
+    //
+    io.has_inst := io.deio.has_inst
+
 
     val alu = Module(new Alu)
 
@@ -67,7 +76,7 @@ class Excute extends Module{
     val CLINT_type = Wire(Bool())
 
     CLINT_type := (io.deio.ld_type =/= 0.U || io.deio.sd_type =/= 0.U) &&      //load/store不涉及乘除相关操作
-        (alu.io.result >= "h02000000".U) && (alu.io.result <= "h0200bfff".U)
+        (alu.io.result >= "h02000000".U) && (alu.io.result <= "h0200ffff".U)
     //驱动端口
     //顶层
     //emio
@@ -103,7 +112,7 @@ class Excute extends Module{
     io.raddr := Mux( (io.deio.ld_type =/= 0.U) && (CLINT_type === 0.B) , alu.io.result, 0.U)   //load/store不涉及乘除相关操作
     
 
-    val woffset = Cat(alu.io.result(2,0), 0.U(3.W))
+    val woffset = Cat(alu.io.result(2,0), 0.U(3.W))  //这一套用于对齐访问
     io.waddr := Mux((io.deio.sd_type =/= 0.U) && (CLINT_type === 0.B) , alu.io.result, 0.U)
     io.wdata := io.deio.reg2_rdata << woffset
     io.wmask := MuxLookup(io.deio.sd_type, 0.U,
@@ -114,6 +123,25 @@ class Excute extends Module{
             SD_SD -> "b11111111".U
         )
     )
+
+    //这一套用于io的非对齐
+    val io_offset = Cat(alu.io.result(2,0), 0.U(3.W))  //需要4字节对齐
+    io.ioformem.addr := io.raddr | io.waddr
+    io.ioformem.data := io.deio.reg2_rdata << io_offset
+    io.ioformem.mask := MuxLookup(io.deio.sd_type, 0.U,
+        Seq(
+            SD_SB -> ("b00000001".U << alu.io.result(2,0)),
+            SD_SH -> ("b00000011".U << alu.io.result(2,0)),
+            SD_SW -> ("b00001111".U << alu.io.result(2,0)),
+            SD_SD -> "b11111111".U  //应该不存在该情况
+        )
+    )
+    io.ioformem.ld_type := io.deio.ld_type
+    io.ioformem.sd_type := io.deio.sd_type
+    
+
+
+
 
     io.cl_type := CLINT_type
 
