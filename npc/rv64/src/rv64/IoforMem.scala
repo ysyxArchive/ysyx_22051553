@@ -209,7 +209,8 @@ class IoforMem extends Module{
                 when(excute_req){ 
                     choose_buffer := master_choose
 
-                    
+                    addr_buf := io.axi.req.bits.addr
+                    rw_buf := io.axi.req.bits.rw
 
                     when(begin_flag){ //记时16个周期后，申请写入vmem
                         wait_cycle := wait_cycle + 1.U
@@ -275,7 +276,7 @@ class IoforMem extends Module{
                         state := s_singlereq
                         io.axi.req.valid := 1.B 
                         io.axi.req.bits.rw := excute_rw
-                        io.axi.req.bits.addr := Cat(excute_addr(31, 2), 0.U(2.W))  //4字节对齐
+                        io.axi.req.bits.addr := excute_addr.asUInt 
                         io.axi.req.bits.data := excute_data
                         io.axi.req.bits.mask := excute_mask
                         io.axi.req.bits.len := 0.U
@@ -300,8 +301,6 @@ class IoforMem extends Module{
 
                         data_buf := excute_data
                         mask_buf := excute_mask
-                        addr_buf := io.axi.req.bits.addr
-                        rw_buf := io.axi.req.bits.rw
                     }
 
                 }.elsewhen(fetch_req){ //取指令，是对齐的
