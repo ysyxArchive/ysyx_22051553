@@ -71,48 +71,26 @@ class Mem extends Module{
         Seq(
             clmemvalid_buffer -> clmem_buffer,
             rdatavalid_buffer -> rdata_buffer,//buffer优先，buffer表明在stall阶段，有需要处理的数据还未处理
-            // rdataiovalid_buffer -> rdataio_buffer, 
+            rdataiovalid_buffer -> rdataio_buffer, 
 
             io.clmem.Clrvalue.valid -> io.clmem.Clrvalue.bits,
             io.rdata.valid -> io.rdata.bits.data,
-            // io.rdata_io.data.valid -> io.rdata_io.data.bits,
+            io.rdata_io.data.valid -> io.rdata_io.data.bits,
             
         )
     )
 
-    val get_value_io = Wire(UInt(X_LEN.W))
-    get_value_io := MuxCase(  //来自io
-        0.U,
-        Seq(
-            rdataiovalid_buffer -> rdataio_buffer, 
-            io.rdata_io.data.valid -> io.rdata_io.data.bits,
-        )
-    )
-
-    val get_value_io_range = Wire(UInt(X_LEN.W))
-    get_value_io_range := MuxLookup(io.emio.ld_type, 0.S,
-        Seq(
-            LD_LB -> get_value_io(7, 0).asSInt,
-            LD_LH -> get_value_io(15, 0).asSInt,
-            LD_LW -> get_value_io(31, 0).asSInt,
-            LD_LD -> get_value_io.asSInt,
-            LD_LBU -> get_value_io(7,0).zext,
-            LD_LHU -> get_value_io(15,0).zext,
-            LD_LWU -> get_value_io(31,0).zext
-        )
-    ).asUInt
-
     
     
     //大修改!!!!
-    val loffset = (io.emio.ld_addr_lowbit << 3.U).asUInt     //重要  --这是对8字节对齐的内存的操作
+    val loffset = (io.emio.ld_addr_lowbit << 3.U).asUInt     //重要  --这是对8字节对齐的内存的操作 --并不是，这就是对字节偏移的操作
     val lshift = get_value >> loffset
 
-    val shift_get_value = Wire(UInt(X_LEN.W))                   //根据1.位宽进行扩展2.基地址偏移进行选择（总线上只能8字节对齐）
-    dontTouch(shift_get_value)
+    val rvalue = Wire(UInt(X_LEN.W))                   //根据1.位宽进行扩展2.基地址偏移进行选择（总线上只能8字节对齐）
+    dontTouch(rvalue)
 
 
-    shift_get_value := MuxLookup(io.emio.ld_type, 0.S, 
+    rvalue := MuxLookup(io.emio.ld_type, 0.S, 
         Seq(
             LD_LB -> lshift(7, 0).asSInt,
             LD_LH -> lshift(15, 0).asSInt,
@@ -124,8 +102,6 @@ class Mem extends Module{
         )
     ).asUInt
 
-    val rvalue = Wire(UInt(X_LEN.W)) 
-    rvalue := get_value_io_range | shift_get_value
 
     //端口驱动
     //mwio
