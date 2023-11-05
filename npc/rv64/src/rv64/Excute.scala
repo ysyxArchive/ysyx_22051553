@@ -125,15 +125,15 @@ class Excute extends Module{
     )
 
     //这一套用于io的非对齐
-    val io_offset = Cat(alu.io.result(1,0), 0.U(2.W))  //4字节对齐
+    val io_offset = Cat(alu.io.result(2,0), 0.U(3.W))  //需要4字节对齐
     io.ioformem.addr := io.raddr | io.waddr
     io.ioformem.data := io.deio.reg2_rdata << io_offset
     io.ioformem.mask := MuxLookup(io.deio.sd_type, 0.U,
         Seq(
-            SD_SB -> ("b00000001".U << alu.io.result(1,0)),
-            SD_SH -> ("b00000011".U << alu.io.result(1,0)),
-            SD_SW -> ("b00001111".U << alu.io.result(1,0)),
-            SD_SD -> "b11111111".U
+            SD_SB -> ("b00000001".U << alu.io.result(2,0)),
+            SD_SH -> ("b00000011".U << alu.io.result(2,0)),
+            SD_SW -> ("b00001111".U << alu.io.result(2,0)),
+            SD_SD -> "b11111111".U  //应该不存在该情况
         )
     )
     io.ioformem.ld_type := io.deio.ld_type
